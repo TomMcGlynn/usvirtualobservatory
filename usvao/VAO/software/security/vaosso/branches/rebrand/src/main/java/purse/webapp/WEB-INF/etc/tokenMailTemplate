@@ -1,0 +1,21 @@
+Hello @fullname@!
+
+Thank you for registering for your NVO logon.  Before you can use your
+logon, you need to confirm the receipt of this email.  You can do this
+in two ways:  
+
+  o  If you have just registered, and the NVO user registration
+     confirmation page is still in your browser, cut-and-paste the
+     Confirmation Token below into input box:
+
+        Confirmation Token:  @token@
+
+     -- OR --
+
+  o  Simply, Access this link:
+
+     @url@
+
+Once you have confirmed, you can proceed to the portal login page.   
+
+Having problems?  Please contact us at ysvenkat@ncsa.illinois.edu.

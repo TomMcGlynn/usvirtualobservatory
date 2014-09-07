@@ -1,0 +1,98 @@
+# Name of user table
+user_table=user_table
+# User id
+user_id=user_id
+# User token
+token=token
+# user's first name
+first_name=first_name
+# user's last name
+last_name=last_name
+# Contact information
+contact_person=contact_person
+# username to log in
+user_name=user_name
+# Password
+password_sha=password_sha
+# Salt
+salt=salt
+# Password Method
+password_method=password_method
+# Institution user belongs to
+institution=institution
+# Project name
+project_name=project_name
+# user's email.
+email=email
+# Phone number
+phone=phone
+# Country
+country=country
+# User's DN
+user_dn=dn
+# User's status id
+user_status_id=status_id
+# User's ra id
+user_ra_id=ra_id
+# Creation time (date)
+creation=creation_time
+# IP Address that account was created from
+created_from_addr=created_from_addr
+# Last access (date)
+last_access=last_access_time
+# Number of logins
+number_logins=number_logins
+# portal confirm URL
+portal_confirm_url=portal_confirm_url
+# portal confirm URL
+portal_name=portal_name
+
+# Role table name
+role_table=role_table
+# Role id
+role_id=role_id
+# Role name
+role_name=role_name
+# Role description
+role_description=role_description
+
+# User-Role table name
+user_roles_table=user_roles_table
+user_role_role_id=role_id
+user_role_user_id=user_id
+
+# Status table name
+status_table=status_table
+# Status id
+status_id=status_id
+# Status name
+status_name=status_name
+# Status description
+status_desc=status_description
+
+# group table name
+group_table=group_table
+# Group table, group id
+group_id=group_id
+# group name
+group_name=group_name
+# group desc
+group_desc=group_desc
+
+#User-Group table name
+user_group_table=user_group_table
+# User-Group, group id
+user_group_group_id=group_id
+# User-Group, user id
+user_group_user_id=user_id
+
+#RA table name
+ra_table=ra_table
+# ra id
+ra_id=ra_id
+# ra name
+ra_name=ra_name
+# ra email
+ra_email=ra_email
+# ra description
+ra_desc=ra_description

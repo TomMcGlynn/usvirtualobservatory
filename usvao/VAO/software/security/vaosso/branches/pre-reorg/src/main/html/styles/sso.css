@@ -1,0 +1,95 @@
+body { font-family: sans-serif; margin: 0 }
+body,p,td,tr,span,div,li,dd,dt { font-size: 13px; line-height: 1.35 }
+.main-content { margin: 0 1.0em 0 1.0em; }
+.foot { margin: 0 1.0em 0 1.0em; }
+
+h1,h2,h3,h4,h5,h6 { color: #003366; margin: 0.5em 0 0.2em 0 }
+h1 { font-size: 18pt; font-weight: 700; }
+h2 { font-size: 16pt; }
+h3 { font-size: 14pt; }
+h4 { font-size: 12pt; font-weight: 700; }
+h5 { font-size: 10pt; font-weight: 700; }
+h6 { font-size:  8pt; font-weight: 700; }
+ul,p,blockquote { margin-top: 0.6em; margin-bottom: 0.6em }
+li { margin-top: 0.1em; margin-bottom: 0.1em }
+form { margin:0px; }
+hr { color: #ffcc00 }
+
+a { text-decoration: underline; }
+a:hover { color: #2c6dbd; }
+a.nav { text-decoration: none; line-height: 1.5 }
+a.nav:hover { text-decoration: underline; }
+
+.divider { padding: 0.6em 0px 0.6em 0px }
+.username {
+    border:2px solid #fc0; padding:1px; margin: 1em 0 1em 0;
+    font-size:80%; background:#fe9; color:black; text-align:center; 
+}
+.announce { font-size:135%; color:#030; background:#dfd; text-align:center; padding: 0.3em 0 0.3em 0; margin:0 3em 0 3em }
+.top {margin-top: 0px}
+.tiny {font-size: 7pt;}
+.tinylink {font-size: 7pt; COLOR:#aaaaff;}
+.username a { color:black; text-decoration:underline; }
+.username a:hover { color:#666; text-decoration: none; }
+.error { background-color:#fdd; }
+.error_box { background-color:#fdd; border:2px solid #a00; padding: 6px; }
+
+#nav-head {
+   background-color: white;
+   spacing: 0px;
+   padding: 0px;
+   margin-top: 16px;
+}
+
+#nav-head td tr {
+   spacing: 0px;
+   padding: 0px;
+}
+
+#nav-menu {
+   background: #377696;
+   color: white;
+   width: 200px;
+   vertical-align: top;
+   padding: 0px;
+}
+
+#nav-menu a {
+   color: white;
+   text-decoration: none;
+}
+
+#nav-menu a:hover
+{
+   color: #98bfe7;
+}
+
+#nav-menu ul {
+   list-style: none;
+   marker-offset: 0px;
+   padding: 0px;
+   padding-left: 25px;
+   padding-right: 25px;
+}
+
+#nav-logo {
+}
+
+#nav-ul {
+   background: #377696 url(/images/nav-bg-ur.gif) top right no-repeat;
+   height: 10px;
+}
+
+#nav-ur {
+   background: #377696 url(/images/nav-bg-ul.gif) top left no-repeat;
+   height: 10px;
+}
+#nav-bl {
+   background: #377696 url(/images/nav-bg-br.gif) top right no-repeat;
+   height: 10px;
+}
+
+#nav-br {
+   background: #377696 url(/images/nav-bg-bl.gif) top left no-repeat;
+   height: 10px;
+}

@@ -1,0 +1,82 @@
+<!--include:head.html-->
+<script type="text/javascript" src="/styles/countries.js"></script>
+
+<h1>Identity Management</h1>
+
+<p>
+Your are logged in as <!--username-->.  To access a different account, <a href="?logout=true"></a>
+</p>
+
+<center>
+Profile | <a href="prefs">Privacy Preferences</a> | <a href="cred">Certificate</a> | <a href="/purse/password.jsp">Password</a>
+</center>
+
+<h2><!--title--></h2>
+<form method="post" action="<!--action-->">
+    <input type="hidden" name="origin" value="prof">
+    <blockquote>
+        <!--pageExplanation-->
+    </blockquote>
+    <!--feedback-->
+    <br>
+    <p style="text-align:center;">
+        <table style="margin-left: auto; margin-right:auto;">
+        <tr>
+        <td valign="top"><font color="green">*</font></td>
+        <td><strong>First Names or Initials:</strong></td>
+            <td><input type="text" name="fname" value="<!--fname-->"></td>
+        </tr>
+        <tr>
+        <td valign="top"><font color="green">*</font></td>
+        <td><strong>Last Name:</strong></td>
+            <td><input type="text" name="lname" value="<!--lname-->"></td>
+        </tr>
+        <tr>
+        <td valign="top"><font color="green"></font></td>
+        <td><strong>Institution/Company (if applicable):</strong></td>
+            <td><input type="text" name="institution" value="<!--institution-->"></td>
+        </tr>
+        <tr>
+        <td valign="top"><font color="green">*</font></td>
+        <td><strong>Email Address:</strong></td>
+            <td><input type="text" name="email" value="<!--email-->"></td>
+        </tr>
+        <tr>
+        <td valign="top"><font color="green">*</font></td>
+        <td><strong>Retype Email Address:</strong></td>
+            <td><input type="text" name="email2" value="<!--email2-->"></td>
+        </tr>
+        <tr>
+        <td valign="top"><font color="green">*</font></td>
+        <td><strong>Phone Number:</strong></td>
+            <td><input type="text" name="phone" value="<!--phone-->"></td>
+        </tr>
+        <tr>
+        <td valign="top"><font color="green">*</font></td>
+        <td><strong>Country: </strong></td>
+            <td><select id="countrySelect" name ="country"></select>
+              <script language="javascript">initCountry('<!--country-->');</script><br>
+        </tr>
+        <tr>
+        <td valign="top"><font color="green">*</font></td>
+        <td><strong>Username: </strong></td>
+            <td><!--username--></td>
+        </tr>
+        <tr>
+        <td valign="top"><font color="green">*</font></td>
+        <td><strong>Current Password: </strong></td>
+            <td><input type="password" name="password"></td>
+        </tr>
+        </table>
+    <!--feedback-->
+        <br>
+    </p>
+
+    <p style="text-align:center;">
+        <input type="submit" value="Update"></p>
+</form>
+
+<p>
+<a href="/help/manage.html#profile" target="_help">More help on editing your profile information...</a>
+</p>
+<!--include:foot.html-->

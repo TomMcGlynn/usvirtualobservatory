@@ -1,0 +1,15 @@
+# This sets up the environment for myproxy-server when initiated from 
+# /etc/init.d/myproxy-server.  It should be installed into /etc/sysconfig.
+
+MYPROXY_USER=myproxy
+
+MYPROXY_OPTIONS="-s @dir.sys.myproxy.certs@ -c @dir.sys.myproxy.conf@/myproxy-server-openidip.config"
+
+# Use this one to get the configuration from the standard locations
+# (starting with /etc/myproxy-server.config)
+#
+# MYPROXY_OPTIONS="-s /var/lib/myproxy"
+
+X509_USER_CERT=@dir.sys.grid_security@/hostcert.pem
+X509_USER_KEY=@dir.sys.grid_security@/hostkey.pem
+

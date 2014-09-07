@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<!--headstart-->
+<title>VAO Login - <!--title--></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--extraMetas-->
+<!--include:styles.include-->
+<link href="<!--rootPath-->/openid.css" type="text/css" rel="stylesheet">
+
+<!--extraScripts-->
+<style>
+
+</style>
+</head>
+<body class="login">
+<div class="body-border">
+
+<script type="text/javascript" src="/styles/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/loginstatus.js"></script>
+<script type="text/javascript">
+statusdisplay.showLogin = false;
+jQuery(document).ready(vaoStatus);
+</script>
+
+<div id="banner">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+  <td class="banner-logo" align="left" valign="top" width="105" rowspan="3">
+     <a href="/"><img src="/images/VAO_logo_100.png" border="0" width="100" height="50"></a>
+  </td>
+  <td align="left" valign="top" rowspan="3">
+	<h1>
+        Login to <!--relyingPortal--> 
+        </h1>
+  </td>
+</tr>
+</table>
+</div> <!-- div: id=banner -->
+
+
+<table id="brief-nav" cellpadding="3" cellspacing="3" width="100%">
+<tr>
+  <td>
+	<a href="/">About VAO Logins</a></td>
+  <td>
+	<a href="/register/register.jsp<!--returnto-->">Create New Account</a></td>
+  <td>
+	<a href="/register/password.jsp">Forgot username/password</a></td>
+  <td>
+	<a href="/register/password.jsp">Change password</a></td>
+  <td width="50">
+	<a href="/help/faq.html">Help</a></td>
+</tr>
+</table>
+
+  <div id="login-form">
+  <form method="post" id="login_form" action="<!--action-->">
+  <table border="0" align="center">
+  <!--feedback-->
+  <tr>
+    <td class="login-label">VAO Username &nbsp; </td>
+    <td width="160"><!--name--></td>
+    <td>&nbsp; <!--changeuser--></td>
+  </tr>
+  <tr>
+    <td class="login-label">Password  &nbsp; </td>
+    <td>
+        <input type="password" name="password" id="password_input" onfocus="this.select()">
+        <input type="hidden" name="interactive" value="true">
+        <input type="hidden" name="logout" id="logout" value="false">
+    </td>
+    <td align="left"> &nbsp; <input type="submit" value="Sign in"></td>
+  </tr>
+</table>
+</form>
+
+</div> <!-- end login-form -->
+
+
+<div style="height:5px">&nbsp;</div>
+
+<div id="status-bar">&nbsp;&nbsp;<span class="login-label">Status:</span>&nbsp;
+<span id="loginStatus" align="center" > Unknown </span></div>
+
+<div style="height:5px">&nbsp;</div>
+
+<center>
+<p style="font-size: 75%; margin-left: 11px;">
+This page is served from  
+<b>sso.usvao.org</b>, 
+<a href="/help/faq.html#phish">verified by Internet2/InCommon</a>
+</p>
+</center>
+
+</div> <!-- class: body-border -->
+</body>
+</html>
+

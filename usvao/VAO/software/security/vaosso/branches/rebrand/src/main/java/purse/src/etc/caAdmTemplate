@@ -1,0 +1,20 @@
+// 
+// Use the tag.properties file to define @portal_name@ and @portal_admin@
+// 
+// The tags @url@ and @token@ are substituted by Purse.
+// 
+From:    @portal_name@
+To:      @portal_admin@
+Subject: User Account
+
+A request has been made for a user account on the @portal_name@. 
+
+You may access the details of the request by clicking on the following link:
+
+@url@
+
+You may also approve the request by replying to this e-mail with no changes to 
+the subject line, and with the following line as the *only* line in the body 
+of the e-mail.
+
+Token:@token@#

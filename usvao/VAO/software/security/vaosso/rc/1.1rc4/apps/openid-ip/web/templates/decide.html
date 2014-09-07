@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<!--headstart-->
+<title>VAO Login - <!--title--></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--extraMetas-->
+<!--include:styles.include-->
+<link href="<!--rootPath-->/openid.css" type="text/css" rel="stylesheet">
+<!--extraScripts-->
+</head>
+<body class="login">
+
+<script type="text/javascript" src="/styles/jquery.min.js"></script>
+<script type="text/javascript">
+function makeStatusHTML(status) {
+    var htmlt = "";
+    if (status.state == "in") {
+        htmlt += "Logged in as ";
+        htmlt += status.username;
+        htmlt += " &nbsp;&nbsp;Time left: ";
+        htmlt += status.dispLeft;
+        // htmlt += ' &nbsp;&nbsp;<a href="/openid/?logout=true">Logout</a> ';
+    }
+    else if (status.state == "expired") {
+        htmlt += "Expired session as ";
+        htmlt += status.username;
+    }
+    else {
+        htmlt += 'Logged out';
+    }
+    return htmlt;
+}
+
+function displayStatus(status) {
+    jQuery("#loginStatus")[0].innerHTML = makeStatusHTML(status);
+}
+
+jQuery(document).ready(function() {
+    jQuery.getJSON("/openid/loginStatus", displayStatus);
+})
+</script>
+
+<table cellpadding="3" cellspacing="3">
+<tr>
+  <td valign="top">
+      <a href="http://www.usvao.org/"><img src="/images/VAOwords_200.png" width="90" height="50"></a>
+  </td>
+  <td valign="top">
+	<h1>
+        Connecting to <!--relyingPortal-->
+        </h1>
+  </td>
+</tr>
+</table>
+
+<table id="brief-nav" cellpadding="3" cellspacing="3" width="100%">
+<tr>
+  <td width="50">
+	<a href="/">About</a></td>
+  <td>
+        &nbsp;
+  </td>
+  <td width="50">
+	<a href="/help/faq.html">Help</a></td>
+</tr>
+</table>
+
+<p>
+<!--statusStatement-->
+</p>
+
+<!--axDescription-->
+
+<div class="choice-block">
+    <form action="signin">
+        <div style="margin: 0.5em 0 0.5em 1.5em">
+            <!--axInputs-->
+            <div class="highlight-box check">
+                <label style="vertical-align:middle">
+                    <input type="checkbox" name="nvo_sso_enabled" value="true" <!--ssoChecked--> style="float:left">
+                    Remember these settings for <em title="<!--relyingURL-->"><!--relyingName--></em> and don't ask me again next time.
+                </label>
+            </div>
+        </div>
+
+<input name="confirm" value="true" type="hidden">
+
+<table class="decide" border="0" cellspacing="0" cellpadding="8"><tr>
+<td>
+<center><input value="Connect" class="link-button" id="yes" type="submit"></center>
+</td>
+<td>
+    <center>
+    <a href="<!--noUrl-->" class="link-button" id="no">Cancel</a>
+    </center>
+</td>
+<td style="<!--choiceLogout-->">
+<center>
+    <a href="https://vaossotest.ncsa.illinois.edu/openid/signin?logout=true"
+       style="text-decoration: none;"/>
+    <div class="link-button" id="change">Change user</div></a>
+</center>
+</td>
+</tr><tr>
+<td valign="top">
+<span class="choice-description">
+    Yes, I trust <em title="<!--relyingURL-->"><!--relyingName--></em>.
+    Sign in with my VAO login, <strong><!--name--></strong>.
+</span>
+</td>
+<td valign="top">
+    <span class="choice-description">
+        No, I decline. Return to <em title="<!--relyingURL-->"><!--relyingName--></em> without signing in.
+    </span>
+</td>
+<td style="<!--choiceLogout-->" valign="top">
+    <span class="choice-description">
+        Sign out and use a different VAO username to access <em title="<!--relyingURL-->"><!--relyingName--></em>.
+    </span>
+</td>
+</tr></table>
+
+    </form>
+</div>
+
+
+<div style="height:5px">&nbsp;</div>
+
+<div id="status-bar">&nbsp;&nbsp;<span class="login-label">Status:</span>&nbsp;
+<span id="loginStatus" align="center" > Logged In </span></div>
+
+<div style="height:5px">&nbsp;</div>
+
+<center>
+<p style="font-size: 75%; margin-left: 11px;">
+This page is served from  
+<b>sso.usvao.org</b>, 
+<a href="/help/faq.html#phish">verified by Internet2/InCommon</a>
+</p>
+</center>
+
+
+</body></html>

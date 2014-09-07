@@ -1,0 +1,112 @@
+<project name="openid" basedir="." default="deploy">
+<property file="build.properties"/>
+<property file="build.static.properties"/>
+
+<path id="build.classpath">
+	<fileset dir="${src.lib.dir}">
+		<include name="**/*.jar"/>
+	</fileset>
+	<pathelement location="${servlet-api.jar}" />
+</path>
+
+<path id="test.classpath">
+	<path refid="build.classpath"/>
+	<pathelement location="${build.classes.dir}"/>
+</path>
+
+<target name="compile">
+	<mkdir dir="${build.classes.dir}"/>
+	<javac destdir="${build.classes.dir}" classpathref="build.classpath"
+	       debug="on" source="1.5" deprecation="on" optimize="off" includeantruntime="false">
+		<src path="${src.dir}"/>
+		<include name="**/*.java"/>
+	</javac>
+	<copy todir="${build.classes.dir}">
+		<fileset dir="${src.dir}">
+			<include name="**/*.properties"/>
+			<include name="**/*.xml"/>
+			<exclude name="**/*_sample"/>
+		</fileset>
+	</copy>
+</target>
+	
+<target name="test" depends="compile">
+	<java classname="org.usvo.openid.test.AllUsefulTests" fork="true" classpathref="test.classpath">
+		<assertions>
+			<enable/>
+		</assertions>
+	</java>
+</target>
+
+<target name="openid" depends="openid4java"/>
+<!-- Do this out of band, and check in libraries, so that you don't have to build openid4java just to deploy. -->
+<target name="openid4java" description="copy JARs from openid4java (OOB)">
+	<ant dir="${openid4java.dir}" inheritall="false"/>
+	<copy todir="${src.lib.dir}">
+		<fileset dir="${openid4java.dir}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>
+	<copy todir="${src.lib.dir}/spring">
+		<fileset dir="${openid4java.dir}/lib/optional">
+			<include name="spring*.jar"/>
+		</fileset>
+	</copy>
+	<copy todir="${src.lib.dir}" file="${openid4java.dir}/build/openid4java.jar"/>
+</target>
+
+<target name="webapp" depends="clean.webapp,compile">
+	<mkdir dir="${build.webapp.dir}"/>
+	<copy todir="${build.webapp.dir}">
+		<fileset dir="${src.webapp.dir}" includes="**/*" excludes="**/*_sample"/>
+	</copy>
+</target>
+
+<target name="clean.webapp">
+	<delete dir="${build.webapp.dir}"/>
+</target>
+	
+<target name="lib" depends="compile">
+	<mkdir dir="${build.lib.dir}"/>
+<!-- don't build openid.jar; instead, use classes dir
+	<jar jarfile="${build.lib.dir}/${lib.name}">
+		<fileset dir="${build.classes.dir}" includes="**/*">
+			<include name="**/*"/>
+		</fileset>
+	</jar>
+-->
+	<copy todir="${build.lib.dir}" flatten="true">
+		<fileset dir="${src.lib.dir}">
+			<include name="**/*.jar"/>
+			<exclude name="build/**"/>
+		</fileset>
+	</copy>
+</target>
+
+<target name="war" depends="lib, webapp">
+	<mkdir dir="${web-inf.dir}"/>
+
+	<war warfile="${war.file}" webxml="${web.xml}">
+		<fileset dir="${build.webapp.dir}"/>
+		<lib dir="${build.lib.dir}"/>
+		<classes dir="${build.classes.dir}"/>
+	</war>
+</target>
+
+<target name="clean">
+	<delete dir="${build.dir}"/>
+</target>
+
+<target name="cleanall" depends="clean, cleanTomcatWebappExtracted">
+	<delete dir="${build.dir}"/>
+</target>
+
+<target name="deploy" depends="war">
+	<copy file="${war.file}" todir="${deploy.dir}"/>
+	<copy file="${src.webapp.dir}/favicon.ico" todir="${deploy.dir}/ROOT"/>
+</target>
+
+<target name="cleanTomcatWebappExtracted">
+	<delete dir="${deploy.webapp.dir}"/>
+</target>
+</project>

@@ -1,0 +1,166 @@
+Index: pam_mysql.c
+===================================================================
+--- pam_mysql.c	(revision 498)
++++ pam_mysql.c	(working copy)
+@@ -46,6 +46,8 @@
+ #include "config.h"
+ #endif
+ 
++#include <time.h>
++
+ /* {{{ includes */
+ 
+ #include <stdio.h>
+@@ -626,6 +628,36 @@
+ 
+ 	return md;
+ }
++
++int iterations = 1000;
++void pam_mysql_salted1_data(char *password, char *salt, char outputBuffer[65])
++{
++    unsigned char hash[SHA256_DIGEST_LENGTH];
++    unsigned char salt_hash[32];
++    unsigned char sha1[20];
++    int i = 0;
++
++    SHA1(password, (unsigned long)(strlen(password)), sha1);
++    for(i = 0; i < 32; i++) {
++        sscanf(salt, "%2hhx", &salt_hash[i]);
++        salt += 2 * sizeof(char);
++    }
++    SHA256_CTX sha256;
++    for (i = 0; i < iterations; i++) {
++        SHA256_Init(&sha256);
++        if (i)
++            SHA256_Update(&sha256, hash, SHA256_DIGEST_LENGTH);
++        SHA256_Update(&sha256, sha1, 20);
++        SHA256_Update(&sha256, salt_hash, 32);
++        SHA256_Final(hash, &sha256);
++    }
++
++    for(i = 0; i < SHA256_DIGEST_LENGTH; i++)
++    {
++        sprintf(outputBuffer + (i * 2), "%02x", hash[i]);
++    }
++    outputBuffer[64] = 0;
++}
+ #endif
+ /* }}} */
+ 
+@@ -703,6 +735,10 @@
+ 			*pretval = "sha1";
+ 			break;
+ 
++		case 5:
++			*pretval = "salted1";
++			break;
++
+ 		default:
+ 			*pretval = NULL;
+ 	}
+@@ -738,6 +774,13 @@
+ 		*(int *)val = 4;
+ 		return PAM_MYSQL_ERR_SUCCESS;
+ 	}
++    if (strcmp(newval_str, "5") == 0 || strncasecmp(newval_str, "salted1", strlen("salted1")) == 0) {
++        char *sep = strchr(newval_str, ':');
++        *(int *)val = 5;
++        if (sep)
++            sscanf(sep+1, "%d", &iterations);
++        return PAM_MYSQL_ERR_SUCCESS;
++    }
+ 
+ 	*(int *)val = 0;
+ 
+@@ -2595,7 +2638,7 @@
+ 	}
+ 
+ 	if (ctx->verbose) {
+-		syslog(LOG_AUTHPRIV | LOG_ERR, PAM_MYSQL_LOG_PREFIX "%s", query.p);
++		syslog(LOG_AUTHPRIV | LOG_ERR, PAM_MYSQL_LOG_PREFIX "running query: %s", query.p);
+ 	}
+ 
+ #ifdef HAVE_MYSQL_REAL_QUERY
+@@ -2700,7 +2743,70 @@
+ 						syslog(LOG_AUTHPRIV | LOG_ERR, PAM_MYSQL_LOG_PREFIX "non-crypt()ish SHA1 hash is not supported in this build.");
+ #endif
+ 					} break;
++// REDMINE SPECIFIC
++// Password encryption is:
++// SHA1(salt.SHA1(password))
++                               case 5: {
++#ifdef HAVE_PAM_MYSQL_SHA1_DATA
++                                       // First we need the user salt
++                                       // It is added in the password:
++                                       // <password>|<salt>
++                                       char *p = NULL;
++                                       char *salt = NULL;
++                                       char *password = NULL;
++                                       int i = 1;
+ 
++                                       // Splitting password on |
++                                       p = strtok (row[0],"|");
++
++                                       // Getting substrings
++                                       while (p != NULL)
++                                       {      
++                                               // Token is the 2nd part of the string
++                                               if (i == 1) {
++                                                       password = p;
++                                               }
++                                               else if (i == 2) {
++                                                       salt = p;
++                                                       // syslog(LOG_AUTHPRIV | LOG_INFO, PAM_MYSQL_LOG_PREFIX "User salt was found: %s", salt);
++                                               }
++                                               p = strtok (NULL, "|,");       
++                                               i = i + 1;
++                                       }
++                                      
++                                       if (salt == NULL || strlen(salt) == 0 || password == NULL || strlen(password) == 0) {
++                                               syslog(LOG_AUTHPRIV | LOG_INFO, PAM_MYSQL_LOG_PREFIX "Could not extract password or salt from view");
++                                               break;
++                                       }
++                                      
++                                       // Hashing user input password only
++#if 0
++                                       char sha1[42] = "";
++                                       pam_mysql_sha1_data((unsigned char*)passwd, strlen(passwd), sha1);
++                                      
++                                       // Then hashing previous hash + <salt> + <hashed password>
++#endif
++                                       char hashed[65] = "";
++double elapsed; // in milliseconds
++clock_t start, end;
++
++start = clock();
++                                       pam_mysql_salted1_data(passwd, salt, hashed);
++end = clock();
++elapsed = ((double) (end - start) * 1000) / CLOCKS_PER_SEC;
++						// syslog(LOG_AUTHPRIV | LOG_CRIT, PAM_MYSQL_LOG_PREFIX "Hashing took (%f) milliseconds for (%d) iterations.", elapsed, iterations);
++                                       vresult = strcmp(password, hashed);
++                                       {
++                                               char *p = hashed - 1;
++                                               while (*(++p)) *p = '\0';
++                                       }                                      
++#else
++						syslog(LOG_AUTHPRIV | LOG_ERR, PAM_MYSQL_LOG_PREFIX "non-crypt()ish SHA1 hash is not supported in this build.");
++#endif
++                                      
++                               } break;
++
++
+ 					default: {
+ 					}
+ 				}
+@@ -2889,6 +2995,10 @@
+ #endif
+ 				break;
+ 
++                       case 5:
++                               syslog(LOG_AUTHPRIV | LOG_ERR, PAM_MYSQL_LOG_PREFIX "Unable to change password when using salted1 crypt type");
++                       break;
++
+ 			default:
+ 				encrypted_passwd = NULL;
+ 				break;

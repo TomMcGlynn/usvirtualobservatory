@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!--
+  -  WARNING: this file is no longer used; it is deprecated by 
+  -           hibernate.properties
+  - 
+  -  Default version of the hibernate configuration file.  
+  - 
+  -  Normally this need be edited directly; instead, customizations
+  -  are place in either ../build.properties (prefixed with "hibernate")
+  -  or, more often, in the build.properties in the top vaosso directory 
+  -  (prefixed with openidip.hibernate).  These values will get migrated 
+  -  to ../web/hibernate_cfg.xml, using this file as a template, for 
+  -  inclusion into the openid.war app.
+  -
+  -  To provide a hand-edited version of this file, place it into the 
+  -  ../web directory as hibernate_cfg.xml *and* set hibernate_cfg.autogen
+  -  to false in ../build.properties.  
+  -->
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost/purseDatabase</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">purse</property>
+        <property name="connection.password">some_password</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLMyISAMDialect</property>
+        <!-- Show and print nice SQL on stdout -->
+        <property name="show_sql">false</property>
+        <property name="format_sql">true</property>
+        <!-- DB schema will be updated if needed -->
+        <property name="hbm2ddl.auto">update</property>
+        <!-- Use c3p0 for a connection pool -->
+        <property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+        <!-- development values - may want to open up a bit for production -->
+        <property name="c3p0.max_size">1</property>
+        <property name="c3p0.min_size">0</property>
+        <property name="c3p0.timeout">30</property>
+        <property name="c3p0.idle_test_period">5</property>
+        <!-- see http://www.informit.com/articles/article.aspx?p=353736&seqNum=4
+                or http://www.mchange.com/projects/c3p0/index.html for more settings -->
+    </session-factory>
+</hibernate-configuration>

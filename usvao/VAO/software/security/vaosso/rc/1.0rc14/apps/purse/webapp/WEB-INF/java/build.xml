@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="skiplist build file" default="dist" basedir=".">
+    <property name="dbconfig" value="db.properties"/>
+    <property name="formconfig" value="forms.properties"/>
+    <property name="logdir" value="logs"/>
+    <property name="lib" value="../lib"/>
+    <property name="classes" value="../classes"/>
+    <property name="src" value="${basedir}"/>
+    <property name="build.sysclasspath" value="last"/>
+    <property environment="env"/>
+    <property name="axis_deploy" value="${env.AXIS_DEPLOY}"/>
+
+    <taskdef resource="axis-tasks.properties"/>
+
+    <target name="init">
+	<mkdir dir="${classes}"/>
+    </target>
+
+
+
+    <target name="deploy" depends="init,compile">
+    </target>
+
+    <target name="compile" depends="init">
+        <copy file="${formconfig}" tofile="${classes}/forms.properties"/>
+	<javac destdir="${classes}"
+	   srcdir="${src}">
+	</javac>
+        <copy file="${dbconfig}" tofile="${classes}/nvo/security/purse/db.properties"/>
+    </target>
+
+</project>

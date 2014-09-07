@@ -1,0 +1,12 @@
+# where tomcat is, so that we can deploy it
+tomcat.dir=/usr/local/tomcat/default
+
+#gwt.toolkit.dir=/home/bbaker/downloads/gwt/default
+#gwt.toolkit.dir=${home}/Downloads/java/gwt/gwt-mac-1.5.0
+#gwt.toolkit.dir=/usr/local/gwt/default
+
+tomcat.dir=/usr/local/nvo/tomcat/default
+servlet-api.jar=${tomcat.dir}/common/lib/servlet-api.jar
+#tomcat.dir=${home}/Downloads/java/tomcat/apache-tomcat-6.0.16
+
+#openid4java.dir=/home/bbaker/source/openid4java

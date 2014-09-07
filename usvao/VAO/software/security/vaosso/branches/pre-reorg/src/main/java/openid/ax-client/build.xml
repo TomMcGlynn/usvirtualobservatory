@@ -1,0 +1,54 @@
+<project name="ax" basedir="." default="deploy">
+<property file="../build.properties"/>
+<property file="build.static.properties"/>
+
+<!-- Do this out of band, and check in libraries, so that you don't have to build openid4java just to deploy. -->
+<target name="openid4java" description="copy JARs from openid4java (OOB)">
+	<ant dir=".." inheritall="false" target="openid4java"/>
+</target>
+
+<target name="deploy" depends="war">
+	<copy file="${war.file}" todir="${deploy.dir}"/>
+</target>
+
+<target name="war" depends="webapp">
+	<war destfile="${war.file}">
+		<fileset dir="${build.webapp.dir}"/>
+<!--		<lib dir="${src.lib.dir}"/> -->
+	</war>
+</target>
+
+<target name="webapp" depends="clean.webapp">
+	<mkdir dir="${build.webapp.dir}"/>
+	<copy todir="${build.webapp.dir}">
+		<fileset dir="${src.webapp.dir}" includes="**/*"/>
+	</copy>
+	<copy todir="${build.lib.dir}" flatten="true">
+		<fileset dir="${src.lib.dir}" includes="**/*.jar" excludes="build/**"/>
+	</copy>
+	<copy todir="${build.classes.dir}">
+		<fileset dir="${src.java.dir}">
+			<include name="**/*.properties"/>
+			<include name="**/*.xml"/>
+		</fileset>
+	</copy>
+</target>
+
+<target name="clean.webapp">
+	<delete dir="${build.webapp.dir}"/>
+</target>
+	
+<target name="clean">
+	<delete dir="${build.dir}"/>
+</target>
+
+<target name="cleanall" depends="clean">
+	<delete dir="${deploy.webapp.dir}"/>
+</target>
+
+<!-- non-automatic (nothing depends on this) - to be done out-of-band -->
+<target name="openid" description="rebuild openid4java and copy the jar (OOB)">
+	<ant dir=".." target="openid" inheritall="false"/>
+</target>
+
+</project>

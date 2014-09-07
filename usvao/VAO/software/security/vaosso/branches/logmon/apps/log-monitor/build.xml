@@ -1,0 +1,106 @@
+<project name="openid-ip" basedir="." default="build">
+  <!--
+    - set inherit-properties to "false" if you do not want to inherit
+    - properties from the enclosing package.  
+    -->
+  <property name="inherit-properties" value="build-inherit.properties"/>
+  <property file="${inherit-properties}"/>
+
+  <property file="build.properties"/>
+  <property file="build.static.properties"/>
+
+  <property name="dir.home" value="${basedir}" />
+  <property name="dir.build" value="${basedir}/build" />
+
+  <!-- REMOVE if no java -->
+  <property name="dir.build.javadocs" value="${dir.build}/japi" />
+  <property name="dir.build.classes" value="${dir.build}/classes" />
+  <property name="dir.build.tclasses" value="${dir.build}/tclasses" />
+
+  <property name="dir.build.lib" value="${dir.build}/lib" />
+  <property name="dir.testreports" value="${dir.build}/test-reports" />
+  <property name="dir.src" value="${basedir}/src/main" />
+  <property name="dir.tsrc" value="${basedir}/src/test" />
+  <property name="dir.etc" value="${basedir}/etc" />
+  <property name="dir.web" value="${basedir}/web" />
+  <property name="dir.lib" value="${basedir}/lib" />
+
+  <!-- REMOVE if no java -->
+  <property name="dir.jars" value="${dir.lib}" />
+  <property name="webapp.name" value="openid" />
+  <property name="jar.name" value="${webapp.name}-ip.jar" />
+  <property name="jar.path" value="${dir.jars}/${jar.name}" />
+  <property name="war.name" value="${webapp.name}.war" />
+  <property name="war.path" value="${basedir}/${war.name}" />
+
+  <property name="debug" value="true"/>
+  <property name="deprecation" value="true"/>
+
+  <!-- REMOVE if no java -->
+  <path id="build.classpath">
+    <pathelement location="${dir.build.classes}" />
+    <fileset dir="${dir.jars}">
+      <include name="**/*.jar"/>
+      <exclude name="${jar.name}"/>
+    </fileset>
+    <pathelement location="${jar.servletapi}" />
+  </path>
+
+  <!-- REMOVE if no java -->
+  <path id="test.classpath">
+    <path refid="build.classpath"/>
+    <pathelement location="${dir.build.tclasses}" />
+  </path>
+
+  <target name="build" depends="build-python"/>
+
+  <target name="build" depends="init-python">
+    <exec executable="${python.exe}">
+      <arg line="setup.py build"/>
+    </exec>
+  </target>
+
+  <target name="install" depends="install-python"/>
+
+  <target name="test-python" depends="build-python">
+    <exec executable="${python.exe}">
+      <arg line="setup.py test"/>
+    </exec>
+  </target>
+
+  <target name="init" depends="init-python"/>
+
+  <target name="init-python">
+    <mkdir dir="${dir.build.classes}"/>
+    <mkdir dir="${dir.build.tclasses}"/>
+  </target>
+
+  <!-- REMOVE if no java -->
+  <target name="init-java">
+    <mkdir dir="${dir.build.classes}"/>
+    <mkdir dir="${dir.build.tclasses}"/>
+  </target>
+
+
+  <!-- REMOVE if no java -->
+  <target name="test-java" depends="compileTests">
+  </target>
+
+  <target name="clean">
+    <delete dir="${dir.build}" />
+  </target>
+
+  <target name="distclean" depends="clean">
+  </target>
+
+  <target name="try">
+    <!-- <echo>classpath: ${toString:build.classpath}</echo> -->
+    <echo>inherit file: ${inherit-properties}</echo>
+  </target>
+
+<!--
+  <target name="cleanTomcatWebappExtracted">
+    <delete dir="${deploy.webapp.dir}"/>
+  </target>
+  -->
+</project>

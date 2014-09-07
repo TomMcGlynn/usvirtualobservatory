@@ -1,0 +1,18 @@
+# This sets up the environment for myproxy-server that accepts
+# authentication by either password or session cookie.  It is used the 
+# openidip service to generate certs made available to the RP on
+# behalf of the user.  It gets installed into /etc/sysconfig.
+
+# Note that this myproxy service runs on the standard port
+MYPROXY_USER=myproxy
+
+MYPROXY_OPTIONS="-s @dir.sys.myproxy.certs@ -c @dir.sys.myproxy.conf@/myproxy-server-bycookie.config"
+
+# Use this one to get the configuration from the standard locations
+# (starting with /etc/myproxy-server.config)
+#
+# MYPROXY_OPTIONS="-s /var/lib/myproxy"
+
+X509_USER_CERT=@dir.sys.grid_security@/hostcert.pem
+X509_USER_KEY=@dir.sys.grid_security@/hostkey.pem
+

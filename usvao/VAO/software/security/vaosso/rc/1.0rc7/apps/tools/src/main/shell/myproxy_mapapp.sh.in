@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ $# -ne 1 ]; then
+    echo Usage: `basename $0` "<username>" 1>&2
+    exit 127
+fi
+
+echo "/C=@ca.countryName@/O=@ca.organizationName@/OU=@ca.user_organizationUnitName@/CN=$1"

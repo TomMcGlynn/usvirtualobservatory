@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<project default="-write-runtime-props" name="vaosso-apps" basedir=".">
+
+  <target name="-write-apps-props">
+    <echoproperties destfile="${destfile}">
+      <propertyset negate="true">
+        <propertyref prefix="java."/>
+        <propertyref prefix="sun."/>
+        <propertyref prefix="ant."/>
+        <propertyref prefix="user."/>
+        <propertyref prefix="os."/>
+        <propertyref prefix="file."/>
+        <propertyref prefix="line."/>
+        <propertyref prefix="path."/>
+        <propertyref prefix="basedir"/>
+        <propertyref prefix="destfile"/>
+      </propertyset>
+    </echoproperties>
+  </target>
+
+</project>

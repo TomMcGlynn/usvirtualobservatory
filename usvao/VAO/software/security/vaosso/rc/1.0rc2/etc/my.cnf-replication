@@ -1,0 +1,40 @@
+####
+#
+#  MySQL configuration file used for server that is replicated to
+#  other sites
+# 
+#####
+#
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+# Default to using old password format for compatibility with mysql 3.x
+# clients (those using the mysqlclient10 compatibility package).
+old_passwords=1
+
+auto_increment_increment=10
+auto_increment_offset=4
+# necessary for replication loops larger than two servers
+log-slave-updates
+# limit replication to the Purse database
+replicate-do-db=purseDatabase
+# okay, also replicate the "test" database
+replicate-do-db=test
+
+relay-log=nvoauth1-relay-bin
+
+# Standard port is 3306, but NOAO tries to avoid that port
+port=28365
+
+# Binary logging to enable replication
+log-bin=/var/local/nvo/mysql/mysql-bin.log
+# Assign unique server ID for each replication participant
+server-id=4
+
+[mysql.server]
+user=mysql
+basedir=/var/lib
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid

@@ -1,0 +1,930 @@
+FILE_TYPE: NUTS
+
+KEYWORDS: Java JavaServer Pages JSP CGI Forms Servlets Memento Design Patterns
+
+WPIMETA: SSJ, BROWSERS, TIPS, TUTORIALS
+
+DAY_POSTED: This date is filled in by the editors, just before publication
+
+EYEBROW: Server Side Java
+
+HEAD: Advanced Form Processing using JavaServer Pages
+
+DECK: Use the Memento Design Pattern with JSP and JavaBeans 
+
+BLURB: Learn how to implement the Memento design pattern to process HTML forms with JSP and JavaBeans
+
+AUTHOR: Govind Seshadri
+
+SUMMARY:
+One of the most common operations performed on the Web today is the processing of 
+HTML forms by making use of servlets or more frequently, CGI scripts. A little known 
+secret is the role JavaServer Pages (JSP) technology can play in sophisticated form 
+processing. In certain instances, JSP can even excel the capabilities of servlets and Perl 
+scripts in handling HTML forms. In this article, we will examine the processing of a user 
+registration form using JSP and JavaBeans while implementing the Memento design 
+pattern. It is assumed that the reader is familiar with basic JSP syntax.
+:END_SUMMARY
+
+BODY:
+
+Processing HTML forms sounds like a fairly easy task. For simplistic forms, it usually is. 
+However, the truth is (as anyone who has written a halfway sophisticated Web 
+application can vouch for) this "simple task" can get fairly tedious very fast. That's only 
+because handling HTML forms usually involves a lot more than just parsing the request 
+parameters and outputting a response back to the client. Typically, multiple components 
+in the background are involved in form processing, with each of these components 
+responsible for a discrete task like state management, data validation, database access, 
+and so on. While numerous examples abound demonstrating form processing with Perl 
+scripts and servlets, the use of JSP pages for this purpose has not received a lot of 
+attention. There is a reason for this. Apart from the fact that JSP is a fairly recent 
+technology, it has always been viewed as something that is suited only for handling the 
+presentation of dynamic content sourced from either JavaBeans or servlets. However, as 
+you shall soon see, the combination of JSP with JavaBeans can be a force to reckon with 
+when processing HTML forms. 
+
+In this article, we will examine the handling of a user registration form using JSP. One of 
+the basic programming tenets with JSP is to delegate as much processing as possible to 
+JavaBean components. Our JSP form handling implementation will demonstrate some 
+interesting features. It will not only provide basic data validation for the registration 
+information input by a user, but will also exhibit stateful behavior. This allows us to pre-
+fill the form's input elements with validated data as the user loops through the submission 
+cycle until they have entered the correct data for all of the input elements. So, without 
+further ado, let us dive into the example.
+
+Consider Listing 1, which presents the user with a simple registration form, as shown in 
+Figure 1. 
+
+Listing 1: register.html
+
+<pre>
+<html>
+<body>
+<form action="/examples/jsp/forms/process.jsp" method=post>
+<center>
+<table cellpadding=4 cellspacing=2 border=0>
+
+<th bgcolor="#CCCCFF" colspan=2>
+<font size=5>USER REGISTRATION</font>
+<br>
+<font size=1><sup>*</sup> Required Fields</font>
+</th>
+
+<tr bgcolor="#c8d8f8">
+<td valign=top> 
+<b>First Name<sup>*</sup></b> 
+<br>
+<input type="text" name="firstName" value="" size=15 maxlength=20></td>
+<td  valign=top>
+<b>Last Name<sup>*</sup></b>
+<br>
+<input type="text" name="lastName" value="" size=15 maxlength=20></td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td valign=top>
+<b>E-Mail<sup>*</sup></b> 
+<br>
+<input type="text" name="email" value="" size=25  maxlength=125>
+<br></td>
+<td  valign=top>
+<b>Zip Code<sup>*</sup></b> 
+<br>
+<input type="text" name="zip" value="" size=5  maxlength=5></td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td valign=top colspan=2>
+<b>User Name<sup>*</sup></b>
+<br>
+<input type="text" name="userName" size=10 value=""  maxlength=10>
+</td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td valign=top>
+<b>Password<sup>*</sup></b> 
+<br>
+<input type="password" name="password1" size=10 value=""  
+maxlength=10></td>
+<td  valign=top>
+<b>Confirm Password<sup>*</sup></b>
+<br>
+<input type="password" name="password2" size=10 value=""  
+maxlength=10></td>
+<br>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td  valign=top colspan=2>
+<b>What music are you interested in?</b>
+<br>
+<input type="checkbox" name="faveMusic" 
+value="Rock">Rock&nbsp;&nbsp;&nbsp; 
+<input type="checkbox" name="faveMusic" value="Pop">Pop&nbsp;&nbsp;
+<input type="checkbox" name="faveMusic" value="Bluegrass">Bluegrass<br>
+<input type="checkbox" name="faveMusic" value="Blues">Blues&nbsp;&nbsp;
+<input type="checkbox" name="faveMusic" value="Jazz">Jazz&nbsp;&nbsp;
+<input type="checkbox" name="faveMusic" value="Country">Country<br>
+</td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td  valign=top colspan=2>
+<b>Would you like to receive e-mail notifications on our special 
+sales?</b>
+<br>
+<input type="radio" name="notify" value="Yes" checked>Yes 
+&nbsp;&nbsp;&nbsp;&nbsp;  
+<input type="radio" name="notify" value="No" > No 
+<br><br></td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td  align=center colspan=2>
+<input type="submit" value="Submit"> <input type="reset"  
+value="Reset">
+</td>
+</tr>
+
+</table>
+</center>
+</form>
+</body>
+</html>
+</pre>
+
+
+IMAGE: register.gif 627 721  CENTER
+Figure 1: The user registration form
+:END_IMAGE
+ 
+There should be nothing unusual about the form shown in Listing 1. It contains all of the 
+commonly used input elements including text entry fields, checkboxes and radio buttons. 
+However, notice the action clause of the form:
+
+<pre>
+<form action="/examples/jsp/forms/process.jsp" method=post>
+</pre>
+
+Although you may have typically specified a servlet or Perl script out there, note that a 
+JSP page is perfectly capable of processing data posted from a HTML form. This should 
+not be surprising in the least, because after all, what is JSP? It is nothing but a high level abstraction of servlets. Thus, it is entirely feasible to write a JSP equivalent of a servlet in most cases. 
+
+Still, it should always be remembered that JSP technology was created for an entirely 
+different purpose other than to serve as an alternate (some would say easier!) mechanism 
+for creating servlets. JSP is all about facilitating the separation of presentation from 
+dynamic content. Although you can embed any amount of Java code within a JSP 
+page, it is best served to encapsulate the processing logic within reusable JavaBean 
+components. Nevertheless, in my opinion, it should also be perfectly appropriate to 
+develop <em>controller</em> JSP pages. These pages would still delegate the bulk of the processing to component beans, but they would also contain some conditional logic to respond to an user's actions. But what these controller pages would not contain in any case would be 
+presentation logic for the display of UI elements. This would always be externalized into 
+separate JSP pages which will be invoked as needed by the controller.
+
+Take a look at Listing 2, which demonstrates a JSP page serving as a controller. 
+
+Listing 2: process.jsp
+
+<pre>
+<%@ page import="java.util.*" %>
+
+<%! 
+	ResourceBundle bundle =null;
+	public void jspInit() {
+  	   bundle = ResourceBundle.getBundle("forms");
+      }
+%>
+
+<jsp:useBean id="formHandler" class="foo.FormBean" scope="request">
+<jsp:setProperty name="formHandler" property="*"/>
+</jsp:useBean>
+
+<% 
+   if (formHandler.validate()) {
+%>
+	<jsp:forward page="<%=bundle.getString(\"process.success\")%>"/>
+<%
+   }  else {
+%>
+	<jsp:forward page="<%=bundle.getString(\"process.retry\")%>"/>
+<%
+   }
+%>
+</pre>
+
+Since we are delegating the bulk of the processing to JavaBeans, the very first thing that 
+the controller has to do is to instantiate the bean component. This is done with the 
+<jsp:useBean> tag as:
+
+<pre>
+<jsp:useBean id="formHandler" class="foo.FormBean" scope="request">
+    <jsp:setProperty name="formHandler" property="*"/>
+</jsp:useBean>
+</pre>
+
+The <jsp:useBean> tag first looks for the bean instance with the specified name, and 
+instantiates a new one only if it cannot be found within the specified scope. Here, the 
+scope attribute specifies the lifetime of the bean. Newly instantiated beans have page 
+scope by default, if nothing is specified. Observe that in this case, we specify the bean 
+having request scope, since more than one JSP page is involved in processing the client 
+request, before a response is sent back to the client. 
+
+You may be wondering about the <jsp:setProperty> within the body of the 
+<jsp:useBean> tag. Any scriptlet or <jsp:setProperty> tags present within the body of an 
+<jsp:useBean> tag are executed only when the bean is instantiated and are used to 
+initialize the properties of the bean. Of course, in this case we could have had the 
+<jsp:setProperty> tag on the outside of the body of <jsp:useBean>. The difference between 
+the two is that the contents of the body are not executed if the bean is retrieved from the 
+specified scope -- which is moot in our case as the bean is instantiated each time the 
+controller is invoked.
+
+SUBHEAD: Introspective magic
+
+When developing beans for processing form data, a common design pattern to follow is 
+match the names of the bean properties with the names of the form input elements. You 
+would also need to define the corresponding getter/setter methods for each property 
+within the bean. For example, within the bean FormBean (shown in Listing 3), we define 
+the property firstName, as well as the accessor methods getFirstName() and 
+setFirstName(), corresponding to the form input element named firstName. An advantage 
+of having this is that you can now direct the JSP engine to parse all the incoming values 
+from the HTML form elements that are part of the request object and assign them to their 
+corresponding bean properties, with a single statement:
+
+<pre>
+  <jsp:setProperty name="formHandler" property="*"/>
+</pre>
+
+This run-time magic is possible through a process called introspection that allows a class 
+to expose its properties on request. The introspection is managed by the JSP engine, and 
+implemented via the Java reflection mechanism. This feature alone can be a lifesaver 
+when processing complex forms containing a significant number of input elements. 
+
+Listing 3: FormBean.java
+
+<pre>
+package foo;
+import java.util.*;
+public class FormBean {
+  private String firstName;
+  private String lastName;
+  private String email;
+  private String userName;
+  private String password1;
+  private String password2;
+  private String zip;
+  private String[] faveMusic;
+  private String notify;
+  private Hashtable errors;
+
+  public boolean validate() {
+    boolean allOk=true;
+    if (firstName.equals("")) {
+      errors.put("firstName","Please enter your first name");
+      firstName="";
+      allOk=false;
+    }
+    if (lastName.equals("")) {
+      errors.put("lastName","Please enter your last name");
+      lastName="";
+      allOk=false;
+    }
+    if (email.equals("") || (email.indexOf('@') == -1)) {
+      errors.put("email","Please enter a valid email address");
+      email="";
+      allOk=false;
+    }
+    if (userName.equals("")) {
+      errors.put("userName","Please enter a username");
+      userName="";
+      allOk=false;
+    }
+    if (password1.equals("") ) {
+      errors.put("password1","Please enter a valid password");
+      password1="";
+      allOk=false;
+    }
+    if (!password1.equals("") && (password2.equals("") || 
+        !password1.equals(password2))) {
+      errors.put("password2","Please confirm your password");
+      password2="";
+      allOk=false;
+    }
+    if (zip.equals("") || zip.length() !=5 ) {
+      errors.put("zip","Please enter a valid zip code");
+      zip="";
+      allOk=false;
+    } else {
+      try {
+        int x = Integer.parseInt(zip);
+      } catch (NumberFormatException e) {
+        errors.put("zip","Please enter a valid zip code");
+        zip="";
+        allOk=false;
+      }
+    }
+    return allOk;
+  }
+
+  public String getErrorMsg(String s) {
+    String errorMsg =(String)errors.get(s.trim());
+    return (errorMsg == null) ? "":errorMsg;
+  }
+
+  public FormBean() {
+    firstName="";
+    lastName="";
+    email="";
+    userName="";
+    password1="";
+    password2="";
+    zip="";
+    faveMusic = new String[] { "1" };
+    notify="";
+    errors = new Hashtable();
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public String getPassword1() {
+    return password1;
+  }
+
+  public String getPassword2() {
+    return password2;
+  }
+
+  public String getZip() {
+    return zip;
+  }
+
+  public String getNotify() {
+    return notify;
+  }
+
+  public String[] getFaveMusic() {
+    return faveMusic;
+  }
+
+  public String isCbSelected(String s) {
+    boolean found=false;
+    if (!faveMusic[0].equals("1")) {
+      for (int i = 0; i < faveMusic.length; i++) {
+        if (faveMusic[i].equals(s)) {
+          found=true;  
+          break;
+        }
+      }
+      if (found) return "checked";
+    } 
+    return "";
+  }
+
+  public String isRbSelected(String s) {
+    return (notify.equals(s))? "checked" : "";
+  }
+
+  public void setFirstName(String fname) {
+    firstName =fname;
+  }
+
+  public void setLastName(String lname) {
+    lastName =lname;
+  }
+
+  public void setEmail(String eml) {
+    email=eml;
+  }
+
+  public void setUserName(String u) {
+    userName=u;
+  }
+
+  public void  setPassword1(String p1) {
+    password1=p1;
+  }
+
+  public void  setPassword2(String p2) {
+    password2=p2;
+  }
+
+  public void setZip(String z) {
+    zip=z;
+  }
+
+  public void setFaveMusic(String[] music) {
+    faveMusic=music;
+  }
+
+  public void setErrors(String key, String msg) {
+    errors.put(key,msg);
+  }
+
+  public void setNotify(String n) {
+    notify=n;
+  }
+}
+<pre>
+
+It is not mandatory that the bean property names always match those of the form input 
+elements, since you can always perform the mapping yourself, as:
+
+<pre>
+  <jsp:setProperty name="formHandler" param="formElementName" 
+    property="beanPropName"/>
+</pre>
+
+While we can easily map form input types like text entry fields and radio buttons to a 
+scalar bean property type like String, we have to use an indexed property type like 
+String[] for handling checkboxes. Nevertheless, we can still have the JSP engine assign 
+values even for non-scalar types by automatically parsing the corresponding form 
+element values from the request object, as long as we provide a suitable setter method. 
+
+Observe the setter method for setting the values of selected checkboxes:
+
+<pre>
+public void setFaveMusic(String[] music) {
+    faveMusic=music;
+}
+</pre>
+
+I've also show a simple technique to avoid hard-coding the target resources within the 
+controller. Here, the targets are stored within an external properties file, forms.properties, as shown in Listing 4, and this may be located anywhere in the CLASSPATH visible to the JSP container. The jspInit() method declared within the page is automatically 
+executed by the JSP container when the JSP page (or to be more accurate, the servlet 
+class representing it)  is loaded into memory, and is invoked just once during the lifetime 
+of the JSP page. By making use of the ResourceBundle facility, your page can access the 
+values for the target resources by name, just like you would with a Hashtable object.
+
+
+
+Listing 4: forms.properties
+
+<pre>
+process.success=success.jsp
+process.retry=retry.jsp
+</pre>
+
+SUBHEAD: Form handling using the Memento pattern
+
+The processing logic within the controller page is straightforward. After the bean is 
+instantiated, its validate() method is invoked. The validate() method has a two pronged 
+effect. If there was an error encountered during the validation of any form input element, 
+it not only resets the value of the corresponding bean property, but also sets an 
+appropriate error message, which can later be displayed for that input element. 
+
+If any of the required form elements cannot be successfully validated, the controller 
+forwards the request to the JSP page retry.jsp (shown in Listing 5), offering the user an 
+opportunity to make changes and resubmit the form. If there are no validation errors, the 
+request is forwarded to success.jsp, which is shown in Listing 6.
+
+Within retry.jsp, the first thing we do is to obtain a reference to the bean component that 
+was previously instantiated and placed into the request by the controller. Also, since we 
+don't want the user to reenter previously validated data, we refill the form elements by 
+interrogating the form element's previous state from the bean as:
+
+<pre>
+<input type="text" name="firstName"  
+   value='<%=formHandler.getFirstName()%>' size=15 maxlength=20>
+</pre>
+
+Any error message that may be applicable for the form input element is also retrieved and 
+displayed via:
+
+<pre>
+<font size=2 color=red>
+  <%=formHandler.getErrorMsg("firstName")%>
+</font>
+</pre>
+
+Also, observe the way we recreate the prior state of form input elements like radio 
+buttons and checkboxes by making use of utility methods like isRbSelected(String s) 
+and isCbSelected(String s) which was incorporated into the bean. Figure 2 shows 
+the form generated by retry.jsp indicating some validation errors.
+
+Listing 5: retry.jsp
+
+<pre>
+<jsp:useBean id="formHandler" class="foo.FormBean" scope="request"/>
+
+<html> 
+<body>
+<form action="process.jsp" method=post>
+<center>
+<table cellpadding=4 cellspacing=2 border=0>
+
+<th bgcolor="#CCCCFF" colspan=2>
+<font size=5>USER REGISTRATION</font>
+<br>
+<font size=1><sup>*</sup> Required Fields </font>
+</th>
+
+<tr bgcolor="#c8d8f8">
+<td valign=top> 
+<B>First Name<sup>*</sup></B> 
+<br>
+<input type="text" name="firstName" 
+value='<%=formHandler.getFirstName()%>' size=15 maxlength=20>
+<br><font size=2 
+color=red><%=formHandler.getErrorMsg("firstName")%></font>
+</td>
+<td  valign=top>
+<B>Last Name<sup>*</sup></B>
+<br>
+<input type="text" name="lastName" 
+value='<%=formHandler.getLastName()%>' size=15 maxlength=20>
+<br><font size=2 
+color=red><%=formHandler.getErrorMsg("lastName")%></font>
+</td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td valign=top>
+<B>E-Mail<sup>*</sup></B> 
+<br>
+<input type="text" name="email" value='<%=formHandler.getEmail()%>' 
+size=25  maxlength=125>
+<br><font size=2 color=red><%=formHandler.getErrorMsg("email")%></font>
+</td>
+<td  valign=top>
+<B>Zip Code<sup>*</sup></B> 
+<br>
+<input type="text" name="zip" value='<%=formHandler.getZip()%>' size=5  
+maxlength=5>
+<br><font size=2 color=red><%=formHandler.getErrorMsg("zip")%></font>
+</td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td valign=top colspan=2> 
+<B>User Name<sup>*</sup></B>
+<br>
+<input type="text" name="userName" size=10 
+value='<%=formHandler.getUserName()%>'  maxlength=10>
+<br><font size=2 
+color=red><%=formHandler.getErrorMsg("userName")%></font>
+</td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td valign=top>
+<B>Password<sup>*</sup></B> 
+<br>
+<input type="password" name="password1" size=10 
+value='<%=formHandler.getPassword1()%>'  maxlength=10>
+<br><font size=2 
+color=red><%=formHandler.getErrorMsg("password1")%></font>
+</td>
+<td  valign=top>
+<B>Confirm Password<sup>*</sup></B>
+<br>
+<input type="password" name="password2" size=10 
+value='<%=formHandler.getPassword2()%>'  maxlength=10>
+<br><font size=2 
+color=red><%=formHandler.getErrorMsg("password2")%></font>
+</td>
+<br>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td colspan=2 valign=top>
+<B>What music are you interested in?</B>
+<br>
+<input type="checkbox" name="faveMusic" value="Rock" 
+<%=formHandler.isCbSelected("Rock")%>>Rock&nbsp;&nbsp;&nbsp; 
+<input type="checkbox" name="faveMusic" value="Pop" 
+<%=formHandler.isCbSelected("Pop")%>>Pop&nbsp;&nbsp;
+<input type="checkbox" name="faveMusic" value="Bluegrass" 
+<%=formHandler.isCbSelected("Bluegrass")%>>Bluegrass<br>
+<input type="checkbox" name="faveMusic" value="Blues" 
+<%=formHandler.isCbSelected("Blues")%>>Blues&nbsp;&nbsp;
+<input type="checkbox" name="faveMusic" value="Jazz" 
+<%=formHandler.isCbSelected("Jazz")%>>Jazz&nbsp;&nbsp;
+<input type="checkbox" name="faveMusic" value="Country" 
+<%=formHandler.isCbSelected("Country")%>>Country<br>
+</td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td colspan=2 valign=top>
+<B>Would you like to receive e-mail notifications on our special 
+sales?</B>
+<br>
+<input type="radio" name="notify" value="Yes" 
+<%=formHandler.isRbSelected("Yes")%>>Yes &nbsp;&nbsp;&nbsp;&nbsp;  
+<input type="radio" name="notify" value="No" 
+<%=formHandler.isRbSelected("No")%>> No 
+<br><br></td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td colspan=2 align=center>
+<input type="submit" value="Submit"> <input type="reset"  
+value="Reset">
+</td>
+</tr>
+
+</table>
+</center>
+</form>
+</body>
+</html>
+</pre>
+
+IMAGE: retry.gif 650 765 CENTER
+Figure 2: Form generated by retry.jsp
+:END_IMAGE
+
+Since retry.jsp also posts data to process.jsp, the controller repeatedly instantiates the 
+bean component and validates the form data until the user has entered valid data for all of 
+the form elements. 
+ 
+Using a bean within a form in this manner can be viewed as an implementation of the 
+Memento design pattern. Memento is a behavioral pattern whose intent is to take a 
+snapshot of some portion of an object's state so that it can be restored to that state later, without violating its encapsulation in any way. Since the bean is created and accessed within the boundary of the same request, the encapsulation of the memento is preserved intact. 
+
+As mentioned earlier, the controller forwards the request to success.jsp after all the 
+submitted form data has been successfully validated, which in turn extracts the bean 
+component from the request and confirms the registration to the client. While the scalar 
+bean properties can be easily retrieved using an expression or the <jsp:getProperty> tag, 
+we have to jump through a few hoops in order to display the indexed property type:
+
+<pre>
+<%
+  String[] faveMusic = formHandler.getFaveMusic();
+  if (!faveMusic[0].equals("1")) {
+    out.println("<ul>");
+    for (int i=0; i<faveMusic.length; i++)  
+      out.println("<li>"+faveMusic[i]);
+    out.println("</ul>");
+  } else out.println("Nothing was selected");
+%>
+
+In future, it is expected that we would not have to use scriptlet code to access indexed 
+properties, but rather, would make use of custom tags which support looping. Figure 3 
+shows the client on completion of a successful registration. 
+
+Listing 6: success.jsp
+
+<pre>
+<jsp:useBean id="formHandler" class="foo.FormBean" scope="request"/>
+
+<html>
+<body>
+<center>
+<table cellpadding=4 cellspacing=2 border=0>
+
+<th bgcolor="#CCCCFF" colspan=2>
+<font size=5>USER REGISTRATION SUCCESSFUL!</font>
+</th>
+
+<font size=4>
+<tr bgcolor="#c8d8f8">
+<td valign=top> 
+<b>First Name</b> 
+<br>
+<jsp:getProperty name="formHandler" property="firstName"/>
+</td>
+<td valign=top>
+<b>Last Name</b>
+<br>
+<jsp:getProperty name="formHandler" property="lastName"/>
+</td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td valign=top>
+<b>E-Mail</b> 
+<br>
+<jsp:getProperty name="formHandler" property="email"/>
+<br></td>
+<td valign=top>
+<b>Zip Code</b> 
+<br>
+<jsp:getProperty name="formHandler" property="zip"/>
+</td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td valign=top colspan=2>
+<b>User Name</b>
+<br>
+<jsp:getProperty name="formHandler" property="userName"/>
+</td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td colspan=2 valign=top>
+<b>What music are you interested in?</b>
+<br>
+<%
+  String[] faveMusic = formHandler.getFaveMusic();
+  if (!faveMusic[0].equals("1")) {
+    out.println("<ul>");
+    for (int i=0; i<faveMusic.length; i++)  
+      out.println("<li>"+faveMusic[i]);
+    out.println("</ul>");
+  } else out.println("Nothing was selected");
+%>
+</td>
+</tr>
+
+<tr bgcolor="#c8d8f8">
+<td colspan=2 valign=top>
+<b>Would you like to receive e-mail notifications on our special 
+sales?</b>
+<br>
+<jsp:getProperty name="formHandler" property="notify"/>
+</td>
+</tr>
+
+</font>
+</table>
+</center>
+</body>
+</html>
+</pre>
+
+IMAGE: success.gif 640 567 CENTER
+Figure 3 Confirmation of a successful registration
+:END_IMAGE
+
+SUBHEAD: Request Chaining with JSP pages and servlets
+
+Although we saw the bean perform extensive state management and form validation, you 
+may have noticed that the only validation performed on the userName element was to 
+simply ensure that it was not blank! Typically, when adding new users to a database, your 
+registration program has to first ensure that the username is unique and was not 
+previously entered into the database. If you already have a database access servlet for this 
+purpose, you may be wondering how you could possibly integrate it into the validation 
+scenario discussed thus far. Well, the answer "very easily"! You can simply forward the 
+request to a servlet just as you would to a JSP page, and continue processing. The servlet 
+in turn can update the bean (or even add new beans to the request) and forward the 
+request to another resource down the chain.
+
+For example, we can make a minor change to our controller, process.jsp, such that it now 
+forwards the request to a servlet on successful validation, instead of sending it to the 
+success.jsp page as before:
+
+<pre>
+<% if (formHandler.validate()) {
+%>
+  <jsp:forward page="/servlet/DBHandler"/>
+
+<%
+   }  else {
+      // continue as before
+   }
+%>
+</pre>
+
+Consider the servlet DBHandler shown in Listing 7.
+
+Listing 7: A database access servlet
+
+<pre>
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.util.*;
+import foo.FormBean;
+
+public class DBHandler extends HttpServlet {
+
+  public void doPost (HttpServletRequest request, HttpServletResponse response) {
+    try {
+      FormBean f = (FormBean) request.getAttribute("formHandler"); 
+      boolean userExists = false;
+
+      //obtain a db connection and perform a db query 
+      //ensuring that the username does not exist
+      //set userExists=true if user is found in db
+
+      //for a simple test, you can disallow the registration
+      //of the username "rogerm" as:
+      //if (f.getUserName().equals("rogerm")) userExists=true;
+
+      if (userExists) {
+        f.setErrors("userName","Duplicate User: Try a different username"); 
+        getServletConfig().getServletContext().
+          getRequestDispatcher("/jsp/forms/retry.jsp").
+          forward(request, response);
+      } else {
+
+        //retrieve the bean properties and store them
+        // into the database. 
+
+        getServletConfig().getServletContext().
+          getRequestDispatcher("/jsp/forms/success.jsp").
+          forward(request, response);
+      }
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+}
+</pre>
+
+Since our bean is still present within the request scope, it can be easily accessed within 
+the servlet as:
+
+<pre>
+FormBean f = (FormBean) request.getAttribute ("formHandler");
+</pre>
+
+Assuming that the servlet performs a database query and finds the existence of another 
+user with the same username, the servlet can easily call a setter method within the bean 
+to indicate the error condition as:
+
+<pre>
+f.setErrors("userName","Duplicate User: Try a different username"); 
+</pre>
+
+After this, the request can be sent along its merry way once again by the servlet by means 
+of a request dispatcher:
+
+
+<pre>
+getServletConfig().getServletContext().
+    getRequestDispatcher("/jsp/forms/retry.jsp").
+    forward(request, response);
+</pre>
+
+Figure 4 shows a situation where the servlet, DBHandler, was able to locate a duplicate 
+username. 
+
+IMAGE: db.gif 649 764 CENTER
+Figure 4: Form displaying the duplicate user error generated by the servlet
+:END_IMAGE
+ 
+If the servlet does not find a duplicate user within the database, it can update the database after accessing the registration information from the bean, and forward the request to the page success.jsp confirming a successful registration.
+
+SUBHEAD: Deploying the application
+
+I will assume that you are using the latest version of JavaServer Web Development Kit 
+(JSWDK) from Sun for running the example. If not, see the Resources section to find out 
+where to get it. Assuming that the server is installed in \jswdk-1.0.1, its default location 
+under Microsoft Windows, deploy the application files as follows: 
+
+    Copy register.htm to \jswdk-1.0.1\webpages
+    Create the directory "forms" under \jswdk-1.0.1\examples\jsp 
+    Copy process.jsp to \jswdk-1.0.1\examples\jsp\forms
+    Copy retry.jsp to \jswdk-1.0.1\examples\jsp\forms 
+    Copy success.jsp to \jswdk-1.0.1\examples\jsp\forms 
+    Copy forms.properties to \jswdk-1.0.1\examples\WEB-INF\jsp\beans
+    Copy FormBean.java to \jswdk-1.0.1\examples\WEB-INF\jsp\beans
+    Compile FormBean.java by typing javac -d . FormBean.java 
+     This should create \jswdk-1.0.1\examples\WEB-INF\jsp\beans\foo\FormBean.class
+     
+     If you are also testing the servlet, you will need to 
+     Update process.jsp to forward the request to the servlet as shown earlier
+     Update the classpath to include \jswdk-1.0.1\examples\WEB-INF\jsp\beans
+     Copy DBHandler.java to \jswdk-1.0.1\examples\WEB-INF\servlets 
+     Compile DBHandler.java by typing javac DBHandler.java
+
+Once your server has been started, you should be able to access the application using
+http://localhost:8080/register.htm as the URL.
+
+SUBHEAD: Conclusion
+
+While there are numerous established solutions for handling HTML forms, there are 
+many compelling reasons that make JSP a viable alternative. JSP, with its component 
+bean-centric approach, may actually ease the processing of complex forms. The JSP 
+container can also reduce the processing burden significantly by instantiating bean 
+components by automatically parsing the request object. Following a bean-centric 
+approach also makes it easier to implement design patterns like Memento, which can play 
+a useful role in the form validation process. Using JSP for form handling does not 
+preclude the use of servlets, as these complementary technologies can be effectively 
+melded using techniques like request chaining.
+
+:END_BODY
+
+
+RESOURCES:
+
+Download the latest JavaServer Web Development Kit http://java.sun.com/products/jsp/download.html
+
+Get the source code for the example
+XXXX - Forms.jar XXXX Wherever you put it
+
+:END_RESOURCES
+
+BIO: govind.seshadri
+
+Govind Seshadri is an Enterprise Java Guru for <a HREF="http://www.jguru.com/">jGuru.com</a>, and the author of <em>Enterprise Java Computing -- Applications and Architecture</em> from Cambridge University Press (1999). Learn more about <a href="http://www.jguru.com/govind">Govind</a> at jGuru.com. 
+ 
+:END_BIO
+
+
+

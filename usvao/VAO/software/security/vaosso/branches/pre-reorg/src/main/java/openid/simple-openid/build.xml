@@ -1,0 +1,44 @@
+<project name="openid" basedir="." default="deploy">
+<property file="build.properties" />
+<property file="build.static.properties" />
+
+<target name="webapp" depends="clean.webapp">
+	<mkdir dir="${build.webapp.dir}"/>
+	<copy todir="${build.webapp.dir}">
+		<fileset dir="${src.webapp.dir}" includes="**/*"/>
+	</copy>
+	<copy todir="${build.lib.dir}">
+		<fileset dir="${parent.lib.dir}" includes="*.jar">
+			<include name="*.jar" />
+			<include name="xri/*.jar" />
+		</fileset>
+	</copy>
+</target>
+
+<target name="clean.webapp">
+	<delete dir="${build.webapp.dir}" />
+</target>
+	
+<target name="war" depends="webapp">
+	<war warfile="${war.file}" webxml="${web.xml}">
+		<fileset dir="${build.webapp.dir}" />
+		<lib dir="${build.lib.dir}" />
+	</war>
+</target>
+
+<target name="clean">
+	<delete dir="${build.dir}"/>
+</target>
+
+<target name="cleanall" depends="clean, cleanTomcatWebappExtracted">
+	<delete dir="${build.dir}"/>
+</target>
+
+<target name="deploy" depends="war">
+	<copy file="${war.file}" todir="${deploy.dir}"/>
+</target>
+
+<target name="cleanTomcatWebappExtracted">
+	<delete dir="${deploy.webapp.dir}"/>
+</target>
+</project>

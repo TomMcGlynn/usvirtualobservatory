@@ -1,0 +1,10 @@
+// 
+// Use the tag.properties file to define @portal_name@ and @portal_admin@
+//
+// The @url@ tag is substituted by Purse
+// 
+
+A request has been made for a user account on the @portal_name@. You may 
+access the details of the request by clicking on the following link:
+
+@url@

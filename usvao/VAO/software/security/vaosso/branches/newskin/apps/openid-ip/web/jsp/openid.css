@@ -1,0 +1,252 @@
+/* Inherited from sso.css - shrink things a bit to fit the main part of the page
+ * on one screen, even on a 600-pixel-tall display.  Currently it's about 450
+ * pixels */
+.divider { margin:0.7em 0; padding: 0 }
+h1,h2,h3,h4,h5,h6 { margin-top: 0.4em; margin-bottom: 0.1em }
+strong { font-weight:bold;color:#036; }
+
+.highlight-box {
+    border:  2px solid #fc0;
+    background:     #dedede;
+    padding-top:      0.2em;
+    padding-bottom:   0.2em;
+}
+
+/* Our own styling */
+.choice-block {
+    margin:0.6em 0;
+    vertical-align:middle;
+}
+
+/* Prose description to the right of the big buttons "Sign in" and "Cancel" */
+.choice-description {
+    /*float:left;*/
+}
+.grid { text-align:center; margin:0; padding:0 }
+table.grid { border-right:2px solid #fc0; border-bottom:2px solid #fc0 }
+td.grid { border-left:2px solid #fc0; border-top:2px solid #fc0; padding:0.2em }
+th.grid {
+    border-left:2px solid #fc0; border-top:2px solid #fc0;padding:0.2em;
+    color:#036;font-weight:bold;
+}
+
+.prefs { 
+    margin: 0; 
+    padding: 0; 
+    border-color: #fc0;
+    border-style: solid;
+    border-width: 0;
+}
+table.prefs { 
+    border-bottom-width:  2px; 
+}
+td.prefs { 
+    border-left-width: 2px;
+    border-top-width:  2px; 
+    padding: 0.2em; 
+    text-align: center;
+}
+td.prefs-desc { 
+    border-color: #fc0;
+    border-style: solid;
+    border-left-width: 2px;
+    border-top-width:  2px; 
+    border-bottom-width:  0; 
+    border-right-width:  0; 
+    padding: 0.2em; 
+    text-align: left;
+}
+td.prefs-hdr { 
+    border-color: #fc0;
+    border-style: solid;
+    border-left-width: 2px;
+    border-top-width:  2px; 
+    border-bottom-width:  0; 
+    border-right-width:  2px; 
+    padding: 0.2em;
+    padding-left: 0.4em;
+}
+td.prefs-edit { 
+    border-color: #fc0;
+    border-style: solid;
+    border-right-width: 2px;
+    border-left-width: 0;
+    border-top-width:  2px; 
+    border-bottom-width:  0; 
+    padding:0.2em 
+}
+td.prefs-val { 
+    border-color: #fc0;
+    border-style: solid;
+    border-right-width: 0;
+    border-left-width: 2px;
+    border-top-width:  2px; 
+    border-bottom-width:  0; 
+    padding: 0.2em;
+    text-align: center;
+}
+td.prefs-confirm { 
+    border-color: #fc0;
+    border-style: solid;
+    border-right-width: 2px;
+    border-left-width: 0;
+    border-top-width:  2px; 
+    border-bottom-width:  0; 
+    padding:0.2em;
+    text-align: center;
+}
+td.prefs-col { 
+    border-color: #fc0;
+    border-style: solid;
+    border-right-width: 0;
+    border-left-width: 2px;
+    border-top-width:  0; 
+    border-bottom-width:  0; 
+    padding:0.2em 
+}
+td.prefs-blank { 
+    border-width: 0px;
+    text-align: center;
+    padding:0.2em 
+}
+
+div.check {
+    margin:0.1em 0;
+    padding:2px;
+}
+
+table.decide td {
+    border-left: 1px solid lightgrey;
+}
+
+table.decide td:first-child {
+    border-left: 1px none black;
+}
+
+.link-button {
+    border:2px outset #036; background: #fff; color: #036;
+    /* float:left; */ /* uncomment this if we use two-line choice-descriptions */
+    cursor: pointer;
+
+    border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
+    margin: 0.2em 0.8em 0.2em 0;
+    padding: 0.3em 0.5em;
+    vertical-align:middle;
+    text-decoration: none; font-weight:bolder; font-size:110%;
+}
+
+.link-button:hover {
+    border: 2px outset #024; background: #ccc; color:#024;
+    /* border: 2px inset #000; background: #dda; color:#000; */
+    /* padding trick to shift text down slightly on mouseover */
+    /* padding: 0.36em 0.44em 0.24em 0.56em; */
+}
+
+/* gradient buttons that degrade reasonably */
+#yes { 
+    background: #77dd77;
+    color: 444444;
+}
+#yes:hover {
+    background: #55ff55;
+    color: 444444;
+}
+#yes:active {
+    background: #55cc55;
+    color: 444444;
+    border: 2px inset #024; 
+}
+
+#no {
+    background: #f37777;
+    color: 444444;
+}
+#no:hover {
+    background: #ff5555;
+    color: 444444;
+}
+#no:active {
+    background: #cc5555;
+    color: 444444;
+    border: 2px inset #024; 
+}
+
+
+div#change { 
+    background: #f5f577;
+    text-align: center;
+    max-width: 125px;
+    cursor: pointer;
+}
+div#change a { 
+    color: 444444;
+    text-decoration: none; 
+}
+#change:hover { 
+    background: #fdfd55;
+    color: 444444;
+}
+#change:active {
+    background: #eeee55;
+    color: 444444;
+    border: 2px inset #024; 
+}
+
+/*
+ * style for the login pages
+ */
+.login {
+
+}
+
+body.login {
+    min-width:    425px;
+    max-width:    650px;
+    margin:      0 auto;
+    z-index:          5;
+}
+
+.login h1,h2,h3 {
+    margin-top:     0px;
+    margin-bottom:  0px;
+    font-size:     16pt;
+    font-weight:   bold;
+    text-align:    left;
+}
+
+table#brief-nav td {
+   font-size:        75%;
+   text-align:       center;
+   background-color: #dedede;
+}
+
+table#brief-nav a:link 
+{    
+    color:           #2f2f00;
+    text-decoration:    none;
+}
+table#brief-nav a:visited 
+{
+    color:          #2f2f00;
+    text-decoration:   none;
+}
+table#brief-nav a:hover
+{    
+    color:           #2c6dbd;
+    text-decoration:    none;
+}
+
+div#login-form {
+
+}
+
+.login-label {
+    color:       #359; 
+    font-weight: bold;
+    text-align: right;
+}
+
+div#status-bar {
+    color: green;
+    background-color:#f6f6f6;
+}

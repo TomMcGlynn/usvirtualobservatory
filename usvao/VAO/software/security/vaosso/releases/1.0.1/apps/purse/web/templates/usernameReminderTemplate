@@ -1,0 +1,30 @@
+Hello @fullname@,
+
+We received a request at the VAO Login Services site (hopefully from
+you!) to remind you of your VAO username.  Below is a list of all of
+the usernames we have associated with your email address (shown in the
+"To:" field above): 
+@usernames@
+
+(Note that we don't encourage you to keep more than one account.  If
+you wish to drop any of the above accounts, please contact us at 
+@helpemail@.)
+
+Usernames above appended with an asterisk indicate that you have not
+yet activated that account by confirming your email address.  You
+cannot use that account until you have activated it.  For your
+convenience, we have resent an email message that explains how to do
+that.  If you do not wish to use that account, you can ignore that
+message.  
+
+Have you also forgotten your password, too?  You can request to reset
+it for one of the accounts below by accessing the appropriate URL.  
+Alternatively, you can visit our account reminder page at 
+@passservices@, where you can enter your username and the special
+token listed below.
+@resets@
+If you have any questions or problems, please contact us at
+accessing the VAO contact page at http://www.usvao.org/contact-connect
+Please include "VAO Logins" in the subject line.  
+
+The VAO Logon Team

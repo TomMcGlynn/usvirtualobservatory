@@ -1,0 +1,22 @@
+# This sets up the environment for myproxy-server that accepts
+# authentication by password only.  It is specifically used by the 
+# web service that generates EEC certs for download by users.
+# It gets installed into /etc/sysconfig.
+
+# Note that this myproxy service runs on a special (non-standard) port
+MYPROXY_USER=myproxy
+MYPROXY_PORT=7513
+
+myproxy_port_arg=
+[ -n "$MYPROXY_PORT" ] && myproxy_port_arg="-p $MYPROXY_PORT"
+
+MYPROXY_OPTIONS="-s @dir.sys.myproxy.certs@ $myproxy_port_arg -c @dir.sys.myproxy.conf@/myproxy-server-bypw.config"
+
+# Use this one to get the configuration from the standard locations
+# (starting with /etc/myproxy-server.config)
+#
+# MYPROXY_OPTIONS="-s /var/lib/myproxy"
+
+X509_USER_CERT=@dir.sys.grid_security@/hostcert.pem
+X509_USER_KEY=@dir.sys.grid_security@/hostkey.pem
+

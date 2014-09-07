@@ -1,0 +1,30 @@
+// 
+// Use the tag.properties file to define @portal_name@ and @portal_admin_email@
+// 
+// The @token@ and @url@ tags are substituted by Purse
+// 
+Hello @portal_name@ User!
+
+Thank you for registering for your @portal_name@ logon id.  Before you can use 
+your logon id, you need to confirm the receipt of this email.  You can do this
+in two ways:  
+
+  o  If you have just registered, and the @portal_name@ user registration
+     confirmation page is still in your browser, cut-and-paste the
+     Confirmation Token below into input box:
+
+        Confirmation Token:  @token@
+
+     -- OR --
+
+  o  Simply, Access this link:
+
+     @url@
+
+Once you have confirmed, you can proceed to the portal login page.   
+
+Having problems?  Please contact us at @portal_admin_email@.
+
+
+
+

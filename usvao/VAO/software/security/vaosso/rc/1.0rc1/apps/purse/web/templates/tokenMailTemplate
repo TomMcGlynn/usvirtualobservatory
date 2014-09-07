@@ -1,0 +1,23 @@
+Hello @fullname@!
+
+Thank you for registering for your VAO Logon.  Before you can use your
+logon, you need to confirm the receipt of this email.  You can do this
+in one of two ways:  
+
+  o  If you have just registered, and the VAO user registration
+     confirmation page is still in your browser, cut-and-paste the
+     Confirmation Token below into input box:
+
+        Confirmation Token:  @token@
+
+     -- OR --
+
+  o  Simply, Access this link:
+
+     @url@
+
+Once you have confirmed, you can proceed to the portal login page.   
+
+Having problems?  Please contact us contact us at
+vaosso@ncsa.illinois.edu or by accessing the VAO contact page at 
+http://www.usvao.org/contact.php.  

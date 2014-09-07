@@ -1,0 +1,257 @@
+#!/usr/bin/perl
+# file: ee-credential.pl
+
+use strict;
+use warnings;
+
+#use CGI qw(:standard);  
+#use CGI::Cookie ();
+#use Apache2::Log ();
+#use Apache2::RequestRec ();
+#use APR::Table ();
+
+#use Apache2::Const -compile => qw(OK SERVER_ERROR);
+
+use File::Copy;
+
+use constant MYPROXY_SERVER => "localhost";
+#use constant MYPROXY_SERVER_DN => "/C=US/O=National Virtual Observatory/OU=Certificate Authorities/CN=sso.us-vo.org";
+
+use constant MYPROXY_EXTRA_PARAMS => "-p 7513 "; # this is a custom server for 
+                                                 # this service
+
+# where we will put myproxy-logon output -- change to a log file for debugging
+#use constant MYPROXY_LOG_FILE => "/dev/null";
+use constant MYPROXY_LOG_FILE => "/tmp/myproxy_eec_out";
+
+# use constant CRED_STORE_DIR => "/var/mod_myproxy";
+use constant CRED_STORE_DIR => "/tmp/mod_myproxy";
+
+# for more debugging information, uncomment $r->log->notice in debug()
+# subroutine below; results will most likely show up in Apache's
+# ssl_error_log
+
+my $user = shift;      # the username of the current user
+my $cred_path = shift; # where to store the credentials
+my $format = shift;    # format of the cred file ("PEM" or "PKCS12")
+my $lifehours = shift; # lifetime of the certificate
+my $pkcskey = shift;   # PKCS key
+my $password = <STDIN>;
+#my $globus_location = $ENV{"GLOBUS_LOCATION"};
+my $globus_location = "/usr/local/nvo/globus";
+
+sub handler {
+    # 1. initialize all package variables (for semi-OO'ness)
+
+    # Note on Apache threading and object instantiation: each Apache
+    # sub-process will have an instance of this class which it will
+    # reuse each time it handles an HTTP request.  So we can count on
+    # being single-threaded for the duration of the call to handler(),
+    # but we have to be *very thorough* about initialization/cleanup
+    # because otherwise we will have leftover values from the previous
+    # call to handler().  Be sure to update clear_state() whenever you
+    # create a new instance variable.
+
+    if (defined($user) && $user =~ m/^\W/) {
+	# unfortunately, if just removing non-alphanumeric characters
+	# from $user could have unintended consequences -- someone
+	# with the username joe-user, for example, could impersonate
+	# joeuser
+	return sys_error("Non-alphanumeric characters in username ($user) "
+                         . "are not supported.");
+    }
+
+    if ($lifehours !~ /^\d+/) {
+        # only allow whole number hours
+        notice("called with non-integer lifetime");
+        $lifehours = 12;
+    }
+
+    return usr_error("Bad user key: $pkcskey, $lifehours",
+                     "A packing key containing no spaces or illegal " .
+                     "characters (i.e. ';', '(', ')', and '&') is required")
+        if ($pkcskey =~ /^\s*$/ || $pkcskey =~ /[;\(\)\s]/);
+
+    if (!defined($user)) {
+	return sys_error("Username is needed but not set");
+    } else {
+        handle_login($lifehours);
+    }
+
+    # 2. 
+    if (defined($cred_path)) {
+	if (! -e $cred_path) {
+	    return sys_error("Expected to see X509 credential at "
+                             . "$cred_path, but file does not exist.");
+	} 
+	my $out;
+	my $cmd;
+	if ($format =~ m/PKCS12/) {
+	    $out = CRED_STORE_DIR . "/$user.p12_$$";
+	    $cmd = "openssl pkcs12 -export -in $cred_path -out $out" . 
+		" -passout pass:$pkcskey";
+	} elsif ($format =~ m/PEM/) {
+	    $out = CRED_STORE_DIR . "/$user.pem_$$";
+	    $cmd = "openssl rsa -des3 -in $cred_path -out $out" . 
+		" -passout pass:$pkcskey";
+	} else {
+	    return sys_error("unsupported format requested: " . $format);
+	}
+	debug($cmd);
+	my $cout = `$cmd 2>&1`;
+	if ($?) {
+	    chomp $cout;
+	    if ($cout =~ /^Usage:/) {
+		$cout = "Usage problem";
+	    }
+	    $cout .= ": $cmd";
+	    return sys_error("openssl failed to package output: $cout");
+	}
+	if ($format =~ m/PEM/) {
+	    # combine to make new pem-encoded credential
+	    #   (1) certificate from original (unencrypted) credential
+	    #   (2) encrypted private key
+	    my $new_out = CRED_STORE_DIR . "/$user.pem2_$$";
+#	    debug("writing encrypted PEM to $new_out; old is $out");
+	    open(NEW_PEM, ">" . $new_out);
+	    open(ORIG_PEM, $cred_path);
+	    my $line = <ORIG_PEM>;
+	    debug("first line of $cred_path: $line");
+	    until ($line =~ m/BEGIN CERTIFICATE/) {
+		$line = <ORIG_PEM>;
+#		debug("looking for beginning of cert: $line");
+	    }
+	    until ($line =~ m/BEGIN RSA PRIVATE KEY/) {
+		print NEW_PEM $line;
+#		debug("looking for beginning of private key: $line");
+		$line = <ORIG_PEM>;
+	    }
+	    close(NEW_PEM);
+	    close(ORIG_PEM);
+	    `cat $out >> $new_out`;
+	    unlink($out);
+	    $out = $new_out;
+	}
+	move($out, $cred_path);
+    }
+}
+
+sub sys_error {
+    my $msg = shift;
+    notice("System error: $msg");
+}
+
+sub usr_error {
+    my $msg = shift;
+    my $explanation = shift;
+    notice("User error: $msg");
+    
+    print 
+        "\n<p>An error was encountered in your inputs: </p>\n\n",
+        "<blockquote>$msg: $explanation</blockquote>\n\n",
+        "<p>Please use your back button to correct your inputs ",
+        "and try again.</p>\n",
+}
+
+sub handle_login {
+    my $lifehours = $_[0];
+
+    # ensure existence of credential storage directory
+    my $mkdir_result = mkdir_check_perm(CRED_STORE_DIR);
+    if (!defined($mkdir_result)) { # did it fail?
+	$cred_path = undef;
+	return undef;
+    }
+
+    # 2. call myproxy-logon
+#    system("touch \"$cred_path.touched\"");
+#    debug(`whoami`);
+#    $ENV{"MYPROXY_SERVER_DN"} = MYPROXY_SERVER_DN;
+    my $myproxy_command 
+	= "| " . $globus_location . "/bin/myproxy-logon"
+#	= "| " . $globus_location . "/bin/myproxy-indirect"
+	. " -s " . MYPROXY_SERVER 
+	. ' -l "' . $user . '" --stdin_pass'
+	. ' -o "' . $cred_path . '"'
+        . ' -t ' . $lifehours
+	. " " . MYPROXY_EXTRA_PARAMS
+	. ' 2>> "' . MYPROXY_LOG_FILE . '"' # send stderr to log
+	. ' >> "' . MYPROXY_LOG_FILE . '"'; # send stdout to log
+    debug("Myproxy command: $myproxy_command");
+    my $opened = open(myproxy_handle, $myproxy_command);
+    if (!$opened) {
+	return notice("Unable to run myproxy-logon: $!");
+    }
+
+    # 3. pass password to myproxy-logon on stdin
+    print myproxy_handle $password;
+    #print myproxy_handle 0;
+    #print myproxy_handle 4;
+    # signal end of input so that myproxy_logon can exit
+    my $closed_success = close(myproxy_handle);
+#    debug("Closed? " 
+#	  . ($closed_success ? "yes" : "no") 
+#	  . " ($closed_success)");
+    my $myproxy_exit = $?; # retval stored in $? by close()
+#    debug("Exit value = $myproxy_exit");
+    if ($myproxy_exit != 0) {
+	notice("myproxy-logon failed -- see " . MYPROXY_LOG_FILE);
+    }
+    else {
+	debug("Stored MyProxy credential for $user in $cred_path");
+    }
+}
+
+# create a directory, if it doesn't exist; if it does exist, check
+# that it is read/writable only by its owner; if the permissions are
+# wrong, complain and fail (return undef)
+#
+# note that the credential file permissions will always be 0600,
+# thanks to myproxy-logon
+sub mkdir_check_perm {
+    my $path = $_[0];
+
+    my $mkdir_result = mkdir($path, 0700);
+    my $mkdir_error = $!;
+#    debug("mkdir result = $mkdir_result ($mkdir_error)");
+
+    if (!(-d $path)) {
+	notice("unable to create " . CRED_STORE_DIR 
+	       . ": $mkdir_error ($mkdir_result)");
+	# would rather return DONE here, but getting language errors
+	return undef;
+    }
+
+    # check directory permissions
+    my ($dev,$ino,$mode,$nlink,$uid,$gid,$rdev,$size,
+	$atime,$mtime,$ctime,$blksize,$blocks)
+	= stat($path);
+    # note: we don't check ownership -- if it's wrong, we simply won't
+    # be able to write to the directory
+    $mode = $mode & 07777; # mask out file type
+#    debug("file mode of $path = $mode");
+    if ($mode != 0700) {
+	notice("directory $path has wrong permissions; it should be "
+	       . "accessible only to its owner, which should match the "
+	       . "uid of the web server process");
+	return undef;
+    }
+
+    return 1;
+}
+
+# log something, but only in debug mode
+# takes a request object and a message
+sub debug {
+    my $msg = $_[0];
+    print "\ngeteec: $msg";
+}
+
+# log something regardless of debug mode
+# takes a request object and a message
+sub notice {
+    my $msg = $_[0];
+    print "\ngeteec: $msg";
+}
+
+handler();

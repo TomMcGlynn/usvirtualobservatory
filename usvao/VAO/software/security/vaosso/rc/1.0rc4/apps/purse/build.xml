@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+
+<!-- 
+  -  Build the purse webapp for registering new users
+  - 
+  -  This has been adapted from the Globus Purse build script 
+  -  (c. 1999 University of Chicago and The University of 
+  -  Southern California.)
+  -->
+<project default="build" name="vaosso-purse" basedir=".">
+  <!--
+    - set inherit-properties to "false" if you do not want to inherit
+    - properties from the enclosing package.  
+    -->
+  <property name="inherit-properties" value="build-inherit.properties"/>
+  <property file="${inherit-properties}"/>
+
+  <property file="build.properties"/>
+
+  <property name="dir.home" value="${basedir}" />
+  <property name="dir.build" value="${basedir}/build" />
+  <property name="dir.build.javadocs" value="${dir.build}/japi" />
+  <property name="dir.build.classes" value="${dir.build}/classes" />
+  <property name="dir.build.tclasses" value="${dir.build}/tclasses" />
+  <property name="dir.testreports" value="${dir.build}/test-reports" />
+  <property name="dir.src" value="${basedir}/src/main" />
+  <property name="dir.tsrc" value="${basedir}/src/tests" />
+  <property name="dir.etc" value="${basedir}/etc" />
+  <property name="dir.web" value="${basedir}/web" />
+  <property name="dir.lib" value="${basedir}/lib" />
+  <property name="dir.jars" value="${dir.lib}" />
+
+  <property name="webapp.name" value="purse" />
+  <property name="jar.name" value="${webapp.name}.jar" />
+  <property name="jar.path" value="${dir.jars}/${jar.name}" />
+  <property name="war.name" value="${webapp.name}.war" />
+  <property name="war.path" value="${basedir}/${war.name}" />
+
+  <property name="keystore.path" value="${dir.etc}/purse.jks" />
+  <property name="keystore.pw" value="${dir.etc}/dummypass" />
+
+  <property name="debug" value="false"/>
+  <property name="deprecation" value="false"/>
+  <available file="${war.path}" property="war.available"/>
+  <condition property="is.expert">
+    <istrue value="${expert}"/>
+  </condition>
+  <available property="db.created" file="${dir.build}/db-created.sema"/>
+  <available property="db.initialized" file="${dir.build}/db-initialized.sema"/>
+
+  <!-- compile the source -->
+  <path id="path.compile">
+    <pathelement location="${dir.build.classes}" />
+    <pathelement location="${jar.servletapi}" />
+    <fileset dir="${dir.jars}">
+      <include name="*.jar"/>
+      <exclude name="${jar.name}"/>
+    </fileset>
+  </path>
+
+  <!-- compile the tests -->
+  <path id="path.tcompile">
+    <pathelement location="${dir.build.tclasses}" />
+    <path refid="path.compile" />
+  </path>
+
+  <target name="build" depends="war"/>
+
+  <target name="install" depends="build">
+    <copy todir="${dir.install.lib}">
+      <fileset file="${war.path}"/>
+      <fileset file="${jar.path}"/>
+    </copy>
+  </target>
+
+  <target name="status">
+    <uptodate property="javadoc.notrequired"
+              targetfile="${dir.build.javadocs}/index.html">
+      <srcfiles dir="${dir.src}" includes="**/*.java" />
+    </uptodate>
+    <available property="key.present" file="${keystore}" />
+  </target>
+
+  <target name="init">
+    <mkdir dir="${dir.build.classes}"/>
+  </target>
+
+  <!-- Compile source -->
+  <target name="compile" depends="status,init">
+    <!-- <echo>Compiling with CLASSPATH=${toString:path.compile}</echo>  -->
+    <javac srcdir="${dir.src}" destdir="${dir.build.classes}" debug="${debug}"
+           deprecation="${deprecation}" classpathref="path.compile"
+           includeantruntime="false"/>
+  </target>
+  
+  <!-- Compile tests -->
+  <target name="compileTests" depends="compile">
+    <javac srcdir="${dir.src}" destdir="${dir.build.classes}" debug="${debug}"
+           deprecation="${deprecation}" classpathref="path.tcompile"
+           includeantruntime="false"/>
+  </target>
+  
+  <target name="compileAll" depends="compile,compileTests"/>
+
+  <target name="jar" depends="compile">
+    <jar jarfile="${jar.path}" basedir="${dir.build.classes}" />
+  </target>
+
+  <!--
+    -  create the runtime properties file
+    -->
+  <target name="runtime-props" depends="init">
+    <property file="${dir.etc}/purse.properties" prefix="runtime" />
+    <ant target="-write-runtime-props" inheritAll="false" 
+         antfile="build-purse-properties.xml">
+      <property name="destfile" value="${dir.build}/purse.properties" />
+      <propertyset>
+        <propertyref prefix="db."/>
+      </propertyset>
+      <propertyset>
+        <propertyref prefix="runtime."/>
+        <mapper type="glob" from="runtime.*" to="*"/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="war" depends="jar,runtime-props">
+    <mkdir dir="${dir.build}/web/etc"/>
+
+    <copy todir="${dir.build}/web/etc">
+      <fileset dir="${dir.dist.etc}">
+        <include name="*.in"/>
+      </fileset>
+      <globmapper from="*.in" to="*"/>
+      <filterchain>
+        <replacetokens>
+          <token key="server.admin.email"  value="${server.admin.email}" />
+        </replacetokens>
+      </filterchain>
+    </copy>
+
+    <war destfile="${war.path}" webxml="${dir.web}/web.xml">
+      <fileset dir="${dir.web}/jsp" >
+        <exclude name="**/*.orig"/>
+      </fileset>
+      <webinf dir="${dir.web}">
+        <include name="templates/**"/>
+        <include name="etc/**"/>
+        <exclude name="**/*.in"/>
+      </webinf>
+      <webinf dir="${dir.build}/web">
+        <include name="etc/**"/>
+      </webinf>
+      <webinf file="${dir.build}/purse.properties"/>
+      <lib dir="lib" />
+
+      <!--
+        -  purse.jar installed via lib above
+        -
+      <lib file="${dir.build}">
+        <include name="${jar.name}" />
+      </lib>
+        -->
+    </war>
+    <available file="${war.path}" property="war.available"/>
+  </target>
+
+  <target name="clean">
+    <delete dir="${dir.build}" />
+  </target>
+
+  <target name="distclean" depends="clean">
+    <delete file="${war.path}" />
+    <delete file="${jar.path}" />
+  </target>
+
+  <target name="deploy" depends="-check-war,-deploy"/>
+  <target name="-deploy">
+    <copy file="${war.path}" todir="${dir.deploy}" />
+  </target>
+
+  <target name="-check-war" depends="-check-war-available" unless="is.expert">
+    <echo>Note: you must explicitly (re-)build the war file before deploying</echo>
+    <echo>Type "ant build" to build.</echo>
+  </target>
+  <target name="-check-war-available" unless="war.available">
+    <echo>War file has apparently not been built yet!</echo>
+    <echo>(${war.path})</echo>
+  </target>
+
+  <target name="initdeploy">
+    <mkdir dir="${dir.deploy}"/>
+  </target>
+  <!-- <target name="install" depends="initinstall,build,-deploy"/> -->
+
+  <target name="setup-db" depends="test-db-users">
+    <fail message="Database users not set up" unless="db.reg.user.exists"/>
+    <antcall target="-setup-db" inheritAll="true"/>
+  </target>
+  <target name="-setup-db" depends="init-db"/>
+
+  <target name="test-db-users">
+    <echo file="${dir.build}/noop.sql"/>
+    <!-- <echo file="${dir.build}/user">${db.reg.pw}</echo> -->
+    <echo message="Checking for db user, ${db.reg.user}"/>
+    <exec executable="mysql" input="${dir.build}/noop.sql" failonerror="false"
+          resultproperty="db.reg.user.check">
+      <arg value="--host=${db.connection.host}"/>
+      <arg value="--port=${db.connection.port}"/>
+      <arg value="--user=${db.reg.user}"/>
+      <arg value="-p${db.reg.pw}"/>
+    </exec>
+    <condition property="db.reg.user.exists">
+      <equals arg1="${db.reg.user.check}" arg2="0"/>
+    </condition>
+  </target>
+
+  <target name="create-db" unless="db.created">
+    <exec failonerror="true" executable="mysql" 
+          input="${dir.etc}/create-database.sql">
+      <arg value="--host=${db.connection.host}"/>
+      <arg value="--port=${db.connection.port}"/>
+      <arg value="--user=${db.reg.user}"/>
+      <arg value="-p${db.reg.pw}"/>
+    </exec>
+    <echo file="${dir.build}/db-created.sema">database created.</echo>
+    <available property="db.created" file="${dir.build}/db-created.sema"/>
+  </target>
+
+  <target name="init-db" unless="db.initialized" depends="war,create-db">
+    <java classname ="org.globus.purse.registration.BootstrapDatabase"
+          fork      = "yes"  
+	  classpathref="path.compile" 
+	  failonerror="yes">
+      <jvmarg value="-Dpurse.dir=${dir.web}"/>
+      <arg value="${dir.build}/purse.properties"/>
+      <arg value="${dir.web}/etc/purse_status"/>
+      <arg value="${dir.web}/etc/purse_roles"/>
+      <arg value="${dir.web}/etc/purse_users"/>
+    </java>
+    <echo file="${dir.build}/db-initialized.sema">db bootstrap complete.</echo>
+
+    <exec failonerror="true" executable="mysql" 
+          input="${dir.etc}/initialize-database.sql">
+      <arg value="--host=${db.connection.host}"/>
+      <arg value="--port=${db.connection.port}"/>
+      <arg value="--user=${db.reg.user}"/>
+      <arg value="-p${db.reg.pw}"/>
+      <arg value="purseDatabase"/>
+    </exec>
+
+    <echo file="${dir.build}/db-initialized.sema">database initialized.</echo>
+    <available property="db.initialized" 
+               file="${dir.build}/db-initialized.sema"/>
+  </target>
+
+  <target name="try">
+    <echo>classpath: ${toString:path.compile}</echo>
+  </target>
+
+</project>

@@ -1,0 +1,14 @@
+# PAM configuration used by vaosso OpenID Identity Provider.
+#
+# This configuration is used by the openidip web app in a service that 
+# allows users to request and download an End-Entity Certificate (EEC)
+# for use in desktop applications (like web browsers).  It does this 
+# indirectly through a myproxy server (via the script ee-credential.pl).
+#
+# Note that a second myproxy service is run (on a non-standard port) for 
+# this purpose.  The myproxy server should be configured (via 
+# /etc/myproxy-server-geteec.config) to use this pam configuration file
+# (vaosso_geteec).  
+
+auth       required     @dir.sys.pam.lib@/pam_mysql.so user=@db.reg.user@ passwd=@db.reg.pw@ db=@db.name@ table=user_sha usercolumn=user_name passwdcolumn=password_sha crypt=salted1:@db.pw.hash.iterations@ [where=status_id=3] 
+account    required     @dir.sys.pam.lib@/pam_mysql.so user=@db.reg.user@ passwd=@db.reg.pw@ db=@db.name@ table=user_sha usercolumn=user_name passwdcolumn=password_sha crypt=salted1:@db.pw.hash.iterations@ [where=status_id=3] 

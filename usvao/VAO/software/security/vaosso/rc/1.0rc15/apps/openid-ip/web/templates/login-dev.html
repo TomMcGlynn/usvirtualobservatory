@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<!--headstart-->
+<title>VAO Login - <!--title--></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--extraMetas-->
+<!--include:styles.include-->
+<link href="<!--rootPath-->/openid.css" type="text/css" rel="stylesheet">
+
+<script type= "text/javascript" src = "/purse/countries.js"></script>
+<!--extraScripts-->
+</head>
+<body padding="0" margin="0">
+
+<script type="text/javascript" src="/styles/jquery.min.js"></script>
+<table width="100%" id="nav-head" border="0" cellpadding="0" cellspacing="0">
+ <tr>
+  <td id="nav-ul"></td>
+  <td></td>
+  <td id="nav-ur"></td>
+ </tr><tr>
+  <td id="nav-menu">
+     <ul>
+       <li><a href="/">About VAO Logins</a></li>
+       <li><a href="/register/register.jsp<!--returnto-->">Get a VAO Login</a></li>
+       <li><a href="/openid/">Profile and Preferences</a></li>
+       <li><a href="/help/support.html">Support VAO Logins</a></li>
+       <li><a href="/help/faq.html">FAQ</a></li>
+     </ul>
+  </td>
+  <td id="nav-logo" align="center" valign="top">
+     <a href="http://www.usvao.org"><img src="/images/VAOwords-dev_200.png" width="180" height="100" 
+                                         title="Caution: this is server is for testing and development purposes; do not use this server to log into real VAO portals"/></a>
+  </td>
+  <td id="nav-menu">
+     <ul>
+       <li><a href="http://www.usvao.org/">VAO Home</a></li>
+       <li><a href="http://www.usvao.org/tools/">Science Tools</a></li>
+       <li><a href="http://www.usvao.org/about-vao">About the VAO</a></li>
+       <li><a href="http://www.usvao.org/news/">VAO News</a></li>
+       <li><a href="http://www.usvao.org/contact-contact/">Contact and Connect</a></li>
+     </ul>
+  </td>
+ </tr><tr>
+  <td id="nav-bl"></td>
+  <td align="center">
+     <span style="color: green;">
+     <span id="loginStatus"></span>
+<script type="text/javascript">
+function makeStatusHTML(status) {
+    var htmlt = "";
+    if (status.state == "in") {
+        htmlt += status.username;
+        htmlt += " &nbsp;&nbsp;Time left: ";
+        htmlt += status.dispLeft;
+        htmlt += ' &nbsp;&nbsp;<a href="/openid/?logout=true">Logout</a> ';
+    }
+    else if (status.state == "expired") {
+        htmlt += "Expired session as ";
+        htmlt += status.username;
+        htmlt += '&nbsp;&nbsp;<a href="/openid/">Login</a>';
+    }
+    else {
+        htmlt += 'Logged out &nbsp;&nbsp;<a href=\"/openid/\">Login</a>&nbsp;&nbsp;<a href="/register/register.jsp<!--returnto-->">Register</a>';
+    }
+    return htmlt;
+}
+
+function displayStatus(status) {
+    jQuery("#loginStatus")[0].innerHTML = makeStatusHTML(status);
+}
+
+jQuery(document).ready(function() {
+    jQuery.getJSON("/openid/loginStatus", displayStatus);
+})
+</script></span>
+  </td>
+  <td id="nav-br"></td>
+ </tr>
+</table>
+
+<div class="main-content">
+
+<h2>Log in to <!--relyingPortal--> with your VAO identity</h2>
+
+<blockquote>
+    <form method="post" id="login_form" action="<!--action-->">
+    <table border="0">
+    <!--feedback-->
+    <tr>
+        <label>
+            <td style="color:#359;font-weight:bold">VAO Username &nbsp; &nbsp; </td>
+            <td><!--name--></td>
+        </label>
+    </tr>
+    <tr>
+        <td style="color:#359;font-weight:bold">Password</td>
+        <td>
+            <input type="password" name="password" id="password_input" onfocus="this.select()"/>
+            <input type="hidden" name="interactive" value="true"/>
+            <input type="hidden" name="logout" id="logout" value="false"/>
+            <input type="submit" value="Sign in"/>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <div style="font-size:75%">
+                <a href="/register/register.jsp<!--returnto-->">register</a> |
+                <a href="/register/password.jsp">forgot password</a> |
+                <a href="/register/password.jsp">change password</a> |
+                <a href="/register/resend.jsp">resend registration</a>
+            </div>
+        </td>
+    </tr>
+    </table>
+    </form>
+
+</blockquote>
+
+<div class="divider"><hr noshade="noshade" /></div>
+
+<h4>Caution: You are using a development/test Login Server</h4>
+<p>
+    This server is not intended for production use; do not use it to connect to VAO portals.
+    For more information, see our summary on
+    <a href="/">VAO Logons</a>.  
+</p>
+
+</div>
+<!--include:foot.html-->

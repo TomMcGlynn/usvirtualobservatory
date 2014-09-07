@@ -1,0 +1,163 @@
+-- -----------
+-- 
+-- initialization of the database
+-- 
+-- -----------
+
+-- create database if not exists purseDatabase;
+-- use purseDatabase;
+
+-- Schema for Purse User Management Database
+
+-- Status Table
+create table status_table
+(
+	status_id INTEGER PRIMARY KEY,
+	status_name varchar(100) not null,
+	status_description text not null,
+	constraint status_uk_cons unique(status_name)
+);
+
+-- Role Table
+create table role_table
+(
+	role_id INTEGER PRIMARY KEY,
+	role_name varchar(100) not null,
+	role_description text not null,
+	constraint role_uk_cons unique(role_name)
+);
+
+CREATE TABLE preference_type (
+  id INTEGER PRIMARY KEY NOT NULL,
+  name varchar(255) default NULL,
+  description varchar(255) default NULL
+);
+
+CREATE TABLE ra_table (
+  ra_id INTEGER PRIMARY KEY NOT NULL,
+  ra_name varchar(100) NOT NULL,
+  ra_email varchar(100) NOT NULL,
+  ra_description text NOT NULL,
+  constraint ra_uk_cons_name UNIQUE (ra_name),
+  constraint ra_uk_cons_email UNIQUE (ra_email)
+);
+
+-- User Table
+create table user_table (
+    user_id INTEGER not null,
+    token varchar(200) not null,
+    first_name text not null,
+    last_name text not null,
+    contact_person text not null,
+    user_name varchar(200) not null,
+    institution text not null,
+    project_name text not null,
+    email text not null,
+    phone text not null,
+    country text,
+    dn text,
+    status_id INTEGER not null,
+    creation_time datetime default NULL,
+    created_from_addr text default '',
+    number_logins INTEGER default NULL,
+    last_access_time date default NULL,
+    ra_id INTEGER default NULL,
+    password_sha blob not null,
+    salt blob not null,
+    password_method varchar(16) not null,
+    portal_confirm_url text,
+    portal_name text,
+    is_admin tinyint(1) default NULL,
+    constraint status_cons foreign key(status_id) references status_table(status_id),
+    constraint username_uk_cons unique(user_name),
+    constraint token_uk_cons unique(token),
+    constraint user_pk_cons primary key(user_id),
+    constraint ra_cons foreign key (ra_id) references ra_table(ra_id)
+);
+
+-- Salted hash view for pam_mysql
+create view user_sha as
+      select user_name, password_sha||'|'||salt as password_sha, status_id
+      from user_table;
+
+
+-- User groups
+create table group_table
+(
+	group_id INTEGER PRIMARY KEY,
+	group_name varchar(200) not null,
+	group_desc text not null,
+	constraint group_uk_cons unique(group_name)
+);
+
+-- User/Group
+create table user_group_table
+(
+	group_id INTEGER not null,
+	user_id INTEGER not null,
+	constraint foreign1 foreign key(group_id) references group_table(group_id),
+	constraint foreign2 foreign key(user_id) references user_table(user_id),
+	constraint user_gp_pk primary key(group_id, user_id)
+);
+
+-- User, roles association
+create table user_roles_table
+(
+	user_id INTEGER not null,
+	role_id INTEGER not null,
+	constraint user_cons foreign key(user_id) references user_table(user_id),
+	constraint role_cons foreign key(role_id) references role_table(role_id),
+	constraint pk_cons primary key(role_id, user_id)
+);
+
+-- other tables
+
+create table openid_association (
+  handle varchar(64) not null,
+  type text,
+  mackey text,
+  expdate datetime default null,
+  primary key  (handle)
+);
+
+create table portal (
+  id INTEGER PRIMARY KEY not null,
+  name varchar(255) unique not NULL,
+  description varchar(1023) default NULL,
+  url varchar(511) default NULL,
+  curator_id bigint(20) default NULL,
+  status INTEGER default 0
+);
+
+create table portal_urls (
+  id INTEGER PRIMARY KEY not null,
+  portal_id bigint(20) not null,
+  hostname varchar(255) not null,
+  path varchar(1023) default "/"
+);
+
+-- CREATE TABLE replication_monitor (
+--   id INTEGER PRIMARY KEY NOT NULL,
+--   version INTEGER default NULL,
+--   server varchar(100) default NULL,
+--   last_check DATETIME NOT NULL default CURRENT_TIMESTAMP,
+-- );
+
+CREATE TABLE user_preference (
+  id INTEGER PRIMARY KEY NOT NULL,
+  value varchar(255) default NULL,
+  portal_id bigint(20) default NULL,
+  user_table_id bigint(20) default NULL,
+  preference_type_id bigint(20) NOT NULL
+);
+
+
+CREATE TABLE user_session (
+  id INTEGER PRIMARY KEY NOT NULL,
+  token varchar(255) default NULL,
+  create_time DATETIME default NULL,
+  expire_time DATETIME default NULL,
+  user_table_id bigint(20) default NULL,
+  host_address varchar(255) default NULL
+);
+

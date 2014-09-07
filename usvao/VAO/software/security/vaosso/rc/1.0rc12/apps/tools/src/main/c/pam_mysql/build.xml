@@ -1,0 +1,57 @@
+<!--
+  -  Build the patched pam_mysql module.
+  -  
+  -  This ant script will build the module, pam_mysql.so and place it 
+  -  into this directory.  The vaosso root-level build file is
+  -  responsible for installing the module to its ultimate location.  
+  -
+  -  Prerequisites for building:  
+  -   *  mysql headers (Fedora: mysql-devel)
+  -   *  pam headers   (Fedora: pam-devel)
+  -   *  a C compiler  (Fedora: gcc)
+  -   *  make
+  -
+   -  Note:  This assumes buildin on a Linux/Unix system
+  -->
+<project name="vaosso-pam_mysql" basedir="." default="build">
+
+  <property file="build.properties"  />
+  <property name="dir.install" value="${basedir}" />
+  <property name="dir.build" 
+            value="${basedir}/pam_mysql-0.7RC1-multiple-passwords" />
+  <available property="makefile.exists" file="${dir.build}/Makefile" />
+
+  <target name="init">
+    <mkdir dir="${dir.install}" />
+  </target>
+
+  <target name="pwd">
+    <exec spawn="false" dir="${dir.build}" executable="pwd" />
+  </target>
+
+  <target name="configure" unless="makefile.exists">
+    <exec spawn="false" dir="${dir.build}" executable="${dir.build}/configure"
+          failonerror="true">
+      <arg line="--with-pam-mods-dir=${dir.install} --with-openssl ${extra_configure_args}" />
+    </exec>
+    <available property="makefile.exists" file="${dir.build}/Makefile" />
+  </target>
+
+  <target name ="build" depends="init,configure">
+    <exec spawn="false" dir="${dir.build}" executable="make" failonerror="true">
+      <arg value="install"/>
+    </exec>
+  </target>
+
+  <target name="clean" if="makefile.exists">
+    <exec spawn="false" dir="${dir.build}" executable="make">
+      <arg value="distclean"/>
+    </exec>
+  </target>
+
+  <target name="distclean" depends="clean">
+    <delete file="${basedir}/pam_mysql.so" />
+    <delete file="${basedir}/pam_mysql.la" />
+  </target>
+
+</project>

@@ -1,0 +1,11 @@
+From:    Purse Portal 
+To:      Purse Administrator
+Subject: User Account
+
+A request has been made for user account on the Purse Portal. You may access the details of the request by clicking on the following link.
+
+@url@
+
+You may also approve the request by replying to the email with no changes to the subject line, but the following line being the *only* line in the body of the email.
+
+Token:@token@#

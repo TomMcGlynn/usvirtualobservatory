@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+  <display-name>VAO OpenID Server</display-name>
+
+  <servlet>
+    <servlet-name>provider</servlet-name>
+    <servlet-class>org.usvo.openid.serve.let.ProviderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>provider</servlet-name>
+    <url-pattern>/provider</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>signin</servlet-name>
+    <servlet-class>org.usvo.openid.serve.let.SigninServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>signin</servlet-name>
+    <url-pattern>/signin</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>id</servlet-name>
+    <servlet-class>org.usvo.openid.serve.let.IdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>id</servlet-name>
+    <url-pattern>/id/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>provider_id</servlet-name>
+    <servlet-class>org.usvo.openid.serve.let.ProviderIdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>provider_id</servlet-name>
+    <url-pattern>/provider_id</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>prefs</servlet-name>
+    <servlet-class>org.usvo.openid.serve.let.PreferencesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>prefs</servlet-name>
+    <url-pattern>/prefs/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>prof</servlet-name>
+    <servlet-class>org.usvo.openid.serve.let.ProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>prof</servlet-name>
+    <url-pattern>/prof/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>cred</servlet-name>
+    <servlet-class>org.usvo.openid.serve.let.CredentialServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>cred</servlet-name>
+    <url-pattern>/cred/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>loginStatus</servlet-name>
+    <servlet-class>org.usvo.openid.serve.let.LoginStatusServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loginStatus</servlet-name>
+    <url-pattern>/loginStatus</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+    <listener>
+        <listener-class>org.usvo.openid.serve.Housekeeper</listener-class>
+    </listener>
+</web-app>

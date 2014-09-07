@@ -1,0 +1,34 @@
+<!--include:head.html-->
+<h1><!--title--></h1>
+<form method="post" action="<!--action-->">
+    <input type="hidden" name="origin" value="prefs">
+    <blockquote>
+        <p>
+            Hello, <!--name-->.
+            To access a different account, <a href=?logout=true>sign out</a>.
+            <!--adminLink-->
+        </p>
+        <!--pageExplanation-->
+    </blockquote>
+    <!--feedback-->
+    <table cellspacing="0" cellpadding="0" class="grid">
+    <!--tableHeader-->
+    <tr>
+        <td></td>
+        <td class="grid"><strong>Username</strong><br><!--username--></td>
+        <td class="grid"><strong>Name</strong><br><!--name--></td>
+        <td class="grid"><strong>Email Address</strong><br><!--email--></td>
+        <td class="grid"><strong>Phone Number</strong><br><!--phone--></td>
+        <td class="grid"><strong>Institution</strong><br><!--institution--></td>
+        <td class="grid"><strong>Country</strong><br><!--country--></td>
+        <td class="grid" title="A cryptographic credential that a Portal can use to access grid services that require your personal authentication."><strong>Security Credential</strong></td>
+        <td class="grid" style="background:#ffd" title="Automatically use these settings, without asking each time."><strong>Enable Single Sign-on</strong></td>
+    </tr>
+    <!--specificPrefs-->
+    </table>
+    <!--feedback-->
+    <p style="text-align:center;">
+        <input type="submit" value="Update">
+    </p>
+</form>
+<!--include:foot.html-->

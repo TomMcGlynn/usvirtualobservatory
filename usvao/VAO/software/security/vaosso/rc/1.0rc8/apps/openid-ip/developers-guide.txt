@@ -1,0 +1,80 @@
+		--------------------------------------
+		Developers' Guide to NVO OpenID Server
+		--------------------------------------
+			   Bill Baker, 2011
+			bill@orangecrayon.com
+
+1. Prerequisites
+
+    * Java
+    * Ant
+    * MySQL
+
+2. Configuration
+
+    * Get a copy of the database (currently called purseDatabase,
+      because the registration system was adapted from Globus PuRSe).
+
+    * Modify webapp/WEB-INF/openid.properties_sample and save it as
+      openid.properties.
+
+    * Modify src/hibernate.cfg.xml_sample and save it as
+      hibernate.cfg.xml.
+
+    * Modify build.properties_sample to match your system and save it as
+      build.properties.
+
+3. Building
+
+    * "ant deploy" will make a WAR and copy it to your application
+      server (such as Tomcat)
+
+4. Testing (assumes OpenID server's URL is ${SERVER}).
+
+    * Make sure ${SERVER}/id/username is a valid OpenID
+
+    * Try various login scenarios (requires an OpenID client)
+
+       - With a username specified -- use an ID like
+         ${SERVER}/id/username
+
+       - Identity-less OpenID login -- the user will specify a
+         username.  Use the OpenID ${SERVER}/id/ .
+
+       - Establish a session and then, without logging out, log in as
+         a different user, three ways:
+
+          > with a different full OpenID
+          > by clicking "log in with a different ID" on the Login page
+          > by clicking "sign in with a different ID" on the "Do you
+            trust ..." page
+
+    * Attribute exchange
+
+       - Recommended schema: axschema.org
+
+          > email, phone, name, username
+
+       - Try both Request & Require -- the server treats them the
+         same and tries to fulfill both
+
+       - Grid credential (see below), identified by
+         http://sso.usvao.org/schema/credential/x509
+
+5. Internals
+
+    * Main class is org.usvo.openid.serve.IDServer; it has various
+      OpenID-specific helper classes in its package
+
+    * Servlets provide entry points to IDServer -- packaged in
+      org.usvo.openid.serve.let
+
+    * Presentation is via a simple templating system that does string
+      substitution with a Map<String,String>.  It is implemented in
+      org.usvo.openid.ui.  The actual templates are in
+      webapp/WEB-INF/templates.
+
+    * Object-relational mapping done by Hibernate, using annotations.
+      The OpenID-specific classes' tables will be created
+      automatically, but the other registration tables (such as
+      userTable) will not.

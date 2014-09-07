@@ -1,0 +1,99 @@
+#!/bin/sh
+#
+# VAOSSO NOTE: this assumes a Red Hat system!  This is not expected to work
+# for an Ubuntu or other Debian system.
+#
+# myproxy-server - Server for X.509 Public Key Infrastructure (PKI) security credentials
+#
+# chkconfig: - 55 25
+# description:  Server for X.509 Public Key Infrastructure (PKI) security credentials
+#
+### BEGIN INIT INFO
+# Provides: myproxy-server
+# Required-Start:  $local_fs $network $syslog
+# Required-Stop:  $local_fs $syslog
+# Should-Start:  $syslog
+# Should-Stop:  $network $syslog
+# Default-Stop:
+# Default-Start:
+# Short-Description: Startup the MyProxy server daemon
+# Description: Server for X.509 Public Key Infrastructure (PKI) security credentials
+### END INIT INFO
+
+# Source function library.
+SYSTEMCTL_SKIP_REDIRECT=1
+. /etc/rc.d/init.d/functions
+
+exec="/usr/sbin/myproxy-server"
+cmd=$(basename $exec)
+prog=$(basename $0)
+
+# Defaults
+MYPROXY_USER=myproxy
+MYPROXY_OPTIONS="-s /var/lib/myproxy"
+X509_USER_CERT=/etc/grid-security/hostcert.pem
+X509_USER_KEY=/etc/grid-security/hostkey.pem
+
+# Override defaults here.
+[ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
+
+# A few sanity checks 
+[ ! -r $X509_USER_KEY ]  && echo -n "$prog: No hostkey file"  && failure && echo && exit 5
+[ ! -r $X509_USER_CERT ] && echo -n "$prog: No hostcert file" && failure && echo && exit 5
+
+lockfile=/var/lock/subsys/$prog
+pidfile=/var/run/${prog}.pid
+
+start() {
+    status -p $pidfile $prog > /dev/null && echo -n $"$prog already running: " && success  && echo && exit 0
+    echo -n $"Starting $prog: "
+    X509_USER_CERT=$X509_USER_CERT X509_USER_KEY=$X509_USER_KEY daemon --user $MYPROXY_USER $exec $MYPROXY_OPTIONS
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && {
+        touch $lockfile
+        local pid=`ps ww -C $cmd | grep $prog` && [ -n "$pid" ] && echo $pid | awk '{print $1}' > $pidfile
+    }
+    return $retval
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc -p $pidfile $prog
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && rm -f $lockfile
+    return $retval
+}
+
+restart() {
+    stop
+    start
+}
+
+case "$1" in
+    start|stop|restart)
+        $1
+        ;;
+    force-reload)
+        restart
+        ;;
+    status)
+        status -p $pidfile $prog
+        ;;
+    try-restart|condrestart)
+        if status -p $pidfile $prog >/dev/null ; then
+            restart
+        fi
+        ;;
+    reload)
+        # If config can be reloaded without restarting, implement it here,
+        # remove the "exit", and add "reload" to the usage message below.
+        # For example:
+        status -p $pidfile $prog >/dev/null || exit 7
+        killproc -p $pidfile $prog -HUP
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|status|restart|reload|try-restart|force-reload}"
+        exit 2
+esac

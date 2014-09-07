@@ -1,0 +1,5 @@
+# Put something like this in /etc/crontab to delete old credentials after users
+# have a chance to download them.
+
+# delete all files more than 5 minutes old in the credentials directory
+* * * * * find /var/www/html/sso/credential -mmin +5 -exec rm -rf {} \; >/dev/null 2>&1

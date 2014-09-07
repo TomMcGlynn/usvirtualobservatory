@@ -1,0 +1,51 @@
+<!--include:head.html-->
+<h2>Log in to <em title="<!--relyingUrl-->"><!--relyingName--></em> with your VAO identity</h2>
+<blockquote>
+
+    <form method="post" id="login_form" action="<!--action-->">
+    <table border="0">
+    <!--feedback-->
+    <tr>
+        <label>
+            <td style="color:#359;font-weight:bold">VAO Username &nbsp; &nbsp; </td>
+            <td><!--name--></td>
+        </label>
+    </tr>
+    <tr>
+        <td style="color:#359;font-weight:bold">Password</td>
+        <td>
+            <input type="password" name="password" id="password_input" onfocus="this.select()"/>
+            <input type="hidden" name="interactive" value="true"/>
+            <input type="hidden" name="logout" id="logout" value="false"/>
+            <input type="submit" value="Sign in"/>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <div style="font-size:75%">
+                <a href="http://sso.us-vo.org/register">register</a> |
+                <a href="http://sso.us-vo.org/register/password.jsp">forgot password</a> |
+                <a href="http://sso.us-vo.org/register/password.jsp">change password</a> |
+                <a href="http://sso.us-vo.org/register/resend.jsp">resend registration</a>
+            </div>
+        </td>
+    </tr>
+    </table>
+    </form>
+
+</blockquote>
+
+<div class="divider"><hr noshade="noshade" /></div>
+
+<p>
+    <!--<strong>Note:</strong>-->
+    In order to help ensure the safety of your VAO identity, we use the
+    <a href="http://openid.net/">OpenID</a> protocol in which your password
+    is not shared with pariticipating portals.  <em>You should never
+    enter your VAO login password into any login page except this
+    one.</em>  For more information, see our summary on
+    <a href="/">VAO Logons</a>.  
+</p>
+
+<!--include:foot.html-->

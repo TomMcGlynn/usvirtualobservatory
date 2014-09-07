@@ -1,0 +1,32 @@
+Hello @fullname@,
+
+You have completed your Our Logon registration.  
+
+Your Our username is @username@.  It is a single, unique identity
+which you can use with any VO-compliant portal to gain access to
+proprietary data and enhanced services such as remote storage.
+
+Your identity is fully compliant with the OpenID standard
+(www.openid.net).  This means you can even use it to log into other
+non-VO portals that support the OpenID standard.  For these portals,
+use can use your full OpenID URL:
+
+   https://sso.our.org/openid/id/@username@
+
+To protect your identity, be careful to only enter your Our password
+into the Our Login Page at:
+
+    https://sso.our.org/openid/
+
+You can change your password or request a password reminder at
+https://sso.our.org/register/password.jsp.
+
+Now that you have registered, the Our can supply you and Our-compliant
+portals that you visit with a "standard" security credential, which
+has been verified by this email exchange.  For more information, visit
+the Our Login Services Portal, http://sso.our.org/.
+
+If you have any questions or problems, please contact us at
+vaosso@our.org or by accessing the Our contact page at 
+http://www.our.org/contact.html.
+

@@ -1,0 +1,32 @@
+# PAM configuration used by vaosso OpenID Identity Provider.
+#
+# This configuration is used by the openidip web app in two ways:
+#   o  it authenticates users via pam_cmd when they enter their login
+#      name and password to start their VAO session.  
+#   o  it authenticates users to the myproxy server when creating a 
+#      the certificate that is to be delivered to the portal.  
+#
+# This configuration allows the app to authenticate the user either
+# via the user's password or the user's session cookie id.
+#
+# The myproxy server should be configured (via /etc/myproxy-server.config)
+# to use this pam configuration.  This server is usually configured to create 
+# short-lived credentials (since they are being held by the portal on behalf
+# of the user).  Note that a second, separate myproxy server (configured via
+# /etc/myproxy-server-geteec.config) is used to support the service that 
+# allows users to download longer lived credentials; this server uses a 
+# separate pam configuration file (vaosso_geteec).  
+#
+
+# user's personal VAO password
+auth       sufficient     @dir.sys.pam.lib@/pam_mysql.so user=@db.reg.user@ passwd=@db.reg.pw@ db=@db.name@ table=user_table usercolumn=user_name passwdcolumn=password_sha1 crypt=sha1 \
+   [where=user_name=user_name] verbose=1
+auth       sufficient     @dir.sys.pam.lib@/pam_mysql.so user=@db.reg.user@ passwd=@db.reg.pw@ db=@db.name@ table=user_table usercolumn=user_name passwdcolumn=password_sha1 crypt=sha1 \
+   [where=user_name=user_name] verbose=1
+
+# OpenID session cookie
+account    sufficient     @dir.sys.pam.lib@/pam_mysql.so user=@db.auth.user@ passwd=@db.auth.pw@ db=@db.name@ table=user_table usercolumn=user_name passwdcolumn=password_sha1 crypt=plain \
+   [table=user_session left join user_table on user_session.user_table_id=user_table.user_id] [where=expire_time > now()] verbose=1 allow_multiple_matches=true
+account    sufficient     @dir.sys.pam.lib@/pam_mysql.so user=@db.auth.user@ passwd=@db.auth.pw@ db=@db.name@ table=user_table usercolumn=user_name passwdcolumn=password_sha1 crypt=plain \
+   [table=user_session left join user_table on user_session.user_table_id=user_table.user_id] [where=expire_time > now()] verbose=1 allow_multiple_matches=true
+

@@ -1,0 +1,31 @@
+<project name="vaosso" basedir="." default="deploy">
+
+<target name="compile">
+        <subant target="compile" buildpath="src/main/java/openid">
+        </subant>
+        <subant target="compile" buildpath="src/main/java/purse">
+        </subant>
+</target>
+
+<target name="deploy" depends="compile">
+        <subant target="deploy" buildpath="src/main/java/openid">
+        </subant>
+        <subant target="deploy" buildpath="src/main/java/purse">
+        </subant>
+</target>
+
+<target name="test" depends="compile">
+        <subant target="test" buildpath="src/main/java/openid">
+        </subant>
+        <subant target="test" buildpath="src/main/java/purse">
+        </subant>
+</target>
+
+<target name="clean">
+        <subant target="clean" buildpath="src/main/java/openid">
+        </subant>
+        <subant target="clean" buildpath="src/main/java/purse">
+        </subant>
+</target>
+
+</project>

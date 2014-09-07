@@ -1,0 +1,279 @@
+Purse Security Campaign
+=====================
+
+The goal is to provide users a means to register with the Purse portal
+that in turn provides a mechanism for creating a certificate for that user,
+signed by the Purse CA and uploading the credentials to a MyProxy server.
+
+Pre-requisites:
+===============
+
+- A Purse CA needs to be created and a CA cert should be made available
+and readable by the portal.
+- A mail server with a separate account to receive user emails.
+- The portal should have knowledge of useraccount/password to receive
+those emails.
+- At startup, the portal should start up the module that contacts the
+mail server at regular for mail retrieval.
+- Database to store registered user data.
+- MyProxy server that the portal can upload certs to.
+- A single mail server and database is configured at start up. For
+  most operation MyProxy needs to be on same machine (and is not
+  accessed remotely, direct filemanipulation), for others, each
+  command takes host/port
+
+API relevant to front end:
+==========================
+
+a) Bootstrap
+	- DatabaseOptions (construct this object)
+	- MailOptions (construct this object)
+	- CredentialGenerationOptions (construct this object)
+	- org.globus.purse.userManagement.registration.RegisterUtil.initialize(
+	- Mail checking module. (periodically checks mail)
+	       - new RetrieveMail(MailOptions mailOptions)
+			- mailOptions : Describes parameters for mail sever to
+				check for mails.
+		- org.globus.purse.registration.mailProcessing.RetrieveMail.
+			startCheckingMail(String frequency)
+			- frequency : frequency of mail download
+
+c) User enters data at user registration page.
+	
+	org.globus.purse.registration.RegisterUser.register(UserData userData)
+		- userData : A data type that has all the information entered
+			by the user.
+	
+d) CA accepts
+	
+	org.globus.purse.registration.RegisterUser.acceptUser(String token,
+		String caPassphrase)
+		- token : will be set in the URL
+		- caPassPhrase : CA Pass phrase used while signing
+			certificate.
+e) CA rejects
+
+	org.globus.purse.registration.RegisterUser.rejectUser(string token, 
+		String message)	
+		- token : will be set in the URL
+		- message : Any text the CA might choose to type (typically to
+			provide reasons for rejecting user)
+
+f) User changes password 
+
+	org.globus.purse.registration.RegistredUserManager.changePassword(
+		String myProxyHost, 
+	String myProxyPort, String userName, String oldPass, String newPass)
+
+		- myProxyHost : host on which MyProxy server is running
+		- myProxyPort : port number on which MyProxy server is running
+		- username : user name 
+		- oldPass : old password
+		- newPass : new password
+
+f) CA revokes certificate 
+
+(From the portal front end make sure that this page is accessible only
+to people who log in with 'CA' rights, esp.since it does not require
+the user to know the CA certificate passphrase).
+
+	org.globus.purse.registration.
+	RegisteredDataManager.revokeUser(String userName)
+		- username : user name 
+
+Backend modules:
+===============
+
+DataTypes:
+============
+
+org.globus.purse.registration
+
+UserData
+	- String name of user (Part of DN)
+	- String userName (used to log onto MyProxy and Purse)
+	- String password used to log onto MyProxy and Purse)
+	- String institution
+	- String project name
+	- String email 
+	- String phone
+	- String token (set to null initially, generated later)
+
+DatabaseOptions 
+	- String dbUrl - host:port/dbName
+	- String driverName - relevant driver name
+	- String dbUserName - user name for db access.
+	- String dbPassword - password for db access.
+	- int activeConnections (Optional) - Active conn in pool
+	- byte onExhaustActions (Optional) - Action if pool is exhausted
+	- long maxWait (Optional) - Maximum wait time for idle conn
+	- int idleConnections (Optional) - Number of idle conn
+
+MailOptions
+	- String caAddress - address of ca to send mail for accept/reject 
+
+	- String userAccountAddr - User account addr to which tokens
+	    will be send a received from. User acccount to retrieve
+	    tokens form is taken as characters prior to @ and the
+            password specified is used with this account
+	- String password - Password for the above account.
+	- String serverHost - Mail server host name
+	- int serverPort - Mail server port number.
+	- String retrieveProtocol - Protocol to be used to retrieve
+	    mails(e.g pop3)
+	- String sendTokenTemplate - Template file for mails that send
+          token. Should have the pattern "@token@" embedded. If not,
+          requires change in cnstants defined in MailOptions.java class and 
+	  recompile.
+	- String caAcceptTemplateFilename
+	- String caRejectTemplateFilename 
+	- String caTemplateFilename - Template for mail to CA. Should
+          have the pattern @url@. If not, requires change in constants
+          defined in MailOptions.java class and recompile.
+	- String portalBaseUrl - Base URL to which token is appended
+          and sent to CA to access user data. If this is set to 
+	  "http://foo.bar", then the CA sees, "http://foo.bar?token=abc"
+	  were "abc" is the token. To change the parameter name form "token",
+	  edit constants in MailOptions.java and recompile.
+	- purseAdmin - Account to send error messgaes to (?)
+
+CertificateGenerationOptions
+
+	    - String binDir : where the simple CA executables are
+              (should be on path)
+	    - String tmpDir : some temporary directory to store the
+              generated certs before upload, shld be writable by
+              portal account.
+	    - String caDir : optional (if the CA required to be used
+              is not default)
+
+MyProxy
+
+	- String binDir : where MyProxy executables exist
+	- String hostName : Host on which MyPorxy server is running
+	- int portNumber : Port on which MyProxy server is running
+	- String dn : DN of the MyProxy server
+	- String dir : Storage directory of the MyProxy server
+
+org.globus.purse.registration
+===========================
+
+RegisterUser.initialize(DatabaseOptions, MailOptions, 
+					 CertificateGenerationOptions)
+
+		DbManager.initialize(dbOprs)	
+		MailManager.initialize(mailOpts)
+		UserCertificateGeneration.initialize(certGenOpts)
+
+registerUser.register(UserData)
+
+	- generate token.
+	- store details in database. DbManager.storeData(userData)
+		- All user details and token.
+		- Primary key, token
+	- send mail with token and instructions to reply. 
+		MailManager.sendMail(toAddress,token)
+
+registerUser.processMail(String emailContents, String emailFromAddress)
+
+	- Parse and extract token from emailContents.
+	- get details from database.
+		DbManager.getData(token)
+	- Ensure that email id from database is equal to emailFromAddress
+	- Generate and send CA mail. 
+		MailManager.sendCAMail(String token)
+
+registerUser.acceptUser(String token, String myProxyHost, 
+		String myProxyPort, String caPassPhrase)
+
+	- get details from database.
+		DbManager.getData(String token)
+	- Generate certificate for user 
+		CertificateGeneration.generate(cnName, passphrase, caPassword)
+		(cnName is username)
+	- Upload Credentials to MyProxy
+		MyProxyManager.store(host, port, certs)
+	- Send mail that user is all set.
+		MailManager.sendAcceptMail(toAddress);
+
+registerUser.rejectUser(string token, String message)
+
+	- get details from database.DbManager.getData(token)
+	- Send mail 
+		MailManager.sendRejectMail(toAddress, message)
+	- Delete entry in db
+		DbManager.deleteData(token)
+
+org.globus.purse.registration.certProcessing
+==========================================
+
+SimpleCA Certificate processing
+
+- Simple CA needs to be installed. 
+- Executables should beon path
+- Need path to ca certificates. (caDir)
+- Dump user certs in directory that is $USER/ 
+- opnssl flag (-passinstdin) (-openssl-help)
+	CertificatGeneration.generate(String cnName, String passPhrase,
+					String caPassword)
+		- Exec "cert-request" 
+			- option -cn Purse stuff, CN=name of user
+			- redirect output to next command
+			- use password from data retrieved in database.
+		- Exec "ca-sign"
+			- input is from previous command
+			(* unencrypted key or if encrypted, get password)
+
+org.globus.purse.registration.certificateStorage
+===============================================
+
+MyProxy/Java Cog Client API for the same
+
+	MyProxyManager.store(String host, int port, String userName, 
+		String password, Certs)
+	MyProxyManager.changePassword(String host, String port, 
+		String username, String oldpassword, String newPassword)
+	MyProxyManager.deleteuser(String host, String port, String userName, 
+		String password)
+
+	
+org.globus.purse.registration.databaseAccess 
+==========================================
+
+Any JDBC complaint database (Preference of SQL has been stated).
+
+	- DbManager.initialize(DbOption)
+	- DbManager.storeData(UserData)
+	- DbManager.getData(String token)
+	- DbManager.getDataByUsername(String userName)
+	- DbManager.deleteData(String token)
+	- DbManager.deleteByUsername(String userName)
+
+org.globus.purse.registration.mailProcessing 
+==========================================
+
+JavaMail.
+
+	- MailManager.initialize(MailOption)	
+	- MailManager.sendTokenMail(String toAddress, String token)
+	- MailManager.sendAcceptMail(String toAddress);
+	- MailManager.sendRejectMail(String toAddress, String message);
+	- MailManager.sendCAMail(String toAddress, String token)
+	- RetrieveMail(MailOptions)
+	- retrieveMail.startCheckingMail(String frequency)
+		- Contact mail server
+		- Filter and look for mail with subject "Purse"
+		- Invoke registerUser.processMail
+	- retrieveMail.stopCheckingMail
+
+org.globus.purse.register
+=============================
+
+	RegisteredUserManager.changePassword(String host, String port, 
+		String userName, String oldPass, String newPass)
+
+		- MyProxyManager.changePassword.
+	
+	RegisteredUserManager.revokeUser(String userName)
+
+		- MyProxyManager.revokeUser(userName

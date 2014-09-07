@@ -1,0 +1,23 @@
+Hello @fullname@,
+
+You have completed your NVO logon registration.  
+
+Your NVO identity is @username@.  It is a single, unique identity
+which you can use with any VO-compliant portal to gain access to
+proprietary data and enhanced services such as remote storage.
+
+To protect your identity, be careful to only enter your NVO password
+into the NVO Login Page at:
+
+    https://sso.us-vo.org
+
+You can change your password or request a password reminder at
+https://sso.us-vo.org/register/password.jsp.
+
+Now that you have registered, the NVO can supply you and NVO-compliant
+portals that you visit with a "standard" security credential, which
+has been verified by this email exchange.  For more information, visit
+the NVO Identity Portal, http://nvologin1.ncsa.uiuc.edu.
+
+If you have any questions or problems, please contact us at
+ysvenkat@ncsa.illinois.edu

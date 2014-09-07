@@ -1,0 +1,25 @@
+// 
+// The @emailTemplateURL@ tag is substituted by Purse.
+// 
+
+You have been sent this e-mail in order to upload information to the MyProxy
+Server.
+
+In order to do this, you need to put a file named "cog.properties" in 
+your .globus directory, which is located in your home directory. 
+
+This is an example of a cog.properties file:
+
+usercert=/Users/madduri/.globus/usercert.pem
+userkey=/Users/madduri/.globus/userkey.pem
+proxy=/tmp/x509up_u1811
+cacert=/etc/grid-security/certificates/
+
+Please fill in appropriate values for your machine.   Note that the home
+directory on Microsoft Windows machines is C:\Documents And Settings\<user>.
+
+When this is complete, click on the following link :
+
+@emailTemplateURL@
+
+

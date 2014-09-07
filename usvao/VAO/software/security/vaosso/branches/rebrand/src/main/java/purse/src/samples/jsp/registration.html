@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>PURSE Sample registration portal</title>
+</head>
+<body bgcolor="white">
+
+<h2>PURSE sample registration form</h2>
+
+<h3>Please fill out the following information</h3>
+
+<form method="post" action="register.jsp">
+   <table border="0">
+   
+   <tr><td>Full Name</td><td><input type="text" name="name"></td></tr>
+   <tr><td>Email Address</td><td><input type="text" name="email"></td></tr>
+<br>
+   <tr><td>Portal user name</td><td><input type="text" name="uname"></td></tr>
+   <tr><td>Portal password</td><td><input type="password" name="password"></td></tr>
+   <tr><td>Portal password (again)</td><td><input type="password" name="cpassword"></td></tr>
+<br>
+   <tr><td>Statement of Work</td><td><textarea cols="41" rows="5" name="statementOfWork">Enter some text here</textarea></td></tr>
+   </table>
+   <input type="submit" value="Submit" name="B1">
+</form>
+
+<br>
+
+<i>The registration information above is a sample.<br>
+Additional user data can be queried for: see javadoc for</i><br>
+<code>org.globus.purse.registration.UserData</code>
+
+</body>
+</html>

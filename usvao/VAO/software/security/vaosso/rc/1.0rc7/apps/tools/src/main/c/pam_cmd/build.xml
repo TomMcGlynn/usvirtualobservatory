@@ -1,0 +1,50 @@
+<!--
+  -  Build the pam_cmd tool.  This is the command that the OpenID
+  -  provider service uses to authenticate the user.
+  -  
+  -  Prerequisites:  
+  -   *  pam headers   (Fedora: pam-devel)
+  -   *  a C compiler  (Fedora: gcc)
+  -
+   -  Note:  This assumes buildin on a Linux/Unix system
+  -->
+<project name="vaosso-pam_cmd" basedir="." default="build">
+
+  <property file="build.properties"  />
+  <property name="install.dir" value="${basedir}" />
+  <property name="build.dir" value="${basedir}" />
+
+  <target name="init">
+    <mkdir dir="${install.dir}" />
+  </target>
+
+  <target name ="build-cmd" depends="init">
+    <exec spawn="false" dir="${build.dir}" executable="gcc" failonerror="true">
+      <arg value="-o"/>
+      <arg value="pam_cmd"/>
+      <arg value="-lpam"/>
+      <arg value="pam_cmd.c"/>
+    </exec>
+  </target>
+
+  <target name ="build-test" depends="init">
+    <exec spawn="false" dir="${build.dir}" executable="gcc" failonerror="true">
+      <arg value="-o"/>
+      <arg value="pam_test"/>
+      <arg value="-lpam"/>
+      <arg value="-lpam_misc"/>
+      <arg value="pam_test.c"/>
+    </exec>
+  </target>
+
+  <target name="build" depends="build-cmd,build-test" />
+
+  <target name="clean" />
+
+  <target name="distclean" >
+    <delete file="pam_cmd" />
+    <delete file="pam_test" />
+  </target>
+
+
+</project>

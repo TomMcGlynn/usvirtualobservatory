@@ -1,0 +1,45 @@
+Jun 3, 2013 12:44:25 PM org.apache.catalina.startup.ClassLoaderFactory validateFile
+WARNING: Problem with JAR file [/usr/share/java/tomcat6/log4j.jar], exists: [false], canRead: [false]
+Jun 3, 2013 12:44:26 PM org.apache.catalina.startup.ClassLoaderFactory validateFile
+WARNING: Problem with JAR file [/usr/share/java/tomcat6/log4j.jar], exists: [false], canRead: [false]
+Jun 3, 2013 12:44:27 PM org.apache.coyote.http11.Http11Protocol pause
+INFO: Pausing Coyote HTTP/1.1 on http-8080
+Jun 3, 2013 12:44:28 PM org.apache.catalina.startup.ClassLoaderFactory validateFile
+WARNING: Problem with JAR file [/usr/share/java/tomcat6/log4j.jar], exists: [false], canRead: [false]
+Jun 3, 2013 12:44:28 PM org.apache.catalina.startup.ClassLoaderFactory validateFile
+WARNING: Problem with JAR file [/usr/share/java/tomcat6/log4j.jar], exists: [false], canRead: [false]
+Jun 3, 2013 12:44:28 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/server:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+Jun 3, 2013 12:44:29 PM org.apache.coyote.http11.Http11Protocol init
+INFO: Initializing Coyote HTTP/1.1 on http-8080
+Jun 3, 2013 12:44:29 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 1301 ms
+Jun 3, 2013 12:44:29 PM org.apache.catalina.core.StandardService start
+INFO: Starting service Catalina
+Jun 3, 2013 12:44:29 PM org.apache.catalina.core.StandardEngine start
+INFO: Starting Servlet Engine: Apache Tomcat/6.0.35
+Jun 3, 2013 12:44:29 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive openid.war
+Jun 3, 2013 12:44:30 PM org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/usr/share/tomcat6/webapps/openid/WEB-INF/lib/servlet-api.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+2013-06-03 12:44:30,762 [main] INFO  org.usvo.openid.serve.LoginKit - Starting credential directory purge thread, monitoring "/appl/VO/vaosso/var/portalcred".
+Jun 3, 2013 12:44:30 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive purse.war
+Jun 3, 2013 12:44:31 PM org.apache.coyote.http11.Http11Protocol start
+INFO: Starting Coyote HTTP/1.1 on http-8080
+Jun 3, 2013 12:44:31 PM org.apache.jk.common.ChannelSocket init
+INFO: JK: ajp13 listening on /0.0.0.0:8009
+Jun 3, 2013 12:44:31 PM org.apache.jk.server.JkMain start
+INFO: Jk running ID=0 time=0/17  config=null
+Jun 3, 2013 12:44:31 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1955 ms
+2013-06-03 14:09:11,067 [TP-Processor13] DEBUG org.usvo.openid.serve.let.XRDSIdServlet - XRDS Request: https://sso.usvao.org/openid/provider_id
+2013-06-03 14:09:11,304 [TP-Processor16] DEBUG org.usvo.openid.serve.let.XRDSIdServlet - XRDS Request: https://sso.usvao.org/openid/provider_id
+2013-06-03 14:09:11,638 [TP-Processor6] DEBUG org.usvo.openid.serve.let.ProviderServlet - Request for OpenID Provider: https://sso.usvao.org/openid/provider
+2013-06-03 14:09:12,094 [TP-Processor6] WARN  org.openid4java.server.RealmVerifier - RP discovery / realm validation disabled; 
+2013-06-03 14:09:12,130 [TP-Processor6] DEBUG org.openid4java.message.ParameterList - Creating parameter list:
+openid.dh_consumer_public:OhzSQ+6l5cc1JOBWCFw/P1DC8vqyhmbn5zhmf/JcSH9UAj9jGA2X29+sKBgsimHF+XelFiKv3PROhVxikfUBy6lSu9od0CUwDN+WKVEF9dyK7rVTizemrVQN2ZozGmUQ3daxAXSzSueCuAWkTaDpRvN8RnCL/DaR7+QOxpiWvD4=
+openid.ns:http://specs.openid.net/auth/2.0
+openid.assoc_type:HMAC-SHA256
+openid.session_type:DH-SHA256
+openid.mode:associate

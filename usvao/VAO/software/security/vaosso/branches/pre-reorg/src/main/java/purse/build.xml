@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+
+<!-- Build script to compile the Purse code that I have scavenged,
+     since I can't find a good source for the original.
+     (bbaker 12/2007) -->
+
+<project default="deploy" basedir=".">
+
+<property file="build.properties"/>
+
+<property name="build.dir" value="${basedir}/build" />
+<property name="war.assemble.dir" value="${build.dir}/war" />
+<property name="war.file.name" value="purse.war" />
+<property name="war.file" value="${build.dir}/${war.file.name}" />
+
+<target name="deploy" depends="war" description="deploy purse web app to tomcat">
+  <exec executable="sudo">
+    <arg line="chmod 777 ${tomcat.webapps.dir}" />
+  </exec>
+  <copy todir="${tomcat.webapps.dir}" file="${war.file}" />
+  <exec executable="sudo">
+    <arg line="chmod 755 ${tomcat.webapps.dir}" />
+  </exec>
+  <exec executable="sudo">
+    <arg line="chown apache.apache ${tomcat.webapps.dir}/${war.file.name}" />
+  </exec>
+</target>
+
+<target name="compile" description="compile purse.jar from PuRSE source">
+  <ant dir="src" target="jar" inheritall="false" />
+</target>
+
+<target name="war" depends="compile" description="build war file">
+  <mkdir dir="${war.assemble.dir}" />
+  <!-- copy PuRSE web app to war dir -->
+  <copy todir="${war.assemble.dir}">
+    <fileset dir="webapp">
+      <exclude name="**/.svn/**" />
+    </fileset>
+  </copy>
+  <!-- copy purse.jar to war dir -->
+  <copy todir="${war.assemble.dir}/WEB-INF/lib" file="src/build/lib/purse.jar" />
+  <!-- create WAR file -->
+  <war destfile="${war.file}" webxml="${war.assemble.dir}/WEB-INF/web.xml">
+    <fileset dir="${war.assemble.dir}" />
+  </war>
+</target>
+
+<target name="clean">
+  <delete dir="${build.dir}" />
+  <ant dir="src" target="clean" inheritall="false"/>
+</target>
+
+<target name="old-deploy">
+  <exec executable="sudo">
+    <arg line="chown -R ${current.user}.${current.user} ${purse.deployed.dir}" />
+  </exec>
+
+  <!-- copy PuRSE web app to Tomcat -->
+  <copy todir="${purse.deployed.dir}">
+    <fileset dir="webapp">
+      <exclude name="**/.svn/**" />
+    </fileset>
+  </copy>
+  <!-- copy purse.jar to Tomcat -->
+  <copy todir="${purse.deployed.dir}/WEB-INF/lib" file="src/build/lib/purse.jar" />
+
+  <exec executable="sudo">
+    <arg line="chown -R apache.apache ${purse.deployed.dir}" />
+  </exec>
+</target>
+
+</project>

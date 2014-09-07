@@ -1,0 +1,125 @@
+  <hr />
+  <h2>Notes</h2>
+
+  <h3>Design: goal and constraints</h3>
+  <p>
+      A portal may wish to (a) associate auxiliary data such as email data with a new user account and
+      (b) not require the user to type it twice.  The NVO single-signon registration process provides a
+      mechanism to do this that may seem cumbersome, but two constraints dictate its design:
+  </p>
+  <ul>
+      <li>
+          The portal cannot see which usernames are available prior to registration.
+      </li>
+      <li>
+          The user's privacy rights prevent the NVO signon service from sharing personal information such as
+          email address or actual name, without the user's consent.
+      </li>
+  </ul>
+
+  <h3><a href="index.jsp">Step 1: Local Registration</a></h3>
+  <p>
+      Create a local user account, with whatever information you want to correlate to an NVO login.
+      In this example, name, email, institution, and favorite color.
+  </p>
+
+  <h3><a href="save.jsp">Step 2: Local Storage</a></h3>
+  <p>
+      Save the information locally, and generate a unique registration token to go with it. The token
+      <em>should not be guessable</em> (for example, a random 64-bit long should be sufficient),
+      so that attackers cannot hijack your site's registrations.
+      You'll use this token in <a href="local_retrieval">Step 4</a> to associate an NVO Identity with the new user's information.
+  </p>
+
+  <h3>Step 3: NVO Registration</h3>
+  <p>(Click a <u>register</u> link for one of the local users created in Steps 1 and 2.)</p>
+  <p>
+      Send the user to <a href="<%=Config.getRegUrl(getServletConfig())%>">NVO registration</a>.
+      Be sure your link to NVO registration is via <em>https</em>, to avoid interception of the unique ID you have assigned to the user.
+      You may optionally include name, email, phone, and/or institution as parameters in the registration URL.
+      Include a <tt>returnURL</tt> in the registration URL that links to <a href="local_retrieval">Step 4</a> and includes the user's local ID.
+      See <a href="#choosing_a_returnurl">choosing a <tt>returnURL</tt></a> below for more details.
+  </p>
+
+  <a name="local_retrieval"></a>
+  <h3><a href="return.jsp">Step 4: Local Confirmation and Correlation</a></h3>
+  <p>
+      When NVO registration sends the user back to the <tt>returnURL</tt> specified in Step 3, you can correlate the NVO
+      username to a local user account (created in Step 1), using the unique ID you generated in Step 2.  There are two
+      ways to retrieve the NVO username:
+  </p>
+  <ol>
+      <li>
+          The <tt>user</tt> parameter, which NVO will append to your <tt>returnURL</tt>.  For example, if your
+          <tt>returnURL</tt> was <tt>http://example.edu/regcomplete?user_token=abcdef</tt>, NVO will modify it to be
+          <tt>http://example.edu/regcomplete?user_token=abcdef&user=&lt;username&gt;</tt>. This is the simpler approach,
+          since it only requires the user to click a link in their confirmation email, and not login to the NVO.
+      </li>
+      <li>
+          If your <tt>returnURL</tt> requires an <a
+          href="http://mywiki.ncsa.uiuc.edu/wiki/NVO_SSO_Installation#Pubcookie_Client">NVO SSO login</a>, then
+          <tt>REMOTE_USER</tt> will be set to the NVO username. This is a <strong>more secure</strong> approach, since
+          it requires both the user's password and their registration token, but it is also <strong>more
+          error-prone</strong>, since it relies on the user to both click on a link in their confirmation email and
+          login successfully to the NVO.  For more details, see <a href="#choosing_a_returnurl">Choosing a
+          <tt>returnURL</tt></a>, below.
+      </li>
+  </ol>
+
+  <hr />
+  <img alt="returnURL - authenticated or open?" style="float:right" src="http://ditaa.org/ditaa/render?grid=+++++++++++++++%7C%0D%0A+++++++++++++++%3A+++++++++++++%2B--%3D-----%2B%0D%0A+++++++++++++++v+++++++++++++%7C%7Bs%7DcDDF+%7C%0D%0A+++++++++%2B---%3D--------%2B++++++%7C+Local++%7C%0D%0A+++++++++%7C++++++++++++%7C++++++%7C++User++%7C%0D%0A+++++++++%7CNVO+Confirm+%7C++++++%7CDatabase%7C%0D%0A+++++++++%7C+*+username+%7C++++++%2B--------%2B%0D%0A+++++++++%7C+*+token++++%7C++++++++++%7C%0D%0A+++++++++%7C%7Bd%7DcFFB+++++%7C++++++++++%7C%0D%0A+++++++++%2B-----%2B------%2B++++++++++%3A%0D%0A+++++++++++++++%7C+++++++++++++++++%7C%0D%0A+++++++++++++++%2B---------%2B+++++++%7C%0D%0A+++++++++++++++%7CreturnURL%7C+++++++%2B---%3D------%2B%0D%0A+++++++++++++++%2B---------%2B+++++++%7CCorrelate+%7C%0D%0A+++++authn+++++%7C+++++++++++++++++%7CLocal+user%7C%0D%0A++++required+++%7C+++++open++++++++%7Cto+NVO++++%7C%0D%0A++++++++%2F------%2B-------%5C+++++++++%7Cusername++%7C%0D%0A++++++++%7C++++++++++++++%7C+++++++++%2B----------%2B%0D%0Afragile+v++++++++++++++v+robust++%7C%0D%0A+%2B-----------%2B+++%2B-----------%2B+++%7C%0D%0A+%7C+++++++++++%7C+++%7C+++++++++++%7C+++%3A%0D%0A+%7C++++NVO++++%7C+++%7C+++Local+++%7C+++%7C%0D%0A+%7C+++Login+++%7C+++%7C++Confirm++%7C%3C--%2B%0D%0A+%7C+%7Bmo%7DcF88++%7C+++%7C+%7Bmo%7DcDDF++%7C+++%7C%0D%0A+%2B-----%2B-----%2B+++%2B-----%2B-----%2B+++%7C%0D%0A+++++++%7C+++++++++++++++%7C+++++++++%7C%0D%0A+++++++%2B---------%2B+++++%2B-------%2B+%7C%0D%0A+++++++%7CreturnURL%7C+++++%7CApp+URL%7C+%7C%0D%0A+++++++%2B---------%2B+++++%2B-------%2B+%7C%0D%0A+++++++%7C+++++++++++++++%7C+++++++++%7C%0D%0A+++++++%7C++++++++%2F--%3D---%7C---------%2F%0D%0A+++++++%7C++++++++%7C++++++%7C%0D%0A+++++++v++++++++%7C++++++v%0D%0A+%2B-----------%2B++%7C+%2B----------%2B%0D%0A+%7C+++++++++++%7C++%7C+%7C++++++++++%7C++++%0D%0A+%7C+++Local+++%7C++%7C+%7C++++NVO+++%7C%0D%0A+%7C++Confirm++%7C%3C-%2F+%7C+++Login++%7C%0D%0A+%7C+%7Bmo%7DcDDF++%7C++++%7C%7Bmo%7DcCFC++%7C%0D%0A+%2B-----%2B-----%2B++++%2B----%2B-----%2B%0D%0A+++++++%7C+++++++++++++++%7C%0D%0A+++++++%5C-------%2B-------%2F%0D%0A+++++++++++++++%7C%0D%0A+++++++++++++++%2B-------%2B%0D%0A+++++++++++++++%7CApp+URL%7C%0D%0A+++++++++++++++%2B-------%2B%0D%0A+++++++++++++++%7C%0D%0A+++++++++++++++v%0D%0A+++++++++%2B--------%3D--%2B%0D%0A+++++++++%7C+++++++++++%7C%0D%0A+++++++++%7C+++Local+++%7C%0D%0A+++++++++%7C+Protected+%7C%0D%0A+++++++++%7C++Content++%7C%0D%0A+++++++++%7C+cDDF++++++%7C%0D%0A+++++++++%2B-----------%2B&scale=0.9&background=FFFFFF&T=on&E=on&W=on&timeout=60">
+  <a name="choosing_a_returnurl"></a><h2>Choosing a <tt>returnURL</tt></h2>
+
+  <p>
+    Your site's <tt>returnURL</tt>, which users will be sent to after they complete the NVO registration process, serves
+    two purposes:
+  </p>
+  <ul>
+    <li>Control where your users land after the registration process.</li>
+    <li>Link local user accounts to NVO IDs (see <a href="#local_retrieval">step 4</a>).</li>
+  </ul>
+  <p>
+    When you choose a <tt>returnURL</tt>, you will choose whether it requires authentication with an NVO login or
+    not&#8212;that is, is it protected by Pubcookie authentication or is it in an open part of your site?  
+  </p>
+  <p>
+    The diagram at the right illustrates the two design choices:
+  </p>
+  <ul>
+    <li>The left path, <b>authn required</b>, is fragile because users may fail to login to the NVO, leaving them
+    confirmed with the NVO but not locally.</li>
+    <li>The right path, <b>open</b>, is more robust because it doesn't require users to login to the NVO until after
+    their registration confirmation.</li>
+  </ul>
+  <p>
+    The NVO strongly recommends that your returnURL <strong>not require authentication</strong>, in order to prevent
+    confirmation failures.  Experience has shown that users <strong>frequently fail to log in</strong> during
+    confirmation, probably because they believe that clicking on the confirmation link that they received via email is
+    sufficient to complete their registration.
+  </p>
+  <p>
+    Note that if you choose to have your <tt>returnURL</tt> go to a public part of your site, you should include a
+    secret in it that an attacker would be unlikely to guess.  For example, you can generate a random text string for
+    each of your local users, include it in the returnURL, and use it to identify them securely.  <i>You should not use
+    the user's email address because an attacker could use it to impersonate the user and gain control of their local
+    account.</i>
+  </p>
+
+  <hr />
+  <a name="sample_implementation"></a><h2>Sample Implementation</h2>
+  <h3>Running under Tomcat</h3>
+  <p>
+      This example should be straightforward to implement using any language and framework.  This particular implementation runs as JSP pages under Tomcat,
+      behind <a href="http://mywiki.ncsa.uiuc.edu/wiki/NVO_SSO_Installation#Pubcookie_Client">Pubcookie-based NVO Single-Signon</a>.
+      It uses <tt>mod_proxy_ajp</tt> to connect incoming connections through Apache to Tomcat. Tomcat's internal authentication mechanism is disabled
+      in order to accept Pubcookie authentication in Step 4, by modifying <tt>server.xml</tt>.  The AJP connector configuration is:
+      <tt>&lt;Connector port="8009" <b>tomcatAuthentication="false"</b> enableLookups="false" redirectPort="8443" protocol="AJP/1.3" /&gt;</tt>.
+      That way, the NVO username is available simply as <tt>request.getRemoteUser()</tt>.
+  </p>
+
+  <h3>Code</h3>
+  <ul>
+    <li><a href="http://svn.ncsa.uiuc.edu/websvn/listing.php?repname=nvo-security&path=/purse/samples/registration/&sc=0">Browse</a></li>
+    <li><a href="https://svn.ncsa.uiuc.edu/svn/nvo-security/purse/samples/registration/">Check out via svn</a></li>
+    <li>Contact <a mailto="ysvenkat@ncsa.illinois.edu">Venkat Yekkirala</a> with questions or for help</li>
+  </ul>

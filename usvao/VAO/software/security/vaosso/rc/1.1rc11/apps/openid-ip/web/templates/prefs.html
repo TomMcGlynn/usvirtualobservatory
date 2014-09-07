@@ -1,0 +1,145 @@
+<!--include:head.html-->
+<h1>Identity Management</h1>
+
+<p>
+Your are logged in as <!--username-->.  To access a different account, <a href="?logout=true">logout</a>.
+</p>
+
+<center>
+<a href="prof">Profile</a> | Privacy Preferences | <a href="cred">Certificate</a> | <a href="/purse/password.jsp">Password</a>
+</center>
+
+<h2><!--title--></h2>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    formload();
+})
+</script>
+
+<p>
+This page is currently showing <!--whose--> preferences
+<!--pageExplanation-->.
+</p>
+
+<form id="prefsform" method="post" action="<!--action-->">
+<!--foruserinput-->
+
+<table cellspacing="0" cellpadding="0" class="prefs" id="display" width="100%">
+  <tr>
+    <td class="prefs-blank"></td>
+    <td class="prefs-blank"></td>
+    <td class="prefs-hdr" style="text-align: center;" colspan="7"><strong>Sharable Information</strong></td>
+    <td class="prefs-blank"></td>
+  </tr>
+  <tr>
+    <td class="prefs-blank" rowspan="2"><span id="feedback"><!--feedback--></span></td>
+    <td class="prefs-blank"></td>
+    <td class="prefs-hdr" colspan="7"><strong class="pref-type" id="pref_username">Username:</strong> <!--username--></td>
+    <td class="prefs-blank"></td>
+  </tr>
+  <tr>
+    <td class="prefs-blank"></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-hdr" colspan="6"><strong class="pref-type" id="pref_name">Full Name:</strong> <!--name--></td>
+    <td class="prefs-blank"></td>
+  </tr>
+  <tr>
+    <td class="prefs-blank"></td>
+    <td class="prefs-blank"></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-hdr" colspan="5"><strong class="pref-type" id="pref_email">Email Address</strong> <!--email--></td>
+    <td class="prefs-blank"></td>
+  </tr>
+  <tr>
+    <td class="prefs-blank"></td>
+    <td class="prefs-blank"></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-hdr" colspan="4"><strong class="pref-type" id="pref_institution">Institution:</strong> <!--institution--></td>
+    <td class="prefs-blank"></td>
+  </tr>
+  <tr>
+    <td class="prefs-blank"></td>
+    <td class="prefs-blank"></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-hdr" colspan="3"><strong class="pref-type" id="pref_phone">Phone:</strong> <!--phone--></td>
+    <td class="prefs-blank"></td>
+  </tr>
+  <tr>
+    <td class="prefs-blank"></td>
+    <td class="prefs-blank"></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-hdr" colspan="2"><strong class="pref-type" id="pref_country">Country:</strong> <!--country--></td>
+    <td class="prefs-blank"></td>
+  </tr>
+  <tr>
+    <td class="prefs" align="center"><strong>Portal</strong></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-col"><span></span></td>
+    <td class="prefs-hdr" colspan="1"><strong class="pref-type" id="pref_credentials">Secure Credentials</strong></td>
+    <td class="prefs-confirm"><strong>Always confirm sharing</strong></td>
+  </tr>
+
+  <!--prefDisplayRows-->
+
+  <tr id="editrow" style="display: none;">
+    <td class="prefs-desc" valign="top">
+      <dl style="margin: 0;" class="portal-name">
+        <dt> Defaults: </dt>
+        <dd> preferences applied to newly visited portals </dd>
+      </dl> 
+    </td>
+    <td class="prefs-desc" style="border-right-width: 2px;" colspan="9" id="editprefs">
+      <input type="hidden" name="portal" id="portal" value="Default" />
+      Check which information you would like to share with the portal:<br/>
+      <input type="checkbox" value="y" checked="on" name="share_username" id="share_username"/>
+      <label for="share_username"> <strong>Username:</strong> <!--username--> </label><br/>
+      <input type="checkbox" value="y" name="share_name" id="share_name"/>
+      <label for="share_name"><strong>Full Name:</strong> <!--name--></label> <br/>
+      <input type="checkbox" value="y" checked="on" name="share_email" id="share_email"/>
+      <label for="share_email"><strong>Email:</strong> <!--email--></label> <br/>
+      <input type="checkbox" value="y" name="share_institution" id="share_institution"/>
+      <label for="share_institution"><strong>Institution:</strong> <!--institution--></label> <br/>
+      <input type="checkbox" value="y" name="share_phone" id="share_phone"/>
+      <label for="share_phone"><strong>Phone:</strong> <!--phone--></label> <br/>
+      <input type="checkbox" value="y" name="share_country" id="share_country"/>
+      <label for="share_country"><strong>Country:</strong> <!--country--></label> <br/>
+      <input type="checkbox" value="y" name="share_credentials" id="share_credentials"/>
+      <label for="share_credentials"><strong>Secure X.509 Credentials:</strong> </label> <br/>
+      <p style="margin-left: 2em; margin-top: 0; margin-bottom: 0;">
+      <em>This allows the portal to temporarily access other secure services on your behalf.</em> </p>
+      <label for="alwaysconfirm">Always ask for confirmation before sharing information: </label>
+      <input type="checkbox" name="always_confirm" id="always_confirm" value="y"/>
+      <p style="margin-left: 2em; margin-top: 0;">
+      <em>If unchecked, we will automatically share this information with the portal.  </em> </p>
+      <p style="margin-left: 6em; margin-top: 0; margin-bottom: 0;">
+      <input type="submit" id="submit" name="update" value="Update these choices"/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="button" id="cancel" name="cancel" value="Cancel Changes"
+             onclick="return cancelEdit();">
+      </p>
+    </td>
+  </tr>
+</table>
+
+</form>
+
+<p>
+<a href="/help/manage.html#prefs" target="_help">More help on privacy settings...</a>
+</p>
+<!--include:foot.html-->

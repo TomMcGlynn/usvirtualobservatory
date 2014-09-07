@@ -1,0 +1,36 @@
+baseurl=https://nvoauth-stage.ncsa.illinois.edu
+#baseurl=http://click.ncsa.uiuc.edu:8080/openid
+#baseurl=https://localhost:8080/openid
+#baseurl=https://wire.ncsa.uiuc.edu/openid
+#baseurl=http://wire.ncsa.uiuc.edu/openid
+#authn.cmd=/Users/bbaker/source/svn/test_repos/pam/trunk/pam_cmd login
+#authn.cmd=/home/bbaker/source/svnadmin/trunk/auth/pam_cmd login
+authn.cmd=/home/ysvenkat/svnadmin/trunk/auth/pam_cmd myproxy_purse
+
+# credential management
+# - the command to create a credential (assumes myproxy-logon semantics)
+credential.cmd=/home/bbaker/source/nvo-security/openid/scripts/mock-credential.sh
+# end-entity-credential management# - the command to create an end-entity-credential (assumes myproxy-logon semantics)
+end_entity_credential.cmd=/home/ysvenkat/single-signon/openid/scripts/ee-credential.pl
+# - directory to store credentials (must be read-writable by app server (tomcat))
+credential.dir=/var/www/html/wire/credential
+# - public URL to reach credential.dir
+credential.url=https://wire.ncsa.uiuc.edu/credential/
+# - how long to keep credentials (only accurate to within a minute)
+credential.delete.minutes=5
+# how long should we wait for the credential creation process before timing out?
+credential.generation.patience.seconds=15
+
+# how long should we wait for pam_mysql authentication to complete?
+login.patience.seconds=5
+
+# comment out this line, or set to false, to just associate in memory
+db.associations=true
+db.url=jdbc:mysql://localhost:28365/purseDatabase
+#db.url=jdbc:mysql://localhost/purseDatabase
+db.username=purse
+db.pw=some_password
+
+# if multiple session durations are given, the shortest prevails
+session.duration.days=14
+#session.duration.minutes=5

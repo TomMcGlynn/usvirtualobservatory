@@ -1,0 +1,802 @@
+<project name="vaosso" basedir="." default="build">
+  <property file="build.properties"/>
+  <property file="build-default.properties"/>
+
+  <property name="installInUserSpace" value="false"/>
+
+  <property name="dir.apps" value="${basedir}/apps"/>
+  <property name="dir.apps.tools" value="${dir.apps}/tools"/>
+  <property name="dir.apps.purse" value="${dir.apps}/purse"/>
+  <property name="dir.apps.openidip" value="${dir.apps}/openid-ip"/>
+  <property name="dir.apps.sampleportal" value="${dir.apps}/sampleportal"/>
+
+  <property name="tools.dir.home" value="${dir.apps.tools}"/>
+  <property name="openidip.dir.home" value="${dir.apps.openidip}"/>
+  <property name="purse.dir.home" value="${dir.apps.purse}"/>
+  <property name="sampleportal.dir.home" value="${dir.apps.sampleportal}"/>
+
+  <property name="dir.definstall" value="${basedir}/installed"/>
+  <property name="dir.build" value="${basedir}/build"/>
+  <available file="${dir.build}/db-users-created.sema"
+             property="db.users.created"/>
+  <available file="/etc/redhat-release" property="os-is-redhat" />
+
+  <target name="build-init">
+    <mkdir dir="${dir.build}"/>
+  </target>
+
+  <target name="configure" depends="config-apps"/>
+
+  <target name="config-apps" 
+          depends="config-tools,config-purse,config-openid-ip"/>
+
+  <target name="config-purse">
+    <available property="-config.purse.backedup" 
+               file="${dir.apps.purse}/web/jsp/styles.include.orig"/>
+    <antcall target="-config-purse-backup"/>
+    <copy todir="${dir.apps.purse}/web/jsp">
+      <fileset dir="${dir.dist.web}/templates" includes="body.*.include"/>
+      <fileset dir="${dir.dist.web}/templates" includes="styles.include"/>
+    </copy>
+
+    <ant target="-write-apps-props" inheritAll="false" 
+         antfile="build-apps-properties.xml">
+      <property name="destfile" 
+                value="${dir.apps.purse}/build-inherit.properties" />
+      <propertyset>
+        <propertyref prefix="dir.dist"/>
+        <propertyref prefix="dir.install"/>
+        <propertyref prefix="db."/>
+        <propertyref prefix="server."/>
+      </propertyset>
+      <propertyset>
+        <propertyref prefix="purse."/>
+        <mapper type="glob" from="purse.*" to="*"/>
+      </propertyset>
+    </ant>
+  </target>
+  <target name="-config-purse-backup" unless="-config.purse.backedup">
+    <move todir="${dir.apps.purse}/web/jsp" overwrite="false">
+      <fileset dir="${dir.apps.purse}/web/jsp" includes="body.*.include"/>
+      <fileset dir="${dir.apps.purse}/web/jsp" includes="styles.include"/>
+      <mapper type="glob" from="*" to="*.orig"/>
+    </move>
+  </target>
+
+  <target name="config-openid-ip">
+    <available property="-config.openid-ip.backedup" 
+               file="${dir.apps.openidip}/web/templates/styles.include.orig"/>
+    <antcall target="-config-openid-ip-backup"/>
+    <copy todir="${dir.apps.openidip}/web/templates">
+      <fileset dir="${dir.dist.web}/templates" includes="body.*.include"/>
+      <fileset dir="${dir.dist.web}/templates" includes="styles.include"/>
+    </copy>
+
+    <ant target="-write-apps-props" inheritAll="false" 
+         antfile="build-apps-properties.xml">
+      <property name="destfile" 
+                value="${dir.apps.openidip}/build-inherit.properties" />
+      <propertyset>
+        <propertyref prefix="dir.dist"/>
+        <propertyref prefix="dir.install"/>
+        <propertyref prefix="server."/>
+      </propertyset>
+      <propertyset>
+        <propertyref prefix="openidip."/>
+        <mapper type="glob" from="openidip.*" to="*"/>
+      </propertyset>
+    </ant>
+  </target>
+  <target name="-config-openid-ip-backup" unless="-config.openid-ip.backedup">
+    <move todir="${dir.apps.openidip}/web/templates" overwrite="false">
+      <fileset dir="${dir.apps.openidip}/web/templates" 
+               includes="body.*.include"/>
+      <fileset dir="${dir.apps.openidip}/web/templates" 
+               includes="styles.include"/>
+      <mapper type="glob" from="*" to="*.orig"/>
+    </move>
+  </target>
+
+  <target name="config-tools">
+    <ant target="-write-apps-props" inheritAll="false" 
+         antfile="build-apps-properties.xml">
+      <property name="destfile" 
+                value="${dir.apps.tools}/build-inherit.properties" />
+      <propertyset>
+        <propertyref prefix="dir.dist"/>
+        <propertyref prefix="dir.install"/>
+        <propertyref prefix="ca."/>
+        <propertyref prefix="myproxy."/>
+      </propertyset>
+      <propertyset>
+        <propertyref prefix="tools."/>
+        <mapper type="glob" from="tools.*" to="*"/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="build-tools" depends="config-tools">
+    <ant dir="${tools.dir.home}" target="build" inheritAll="false">
+      <propertyset>
+        <propertyref prefix="tools."/>
+        <mapper type="glob" from="tools.*" to="*"/>
+        <propertyref prefix="ca."/>
+        <propertyref prefix="dir.install."/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="build-purse" depends="config-purse">
+    <ant dir="${purse.dir.home}" target="build" inheritAll="false">
+      <propertyset>
+        <propertyref prefix="purse."/>
+        <mapper type="glob" from="purse.*" to="*"/>
+        <propertyref prefix="dir.dist."/>
+        <propertyref prefix="dir.install."/>
+        <propertyref prefix="db."/>
+        <propertyref prefix="server."/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="build-openid-ip" depends="config-openid-ip">
+    <ant dir="${openidip.dir.home}" target="build" inheritAll="false">
+      <propertyset>
+        <propertyref prefix="openidip."/>
+        <mapper type="glob" from="openidip.*" to="*"/>
+        <propertyref prefix="dir.dist."/>
+        <propertyref prefix="dir.install."/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="build" 
+          depends="configure,build-tools,build-purse,build-openid-ip,build-integ">
+<!--
+    <ant dir="${sampleportal.dir.build}" target="build" inheritAll="false">
+      <propertyset>
+        <propertyref prefix="sampleportal."/>
+        <mapper type="regexp" from="^[^\.]+\." to=""/>
+      </propertyset>
+    </ant>
+-->
+  </target>
+
+  <target name="build-integ" depends="build-init">
+    <copy todir="${dir.build}">
+      <fileset dir="${dir.dist.etc}">
+        <include name="pamconf_vaosso_*.in"/>
+      </fileset>
+      <globmapper from="*.in" to="*"/>
+      <filterchain>
+        <replacetokens>
+          <token key="db.reg.user"     value="${db.reg.user}" />
+          <token key="db.reg.pw"       value="${db.reg.pw}" />
+          <token key="db.auth.user"    value="${db.auth.user}" />
+          <token key="db.auth.pw"      value="${db.auth.pw}" />
+          <token key="db.name"         value="${db.name}" />
+          <token key="dir.sys.pam.lib" value="${dir.sys.pam.lib}" />
+        </replacetokens>
+      </filterchain>
+    </copy>
+
+    <copy todir="${dir.build}">
+      <fileset dir="${dir.dist.etc}">
+        <include name="myproxy-server-openidip.*.in"/>
+      </fileset>
+      <globmapper from="*.in" to="*"/>
+      <filterchain>
+        <replacetokens>
+          <token key="ca.lifetime.max"  value="${ca.user_lifetime.portal}" />
+          <token key="ca.cert.file"     value="${ca.cert.file}" />
+          <token key="ca.key.file"      value="${ca.key.file}" />
+          <token key="ca.password"      value="${ca.password}" />
+          <token key="dir.install.ca"   value="${dir.install.ca}" />
+          <token key="dir.install.bin"  value="${dir.install.bin}" />
+          <token key="dir.sys.myproxy.certs" value="${dir.sys.myproxy.certs}"/>
+          <token key="dir.sys.myproxy.conf"  value="${dir.sys.myproxy.conf}"/>
+          <token key="dir.sys.grid_security" value="${dir.sys.grid_security}"/>
+        </replacetokens>
+      </filterchain>
+    </copy>
+
+    <copy todir="${dir.build}">
+      <fileset dir="${dir.dist.etc}">
+        <include name="myproxy-server-geteec.*.in"/>
+      </fileset>
+      <globmapper from="*.in" to="*"/>
+      <filterchain>
+        <replacetokens>
+          <token key="ca.lifetime.max"  value="${ca.user_lifetime.local}" />
+          <token key="ca.cert.file"     value="${ca.cert.file}" />
+          <token key="ca.key.file"      value="${ca.key.file}" />
+          <token key="ca.password"      value="${ca.password}" />
+          <token key="dir.install.ca"   value="${dir.install.ca}" />
+          <token key="dir.install.bin"  value="${dir.install.bin}" />
+          <token key="dir.sys.myproxy.certs" value="${dir.sys.myproxy.certs}"/>
+          <token key="dir.sys.myproxy.conf"  value="${dir.sys.myproxy.conf}"/>
+          <token key="dir.sys.grid_security" value="${dir.sys.grid_security}"/>
+        </replacetokens>
+      </filterchain>
+    </copy>
+  </target>
+
+  <target name="install" 
+          depends="build,install-tools,install-purse,install-openid-ip,install-integ">
+  </target>
+
+  <target name="install-init" depends="_check-install-sys-deps">
+    <mkdir dir="${dir.install}" />
+    <mkdir dir="${dir.install.var}" />
+    <mkdir dir="${dir.install.var}/portalcred" />
+    <mkdir dir="${dir.install.sys}" />
+    <mkdir dir="${dir.install.sys}/httpd" />
+    <mkdir dir="${dir.install.sys}/pam" />
+    <mkdir dir="${dir.install.sys}/mysqld" />
+    <mkdir dir="${dir.install.sys}/myproxy" />
+    <mkdir dir="${dir.install.sys}/init" />
+    <antcall target="-make-sys-with-links"/>
+    <antcall target="-make-sys-local"/>
+  </target>
+
+  <target name="_check-install-sys-deps" unless="${installInUserSpace}"
+          depends="_install-have-sys-deps,_install-sys-deps-notavail"/>
+  <target name="_install-have-sys-deps">
+    <available file="${dir.sys.httpd.conf}/conf/httpd.conf" 
+               property="avail.httpd" />
+    <available file="${dir.sys.pam.conf}" type="dir" property="avail.pam" />
+    <available file="${dir.sys.mysqld.conf}/my.cnf" property="avail.mysqld" />
+    <available file="${dir.sys.grid_security}" type="dir" property="avail.gsi"/>
+    <condition property="avail.sys">
+      <and>
+        <isset property="avail.httpd"/>
+        <isset property="avail.pam"/>
+        <isset property="avail.mysqld"/>
+        <isset property="avail.gsi"/>
+      </and>
+    </condition>
+  </target>
+  <target name="_install-sys-deps-notavail" unless="avail.sys">
+    <echo>Some system components not found.</echo> 
+    <echo>Make sure you have the following installed into the OS:</echo> 
+    <echo>    http tomcat mysqld pam</echo> 
+    <echo>Or set the "installInUserSpace" property to true to integrate</echo> 
+    <echo>with OS later.</echo>
+    <fail unless="${installInUserSpace}"/>
+  </target>
+
+  <target name="-make-sys-local" if="${installInUserSpace}">
+    <mkdir dir="${dir.install.sys}/grid-security" />
+    <mkdir dir="${dir.install.sys}/httpd/html" />
+    <mkdir dir="${dir.install.sys}/httpd/cgi-bin" />
+    <mkdir dir="${dir.install.sys}/httpd/conf" />
+    <mkdir dir="${dir.install.sys}/httpd/conf/conf.d" />
+    <mkdir dir="${dir.install.sys}/httpd/logs" />
+    <mkdir dir="${dir.install.sys}/pam/conf" />
+    <mkdir dir="${dir.install.sys}/pam/lib" />
+    <mkdir dir="${dir.install.sys}/mysqld/conf" />
+    <mkdir dir="${dir.install.sys}/myproxy/conf" />
+    <mkdir dir="${dir.install.sys}/myproxy/certs" />
+    <mkdir dir="${dir.install.sys}/init/init.d" />
+    <mkdir dir="${dir.install.sys}/init/conf" />
+    <!--
+    <touch file="${dir.install.sys}/myproxy/conf/myproxy-server.config"
+           millis="1334133000000"/>
+      -->
+  </target>
+  <target name="-make-sys-with-links" unless="${installInUserSpace}">
+    <available file="${dir.install.sys}/sys.links" property="syslinked"/>
+    <antcall target="-make-sys-links"/>
+  </target>
+  <target name="-make-sys-links" unless="syslinked">
+    <echo message="creating links under ${dir.install.sys}"/>
+    <symlink action="single" link="${dir.install.sys}/grid-security" 
+             resource="${dir.sys.grid_security}"  overwrite="true"/>
+
+    <!-- <mkdir dir="${dir.install.sys}/httpd" />  -->
+    <symlink action="single" link="${dir.install.sys}/httpd/conf" 
+             resource="${dir.sys.httpd.conf}"  overwrite="true"/>
+    <symlink action="single" link="${dir.install.sys}/httpd/html" 
+             resource="${dir.sys.httpd.html}"  overwrite="true"/>
+    <symlink action="single" link="${dir.sys.httpd.html}/portalcred" 
+             resource="${dir.install.var}/portalcred"  overwrite="true"/>
+    <symlink action="single" link="${dir.install.sys}/httpd/cgi-bin" 
+             resource="${dir.sys.httpd.cgibin}"  overwrite="true"/>
+    <symlink action="single" link="${dir.install.sys}/httpd/logs" 
+             resource="${dir.sys.httpd.logs}"  overwrite="true"/>
+
+    <!-- <mkdir dir="${dir.install.sys}/pam" />  -->
+    <symlink action="single" link="${dir.install.sys}/pam/conf" 
+             resource="${dir.sys.pam.conf}"  overwrite="true"/>
+    <symlink action="single" link="${dir.install.sys}/pam/lib" 
+             resource="${dir.sys.pam.lib}"  overwrite="true"/>
+
+    <!-- <mkdir dir="${dir.install.sys}/mysqld" />  -->
+    <symlink action="single" link="${dir.install.sys}/mysqld/conf" 
+             resource="${dir.sys.mysqld.conf}"  overwrite="true"/>
+
+    <!-- <mkdir dir="${dir.install.sys}/myproxy" />  -->
+    <symlink action="single" link="${dir.install.sys}/myproxy/conf" 
+             resource="${dir.sys.myproxy.conf}"  overwrite="true"/>
+    <symlink action="single" link="${dir.install.sys}/myproxy/certs" 
+             resource="${dir.sys.myproxy.certs}"  overwrite="true"/>
+
+    <!-- <mkdir dir="${dir.install.sys}/init" />  -->
+    <symlink action="single" link="${dir.install.sys}/init/init.d"
+             resource="${dir.sys.init.d}"  overwrite="true" />
+    <symlink action="single" link="${dir.install.sys}/init/conf"
+             resource="${dir.sys.init.conf}"  overwrite="true" />
+
+    <symlink action="single" link="${dir.install.sys}/globus"
+             resource="${dir.sys.globus}"  overwrite="true" />
+    <symlink action="single" link="${dir.install.sys}/tomcat"
+             resource="${dir.tomcat.home}"  overwrite="true" />
+    <symlink action="single" link="${dir.install}/webapps"
+             resource="${dir.tomcat.home}/webapps"  overwrite="true" />
+
+    <symlink action="record" linkfilename="sys.links">
+      <fileset dir="${dir.install.sys}" includes="grid-security" />
+      <fileset dir="${dir.install.sys}" includes="*/*" 
+               excludes="grid-security/*"/>
+    </symlink>
+  </target>
+
+  <target name="install-tools" depends="build-tools,install-init" >
+    <ant dir="${tools.dir.home}" target="install" inheritAll="false">
+      <propertyset>
+        <propertyref prefix="tools."/>
+        <mapper type="glob" from="tools.*" to="*"/>
+        <propertyref prefix="ca."/>
+        <propertyref prefix="dir.dist."/>
+        <propertyref prefix="myproxy."/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="install-purse" depends="build-purse,install-init" >
+    <ant dir="${purse.dir.home}" target="install" inheritAll="false">
+      <propertyset>
+        <propertyref prefix="purse."/>
+        <mapper type="glob" from="purse.*" to="*"/>
+        <propertyref prefix="dir.dist."/>
+        <propertyref prefix="dir.install."/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="install-openid-ip" depends="build-openid-ip,install-init" >
+    <ant dir="${openidip.dir.home}" target="install" inheritAll="false">
+      <propertyset>
+        <propertyref prefix="openidip."/>
+        <mapper type="glob" from="openidip.*" to="*"/>
+        <propertyref prefix="dir.dist."/>
+        <propertyref prefix="dir.install."/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="install-integ" 
+      depends="install-certs,install-proxy_ajp,configure-httpd,install-pam,install-myproxy-conf" >
+  </target>
+
+  <target name="install-certs" depends="install-tools,create-host-cert" >
+
+    <!-- a place to install certs  -->
+    <symlink action="single" link="${tools.dir.install.ca}/grid-security"
+             resource="${dir.install.sys}/grid-security" overwrite="true"/>
+    <mkdir dir="${tools.dir.install.ca}/grid-security/certificates" />
+
+    <!-- install CA and host certs -->
+    <exec executable="${dir.dist.etc}/install-hostcert.sh" failonerror="true">
+      <arg value="${tools.dir.install.ca}/certs"/>
+      <arg value="${tools.dir.install.ca}/grid-security"/>
+      <arg value="${httpd.owner}"/>
+      <arg value="${myproxy.owner}"/>
+    </exec>
+    <exec executable="${dir.dist.etc}/install-cacert.sh" failonerror="true">
+      <arg value="${tools.dir.install.ca}"/>
+      <arg value="${tools.dir.install.ca}/grid-security/certificates"/>
+    </exec>
+  </target>
+
+  <target name="create-host-cert" depends="install-tools" >
+    <exec spawn="false" executable="${dir.install.bin}/create-host-cert.sh"
+          failonerror="true" dir="${dir.install.etc}/CA/certs">
+      <arg value="${server.hostname}" />
+      <arg value="-" />
+      <arg value="host" />
+    </exec>
+  </target>
+
+  <target name="install-proxy_ajp" depends="install-init">
+    <available file="${dir.install.sys}/httpd/conf/conf.d/proxy_ajp.conf" 
+               property="proxy_ajp.installed"/>
+    <antcall target="ensure-base-proxy_ajp"/>
+    <loadfile property="_proxy_ajp.conf.contents"
+              srcfile="${dir.install.sys}/httpd/conf/conf.d/proxy_ajp.conf">
+      <filterchain>
+        <linecontainsregexp>
+          <regexp pattern="^ProxyPass "/>
+        </linecontainsregexp>
+      </filterchain>
+    </loadfile>
+    <condition property="proxy_ajp.conf.configured">
+      <and>
+        <contains string="${_proxy_ajp.conf.contents}" substring="openid" />
+        <contains string="${_proxy_ajp.conf.contents}" substring="register" />
+        <contains string="${_proxy_ajp.conf.contents}" substring="purse" />
+      </and>
+    </condition>
+    <antcall target="configure-proxy_ajp"/>
+  </target>
+
+  <target name="ensure-base-proxy_ajp" depends="install-init" 
+          unless="proxy_ajp.installed">
+    <echo>configuring proxy_ajp</echo>
+    <copy todir="${dir.install.sys}/httpd/conf/conf.d/">
+      <fileset file="${dir.dist.etc}/proxy_ajp.conf"/>
+      <filterchain>
+        <linecontainsregexp negate="true">
+          <regexp pattern="^ProxyPass"/>
+        </linecontainsregexp>
+        <linecontainsregexp>
+          <regexp pattern="^ProxyPass"/>
+        </linecontainsregexp>
+      </filterchain>
+    </copy>
+  </target>
+
+  <target name="configure-proxy_ajp" depends="install-init" 
+          unless="proxy_ajp.conf.configured">
+    <echo>appending ProxyPass</echo>
+    <concat destfile="${dir.install.sys}/httpd/conf/conf.d/proxy_ajp.conf"
+            append="true">
+      <fileset file="${dir.dist.etc}/proxy_ajp.conf"/>
+      <filterchain>
+        <linecontainsregexp>
+          <regexp pattern="^ProxyPass"/>
+        </linecontainsregexp>
+      </filterchain>
+    </concat>
+  </target>
+
+  <target name="configure-httpd" 
+          depends="configure-httpd-ssl,configure-httpd-portalcred" />
+
+  <target name="configure-httpd-portalcred" depends="configure-httpd-docroot">
+    <copy file="${dir.dist.etc}/portalcred.conf.in"
+          todir="${dir.install.sys}/httpd/conf/conf.d">
+      <filterchain>
+        <replacetokens>
+          <token key="server.httpd.docroot" value="${server.httpd.docroot}" />
+        </replacetokens>
+      </filterchain>
+    </copy>
+  </target>
+
+  <target name="configure-httpd-docroot" unless="server.httpd.docroot">
+    <available property="-httpd-conf" 
+               value="${dir.sys.httpd.conf}/conf/httpd.conf" 
+                file="${dir.sys.httpd.conf}/conf/httpd.conf" />
+    <fail message="Can't find httpd.conf; manually set the server.httpd.docroot property">
+      <condition>
+        <not><isset property="-httpd-conf"/></not>
+      </condition>
+    </fail>
+
+    <loadfile srcFile="${-httpd-conf}" property="server.httpd.docroot">
+      <filterchain>
+        <linecontainsregexp negate="true" >
+          <regexp pattern="^#"/>
+        </linecontainsregexp>        
+        <linecontains>
+          <contains value="DocumentRoot"/>
+        </linecontains>
+        <replaceregex pattern="^.*DocumentRoot\s" replace=""/>
+        <trim/>
+        <deletecharacters chars='"' /> <!-- " -->
+      </filterchain>
+    </loadfile>
+    <fail message="Can't find DocumentRoot; manually set the server.httpd.docroot property">
+      <condition>
+        <not><isset property="-httpd-conf"/></not>
+      </condition>
+    </fail>
+    <echo>DocumentRoot ${server.httpd.docroot}</echo>
+  </target>
+
+  <target name="configure-httpd-ssl" depends="build-init,install-init">
+    <available property="sslsource-conf" 
+               file="${dir.sys.httpd.conf}/conf.d/ssl.conf"
+               value="${dir.sys.httpd.conf}/conf.d/ssl.conf"/>
+    <available property="sslsource-conf" 
+               file="${dir.dist.etc}/ssl.conf.sample"
+               value="${dir.dist.etc}/ssl.conf.sample"/>
+    <uptodate property="-http-ssl-configured"
+              targetfile="${dir.install.sys}/httpd/conf.d/ssl.conf"
+              srcfile="${dir.build}/ssl.conf"/>
+    <uptodate property="-http-ssl-edited"
+              targetfile="${dir.build}/ssl.conf"
+              srcfile="${sslsource-conf}"/>
+    <fail message="Missing ${dir.sys.httpd.conf}/conf.d/ssl.conf; is mod_ssl installed?" >
+      <condition>
+        <and>
+          <not><isset property="sslsource-conf"/> </not>
+          <not><available file="${dir.install.sys}/httpd/conf.d/ssl.conf"/> </not>
+        </and>
+      </condition>
+    </fail>
+    <antcall target="_install-sslconf"/>
+    <copy file="${dir.dist.etc}/force_ssl.conf" 
+          todir="${dir.install.sys}/httpd/conf/conf.d" />
+  </target>
+  <target name="_install-sslconf" depends="install-init,_update-sslconf">
+    <echo>Updating the ssl.conf file</echo>
+    <copy file="${dir.build}/ssl.conf" 
+          todir="${dir.install.sys}/httpd/conf/conf.d"/>
+  </target>
+  <target name="_update-sslconf" depends="build-init" unless="-http-ssl-edited">
+    <echo>Editing the ssl.conf file</echo>
+    <exec executable="sed" output="${dir.build}/ssl.conf" logError="true">
+      <arg value="-E"/>
+      <arg value="-f"/>
+      <arg value="${dir.dist.etc}/configure-mod_ssl.sed"/>
+      <arg value="${sslsource-conf}"/>
+    </exec>
+  </target>
+
+  <target name="install-pam" depends="build-integ,install-tools">
+    <copy todir="${dir.install.sys}/pam/lib">
+      <fileset dir="${tools.dir.install.pammod}" includes="pam_mysql.*"/>
+    </copy>
+    <copy todir="${dir.install.sys}/pam/conf">
+      <fileset dir="${dir.build}" includes="pamconf_*"/>
+      <globmapper from="pamconf_*" to="*"/>
+    </copy>
+  </target>
+
+  <target name="install-myproxy-conf" 
+          depends="_install-myproxy-conf,_install-myproxy-init">
+    <antcall target="_need-redhat"/>
+  </target>
+  <target name="_need-redhat" unless="${os-is-redhat}">
+    <echo>WARNING: Non-Red Hat derived system detected; init.d scripts not installed.</echo>
+  </target>
+
+  <target name="_install-myproxy-conf" 
+          depends="build-integ,install-init,install-tools">
+    <copy todir="${dir.install.sys}/myproxy/conf">
+      <fileset dir="${dir.build}" includes="myproxy-server*.config" />
+    </copy>
+
+    <condition property="-myproxy.config.backup">
+      <and>
+        <available 
+           file="${dir.install.sys}/myproxy/conf/myproxy-server.config"/>
+        <not>
+          <available
+           file="${dir.install.sys}/myproxy/conf/myproxy-server.config.orig"/>
+        </not>
+      </and>
+    </condition>
+    <uptodate property="-myproxy.config.uptodate" 
+       srcfile="${dir.install.sys}/myproxy/conf/myproxy-server-openidip.config"
+       targetfile="${dir.install.sys}/myproxy/conf/myproxy-server.config"/>
+    <antcall target="-install-std-myproxy-config"/>
+  </target>
+  <target name="-install-std-myproxy-config" unless="-myproxy.config.uptodate"
+          depends="-backup-std-myproxy-config">
+    <echo>Copying myproxy-server-openidip.config to myproxy-server.config</echo>
+    <concat destfile="${dir.install.sys}/myproxy/conf/myproxy-server.config"
+            overwrite="true">
+      <header trimleading="true">#
+        # This is a copy of /etc/myproxy-server-openidip.config
+        #
+      </header>
+
+      <fileset 
+         file="${dir.install.sys}/myproxy/conf/myproxy-server-openidip.config"/>
+    </concat>
+  </target>
+  <target name="-backup-std-myproxy-config" if="-myproxy.config.backup">
+    <echo>Backing up ${dir.sys.myproxy.conf}/myproxy-server.config</echo>
+    <move file="${dir.install.sys}/myproxy/conf/myproxy-server.config"
+          tofile="${dir.install.sys}/myproxy/conf/myproxy-server.config.orig"/>
+  </target>
+
+  <target name="_install-myproxy-init" if="os-is-redhat"
+          depends="build-integ,install-init,install-tools">
+    <copy todir="${dir.install.sys}/init/conf">
+      <fileset dir="${dir.build}" includes="myproxy-server*.initopts" />
+      <globmapper from="*.initopts" to="*"/>
+    </copy>
+
+    <condition property="-myproxy.initopts.backup">
+      <and>
+        <available 
+           file="${dir.install.sys}/init/conf/myproxy-server"/>
+        <not>
+          <available
+           file="${dir.install.sys}/init/conf/myproxy-server.orig"/>
+        </not>
+      </and>
+    </condition>
+    <uptodate property="-myproxy.initopts.uptodate" 
+       srcfile="${dir.install.sys}/init/conf/myproxy-server-openidip"
+       targetfile="${dir.install.sys}/init/conf/myproxy-server"/>
+
+    <copy tofile="${dir.install.sys}/init/init.d/myproxy-server-openidip" 
+          file="${dir.dist.etc}/myproxy-server.initd"/>
+    <copy tofile="${dir.install.sys}/init/init.d/myproxy-server-geteec" 
+          file="${dir.dist.etc}/myproxy-server.initd"/>
+    <chmod perm="a+x" dir="${dir.install.sys}/init/init.d" 
+           includes="myproxy-server-*"/>
+    <antcall target="-install-std-myproxy-initopts"/>
+  </target>
+  <target name="-install-std-myproxy-initopts" unless="-myproxy.initopts.uptodate"
+          depends="-backup-std-myproxy-initopts">
+    <echo>Copying myproxy-server-openidip to myproxy-server in ${dir.sys.init.conf}</echo>
+    <concat destfile="${dir.install.sys}/init/conf/myproxy-server"
+            overwrite="true">
+      <header trimleading="true">#
+        # This is a copy of /etc/sysconfig/myproxy-server-openidip
+        #
+      </header>
+
+      <fileset 
+         file="${dir.install.sys}/init/conf/myproxy-server-openidip"/>
+    </concat>
+  </target>
+  <target name="-backup-std-myproxy-initopts" if="-myproxy.initopts.backup">
+    <echo>Backing up ${dir.sys.init.conf}/myproxy-server</echo>
+    <move file="${dir.install.sys}/init/conf/myproxy-server"
+          tofile="${dir.install.sys}/init/conf/myproxy-server.orig"/>
+  </target>
+
+  <target name="deploy" depends="deploy-server,deploy-purse,deploy-openid-ip"/>
+
+  <target name="deploy-purse">
+    <ant dir="${purse.dir.home}" target="deploy" inheritAll="false">
+      <propertyset>
+        <propertyref prefix="purse."/>
+        <mapper type="glob" from="purse.*" to="*"/>
+        <propertyref prefix="dir.dist."/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="deploy-openid-ip">
+    <ant dir="${openidip.dir.home}" target="deploy" inheritAll="false">
+      <propertyset>
+        <propertyref prefix="openidip."/>
+        <mapper type="glob" from="openidip.*" to="*"/>
+        <propertyref prefix="dir.dist."/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="deploy-samplereg">
+    <ant dir="${samplereg.dir.home}" target="deploy" inheritAll="false">
+      <propertyset>
+        <propertyref prefix="samplereg."/>
+        <mapper type="glob" from="samplereg.*" to="*"/>
+        <propertyref prefix="dir.dist."/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="deploy-server" depends="install-init">
+    <copy todir="${dir.sys.httpd.html}/styles">
+      <fileset dir="${dir.dist.web}/html/styles"/>
+    </copy>
+    <copy todir="${dir.sys.httpd.html}/images">
+      <fileset dir="${dir.dist.web}/html/images"/>
+    </copy>
+    <copy todir="${dir.sys.httpd.html}">
+      <fileset dir="${dir.dist.web}/html/docs"/>
+    </copy>
+    <symlink link="${dir.sys.httpd.html}/index.html"
+             resource="${dir.sys.httpd.html}/home.html"/>
+  </target>
+
+  <target name="test" depends="build">
+    <subant target="test" buildpath="src/main/java/openid">
+    </subant>
+  </target>
+
+  <target name="db" depends="create-db-users,setup-db"/>
+
+  <target name="create-db-users" unless="db.users.created">
+    <echo file="${dir.build}/create-db-users.sql">
+      create database if not exists ${db.name};
+      create user '${db.reg.user}'@'${db.connection.host}' identified by '${db.reg.pw}';
+      create user '${db.auth.user}'@'${db.connection.host}' identified by '${db.auth.pw}';
+      grant all on ${db.name}.* to '${db.reg.user}'@'${db.connection.host}';
+      grant all on ${db.name}.* to '${db.auth.user}'@'${db.connection.host}';
+    </echo>
+    <exec executable="mysql" failonerror="true"
+          input="${dir.build}/create-db-users.sql">
+      <arg value="--host=${db.connection.host}"/>
+      <arg value="--port=${db.connection.port}"/>
+      <arg value="--user=root"/>
+    </exec>
+    <echo file="${dir.build}/db-users-created.sema">database users created.</echo>
+    <available file="${dir.build}/db-users-created.sema"
+               property="db.users.created"/>
+  </target>
+
+  <target name="setup-db">
+    <ant dir="${purse.dir.home}" target="setup-db" inheritAll="false">
+      <propertyset>
+        <propertyref prefix="purse."/>
+        <mapper type="glob" from="purse.*" to="*"/>
+        <propertyref prefix="dir.dist."/>
+        <propertyref prefix="db."/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="clean">
+    <subant target="clean" inheritall="false" verbose="true">
+      <fileset dir="apps" includes="*/build.xml" />
+    </subant>
+    <delete dir="${dir.build}"/>
+  </target>
+
+  <target name="distclean" depends="-del-sys">
+    <symlink action="delete" link="${dir.definstall}/etc/ca/grid-security" />
+    <delete dir="${dir.definstall}" />
+    <subant target="distclean" inheritall="true" verbose="true">
+      <fileset dir="apps" includes="*/build.xml" />
+    </subant>
+    <move todir="${dir.apps.purse}/web/jsp" overwrite="true">
+      <fileset dir="${dir.apps.purse}/web/jsp" includes="*.orig"/>
+      <mapper type="glob" from="*.orig" to="*"/>
+    </move>
+    <move todir="${dir.apps.openidip}/web/templates" overwrite="true">
+      <fileset dir="${dir.apps.openidip}/web/templates" includes="*.orig"/>
+      <mapper type="glob" from="*.orig" to="*"/>
+    </move>
+    <delete file="${dir.apps.purse}/build-inherit.properties"/>
+    <delete file="${dir.apps.openidip}/build-inherit.properties"/>
+    <delete file="${dir.apps.tools}/build-inherit.properties"/>
+  </target>
+
+  <target name="-del-sys" depends="" unless="${installInUserSpace}">
+    <available file="${dir.definstall}/sys/pam/sys.links" 
+               property="syslinked"/>
+    <antcall target="-del-links"/>
+  </target>
+  <target name="-del-links" if="syslinked">
+    <echo message="removing links under ${dir.definstall}/sys}"/>
+    <symlink action="delete" link="${dir.definstall}/sys/grid-security" />
+    <symlink action="delete" link="${dir.definstall}/sys/httpd/conf" />
+    <symlink action="delete" link="${dir.definstall}/sys/httpd/html/portalcred" />
+    <symlink action="delete" link="${dir.definstall}/sys/httpd/html" />
+    <symlink action="delete" link="${dir.definstall}/sys/httpd/cgi-bin" />
+    <symlink action="delete" link="${dir.definstall}/sys/httpd/logs" />
+    <symlink action="delete" link="${dir.definstall}/sys/pam/conf" />
+    <symlink action="delete" link="${dir.definstall}/sys/pam/lib" />
+    <symlink action="delete" link="${dir.definstall}/sys/mysqld/conf" />
+    <symlink action="delete" link="${dir.definstall}/sys/myproxy/conf" />
+    <symlink action="delete" link="${dir.definstall}/sys/myproxy/certs" />
+    <symlink action="delete" link="${dir.definstall}/sys/init/init.d" />
+    <symlink action="delete" link="${dir.definstall}/sys/init/conf" />
+    <symlink action="delete" link="${dir.definstall}/sys/globus" />
+    <symlink action="delete" link="${dir.definstall}/sys/tomcat" />
+  </target>
+
+  <target name="avail" depends="_install-have-sys-deps">
+    <echo>httpd: ${dir.sys.httpd.conf}/conf/httpd.conf: ${avail.httpd}</echo>
+    <echo>pam: ${dir.sys.pam.conf}: ${avail.pam}</echo>
+    <echo>mysqld: ${dir.sys.mysqld.conf}/my.cnf: ${avail.mysqld}</echo>
+    <echo>gsi: ${dir.sys.grid_security}: ${avail.gsi}</echo>
+  </target>
+
+  <target name="try" depends="_install-have-sys-deps">
+    <echo message="bin: ${dir.install.bin}"/>
+    <echo message="pammod: ${tools.dir.install.pammod}"/>
+    <echo message="tools-build: ${tools.dir.build}"/>
+  </target>
+
+</project>

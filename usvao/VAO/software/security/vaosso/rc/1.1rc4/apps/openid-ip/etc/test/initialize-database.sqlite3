@@ -1,0 +1,208 @@
+-- -----------
+-- 
+-- initialization of the database contents
+-- 
+-- -----------
+
+insert into status_table (status_name, status_description) values (
+  'requested', 'A request has been made');
+insert into status_table (status_name, status_description) values (
+  'pending', 'Sent mail to CA');
+insert into status_table (status_name, status_description) values (
+  'accepted', 'Accepted by CA');
+insert into status_table (status_name, status_description) values (
+  'rejected', 'Rejected by CA');
+insert into status_table (status_name, status_description) values (
+  'renewal', 'Requested Renewal');
+
+insert into role_table (role_name, role_description) values (
+  'user', 'End user');
+insert into role_table (role_name, role_description) values (
+  'developer', 'Purse developer');
+insert into role_table (role_name, role_description) values (
+  'administrator', 'Admin');
+
+-- add system and other disallowed users
+insert into user_table (
+  first_name, last_name, user_name, status_id, created_from_addr, token,
+  contact_person, institution, project_name, email, phone, country, dn,
+  password_sha, salt, password_method) values (
+  'Reserved', 'User', 'root', 4, 'disallows real users from choosing this name', 
+  '00000141-c25e-5c5e-fffff61a-aad8150bd485', '',  '',  '',  '',  '',  '',  '', 
+  '67115b173d12f39a26a215648ca678b83834d21aa27dd55639af2b7fa8689b6d', 
+  '1ca0ec1be79a7c55784bc292eaf00c332e7086c6cb02639db985a128728a7653', 
+  'SALTED1');
+insert into user_table (
+  first_name, last_name, user_name, status_id, created_from_addr, token,
+  contact_person, institution, project_name, email, phone, country, dn,
+  password_sha, salt, password_method) values (
+  'Reserved', 'User', 'system', 4, 'disallows real users from choosing this name', 
+  '00000141-c25e-5c5e-fffff61a-aad8150bd484', '',  '',  '',  '',  '',  '',  '', 
+  '67115b173d12f39a26a215648ca678b83834d21aa27dd55639af2b7fa8689b6d', 
+  '1ca0ec1be79a7c55784bc292eaf00c332e7086c6cb02639db985a128728a7653', 
+  'SALTED1');
+insert into user_table (
+  first_name, last_name, user_name, status_id, created_from_addr, token,
+  contact_person, institution, project_name, email, phone, country, dn,
+  password_sha, salt, password_method) values (
+  'Reserved', 'User', 'admin', 4, 'disallows real users from choosing this name', 
+  '00000141-c25e-5c5e-fffff61a-aad8150bd483', '',  '',  '',  '',  '',  '',  '', 
+  '67115b173d12f39a26a215648ca678b83834d21aa27dd55639af2b7fa8689b6d', 
+  '1ca0ec1be79a7c55784bc292eaf00c332e7086c6cb02639db985a128728a7653', 
+  'SALTED1');
+insert into user_table (
+  first_name, last_name, user_name, status_id, created_from_addr, token,
+  contact_person, institution, project_name, email, phone, country, dn,
+  password_sha, salt, password_method) values (
+  'Unittest', 'User', 'unittest', 3, 'used for testing only', 
+  '00000141-c25e-5c5e-fffff61a-aad8150bd482', '',  '',  '',  '',  '',  '',  '', 
+  '2e9017a1ec9bf7e9c0c090280318fd48008508d31a52c899ce03cb04ea65ff4d', 
+  'cea17d', 'SALTED1');
+
+insert into preference_type (name, description) values (
+  'share_username', 'allow sharing of users the login name'
+);
+insert into preference_type (name, description) values (
+  'share_name', 'allow sharing of the users full name'
+);
+insert into preference_type (name, description) values (
+  'share_email', 'allow sharing of users email address'
+);
+insert into preference_type (name, description) values (
+  'share_institution', 
+  'allow sharing of the name of the institution the user is affiliated with'
+);
+insert into preference_type (name, description) values (
+  'share_phone', 'allow sharing of the users phone number'
+);
+insert into preference_type (name, description) values (
+  'share_country', 'allow sharing of the users home country'
+);
+insert into preference_type (name, description) values (
+  'share_credentials', 'allow sharing of temporary X.509 credentials'
+);
+insert into preference_type (name, description) values (
+  'always_confirm', 'always ask for confirmation before sharing information'
+);
+
+insert into portal (name, description, url, curator_id, status) values (
+  'default',
+   'A non-existent portal for identifying default privacy settings for unrecognized portals', 
+   'xxxx', 3, 2);
+insert into portal (name, description, url, curator_id, status) values (
+  'recognized',
+   'A non-existent portal for identifying default privacy settings for recognized portals', 
+   'xxxx', 3, 2);
+
+-- temporary table for storing values (in lieu of variables)
+BEGIN;
+PRAGMA temp_store = 2;
+CREATE TEMP TABLE _Variables (
+   Name TEXT PRIMARY KEY, 
+   RealValue REAL, 
+   IntegerValue INTEGER, 
+   BlobValue BLOB, 
+   TextValue TEXT);
+INSERT INTO _Variables (Name) VALUES ('sys');
+
+update _Variables set IntegerValue = 
+    (select user_id from user_table 
+     where user_name='system') where Name='sys';
+
+
+-- select (@sys:=user_id) from user_table where user_name='system';
+-- unrecognized default preferences
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 1, 1, "true"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 1, 2, "false"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 1, 3, "false"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 1, 4, "false"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 1, 5, "false"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 1, 6, "false"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 1, 7, "false"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 1, 8, "true"
+);
+END;
+
+-- recognized default preferences
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 2, 1, "true"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 2, 2, "true"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 2, 3, "true"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 2, 4, "false"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 2, 5, "false"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 2, 6, "false"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 2, 7, "false"
+);
+insert into user_preference (
+   user_table_id, portal_id, preference_type_id, value
+) values (
+   (select IntegerValue from _Variables where Name='sys'), 2, 8, "true"
+);
+
+-- add some test sessions
+insert into user_session (
+   user_table_id, host_address, token, create_time, expire_time) values (
+   4, '127.0.0.1', 'Valid_Secret_session_token_01234',
+   '2014-04-15 02:02:11.000', '2100-04-15 02:01:35.000');
+insert into user_session (
+   user_table_id, host_address, token, create_time, expire_time) values (
+   4, '127.0.0.1', 'Invalid_Secret_session_token_012',
+   '2014-04-15 02:02:11.000', '2014-04-15 02:05:00.000');
+

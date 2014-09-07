@@ -1,0 +1,33 @@
+<%!
+  public void jspInit() {
+    if (!RegisterUtil.isInitialized()) {
+      // System.out.println("---- not initialized ----");
+      try {
+	javax.servlet.ServletContext sc = 
+		getServletConfig().getServletContext();
+
+	sc.log("PURSE initializing");
+
+	Properties p = new Properties();
+	p.load(sc.getResourceAsStream("/WEB-INF/purse.properties"));
+
+	String purseDir = p.getProperty("purse.dir",
+					sc.getRealPath("/")+"WEB-INF");
+	for (Enumeration e=p.propertyNames(); e.hasMoreElements(); ) {
+	   String key, value = p.getProperty(key = (String) e.nextElement());
+	   p.setProperty(key,value.replaceAll("\\$\\{purse.dir\\}", purseDir));
+	}
+	String conf = purseDir+"/purse.conf";
+	FileOutputStream f = new FileOutputStream(conf);
+	p.store(f, "PURSE runtime conf - DO NOT EDIT");
+	f.close();
+	RegisterUtil.initialize(p, conf, null);
+	sc.log("PURSE initialized");
+
+      } catch (Exception e) {
+	throw new RuntimeException(e);
+      }
+    }
+    // else System.out.println("---- YES INITIALIZED ----");
+  }
+%>

@@ -1,0 +1,21 @@
+# Sample PAM config file for authenticating using the contents of the user's
+# OpenID session cookie, which is a token that is also stored in the
+# user_session table in the Purse database.
+
+# Usage: Copy this file to /etc/pam.d/ and configure a local MyProxy server to
+# use it so that credentials can be generated using OpenID session cookie values
+# as passwords.
+
+# Note this requires a patched version of pam_mysql that supports multiple valid
+# passwords per user -- see ../../pam_mysql/
+
+# Substitute the appropriate values for "some_user" and "some_password"
+auth required /lib/security/pam_mysql.so user=some_user passwd=some_password \
+   [table=user_session left join user_table on user_session.user_table_id=user_table.user_id] \
+   db=purseDatabase usercolumn=user_name passwdcolumn=user_session.token crypt=plain \
+   [where=expire_time > now()] verbose=1 allow_multiple_matches=true
+
+account required /lib/security/pam_mysql.so user=some_user passwd=some_password \
+   [table=user_session left join user_table on user_session.user_table_id=user_table.user_id] \
+   db=purseDatabase usercolumn=user_name passwdcolumn=user_session.token crypt=plain \
+   [where=expire_time > now()] verbose=1 allow_multiple_matches=true

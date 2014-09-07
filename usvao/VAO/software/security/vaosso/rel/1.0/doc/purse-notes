@@ -1,0 +1,209 @@
+1. Issues:
+=========
+- Add in activation and mail ? License ?
+- Renewal of user credentials after the user certificate expires
+- Change of user password does not result in credential passphrase
+change - it not relevant anymore ?
+- Would be worthwhile to add myproxy get and destroy ?
+- When ca accepts, if there is an error that is not process error,
+then can a UserRegistrationException can be thrown ?
+
+2.API
+=====
+
+A) Steps to use Admin as RA authority 
+
+- Collect user data from portal without raId
+- register(UserData userData)
+        - Store user data and send out mail for user to confirm token
+- processUserResponse
+        - Invoked when user confirms token. 
+        - Set status as pending. 
+        - Send mail to CA. 
+- acceptUser
+        - Invoked by Admin to accept the user
+        - Set user status as accepted.
+        - Generate certificate for user
+- rejectUser
+        - Invoked by Admin to reject the user
+        - Set user status as rejected.
+
+B) Steps to use an explicit RA authority
+
+- Collect user data from portal with raId
+- regsiter(UserData userData)
+        - Store user data and send out mail for user to confirm token
+- processUserResponse
+        - Invoked when user confirms token. 
+        - Set status as pending. 
+        - Send mail to RA id
+- acceptUser
+        - Invoked by RA to accept the user
+        - Set user status as accepted.
+        - Generate certificate for user
+- rejectUser
+        - Invoked by RA to reject the user
+        - Set user status as rejected.
+
+C) Steps to use external CA
+
+- Collect user data from portal without raId
+- enrollUser(UserData)
+        - Store user data
+        - Generate certificates for user
+        - Send mail foruser to confirm token
+- approveUser
+        - Get certificates from mail
+        - Upload to MyProxy
+        - Set user status as accepted
+- rejectUser
+        - Invoked by CA to reject
+        - Set user status to rejected.        
+
+3. Portal Level Initialization
+==============================
+
+The following four sets of properties are what will be required at the
+portal level initialization. (used in RegisterUtil.initialize)
+
+a) Database properties as required in DatabaseOptions class:
+
+dbDriver=org.postgresql.Driver
+dbConnectionURL=jdbc:postgresql://127.0.0.1/purseDatabase
+dbUsername=tester
+dbPassword=dummy
+dbPropFile=database property filename
+passPhrase=to encode the password
+
+b) Mail properties as required in MailOptions class:
+
+caAddress=purseca@foo.bar
+userAccount=purseportal@foo.bar
+password=*******
+purseAdminAddr=purseadmin@foo.bar
+#Mail server stuff
+incomingProtocol=pop3
+incomingHost=pop.mcs.anl.gov
+incomingPort=110
+outgoingProtocol=smtp
+outgoingHost=smtp.mcs.anl.gov
+outgoingPort=25
+sendTokenTemplate=etc/tokenMailTemplate
+caAcceptTemplate=etc/caAcceptTemplate
+caRejectTemplate=etc/caRejectTemplate
+caTemplate=etc/caMailTemplate
+portalBaseUrl=http://foo.bar
+signerCert
+signerKey
+signedPass
+procyUploadTemplate
+raTokenMailTemplate
+raSubjectLine
+
+c) Certificate Generation Properties as required in
+CertificateGenerationOptions
+
+binLocation=/sandbox/ranantha/gt2.4.2/bin
+tmpLocation=/sandbox/ranantha/gt2.4.2/tmp
+caDir=/homes/ranantha/.globus/simpleCA
+caHash=1ecf26d5
+
+d) MyProxy initialize
+
+myProxyBin=/sandbox/ranantha/gt2.4.2/sbin
+myProxyHost=wiggum.mcs.anl.gov
+myProxyPort=1979
+myProxyDn=
+
+e) Status file name
+
+This is is the file that was used to bootstrap the database with
+status information. The format of each entry is
+
+statusName Description
+
+4. Bootstrap Database
+=====================
+
+org.globus.purse.registration.BootstrapDatabase
+
+a) Database Properties file
+
+Same as 3(a) 
+
+b) Status File
+
+Same as3(e)
+
+c) Roles file name
+
+This a file that is used to initialize the database with roles. The
+format of each entry in this file should be
+
+role description
+
+A sample can be found in etc/purse_roles. This is used only to use the
+names part of the description to populate relevant variables in
+RegisterUtil with relevant information. The information is *not* added
+to database. To add to database, use bootstrap.
+
+d) RAs File Name (OPtional)
+
+This contians the list of RAs to bootstrap into the PURSe system and
+is optional.The default file is in etc/purse_ra. The format for each
+entry in this file is
+
+RAName RAEmail Description
+
+5. Java Webstart
+=================
+
+- To make the purse jars ready to be deployed so that myproxy 
+upload tool can be used using Java webstart these steps need to be followed:
+-- The jnlp link in etc/proxyUploadMailTemplate should be updated to point to 
+to myproxy.jnlp in portal webspace.
+-- Run ant webstart. It creates a dir called purseweb which contains
+all the needed jars signed and ready to be deployed. This directory
+needs to be copied to portal's web space.
+
+6. Testing External CA and uploading user creds to myproxy server:
+===================================================================
+
+-- User registers. Run ant register 
+-- Change the tokens in test.properties to the token you get in mail.
+-- User confirms. Run ant confirms
+-- Now the CA/RA should approve the user and send him email with
+instructions on how he/she can upload delegated cred to a myproxy
+server.
+-- Run ant caAcceptPendingUpload. This should send the user an email
+with instructions on how to upload proxy.
+
+-- Added sample JSP pages from John Quinn (NCSA).
+
+7. Notes from changes made by NCSA
+==================================
+
+- Comments were added to the template files.  Anything after the
+double-slash (//) is eliminated.  If the double-slash appears at the
+beginning of the line, the whole line is eliminated.
+
+- The tag.properties file is put in the same directory as the
+purse.properties file, where it is loaded via the JSP pages. The
+tag.properties file contains key and value pairs.  The key is used in
+a template, and when the template is parsed by Purse, the value will
+be substituted.
+
+For example, a simple tag.properties file might look like:
+
+portal_name=Purse Portal
+
+and a template looks like this:
+------------------------------------------
+Welcome to the @portal_name@.
+------------------------------------------
+After parsing, the template will look like:
+------------------------------------
+Welcome to the Purse Portal.
+------------------------------------
+This is done in addition to the regular tag substitution that Purse 
+already did.  

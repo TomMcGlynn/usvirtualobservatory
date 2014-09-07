@@ -1,0 +1,142 @@
+<!--
+  -  Build the tools.
+  -->
+<project name="vaosso-tools" basedir="." default="build">
+  <!--
+    - set inherit-properties to "false" if you do not want to inherit
+    - properties from the enclosing package.  
+    -->
+  <property name="inherit-properties" value="build-inherited.properties"/>
+  <property file="${inherit-properties}"/>
+
+  <property file="build.properties" />
+
+  <property name="dir.home" value="${basedir}" />
+  <property name="dir.build" value="${basedir}/build" />
+  <property name="dir.etc" value="${basedir}/etc" />
+  <property name="dir.src" value="${basedir}/src/main" />
+  <property name="dir.src.c" value="${dir.src}/c" />
+  <property name="dir.src.perl" value="${dir.src}/perl" />
+  <property name="dir.src.python" value="${dir.src}/python" />
+  <property name="dir.src.shell" value="${dir.src}/shell" />
+  <property name="dir.src.pam_cmd" value="${dir.src.c}/pam_cmd" />
+  <property name="dir.src.pam_mysql" 
+            value="${dir.src.c}/pam_mysql" />
+  <property name="dir.defhome" value="${basedir}/installed" />
+  <available property="pam_cmd.exists" 
+             file="${dir.src.pam_cmd}/pam_cmd"/>
+  <available property="pam_mysql.exists" 
+             file="${dir.src.pam_mysql}/pam_mysql.so"/>
+  <available property="ca.installed" file="${dir.install.ca}/cacert.pem"/>
+
+  <target name="build-init">
+    <mkdir dir="${dir.build}" />
+    <mkdir dir="${dir.build}/bin" />
+  </target>
+
+  <target name="install-init">
+    <mkdir dir="${dir.install.bin}" />
+    <mkdir dir="${dir.install.etc}" />
+    <mkdir dir="${dir.install.pammod}" />
+  </target>
+
+  <target name="build-pam_cmd" depends="" unless="pam_cmd.exists">
+    <ant dir="${dir.src.pam_cmd}" target="build" inheritAll="false"/>
+    <available property="pam_cmd.exists" 
+               file="${dir.src.pam_cmd}/pam_cmd"/>
+  </target>
+
+  <target name="build-pam_mysql" depends="" unless="pam_mysql.exists">
+    <ant dir="${dir.src.pam_mysql}" target="build" inheritAll="false">
+      <property name="dir.pammod" value="${dir.install.pammod}"/>
+    </ant>
+    <available property="pam_mysql.exists" 
+               file="${dir.src.pam_mysql}/pam_mysql.so"/>
+  </target>
+
+  <target name="build-shell" depends="build-init">
+    <copy todir="${dir.build}/bin">
+      <fileset dir="${dir.src.shell}">
+        <include name="*.sh.in"/>
+      </fileset>
+      <globmapper from="*.in" to="*"/>
+      <filterchain>
+        <replacetokens>
+          <token key="ca.countryName" value="${ca.countryName}" />
+          <token key="ca.organizationName"   value="${ca.organizationName}" />
+          <token key="ca.user_organizationUnitName" value="${ca.user_organizationUnitName}" />
+        </replacetokens>
+      </filterchain>
+    </copy>
+  </target>
+
+  <target name="build" depends="build-pam_cmd,build-pam_mysql,build-shell" />
+
+  <target name="install" depends="install-tools,install-ca"/>
+
+  <target name="install-tools" depends="install-init,build">
+    <copy todir="${dir.install.bin}">
+      <fileset file="${dir.src.pam_cmd}/pam_cmd"/>
+      <fileset file="${dir.src.pam_cmd}/pam_test"/>
+      <fileset dir="${dir.src.perl}">
+        <filename name="*.pl"/>
+      </fileset>
+      <fileset dir="${dir.src.python}">
+        <filename name="*.py"/>
+      </fileset>
+      <fileset dir="${dir.src.shell}">
+        <filename name="*.sh"/>
+      </fileset>
+      <fileset dir="${dir.build}/bin" includes="*"/>
+    </copy>
+    <chmod dir="${dir.install.bin}" perm="ugo+rx" includes="*" />
+
+    <copy todir="${dir.install.pammod}">
+      <fileset file="${dir.src.pam_mysql}/pam_mysql.so"/>
+      <fileset file="${dir.src.pam_mysql}/pam_mysql.la"/>
+    </copy>
+
+  </target>
+
+  <target name="install-ca" depends="install-tools,ca-props"
+          unless="ca.installed">
+    <property name="dir.install.ca" value="${dir.install.etc}/CA" />
+    <!--    <mkdir dir="${dir.install.ca}" /> -->
+    <exec spawn="false" 
+          executable="${dir.install.bin}/create-ca.sh" failonerror="true">
+      <arg value="${dir.build}/ca.properties"/>
+      <arg value="${dir.install.ca}"/>
+      <arg value="${myproxy.owner}"/>
+    </exec>
+    <available property="ca.installed" file="${dir.install.ca}/cacert.pem"/>
+  </target>
+
+  <target name="ca-props" depends="build-init">
+    <property file="${dir.etc}/ca.properties" prefix="ca" />
+    <ant target="-write-runtime-props" inheritAll="false" 
+         antfile="build-ca-properties.xml">
+      <property name="destfile" value="${dir.build}/ca.properties" />
+      <propertyset>
+        <propertyref prefix="ca."/>
+        <mapper type="glob" from="ca.*" to="*"/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="clean">
+    <delete dir="${dir.build}" />
+    <ant dir="${dir.src.pam_cmd}" target="distclean" inheritAll="false"/>
+    <ant dir="${dir.src.pam_mysql}" target="distclean" inheritAll="false"/>
+  </target>
+
+  <target name="distclean" depends="clean">
+    <delete dir="${dir.defhome}"/>
+  </target>
+
+  <target name="echo" >
+    <echo message="home: ${dir.home}" />
+    <echo message="install: ${dir.install}" />
+    <echo message="modules go in ${dir.install.pammod}" />
+  </target>
+
+</project>

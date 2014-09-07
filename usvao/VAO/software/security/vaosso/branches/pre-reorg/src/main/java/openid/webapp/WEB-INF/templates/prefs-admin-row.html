@@ -1,0 +1,30 @@
+<tr>
+    <td class="grid" rowspan="4" style="border-left:0">&nbsp;</td>
+    <td class="grid" title="the portal's human-readable name">Name</td>
+    <td class="grid" title="the portal's human-readable name" colspan="7" style="border-left:0">
+        <input type="text" name="relyingName<!--relyingId-->" style="width:100%" value="<!--relyingName-->">
+    </td>
+</tr><tr>
+    <td class="grid" title="a slightly more detailed description of the portal" style="border-top:0">Description</td>
+    <td class="grid" title="a slightly more detailed description of the portal" colspan="4" style="border:0">
+        <input type="text" name="relyingDesc<!--relyingId-->" style="width:100%" value="<!--relyingDesc-->">
+    </td>
+</tr><tr>
+    <td class="grid" style="border-top:0">&nbsp;</td>
+    <td class="grid" colspan="4" style="border:0;text-align:left">
+        <label title="Is this portal currently in active use?">
+            Active <input type="checkbox" name="relyingActive<!--relyingId-->" value="true" <!--relyingActiveChecked-->>
+        </label>
+        &nbsp;&nbsp;&nbsp;
+        <label title="Is this portal approved for Single Sign-on?">
+            Approved for SSO <input type="checkbox" name="relyingApproved<!--relyingId-->" value="true" <!--relyingApprovedChecked-->>
+            <!--relyingApprovedDesc-->
+        </label>
+        <!--To do: last login, is active, is approved, show active, etc.-->
+    </td>
+</tr><tr>
+    <td class="grid" style="border-top:0">URL</td>
+    <td class="grid" colspan="4" style="border:0;text-align:left">
+        <a href="<!--relyingURL-->"><!--relyingURL--></a>
+    </td>
+</tr>

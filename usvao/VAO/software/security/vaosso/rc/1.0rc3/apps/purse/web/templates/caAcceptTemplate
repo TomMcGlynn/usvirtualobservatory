@@ -1,0 +1,32 @@
+Hello @fullname@,
+
+You have completed your VAO Logon registration.  
+
+Your VAO username is @username@.  It is a single, unique identity
+which you can use with any VO-compliant portal to gain access to
+proprietary data and enhanced services such as remote storage.
+
+Your identity is fully compliant with the OpenID standard
+(www.openid.net).  This means you can even use it to log into other
+non-VO portals that support the OpenID standard.  For these portals,
+use can use your full OpenID URL:
+
+   https://sso.usvao.org/openid/id/@username@
+
+To protect your identity, be careful to only enter your NVO password
+into the NVO Login Page at:
+
+    https://sso.usvao.org/openid/
+
+You can change your password or request a password reminder at
+https://sso.usvao.org/register/password.jsp.
+
+Now that you have registered, the VAO can supply you and VAO-compliant
+portals that you visit with a "standard" security credential, which
+has been verified by this email exchange.  For more information, visit
+the VAO Login Services Portal, http://sso.usvao.org/.
+
+If you have any questions or problems, please contact us at
+vaosso@ncsa.illinois.edu or by accessing the VAO contact page at 
+http://www.usvao.org/contact-connect/
+

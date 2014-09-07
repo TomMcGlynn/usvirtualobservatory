@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html> <head>
+<title>Our Single Sign-on Services</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/styles/sso.css" type="text/css" rel="stylesheet" />
+<link href="/images/favicon.ico" type="image/vnd.microsoft.icon" rel="icon"/>
+<style type="text/css">
+dl.tmfaq dt {
+   font-size: 12pt;
+   font-weight: 700;
+   color: #003366;
+   margin-top: 0.75ex;
+}
+div.whatcanido {
+   float: right;
+   width: 230pix;
+   margin-left:  2em;
+   /* background-color: #65c0cc; */
+   padding-left: 1em;
+}
+</style>
+</head>
+
+
+<body>
+
+<div id="head" class="verbose">
+<script type="text/javascript" src="/styles/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/loginstatus.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(vaoStatus);
+</script>
+
+<div id="banner">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tr>
+  <td class="banner-logo" align="left" valign="top" width="155" rowspan="3">
+     <a href="/"><img src="/images/ProviderLogo.png" width="91" height="75" /></a>
+  </td>
+  <td align="left" valign="top" rowspan="3">
+    <div class="vao-title">warning: not a production openid provider</div>
+    <h1>Login Services</h1>
+    <div id="status">
+    <span class="login-label">Your Status:</span>&nbsp;
+    <span id="loginStatus" align="center" > Unknown </span></div>
+    </span></div>
+  </td>
+  <td class="panel-ur" width="10"></td>
+  <td class="vao-nav panel" rowspan="3">
+     <ul>
+       <li><a href="/about.html">About Our Project</a></li>
+       <li><a href="/contact.html">Ask for Help</a></li>
+     </ul>
+  </td>
+</tr><tr><td class="panel-edge"></td>
+</tr><tr>
+  <td class="panel-br"></td>
+ </tr>
+</table>
+</div> <!-- div: id=banner -->
+
+<div class="nav-bar">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+  <td class="panel-ur"></td>
+  <td colspan="3"></td>
+  <td class="panel-ul"></td>
+</tr>
+<tr class="buttons">
+  <td>
+	<a href="/">About Our Logins</a></td>
+  <td>
+	<a href="/register/register.jsp">Create New Login</a></td>
+  <td>
+	<a href="/openid/">Manage Your Account</a></td>
+  <td>
+	<a href="/help/support.html">Support Our Logins</a></td>
+  <td width="50">
+	<a href="/help/faq.html">FAQ</a></td>
+</tr>
+</table>
+
+</div> <!-- div: class=nav-bar -->
+</div> <!-- div: id=head -->
+     
+
+<div class="main-content">
+<h1>Welcome to Our Login Services Portal</h1>
+
+<p>
+This is an example deployment of the VAOSSO Login Services.  It's skin
+has not yet been branded for the providing organization.  All mentions
+of "Our" reflect this lack of branding.  Note that this deployment is
+not endorsed by the <a href="http://www.usvao.org/">VAO project</a>.  
+</p>
+
+<div class="whatcanido">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td class="panel-ur"></td></tr>
+<tr><td class="panel">
+<h5>What you can do through this site:</h5>
+<ul>
+  <li> <a href="/register/">Get a VAO Login account</a> </li>
+  <li> <a href="/register/password.jsp">Recall a forgotten username or reset
+       a password.</a> </li>
+  <li> <a href="help/support.html">Learn how to add support for VAO logins to your <br/> portal</a>
+</ul>
+<h6><em>Login required:</em></h6>
+<ul>
+  <li> <a href="/openid/">Update your profile and preferences</a></li>
+  <li> <a href="/openid/cred/">Download an X.509 certificate</a> </li>
+  <!-- <li> <a href="/openid/servercert.jsp">Request a server certificate.</a> -->
+</ul>
+<td></tr>
+<tr><td class="panel-br"></td></tr>
+</table>
+</div>
+
+<p>
+If you've used the Virtual Observatory, then you know that much of
+the data and capabilities can be accessed anonymously through public
+services and web sites with out any special logins; however, some
+features and services require more security.  
+</p>
+
+<p>
+This portal allows you to create and manage your own <strong>VAO
+Login</strong>--a single unique identity which you can use to log onto
+any VAO-compliant portal.  <a href="/register/">Get one here!</a>
+</p>
+
+
+<h2>Two-minute FAQ:</h2>
+
+<dl class="tmfaq">
+  <dt> What is a Our Login </dt>
+  <dd> Also called your <em>Our Identity</em>, it is a user name and
+       password that you can use to log into web portals in the VO.
+       </dd>
+       
+  <dt> Why create a Our Login? </dt>
+  <dd> <p>
+       Because your Our login is supported at a number of VO portals,
+       you will now have fewer usernames and passwords to keep track of.  
+       </p>
+       <p>
+       Your Our login name gives you added power while working in the VO
+       through its <em>single sign-on</em> capabilities--once
+       you're logged into the Our, you can move freely between portals
+       without retyping you password.  More importantly, portals and
+       services can pass private data back and forth securely with
+       each other on your behalf.
+       </p> </dd>
+
+  <dt> How do I get a Our Login? </dt>
+  <dd> You can create your login by
+       <a href="/register/">filling out the Our registration
+       form.</a>  We'll then send you a quick email confirmation which
+       you must respond to so that we know you are contactable and not
+       a robot.  Once that is done, you'll set your username and
+       password, and you're done. </dd> 
+
+</dl>
+
+<p>
+For more information, consult our more extensive
+<a href="help/faq.html">Frequently Asked Questions</a> for more information.
+</p>
+
+</div>
+
+<div class="foot">
+<hr noshade="noshade" />
+<table width="100%" border="0" cellspacing="0" style="margin:0">
+  <tr>
+  <td align="middle" width="64">
+      <a href="http://www.nsf.gov/"><img align="left" title="NSF" src="images/nsflogo_64x.gif" width="64" height="64" border="0"></a></td>
+      <td width="80" class="tiny">
+      Supported by the <br><a href="http://www.nsf.gov/">National
+      Science Foundation</a>
+  </td>
+  <td>&nbsp;</td>
+  <td width="120" class="tiny" align="right">
+      With contributions from the
+      <a href="http://www.ncsa.uiuc.edu">National Center for Supercomputing 
+      Applications</a>
+  </td>
+  <td>
+      <img src="images/ncsalogo-foot.gif" title="NCSA" height="50" />
+  </td>
+  <td class="tiny">and</td>
+  <td>
+      <a href="http://www.globus.org"><img src="images/globusalliance-foot.gif" title="Globus" border="0"/></a>
+  </td>
+  <td>&nbsp;</td>
+  <td width="90" class="tiny" align="right">
+      Member of the <a href="http://www.ivoa.net">International
+      Virtual Observatory Alliance</a> 
+  </td>
+  <td align="middle" class="tiny" width="80">    
+      <a href="http://www.ivoa.net/"><img height="44" align="right" title="IVOA" src="images/IVOAlogo.gif" width="80" border="0"></a></td>
+  </tr>
+</table>
+</div>
+
+<!--extraScripts-->
+</body>
+</html>

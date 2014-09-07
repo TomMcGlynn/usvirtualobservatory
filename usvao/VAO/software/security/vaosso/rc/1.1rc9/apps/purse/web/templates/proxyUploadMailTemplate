@@ -1,0 +1,18 @@
+Please click on the following script to upload your proxy credential to the MyProxy
+server. You will have to install Myproxy client to upload your credential. 
+Please click on the following link and upload your credential to the MyProxy 
+Server. Before you do that you need to have a properties file in your home dir 
+(Which is ~<username> on unix based machines and C:\Documents And Settings\<user
+name> in case of MS Windows based machines). Name of the file is cog.properties. And it should be in <user's home dir>/.globus/. The sample contents of this 
+file are as follows : 
+
+usercert=/Users/madduri/.globus/usercert.pem
+userkey=/Users/madduri/.globus/userkey.pem
+proxy=/tmp/x509up_u1811
+cacert=/etc/grid-security/certificates/
+
+Please fill in appropriate values for your machine. Now click on the following
+link :
+http://www-unix.mcs.anl.gov/~madduri/myproxy.jnlp
+
+

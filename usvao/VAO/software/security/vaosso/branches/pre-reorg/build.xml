@@ -1,0 +1,51 @@
+<project name="vaosso" basedir="." default="deploy">
+<property file="build.properties"/>
+
+<target name="compile">
+        <subant target="compile" buildpath="src/main/java/openid">
+        </subant>
+        <subant target="compile" buildpath="src/main/java/purse">
+        </subant>
+        <subant target="compile" buildpath="src/main/java/samplereg">
+        </subant>
+        <exec dir="src/main/c/pam_cmd/" vmlauncher="false" executable="./build.sh">
+        </exec>
+        <exec dir="src/main/c/pam_mysql/pam_mysql-0.7RC1-multiple-passwords/" vmlauncher="false" executable="./configure">
+        </exec>
+        <exec dir="src/main/c/pam_mysql/pam_mysql-0.7RC1-multiple-passwords/" vmlauncher="false" executable="make">
+        </exec>
+</target>
+
+<target name="deploy" depends="compile">
+        <subant target="deploy" buildpath="src/main/java/openid">
+        </subant>
+        <subant target="deploy" buildpath="src/main/java/purse">
+        </subant>
+        <subant target="deploy" buildpath="src/main/java/samplereg">
+        </subant>
+        <exec executable="sudo">
+               <arg line="cp src/main/c/pam_cmd/pam_cmd ${pam_cmd.dir}" />
+        </exec>
+        <exec executable="sudo">
+               <arg line="cp src/main/c/pam_mysql/pam_mysql-0.7RC1-multiple-passwords/.libs/pam_mysql.so ${pam_module.dir}" />
+        </exec>
+        <exec executable="sudo">
+               <arg line="cp src/main/c/pam_mysql/pam_mysql-0.7RC1-multiple-passwords/.libs/pam_mysql.la ${pam_module.dir}" />
+        </exec>
+</target>
+
+<target name="test" depends="compile">
+        <subant target="test" buildpath="src/main/java/openid">
+        </subant>
+</target>
+
+<target name="clean">
+        <subant target="clean" buildpath="src/main/java/openid">
+        </subant>
+        <subant target="clean" buildpath="src/main/java/purse">
+        </subant>
+        <subant target="clean" buildpath="src/main/java/samplereg">
+        </subant>
+</target>
+
+</project>

@@ -1,0 +1,36 @@
+<jnlp 
+	spec="1.0+"
+	href="myproxy.jnlp" 
+	codebase="http://www.mcs.anl.gov/~madduri/purseweb/">
+
+<information>
+	<title>MyProxy Applet</title>
+	<vendor>Purse</vendor>
+	<description>MyProxy Applet</description>
+	<offline-allowed/>
+</information>
+<security>
+	<all-permissions/>
+</security>
+
+<resources>
+	<j2se version="1.4"/>
+    <jar href="cog-certmanagement-1.0.jar" main="true" download="eager"/>
+    <jar href="cog-jglobus.jar" download="eager"/>
+    <jar href="cryptix.jar" download="eager"/>
+    <jar href="cryptix32.jar" download="eager"/>
+    <extension name="none" href="jce-jdk13-120.jnlp"/>
+    <jar href="cryptix-asn1.jar" download="eager"/>
+    <jar href="puretls.jar" download="eager"/>
+    <jar href="log4j-core.jar" download="eager"/>
+</resources>
+
+<applet-desc 
+	documentBase="http://www.mcs.anl.gov/~madduri/purseweb/"
+	name="MyProxy Applet"
+	main-class="org.globus.cog.security.cert.management.MyProxyApplet"
+	width="527"
+	height="428">
+	<param name="myProxyHost" value="mayed.mcs.anl.gov"/>
+</applet-desc>
+</jnlp>

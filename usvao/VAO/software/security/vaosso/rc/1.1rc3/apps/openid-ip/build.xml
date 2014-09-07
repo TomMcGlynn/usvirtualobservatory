@@ -1,0 +1,285 @@
+<project name="openid-ip" basedir="." default="build">
+  <!--
+    - set inherit-properties to "false" if you do not want to inherit
+    - properties from the enclosing package.  
+    -->
+  <property name="inherit-properties" value="build-inherit.properties"/>
+  <property file="${inherit-properties}"/>
+  <property environment="env"/>
+
+  <property file="build.properties"/>
+  <property file="build.static.properties"/>
+
+  <property name="dir.home" value="${basedir}" />
+  <property name="catalina.home" location="${env.CATALINA_HOME}"/>
+  <property name="dir.build" value="${basedir}/build" />
+  <property name="dir.build.javadocs" value="${dir.build}/japi" />
+  <property name="dir.build.classes" value="${dir.build}/classes" />
+  <property name="dir.build.tclasses" value="${dir.build}/tclasses" />
+  <property name="dir.build.lib" value="${dir.build}/lib" />
+  <property name="dir.tmp" value="${dir.build}/tmp" />
+  <property name="dir.test.reports" value="${dir.build}/test-reports" />
+  <property name="dir.test.data" value="${dir.build}/tdata" />
+  <property name="dir.src" value="${basedir}/src/main" />
+  <property name="dir.tsrc" value="${basedir}/src/test" />
+  <property name="dir.etc" value="${basedir}/etc" />
+  <property name="dir.web" value="${basedir}/web" />
+  <property name="dir.lib" value="${basedir}/lib" />
+  <property name="dir.jars" value="${dir.lib}" />
+
+  <property name="webapp.name" value="openid" />
+  <property name="jar.name" value="${webapp.name}-ip.jar" />
+  <property name="jar.path" value="${dir.jars}/${jar.name}" />
+  <property name="war.name" value="${webapp.name}.war" />
+  <property name="war.path" value="${basedir}/${war.name}" />
+
+  <property name="debug" value="true"/>
+  <property name="deprecation" value="true"/>
+
+  <path id="servlet.classpath">
+    <fileset dir="${dir.jars}">
+      <include name="**/servlet-api*.jar"/>
+    </fileset>
+  </path>
+
+  <path id="build.classpath">
+    <pathelement location="${dir.build.classes}" />
+    <fileset dir="${dir.jars}">
+      <include name="**/*.jar"/>
+      <exclude name="${jar.name}"/>
+    </fileset>
+    <path refid="servlet.classpath" />
+  </path>
+
+  <path id="test.classpath">
+    <pathelement location="${dir.build.tclasses}" />
+    <path refid="build.classpath"/>
+
+    <!-- in lieu of includeantruntime=true -->
+    <fileset dir="${ant.home}/lib">
+      <include name="junit*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="build" depends="war"/>
+
+  <target name="install" depends="build">
+    <copy todir="${dir.install.lib}">
+      <fileset file="${war.path}"/>
+      <fileset file="${jar.path}"/>
+    </copy>
+  </target>
+
+  <target name="init">
+    <mkdir dir="${dir.build.classes}"/>
+    <mkdir dir="${dir.tmp}"/>
+  </target>
+
+  <target name="test-init" depends="init">
+    <mkdir dir="${dir.build.tclasses}"/>
+    <mkdir dir="${dir.test.data}"/>
+    <mkdir dir="${dir.test.reports}"/>
+  </target>
+
+
+  <!--
+    -  create the runtime properties file
+    -->
+  <target name="hibernate-cfg" 
+          depends="-set-hibernate-cfg,copy-hibernate-cfg,gen-hibernate-cfg"/>
+  <target name="-set-hibernate-cfg" depends="init" unless="do.hibcfg.autogen">
+    <condition property="do.hibcfg.autogen">
+      <istrue value="${hibernate_cfg.autogen}" />
+    </condition>
+  </target>
+  <target name="copy-hibernate-cfg" depends="init" unless="do.hibcfg.autogen">
+    <delete file="${dir.build.classes}/hibernate.cfg.xml" />
+    <copy file="${dir.etc}/hibernate.properties" todir="${dir.build.classes}"/>
+  </target>
+  <target name="gen-hibernate-cfg" depends="init" if="do.hibcfg.autogen">
+    <property file="${dir.etc}/hibernate.properties"/>
+    <mkdir dir="${dir.build.classes}/org/usvo/openid/orm"/>
+    <echoproperties destfile="${dir.build.classes}/org/usvo/openid/orm/hibernate.properties">
+      <propertyset>
+        <propertyref prefix="hibernate."/>
+      </propertyset>
+    </echoproperties>
+  </target>
+
+  <target name="compile" depends="init,hibernate-cfg">
+    <javac srcdir="${dir.src}" destdir="${dir.build.classes}" debug="${debug}"
+           deprecation="${deprecation}" classpathref="build.classpath"
+           optimize="off" source="1.5" includeantruntime="false">
+      <!-- <compilerarg value="-Xlint"/> -->
+    </javac>
+    <copy todir="${dir.build.classes}">
+      <fileset dir="${dir.src}">
+        <include name="**/*.properties"/>
+        <include name="**/*.xml"/>
+        <exclude name="**/*_sample"/>
+      </fileset>
+    </copy>
+  </target>
+    
+  <target name="compileTests" depends="test-init,compile">
+    <javac srcdir="${dir.tsrc}" destdir="${dir.build.tclasses}" debug="${debug}"
+           deprecation="${deprecation}" classpathref="test.classpath"
+           optimize="off" source="1.5" includeantruntime="false"/>
+  </target>
+
+  <target name="compileAll" depends="compile,compileTests"/>
+
+  <target name="test" depends="test-unit,test-adhoc"/>
+
+  <target name="test-adhoc" depends="compileTests">
+    <java classname="org.usvo.openid.test.AllUsefulTests" fork="true" classpathref="test.classpath">
+      <assertions>
+        <enable/>
+      </assertions>
+    </java>
+  </target>
+
+  <target name="test-unit" depends="test-unit-gen,test-unit-db"
+          description="Run JUnit Tests">
+  </target>
+
+  <target name="test-unit-db" depends="compileTests,runtime-props"
+          description="Run JUnit Tests requiring test database">
+
+    <!-- IdRequestTestCase* load their own custom hibernate.properties -->
+    <copy file="${dir.etc}/test/hibernate.properties"
+          todir="${dir.build.tclasses}/org/usvo/openid/orm"/>
+
+    <junit printsummary="yes"  includeAntRuntime="true" haltonfailure="yes"
+           fork="on" forkmode="perTest">
+       <classpath refid="test.classpath" />
+       <formatter type="plain" />
+       <batchtest todir="${dir.test.reports}" >
+         <fileset dir="${dir.build.tclasses}">
+           <include name="**/IdRequestTestCase*.class" />
+           <exclude name="**/IdRequestTestCase.class" />
+           <exclude name="**/IdRequestTestCaseBase.class" />
+         </fileset>
+       </batchtest>
+       <sysproperty key="test.tmpdir" value="${dir.tmp}"/>
+       <sysproperty key="test.outdir" value="${dir.test.data}"/>
+       <sysproperty key="test.webinf" value="${dir.etc}/test"/>
+    </junit>
+  </target>
+
+  <target name="test-unit-gen" depends="compileTests,runtime-props"
+          description="Run (most) JUnit Tests">
+    <copy file="${dir.etc}/test/hibernate.properties"
+          todir="${dir.build.tclasses}/org/usvo/openid/orm"/>
+
+    <junit printsummary="yes"  includeAntRuntime="false" haltonfailure="yes"
+           fork="off" forkmode="perTest">
+       <classpath refid="test.classpath" />
+       <formatter type="plain" />
+       <batchtest todir="${dir.test.reports}" >
+         <fileset dir="${dir.build.tclasses}">
+           <include name="**/*TestCase.class" />
+           <exclude name="**/IdRequestTestCase.class" />
+         </fileset>
+       </batchtest>
+       <sysproperty key="test.tmpdir" value="${dir.tmp}"/>
+       <sysproperty key="test.outdir" value="${dir.test.data}"/>
+       <sysproperty key="test.webinf" value="${dir.etc}/test"/>
+    </junit>
+  </target>
+
+  <target name="testclass" if="test-class"
+          description="Run a single JUnit Test class">
+    <junit printsummary="yes"  includeAntRuntime="false" haltonfailure="yes">
+       <classpath refid="test.classpath" />
+       <formatter type="plain" />
+       <batchtest todir="${tests.reports}">
+         <fileset dir="${dir.build.tclasses}">
+           <include name="**/${test-class}.class" />
+         </fileset>
+       </batchtest>
+       <sysproperty key="test.tmpdir" value="${dir.tmp}"/>
+       <sysproperty key="test.outdir" value="${dir.test.data}"/>
+       <sysproperty key="test.webinf" value="${dir.etc}/test"/>
+    </junit>
+  </target>
+
+  <target name="jar" depends="compile">
+    <jar jarfile="${jar.path}" basedir="${dir.build.classes}" />
+  </target>
+
+  <!--
+    -  create the runtime properties file
+    -->
+  <target name="runtime-props" depends="init">
+    <property file="${dir.etc}/openid.properties" prefix="runtime" />
+    <ant target="-write-runtime-props" inheritAll="false" 
+         antfile="build-openidip-properties.xml">
+      <property name="destfile" value="${dir.build}/openid.properties" />
+      <propertyset>
+        <propertyref prefix="runtime."/>
+        <mapper type="glob" from="runtime.*" to="*"/>
+      </propertyset>
+    </ant>
+  </target>
+
+  <target name="war" depends="jar,runtime-props">
+    <copy todir="${dir.build.lib}" flatten="true">
+      <fileset dir="${dir.jars}">
+        <include name="**/*.jar"/>
+        <exclude name="**/servlet-api*.jar"/>
+        <exclude name="**/sqlite-jdbc*.jar"/>
+      </fileset>
+    </copy>
+
+    <war destfile="${war.path}" webxml="${dir.web}/web.xml">
+      <fileset dir="${dir.web}/jsp" />
+      <webinf dir="${dir.web}">
+        <include name="templates/**"/>
+        <exclude name="**/*.orig"/>
+      </webinf>
+      <webinf file="${dir.build}/openid.properties"/>
+      <lib dir="${dir.build.lib}" />
+
+      <!--
+        -  openid-ip.jar installed via lib above
+        -
+      <lib file="${dir.build}">
+        <include name="${jar.name}" />
+      </lib>
+        -->
+    </war>
+    <available file="${war.path}" property="war.available"/>
+  </target>
+
+  <target name="clean">
+    <delete dir="${dir.build}" />
+  </target>
+
+  <target name="distclean" depends="clean">
+    <delete file="${war.path}" />
+    <delete file="${jar.path}" />
+  </target>
+
+  <target name="deploy" depends="war">
+    <copy file="${war.path}" todir="${dir.deploy}"/>
+    <!--
+    <copy file="${src.webapp.dir}/favicon.ico" todir="${deploy.dir}/ROOT"/>
+      -->
+  </target>
+
+  <target name="try">
+    <!-- <echo>classpath: ${toString:build.classpath}</echo> -->
+    <echo>inherit file: ${inherit-properties}</echo>
+  </target>
+
+<!--
+  <target name="cleanTomcatWebappExtracted">
+    <delete dir="${deploy.webapp.dir}"/>
+  </target>
+  -->
+
+  <target name="show">
+    <echo> test classpath: ${toString:test.classpath} </echo>
+  </target>
+</project>

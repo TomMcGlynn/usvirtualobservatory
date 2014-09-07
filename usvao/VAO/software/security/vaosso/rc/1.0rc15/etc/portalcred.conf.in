@@ -1,0 +1,5 @@
+# Do not let browsers list the contents of the portalcred diretory
+
+<Directory "@http.doc.root@/portalcred">
+   Options -Indexes
+</Directory>
