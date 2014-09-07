@@ -1,0 +1,143 @@
+﻿<ri:Resource status="active" xmlns="" 
+             xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" 
+             xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" 
+             xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0"
+             xmlns:sia="http://www.ivoa.net/xml/SIA/v1.0" 
+             xmlns:ssa="http://www.ivoa.net/xml/SSA/v1.0"
+             xmlns:tr="http://www.ivoa.net/xml/TAP/v1.0"
+             xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+             created="1970-01-01T00:00:00Z" updated="1970-01-01T00:00:00Z" 
+             xsi:type="vr:Resource" >
+
+  <validationLevel validatedBy="ivo://archive.stsci.edu/nvoregistry">2</validationLevel>
+  <title></title>
+  <shortName></shortName>
+  <identifier>ivo://</identifier>
+  <curation>
+    <publisher ivo-id=""></publisher>
+    <creator>
+      <name ivo-id=""></name>
+      <logo></logo>
+    </creator>
+    <contributor ivo-id=""></contributor>
+    <date role="representative"></date>
+    <version></version>
+    <contact>
+      <name></name>
+      <address></address>
+      <email></email>
+      <telephone></telephone>
+    </contact>
+  </curation>
+  <content>
+    <subject></subject>
+    <description></description>
+    <referenceURL></referenceURL>
+    <type></type>
+    <contentLevel></contentLevel>
+    <relationship>
+      <relationshipType></relationshipType>
+      <relatedResource ivo-id=""></relatedResource>
+    </relationship>
+    <source format=""></source>
+ </content>
+ <managingOrg></managingOrg>
+ <capability standardID="ivo://ivoa.net/std/ConeSearch" xsi:type="cs:ConeSearch">
+    <interface role="std" xsi:type="vs:ParamHTTP" version="">
+      <accessURL use="base"></accessURL>
+      <queryType></queryType>
+      <resultType></resultType>
+    </interface>
+    <maxSR></maxSR>
+    <maxRecords></maxRecords>
+    <verbosity></verbosity>
+    <testQuery>
+      <ra></ra>
+      <dec></dec>
+      <sr></sr>
+    </testQuery>
+  </capability>
+ <capability xsi:type="sia:SimpleImageAccess" standardID="ivo://ivoa.net/std/SIA">
+     <interface xsi:type="vs:ParamHTTP" role="std" version="">
+      <accessURL use="base"></accessURL>
+      <queryType></queryType>
+    </interface>
+    <imageServiceType></imageServiceType>
+    <maxRecords></maxRecords>
+    <maxFileSize></maxFileSize>
+     <maxImageExtent>
+      <long></long>
+      <lat></lat>
+    </maxImageExtent>
+    <maxImageSize>
+      <long></long>
+      <lat></lat>
+    </maxImageSize>
+    <testQuery>
+      <pos>
+        <long></long>
+        <lat></lat>
+      </pos>
+      <size>
+        <long></long>
+        <lat></lat>
+      </size>
+    </testQuery>
+   </capability>
+ <capability xsi:type="ssa:SimpleSpectralAccess" standardID="ivo://ivoa.net/std/SSA">
+    <interface role="std" xsi:type="vs:ParamHTTP" version="">
+      <accessURL use="base"></accessURL>
+      <queryType></queryType>
+    </interface>
+    <creationType></creationType>
+    <dataSource></dataSource>
+    <complianceLevel></complianceLevel>
+    <maxSearchRadius></maxSearchRadius>
+    <maxRecords></maxRecords>
+    <defaultMaxRecords></defaultMaxRecords>
+    <maxAperture></maxAperture>
+    <maxFileSize></maxFileSize>
+    <testQuery>
+      <pos>
+        <long></long>
+        <lat></lat>
+      </pos>
+      <size></size>
+      <queryDataCmd></queryDataCmd>
+    </testQuery>
+  </capability>
+ <capability standardID="ivo://ivoa.net/std/TAP" xsi:type="tr:TableAccess">
+    <interface role="std" version="" xsi:type="vs:ParamHTTP">
+      <accessURL use="base"></accessURL>
+    </interface>
+  </capability>
+ <capability>
+    <interface xsi:type="vs:ParamHTTP">
+      <accessURL use=""></accessURL>
+      <queryType></queryType>
+      <resultType></resultType>
+    </interface>
+  </capability>
+ <capability>
+    <interface xsi:type="vr:WebBrowser">
+      <accessURL use=""></accessURL>
+    </interface>
+  </capability>
+ <coverage>
+    <waveband></waveband>
+  </coverage>
+ <table>
+    <name></name>
+    <description></description>
+    <column>
+      <name></name>
+      <description></description>
+      <unit></unit>
+      <ucd></ucd>
+      <utype></utype>
+      <dataType></dataType>
+    </column>
+  </table>
+</ri:Resource>

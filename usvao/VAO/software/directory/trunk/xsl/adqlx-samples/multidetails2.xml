@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  -  where capability/optionalProtocol = 'xquery' and managingOrg/@ivo-id like '%stsci%'
+  -->
+<Where xmlns="http://www.ivoa.net/xml/ADQL/v1.0" 
+       xmlns:ad="http://www.ivoa.net/xml/ADQL/v1.0" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Condition xsi:type="ad:unionSearchType">
+    <Condition xsi:type="ad:likePredType">
+      <Arg xpathName="managingOrg/@ivo-id" Table="r" xsi:type="ad:columnReferenceType"/>
+      <Pattern xsi:type="ad:atomType">
+        <Literal Value="%stsci%" xsi:type="ad:stringType"/>
+      </Pattern>
+    </Condition>
+    <Condition xsi:type="ad:likePredType">
+      <Arg xpathName="managingOrg/@ivo-id" Table="r" xsi:type="ad:columnReferenceType"/>
+      <Pattern xsi:type="ad:atomType">
+        <Literal Value="%nasa%" xsi:type="ad:stringType"/>
+      </Pattern>
+    </Condition>
+  </Condition>
+</Where>

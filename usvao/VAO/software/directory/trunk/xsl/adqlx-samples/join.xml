@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  -  where title like "'%lenticular%'" and content/subject = 'galaxies' 
+  -->
+<Where xmlns="http://www.ivoa.net/xml/ADQL/v1.0" 
+       xmlns:ad="http://www.ivoa.net/xml/ADQL/v1.0" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Condition xsi:type="ad:intersectionSearchType">
+    <Condition xsi:type="ad:likePredType">
+      <Arg xpathName="title" Table="r" xsi:type="ad:columnReferenceType"/>
+      <Pattern xsi:type="ad:atomType">
+        <Literal Value="%lenticular%" xsi:type="ad:stringType"/>
+      </Pattern>
+    </Condition>
+    <Condition Comparison="=" xsi:type="ad:comparisonPredType">
+      <Arg xpathName="content/subject" Table="r" xsi:type="ad:columnReferenceType"/>
+      <Arg xsi:type="ad:atomType">
+        <Literal Value="galaxies" xsi:type="ad:stringType"/>
+      </Arg>
+    </Condition>
+  </Condition>
+</Where>

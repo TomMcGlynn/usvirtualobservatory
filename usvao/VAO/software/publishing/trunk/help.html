@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" href="styles/layout.css" title="default" media="all"/>
+    <link rel="Stylesheet" href="styles/help.css" type="text/css"/>
+
+    <!-- Initialize ExtJS and our local libraries. -->
+    <script type="text/javascript" src="scripts/InitializeJavaScript.js"></script>
+    <script type="text/javascript" src="scripts/namespace.js"></script>
+    <script type="text/javascript" src="scripts/loginstatus.js"></script>
+  
+     <!-- Start this application. -->
+     <script type="text/javascript">
+         Ext.onReady(PublishingWizard.LoginStatusWizard.createAndRun, PublishingWizard.LoginStatusWizard, { mainDiv: 'isloggedin-div' });
+    </script>
+
+    <title>Registry Publishing Wizard Help</title>
+</head>
+<body id="help">
+
+<div id="main-wrapper">
+  <div align="right"></div>
+
+<div id="logo"><a href="http://www.usvao.org/" title="Home" target="_blank"><img src="images/VAO_logo_100.png" alt="VAO" height="50" width="100"/></a></div>
+<div id="logo"><a href="http://vao.stsci.edu/directory" title="Directory Search" target="_blank"><img src="images/Directory50.png" alt="Directory Search" height="50" width="50" /></a></div>
+<div id="nav-wrapper">
+  <div id="navigation">
+    <div id="isloggedin-div"></div>
+  </div>
+  <div id="nav-right"></div>
+</div>
+<div class="clear"></div>
+
+<div id="content-area">
+    <br/>
+    <div id="content-top"></div> 
+        <div id="content-main">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <div id="content-main">
+             <div id="toc">
+             <h1>Registry Publishing Interface Help</h1>
+              <h2>Table of Contents</h2>
+              <ol>
+                <li><a href="#Overview">Overview</a></li>
+                <li><a href="#AccountsAndLoggingIn">Accounts and Logging In</a></li>
+                <li><a href="#ManagingYourResources">Managing Your Resources</a></li>
+                <li><a href="#ResourceTypes">Resource Types</a></li>
+                <li><a href="#GlossaryOfIndividualFields">Glossary of Individual Fields</a>
+                    <ol>
+                       <li><a href="#FieldsForAllResourceTypes">Fields for All Resource Types</a></li>
+                       <li><a href="#FieldsForAllServices">Fields for All Services, Standard and Non-Standard</a></li>
+                       <li><a href="#FieldsForStandardServices">Fields for All Standard Services</a></li>
+                       <li><a href="#FieldsForConeSearch">Fields for Cone Search Services</a></li>
+                       <li><a href="#FieldsForSIA">Fields for Simple Image Access Services</a></li>
+                       <li><a href="#FieldsForSSA">Fields for Simple Spectral Access Services</a></li>
+                       <li><a href="#FieldsForNonStandard">Fields for Non-Standard Interfaces Only</a></li>
+                    </ol>
+                </li>
+              </ol>
+            </div>
+             <div id="helpcontent">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div id="helpcontent" class="helpcontent">
+             <h2><a name="Overview">Overview</a></h2>
+             <p>The Registry Publishing Wizard is a form interface for publishing <a href="http://www.ivoa.net/Documents/latest/RM.html" target="_blank">VO Resources</a> 
+             to the <a href="http://usvao.org" target="_blank">VAO</a> registry at the Space Telescope Science Institute.
+             A VO Resource is a collection of metadata describing an astronomical data service, a web page for astronomical research, 
+             or even an institution that publishes astronomical data. By defining a resource and publishing it to a registry, users of many VO 
+             search websites and VO-enabled tools will be able to find and access your data, cross-correlate it with other VO-accessible data, and 
+             cite it using the metadata you provide. The registry at STScI is part of a global network of registries called the <a href="http://ivoa.net" target="_blank">International Virtual
+             Observatory Alliance</a>'s Registry of Registries, and resources published to it will be mirrored throughout the IVOA.</p>
+
+             <h2><a name="AccountsAndLoggingIn">Accounts and Logging In</a></h2>
+             <p>Access to the STScI registry publishing system is available for anyone with astronomical data to share with the IVOA community, not only
+             STScI or other US Virtual Observatory affiliates. Accounts as set up by individuals at institutions already known to the IVOA registry network
+             can be created from the main login page for the publishing wizard. If a user from a new institution not listed in the drop-down presented at 
+             user registration would like to share their data in registry resources, a resource for the institution ("authority" in VO Resource parlance)
+             must first be created, and then the user may register as associated with that authority. If you would like to register services or other
+             resources but cannot find your institution listed, use the <a href="http://www.usvao.org/contact-connect/" target="_blank">US VAO Contact page</a> 
+             for support.</p>
+             <p>If you had an account with the previous STScI xforms-based publishing interface, your login information and resources belonging
+             to you have been preserved. If you need your account information sent to you, or you would like to have your resources transferred to a new account, 
+             please use the same <a href="http://www.usvao.org/contact-connect/" target="_blank">Contact page</a>.
+             Currently, all user account information is kept locally at STScI in a database with passwords encrypted. We hope to move our system to a VAO-wide 
+             Single Sign-On system already in operation at NRAO and NCSA in a later version.</p>
+
+             <h2><a name="ManagingYourResources">Managing Your Resources</a></h2>
+             <p>When logged into an account, the main management page provides a summary of your currently active resources. From here, you have the option 
+             to create new resources in the form interface from scratch or by cloning an existing resource, edit your existing resources, or delete them.
+             Resource deletion does not remove the resource from 
+             the underlying registry, but marks it as 'deleted' for mirroring in the IVOA registry network and removes it from search results and VO tools. 
+             Creating a new resource offers a a choice of various resource types, and a blank form tailored to the information relevant for each. Required fields
+             are marked with an asterisk (*). Any non-required fields left blank will not be included in the published resource, but can be added later through the 
+             same form interface. Editing an existing resource will populate a set of forms with the currently supplied information, which can be edited field by field, and
+             new information can be added. The only field that cannot be edited after original creation is the unique IVO identifier. Cloning an existing resource will populate 
+             forms for a new resource using all of the information from an existing one except the identifier. This option allows a user to easily create multiple similar resources
+             with a minimum of typing. We also intend to release a file upload option, for those users who feel comfortable 
+             directly editing resource XML documents</p>
+             <p>Resources may be un-deleted by contacting <a href="http://www.usvao.org/contact-connect/" target="_blank">US VAO help</a>; direct interface support for management of 
+             deleted and other inactive resources will be provided in a later version.</p>
+
+             <h2><a name="ResourceTypes">Resource Types</a></h2>
+             <p>There are several basic types of resources one can publish to the IVOA registries. These are standard VO data services which directly provide 
+             astronomical data in IVOA-specified formats, non-standard data services including web services and form-based web pages, and generic support resources 
+             like the authority records for institutions, which assist registry owners and users in understanding the data and metadata provenance for  
+             those web pages and services. When you create a new resource, you will be asked which of these general types of resources you intend to create. 
+             This determines the extended information you can enter about a given resource, particularly for well-defined standard service types.
+             </p>
+             <p>Basic services supported by this form interface include Cone Search, Simple Image Access, and Simple Spectral Access services. All of the required 
+             and the most common optional information for registering each of these types of services is available through the form interface. Currently
+             only one of each type of service capability (ConeSearch, SIA, or SSA) can be specified within a single resource (though multiple service endpoints within that capability are allowed), 
+             with optional non-standard web service and descriptive web page capabilities also optionally defined. TAP services will be supported as soon as possible. </p>
+             <p>Non-standard services allow users with astronomical data not available through a valid Cone Search, SIA, or SSA service to still publish their data 
+             for IVOA tools and search web pages to use. This includes RESTful and SOAP-based web services, and form-based web pages for data access. Multiple 
+             non-standard interfaces can be defined within a single resource.</p>
+             <p>Generic resources without data attached, such as the ones describing institutions themselves can also be defined using the form interface. It is very 
+             rare for a user to publish resources of this type.</p>
+
+             <h2><a name="GlossaryOfIndividualFields">Glossary of Individual Fields</a></h2>
+             <p>Within the main publishing form, we have attempted to offer inline help for most individual fields that can be entered as part of a resource's 
+             metadata description via pop-up quicktips. The complete list is reproduced here for accessibility, with additional information about required fields and
+             the use of controlled vocabularies and curation-related linking through drop-downs. Almost all of this documentation comes directly from the IVOA standards
+             documents describing generic resources, data services, and individual standard service types, including comments in the XML schema documents.</p>
+
+             <h3><a name="FieldsForAllResourceTypes">Fields for All Resource Types</a></h3>
+             <p><b>Title</b>: Required. Freetext title for the resource. Typically, a Title will be a name by which the resource is formally known. Title should be an unabbreviated form (e.g., Hubble ACS Archive Images) rather than an acronym unless the acronym is so well known as to be part of standard usage.  Publishers are encouraged, but not required, to define unique Titles. Ex: "Hubble ACS Archive Images"'</p>
+             <p><b>Short Name</b>: Required. 16-character shorthand title for the resource. 'The ShortName will be used where brief annotations for the resource name 
+                                  are desired, such as in GUIs that might refer to many resources in a compact display.  
+                                  ShortName strings are limited to a maximum of sixteen characters.  Care should be 
+                                  taken to define illuminating ShortNames indicating either where the resource comes  
+                                  from or what data collection it provides.  ShortNames are not required to be unique.  
+                                  A resource provider may use the same ShortName for several related resources 
+                                  (e.g., different services that access the same collection), or the same ShortName might 
+                                  be used by different providers for common/mirrored resources.  In the latter case, the 
+                                  ShortName defined by the original publisher of the resource should have preference. EX: "HST.HDF_SOUTH" </p>
+            <p><b>Identifier</b>: Required, must be unique. An unambiguous URI-style reference to the resource.  The 
+                                  syntax for Identifiers maintains that they must begin with the identifier of an institution already
+                                  itself described in the Registry. Append resource-specific tags to this prefix; do not edit it. Ex: ivo://archive.stsci.edu/ssap/stis</p>
+            <p><b>Description</b>: Required. Description may include but is not limited to: an abstract, table of contents, 
+                                   reference to a graphical representation of content or a free-text account of the content. 
+                                   Thorough text descriptions are particularly encouraged in order to make text-based 
+                                   searches against the registries maximally useful.  Description should emphasize what 
+                                   the resource is about, as other matters such as who created it, when it was created, and 
+                                   where it is located are described elsewhere in the resource metadata.</p>
+            <p><b>Publisher</b>: The person or organization registering a service (organization preferred.)   
+                    Users of the resource should include Publisher in subsequent credits and acknowledgments.
+                    The Publisher field is chosen from a drop-down including all of the authority resources known to the registry, 
+                    which allows for better data linking and curation. For old resources that do not have a link to an existing
+                    authority resource, a freetext field is supplied, as some curation information is better than none.</p>
+            <p><b>Curation/Version</b>:This version number is a label associated with the creation or availability (i.e., most recent release or version) of the resource. This is not necessarily the same as the version number for any service interface.</p>
+            <p><b>Creator</b>: The organisation or individuals responsible for the intellectual   
+                               content of the resource, as opposed to the organisation or individuals who may have developed   
+                               the service by which the content is made available.  Guidelines:  1) If the resource is a   
+                               data collection or service accessing a collection, then Creator fields should list the scientists responsible for the original data collection. Typically, this would be list of authors   
+                               associated with the defining published paper for the collection. At a minimum, the PI or   
+                               lead author should be given. Full names should be given, not just surnames. 2) For a   
+                               collection that is a compilation of many separately published collections (e.g., an archive), then the Creator should be set to "various".  3) If the resource is an organisation   
+                               not associated with a specific collection, the most appropriate value is either empty or   
+                               the name of the person responsible to assembling the organisation. Often, an empty   
+                               value is most appropriate. 4) If the resource is a Registry that publishes records for a   
+                               single organisation, the Creator may contain the person(s) responsible for collecting or   
+                               creating the metadata held in its records. Otherwise, it can be an empty value.  5) If the   
+                               resource is an Authority, it should contain the name of the person that reserved the   
+                               authority ID it records.  Users of the   
+                               resource should include Creator in subsequent credits and acknowledgments. Multiple entries are allowed for this field.</p>
+             <p><b>Creator Logo</b>: A URL pointing to a graphical logo, which may be used to help identify the information resource. This will be displayed in some generated web pages summarizing the resource, if provided. 
+                               There is no hard size limit on the image as only the URL is kept in the resource, but keep in mind that it will most often be displayed at a thumbnail size by registry clients.</p>
+             <p><b>Contact (General)</b>: Information that can be used for contacting someone with regard to this resource. Multiple entries are allowed for this field.</p>
+             <p><b>Contact Name</b>: The name of the contact. This can either be a personal name, "John P. Jones", or a group, "Archive Support Team".</p>
+             <p><b>Contact Address</b>: The mailing address of the contact. All components of the mailing address are given in one string, e.g., '3700 San Martin Drive, Baltimore, MD 21218  USA'</p>
+             <p><b>Contact Email</b>: The email address of your contact individual or group.</p>
+             <p><b>Contact Telephone</b>: The telephone number of the contact. Complete international dialing codes should be given, e.g., 1-410-338-4547'</p>
+             <p><b>Contributor</b>: An entity responsible for making contributions to the content of the resource. 
+                                    Examples of a Contributor include a person or an organisation.  Users of the 
+                                    resource should include Contributor in subsequent credits and acknowledgments.  Like  
+                                    Creator, Contributor is intended to refer to the organisation or individuals responsible for  
+                                    the intellectual content of the resource, and not the organisation or individuals who may 
+                                    have developed the service by which the content is made available.  Also see the Guidelines under Creator.
+                                    Multiple entries are allowed for this field.</p>
+             <p><b>Reference URL</b>: Required. A URL pointing to additional human-readable information about the resource.</p>
+             <p><b>Content Type</b>: The nature or genre of the content of the resource. Type includes terms describing general categories, functions, genres, or aggregation levels for content.
+                                     Content type is chosen from a drop-down representing a controlled vocabulary. Multiple entries are allowed for this field. Options include: 
+                                               <ul><li>Other: resource that does not fall into any of the category names currently defined. 
+                                               </li><li> Archive: Collection of pointed observations 
+                                               </li><li> Bibliography: Collection of bibliographic reference, abstracts, and publications 
+                                               </li><li> Catalog: Collection of derived data, primarily in tabular form 
+                                               </li><li> Journal: Collection of scholarly publications under common editorial policy 
+                                               </li><li> Library: Collection of published materials (journals, books, etc.) 
+                                               </li><li> Simulation: Theoretical simulation or model 
+                                               </li><li> Survey: Collection of observations covering substantial and contiguous areas of the sky 
+                                               </li><li> Transformation: A service that transforms data 
+                                               </li><li> Education: Collection of materials appropriate for educational use, such as teaching resources, curricula, etc. 
+                                               </li><li> Outreach: Collection of materials appropriate for public outreach, such as press releases and photo galleries 
+                                               </li><li> EPO Resource: Collection of materials that may be suitable for EPO products but which are not in final product form, as in Type Outreach or Type Education. EPOResource would apply, e.g., to archives with easily accessed preview images or to surveys with easy-to-use images. 
+                                               </li><li> Animation: Animation clips of astronomical phenomena 
+                                               </li><li> Artwork: Artist renderings of astronomical phenomena or objects 
+                                               </li><li> Background: Background information on astronomical phenomena or objects 
+                                               </li><li> Basic Data: Compilations of basic astronomical facts about objects, such as approximate distance or membership in constellation 
+                                               </li><li> Historical: Historical information about astronomical objects 
+                                               </li><li> Photographic: Publication-quality photographs of astronomical objects 
+                                               </li><li> Press: Press releases about astronomical objects 
+                                               </li><li> An organization that is a publisher or curator of other resources 
+                                               </li><li> Project: A project that is a publisher or curator of other resources                          
+                                               </li></ul></p>
+             <p><b>Content Level</b>: A description of the content level, or intended audience.  
+                                      VO resources will be available to professional astronomers, amateur astronomers, educators, and the general public.  These different audiences need a way to  
+                                      find material appropriate for their needs. Content level is chosen from a drop-down representing a controlled vocabulary. Multiple entries are allowed for this field. Options include:
+                                                 <ul><li>General: Resource provides information appropriate for all users.
+                                                 </li><li>Elementary Education: Resource provides information appropriate for use in elementary education (e.g. approximate ages 6-11).
+                                                 </li><li>Middle School Education: Resource provides information appropriate for use in elementary education (e.g. approximate ages 14-18).
+                                                 </li><li>Secondary Education: Resource provides information appropriate for use in middle school education (e.g. approximate ages 11-14).
+                                                 </li><li>Community College: Resource provides information appropriate for use in community/junior college or early university education.
+                                                 </li><li>University: Resource provides information appropriate for use in university education.
+                                                 </li><li>Research: Resource provides information appropriate for supporting scientific research.
+                                                 </li><li>Amateur: Resource provides information of interest to amateur astronomers.
+                                                 </li><li>Informal Education: Resource provides information appropriate for education at museums,planetariums,and other centers of informal learning.
+                                                 </li></ul></p>
+             <p><b>Subject</b>: A list of the topics, object types, or other descriptive keywords about the  
+                              resource. Subject is intended to provide additional information about the nature of the  
+                              information provided by the resource.  Is this a catalog of quasars?  Of planetary nebulae?  Is this a tool for computing ephemerides?  Terms for Subject should be drawn from  
+                              the <a href="http://msowww.anu.edu.au/library/thesaurus/" target="_blank">IAU Astronomy Thesaurus</a>, though in  
+                              the absence of suitable terms (the IAU Thesaurus is not complete in all areas of astronomical research) the following alternate collections of astronomical research terms may  
+                              be used: <a href="http://vizier.u-strasbg.fr/doc/ADCkwds.htx " target="_blank">Vizier keywords (CDS)</a>,  and
+                              <a href="http://www.aanda.org/index2.php?option=com_content&task=view&id=170&Itemid=256" target="_blank">Astronomy journal keywords</a>  
+                              Multiple entries are allowed for this field.</p>
+
+            <h3><a name="FieldsForAllServices">Fields for All Services, Standard and Non-Standard</a></h3>
+            <p><b>Interface (General)</b>: A set of fields that describes a web interface to the service. Multiple interfaces are allowed for each type of capability, standard or otherwise.</p>
+            <p><b>Access URL</b>: Required, one per service. This represents the URL for access to a service. For the standard (CS, SIA, SSA, etc) interface to a service, this is the URL where access will
+                                  conform to the IVOA standard specification, and is the "base" URL to which standard parameters are added. 
+                                  For a non-standard parameterized service, this represents the URL for access to the non-standard parameterized interface. The complete URL must respond to a HTTP GET request represented by a URL having two parts: a base URL and arguments that denote specific behaviour by the service itself.
+                                  For a web browser interface, this is the URL for web browser access to this resource, i.e. a web form.</p>
+    
+            <h3><a name="FieldsForStandardServices">Fields for All Standard Services</a></h3>
+            <p><b>Coverage / Waveband</b>: A named spectral region of the electro-magnetic spectrum that the resource's spectral coverage overlaps with. Optional, multiple occurrences allowed.
+                                           Waveband is chosen from a drop-down representing a controlled vocabulary. Multiple entries are allowed for this field. Options include:
+                <ul><li>Radio: any wavelength &gt; 10mm (or frequency &lt; 30 GHz)
+                </li><li>Millimeter: 0.1mm &lt;= wavelength &lt; 10mm; 3000GHZ &gt;= frequency &gt;= 30GHz
+                </li><li>Infrared: 1 micron &lt;= wavelength &lt;= 100 microns
+                </li><li>Optical: 0.3 microns &lt;= wavelength &lt;= 1 micron; 300 nm &lt;= wavelength &lt;= 1000 nm
+                </li><li>UV: 0.1 micron &lt;= wavelength &lt;= 0.3 microns; 100 nm &lt;= wavelength &lt;= 300 nm; 1000 Angstroms &lt;= wavelength &lt;= 3000 Angstroms
+                </li><li>EUV: 100 Angstroms &lt;= wavelength &lt;= 1000 Angstroms; 12 eV &lt;= energy &lt;= 120 eV
+                </li><li>X-ray: 0.1 Angstroms &lt;= wavelength &lt;= 100 Angstroms; 0.12 keV &lt;= energy &lt;= 120 keV
+                </li><li>Gamma-ray: energy &gt;= 120 keV
+                 </li></ul></p>
+
+            <h3><a name="FieldsForConeSearch">Fields for Cone Search Services</a></h3>
+            <p><b>Verbosity</b>: Required. True or false, depending on whether the service supports the VERB keyword in the request.</p>
+            <p><b>Max Records</b>: The largest number of records (entries) that the service will return, as an integer.</p>
+            <p><b>Max Search Radius</b>: The largest search radius, given in decimal degrees, that will be accepted by the service without returning an error condition. A value of 180.0 or an empty field indicates that there is no restriction.</p>
+            <p><b>Test Query (RA)</b>: For a test query wherein your service will return a non-empty response, a right-ascension in the ICRS coordinate system for the positon of the center of the cone to search, given in decimal degrees. If a positional/size test query is defined at all, all POS/SIZE values should be provided. </p>
+            <p><b>Test Query (Dec)</b>: For a test query wherein your service will return a non-empty response, a declination in the ICRS coordinate system for the positon of the center of the cone to search, given in decimal degrees. If a positional/size test query is defined at all, all POS/SIZE values should be provided. </p>
+            <p><b>Test Query (Search Radius)</b>: For a test query wherein your service will return a non-empty response, the radius of the cone to search, given in decimal degrees.  If a positional/size test query is defined at all, all POS/SIZE values should be provided.  </p>
+            <p><b>Cone Search Version Number per Interface</b>: Version number of the Cone Search Protocol expected at this URL. Example (current) version is 1.03; 1.0 is often used to note general compliance.
+                        Most VO applications accessing a service assume version 1.0 compliance if this value is not provided, but this is not required behaviour and leaving it blank is not recommended. If
+                        the version number is not listed, no default version is implied.</p>
+    
+            <h3><a name="FieldsForSIA">Fields for Simple Image Access Services</a></h3>
+            <p><b>Max Records</b>: The largest number of records (entries) that the Image Query web method will return.</p>
+            <p><b>Max File Size</b>: The size of the largest file the service will return, in bytes.</p>
+            <p><b>Image Service Type</b>: Required. The category of Image Service that this services falls into. Image Service Type is chosen from a drop-down representing a controlled vocabulary. Options are as follows: 
+                        <ul><li>Cutout: This is a service which extracts or "cuts out" rectangular regions of some larger image, returning an image of the requested size to the client. Such images are usually drawn from a database or a collection of survey images that cover some large portion of the sky. To be considered a cutout service, the returned image should closely approximate (or at least not exceed) the size of the requested region; however, a cutout service will not normally resample (rescale or reproject) the pixel data. A cutout service may mosaic image segments to cover a large region but is still considered a cutout service if it does not resample the data. Image cutout services are fast and avoid image degredation due to resampling. 
+                        </li><li>Mosaic: This service is similar to the image cutout service but adds the capability to compute an image of the size, scale, and projection specified by the client. Mosaic services include services which resample and reproject existing image data, as well as services which generate pixels from some more fundamental dataset, e.g., a high energy event list or a radio astronomy measurement set. Image mosaics can be expensive to generate for large regions but they make it easier for the client to overlay image data from different sources. Image mosaicing services which resample already pixelated data will degrade the data slightly, unlike the simpler cutout service which returns the data unchanged. 
+                        </li><li>Atlas: This service is similar to the image cutout service but adds the capability to compute an image of the size, scale, and projection specified by the client. Mosaic services include services which resample and reproject existing image data, as well as services which generate pixels from some more fundamental dataset, e.g., a high energy event list or a radio astronomy measurement set. Image mosaics can be expensive to generate for large regions but they make it easier for the client to overlay image data from different sources. Image mosaicing services which resample already pixelated data will degrade the data slightly, unlike the simpler cutout service which returns the data unchanged. 
+                        </li><li>Pointed: This category of service provides access to collections of images of many small, "pointed" regions of the sky. "Pointed" images normally focus on specific sources in the sky as opposed to being part of a sky survey. This type of service usually applies to instrumental archives from observatories with guest observer programs (e.g., the HST archive) and other general purpose image archives (e.g., the ADIL). If a service provides access to both survey and pointed images, then it should be considered a Pointed Image Archive for the purposes of this specification; if a differentiation between the types of data is desired the pointed and survey data collections should be registered as separate image services.
+                        </li></ul></p>
+            <p><b>Max Image Extent (Longitude/RA)</b>: The maximum image extent on the sky in decimal degrees, e.g., "1.0", across the image's axis for right ascenscion</p>
+            <p><b>Max Image Extent (Latitude/Dec)</b>: The maximum image extent on the sky in decimal degrees, e.g., "1.0", across the image's axis for declination</p>
+            <p><b>Max Image Size (Longitude/RA)</b>: The maximum image size across the image's axis for right ascenscion, in pixels, e.g., "8192"</p>
+            <p><b>Max Image Size (Latitude/Dec)</b>: The maximum image size across the image's axis for declination, in pixels, e.g., "8192"</p>
+            <p><b>Test Query Position (RA)</b>: For a test query wherein your service will return a non-empty response: a right-ascension in the ICRS coordinate system for the position of the field center, given in decimal degrees.  If a positional/size test query is defined at all, both positional values and at least one size dimension should be provided. </p>
+            <p><b>Test Query Position (Dec)</b>: For a test query wherein your service will return a non-empty response: a declination in the ICRS coordinate system for the position of the field center, given in decimal degrees.  If a positional/size test query is defined at all, both positional values and at least one size dimension should be provided. </p>
+            <p><b>Test Query Size (Latitude/RA)</b>: For a test query wherein your service will return a non-empty response: The coordinate angular size of the region's RA given in decimal degrees. A special case is SIZE=0. For an atlas or pointed image archive this tests whether the given point is in any image. For a valid POS/SIZE test query, both positional values and at least one size dimension should be provided. </p>
+            <p><b>Test Query Size (Longitude/Dec)</b>: For a test query wherein your service will return a non-empty response: The coordinate angular size of the region's declination given in decimal degrees. A special case is SIZE=0. For an atlas or pointed image archive this tests whether the given point is in any image. For a valid POS/SIZE test query, both positional values and at least one size dimension should be provided.</p>
+            <p><b>Simple Image Access Protocol Version Number per Interface</b>: Version number of the Simple Image Access Protocol expected at this URL. Ex: "1.0".
+                        Most VO applications accessing a service assume version 1.0 compliance if this value is not provided, but this is not required behaviour and leaving it blank is not recommended. 
+                        If the version number is not listed, no default version is implied.</p>
+    
+            <h3><a name="FieldsForSSA">Fields for Simple Spectral Access Services</a></h3>
+            <p><b>Data Creation Type</b>: Required. The category that describes the process used by the service to produce the dataset. Typically this describes only the processing 
+                                        performed by the data service, but it could describe some additional earlier processing as well, e.g., if data returned by the service is partially precomputed from the source data.
+                                        Data creation type is chosen from a drop-down representing a controlled vocabulary. Options are:</p>
+                                        <ul><li>Archival: The entire archival or project dataset (e.g., file) is returned. Transformations such as metadata or data model mediation or format conversions may take place, but the _content_ of the dataset is not substantially modified (e.g., all the data is returned and the sample values are not modified).
+                                        </li><li>Cutout: The dataset is subsetted in some region of parameter space to produce a subset dataset. Sample values are not modified, e.g., cutouts could be recombined to reconstitute the original dataset.
+                                        </li><li>Filtered: The data is filtered in some fashion to exclude portions of the dataset, e.g., passing only data in selected regions along a measurement axis, or processing the data in a way which recomputes the sample values, e.g., via interpolation or flux transformation. Filtering is often combined with other forms of processing, e.g., projection.
+                                        </li><li>Mosaic: Data from multiple non- or partially-overlapping datasets are combined to produce a new dataset. Mosaic data may or may not employ filtering, i.e., computation of new data samples. If filtering is not involved data samples are assumed to be produced by "cutting out" regions of the mosaiced datasets.
+                                        </li><li>Projection: Data is geometrically warped or dimensionally reduced by projecting along the axis of a multidimensional dataset.
+                                        </li><li>Spectral Extraction: Extraction of a spectrum from another dataset, e.g., extraction of a spectrum from a spectral data cube through a simulated aperture.
+                                        </li><li>Catalog Extraction: Extraction of a catalog of some form from another dataset, e.g., extraction of a source catalog from an image, or extraction of a line list catalog from a spectrum (generally not valid for a SSA service).
+                                        </li></ul></p>
+            <p><b>Simple Spectral Access Protocol Compliance Level</b>: This indicates the level at which a service instance complies with the SSA standard. Compliance Level is chosen from a drop-down representing a controlled vocabulary. Options are as follows:
+                                    <ul><li>Query: The service supports all of the capabilities and features of the SSA protocol identified as "must" in the specification, except that it does not support returning data in at least one SSA-compliant format (only data in some native project format is returned). 
+                                    </li><li>Minimal: The service supports all of the capabilities and features of the SSA protocol identified as "must" in the specification. 
+                                    </li><li>Full: The service supports, at a minimum, all of the capabilities and features of the SSA protocol identified as "must" or "should" in the specification. (Highest level of compliance)
+                                    </li></ul></p>
+            <p><b>Data Source</b>: Required. The defined categories that specify where the spectral data originally came from, i.e., the type of data collections to which the service provides access.
+                                   Data Source is chosen from a drop-down representing a controlled vocabulary. Options include:
+                                   <ul><li>Survey: A survey dataset, which typically covers some region of observational parameter space in a uniform fashion, with typically with complete coverage within the region of parameter space observed.
+                                   </li><li>Pointed: A pointed observation of a particular astronomical object or field. Typically, these are instrumental observations taken as part of some PI observing program. The data quality and characteristics may be variable, but the observations of a particular object or field may be more extensive than for a survey.
+                                   </li><li>Custom: Data which has been custom processed, e.g., as part of a specific research project.
+                                   </li><li>Theory: Theory data, or any data generated from a theoretical model, for example a synthetic spectrum.
+                                   </li><li>Artificial: Artificial or simulated data. This is similar to theory data but need not be based on a physical model, and is often used for testing purposes.
+                                   </li></ul></p>
+            <p><b>Max Records</b>: The largest number of records (entries) that the query operation will return in a single response, as an integer.</p>
+            <p><b>Default Max Records</b>:  The largest number of records that the service will return when the MAXREC parameter not specified in the query input. If not specified the default maximum number of records in a query response is undefined.</p>
+            <p><b>Max Aperture</b>: Only relevant for services with Data Creation Type of "Spectral Extraction". The largest aperture diameter, in degrees, that can be supported upon request via the APERTURE input parameter by a service that supports the special extraction creation method.  A value of 360 (the default) or an empty field means there is no fixed limit.</p>
+            <p><b>Max File Size</b>: The estimated maximum output dataset file size in kilobytes. (Some older services have this listed in bytes.)</p>
+            <p><b>Max Search Radius</b>: The largest search radius, given in decimal degrees, that will be accepted by the service without returning an error condition. A value of 180.0 or an empty field indicates that there is no restriction.</p>
+            <p><b>Test Query (POS Longitude/RA)</b>: For a test query wherein your service will return a non-empty response: The longitude (e.g. Right Ascension) of the center of the search position specified in decimal degrees. If a positional/size test query is defined at all, both POS values should be provided. </p>
+            <p><b>Test Query (POS Latitude/Dec)</b>: For a test query wherein your service will return a non-empty response: The latitude (e.g. Declination) of the center of the search position specified in decimal degrees.  If a positional/size test query is defined at all, both POS values should be provided. </p>
+            <p><b>Test Query (Size)</b>: For a test query wherein your service will return a non-empty response: The diameter of a search specified in decimal degrees.  If a positional/size test query is defined at all, both POS values should be provided; SIZE is optional. </p>
+            <p><b>Test Query Data Command</b>:  Fully specified queryData test query formatted as an URL argument list in the syntax specified by the SSA standard.  The list must exclude the REQUEST argument which is assumed to be set to "queryData".
+                                                 VERSION may be included if the test query applies to a specific version of the service protocol. 
+                                                If queryDataCmd is used to form a query, Positional and Size test query values are not used; if the test query requires POS and SIZE these should be included directly in queryDataCmd (hence non-positional test queries can be supported). 
+                                                This value must be a string in the form of name=value pairs delimited with ampersands.  A query may then be formed by appending to the baseURL the request argument.</p>
+            <p><b>Spectral Access Protocol Version Number per Interface</b>: Version number of the SSA Protocol this service uses. Ex: "0.4" or "1.0"'.  Most VO applications accessing a service assume version 1.0 compliance if this value is not provided, 
+                        but this is not required behaviour and leaving it blank is not recommended. If the version number is not listed, no default version is implied.</p>
+    
+            <h3><a name="FieldsForNonStandard">Fields for Non-Standard Interfaces Only</a></h3>
+            <p><b>Access URL Type</b>: Type of use expected for the associated access URL. BASE is standard and indicates the service expects that URL with standard arguments appended, and is implied
+                                      in standard service access URLs. Access URL Use is chosen from a drop-down representing a controlled vocabulary. </p>
+            <p><b>Result MIME Type</b>: The MIME type of a document returned in the HTTP response. Ex: "text/xml". This is also implied in standard service access.</p>
+             </div>   
+         </div>        
+    </div>
+</div>
+     
+<div style="width:98%;text-align:right;float:left;padding-top:5px;padding-right:5px;">
+<a href="http://www.usvao.org/acknowledging-the-vao/"><span class="tiny">Acknowledging VAO</span></a><br/>
+  ©<strong> 2013 VAO, LLC</strong></div>
+</div>
+                        
+</body>                          
+</html>                          
+                                                                                                            
+                                                                                                            

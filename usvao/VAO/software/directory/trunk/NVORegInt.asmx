@@ -1,0 +1,1 @@
+<%@ WebService Language="c#" Codebehind="app_code/NVORegInt.asmx.cs" Class="registry.NVORegInt" %>

@@ -1,0 +1,52 @@
+/* 
+ * nvotip.css adapted from the very nice
+ * prototip.css : http://www.nickstakenburg.com/projects/prototip 
+ */
+.prototip { position: absolute; }
+.prototip .effectWrapper { position: relative; }
+.prototip .tooltip { position: relative; }
+.prototip .toolbar {
+	position: relative;
+	display: block;
+	}
+.prototip .toolbar .title {
+	display: block;
+	position: relative;
+	}
+.prototip .content { clear: both; }
+.prototip .toolbar a.close {
+	position: relative;
+	text-decoration: none;
+	float: right;
+	width: 15px;
+	height: 15px;
+	background: transparent url(close.gif);
+	display: block;
+	line-height: 0;
+	font-size: 0px;
+	border: 0;
+	}
+.prototip .toolbar a.close:hover { background: transparent url(close_hover.gif); }
+
+.iframeShim { 
+	position: absolute;
+	border: 0;
+	margin: 0;	
+    padding: 0;
+    background: none;
+}
+
+/* Tooltip styles */
+.prototip .default { width: 150px; color: #fff; }
+.prototip .default .toolbar { background: #0F6788; font: italic 17px Georgia, serif; }
+.prototip .default .title { padding: 5px; }
+.prototip .default .content { background: dodgerblue; font: 11px Arial, Helvetica, sans-serif; padding: 5px;}
+
+.prototip .nvotip            { border: 1px solid #a1a1a1; width: 300px; }
+.prototip .nvotip .toolbar   { background: #6ba5d7; color: #ffffff;
+                               font: italic 17px Georgia, serif; }
+.prototip .nvotip .title     { font-family: arial,helvetica,sans-serif;
+                               font-weight: 700; padding: 5px; }
+.prototip .nvotip .content   { background: #fff; color: #555555;
+                               font: 11px Arial, Helvetica, sans-serif;
+                               padding: 5px; }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  -  where capability/maxRecord > 1000
+  -->
+<Where xmlns="http://www.ivoa.net/xml/ADQL/v1.0" 
+       xmlns:ad="http://www.ivoa.net/xml/ADQL/v1.0" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Condition xsi:type="ad:intersectionSearchType">
+    <Condition xsi:type="ad:intersectionSearchType">
+      <Condition Comparison="=" xsi:type="ad:comparisonPredType">
+        <Arg xpathName="capability/goober" Table="r" xsi:type="ad:columnReferenceType"/>
+        <Arg xsi:type="ad:atomType">
+          <Literal Value="ivo://ivoa.net/std/SIA" xsi:type="ad:stringType"/>
+        </Arg>
+      </Condition>
+      <Condition xsi:type="ad:closedSearchType">
+        <Condition xsi:type="ad:unionSearchType">
+          <Condition xsi:type="ad:likePredType">
+            <Arg xpathName="content/subject" Table="r" xsi:type="ad:columnReferenceType"/>
+            <Pattern xsi:type="ad:atomType">
+              <Literal Value="%lenticular%" xsi:type="ad:stringType"/>
+            </Pattern>
+          </Condition>
+          <Condition xsi:type="ad:likePredType">
+            <Arg xpathName="content/description" Table="r" xsi:type="ad:columnReferenceType"/>
+            <Pattern xsi:type="ad:atomType">
+              <Literal Value="%lenticular%" xsi:type="ad:stringType"/>
+            </Pattern>
+          </Condition>
+        </Condition>
+      </Condition>
+    </Condition>
+    <Condition xsi:type="ad:closedSearchType">
+      <Condition xsi:type="ad:unionSearchType">
+        <Condition Comparison="=" xsi:type="ad:comparisonPredType">
+          <Arg xpathName="coverage/waveband" Table="r" xsi:type="ad:columnReferenceType"/>
+          <Arg xsi:type="ad:atomType">
+            <Literal Value="optical" xsi:type="ad:stringType"/>
+          </Arg>
+        </Condition>
+        <Condition Comparison="=" xsi:type="ad:comparisonPredType">
+          <Arg xpathName="coverage/waveband" Table="r" xsi:type="ad:columnReferenceType"/>
+          <Arg xsi:type="ad:atomType">
+            <Literal Value="radio" xsi:type="ad:stringType"/>
+          </Arg>
+        </Condition>
+      </Condition>
+    </Condition>
+  </Condition>
+</Where>

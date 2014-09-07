@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  -  where managingOrg/@ivo-id = 'stsci'
+  -->
+<Where xmlns="http://www.ivoa.net/xml/ADQL/v1.0" 
+       xmlns:ad="http://www.ivoa.net/xml/ADQL/v1.0" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Condition Comparison="=" xsi:type="ad:comparisonPredType">
+    <Arg xpathName="managingOrg/@ivo-id" Table="r" xsi:type="ad:columnReferenceType"/>
+    <Arg xsi:type="ad:atomType">
+      <Literal Value="stsci" xsi:type="ad:stringType"/>
+    </Arg>
+  </Condition>
+</Where>

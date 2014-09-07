@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" href="styles/layout.css" title="default" media="all"/>
+    
+    <title>Registry Publishing Wizard</title>
+    
+    <!-- Initialize ExtJS and our local libraries. -->
+    <script type="text/javascript" src="scripts/InitializeJavaScript.js"></script>
+    <script type="text/javascript" src="scripts/namespace.js"></script>
+    <script type="text/javascript" src="scripts/ext4_ux_formtooltips.js"></script>
+    <script type="text/javascript" src="scripts/ExtExtendedComponents.js"></script>   
+    <script type="text/javascript" src="scripts/domcardmanager.js"></script>
+ 
+   
+    <script type="text/javascript" src="scripts/layout.js"></script>
+    <script type="text/javascript" src="scripts/xmlimport.js"></script>
+    <script type="text/javascript" src="scripts/xmlexport.js"></script>
+
+    <script type="text/javascript" src="scripts/domreaderwizard.js"></script>
+    <script type="text/javascript" src="scripts/loginstatus.js"></script>
+
+     <!-- Start this application. -->
+    <script type="text/javascript">
+        Ext.onReady(PublishingWizard.LoginStatusWizard.createAndRun, PublishingWizard.LoginStatusWizard, { mainDiv: 'isloggedin-div' });
+        Ext.onReady(PublishingWizard.DomReaderWizard.createAndRun, PublishingWizard.DomReaderWizard, { mainDiv: 'wizard-div' });
+    </script>
+</head>
+<body>
+<div id="main-wrapper">
+  <div align="right"></div>
+
+<div id="logo"><a href="http://www.usvao.org/" title="Home" target="_blank"><img src="images/VAO_logo_100.png" alt="VAO" height="50" width="100"/></a></div>
+<div id="logo"><a href="http://vao.stsci.edu/directory" title="Directory Search" target="_blank"><img src="images/Directory50.png" alt="Directory Search" height="50" width="50" /></a></div>
+<div id="nav-wrapper">
+  <div id="navigation">
+  <div id="isloggedin-div"></div>
+  </div>
+  <div id="nav-right"></div>
+</div>
+<div class="clear"></div>
+
+<div id="content-area"> 
+    <div id="helpcontent"><h1>VAO Registry Publishing Interface - Individual Resource Management</h1>
+                 <h2 id="resourceTitle">Creating New Resource</h2><br />
+                 <div style="width:800px;text-align:right;float:left;">page <label id="pagenum">1</label> of <label id="pages">n</label></div><br />
+     </div>
+     <div id="wizard-div"></div>
+</div>
+</body>
+</html>

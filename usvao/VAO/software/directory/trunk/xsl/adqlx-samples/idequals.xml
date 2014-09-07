@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  -  where r.ivoid='ivo://ivoa.net/rofr'
+  -->
+<Where xmlns="http://www.ivoa.net/xml/ADQL/v1.0" 
+       xmlns:ad="http://www.ivoa.net/xml/ADQL/v1.0" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Condition Comparison="=" xsi:type="ad:comparisonPredType">
+    <Arg xpathName="identifier" Table="r" xsi:type="ad:columnReferenceType"/>
+    <Arg xsi:type="ad:atomType">
+      <Literal Value="ivo://ivoa.net/rofr" xsi:type="ad:stringType"/>
+    </Arg>
+  </Condition>
+</Where>

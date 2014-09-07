@@ -1,0 +1,26 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Registry Publishing Wizard</title>
+    
+    <!-- Initialize ExtJS and our local libraries. -->
+    <script type="text/javascript" src="scripts/InitializeJavaScript.js"></script>
+
+    <script type="text/javascript" src="scripts/namespace.js"></script>
+    <script type="text/javascript" src="scripts/layout.js"></script>
+    <script type="text/javascript" src="scripts/viewport.js"></script>
+    <script type="text/javascript" src="scripts/xmlform.js"></script>
+    <script type="text/javascript" src="scripts/cardmanager.js"></script>
+    <script type="text/javascript" src="scripts/wizard.js"></script>
+     
+    <!-- Start this application. -->
+    <script type="text/javascript">
+        Ext.onReady(PublishingWizard.Wizard.createAndRun, PublishingWizard.Wizard, { mainDiv: 'wizard-div' });
+    </script>
+</head>
+<body>
+    <div id="wizard-div"></div>
+</body>
+</html>
