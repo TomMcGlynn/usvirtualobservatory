@@ -1,0 +1,118 @@
+<project name="PortalHome" default="jar" basedir=".">
+<description> Portal Home Page </description>
+
+<property name="proj"     value="portal" />
+<property file="../../net_ivoa/trunk/heasarc.properties"/>
+
+<filter token="URL_PATH"      value="${URL_PATH}"/>
+<filter token="CSS_PATH"      value="${CSS_PATH}"/>
+<filter token="IMG_PATH"      value="${IMG_PATH}"/>
+<filter token="JS_PATH"       value="${JS_PATH}"/>
+<filter token="Registry"      value="${Registry}"/>
+<filter token="SimpleQuery"   value="${SimpleQuery}"/>
+<filter token="Inventory"     value="${Inventory}"/>
+<filter token="VIM"           value="${VIM_HOME}"/>      <!-- DIFFERENT THAN THE REST ON PURPOSE !!!! -->
+<filter token="DataScope"     value="${DataScope}"/>
+<filter token="Translator"    value="${Translator}"/>
+<filter token="Wizard"        value="${Wizard}"/>
+<filter token="VOCLI"         value="${VOCLI}"/>
+
+<target name="check_dependencies"  >
+   <available file="${ivoalib}" property="${ivoalib}.present"/>
+   <fail message="Cannot find ${ivoalib} which is required to build this project"
+      unless="${ivoalib}.present"/>
+   <echo message="Found ${ivoalib}" />
+   <available file="${nvolib}" property="${nvolib}.present"/>
+   <fail message="Cannot find ${nvolib} which is required to build this project"
+      unless="${nvolib}.present"/>
+   <echo message="Found ${nvolib}" />
+</target>
+
+<target name="merge_java"  depends="check_dependencies" >
+   <mkdir dir="${srcdir}" />
+   <echo message="Merging Java files." />
+   <copy todir="${srcdir}" includeEmptyDirs='false' filtering='true'>
+      <fileset includes="**/*.java" dir="${nvolib}/trunk/src/java/" />
+      <fileset includes="**/*.java" dir="${ivoalib}/trunk/src/java/" />
+      <fileset includes="**/*.java" dir="${java}" />
+   </copy>
+</target>
+
+<target name="compile" depends="merge_java" >
+   <mkdir dir="${classes}" />
+   <javac destdir="${classes}" srcdir="${srcdir}" debug="on" >
+<!--
+      <compilerarg value="-Xlint:unchecked" /> 
+-->
+      <classpath>
+         <pathelement location="${classes}" />
+         <pathelement location="${fjars}/stilts.jar" />
+      </classpath>
+   </javac>
+</target>
+
+<target name='jar' depends="compile" >
+   <mkdir dir="${jars}" />
+   <jar destfile="${jar}" update="false" basedir="${classes}" />
+   <!-- make the entire tmp directory group writable -->
+   <chmod dir="${tmp}" type="both" includes="**" perm="g+w" />
+</target>
+
+<target name="install" depends="jar">
+   <echo message="Clearing out old directories" />
+   <delete failonerror="false" dir="${DEST}" />
+
+   <echo message="Installing in ${DEST}." />
+
+   <echo message="Copying CGI scripts from ${cgi} to ${DEST}" />
+   <copy todir="${DEST}" includeEmptyDirs='false' filtering='true'>
+      <fileset dir="${cgi}" >
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+   <chmod dir="${DEST}" includes="*" perm="ugo+x" />
+   <concat destfile="${DEST}/vo.settings" append="true">
+      <filelist dir="${nvolib}/trunk/src/cgi/" files="net_nvo.settings"/>
+   </concat>
+
+   <echo message="Copying HTML documentation" />
+   <copy todir="${DEST}" includeEmptyDirs='false' filtering='true'>
+      <fileset dir="${nvolib}/trunk/src/html/">
+         <exclude name="**/versions/*" />
+      </fileset>
+      <fileset dir="${docs}" >
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+
+   <echo message="Copying CSS files." />
+   <copy todir="${DEST}/${CSS_PATH}" >
+      <fileset includes="**/*.css" dir="${nvolib}/trunk/src/css/" />
+      <fileset includes="**/*.css" dir="${css}" />
+   </copy>
+
+   <echo message="Copying javascript files." />
+   <copy todir="${DEST}/${JS_PATH}" >
+      <fileset includes="**/*.js" dir="${fjs}" />
+      <fileset includes="**/*.js" dir="${js}" />
+   </copy>
+
+   <echo message="Copying image files." />
+   <copy todir="${DEST}/${IMG_PATH}" >
+      <fileset includes="**/*.png" dir="${img}" />
+   </copy>
+
+   <echo message="Copying external Jar files." />
+   <copy todir="${DEST}" >
+      <fileset includes="**/*.jar" dir="${fjars}" />
+   </copy>
+
+   <echo message="Installing new JAR from ${jar} to ${DEST}/${jarname}" />
+   <copy file="${jar}" tofile="${DEST}/${jarname}" />
+   <chmod dir="${DEST}" includes="**" type="both" perm="g+w" />
+</target>
+
+<target name="test" depends="compile">
+   <echo message="Testing has not been implemented yet." />
+</target>
+</project>

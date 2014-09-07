@@ -1,0 +1,47 @@
+<project name="net_ivoa" default="jar" basedir=".">
+<description> IVOA Java Utilities </description>
+
+<property name="root"     value="../.." />
+<property name="proj"     value="net_ivoa" />
+<property name="tmp"      value="./tmp" />
+<property name="classes"  value="${tmp}/class" />
+<property name="srcdir"   value="${tmp}/java" />
+<property name="fjars"    value="../foreign/jars" />
+<property name="jars"     value="${tmp}/jars" />
+<property name="jar"      value="${jars}/${proj}.jar" />
+
+<target name="merge_java"  >
+   <mkdir dir="${srcdir}" />
+   <echo message="Merging Java files." />
+   <copy todir="${srcdir}" includeEmptyDirs='false'>
+      <fileset includes="**/*.java" dir="./src/java/" />
+   </copy>
+</target>
+
+<target name="compile" depends="merge_java" >
+   <mkdir dir="${classes}" />
+   <javac destdir="${classes}"
+      srcdir="${srcdir}"
+      debug="on"
+   >
+      <classpath>
+         <pathelement location="${classes}" />
+         <pathelement location="${fjars}/stilts.jar" />
+      </classpath>
+   </javac>
+</target>
+
+<target name='jar' depends="compile" >
+   <mkdir dir="${jars}" />
+   <jar destfile="${jar}" update="false" basedir="${classes}" />
+</target>
+
+<target name="clean">
+   <delete failonerror="false" dir="${tmp}" />
+</target>
+
+<target name="test" depends="jar">
+   <echo message="TEST has not been implemented yet." />
+</target>
+
+</project>

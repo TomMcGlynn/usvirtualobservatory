@@ -1,0 +1,102 @@
+h1,h2,h3,h4,h5,h6,p, body, tr, td, ul, li {FONT-FAMILY: arial,helvetica,sans-serif}
+
+UNKNOWN {
+	BACKGROUND-COLOR: white; MARGIN: 0.12in; WORD-SPACING: 1em; COLOR: black; LETTER-SPACING: 0.1em
+}
+H1 {
+	FONT-WEIGHT: 700; FONT-SIZE: 18pt; COLOR: #003366; FONT-STYLE: normal; 
+}
+H1.custom {
+	FONT-WEIGHT: normal; FONT-SIZE: 36pt; FONT-STYLE: normal; 
+}
+H1.custom2 {
+	FONT-WEIGHT: normal; FONT-SIZE: 42pt; FONT-STYLE: normal; 
+}
+H1.custom3 {
+	FONT-WEIGHT: normal; FONT-SIZE: 6pt; FONT-STYLE: normal; 
+}
+H2 {
+	FONT-WEIGHT: 700; FONT-SIZE: 16pt; COLOR: #003366; FONT-STYLE: normal; 
+}
+H3 {
+	FONT-WEIGHT: 700; FONT-SIZE: 14pt; COLOR: #003366; FONT-STYLE: normal; 
+}
+H4 {
+	FONT-WEIGHT: 700; FONT-SIZE: 12pt; COLOR: #003366; FONT-STYLE: normal; 
+}
+H5 {
+	FONT-WEIGHT: 700; FONT-SIZE: 10pt; COLOR: #003366; FONT-STYLE: normal; 
+}
+H6 {
+	FONT-WEIGHT: 700; FONT-SIZE: 8pt; COLOR: #003366; FONT-STYLE: normal; 
+}
+DIV {
+	FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-STYLE: normal; 
+}
+SPAN {
+	FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-STYLE: normal; 
+}
+P,TR, TD {
+	FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-STYLE: normal; 
+}
+HR {
+	COLOR: #ffcc00
+}
+
+LI {
+	MARGIN-TOP:0px;
+	MARGIN-BOTTOM:0px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+}
+UL, P {
+	MARGIN-TOP:8px;  MARGIN-BOTTOM:8px;
+}
+H3, H4 {
+	MARGIN-TOP:8px;  MARGIN-BOTTOM:6px;
+}
+
+
+.code   { font-size: 9pt; font-family: Courier, Fixed }
+.small  { font-size: 8pt;}
+.tiny   { font-size: 6pt;}
+.norm   { font-size: 9pt;}
+.left   { text-align: left; } 
+.center { text-align: center; } 
+.right  { text-align: right; } 
+.warn   { color: #FF0000; }
+.hi     { background: blue;}
+.lo     { background: #6ba5d7;}
+.menu   { background: #6ba5d7; font-size:8pt; font-weight: bold; text-align:center; }
+.menusmall { background: #6ba5d7; font-size:7pt; font-weight: bold; }
+.image, .image TD {background-image:url('voimages.gif');}
+
+.r0   {background-color: white   }
+.r1   {background-color: #DDDDDD }
+.hdr  {background-color: #FFFFCC }
+
+
+th.filled    { color:White; background-color:#6BA5D7; text-align: left; }
+th.filledcen { color:White; background-color:#6BA5D7; text-align: center; }
+table.filled { border-color:#6BA5D7; background-color:White;border-width:1px;border-collapse:collapse; } 
+
+a.lo:link,a.lo:visited 
+		{ color: #FFffff; text-decoration: none; text-align:left;font-size:8pt; font-weight: bold; } 
+a.lo:hover	{ background: #ff9999; color: #3333FF; text-decoration: none; } 
+a.hi:link,a.hi:visited  { color: #FFffff; text-decoration: none; text-align:left;font-size:8pt; font-weight: bold; } 
+a.menu:link,a.menu:visited  { color: #FFffff; text-decoration: none;  } 
+a.menu:hover { background: #ff9999; color: #3333FF; text-decoration: none; } 
+a.doc:link,a.doc:visited { color:White; text-decoration: none; }
+a.doc:hover { color:Red; text-decoration: none; }
+a.menusmall:link	{ color: #FFffff; text-decoration: none; } 
+a.menusmall:visited { color: #FFffff; text-decoration: none;} 
+a.menusmall:hover	{ background: #ff9999; color: #3333FF; text-decoration: none; } 
+a:link { color: Blue; text-decoration: none; } 
+a:visited { color: #336699; text-decoration: none; } 
+a:hover {background: #333399; color: #FFFFFF; text-decoration: none; } 
+
+.style1 {color: #FFFFFF}
+.style5 {font-size: 8pt}
+
+td.sel   {background: #FFAAAA}
+td.unsel {background: #FFFFFF}

@@ -1,0 +1,135 @@
+Content-type: text/html
+
+<head><title>SkyView surveys</title></head>
+<body>
+<h1 align="CENTER">SkyView Surveys</h1>
+<center><h3>Energy vs Data Pixel Resolution plot of all <i>SkyView</i> Surveys</h3>
+(Click for larger image)<br>
+<a href="/images/energy_res.jpg"><img align="center" 
+       src="/images/energy_res_sm.jpg" 
+       alt="Plot of all surveys by energy/data pixel resolution" border="0"></a></center><br>
+The diversity of <i>SkyView</i> surveys is shown here. Data ranges over about 16 orders of magnitude in energy and about 5 orders of magnitude in resolution.
+<br>
+<p>
+<hr width="90%">
+
+
+<H1><A NAME=TOP> Introduction</A></H1>
+
+This document gives a short overview of each of the surveys included
+in <i>SkyView</i>.  The descriptions include textual description which describe
+special properties of these surveys and a short
+table giving basic information for the survey.
+<P>
+The table includes:
+<UL><LI> The provenance of the data.
+   <LI> The copyright status of the data.
+   <LI> The spectral regime of the data.
+   <LI> Number of surveys, <i>i.e.</i>, typically the number of separate
+   frequency bands in <i>SkyView</i>.
+   <LI> The approximate frequency of the data.  In addition
+         to the frequency other indicators of the spectral range
+	 may be included (<i>e.g.</i>, photon energy, wavelength, band).
+   <LI> The coverage of the survey on the sky.  All-sky indicates that
+         the survey covers substantially the entire sky although
+	 there may be small patches not covered.
+   <LI> Pixel scale.  The angular size of the pixels.  If only
+         a single value is given then the pixels are assumed
+	 square.
+   <LI> Pixel units.  The units in which the intensity at the
+         pixel is given.
+   <LI> Resolution. A measure of the intrinsic resolution of the
+         image.  It may be greater or less than the pixel scale.
+   <LI> Coordinate system.  The native coordinate system of the
+         survey as used in <i>SkyView</i>.
+   <LI> Equinox.  For data in Equatorial or Ecliptic coordinates,
+         the equinox year of the coordinates.
+   <LI> Projection. The native projection of the data.
+   <LI> Reference. Reference to material giving further
+         information on the survey.
+</UL>
+
+<hr>
+
+<p><b>   Radio surveys </b><br>
+<a  href='#GTEE 0035 MHz Radio survey'> GTEE 0035 MHz Radio survey </a><br>
+<a  href='#Bonn 1420 MHz Survey'>Bonn 1420 MHz Survey</a><br>
+<a  href='#HI All-Sky Continuum Survey'>HI All-Sky Continuum Survey</a><br>
+<a  href='#4850 MHz Survey/GB6'>4850 MHz Survey/GB6 </a><br>
+<a  href='#CO Galactic Plane Survey'>CO Galactic Plane Survey</a><br>
+<a  href='#FIRST'>FIRST </a><br>
+<a  href='#Dickey and Lockman HI map'>Dickey and Lockman HI map </a><br>
+<a  href='#NVSS'>NVSS </a><br>
+<a  href='#Sydney University Molonglo Sky Survey'>Sydney University Molonglo Sky Survey </a><br>
+<a  href='#VLA Low-frequency Sky Survey'>VLA Low-frequency Sky Survey </a><br>
+<a  href='#Westerbork Northern Sky Survey'>Westerbork Northern Sky Survey </a><br>
+<p><b>  Infrared surveys </b><br>
+<a  href='#Two Micron All Sky Survey (H-Band)'>Two Micron All Sky Survey (H-Band) </a><br>
+<a  href='#Two Micron All Sky Survey (J-Band)'>Two Micron All Sky Survey (J-Band) </a><br>
+<a  href='#Two Micron All Sky Survey (K-Band)'>Two Micron All Sky Survey (K-Band) </a><br>
+<a  href='#Cosmic Background Explorer DIRBE'>Cosmic Background Explorer DIRBE</a><br>
+<a  href='#Cosmic Background Explorer DIRBE Annual Average Map'>Cosmic Background Explorer DIRBE Annual Average Map</a><br>
+<a  href='#Cosmic Background Explorer DIRBE Zodi-Subtracted Mission Average'>Cosmic Background Explorer DIRBE Zodi-Subtracted Mission Average</a><br>
+<a  href='#IRAS Sky Survey Atlas: 100 micron'>IRAS Sky Survey Atlas: 100 micron </a><br>
+<a  href='#IRAS Sky Survey Atlas: 12 micron'>IRAS Sky Survey Atlas: 12 micron </a><br>
+<a  href='#IRAS Sky Survey Atlas: 25 micron'>IRAS Sky Survey Atlas: 25 micron </a><br>
+<a  href='#IRAS Sky Survey Atlas: 60 micron'>IRAS Sky Survey Atlas: 60 micron </a><br>
+<a  href='#Improved Reprocessing of the IRAS Survey: 100'>Improved Reprocessing of the IRAS Survey: 100</a><br>
+<a  href='#Improved Reprocessing of the IRAS Survey: 12'>Improved Reprocessing of the IRAS Survey: 12</a><br>
+<a  href='#Improved Reprocessing of the IRAS Survey: 25'>Improved Reprocessing of the IRAS Survey: 25</a><br>
+<a  href='#Improved Reprocessing of the IRAS Survey: 60'>Improved Reprocessing of the IRAS Survey: 60</a><br>
+<a  href='#Schlegel, Finkbeiner and Davis 100 micron survey'>Schlegel, Finkbeiner and Davis 100 micron survey</a><br>
+<a  href='#Schlegel, Finkbeiner and Davis Dust Survey'>Schlegel, Finkbeiner and Davis Dust Survey</a><br>
+<p><b>   Optical surveys</b><br>
+<a  href='#Original Digitized Sky Survey'>Original Digitized Sky Survey </a><br>
+<a  href='#First Digitized Sky Survey: Blue Plates '>First Digitized Sky Survey: Blue Plates  </a><br>
+<a  href='#First Digitized Sky Survey: Red Plates'>First Digitized Sky Survey: Red Plates</a><br>
+<a  href='#2nd Digitized Sky Survey (Blue)'>2nd Digitized Sky Survey (Blue) </a><br>
+<a  href='#2nd Digitized Sky Survey (Infrared)'>2nd Digitized Sky Survey (Infrared) </a><br>
+<a  href='#2nd Digitized Sky Survey (Red)'>2nd Digitized Sky Survey (Red) </a><br>
+<a  href='#H-alpha Full Sky Map'>H-alpha Full Sky Map </a><br>
+<a  href='#Near-Earth Asteriod Tracking System Archive'>Near-Earth Asteriod Tracking System Archive </a><br>
+<a  href='#Sloan Digitized Sky Survey G-band'>Sloan Digitized Sky Survey G-band </a><br>
+<a  href='#Sloan Digitzed Sky Survey I-band'>Sloan Digitzed Sky Survey I-band </a><br>
+<a  href='#Sloan Digitzed Sky Survey R-band'>Sloan Digitzed Sky Survey R-band </a><br>
+<a  href='#Sloan Digitzed Sky Survey U-band'>Sloan Digitzed Sky Survey U-band </a><br>
+<a  href='#Sloan Digitzed Sky Survey Z-band'>Sloan Digitzed Sky Survey Z-band </a><br>
+<a  href='#The Southern H-Alpha Sky Survey Atlas: Continuum'>The Southern H-Alpha Sky Survey Atlas: Continuum   </a><br>
+<a  href='#The Southern H-Alpha Sky Survey Atlas: Continuum-Corrected'>The Southern H-Alpha Sky Survey Atlas: Continuum-Corrected   </a><br>
+<a  href='#The Southern H-Alpha Sky Survey Atlas: H-alpha'>The Southern H-Alpha Sky Survey Atlas: H-alpha   </a><br>
+<a  href='#The Southern H-Alpha Sky Survey Atlas: Smoothed'>The Southern H-Alpha Sky Survey Atlas: Smoothed   </a><br>
+<p><b>  Ultraviolet surveys </b><br>
+<a  href='#Extreme Ultraviolet Explorer: 83 A'>Extreme Ultraviolet Explorer: 83 A </a><br>
+<a  href='#Extreme Ultraviolet Explorer: 171 A'>Extreme Ultraviolet Explorer: 171 A </a><br>
+<a  href='#Extreme Ultraviolet Explorer: 405 A'>Extreme Ultraviolet Explorer: 405 A </a><br>
+<a  href='#Extreme Ultraviolet Explorer: 555 A'>Extreme Ultraviolet Explorer: 555 A </a><br>
+<a  href='#ROSAT Wide Field Camera: F1'>ROSAT Wide Field Camera: F1 </a><br>
+<a  href='#ROSAT Wide Field Camera: F2'>ROSAT Wide Field Camera: F2 </a><br>
+<p><b>  X-ray surveys </b><br>
+<a  href='#Swift BAT All-Sky Survey: Flux 14-195 keV'>Swift BAT All-Sky Survey: Flux and Significance</a><br>
+<a  href='#GRANAT/SIGMA Flux'>GRANAT/SIGMA Flux</a><br>
+<a  href='#GRANAT/SIGMA'>GRANAT/SIGMA</a><br>
+<a  href='#HEAO 1A'>HEAO 1A</a><br>
+<a  href='#ROSAT High Resolution Image Pointed Observations Mosaic: Intensity'>ROSAT High Resolution Image Pointed Observations Mosaic: Intensity</a><br>
+<a  href='#INTEGRAL/Spectral Imager Galactic Center Survey'>INTEGRAL/Spectral Imager Galactic Center Survey</a><br>
+<a  href='#PSPC summed pointed observations, 1 degree cutoff, intensity'>PSPC summed pointed observations, 1 degree cutoff, intensity </a><br>
+<a  href='#PSPC summed pointed observations, 2 degree cutoff, counts'>PSPC summed pointed observations, 2 degree cutoff, counts </a><br>
+<a  href='#PSPC summed pointed observations, 2 degree cutoff, exposure'>PSPC summed pointed observations, 2 degree cutoff, exposure </a><br>
+<a  href='#PSPC summed pointed observations, 2 degree cutoff, intensity'>PSPC summed pointed observations, 2 degree cutoff, intensity </a><br>
+<a  href='#ROSAT All-Sky X-ray Survey'>ROSAT All-Sky X-ray Survey </a><br>
+<a  href='#ROSAT All-Sky X-ray Survey 3/4 keV'>ROSAT All-Sky X-ray Survey 3/4 keV</a><br>
+<a  href='#ROSAT All-Sky X-ray Survey 1.5 keV'>ROSAT All-Sky X-ray Survey 1.5 keV</a><br>
+<a  href='#ROSAT All-Sky X-ray Survey Broad Band'>ROSAT All-Sky X-ray Survey Broad Band </a><br>
+<a  href='#ROSAT All-Sky X-ray Survey Hard Band'>ROSAT All-Sky X-ray Survey Hard Band </a><br>
+<a  href='#ROSAT All-Sky X-ray Survey Soft Band'>ROSAT All-Sky X-ray Survey Soft Band </a><br>
+<a  href='#ROSAT All-Sky Broad Band Intenstiy'>ROSAT All-Sky Broad Band Intenstiy </a><br>
+<a  href='#ROSAT All-Sky Hard Band Intensity'>ROSAT All-Sky Hard Band Intensity </a><br>
+<a  href='#ROSAT All-Sky Broad Band Intenstiy'>ROSAT All-Sky Broad Band Intenstiy </a><br>
+<a  href='#RXTE Allsky 3-20keV Significance'>RXTE Allsky 3-20keV Significance</a><br>
+<a  href='#RXTE Allsky 3-8keV Significance'>RXTE Allsky 3-8keV Significance</a><br>
+<a  href='#RXTE Allsky 8-20keV Significance'>RXTE Allsky 8-20keV Significance</a><br>
+<p><b>  Gamma ray surveys </b><br>
+<a  href='#CGRO Compton Telescope: 3 channel data'>CGRO Compton Telescope: 3 channel data</a><br>
+<a  href='#Energetic Gamma-Ray Event Telescope: 10 channel data'>Energetic Gamma-Ray Event Telescope: 10 channel data</a><br>
+<a  href='#Energetic Gamma-Ray Event Telescope: Hard'>Energetic Gamma-Ray Event Telescope: Hard</a><br>
+<a  href='#Energetic Gamma-Ray Event Telescope: Soft'>Energetic Gamma-Ray Event Telescope: Soft</a><br>

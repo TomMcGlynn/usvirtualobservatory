@@ -1,0 +1,7 @@
+host=$HOST
+cgibase=$CGIBASE
+urlbase=$URLBASE
+cachebase=/vo/cache/
+urlprefix=/www/htdocs
+docbase=/vo/datascope
+RightBoxText=<div align=center>Hosted by:<br>HEASARC<br>NASA/GSFC</div>

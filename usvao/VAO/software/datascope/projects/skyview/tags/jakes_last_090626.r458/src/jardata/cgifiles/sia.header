@@ -1,0 +1,42 @@
+Content-type: text/xml
+
+<?xml version="1.0"?>
+<!DOCTYPE VOTABLE SYSTEM "http://us-vo.org/xml/VOTable.dtd">
+
+<VOTABLE>
+  <RESOURCE type="results">
+  <PARAM $POS         name="INPUT:POS">
+    <DESCRIPTION>Center of image to be generated</DESCRIPTION></PARAM>
+  <PARAM $SIZE        name="INPUT:SIZE">
+    <DESCRIPTION>Size of image in degrees, use 0 to get default</DESCRIPTION></PARAM>
+  <PARAM $FORMAT      name="INPUT:FORMAT">
+    <DESCRIPTION>Output format requested</DESCRIPTION></PARAM>
+  <PARAM $PIXELS      name="INPUT:NAXIS">
+    <DESCRIPTION>Number of pixels in image, use 0 to get default sized pixels (SIZE>0)</DESCRIPTION></PARAM>
+  <PARAM $Projection  name="INPUT:PROJ">
+    <DESCRIPTION>Map Projection</DESCRIPTION></PARAM>
+  <PARAM value="ICRS" name="INPUT:CFRAME">
+    <DESCRIPTION>Coordinate system</DESCRIPTION></PARAM>
+  <PARAM value="2000" name="INPUT:EQUINOX">
+    <DESCRIPTION>Equinox (for FK4 and FK5)</DESCRIPTION></PARAM>
+  <PARAM $Sampler     name="INPUT:INTERPOLATION">
+    <DESCRIPTION>Sampler: NN, LI, Clip, Lanczos, Spline</DESCRIPTION></PARAM>
+  <PARAM $Big         name="INPUT:big">
+    <DESCRIPTION>Include very large images</DESCRIPTION></PARAM>
+  <PARAM $Small       name="INPUT:small">
+    <DESCRIPTION>Include small (less than 5x5 pixel) images</DESCRIPTION></PARAM>
+    
+  <TABLE>
+    
+    <FIELD name="Survey"      ucd="VOX:Image_Title"    datatype="char"   arraysize="*"/>
+    <FIELD name="Ra"          ucd="POS_EQ_RA_MAIN"     datatype="double"/>
+    <FIELD name="Dec"         ucd="POS_EQ_DEC_MAIN"    datatype="double"/>
+    <FIELD name="Dim"         ucd="VOX:Image_Naxes"    datatype="int"/>
+    <FIELD name="Size"        ucd="VOX:Image_Naxis"    datatype="int"    arraysize="*"/>
+    <FIELD name="Scale"       ucd="VOX:Image_Scale"    datatype="double" arraysize="*"/>
+    <FIELD name="Format"      ucd="VOX:Image_Format"   datatype="char"   arraysize="*"/>
+    <FIELD name="PixFlags"    ucd="VOX:Image_PixFlags" datatype="char"   arraysize="*"/>
+    <FIELD name="URL"         ucd="VOX:Image_AccessReference" datatype="char" arraysize="*"/>
+    <FIELD name="LogicalName" ucd="VOX:LogicalName"    datatype="char"   arraysize="*"/>
+    <DATA>
+    <TABLEDATA>

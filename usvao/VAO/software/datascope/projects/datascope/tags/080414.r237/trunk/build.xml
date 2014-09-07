@@ -1,0 +1,262 @@
+<project name="DataScope" default="compile" basedir=".">
+<description> Virtual Observatory DataScope </description>
+
+<property name="SUBDIR" value="" />
+<property name="INSTALL"    value="/www/htdocs" />
+<!-- Runtime base (NOT /www.prod/ for heasarc !) -->
+<property name="RUNTIME"    value="/www/htdocs" />	<!-- a trailing slash in vo.settings WILL cause problems -->
+
+
+<property name="proj"     value="datascope" />
+<property name="dest"     value="/vo/${proj}/" />    
+<!--
+        INSTALL               /www.prod/htdocs
+        RUNTIME                    /www/htdocs
+        SUBDIR                                /jake/test
+        dest                                             vo/squery
+        URL       http://heasarc.gsfc.nasa.gov/jake/test/vo/squery/query.sh
+        URL_PATH                              /jake/test/vo/squery/query.sh
+        ABS_PATH              /www.prod/htdocs/jake/test/vo/squery/query.sh
+-->
+<property name="DEST"     value="${INSTALL}${SUBDIR}${dest}" />
+<property name="URL_PATH" value="${SUBDIR}${dest}" />	<!-- REQUIRES trailing slash !! -->
+<property name="ABS_PATH" value="${RUNTIME}${URL_PATH}" />
+<property name="IMG_URL"  value="${URL_PATH}images" />
+
+<property name="root"    value="../.." />
+<property name="ivoalib"  value="${root}/net_ivoa/" />
+<property name="nvolib"  value="${root}/net_nvo/" />
+<property name="tmp"     value="./tmp" />
+<property name="classes" value="${tmp}/class" />
+<property name="srcdir"  value="${tmp}/source" />
+<property name="fjars"   value="../foreign/jars" />
+<property name="ljars"   value="../foreign/jars" />
+<property name="java"    value="./src/java" />
+<property name="css"     value="./src/css" />
+<property name="cgi"     value="./src/cgi" />
+<property name="js"      value="./src/js" />
+<property name="docs"    value="./src/docs" />
+<property name="jar"     value="${tmp}/${proj}.jar"/>
+
+<property name="javadocs" value="./javadoc" />
+
+<!-- The following define where all released files go to. -->
+
+<property name="docsdest" value="${DEST}" />
+<property name="cgidest"  value="${DEST}" />
+<property name="jsdest"   value="${DEST}/js" />
+<property name="cssdest"  value="${DEST}/css" />
+<property name="jardest"  value="${DEST}/jars" />
+
+
+
+
+
+
+<target name="check_dependencies"  >
+	<echo message="${RUNTIME}" />
+<!--
+	<available file="${ivoalib}" property="${ivoalib}.present"/>
+	<fail message="Cannot find ${ivoalib} which is required to build this project"
+	unless="${ivoalib}.present"/>
+	<echo message="Found ${ivoalib}" />
+	<available file="${nvolib}" property="${nvolib}.present"/>
+	<fail message="Cannot find ${nvolib} which is required to build this project"
+	unless="${nvolib}.present"/>
+	<echo message="Found ${nvolib}" />
+	<available file="${vovlib}" property="${vovlib}.present"/>
+	<fail message="Cannot find ${vovlib} which is required to build this project"
+	unless="${vovlib}.present"/>
+	<echo message="Found ${vovlib}" />
+-->
+</target>
+
+<target name="merge_java"  depends="check_dependencies" >
+	<mkdir dir="${srcdir}" />
+	<echo message="Merging Java files." />
+	<copy todir="${srcdir}">
+<!--
+		<fileset includes="**/*.java" dir="${nvolib}/trunk/src/java/" />
+		<fileset includes="**/*.java" dir="${ivoalib}/trunk/src/java/" />
+-->
+		<fileset includes="**/*.java" dir="${java}" />
+	</copy>
+</target>
+
+
+<target name="compile" depends="merge_java" >
+	<mkdir dir="${classes}" />
+	<javac destdir="${classes}"
+		srcdir="${srcdir}"
+		includes="net/ivoa/util/**,net/ivoa/registry/**,net/ivoa/datascope/**"
+	>
+		<classpath>
+			<pathelement location="${classes}" />
+			<pathelement location="${ljars}/skyview.jar" />
+			<pathelement location="${fjars}/tar.jar" />
+			<pathelement location="${fjars}/axis-ant.jar" />
+			<pathelement location="${fjars}/axis-schema.jar" />
+			<pathelement location="${fjars}/axis.jar" />
+			<pathelement location="${fjars}/commons-discovery-0.2.jar" />
+			<pathelement location="${fjars}/commons-logging-1.0.4.jar" />
+			<pathelement location="${fjars}/jaxrpc.jar" />
+			<pathelement location="${fjars}/log4j-1.2.8.jar" />
+			<pathelement location="${fjars}/saaj.jar" />
+			<pathelement location="${fjars}/wsdl4j-1.5.1.jar" />
+			<pathelement location="${fjars}/activation.jar" />
+			<pathelement location="${fjars}/mail.jar" />
+		</classpath>
+	</javac>
+</target>
+
+<target name="clean">
+	<delete failonerror="false">
+		<fileset dir="${classes}" includes="net/ivoa/util/**,net/ivoa/registry/**,net/ivoa/datascope/**" />
+		<fileset dir="${javadocs}/${proj}" />
+	</delete>
+	<delete file="${jar}" failonerror="false"/>
+	<exec executable="find">
+		<arg value="${srcdir}/net/ivoa/" />
+		<arg value="-name" />
+		<arg value="*.java~" />
+		<arg value="-exec" />
+		<arg value="rm"    />
+		<arg value="{}"    />
+		<arg value=";"     />
+	</exec>
+	<exec executable="find">
+		<arg value="${cgi}" />
+		<arg value="-name" />
+		<arg value="*~"    />
+		<arg value="-exec" />
+		<arg value="rm"    />
+		<arg value="{}"    />
+		<arg value=";"     />
+	</exec>
+	<exec executable="find">
+		<arg value="${css}" />
+		<arg value="-name" />
+		<arg value="*~"    />
+		<arg value="-exec" />
+		<arg value="rm"    />
+		<arg value="{}"    />
+		<arg value=";"     />
+	</exec>
+	<exec executable="find">
+		<arg value="${docs}" />
+		<arg value="-name" />
+		<arg value="*~"    />
+		<arg value="-exec" />
+		<arg value="rm"    />
+		<arg value="{}"    />
+		<arg value=";"     />
+	</exec>
+	<exec executable="find">
+		<arg value="${js}" />
+		<arg value="-name" />
+		<arg value="*~"    />
+		<arg value="-exec" />
+		<arg value="rm"    />
+		<arg value="{}"    />
+		<arg value=";"     />
+	</exec>
+</target>
+
+<target name='jar' depends="compile" >
+	<jar destfile="${jar}" update="false" basedir="${classes}" 
+		includes="net/ivoa/util/**,net/ivoa/registry/**,net/ivoa/datascope/**"
+	/>
+	<!-- make the entire tmp directory group writable -->
+	<chmod dir="${tmp}" type="both" includes="**" perm="g+w" />
+</target>
+
+<target name="release" depends="clean,jar">
+</target>
+
+<target name="install" depends="release">
+
+	<echo message="Clearing out old directories" />
+	<echo message="cgidest = ${cgidest}" />
+
+	<delete failonerror="false" dir="${cgidest}" />
+	<delete failonerror="false" dir="${jsdest}"  />
+	<delete failonerror="false" dir="${cssdest}" />
+	<delete failonerror="false" dir="${docsdest}"/>
+
+	<echo message="Copying CGI scripts" />
+	<copy todir="${cgidest}" >
+		<fileset dir="${cgi}"  />
+		<filterset>
+			<filter token="URL_PATH" value="${URL_PATH}/"/>
+			<filter token="ABS_PATH" value="${ABS_PATH}"/>
+			<filter token="RUNTIME" value="${RUNTIME}"/>
+		</filterset>
+	</copy>
+	<chmod dir="${cgidest}" includes="*" perm="ugo+x" />
+	<echo message="Copying HTML documentation" />
+	<copy todir="${docsdest}">
+		<fileset dir="${docs}" />
+	</copy>
+
+	<echo message="Copying JavaScript" />
+	<copy todir="${jsdest}">
+		<fileset dir="${js}"   />
+		<filterset>
+			<filter token="URL_PATH" value="${URL_PATH}"/>
+		</filterset>
+	</copy>
+
+	<echo message="Copying CSS" />
+	<copy todir="${cssdest}">
+		<fileset dir="${css}"  />
+		<filterset>
+			<filter token="IMG_URL" value="${IMG_URL}"/>
+		</filterset>
+	</copy>
+
+	<echo message="Copying old Jar files." />
+	<copy todir="${jardest}" file="${ljars}/skyview.jar" />
+	<copy todir="${jardest}" file="${fjars}/tar.jar" />
+	<copy todir="${jardest}" file="${fjars}/axis-ant.jar" />
+	<copy todir="${jardest}" file="${fjars}/axis-schema.jar" />
+	<copy todir="${jardest}" file="${fjars}/axis.jar" />
+	<copy todir="${jardest}" file="${fjars}/commons-discovery-0.2.jar" />
+	<copy todir="${jardest}" file="${fjars}/commons-logging-1.0.4.jar" />
+	<copy todir="${jardest}" file="${fjars}/jaxrpc.jar" />
+	<copy todir="${jardest}" file="${fjars}/log4j-1.2.8.jar" />
+	<copy todir="${jardest}" file="${fjars}/saaj.jar" />
+	<copy todir="${jardest}" file="${fjars}/wsdl4j-1.5.1.jar" />
+	<copy todir="${jardest}" file="${fjars}/activation.jar" />
+	<copy todir="${jardest}" file="${fjars}/mail.jar" />
+
+	<echo message="Installing new JAR" />
+	<copy file="${jar}" todir="${jardest}" />
+	<chmod dir="${cgidest}" includes="*" perm="ugo+x" />
+	<chmod dir="${docsdest}" includes="**" type="both" perm="g+w" />
+	<chmod dir="${cgidest}" includes="**" type="both" perm="g+w" />
+</target>
+
+<target name="javadoc">
+	<delete failonerror="false" >
+		<fileset dir="${javadocs}/${proj}" />
+	</delete>
+	<javadoc sourcepath="${srcdir}" destdir="${javadocs}/${proj}" 
+		packagenames="net.ivoa.util,net.ivoa.datascope,net.ivoa.registry" >
+		<classpath>
+			<pathelement location="${ljars}/skyview.jar" />
+			<pathelement location="${fjars}/tar.jar" />
+			<pathelement location="${fjars}/axis-ant.jar" />
+			<pathelement location="${fjars}/axis-schema.jar" />
+			<pathelement location="${fjars}/axis.jar" />
+			<pathelement location="${fjars}/commons-discovery-0.2.jar" />
+			<pathelement location="${fjars}/commons-logging-1.0.4.jar" />
+			<pathelement location="${fjars}/jaxrpc.jar" />
+			<pathelement location="${fjars}/log4j-1.2.8.jar" />
+			<pathelement location="${fjars}/saaj.jar" />
+			<pathelement location="${fjars}/wsdl4j-1.5.1.jar" />
+			<pathelement location="${fjars}/activation.jar" />
+			<pathelement location="${fjars}/mail.jar" />
+		</classpath>
+	</javadoc>
+</target>
+</project>

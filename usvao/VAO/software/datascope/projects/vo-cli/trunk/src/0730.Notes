@@ -1,0 +1,304 @@
+								30 Jul 07
+
+
+	Below are some notes about the demo I gave at today's meeting.
+For the Mac users at ST/Caltech that could see the screen there are
+universal binaries available from
+
+	ftp://iraf.noao.edu/pub/fitz/vodata
+	ftp://iraf.noao.edu/pub/fitz/vosesame
+
+Make sure these are executable and in your path.  To access the proxy
+voclientd (that I hope will not crash and so will be running when you
+access it), define the following from a C-shell prompt (or Bash equivalent):
+
+	setenv VOC_SERVER	9000:iraf-nvo.noao.edu
+
+Thereafter the 'vosesame' or 'vodata' commands should use the proxy,
+if you get a "Cannot start server" or similar message contact me.
+	With these binaries and the proxy you should be able to run the
+examples listed below.  If you go off-script, expect some problems.  If
+you have problems I am probably already aware of the issue that caused it,
+and it isn't always something I can fix.
+
+	Anyway, let me know if you have problems or comments/suggestions.
+With some help in defining the project requirements I think these are
+limited enough in scope to work up to user-ready apps by AAS,  I think
+they are at least fodder for discussion about user-interfaces.  Thanks
+in advance for comments.
+
+-Mike
+
+
+------------------------------------------------------------------------------
+
+
+Caveats:
+--------
+    - This is NOT released, user-ready software -- it is still in
+	development.
+    - The scripted demo works, tests against other resources or 
+	object lists may easily run into problem due to VOClient
+	deficiencies (will be addressed shortly) or data-service
+	problems (can't control but can identify, e.g. valid query
+	from SDSS but invalid VOX:Image_AccessReference).
+    - Will assume a limited access to the NOAO proxy server for 7/31,
+	can't guarantee these work w/out a local voclientd or est.
+	NOAO proxy after Tuesday.
+
+
+Design Philosophy:
+------------------
+
+    -   Based on Annapolis mtg suggestion of a few small tools that do
+	one thing well.   
+    -   Astronomers have lists of their favorite objects/positions.
+    -   Astronomers want output tables in CSV/ASCII, maybe TSV, and if
+	necessary the raw VOTable
+    -   Astronomers know a resource by a common name (e.g. USNO-B1) and
+	not a ServiceURL
+	    - Implies want to use the ShortName, but raises issues about
+	      shared use of name, mixed service types, duplicate services,
+	      etc
+
+
+     Sample object list:
+
+	Some examples below assume a local file of object names called
+     'objs'.  In the demo, the file contains the following objects:
+     Create a file called 'objs' containing these objects:
+
+	m51
+	m31
+	m67
+	m58
+	m61
+	m65
+	m66
+	m83
+	m101
+	m100
+
+
+
+VOSESAME: Name Resolution:
+--------------------------
+
+	This is a task based on the Sesame name resolver service from
+  CDS to query NED/Simbad/Vizier.  The expected use would be to resolve a
+  single source, multiple sources specified on the cmdline, or a file on
+  object names.  Output is decimal degrees, sexagesimal positions (ICRS)
+  or the full Sesame record.  Multiple options control exactly what the
+  output is, default behavior is what is presumed to be the most common
+  action to get a VO-valid value, i.e. decimal degrees.
+
+  Key Points:
+
+    - Objects specified by name on command-line, in a file, or both
+    - Object info is cached on the client machine so object files are not
+      completely resolved each time they are used (Sesame takes ~1 sec/obj)
+      to gain speed.  VOClient looks first in cache before hitting the
+      the service.
+    - Output in various formats, flags can control which record values to print
+
+  Examples:
+
+  1)  Resolve a object name to decimal degree position
+    % vosesame m31
+    10.684685 41.269037 
+
+  2) Do the same but print all information in the record
+    % vosesame -a m31
+         m31 00:42:44.32 +41:16:08.5  10.68468  41.26904  375.0  375.0 G
+
+  3) Resolve to sexageimal coords
+    % vosesame -s m31
+    00:42:44.32 +41:16:08.5 
+
+  4) Print the name and sexagesimal coords
+    % vosesame -ns m31
+    m31 00:42:44.32 +41:16:08.5 
+
+  5) Print the sexagesimal coords followed by the name in CSV
+    % vosesame -sn m31 m93			# VIM input?
+    00:42:44.32,+41:16:08.5,m31 
+    07:44:36.00,-23:52:00.0,m93
+
+  6) Resolve multiple coors on the commandline
+    %> vosesame -a m31 m45 m100
+         m31 00:42:44.32 +41:16:08.5  10.68468  41.26904  375.0  375.0 G
+         m45 03:47:24.00 +24:07:00.0  56.85000  24.11667    0.0    0.0 OpCl
+        m100 12:22:54.94 +15:49:19.4 185.72896  15.82208 1799.0 1799.0 AGN
+
+  7) Resolve all objects in the file 'objs', show mixed use with name on
+     command line:
+
+    % vosesame objs		#or
+    % vosesame @objs
+    % vosesame -Csn m95 objs m88
+	....cvs output 
+
+    ------
+    Notes:  The '-h' flag will print a summary of options.
+    ------
+
+
+VOREGISTRY: Registry Search and Resolution:
+-------------------------------------------
+
+  Key Points and Issues:
+    - Reliant on ST/JHU Registry interface at present
+    - Many issues w/ use of ShortName, need some way to "cache" and
+	tie a preferred resource to name (i.e. create a user-meaningful
+	name after browsing).
+
+  Examples:
+    - Standalone task not yet ready, IRAF version built into CL using
+	language extensions and search task.  E.g. to resolve a ShortName
+	to a ServiceURL:
+
+	  nvo> =regResolver ("GSC2.2")			# use default
+	  http://chart.stsci.edu/GSCVO/GSC22VO.jsp?
+	  nvo> =regResolver ("usno-b1","cone")		# specify service
+	  http://www.nofs.navy.mil/cgi-bin/vo_cone.cgi?CAT=USNO-B1&
+
+	Standalone version would use 
+
+	  % voregistry -resolve GSC2.2
+	  % voregistry -resolve -s cone USNO-B1		# or
+	  % voregistry -resolve -s catalog USNO-B1
+
+    - IRAF task meant to browse registry.  Using Abell catalog example a
+	search might be simply:
+
+	cl> registry abell
+	.....return 345 resources
+	.....at interactive prompt type 's' to specify service type and
+	     'cone' to limit by service type
+	.....returns 8 resources
+	.....at interactive prompt type 'b' to specify bandpass and
+	     'x-ray' to limit by to SpectralCoverage of x-ray
+	.....returns 3 resources in Registry
+
+	Simple query for above would be
+
+	cl> registry abell svc="cone" bandpass="x-ray"
+
+	Standalone version would use any of
+
+	  % voregistry -type catalog -band x-ray abell
+	  % voregistry -type cone -bandpass x-ray -search abell
+	  % voregistry -i abell
+	  ......similar command input as above to run interactively
+
+
+VODATA: Data Query and Access
+------------------------------
+
+  Key Points and Issues:
+    - Tasks make no distinction between type of service, appropriate
+	DAL interface called based on resource (i.e. people want both
+	catalog and image data)
+    - Want to get inventory of results
+    - Want to see metadata available
+    - Want to be able to download image results
+    - Access to OpenSkyQuery/SSAP/TAP/etc svcs still TBD
+    - Query multiple services for object lists
+	- Each service queried in parallel
+	- object/position list parallelized at each service; user can control
+	  no. of client procs and server queries running simultaneously
+	- Relatively fast ==> more than 600 cone/min for 0.1 deg queries
+	  to GSC2.2, task mostly limited by server response and not bandwidth
+	  or client machine.
+
+  Examples:
+
+    ------
+    Notes:  Assumes we've somehow discovered the ShortName to use....
+    ------
+
+  Default calling sequence is simply:
+
+	% vodata <Resource_ShortName> <Object|File>
+
+  1) Count the number of pointings of Chandra w/in 0.5 deg of M31
+
+	% vodata -count chandra m31 0.5
+	% vodata -count -s chandra -o m31 -rm 30
+	    ... returns 355 records
+
+	where
+	    chandra	ShortName of Chandra obs. catalog
+	    -s		specify service type
+	    -o		specify object name
+	    -rm		search radius in minutes
+	    -rs		search radius in seconds
+	    -rd		search radius in degrees
+	    -r 		search radius in degrees
+
+  2) Print the metadata available for the GSC2.2 catalog 
+
+	% vodata -meta gsc2.2
+	    ... returns 14 attributes (ucd)
+	% vodata -meta gsc2.2
+
+	Note: Currently prints only UCD but needs to print table 'name' and
+	      'description' to be useful, e.g. to discover that the RC3
+	      catalog has 21cm info
+	Note: A query such as
+
+		% vodata -meta RC3
+
+	      will fail because the RC3 cone service doesn't support
+	      FORMAT=METADATA properly unless you give it a valid position.
+	      Must add an object name like 'm31' to get a result.
+
+  3) Steve's Example:  Query RC3 and get the SDSS color cutouts for a 
+	list of face-on galaxies;  Return tables as CSV in very-verbose
+	format, use a 0.5 deg radius to account for positional errors:
+
+	% vodata -Cvv rc3,sdssdr4-color objs 0.5
+
+  	Get (download) at least the first image from the SDSS image service:
+
+	% vodata -Cvv -get 1 rc3,sdssdr4-color objs 0.5
+	% vodata -Cvv -get rc3,sdssdr4-color objs 0.5     # all images
+
+	To view the cutout (on a Mac):
+	    % open sdssdr4-color_m100.jpg
+
+
+	Note: Error messages come from objects not in SDSS footprint and
+	      need to be cleaned up.
+	Note: RC3 Output is a .csv file for each object containing the csv for
+	      each result, and a JPG of the SDSS cutout that can be
+	      viewed immediately.
+	Note: Service and object lists parallelized for speed
+	Note: Needs to be more robust against empty objects/positions/files,
+	      typos in service names, failed service requests, etc.
+
+  4) Roy's Example:  What are the 2MASS PSC sources 0.2 deg around my objects
+
+	% vodata 2mass-psc objs 0.2
+
+	Note: Final table a poster-child for missing UCD on columns....
+
+  5) Process the GSC 2.2 Cone queries for 100 (RA,Dec) positions, show
+     progress displays as it runs (in 5 sec):
+
+	% vodata gsc2.2 pos100
+	# No. of Objects:  100
+	# No. of Cone Services: 1
+	# Search size:  0.100000 (degrees)
+
+	Service       gsc2.2: Completed  10 of  100 objects (9 running)
+	Service       gsc2.2: Completed  20 of  100 objects (10 running)
+	Service       gsc2.2: Completed  30 of  100 objects (10 running)
+	Service       gsc2.2: Completed  40 of  100 objects (10 running)
+	Service       gsc2.2: Completed  50 of  100 objects (10 running)
+	Service       gsc2.2: Completed  60 of  100 objects (10 running)
+	Service       gsc2.2: Completed  70 of  100 objects (10 running)
+	Service       gsc2.2: Completed  80 of  100 objects (10 running)
+	Service       gsc2.2: Completed  90 of  100 objects (10 running)
+	Service       gsc2.2: Finished
+

@@ -1,0 +1,32 @@
+# This file contains the default settings for the SkyView Java application.
+# These settings may be overriden by the user.
+
+# Default image values
+# Note that the equinox in the coordinates field
+# takes precedence over a separate equinox, so
+# we shouldn't use a default coordinate system with an equinox.
+coordinates=J
+equinox=2000
+projection=Tan
+equinox=2000
+sampler=NN
+pixels=300
+
+# Name resolver[s] to be used
+resolver=NED-SIMBAD
+
+# Output image information
+output=output
+
+# Document locations
+xmlroot=$SKYVIEW_XMLROOT
+
+SurveyManifest=surveys/survey.manifest
+SurveyFinder=skyview.survey.XMLSurveyFinder
+
+# Classes that might need to see the settings before processing begins
+SettingsUpdaters=skyview.executive.BatchCompatibility,skyview.data.BoxSmoother,skyview.ij.IJProcessor,skyview.vo.CatalogProcessor
+
+# Postprocessors that should only be called in the final stages of a primary image.
+# E.g., should NOT be called when getting a contour image.
+FinalPostProcessor=skyview.ij.IJProcessor,skyview.data.BoxSmoother,skyview.vo.CatalogPostProcessor

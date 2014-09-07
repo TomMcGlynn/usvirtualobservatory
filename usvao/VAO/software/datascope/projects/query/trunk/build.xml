@@ -1,0 +1,260 @@
+<project name="SimpleQuery" default="jar" basedir=".">
+<description> Virtual Observatory SimpleQuery service </description>
+
+<property environment="env"/>
+<condition property="proj_root" value="${env.PROJ_ROOT}" else="/www/htdocs">
+   <available file="${env.PROJ_ROOT}"/>
+</condition>
+
+<echo>proj_root is ${proj_root}</echo>
+	
+<property name="INSTALL" value="${proj_root}" />
+<property name="RUNTIME" value="${proj_root}" />
+<property name="proj"     value="query" />
+<property name="proj_version"     value="0.9" />
+<property name="dest"     value="vo/s${proj}" />    
+
+
+<available file="${proj_root}/vo/net_nvo/heasarc.properties" property="properties.present"/>
+<fail message="Cannot find ${proj_root}/vo/net_nvo/heasarc.properties which 
+is required to build this project.  You may need to install the net_nvo utility project."
+   unless="properties.present"/>
+
+<property file="${proj_root}/vo/net_nvo/heasarc.properties"/>
+
+<filter token="URL_PATH"  value="${URL_PATH}"/>
+<filter token="CSS_PATH"  value="${CSS_PATH}"/>
+<filter token="CGI_PATH"  value="${CGI_PATH}"/>
+<filter token="XSL_PATH"  value="${XSL_PATH}"/>
+<filter token="IMG_PATH"  value="${IMG_PATH}"/>
+<filter token="JS_PATH"   value="${JS_PATH}"/>
+<filter token="VOCLIENT"  value="${VOCLIENT}"/>
+<filter token="ABS_PATH"  value="${ABS_PATH}"/>
+<filter token="RUNTIME"   value="${RUNTIME}"/>
+<filter token="XSL_RUN"   value="${XSL_RUN}"/>
+<filter token="JAR_RUN"   value="${JAR_RUN}"/>
+<filter token="JAR_NAME"  value="${JAR_NAME}"/>
+<filter token="VIM"       value="${VIM}"/>
+<filter token="Inventory" value="${Inventory}"/>
+<filter token="DataScope" value="${DataScope}"/>
+<filter token="Registry"  value="${Registry}"/>
+<filter token="SUBDIR"    value="${SUBDIR}"/>
+
+<target name="check_dependencies"  >
+   <available file="${nvolib}" property="${nvolib}.present"/>
+   <fail message="Cannot find ${nvolib} which is required to build this project"
+      unless="${nvolib}.present"/>
+   <echo message="Found ${nvolib}" />
+   <available file="${vovlib}" property="${vovlib}.present"/>
+   <fail message="Cannot find ${vovlib} which is required to build this project"
+      unless="${vovlib}.present"/>
+   <echo message="Found ${vovlib}" />
+   <available file="${skylib}" property="${skylib}.present"/>
+   <fail message="Cannot find ${skylib} which is required to build this project"
+	  unless="${skylib}.present"/>
+   <echo message="Found ${skylib}" />
+</target>
+
+<target name="merge_java"  depends="check_dependencies" >
+   <mkdir dir="${srcdir}" />
+   <echo message="Merging Java files." />
+   <copy todir="${srcdir}" filtering='true'>
+      <fileset includes="**/*.java" dir="${java}" />
+   </copy>
+</target>
+
+<target name="compile" depends="merge_java" >
+   <mkdir dir="${classes}" />
+
+   <javac destdir="${classes}" srcdir="${srcdir}" debug="on" >
+      <classpath>
+         <pathelement location="${classes}" />
+         <pathelement location="${skylib}/java/skyview.jar" />
+         <pathelement location="${nvolib}/java/net_nvo.jar" />
+         <pathelement location="${nvolib}/java/stilts.jar" />
+         <pathelement location="${nvolib}/java/tar.jar" />
+         <pathelement location="${nvolib}/java/axis.jar" />
+         <pathelement location="${nvolib}/java/jaxrpc.jar" />
+         <pathelement location="${nvolib}/java/wsdl4j-1.5.1.jar" />
+         <pathelement location="${nvolib}/java/commons-lang-2.4.jar" />
+      </classpath>
+   </javac>
+</target>
+
+<target name="clean">
+   <delete failonerror="false" dir="${tmp}" />
+   <exec executable="find">
+      <arg value="${cgi}" />
+      <arg value="-name"      />
+      <arg value="*~"    />
+      <arg value="-exec"      />
+      <arg value="rm"         />
+      <arg value="{}"         />
+      <arg value=";"          />
+   </exec>
+   <exec executable="find">
+      <arg value="${css}" />
+      <arg value="-name"      />
+      <arg value="*~"    />
+      <arg value="-exec"      />
+      <arg value="rm"         />
+      <arg value="{}"         />
+      <arg value=";"          />
+   </exec>
+   <exec executable="find">
+      <arg value="${docs}" />
+      <arg value="-name"      />
+      <arg value="*~"    />
+      <arg value="-exec"      />
+      <arg value="rm"         />
+      <arg value="{}"         />
+      <arg value=";"          />
+   </exec>
+   <exec executable="find">
+      <arg value="${js}" />
+      <arg value="-name"      />
+      <arg value="*~"    />
+      <arg value="-exec"      />
+      <arg value="rm"         />
+      <arg value="{}"         />
+      <arg value=";"          />
+   </exec>
+</target>
+
+<target name='jar' depends="compile" >
+   <mkdir dir="${jars}" />
+   <jar destfile="${jar}" update="false" basedir="${classes}" />
+   <mkdir dir="${tmp}/jardata" />
+   <!-- must copy the the jar data to filter it -->
+   <copy todir="${tmp}/jardata" includeEmptyDirs='false'  filtering='true'>
+      <fileset dir="${data}" >
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+   <jar destfile="${jar}" update="true" basedir="${tmp}/jardata" />
+   <!-- make the entire tmp directory group writable -->
+   <chmod dir="${tmp}" type="both" includes="**" perm="g+w" />
+</target>
+
+<target name="install" depends="jar,copy"> 
+	<tstamp />
+	<touch file="${docsdest}/.${DSTAMP}_${TSTAMP}_v${proj_version}" />
+	<echo message="Install complete" />
+</target>
+
+<target name="copy">
+   <echo message="Copying data:"                      />
+   <echo message="  Documents to ${docsdest}"       />
+   <echo message="  JavaScript to ${jsdest}"        />
+   <echo message="  CGI Scripts to ${cgidest}"      />
+   <echo message="  CSS files to ${cssdest}"        />
+   <echo message="  XSL files to ${xsldest}"        />
+   <echo message="  JAR to ${jardest}/${jarname}"   />
+   <echo message="  CGI files seen as: ${URL_PATH}"  />
+   <echo message="  DOCS files seen as: ${URL_PATH}" />
+
+   <echo message="Clearing out old directories" />
+   <delete failonerror="false" dir="${cgidest}" />
+   <delete failonerror="false" dir="${jsdest}"  />
+   <delete failonerror="false" dir="${cssdest}" />
+   <delete failonerror="false" dir="${xsldest}" />
+   <delete failonerror="false" dir="${docsdest}"/>
+
+   <echo message="Copying CGI scripts from ${cgi} to ${cgidest}" />
+   <copy todir="${cgidest}" includeEmptyDirs='false'  filtering='true'>
+      <fileset dir="${cgi}" >
+         <exclude name="**/versions/*" />
+      </fileset>
+      <fileset includes="**/*.pl" dir="${vovcgi}" />
+   </copy>
+	
+   <copy todir="${tmp}" filtering="true" preservelastmodified='true'>
+     <filelist dir="${nvocgi}" files="net_nvo.settings"/>
+   </copy>
+   <concat destfile="${cgidest}/vo.settings" append="true">
+      <filelist dir="${tmp}" files="net_nvo.settings"/>
+   </concat>
+
+   <copy todir="${cgidest}" includeEmptyDirs='false' filtering='true' preservelastmodified='true'>
+      <filelist dir="${nvocgi}" files="Common.pm"/>
+   </copy>
+
+
+   <echo message="Copying HTML elements" />
+   <copy todir="${docsdest}" includeEmptyDirs='false'  filtering='true'>
+      <fileset dir="${docs}">
+        <exclude name="**/versions/*" />
+	 	<!-- Filtering seems to screw up images in copy (x.png in particular) -->
+	 	<exclude name="images/*" />
+      </fileset>
+      <fileset dir="${nvolib}">
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+   <chmod dir="${docsdest}" includes="*.csh" perm="ugo+x" />
+
+
+   <echo message="Merging all JavaScript in ${jsdest}" />
+   <copy todir="${jsdest}" overwrite='true'  filtering='true'>
+	  <fileset includes="**/*.js" dir="${vovlib}/js" />
+	  <fileset includes="**/*.js" dir="${js}" />
+   </copy>
+
+   <echo message="Merging all CSS in ${cssdest}" />
+   <copy todir="${cssdest}" overwrite='true' filtering='true'>
+      <fileset includes="**/*.css" dir="${vovlib}/css" />
+      <fileset includes="**/*.css" dir="${nvolib}/css" />
+      <fileset includes="**/*.css" dir="${css}" />
+   </copy>
+
+   <echo message="Merging all XSL in ${xsldest}" />
+   <copy todir="${xsldest}" overwrite='true'>
+      <fileset includes="**/*.xsl" dir="${vovlib}/xsl" />
+   </copy>
+   <copy todir="${xsldest}" overwrite='true'>
+      <fileset includes="**/*.xsl" dir="${xsl}" />
+   </copy>
+
+   <echo message="Coping images to ${imgdest}" />
+   <copy todir="${imgdest}" includeEmptyDirs='false'>
+      <fileset dir="${docs}/images">
+        <exclude name="**/versions/*" />
+      </fileset>
+      <fileset includes="**/*" dir="${vovlib}/images/" />
+   </copy>
+
+   <echo message="Copying Jar files." />
+   <copy todir="${jardest}" file="${skylib}/java/skyview.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${jars}/query.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/net_nvo.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/axis.jar" filtering='false' preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/commons-lang-2.4.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/jaxrpc.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/junit-4.1.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/stilts.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/tar.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/wsdl4j-1.5.1.jar" preservelastmodified='true'/>
+
+	<chmod dir="${cgidest}" includes="*" perm="ugo+x" />
+</target>
+
+<target name="release" depends="clean,install"> </target>
+
+<target name="javadoc" depends="merge_java" >
+   <delete failonerror="false" >
+      <fileset dir="${javadocs}/${proj}" />
+   </delete>
+   <javadoc sourcepath="${srcdir}" destdir="${javadocs}/${proj}" 
+      packagenames="net.ivoa.util,net.ivoa.query,net.nvo" >
+      <classpath>
+         <pathelement location="${classes}" />
+         <pathelement location="${fjars}/stilts.jar" />
+      </classpath>
+   </javadoc>
+</target>
+
+<target name="test" depends="compile">
+   <echo message="Testing has not been implemented yet." />
+</target>
+
+</project>

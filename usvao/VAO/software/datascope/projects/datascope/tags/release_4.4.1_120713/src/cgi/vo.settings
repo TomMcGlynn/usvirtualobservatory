@@ -1,0 +1,16 @@
+
+host=@HOST@
+cgibase=@CGI_PATH@
+URLBase=@URL_PATH@
+docBase=@URL_PATH@
+cachebase=@DSCache@
+basedata=@DSData@
+urlprefix=@RUNTIME@
+JS_PATH=@JS_PATH@
+CSS_PATH=@CSS_PATH@
+VIM=@VIM@
+Inventory=@Inventory@
+
+versMessage=@VersMessage@
+
+noidsuffix=vizier.u-strasbg.fr/viz-bin/votable,nedwww.ipac.caltech.edu/cgi-bin/nph-NEDobjsearch

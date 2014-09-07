@@ -1,0 +1,45 @@
+<table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+   <tr align="center" valign="top">
+      <td width="60" valign="middle">
+         <div align="center">
+            <a href="http://www.nsf.gov">
+               <img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0" />
+            </a> 
+         </div>
+      </td>
+      <td width="60" valign="middle">
+         <div align="center">
+            <a href="http://www.nasa.gov">
+               <img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0" />
+            </a>
+         </div>
+      </td>
+      <td>
+         <div align="center">
+            <p class="style10"> Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> under Cooperative Agreement AST0122449 with the Johns Hopkins University </p>
+            <p class="style10">The NVO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a></p>
+            <p class="style10">This NVO Application is hosted by <a href="http://www.nasa.gov">NASA</a>/<a href="http://heasarc.gsfc.nasa.gov">HEASARC</a><a href="#"></a></p>
+         </div>
+      </td>
+      <td width="80" valign="middle">
+         <div align="center">
+            <a href="http://www.ivoa.net">
+               <img src="http://www.us-vo.org/images/IVOAlogo.gif" alt="IVOA" width="80" height="44" border="0" />
+            </a>
+         </div>
+      </td>
+      <td width="60" valign="middle">
+         <span class="style4">
+            <a href="" title="Jake Wendt, Tom McGlynn (NASA/GSFC)">
+               <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border="0" />
+               <br />
+               <span class="nvolink">
+               </span>
+            </a>
+            <span class="nvolink">
+               <a href="" title="Jake Wendt, Tom McGlynn (NASA/GSFC)">Meet the Developers</a>
+            </span>
+         </span>
+      </td>
+   </tr>
+</table>

@@ -1,0 +1,3 @@
+AddHandler cgi-script .cgi .sh .pl
+Options +ExecCGI
+DirectoryIndex init.pl

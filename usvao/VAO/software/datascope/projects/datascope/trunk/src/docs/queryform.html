@@ -1,0 +1,113 @@
+
+<script>
+
+  // If a resources table has been specified,
+  // then the resources setting includes the resources
+  // suitably escaped.  We'll set the value of the
+  // hidden variable before we actually submit the form.
+  // It's hard to do this directly without getting into
+  // trouble about potential multiple levels of encodings.
+  var resources = "";
+  resources = "$resources"
+  function check(){
+        alert("Checking!");
+        if (!dosub()) {
+	    return false;
+	}
+  
+        // Check for a reasonable size.
+        var size = document.getElementById('size').value;
+        if (!size.match(/^\s*[\d\.]+\s*$/)) {
+            alert('The entered size does not seem to be a number:'+size)
+            return false
+        } else if (size > 2) {
+            alert('The size you have selected ('+size+')is too large, the maximum is 2 degrees')
+            return false
+        }
+	
+	// Make sure a position was specified.
+        var pos = document.getElementById('position').value
+        if (pos == null || pos.length == 0) {
+            alert('Please enter a position')
+            return false
+        }
+	
+	// Insert the resources value into the hidden variable.
+	if (resources.length > 0  && resources.substring(1) != 'resources') {
+	    document.getElementById("resources").value=resources;
+	}
+        return true
+    }
+    function dosub() {
+        
+	alert("Dosub!");
+	try {
+	    var radval = document.getElementById("radiusval");
+	    var radunt = document.getElementById("radiusunit");
+	    var actrad = document.getElementById("size");
+	    
+	    var sel    = radunt.options[radunt.selectedIndex].value;
+	    alert("sel is:"+sel);
+	    if (sel == 'arcmin') {
+	        actrad.value = radval.value/60;
+	    } else if (sel == 'arcsec') {
+	        actrad.value = radval.value/3600;
+	    } else {
+	        actrad.value = radval.value;
+	    }
+	} catch (e) {
+	    alert("Unable to understand size input\n"+e);
+	    return false;
+	}
+	alert("value should be:"+radval);
+	
+	return true;
+    }	        
+</script>
+<noscript>
+<p>
+<div><hr><h3>**** JavaScript is not enabled. ****</h3>
+ DataScope makes extensive use of JavaScript.  Please enable JavaScript and reload before proceeding.<p><hr>
+</div>
+</noscript>
+   
+<form name=dsform id=dsform action=$cgibase/jds.pl method=POST onsubmit='return check()'>
+  <input type=hidden name=size value=0.25 id=size>
+  <div>
+    <table>
+      <tr>
+        <th class=right colspan=2><label for=position>Position:</label></th>
+        <td colspan=2><input size=40 id=position name=position value=''></td>
+      </tr>
+      <tr>
+        <td colspan=2></td>
+	<td colspan=2><font size=-1> Use a target name (e.g., 3c273) or position (e.g., 10 10 10.1, 20 20 20.2)</font></td>
+      </tr>
+      <tr>
+        <th class=right colspan=2><label for=size> Size:</label></th>
+	<td colspan=2>
+	  <input size=10 name=radiusval value=0.25 id=radiusval>
+	  <select id=radiusunit name=radiusunit>
+	    <option selected>degree</option>
+	    <option>arcmin</option>
+	    <option>arcsec</option>
+	  </select>(Max is 2 degrees)</td>
+      </tr>
+      <tr>
+        <td class=right><label for=submit><b>Run query:</b></label></td>
+	<td> <input id=submit type=submit></td><td><input type=reset></td>
+      </tr>
+      <tr>
+        <td colspan=4><label for=skipcache> <b>Skip cache?</b></label><input id=skipcache  name=skipcache type=checkbox>&nbsp;&nbsp;
+          <label for=skipregsave><b>Refresh registry?</b></label><input id=skipregsave name=skipsave type=checkbox>
+	</td>
+      </tr>
+      <tr>
+        <td colspan=4><label for=skiplog>Do not add to list of recent queries?</label><input id=skiplog name=skiplog type=checkbox></td>
+      </tr>
+    </table>
+    <input type=hidden id=requestid     name=RequestID     value="$RequestID">
+    <input type=hidden id=resources     name=resources     >
+    <input type=hidden id=resourcesList name=resourcesList value="$ResourcesList">
+  </div>
+</form>

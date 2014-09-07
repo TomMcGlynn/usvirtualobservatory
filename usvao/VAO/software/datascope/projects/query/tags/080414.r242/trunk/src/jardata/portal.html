@@ -1,0 +1,159 @@
+<h2> Find data in the Virtual Observatory </h2>
+<p/>
+Look for data by type or position or both...
+<p/>
+
+<script language='javascript'>
+
+function test() {
+
+    var key = false;
+    var res = false;
+    var pos = false;
+    var list = false;
+    var radius = false;
+     
+    
+    key    = document.getElementById("keywords").value;
+    res    = document.getElementById("resources").value;
+    pos    = document.getElementById("position").value;
+    list   = document.getElementById("list").value;
+    radius = document.getElementById("radius").value;
+    try {
+        if (radius && radius.length > 0) {
+            if (radius.match(/.*'$/)) {
+	        radius = radius.substring(0,radius.length-1)/60;
+	    } else if (radius.match(/.*"$/)) {
+	        radius = radius.substring(0,radius.length-1)/3600;
+	    }
+            document.getElementById("radius").value = radius;
+	} 
+    } catch (e) {
+        alert("Invalid radius syntax");
+	return false;
+    }
+    
+    if (res) {
+        res = res.length > 0;
+    }
+    if (list) {
+        list = list.length > 0;
+    }
+    
+    if (key && res) {
+        alert("Error: Both keywords and a list of resources have been specified.\n\n"+
+	      "Please enter only one or the other." );
+	return false;
+    } else if (pos && list) {
+        alert("Error: Both a single position and a list of positions have been specified.\n"+
+	      "Please enter only one or the other.");
+	return false;
+    } else if (key && !pos && !list) {
+        doRegistry(key);
+	return true;
+    } else if (res && !pos && !list) {
+        alert("Would like to query inventory but it doesn't accept list of resources");
+	return false;
+    } else if ( key && (pos||list)) {
+        alert("I'm going to call the registry.  In the future it will remember the position[s] I put in when making later calls to specific services.");
+        doRegistry(key);
+	return true;
+    } else if ( (key||res) && list) {
+	doVim();
+	return true;
+	
+    } else if (pos) {
+    
+        doDatascope(pos);
+	return true
+    } else if (list) {
+    
+        doVim();
+	return true;
+    }
+}
+
+function doVim() {
+    document.getElementById("myform").action = "http://nesssi.cacr.caltech.edu/cgi-bin/vim.cgi";
+    document.getElementById("d1").name       = "action";
+    document.getElementById("d1").value      = "init";
+    document.getElementById("list").name     = "sourcefile";
+}
+
+function doDatascope() {
+    document.getElementById("myform").action = "../datascope/jds.pl";
+    document.getElementById("radius").name   = "size";
+    document.getElementById("position").name = "position";
+    var radval = document.getElementById("radius").value;
+    if (!radval || radval.length == 0) {
+        document.getElementById("radius").value = "0.25";
+    }
+}
+
+function doRegistry(key) {
+    document.getElementById("myform").action = "http://nvodev.stsci.edu/vor10/keywordsearch.aspx#Table||query_string="+encodeURIComponent(key);
+    return true;
+}
+
+function dswitch (showDiv, hideDiv) {
+    document.getElementById(showDiv).style.visibility='visible';
+    document.getElementById(hideDiv).style.visibility='hidden';
+    return false;
+}
+    
+</script>
+<form id=myform onsubmit="return test()" action="" method="POST" enctype="multipart/form-data">
+  <input type=hidden id=d1>
+  <input type=hidden id=d2>
+
+  <div width='100%'>
+    <div style="position:relative">
+      <div id=keydiv style="visibility:visible; position:absolute">
+        What kind of data? <input size="30" id="keywords" >
+        <br>
+        <font size=-1>Example search terms: <i>x-ray galaxy chandra</i></font><br>
+        <font size=-3><a href="" onclick="return dswitch('resdiv', 'keydiv')"> List of data sources.</a></font>
+      </div>
+
+      <div id=resdiv style="z-index:1; visibility:hidden; position:absolute">
+        Enter file listing data sources: <input type=file id=resources ><br>
+        <font size=-3><a href="" onclick="return dswitch('keydiv', 'resdiv')">Search for data sources.</a></font>
+      </div>
+      
+      <div style="visibility:hidden">
+        Text: <input size=3><br>
+	A little more text
+	<p>&nbsp;
+	<p>
+      </div>
+    </div>
+
+    <table width='100%'><tr><td width='50%' valign='top'>
+    <div style="position:relative">
+      <div id=posdiv style="visibility:visible; position:absolute">
+        Where? <input size=30 id="position" name='position' ><br>
+        <font size=-1>E.g., <i>187.27 +2.05 </i> or <i>10 15 23 +19 20 21 </i>or <i> 3c 273.</i></font><br>
+        <font size=-3><a href="" onclick="return dswitch('poslist','posdiv')"> List of positions.</a></font>
+      </div>
+      <div id="poslist" style="visibility:hidden; position:absolute">
+        List of positions: <input id=list type=file ><br>
+	<font size=-1>(currently must be <a href="http://www.ivoa.net/Documents/REC/VOTable/VOTable-20040811.html">VOTable</a>)</font><br>
+        <font size=-3><a href="" onclick="return dswitch('posdiv', 'poslist')">Single position.</a></font>
+      </div>
+      <div style="visibility:hidden">
+        Text: <input size=3><br>
+	A little more text
+	<p>&nbsp;
+	<p>
+      </div>
+    </div>
+    </td>
+    <td valign='top'>
+      Search Radius: <input id=radius size=6> <br>(degrees or use ' or ")
+    </td>
+    <tr><table>
+  </div>
+  <p>
+  <input type=submit><input type=reset>
+ 
+</form>

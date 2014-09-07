@@ -1,0 +1,58 @@
+<project name="SkyView" default="jar" basedir=".">
+<description> Virtual Observatory SkyView service </description>
+
+<property name="proj"     value="skyview" />
+<property file="../net_ivoa/heasarc.properties"/>
+
+<target name="check_dependencies"  >
+   <available file="${ivoalib}" property="${ivoalib}.present"/>
+   <fail message="Cannot find ${ivoalib} which is required to build this project"
+      unless="${ivoalib}.present"/>
+   <echo message="Found ${ivoalib}" />
+   <available file="${nvolib}" property="${nvolib}.present"/>
+   <fail message="Cannot find ${nvolib} which is required to build this project"
+      unless="${nvolib}.present"/>
+   <echo message="Found ${nvolib}" />
+</target>
+
+<target name="merge_java"  depends="check_dependencies" >
+   <mkdir dir="${srcdir}" />
+   <echo message="Merging Java files." />
+   <copy todir="${srcdir}">
+      <fileset includes="**/*.java" dir="${ivoalib}/src/java/" />
+      <fileset includes="**/*.java" dir="${nvolib}/src/java/" />
+      <fileset includes="**/*.java" dir="${java}" />
+   </copy>
+</target>
+
+<target name="compile" depends="merge_java" >
+   <mkdir dir="${classes}" />
+   <javac destdir="${classes}" srcdir="${srcdir}" debug="on" >
+<!--
+<compilerarg value="-Xlint:unchecked" />
+<compilerarg value="-Xlint:deprecation" />
+-->
+      <classpath>
+         <pathelement location="${classes}" />
+         <pathelement location="${fjars}/stilts.jar" />
+         <pathelement location="${fjars}/junit-4.1.jar" />
+         <pathelement location="${fjars}/axis.jar" />
+         <pathelement location="${fjars}/wsdl4j-1.5.1.jar" />
+         <pathelement location="${fjars}/jaxrpc.jar" />
+      </classpath>
+   </javac>
+</target>
+
+<target name='jar' depends="compile" >
+   <mkdir dir="${jars}" />
+   <jar destfile="${jar}" update="false" basedir="${classes}" />
+   <jar destfile="${jar}" update="true" basedir="${data}" />
+<!-- make the entire tmp directory group writable -->
+   <chmod dir="${tmp}" type="both" includes="**" perm="g+w" />
+</target>
+
+<target name="test" depends="compile">
+   <echo message="Testing has not been implemented yet." />
+</target>
+
+</project>

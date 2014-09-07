@@ -1,0 +1,19 @@
+<h3> How often has a point been observed by the active Great Observatories</h3>
+The simple sequence
+
+<pre>
+    vodata -n hst     &1 &2 .02   2&gt;/dev/null | grep hst
+    vodata -n spitzer &1 &2 .2    2&gt;/dev/null | grep spitzer
+    vodata -n chandra &1 &2 .2    2&gt;/dev/null | grep chandra
+</pre>
+gives
+<pre>
+   hst                    238    C  Hubble Space Telescope
+   spitzer                 23    C  Spitzer Space Telescope Observation Log
+   chandra                 35    I  Chandra X-Ray Observatory Data Archive
+</pre>
+when <code>3c273</code> is input. 
+The user can customize the search radius as needed since the different observatories
+have different image sizes.  [For many shells you would use
+a dollar sign rather than an ampersand to prefix arguments.]
+

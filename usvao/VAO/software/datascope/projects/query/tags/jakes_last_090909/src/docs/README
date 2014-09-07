@@ -1,0 +1,27 @@
+This tar is a hastily assembled collection of files
+that are used in the Prototype SimpleQuery interface.
+
+They come from a variety of directories in the HEASARC
+area.  We describe them as they exist there but
+other sites may prefer a different organization (in the
+unlikely event that this early distribution will ever
+be used elsewhere).
+
+In /www/htdocs/vo/squery and its subdirectories
+go static Web pages, Javascript, images, and CSS files.
+Of these the javascript in the js subdirectory
+is the most important.
+
+/www/htdocs/cgi-bin/vo/squery has a set of CGI scripts.
+These are generally very simple wrappers around either
+Java applications or VOClient tools.
+
+/software/jira/software/source/net/ivoa/query contains
+some relatively simple Java classes that are used in
+CGI scripts.
+
+/software/jira/software/data/query contains data files,
+notable some HTML templates and settings files, that
+are used by the Java tasks.  It is assumed that
+most of these will be in the same Jar as the Java commands.
+

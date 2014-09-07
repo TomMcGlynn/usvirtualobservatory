@@ -1,0 +1,141 @@
+<project name="net_nvo" default="jar" basedir=".">
+<description> NVO Utilities </description>
+
+<property file="./local.properties"/> <!-- Site-specific properties -->
+
+<property environment="env"/>
+<condition property="proj_root" value="${env.PROJ_ROOT}" else="/www.prod/htdocs">
+   <available file="${env.PROJ_ROOT}"/>
+</condition>
+
+<echo>proj_root is ${proj_root}</echo>
+<property name="INSTALL" value="${proj_root}" />
+<property name="RUNTIME" value="/www/htdocs" />
+<property name="proj"     value="net_nvo" />
+<property name="proj_version"     value="2.7" />
+<property name="subdir"     value="vo" />
+
+<available file="./heasarc.properties" property="properties.present"/>
+	<fail message="Cannot find ./heasarc.properties which is required to build this project." 
+   unless="properties.present"/>
+		
+<property file="./heasarc.properties"/>
+	
+<filter token="URL_PATH"  value="${URL_PATH}"/>
+<filter token="CSS_PATH"  value="${CSS_PATH}"/>
+<filter token="CGI_PATH"  value="${CGI_PATH}"/>
+<filter token="XSL_PATH"  value="${XSL_PATH}"/>
+<filter token="IMG_PATH"  value="${IMG_PATH}"/>
+<filter token="JS_PATH"   value="${JS_PATH}"/>
+<filter token="VOCLIENT"  value="${VOCLIENT}"/>
+<filter token="ABS_PATH"  value="${ABS_PATH}"/>
+<filter token="RUNTIME"   value="${RUNTIME}"/>
+
+<target name="merge_java"  >
+   <mkdir dir="${srcdir}" />
+   <echo message="Merging Java files." />
+   <copy todir="${srcdir}" includeEmptyDirs='false'>
+      <fileset includes="**/*.java" dir="${java}" />
+   </copy>
+</target>
+
+<target name="compile" depends="merge_java" >
+   <mkdir dir="${classes}" />
+   <javac destdir="${classes}"
+      srcdir="${srcdir}"
+      debug="on">
+      <classpath>
+         <pathelement location="${classes}" />
+         <pathelement location="${fjars}/wsdl4j-1.5.1.jar" />
+         <pathelement location="${fjars}/axis.jar" />
+         <pathelement location="${fjars}/jaxrpc.jar" />
+         <pathelement location="${fjars}/commons-exec-1.1.jar" />
+         <pathelement location="${fjars}/javasysmon-0.3.3.jar" />
+      </classpath>
+   </javac>
+</target>
+
+<target name='jar' depends="compile" >
+   <mkdir dir="${jars}" />
+   <jar destfile="${jar}" update="false" basedir="${classes}" />
+</target>
+
+<target name="install" depends="jar,copy"> 
+	<tstamp />
+	<touch file="${docsdest}/.${DSTAMP}_${TSTAMP}_v${proj_version}" />
+</target>
+
+<target name="copy">
+   <echo message="Copying data:"                      />
+   <echo message="  JavaScript to ${jsdest}"        />
+   <echo message="  CGI Scripts to ${cgidest}"      />
+   <echo message="  CSS files to ${cssdest}"        />
+   <echo message="  XSL files to ${xsldest}"        />
+   <echo message="  JAR to ${jardest}/${jarname}"   />
+   <echo message="  CGI files seen as: ${URL_PATH}"  />
+   <echo message="  DOCS files seen as: ${URL_PATH}" />
+
+   <echo message="Clearing out old directories" />
+   <delete failonerror="false" dir="${cgidest}" />
+   <delete failonerror="false" dir="${jsdest}"  />
+   <delete failonerror="false" dir="${cssdest}" />
+   <delete failonerror="false" dir="${xsldest}" />
+
+   <echo message="Copying CGI scripts from ${cgi} to ${cgidest}" />
+   <copy todir="${cgidest}" includeEmptyDirs='false'  filtering='false'>
+      <fileset dir="${cgi}" >
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+		
+   <echo message="Copying HTML elements" />
+   <copy todir="${docsdest}" includeEmptyDirs='false'  filtering='false'>
+      <fileset dir="${html}">
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+
+   <echo message="Merging all JavaScript in ${jsdest}" />
+   <copy todir="${jsdest}" overwrite='true'  filtering='true'>
+      <fileset includes="**/*.js" dir="${fjs}" />
+   </copy>
+   <!-- copy todir="${jsdest}" overwrite='true'  filtering='true'>
+      <fileset includes="**/*.js" dir="${js}" />
+   </copy -->
+	
+   <echo message="Merging all CSS in ${cssdest}" />
+   <copy todir="${cssdest}" overwrite='true' filtering='false'>
+      <fileset includes="**/*.css" dir="${css}" />
+   </copy>
+
+   <echo message="Merging all XSL in ${xsldest}" />
+   <!-- copy todir="${xsldest}" overwrite='true'>
+      <fileset includes="**/*.xsl" dir="${xsl}" />
+   </copy -->
+
+   <echo message="Copying external Jar files." />
+   <copy todir="${jardest}" preservelastmodified='true' filtering='false'>
+      <fileset includes="**/*.jar" dir="${fjars}" />
+   </copy>
+
+   <echo message="Installing new JARs from ${jars} to ${jardest}" />
+   <copy todir="${jardest}" >
+      <fileset includes="**/*.jar" dir="${jars}" />
+   </copy>
+
+   <echo message="Copying properties file" />
+   <copy todir="${docsdest}" includeEmptyDirs='false'  filtering='true' file="./heasarc.properties" />
+	
+	<chmod dir="${cgidest}" includes="*" perm="ugo+x" />
+	<echo message="Install complete" />
+</target>
+
+<target name="clean">
+   <delete failonerror="false" dir="${tmp}" />
+</target>
+
+<target name="test" depends="jar">
+   <echo message="TEST has not been implemented yet." />
+</target>
+
+</project>

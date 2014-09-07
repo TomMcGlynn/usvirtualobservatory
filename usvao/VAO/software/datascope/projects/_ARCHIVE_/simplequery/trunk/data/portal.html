@@ -1,0 +1,138 @@
+<h2> Find data in the Virtual Observatory </h2>
+<p/>
+This form lets you find data in the virtual observatory
+by describing the kinds of resources you are interested
+in (galaxies, HST data, radio) and/or one or more specific locations
+of interest. Depending on the information you give, you may
+get a list of VO services that have the kind of data
+you are interested in, a table showing
+which resources match the locations you have entered, or services
+which begin extracting the data you have requested.
+
+<p/>
+
+<script language='javascript'>
+
+function test() {
+
+    var key = false;
+    var res = false;
+    var pos = false;
+    var list = false;
+    var radius = false;
+    
+    
+    key = document.getElementById("keywords").value;
+    res = document.getElementById("resources").value;
+    pos = document.getElementById("position").value;
+    list = document.getElementById("list").value;
+    radius = document.getElementById("radius").value;
+    
+    if (res) {
+        res = res.length > 0;
+    }
+    if (list) {
+        list = list.length > 0;
+    }
+    
+    if (key && res) {
+        alert("Error: Both keywords and a list or resources have been specified");
+    } else if (pos && list) {
+        alert("Error: Both a single position and a list of positions have been specified");
+    } else if (key && !pos && !list) {
+        alert("Only keywords specified: Query registry for matching resources?");
+    } else if (res && !pos && !list) {
+        alert("Only a list of resources specified: What to do... Registry or Inventory?");
+    } else if ( (key||res) && pos) {
+        alert("Keywords/resources and a postion: Call DataScope limited to matching resources?")
+    } else if ( (key||res) && list) {
+        alert("Keywords/resources and a list of position: Start Vim?");
+    } else if (pos) {
+        alert("Just a position.  Start DataScope?");
+    } else if (list) {
+        alert("A list of positions.  Call the inventory?");
+    }
+    return false;
+}
+function destination() {
+
+    var key = false;
+    var res = false;
+    var pos = false;
+    var list = false;
+    var radius = false;
+    
+    key = document.getElementById("keywords").value;
+    res = document.getElementById("resources").value;
+    pos = document.getElementById("position").value;
+    list = document.getElementById("list").value;
+    if (key) {
+        key = key.length > 0;
+    }
+    if (pos) {
+        pos = pos.length > 0;
+    }
+    if (res) {
+        res = res.length > 0;
+    }
+    if (list) {
+        list = list.length > 0;
+    }
+    radius = document.getElementById("radius");
+    
+    
+    if (key && res) {
+        setDest("Error: resource spec");
+    } else if (pos && list) {
+        setDest("Error: position spec");
+    } else if (key && !pos && !list) {
+        setDest("Registry");
+    } else if (res && !pos && !list) {
+        setDest("Inventory");
+    } else if ( (key||res) && pos) {
+        setDest("DataScope");
+    } else if ( (key||res) && list) {
+        setDest("Vim");
+    } else if (pos) {
+        setDest("DataScope");
+    } else if (list) {
+        setDest("Inventory");
+    } else {
+        setDest("Nothing specified");
+    }
+    return false;
+}
+function setDest(text) {
+    document.getElementById("dest").innerHTML = text;
+}
+</script>
+<form onsubmit="return test()" action="" method="POST" enctype="multipart/form-data">
+<table>
+<tr>
+<td colspan=3>
+Use the first box to enter a list of words that describe
+the kinds of data or resources you are interested in. E.g.,<br>
+&nbsp;&nbsp;&nbsp;<b>x-ray, HST, galaxy.</b><br>
+Alternatively, if you have a list of resources saved
+from a previous query, upload it -- or just enter positions
+below if you want to see what's available from any resource.
+<p/>
+</td></tr>
+<tr><td> Keywords: <input size="30" id="keywords" onmouseout="destination()" ></td>
+<td>&nbsp;-- or --&nbsp;</td>
+<td>List of saved resources: <input type=file id=resources onmouseout="destination()"></td>
+<tr><td colspan=3><hr/></td></tr>
+<tr><td colspan=3>
+Enter a position (name or J2000 coordinates) you are interested in,
+or a file containing a list of positions.<p/> 
+You may set a radius or use the default of 15'.</td>
+</td></tr>
+<td> Position: <input size=30 id="position" onmouseout="destination()" > </td>
+<td>&nbsp;--or --&nbsp;</td>
+<td> List of positions: <input id=list type=file onmouseout="destination()" ></td></tr>
+<tr><td colspan=3 align=center>Radius for search: <input id=radius size=6 onblur="destination()" > [degrees by default, use ' or " suffix for
+minutes or seconds]</td></tr>
+<tr><td colspan=2><hr/> </td></tr>
+<tr><td align=center><input type=submit><br><b> Call:<span id=dest>Nothing specified</span></b></td><td align=center><input type=reset></td></tr>
+
+</table>

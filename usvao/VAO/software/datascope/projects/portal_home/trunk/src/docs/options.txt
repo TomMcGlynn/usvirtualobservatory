@@ -1,0 +1,118 @@
+Have: An idea of the kind of data I am interested in.
+
+Want: To find out what datasets are available.
+
+Enter some keywords in the <a href='@Registry@'>registry</a> and take a look at what
+results come back.  You should get back a list of matching resources.  Be more specific if you get too many results
+or try alternative words if you are not seeing what you expect.  You can
+view the descriptions for all resources, and if the data is queryable you
+can search it directly with the Search Me link.
+
+Want: To browse the datasets that match.
+
+After querying the <a href='@Registry@'>registry</a> using keywords to find
+what you are interested in,
+just click on the Search Me links.  In the resulting forms enter a position where you expect to find
+data, or just do an all-sky search. 
+
+Have: Name of a table
+
+Want: To understand what the table is about or where to find it
+
+Enter the name of the table in the <a href='@Registry@'>registry</a> and view
+the description and characteristics of the table there.
+
+Want: To display the tables contents.
+
+Enter the name of the table in the <a href='@Registry@'>registry</a> and get a list of matching
+results.  Find the one you are interested in if there are multiple hits.
+If you see a Search Me option, click on that and do an all-sky search in
+the resulting form.
+
+Want: To find the brightest, most recent, biggest, ... entries in the table
+
+Enter the name of the table in the <a href='@Registry@'>registry</a> and get a list of matching
+results.  Find the one you are interested in if there are multiple hits.
+If you see a Search Me option, click on that and do an all-sky search in
+the resulting form.   Enter your filter criteria in the filter box and hit return.
+
+Want: To filter and cross-correlate this table with other tables in the VO
+
+Use the <a href='@Registry@'>registry</a> to find the table. Filter the table using the Search Me option
+and send the filtered result to VIM or the inventory.  VIM will allow you
+to generate synthetic columns, but the inventory can do simple cross-correlations
+faster.
+
+Have: A list of objects.
+
+Want: To convert the list to standard VO Formats.
+
+You can try the <a href='@Translator@'>unsupervised</a>
+Your table will be loaded and converted
+and errors reported back to you.  You may need to edit the input a little.
+It likes to have the RA and Dec columns named RA or Dec (with a few other choices),
+and it's not too happy with rows with null values.
+
+Want: To find other tables that have data near the objects in my list.
+
+First convert to standard VO format as needed and then send the result
+to the <a href='@Inventory@'>inventory</a> service. 
+
+Want: To augment my table with data from matching resources including computed columns.
+
+You may first want to check out the <a href='@Inventory@'>inventory</a> service to see which resources
+will match your input table.  Select those resources and send them to <a
+href='@VIM@'>VIM</a>.
+Within VIM upload your original table.  VIM will allow you to cross-correlate
+with each of the resources, merge the results into a single table, and create
+columns based upon arithmetic combinations of existing columns.  You
+can also filter the table at any time.
+<br/>
+Alternatively you can build up the table in the inventory service alone, but
+will not be able to manipulate it or create synthetic columns.
+
+Want: To display and filter a list.
+
+If the list is in the standard VO format, just load it up in the <a href='@SimpleQuery@'>table
+viewer</a>.  Otherwise convert it first using the table converter and then use the viewer.
+
+Want: A set of images around that position
+
+You can try this in <a href='@VIM@'>VIM</a> or you can use the <a
+href='@VOCLI@'>VOClient</a> tool to download the
+images in a command-line environment.
+
+Want: To query another resource or set of resources around each position the
+list.
+
+Try the <a href='@VOCLI@'>VOClient</a> tools to run a query against a list
+of input positions in the command line. 
+
+Want: To display or filter a table that is already in VO format.
+
+Upload the table into our <a href='@SimpleQuery@'>table display tool</a>.  You can
+filter the table, do simple plots and save your filtered results.
+
+Have: A single source or position
+
+Want: To know everything about that position.
+
+Use the <a href='@DataScope@'>DataScope</a> tool to download all the VO can find out and browse the results.
+
+Want: To know what datasets include that position.
+
+Just enter the position in the <a href='@Inventory@'>inventory</a> service.
+
+Have: Multiple sets of targets
+
+Want: To repeat the same task on each of the sets
+
+The <a href='@VOCLI@'>VOClient</a> tools are designed
+to allow you to easily script access to the virtual observatory.  You can
+use the web tools for one or two trials, perhaps picking out the VO datasets
+you want to use in your script.  Once you have picked out a list of datasets
+in the the registry, the inventory, or DataScope you can download that list
+and use it within you VOClient calls.  VOClient can create files which you can
+upload into the Web tools if you want to browse results there, or you can set
+VOClient to display in formats intended for human consumption.
+

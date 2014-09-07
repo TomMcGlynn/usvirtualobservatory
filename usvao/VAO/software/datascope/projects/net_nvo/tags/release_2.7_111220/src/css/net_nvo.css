@@ -1,0 +1,21 @@
+td.nvoapptitle {
+   background: #CFE5FC url('http://nvo.stsci.edu/vor10/images/stars.jpg') repeat-y;
+   height: 43px;
+   top: 0; 
+}  
+img {
+   border: 0;
+}
+.tiny{
+   font-size: 7pt;
+}
+
+.helplink	  {MARGIN-TOP: 0px; MARGIN-BOTTOM: 1px; FONT-SIZE:9pt; 
+                   BACKGROUND-COLOR:#24386d; text-align: center}
+.helplink A	  {TEXT-DECORATION:none;COLOR:#FFFFFF;}
+.helplink A:hover { COLOR: #99FFCC; }
+
+.navlink	{MARGIN-TOP: 0px; MARGIN-BOTTOM: 1px; FONT-SIZE:9pt; 
+                 BACKGROUND-COLOR:#6ba5d7; text-align: center}
+.navlink A	{TEXT-DECORATION:none;COLOR:#FFFFFF;}
+.navlink A:hover { COLOR: #24386d; }

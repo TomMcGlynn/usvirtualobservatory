@@ -1,0 +1,21 @@
+div#wrapper {
+	width: 900px;
+	margin: 0px auto;
+}
+div#placeholder {
+	float: left;
+	margin: 0px auto;
+	width: 600px;
+	height: 400px;
+}
+div#selected { 
+	float: left;
+	margin: 0px auto;
+	width: 200px; 
+	padding: 10px;
+}
+div#y_div {
+	float:left; 
+	position: relative; 
+	top: 20ex;
+}

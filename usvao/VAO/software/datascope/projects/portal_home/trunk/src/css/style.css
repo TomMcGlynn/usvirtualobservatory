@@ -1,0 +1,30 @@
+.content {
+	margin: 1ex auto;
+	width: 50em;
+}
+ul.menulist {
+   font-size: 13pt;
+}
+table#menutable {
+/*
+	border: 1px solid black;
+*/
+	margin: 10px auto;
+}
+table#menutable tr.text td {
+	width: 16ex;
+	text-align: center;
+	font-size: 10pt;
+}
+table#menutable tr.icon td {
+/*
+	border: 1px solid black;
+	height: 16ex;
+	width: 16ex;
+*/
+	text-align: center;
+}
+table#menutable tr.icon td a img{
+   height: 20ex;
+   width: 20ex;
+}

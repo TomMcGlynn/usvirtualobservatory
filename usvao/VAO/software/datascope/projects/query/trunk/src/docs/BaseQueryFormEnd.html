@@ -1,0 +1,46 @@
+<!-- begin BaseQueryFormEnd.html -->
+
+</form>
+<script type="text/javascript">
+
+var u = document.getElementById('units');
+if (u != null) {
+    for ( var i=0; i < u.options.length; i++) {
+       if ( u.options[i].value == '$units' ) {
+          u.options[i].selected = true
+       }
+    }
+}
+
+function setElem(name, val, check) {
+    var elem = document.getElementById(name);
+    if (elem != null) {
+        if (check == null) {
+	    if (elem.value == null) {
+                elem.value = val;
+	    }
+	} else {
+	    if (elem.checked == null) {
+	        elem.checked = val;
+	    }
+	}
+    }
+}
+
+if (setValues == null || !setValues) {
+
+// by setting the values via javascript, the reset button actually works
+    setElem('POSITION',   "$position");
+    setElem('RADIUS',     "$radius");
+    setElem('IVOID',      "$ivoid");
+    setElem('sources',    '$sources');
+    setElem('sourcesURL', '$sourcesURL');
+    setElem('resources', '$resources');
+    setElem('resourcesURL', '$resourcesURL');
+    setElem('Verbosity',  "$verbosity", true);
+    setElem('allsky',     "$allsky", true);
+}
+var setValues = true;
+</script>
+
+<!-- end BaseQueryFormEnd.html -->

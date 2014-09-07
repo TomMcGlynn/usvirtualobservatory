@@ -1,0 +1,20 @@
+   <h2>RGB Image</h2>
+   <table><tr><td colspan=3 align=left>
+   <a href="$_output_rgb"> <img alt="Quicklook RGB image" src="$_output_rgb"></a></td></tr>
+     <tr><th align=left colspan=2>Image scaling:</th>    <td align=left>$scaling</td></tr>
+     <tr><td align=left> Red:</td><td align=left> $_survey0:</td><td>values range from $_imageMin0 to $_imageMax0</td></tr>
+     <tr><td align=left> Green: </td><td align=left>$_survey1:</td><td>values range from $_imageMin1 to $_imageMax1</td></tr>
+     <tr><td align=left> Blue: </td><td align=left>$_survey2:</td><td>values range from $_imageMin2 to $_imageMax2</td></tr>
+     <tr><th align=left colspan=2>Image size(degrees):</th><td align=left> $_imageXsize x $_imageYsize</td></tr>
+     <tr><th align=left colspan=2>Image size(pixels):</th><td align=left> $_imageXpixel x $_imageYpixel</td></tr>
+     <tr><th align=left colspan=2>Requested Center:</th> <td> $position</td></tr>
+     <tr><th align=left colspan=2>Coordinate System:</th><td align=left> $_coordinateSystem</td>
+     <tr><th align=left colspan=2>Map projection:</th>   <td align=left> $_projection</td></tr>
+     <tr><th align=left colspan=2>Sampler:</th>          <td align=left> $_sampler</td></tr>
+<tr><td></th></tr>
+</table><table>
+     <tr><td> <a href=$_output0.fits>FITS</a> for $_name0</td><td><a href='moreinfo.pl?survey=$_survey0'>Info</a></td></tr>
+     <tr><td> <a href=$_output1.fits>FITS</a> for $_name1</td><td><a href='moreinfo.pl?survey=$_survey1'>Info</a></td></tr>
+     <tr><td> <a href=$_output2.fits>FITS</a> for $_name2</td><td><a href='moreinfo.pl?survey=$_survey2'>Info</a></td></tr>
+   </table>
+   <a href=moreinfo.pl>More information</a>

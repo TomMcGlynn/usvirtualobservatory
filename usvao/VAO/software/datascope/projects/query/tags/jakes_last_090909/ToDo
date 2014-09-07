@@ -1,0 +1,102 @@
+
+setenv QUERY_STRING viewLocal='<?xml version="1.0"?><VOTABLE version="1.0">  <DEFINITIONS>    <COOSYS system="eq_FK5" equinox="2000"/>  </DEFINITIONS>      <RESOURCE ID="T9001">     <DESCRIPTION>       HEASARC Browse data service       Please send inquiries to mailto:request@athena.gsfc.nasa.gov    </DESCRIPTION>    <PARAM ID="default_search_radius" ucd="OBS_ANG-SIZE" value="0.0166666666666667"/>    <TABLE>      <DESCRIPTION> ROSAT All-Sky Survey: Faint Sources </DESCRIPTION>            <FIELD name="unique_id" datatype="char" arraysize="*" ucd="ID_MAIN">        <DESCRIPTION> Integer key </DESCRIPTION>      </FIELD>            <FIELD name="name" datatype="char" arraysize="*">        <DESCRIPTION> Source Name </DESCRIPTION>      </FIELD>            <FIELD name="ra" datatype="double" unit="degree" ucd="POS_EQ_RA_MAIN">        <DESCRIPTION> Right Ascension </DESCRIPTION>      </FIELD>            <FIELD name="dec" datatype="double" unit="degree" ucd="POS_EQ_DEC_MAIN">        <DESCRIPTION> Declination </DESCRIPTION>      </FIELD>            <FIELD name="count_rate" datatype="double" unit="ct/s">        <DESCRIPTION> Source Count Rate (cts/s) </DESCRIPTION>      </FIELD>            <FIELD name="count_rate_error" datatype="double" unit="ct/s">        <DESCRIPTION> Source Count Rate Error (cts/s) </DESCRIPTION>      </FIELD>            <FIELD name="hardness_ratio_1" datatype="double">        <DESCRIPTION> Hardness Ratio 1 </DESCRIPTION>      </FIELD>            <FIELD name="hardness_ratio_1_error" datatype="double">        <DESCRIPTION> Hardness Ratio 1 Error </DESCRIPTION>      </FIELD>            <FIELD name="Search_Offset" datatype="double" unit="apos">        <DESCRIPTION> Offset of target/observation from query center </DESCRIPTION>      </FIELD>      <DATA>        <TABLEDATA><TR><TD>49331</TD><TD>1RXS J122845.3+020240</TD><TD val="187.18875">187.18875</TD><TD val="2.04444">2.04444</TD><TD val="0.07372">7.372e-02</TD><TD val="0.01922">1.922e-02</TD><TD val="0.3">0.30</TD><TD val="0.23">0.23</TD><TD val="5.371">5.371</TD></TR><TR><TD>49658</TD><TD>1RXS J122854.7+022609</TD><TD val="187.22792">187.22792</TD><TD val="2.43597">2.43597</TD><TD val="0.02429">2.429e-02</TD><TD val="0.01032">1.032e-02</TD><TD val="-1">-1.00</TD><TD val="0.46">0.46</TD><TD val="23.234">23.234</TD></TR><TR><TD>49380</TD><TD>1RXS J123218.0+020539</TD><TD val="188.075">188.07500</TD><TD val="2.09431">2.09431</TD><TD val="0.01919">1.919e-02</TD><TD val="0.00926">9.259e-03</TD><TD val="0.82">0.82</TD><TD val="0.64">0.64</TD><TD val="47.856">47.856</TD></TR><TR><TD>49969</TD><TD>1RXS J123055.7+024703</TD><TD val="187.73209">187.73209</TD><TD val="2.78417">2.78417</TD><TD val="0.04704">4.704e-02</TD><TD val="0.01447">1.447e-02</TD><TD val="0.42">0.42</TD><TD val="0.3">0.30</TD><TD val="51.681">51.681</TD></TR><TR><TD>48684</TD><TD>1RXS J123050.4+011526</TD><TD val="187.71001">187.71001</TD><TD val="1.25736">1.25736</TD><TD val="0.04116">4.116e-02</TD><TD val="0.01437">1.437e-02</TD><TD val="-0.82">-0.82</TD><TD val="0.16">0.16</TD><TD val="54.263">54.263</TD></TR><TR><TD>50207</TD><TD>1RXS J123013.6+030258</TD><TD val="187.55666">187.55666</TD><TD val="3.04944">3.04944</TD><TD val="0.02406">2.406e-02</TD><TD val="0.01043">1.043e-02</TD><TD val="0.76">0.76</TD><TD val="0.28">0.28</TD><TD val="62.134">62.134</TD></TR><TR><TD>50241</TD><TD>1RXS J123025.9+030518</TD><TD val="187.60793">187.60793</TD><TD val="3.08833">3.08833</TD><TD val="0.03665">3.665e-02</TD><TD val="0.01375">1.375e-02</TD><TD val="-0.44">-0.44</TD><TD val="0.31">0.31</TD><TD val="65.249">65.249</TD></TR></TABLEDATA>      </DATA>    </TABLE>  </RESOURCE></VOTABLE>'
+
+
+setenv QUERY_STRING "IVOID=ivo://nasa.heasarc/abell&RADIUS=5&viewLocal=http://heasarcdev.gsfc.nasa.gov/jake/source.xml"
+cd /www/htdocs/cgi-bin/vo/squery
+sq.sh
+
+svn checkout svn+ssh://us-vo-svn@svn.us-vo.org/nvo
+ssh jake@login.cacr.caltech.edu
+svn list svn+ssh://us-vo-svn@svn.us-vo.org/nvo/projects/
+
+
+The "SciNum" technique is "invalid" in Opera
+
+Get this all to work on:
+	OSX/Leopard           131 205 220 407 519
+		Firefox 2.0.0.14:   Y   Y   Y   Y   Y
+		Camino 1.6:         Y   Y   Y   Y   Y
+		SeaMonkey 1.1.9:    N   Y   Y   Y   Y
+		Safari 3.1:         N   Y   Y   X   Y
+		iCab 4.0:           Y   Y   Y   X   Y
+		Shiira 2.2:         N   Y   Y   X   Y
+		Opera 9.27:         -   -   -   -   Y
+		Explorer 5.2:       N   N   N   N   N
+		Konquerer:          -   -   -   -   -
+		Dashboard:          -   -   -   -   -
+	XP:
+		Firefox             -   Y   -   -   -
+		IE6                 N   N   -   -   -
+		IE7                 -   -   -   -   -
+	Vista:
+		Firefox             -   -   -   -   -
+		IE6                 -   -   -   -   -
+		IE7                 -   -   -   -   -
+	Nokia:
+		Opera?:             N   -   -   -   -
+		Mozilla:            N   -   -   -   -
+
+No filter row for
+	iCab, Shiira, Safari
+
+----------------------------------------------------------------------
+ - Handle null results (no rows) better. (still a problem when the server doesn't respond)
+
+If the initial search results in now rows the users sees ...
+Failed to load VOTable: Response from 'sq.sh?IVOID=ivo%3A%2F%2Fnasa.heasarc%2Fabell&POSITION=3c273&RADIUS=1' is not XML?
+
+----------------------------------------------------------------------
+ - Make history work more robustly (possibly reduce number of history set points)
+
+I'll have look into this as I've avoiding meddling with the statemanager related code.
+
+I don't think it's the statemanger that's the problem.  I think it's in how we're using it.
+
+----------------------------------------------------------------------
+
+
+
+sarissa causing problems with IE
+	Do I still need to use the modified version of sarissa for Windows?
+
+
+
+How to "version" multiple mods of foreign software?
+
+
+Trac page
+
+	http://trac.us-vo.org/nvo/wiki/PortalSimpleQuery
+		link at end has 3 trailing }s
+	http://trac.us-vo.org/nvo/wiki/SimpleQuery
+		does not exist yet
+
+ant test
+
+ant tonvo		#	don't know what the actual purpose of this was intended to be
+
+Minor annoyance caused by conflict of TableDnD and Converter
+	first click on a converter changes then changes back.
+	works after that.
+
+
+Remember the current converter selection so when other things change it doesn't fall back to default.
+
+Remember the selected rows. (They get unselected on sorts and filters)
+	may need to add a column to remember ??
+	then remove it before any exporting
+
+"Reset Selection" doesn't seem to do anything on our site or stsci
+
+
+080221 - 
+ All: Portal elements should accept CGI arguments in any form (i.e., GET, simple POST, or multipart MIME post).  Portal elements should try to generate filename type arguments where appropriate (i.e. for the values of the sources and resources keys).
+
+
+Actually do something with the selected rows once the selection as a whole works.
+
+
+Multiple source results should have some sort of legend stating which rec_id refers to which source position???
+
+

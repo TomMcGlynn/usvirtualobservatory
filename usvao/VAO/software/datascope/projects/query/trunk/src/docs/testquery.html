@@ -1,0 +1,20 @@
+<html>
+<head>
+<title> Test Query Page </title>
+</head>
+<body>
+<h2> Barebones Test Framework for VOClient/HLA query </h2>
+<form action=/cgi-bin/vo/squery/query.pl method=POST enctype='multipart/form-data'>
+<table>
+<tr><td colspan=2>  Enter only one of the next three position fields<td></tr>
+<tr><td align=right>&nbsp;&nbsp;Position (target or coordinates):</td><td> <input size=30 name=POSITION></td></tr>
+<tr><td align=right>&nbsp;&nbsp;URL of target list:</td><td><input size=30 name=sourcesURL></td></tr>
+<tr><td align=right>&nbsp;&nbsp;File upload of target list:</td><td><input type=file name=sources></td></tr>
+<tr><td colspan=2><hr></td></tr>
+<tr><td align=right>Radius (degrees):</td><td><input size=5 name=RADIUS></td></tr>
+<tr><td align=right>IVO Identifier</td></td><td><input size=30 name=IVOID value="ivo://nasa.heasarc/abell"></td></tr>
+<tr><td align=right><input type=submit></td><td><input type=reset></tr></tr>
+</table>
+</form>
+</body>
+</html>

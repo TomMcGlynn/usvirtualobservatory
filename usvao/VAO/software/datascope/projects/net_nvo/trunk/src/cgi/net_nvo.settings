@@ -1,0 +1,13 @@
+
+Portal=http://www.us-vo.org/portalhome
+
+# Settings used in header and footer.( from net_nvo )
+CSSFiles=http://www.us-vo.org/app_templates/usvo_template.css
+RightBoxText=Hosted by:<br /><a href='http://heasarc.gsfc.nasa.gov'>HEASARC</a><br /><a href='http://www.nasa.gov'>NASA</a>/<a href='http://www.gsfc.nasa.gov'>GSFC</a>
+RightBoxImage=<img style='border:0' alt="NASA logo" src='http://www.us-vo.org/images/nasa_logo_sm.gif' />
+FooterFiles=@RUNTIME@@URL_PATH@nvo.ftr,@RUNTIME@@URL_PATH@heasarc.ftr
+
+# Don't use RightBoxLink with the above.
+# Nested <a> tags are invalid
+#RightBoxLink=
+

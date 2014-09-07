@@ -1,0 +1,9 @@
+#!/bin/csh -f
+#
+#  KILL_VODATA -- Utility script to kill of any orphaned VODATA processes
+#  left running when the gremlins hit.
+
+foreach i (`ps|egrep vodata|egrep -v grep|egrep -v kill_vo|awk '{print $1}'`)
+    echo $i
+    kill -9 $i
+end

@@ -1,0 +1,49 @@
+# 
+#  VOClient Tools Configuration file.   
+#  v1.0  M. Fitzpatrick (fitz@noao.edu)         7/12/07
+#
+#       This file contains the configuration options for the VOClient
+#  Tools package of tasks.  All tasks will read this file to ensure similar
+#  behavior by the tasks.
+#       Configuration data are stored as keyword-value pairs when boolean
+#  flags must use a 'yes' or 'no' to indicate the value.  Strings are 
+#  case-insensitive and '#' is used to indicate a comment to the end of the
+#  current line.  Default values are listed as commented settings.
+#       Additional options may be added in the future.
+#
+#  Supported options:
+#
+#       spawn           If set, will attempt to spawn a local instance of the
+#                       voclient daemon if not already running.
+#
+#       port            Default port to use for a local voclient daemon.
+#
+#       console         Create a GUI console window for the local daemon?
+#
+#       quiet           Client API shouldn't produce any error output, it
+#                       will be handled by the application.
+#
+#       server          VOClient daemon server address.  The address is of
+#                       the form
+#                                   <port> ':' <host>
+#
+#                       where <host> can be a local machine name, a fully-
+#                       qualified domain name, or an IP address.  <port> is
+#                       the socket number on which the 'voclientd' is running
+#                       on that machine.  A server will be started if the
+#                       'spawn' flag is set and <host> is 'localhost' or
+#                       the current machine name, the <port> specified here
+#                       will override the 'port' setting
+#
+#
+# Default Values if not set below.
+#
+# port          6200
+# spawn         yes
+# console       no
+# server        6200:localhost
+#
+#------------------------------------------------------------------------------
+
+server          8081:tucana.tuc.noao.edu
+

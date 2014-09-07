@@ -1,0 +1,24 @@
+ResourcesTemplate=queryform_resources.html
+NoResourcesTemplate=queryform_noresources.html
+
+SourceTable=TestQuery
+CMDBase=/www/server/vo/voclient
+CGIBase=/cgi-bin/vo/squery
+docbase=/vo/squery
+CGIProgram=/cgi-bin/vo/squery/sq.sh
+
+RightBoxText=<div align=center>Hosted by:<br>HEASARC<br>NASA/GSFC</div>
+
+VOClientDir=/www/server/vo/voclient
+
+DefaultRadius=0.25
+SingleTargetCmd=/www/server/vo/voclient/vodata -q -V -O -
+SingleTemplate=TableResults.html
+
+MultiTargetCmd=/www/server/vo/voclient/vodata -i - -X -q -O -
+MultiTemplate=TableResults.html
+
+PositionsXSL=/www/htdocs/vo/squery/xsl/getRADec.xsl
+CombinerXSL=/www/htdocs/vo/squery/xsl/combiner.xsl
+
+SaveDir=/www/htdocs/vo/cache/stilts

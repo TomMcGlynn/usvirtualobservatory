@@ -1,0 +1,17 @@
+7/19/2006	Fixed Service.java to accept services with one hit.
+3/2007  	Was adding RoR twice for services
+        	Added time to metadata.stem request to disable
+	 	 inappropriate caching.
+		Fixed problem with one hit a second time.
+		Changed error handling to conceal stack by default.
+		Added Run class including handling of Java exceptions
+		Updated Common.pm to work iwth Run class
+		Changed FileTee to throw an exception when
+		 no data is found.
+		Added expand and contract images
+		Added status bar (bar.js) and substantially
+		 reformatted status region.
+		Changed Response.java to load bar.js
+		Added service type to displays
+		Added titles to all URLs
+		Fixed problm with Simbad queries

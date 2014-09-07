@@ -1,0 +1,14 @@
+
+docbase=@URL_PATH@
+IMG_PATH=@IMG_PATH@
+CSS_PATH=@CSS_PATH@
+JS_PATH=@JS_PATH@
+Registry=@Registry@
+SimpleQuery=@SimpleQuery@
+Inventory=@Inventory@
+VIM=@VIM@
+DataScope=@DataScope@
+Translator=@Translator@
+Wizard=@Wizard@
+VOCLI=@VOCLI@
+

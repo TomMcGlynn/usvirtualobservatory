@@ -1,0 +1,56 @@
+<html>
+<head>
+<title> Simple Query Help </title>
+</head>
+<body>
+<h2> Help for Simple Query pages </h2>
+This page is a place holder for the help
+pages for the simple query.
+<h3> Query Page </h3>
+On the query page you can specify the central position
+and radius of a region to be searched.  The position
+may be given as a target name or in J2000 coordinates.
+<p>
+If called without an specific resource specified,
+a third input field is present where a knowledgeable
+user can specify the IVO Identifier of the resource
+to be queried.  Normally this service should be
+invoked with the resource specified, but this mode
+allows is useful for debugging.
+<h3> The results page </h3>
+The query results are downloaded and presented to the
+user in an HTML table.  Users can scroll through, sort, filter, select
+and propogate results.
+<h4> Scrolling through results </h4>
+The table results are scrolled using the page controls to the top
+right of the form.  You can select the next or previous page, or a
+specific page number.  The number of results displayed per page can
+be changed.
+
+<h4>Sort </h4>
+Just click on a column heading to sort a table by that heading.
+The first time the sort order is ascending; a second click on
+the same column header will
+start a sort in descending order.  An arrow will appear in the header
+to show the current sort column.  Note that the entire table
+will be resorted, not just the rows currently being displayed.
+
+<h4> Filter </h4>
+Enter a constraint in the box at the top of a column to filter the
+table on that column.  E.g., if you want only the exposures greater
+than 100000, enter <code>&gt;100000</code>  in the box.  As soon as you move
+out of the box the table will be filtered.  Only fairly simple
+sorts are supported.  &gt;, &gt;=, &lt;= &lt; can be used with
+numeric columns as well as a range operator "..", e.g., <code>1000..2000</code>
+to get everything between 1000 and 2000 inclusive.  If no operator
+is specified '=' is assumed.
+<p>
+For character columns only fairly limited matches are supported.
+A string column defaults to matching all rows that begin with
+that start with that string.  If a '*' is included in the string,
+it will match any set of characters (including none).  E.g.,
+<code>3C*273</code> matches '3c273' and '3C 273'.  Character matching is
+case insensitive.  The '=' may be used to request an exact match
+rather than a starting with.  E.g., <code>=White</code> matches White but not
+Whiteside while <code>White</code> would match both.
+

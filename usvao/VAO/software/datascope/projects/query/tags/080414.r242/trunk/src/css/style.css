@@ -1,0 +1,75 @@
+.errorField {
+	border: 1px solid red;
+	background-color: #FFCCCC;
+}
+.errorMessage {
+	text-align: center;
+	padding: 1ex;
+	font-weight: bold;
+	font-size: 14pt;
+	border: 1px solid red;
+	background-color: #FFCCCC;
+	color: red;
+}
+form#basequery {
+	width: 80ex;
+	margin: 0 auto;
+}
+form#basequery *{
+	font-size: 12pt;
+}
+#querycaption {
+	text-align: center;
+}
+
+/* Simple Modal Styling */
+/* Overlay */
+#modalOverlay {background-color:#000; cursor:wait;}
+
+/* Container */
+#modalContainer {
+	height:400px; 
+	width:600px; 
+	left:50%; 
+	top:15%; 
+	margin-left:-300px; 
+	background-color:#fff; 
+	border:3px solid #ccc;
+	padding: 20px;
+}
+#modalContainer a.modalCloseImg {
+	background:url(@IMG@/x.png) no-repeat; 
+	width:25px; 
+	height:29px; 
+	display:inline; 
+	z-index:3200; 
+	position:absolute; 
+	top:-15px; 
+	right:-18px; 
+	cursor:pointer;
+}
+
+#modalContainer * {
+	font-size: 14pt;
+}
+#modalContainer h3 {
+	font-size: 18pt;
+}
+
+div#content {
+	position: fixed;
+	bottom: 28ex;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 1ex;
+	margin: 0;
+}
+div#footer {
+	height: 28ex;
+	position: absolute;
+	bottom: 0;
+	margin: 1ex;
+}

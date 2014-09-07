@@ -1,0 +1,20 @@
+
+Exponential Notation sorting and filtering (query.js)
+	and remove them before they are sent or saved.
+
+Add a nice menu bar with popover modal menus?
+
+Will jQuery ajax call read "foreign" URLs instead of proxy.pl?
+
+Add the standard VO export abilities
+
+Include Flot
+
+Menu bar with Save As ... , Send to ..., ...
+
+Separate Sorting from Updating 'output' so can export sort'd votable
+	sorting in voview.xsl produces html
+	would have to create new xsl for sorting export
+
+Column table "Show / No show" row not always visible in the beginning
+

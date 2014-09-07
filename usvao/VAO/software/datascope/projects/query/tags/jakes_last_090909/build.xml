@@ -1,0 +1,314 @@
+<project name="SimpleQuery" default="jar" basedir=".">
+<description> Virtual Observatory SimpleQuery service </description>
+
+<property name="proj"     value="query" />
+<property name="dest"     value="vo/s${proj}" />    
+<property file="../../net_ivoa/trunk/heasarc.properties"/>
+
+<filter token="URL_PATH"  value="${URL_PATH}"/>
+<filter token="CSS_PATH"  value="${CSS_PATH}"/>
+<filter token="XSL_PATH"  value="${XSL_PATH}"/>
+<filter token="IMG_PATH"  value="${IMG_PATH}"/>
+<filter token="JS_PATH"   value="${JS_PATH}"/>
+<filter token="VOCLIENT"  value="${VOCLIENT}"/>
+<filter token="ABS_PATH"  value="${ABS_PATH}"/>
+<filter token="XSL_RUN"   value="${XSL_RUN}"/>
+<filter token="VIM"       value="${VIM}"/>
+<filter token="Inventory" value="${Inventory}"/>
+<filter token="DataScope" value="${DataScope}"/>
+<filter token="Registry"  value="${Registry}"/>
+<filter token="SUBDIR"    value="${SUBDIR}"/>
+
+<target name="check_dependencies"  >
+   <available file="${ivoalib}" property="${ivoalib}.present"/>
+   <fail message="Cannot find ${ivoalib} which is required to build this project"
+      unless="${ivoalib}.present"/>
+   <echo message="Found ${ivoalib}" />
+   <available file="${nvolib}" property="${nvolib}.present"/>
+   <fail message="Cannot find ${nvolib} which is required to build this project"
+      unless="${nvolib}.present"/>
+   <echo message="Found ${nvolib}" />
+   <available file="${vovlib}" property="${vovlib}.present"/>
+   <fail message="Cannot find ${vovlib} which is required to build this project"
+      unless="${vovlib}.present"/>
+   <echo message="Found ${vovlib}" />
+   <available file="${dslib}" property="${dslib}.present"/>
+   <fail message="Cannot find ${dslib} which is required to build this project"
+      unless="${dslib}.present"/>
+   <echo message="Found ${dslib}" />
+</target>
+
+<target name="merge_java"  depends="check_dependencies" >
+   <mkdir dir="${srcdir}" />
+   <echo message="Merging Java files." />
+   <copy todir="${srcdir}" filtering='true'>
+      <fileset includes="**/*.java" dir="${ivoalib}/trunk/src/java/" />
+      <fileset includes="**/*.java" dir="${nvolib}/trunk/src/java/" />
+      <fileset includes="**/*.java" dir="${java}" />
+   </copy>
+</target>
+
+<target name="datascope" >
+   <echo message="Creating datascope.jar" />
+   <ant dir="${dslib}/trunk/" target="jar" inheritAll="false" />
+   <mkdir dir="${jars}" />
+   <copy file="${dslib}/trunk/tmp/jars/datascope.jar" todir="${jars}/" />
+   <copy file="${dslib}/trunk/tmp/jars/skyview.jar" todir="${jars}/" />
+   <echo message="Done creating datascope.jar" />
+</target>
+
+<target name="compile" depends="merge_java,datascope" >
+   <mkdir dir="${classes}" />
+
+   <javac destdir="${classes}" srcdir="${srcdir}" debug="on" >
+<!--
+      includes="net/ivoa/util/**,net/nvo/**,net/ivoa/query/**"
+      <compilerarg value="-Xlint:unchecked" />
+-->
+      <classpath>
+         <pathelement location="${classes}" />
+         <pathelement location="${fjars}/stilts.jar" />
+         <pathelement location="${jars}/datascope.jar" />
+         <pathelement location="${jars}/skyview.jar" />
+      </classpath>
+   </javac>
+</target>
+
+<target name="clean">
+   <delete failonerror="false" dir="${tmp}" />
+   <exec executable="find">
+      <arg value="${cgi}" />
+      <arg value="-name"      />
+      <arg value="*~"    />
+      <arg value="-exec"      />
+      <arg value="rm"         />
+      <arg value="{}"         />
+      <arg value=";"          />
+   </exec>
+   <exec executable="find">
+      <arg value="${css}" />
+      <arg value="-name"      />
+      <arg value="*~"    />
+      <arg value="-exec"      />
+      <arg value="rm"         />
+      <arg value="{}"         />
+      <arg value=";"          />
+   </exec>
+   <exec executable="find">
+      <arg value="${docs}" />
+      <arg value="-name"      />
+      <arg value="*~"    />
+      <arg value="-exec"      />
+      <arg value="rm"         />
+      <arg value="{}"         />
+      <arg value=";"          />
+   </exec>
+   <exec executable="find">
+      <arg value="${js}" />
+      <arg value="-name"      />
+      <arg value="*~"    />
+      <arg value="-exec"      />
+      <arg value="rm"         />
+      <arg value="{}"         />
+      <arg value=";"          />
+   </exec>
+</target>
+
+<target name='jar' depends="compile" >
+   <mkdir dir="${jars}" />
+   <jar destfile="${jar}" update="false" basedir="${classes}" />
+   <mkdir dir="${tmp}/jardata" />
+   <!-- must copy the the jar data to filter it -->
+   <copy todir="${tmp}/jardata" includeEmptyDirs='false'  filtering='true'>
+      <fileset dir="${data}" >
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+   <jar destfile="${jar}" update="true" basedir="${tmp}/jardata" />
+   <!-- make the entire tmp directory group writable -->
+   <chmod dir="${tmp}" type="both" includes="**" perm="g+w" />
+</target>
+
+<target name="install" depends="jar,copy"> </target>
+
+<target name="copy">
+   <echo message="Copying data:"                      />
+   <echo message="  Documents to ${docsdest}"       />
+   <echo message="  JavaScript to ${jsdest}"        />
+   <echo message="  CGI Scripts to ${cgidest}"      />
+   <echo message="  CSS files to ${cssdest}"        />
+   <echo message="  XSL files to ${xsldest}"        />
+   <echo message="  JAR to ${jardest}/${jarname}"   />
+   <echo message="  CGI files seen as: ${URL_PATH}"  />
+   <echo message="  DOCS files seen as: ${URL_PATH}" />
+
+   <echo message="Clearing out old directories" />
+   <delete failonerror="false" dir="${cgidest}" />
+   <delete failonerror="false" dir="${jsdest}"  />
+   <delete failonerror="false" dir="${cssdest}" />
+   <delete failonerror="false" dir="${xsldest}" />
+   <delete failonerror="false" dir="${docsdest}"/>
+
+   <echo message="Copying CGI scripts from ${cgi} to ${cgidest}" />
+   <copy todir="${cgidest}" includeEmptyDirs='false'  filtering='true'>
+      <fileset dir="${cgi}" >
+         <exclude name="**/versions/*" />
+      </fileset>
+      <fileset includes="**/*.pl" dir="${vovlib}/trunk/src/cgi/" />
+   </copy>
+   <chmod dir="${cgidest}" includes="*" perm="ugo+x" />
+   <concat destfile="${cgidest}/vo.settings" append="true" >
+      <filelist dir="${nvolib}/trunk/src/cgi/" files="net_nvo.settings"/>
+   </concat>
+
+   <echo message="Copying HTML elements" />
+   <copy todir="${docsdest}" includeEmptyDirs='false'  filtering='true'>
+      <fileset dir="${docs}">
+         <exclude name="**/versions/*" />
+	 <!-- Filtering seems to screw up images in copy (x.png in particular) -->
+	 <exclude name="images/*" />
+      </fileset>
+      <fileset dir="${nvolib}/trunk/src/html/">
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+   <copy todir="${docsdest}/images" includeEmptyDirs='false'>
+      <fileset dir="${docs}/images">
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+   <chmod dir="${docsdest}" includes="*.csh" perm="ugo+x" />
+
+<!-- 
+   Absolutely no idea which takes precedence if file with the same 
+   name exists in multiple dirs 
+-->
+   <echo message="Merging all JavaScript in ${jsdest}" />
+   <copy todir="${jsdest}" overwrite='true' >
+      <fileset includes="**/*.js" dir="${vovlib}/foreign/javascript/" />
+   </copy>
+   <copy todir="${jsdest}" overwrite='true' >
+      <fileset includes="**/*.js" dir="${vovlib}/mods/javascript/" />
+   </copy>
+   <copy todir="${jsdest}" overwrite='true'  filtering='true'>
+      <fileset includes="**/*.js" dir="${vovlib}/trunk/src/javascript/" />
+   </copy>
+   <copy todir="${jsdest}" overwrite='true'  filtering='true'>
+      <fileset includes="**/*.js" dir="${fjs}" />
+   </copy>
+   <copy todir="${jsdest}" overwrite='true'  filtering='true'>
+      <fileset includes="**/*.js" dir="${js}" />
+   </copy>
+
+   <echo message="Merging all CSS in ${cssdest}" />
+   <copy todir="${cssdest}" overwrite='true' filtering='true'>
+      <fileset includes="**/*.css" dir="${vovlib}/trunk/src/css/" />
+   </copy>
+   <copy todir="${cssdest}" overwrite='true' filtering='true'>
+      <fileset includes="**/*.css" dir="${nvolib}/trunk/src/css/" />
+      <fileset includes="**/*.css" dir="${css}" />
+   </copy>
+
+   <echo message="Merging all XSL in ${xsldest}" />
+   <copy todir="${xsldest}" overwrite='true'>
+      <fileset includes="**/*.xsl" dir="${vovlib}/trunk/src/xsl/" />
+   </copy>
+   <copy todir="${xsldest}" overwrite='true'>
+      <fileset includes="**/*.xsl" dir="${xsl}" />
+   </copy>
+
+   <echo message="Coping voview images to ${imgdest}" />
+   <copy todir="${imgdest}">
+      <fileset includes="**/*" dir="${vovlib}/trunk/src/images/" />
+   </copy>
+   <copy todir="${imgdest}">
+      <fileset includes="**/*" dir="src/images/" />
+   </copy>
+
+   <echo message="Copying external Jar files." />
+   <copy todir="${jardest}" >
+      <fileset includes="**/*.jar" dir="${fjars}" />
+   </copy>
+
+   <echo message="Installing new JARs from ${jars} to ${jardest}" />
+   <copy todir="${jardest}" >
+      <fileset includes="**/*.jar" dir="${jars}" />
+   </copy>
+<!--
+   <copy file="${jar}" tofile="${jardest}/${jarname}" />
+-->
+
+   <!--<chmod dir="${docsdest}" includes="**" type="both" perm="g+w" />-->
+   <echo message="Install complete" />
+</target>
+
+<target name="release" depends="clean,install"> </target>
+
+<target name="javadoc" depends="merge_java" >
+   <delete failonerror="false" >
+      <fileset dir="${javadocs}/${proj}" />
+   </delete>
+   <javadoc sourcepath="${srcdir}" destdir="${javadocs}/${proj}" 
+      packagenames="net.ivoa.util,net.ivoa.query,net.nvo" >
+      <classpath>
+         <pathelement location="${classes}" />
+         <pathelement location="${fjars}/stilts.jar" />
+      </classpath>
+   </javadoc>
+</target>
+
+<!--
+
+I really don't know what this was for ...
+
+<target name="tonvo">
+   <property name="xproj"    value="simplequery" />
+   <echo message="Copying CGI scripts" />
+   <copy todir="../nvo/projects/${xproj}/trunk/cgi/" >
+      <fileset dir="${cgi}"  />
+   </copy>
+   <chmod dir="../nvo/projects/${xproj}/trunk/cgi" 
+      includes="*" perm="ugo+x" />
+
+   <echo message="Copying HTML documentation and XSL" />
+   <copy todir="../nvo/projects/${xproj}/trunk/htdocs" >
+      <fileset dir="${docs}" />
+   </copy>
+   <chmod dir="../nvo/projects/${xproj}/trunk/htdocs" 
+      includes="*.csh" perm="ugo+x" />
+
+   <echo message="Copying JavaScript" />
+
+   <copy todir="../nvo/projects/${xproj}/trunk/htdocs/js">
+      <fileset dir="${js}"     />
+      <fileset dir="js/query/" />
+   </copy>
+
+   <copy todir="../nvo/projects/${xproj}/trunk/source">
+      <fileset dir="${srcdir}" 
+         includes="net/ivoa/query/** net/nvo/** net/ivoa/util/**" />
+   </copy>
+
+   <echo message="Copying CSS" />
+   <copy todir="../nvo/projects/${xproj}/trunk/htdocs/css">
+      <fileset dir="css/query" />
+      <fileset dir="${css}"    />
+   </copy>
+
+   <copy todir="../nvo/projects/${xproj}/trunk/build" >
+      <fileset dir="./build" includes="query.xml" />
+   </copy>
+
+   <copy todir="../nvo/projects/${xproj}/trunk/data" >
+      <fileset dir="${data}" />
+   </copy>
+
+   <echo message="Distribution complete" />
+</target>
+-->
+
+<target name="test" depends="compile">
+   <echo message="Testing has not been implemented yet." />
+</target>
+
+</project>

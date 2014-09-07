@@ -1,0 +1,37 @@
+ResourcesTemplate=queryform_resources.html
+NoResourcesTemplate=queryform_noresources.html
+
+SourceTable=TestQuery
+CMDBase=@VOCLIENT@
+CGIBase=@CGI_PATH@
+docbase=@URL_PATH@
+JS_PATH=@JS_PATH@
+CSS_PATH=@CSS_PATH@
+CGIProgram=sq.pl
+URLAbs=@ABS_PATH@
+
+VOClientDir=@VOCLIENT@
+
+DefaultRadius=0.25
+SingleTargetCmd=@VOCLIENT@/vodata -q -V -O -
+SingleTemplate=TableResults.html
+
+MultiTargetCmd=@VOCLIENT@/vodata -q -V -X -O - -p -
+MultiTemplate=TableResults.html
+
+# IMPORTANT NOTE!
+# These variables are accessed during runtime from the webserver
+# therefore they are always /www/ and NOT /www.prod/
+# even when installing on heasarc!!!
+PositionsXSL=@XSL_RUN@/getRADec.xsl
+CombinerXSL=@XSL_RUN@/combiner.xsl
+SinglerXSL=@XSL_RUN@/singler.xsl
+# ValueXSL=@XSL_RUN@/addValue.xsl
+
+# These may change, so simpler to keep them
+# available for updating without reinstalling
+VIM=@VIM@
+Inventory=@Inventory@
+Registry=@Registry@
+DataScope=@DataScope@
+VOClient=http://iraf-nvo.noao.edu/vo-cli/

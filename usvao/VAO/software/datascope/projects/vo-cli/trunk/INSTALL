@@ -1,0 +1,88 @@
+		   =========================================
+		     VO-CLI v1.0 Installation Instructions
+		   =========================================
+
+
+	VO-CLI is distributed as a GZip compressed tarball of either the
+source, or pre-built binaries for a particular platform.  Current dist-
+ributions include:
+
+    vocli-src.tar.gz	    Source code distribution 
+    vocli-linux.tar.gz	    Linux binary distribution
+    vocli-osx.tar.gz	    Mac OSX (Universal Binary) distribution
+
+
+See the README file for a complete list of the contents in the source
+distribution.  Binary distributions will contain the following files
+and directories:
+
+    INSTALL		This file
+    vodata		Task executable
+    voregistry	 	  "	"
+    vosesame	 	  "	"
+
+    voclientd		VOClient daemon startup script
+    voclient.jars	Supporting JAR files directory
+
+
+Requirements Checklist:
+
+    o  Task excecutables should be entirely self-contained, there are
+	  no known specific requirements.
+    o  The VOClient daemon requires that Java 1.5 be installed.
+    o  The 'voclient.jars' directory MUST be in the same directory as
+	  the 'voclientd' command script.
+
+
+=======================
+To Install from Source:
+=======================
+
+
+1)  Create a directory for the source, and unpack the distirbution tar file:
+
+	% mkdir /path/vo-cli			    # create directory
+	% cd /path/vo-cli			    # go there
+	% tar zxf /path/vocli-src.tar.gz	    # unpack the distrbution
+
+2)  Compile the package:
+
+	% make					    # Do the compilation
+	% make install				    # install to package bin
+
+3)  Optionally, copy the binaries to a system directory.  In most cases
+    this will require root permission in order to do it.  Assuming you
+    want to install in /usr/local/bin, something like the following 
+    command:
+
+	% su					    # become 'root'
+	# cp -rp bin/* voclient.jars /usr/local/bin # copy binaries
+
+
+======================================
+To Install from a Binary Distribution:
+======================================
+
+1)  Create a temporary directory to unpack the files:
+
+	% mkdir /tmp/vo-cli			    # create temp directory
+	% cd /tmp/vo-cli			    # go there
+	% tar zxf /path/vocli-<arch>.tar.gz	    # unpack the distrbution
+
+2)  Optionally, copy the binaries to a system directory.  In most cases
+    this will require root permission in order to do it.  Assuming you
+    want to install in /usr/local/bin, something like the following 
+    command:
+
+	% su					    # become 'root'
+	# cp -rp * /usr/local/bin     		    # copy binaries
+
+
+-------------------------------------------------------------------------------
+
+    Please report any bugs, comments, or suggestions to the author
+(fitz@noao.edu) or the NVO Help Desk (feedback@us-vo.org).
+
+
+Mike Fitzpatrick, fitz@noao.edu, NOAO
+Sep 7, 2007

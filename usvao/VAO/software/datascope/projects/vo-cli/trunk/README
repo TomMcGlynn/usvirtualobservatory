@@ -1,0 +1,52 @@
+		     ===============================
+		      VO-CLI v1.0 Tools README File
+		     ===============================
+
+    This directory contains the source and documentation for the
+VO-CLI (VO Command-Line Interface) tools.  See the INSTALL file for
+detailed installation instructions.
+
+    The VO-CLI Tools consist of the following tasks:
+
+   	         vodata	- query and access VO data services
+	       vosesame	- call the Sesame name resolver service
+	     voregistry	- NVO Registry search client
+
+Additional tasks will be added in future versions.  Together, these tasks
+provide desktop access to VO data services, combined with functionality to
+resolve object names and data resources using the Registry.  A key
+objective of this package is to provide an astronomer friendly interface to
+the VO that conceals the infrastructure used to make it all work.
+
+
+Contents:
+---------
+	Makefile		Top-level Makefile for the source
+	README			This file
+	INSTALL			Installation instructions
+	bin/			Directory of compiled binaries
+	doc/			Task documentation directory
+	include/		Task include file directory
+	lib/			Libraries needed by tasks
+	src/			VO-CLI source code directory
+	voclient/		VOClient source direcory
+	voclient.jars/		Supporting JAR files directory
+	voclientd		VOClient daemon command script.
+
+    The 'voclientd' command MUST be in the same directory as the
+'voclient.jars' directory to operate properly.  The task binaries, the
+voclientd and the voclient.jars directory may all be installed in a system
+directory common to all users, or in a user-specific path.  The 'voclientd'
+will be started automatically by tasks that need it, so long as the command
+can be found in the user's default environment.
+    The JAR files included in this distribution are platform-independent.
+Binary releases will be specific to a particular platform but the package
+should compile from source under Linux, Mac OSX, or Cygwin.  The VOClient
+daemon required Java 1.5 to be installed, necessary JAR files are included.
+
+    Please report any bugs, comments, or suggestions to the author
+(fitz@noao.edu) or the NVO Help Desk (feedback@us-vo.org).
+
+
+Mike Fitzpatrick, fitz@noao.edu, NOAO
+Sep 7, 2007

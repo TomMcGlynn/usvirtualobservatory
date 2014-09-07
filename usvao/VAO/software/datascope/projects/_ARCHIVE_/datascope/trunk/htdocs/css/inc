@@ -1,0 +1,2 @@
+td.sel   {background: #FFAAAA}
+td.unsel {background: #FFFFFF}

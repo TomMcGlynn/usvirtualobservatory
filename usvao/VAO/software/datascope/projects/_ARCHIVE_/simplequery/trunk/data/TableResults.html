@@ -1,0 +1,50 @@
+<script language='JavaScript'>
+
+    var docBase       = '$docBase';
+    var url           = '$CGIProgram?$CGIParams';
+    
+    var Psources      = null;
+    var PsourcesURL   = null;
+    var PRequestID    = null;
+    var Presources    = null;
+    var PresourcesURL = null;
+    var PRadius       = null;
+    var PIVOID        = null;
+    
+    Psources       = '$sources';
+    PsourcesURL    = '$sourcesURL';
+    PRequestID     = '$requestID';
+    Presources     = '$resources';
+    PresourcesURL  = '$resourcesURL';
+    PRadius        = $radius;
+    PIVOID         = '$IVOID';
+    
+</script>
+<Button title="Display results in ASCII" onclick="return renderAscii()">ASCII</button>
+<Button title="Save results" onclick="return renderXML()">XML/VOTable</button>
+<Button title="Find matching datasets" onclick="return invenLink('http://hachi.ipac.caltech.edu:8000/cgi-bin/Inventory/nph-inventory')" title="Send filtered/selected rows to inventory to find which VO services have data at specified locations">
+Match data to positions
+</button>
+<Button title="Use Vim to query and combine data from multiple VO resources" onclick="return vimLink('http://nesssi.cacr.caltech.edu/cgi-bin/vim.cgi')">
+Manage data near positions
+</button>
+<Button onclick="return voLink('http://heasarc.gsfc.nasa.gov/cgi-bin/vo/test/datascope/init.pl')" title="Use DataScope to look at primary position">
+Find Data near first position
+</Button>
+<div style="visibility:hidden;display:inline;">
+<iframe height=1 width=1 name=outputframe id=outputframe></iframe>
+<form style="display:inline; margin:0;" id="outputform" action="/cgi-bin/vo/squery/viewresults.pl" method="POST">
+    <input id="sources"      name="sources"      type="hidden" >
+    <input id="requestID"    name="requestID"    type="hidden"  value='$requestID'       >
+    <input id="resourcesURL" name="resourcesURL" type="hidden"  value='$resourcesURL' >
+    <input id="resources"    name="resources"    type="hidden" >
+    <input id="ShortName"    name="ShortName"    type="hidden" value="$ShortName" >
+    <input id="_spec1" type="hidden" />
+    <input id="_spec2" type="hidden" />
+</form>
+</div>
+<div id="output">
+Table should appear here.
+</div>
+
+<p>

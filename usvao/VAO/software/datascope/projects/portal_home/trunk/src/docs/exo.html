@@ -1,0 +1,21 @@
+<h3> Find Exoplanet systems that have been observed by ST. </h3>
+
+A link to a table derived from the <a href=nsted.ipac.caltech.edu>NSTED</a> database
+of exoplanet data is available here.  While NSTED should be able to generate
+a table in VOTable format, that didn't work when we created this search.
+So we were able with a little manual editing to get a <a href=exostars.xsv>pipe-delimited file</a>
+of all of the stars with known planets.  However we need to convert this
+to a VOTable to use in the portal.  In particular we need to know
+the RA and Dec, so we had to make sure that the RA and Dec columns were
+something that our converter would recognize.  We edited the first row
+of the table to make the names for those columns, RA and Dec.
+
+<ul>
+<ol>
+<li>Get NSTed derived table (provided)
+<li>Convert using TableConverter.  Note that the inventory doesn't like rows with nulls
+in key columns.  And it needs to know which are the RA and Dec columns.
+We've done the necessary filtering already in the linked file.
+<li>Upload to inventory.  Do search radius of 1'.
+<li>HSTAEC returns 57 matches or about 1/4 of the total.
+</ol>

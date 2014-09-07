@@ -1,0 +1,39 @@
+<html>
+<head>
+<script src='/vo/squery/js/jquery.pack.js' language='JavaScript' type='text/javascript'></script>
+<script src='/vo/squery/js/jquery.listen-min.js' language='JavaScript' type='text/javascript'></script>
+<script>
+$(function() {
+	$.listen('blur','input#IVOID', function() {
+		var longname = $('#IVOID').val();
+		if ( longname.length > 0 ) {
+			$.get('/cgi-bin/vo/squery/getLongnames.pl', { IVOID: longname },
+				function(data){
+					names = data.split("\n");
+					if ( names.length <= 1 ) {
+
+					} else if ( names.length == 2 ) {
+						$('input#IVOID').val(names[0]);
+						$.get('/cgi-bin/vo/squery/getShortname.pl', { IVOID: names[0] },
+							function(data){ $('#querycaption').html('Query resource: '+data); }
+						);
+					} else {
+						$('input#IVOID').replaceWith("<select id='IVOID'></select>");
+						names.length = names.length-1;
+						for ( i=0;i<names.length;i++) {
+							$('select#IVOID').append("<option value='"+names[i]+"'>"+names[i]+"</option>");
+						}
+					}
+				}
+			);
+		}
+	});
+});
+
+</script>
+</head>
+<body>
+<p id='querycaption'></p>
+<p>IVO Identifier<input size='40' id='IVOID' name='IVOID' value='ivo://nasa.heasarc/abell' /></p>
+</body>
+</html>

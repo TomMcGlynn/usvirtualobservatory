@@ -1,0 +1,254 @@
+<h2> How to use DataScope </h2>
+<p>
+The NVO DataScope tool queries hundreds of astronomical
+services about a given location or region and organizes the
+information so that you can browse it, select data for download,
+or pass it into compatible tools for further analysis
+</p>
+<h4> Starting DataScope </h4>
+<p>
+To start DataScope, just enter a position, radius and units in the
+fields provided and submit the query.  You can enter
+the position as a target name, or in sexagesimal or decimal
+coordinates.  Many formats are supported.
+</p>
+<p>
+Once you submit a query DataScope will start a query of registered
+resources that can be queried at that position.  A result form
+will pop up and show you the kinds of responses you get. 
+</p>
+<p>
+If you wish to make sure to get fresh results you can click checkbox
+that skips the cache.  Similarly the DataScope checks once an hour
+to see what resources are available to be queried.  You can ask for
+this to be updated before your query by checking "Refresh registry" box.
+</p>
+<p>
+A few recent queries are shown at the bottom of the page but you can
+leave your query off the list by clicking on the third checkbox.
+</p>
+<h3> Query results </h3>
+<p>
+The DataScope should immediately return with a page that begins
+to organize the results.  If the results have already been cached
+the form will show the previously queried data.  If you are starting
+a new query it will gather results over a period of a few minutes.
+A status section at the top of the query result page shows the progress
+of the query, the number of resources found and how long ago the query was
+initiated.  All other data is organized
+into tabbed panels below the status area
+You can jump to any of the panels at any time.  Just
+click on the panels' tabs at the top of the page.
+</p>
+
+<h4> Summary </h4>
+<p>
+The Summary panel summarizes the request, shows
+an optical image of the region and indicates how many files
+you have selected for further analysis.  Initially no files are
+selected.
+</p>
+<p>
+This is where
+where you launch analysis tools like Aladin or initiate
+a download of data to your local machine of the selected files.
+</p>
+
+<h4> Resources </h4>
+<p>
+This panel links to all the data that has been returned.
+All resources that have been queried which have some data
+in the requested region are shown.  Resources are broken into four major categories:
+</p>
+<ul>
+<li>
+Key multiwavelength services (NED, SIMBAD, ADS and SkyView).  These
+include both object and image services. The object services provide links
+to ADS, NED and SIMBAD queries for the returned bibcodes or objects.  You can
+browse the images in the SkyView and NED images services just like the
+other images services described below.
+<li>
+Image services.  These services return a list of images.  You can view the images or
+select any FITS image for download into a TAR file or analysis with Aladin or OASIS.
+
+<li>Observations.  These services are queries of catalogs of observations.  In
+many cases a link to the archive data is available.
+<li>Object catalogs.  These services list objects found in the region.
+</ul>
+<p>
+Images and observations
+are sub-divided according to the wavelength, while object catalogs are
+organized according to object type.
+</p>
+<p>
+What's the difference between Images and Observations?<br>
+The Image services are those services which return images regardless
+of the origin, e.g., the image may be dynamically generated from
+survey data, or it may correspond to a single observation of some
+observatory.  An observation is a single collection of data taken
+by an observatory.  There may or may not be images that were taken as part of the
+observation.  In many cases DataScope gives links to the archive
+data for an observation, but this is not always possible.  The observation
+data may include spectra and time series rather than observations.
+Often a data provider will provide multiple methods of accessing
+their data so that DataScope lists the service in both the Images and Observations
+area. To summarize, the Images links will always have some underlying data
+underneath them, but for images.  Observations links may or may not
+have links to underlying data, but can include spectra and other non-image
+types of observations.
+</p>
+<p>
+You can control which categories are displayed.  Each category label
+is preceded by a minus sign, e.g., <tt>- Major Multiwavelength Services</tt>,
+Click on the minus sign (<tt>-</tt>) before the label to collapse the category.
+The resources in that category will disappear.
+Just the label will be left and preceded by +(N) whre
+N is the number of resources that in the collapsed tree.
+Click on the + to restore the category.
+</p>
+<p>
+Each resource is displayed in the format<br>
+<tt>   <form><input type='checkbox'> Name (n/m) ?</form></tt><br>
+Click on the <tt>name</tt> to display the data returned by
+the resource.  This will be displayed in the Data panel and you'll
+move there automatically.
+The '?' links to the metadata for the resource, i.e., a structured
+description of the resource.
+</p>
+<p>
+Use the checkbox to select this table data for further analysis
+in Aladin or OASIS or to download the data. (See the Summary panel.)
+This checkbox selects only the table data.  If
+there are FITS files indexed by this table, then you first need to
+view this table by clicking on the name, and then select the
+FITS images you wish to analyze.
+</p>
+<p>
+To keep the page manageable, short names
+are used to describe the resource.  To get a longer name let your
+mouse hover over a name for a second.  A tool-tip box should
+appear giving more information about the resource.  For still
+more data click on the ? to get the full metadata on the resource.
+</p>
+<p>
+After the name the number of rows in the resource is given.
+This is given as <tt>(m/n)</tt> if there are FITS files indexed, or just
+as <tt>(n)</tt> if this is a table that does not index any data files.
+The value <tt>m</tt> gives the number of the FITS files that
+you have currently selected, while <tt>n</tt> gives either the number
+of rows in the table, or the number of FITS files available if any.
+</p>
+
+<h4> Data Table </h4>
+
+<p>
+The Data panel is used to view the results from a resource.
+Normally you get to the Data panel by clicking on a resource name in the
+Resources page, but you can also get back to the last selected
+resource by clicking on the panel's tab.
+</p>
+<p>
+For many resources (MAST and HEASARC archive tables, ADS, NED and SIMBAD)
+the DataScope provides links into the native services.  There may be a "Data"
+link at the beginning of each row, or one of the columns may be a link
+into the system.
+</p>
+<p>
+If the row indexes a FITS files, then there will
+be a checkbox at the beginning of the row.  Just click on the checkbox
+to select that file for further analysis.  This works rather like
+a shopping cart.  Go to the Summary
+page when you have made all of your selections and are ready to save
+the data or send it to an analysis tool.
+</p>
+<p>
+For rows linking to FITS files there will be <tt>View</tt> and <tt>FOV</tt> links.  the
+first links to a program that renders the FITS file for quick look viewing.
+The second outlines the region contained in this file over an optical
+image of the region.
+</p>
+<p>
+There will also be <tt>View</tt> links for rows that link to non-FITS files.  These
+just download the linked data (typically GIF or JPEG images, or occasionally
+HTML pages).
+</p>
+
+<p>
+The top of the Data Table panel includes a number of links.
+</p>
+<ul>
+<li> The MetaData link links to the table's metadata.
+<li> The XML link links to the actual XML download.
+<li> The VOStat link copies the file to VOStat, a simple statistics utility.
+<li> The VOPlot link loads the file into VOPlot a powerful plotting applet.
+<li> The Overlay link plots the positions onto an optical image of the
+region.  Only rows that are actually in the region will be shown.
+</ul>
+
+
+<h4> No Data </h4>
+<p>
+This panel lists the resources for which no data was found. You can
+view the metadata for each resource by clicking on the name.  Some
+resources will have an '*' after the name.  This indicates that the
+resource was not actually queried, but that a resource filter provided
+by the host institution indicated that there was no data in this region.
+</p>
+
+<h4> Processing </h4>
+<p>
+This panel lists resources which have not yet been processed.
+As processing continues this list should grow shorter.  The name
+links to the resource metadata.
+</p>
+
+<h4> Errors </h4>
+<p>
+This panel lists resources where an error was encountered during
+processing.  The exception which caused the error is listed.
+</p>
+<p>
+Timeout errors may indicate that the service was simply too busy
+to return data in the time alloted.  A FileNotFound exception indicates
+that the URL is invalid.  There may also be parsing errors for some services.
+</p>
+
+<h4> Help </h4>
+<p>
+The help panel displays this text.
+</p>
+
+<h4> The status area. </h4>
+<p>
+At teh very top of the page the Status line gives the status of the
+request.  While a request is underway the program will give the fraction
+of resources that are searched and the number of resources that have matched.
+These will update automatically.  You can turn these updates off by
+clicking on the appropriate link.  If you have turned automatic
+updates off, you should see links that will do a single update, and
+turn automatic updating back on.
+</p>
+
+
+<h3> Questions </h3>
+
+<dl>
+<dt> Why does the DataScope run in a special window?</dt>
+<dd> Navigation in the DataScope uses the tabbed panels which are
+quite easy to get around with.  However many users find that they
+automatically use the Back button to get to the 'previous' page.
+By eliminating this button, we hope that user's will not accidentally
+leave the program.  Just close the window when you are done with
+DataScope.</dd>
+
+<dt> What windows does DataScope create?</dt>
+<dd> DataScope uses a window with HTML target of "extern" to
+diplay images, resource metadata and to run Aladin and OASIS.</dd>
+
+<dt> How does DataScope update dynamically?</dt>
+<dd> DataScope uses AJAX style queries to download a small
+file that indicates the status of a query you have initiated.</dd>
+
+<dt> Can I run DataScope with JavaScript turned off?</dt>
+<dd>No.  Well you can, but you won't see anything!</dd>
+</dl>

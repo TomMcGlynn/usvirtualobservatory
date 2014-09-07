@@ -1,0 +1,102 @@
+#!/usr1/local/bin/perl -W
+
+#
+
+use CGI;
+use strict;
+
+use JobManager;
+
+my $basePath = '@CGI_PATH@jobs';
+my ( $jobID, $jobCommand, %parameters );
+
+my $query = new CGI;
+
+#######################################
+# Extract and verify all the agruments
+#######################################
+
+my $absolutePath = $query->url(-absolute=>1);
+
+if ( $absolutePath ne $basePath ) {
+	print $query->header( 
+		-type   => "text/plain",
+		-status => "403 Forbidden");
+	print "Improper path specified: $absolutePath";
+	exit 0;
+}
+
+my $suffixPath = $query->path_info();
+if ($suffixPath) {
+	my @pathElements = split( /\//, $suffixPath );
+	if ( @pathElements > 3 ) {
+		print $query->header(
+			-type   => "text/plain",
+			-status => "403 Forbidden");
+		print "Improper path specified";
+		exit 0;
+	}
+
+	unless ( $pathElements[1] =~ /^\d+$/ ) {
+		print $query->header(
+			-type   => "text/plain",
+			-status => "403 Forbidden");
+		print "Improper job ID specified: $pathElements[1]";
+		exit 0;
+	}
+
+	$jobID      = $pathElements[1];
+	$jobCommand = $pathElements[2];
+		
+	if ($jobCommand) {
+		if ( $jobCommand =~ /(executionduration|destruction|quote|owner)/ ) {
+			print $query->header(
+				-type   => "text/plain",
+				-status => "403 Forbidden");
+			print "Command not implemented";
+			exit 0;
+		}
+		if ( $jobCommand !~ /(phase|error|results|parameter)/ ) {
+			print $query->header(
+				-type   => "text/plain",
+				-status => "403 Forbidden");
+			print "Improper path specified";
+			exit 0;
+		}
+
+	}
+
+}
+
+foreach my $param ($query->param) {
+	if( $param !~ /(phase|ra|dec|radius|skipcache|action|services)/i ){
+			print $query->header(
+				-type   => "text/plain",
+				-status => "403 Forbidden");
+			print "Invalid parameter: $param";
+			exit 0;		
+	}
+	if( $query->param($param) !~ /^[\w\.\-\+\/:,<>]*$/ ){
+			print $query->header(
+				-type   => "text/plain",
+				-status => "403 Forbidden");
+			print "Invalid parameter value for param $param";
+			exit 0;				
+	}
+	$parameters{uc $param} = $query->param($param);
+}
+
+print STDERR "Datascope jobs: parameters: ", %parameters, "\n";
+
+my $redirect = JobManager->new($jobID, $jobCommand, %parameters)->process();
+
+if($redirect){
+	print $query->redirect(
+				-uri => $redirect,
+				-status => 303);
+	exit 0;
+}
+
+exit 0;
+
+1;

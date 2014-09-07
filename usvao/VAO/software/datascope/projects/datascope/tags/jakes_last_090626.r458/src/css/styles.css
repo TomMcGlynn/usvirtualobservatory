@@ -1,0 +1,170 @@
+body,p,table,tr,td,th,a,h1,h2,h3,h4,h5,h6 {
+	font-family: Verdana, Arial, Helvetica
+}
+body, p, h4 {
+	font-size:10pt;
+}
+table, td, th, h5, .code, .norm {
+	font-size: 9pt;
+}
+th, h1, h2, h3, h4, h5 {
+	font-weight:bold;
+}
+th		{
+	text-align: center;
+}
+h1{
+	font-size:13pt;
+}
+h2{
+	font-size:12pt;
+}
+h3{
+	font-size:11pt;
+}
+h1, h2, h3, h4, h5 {
+	color:#6BA5D7;
+}
+img {
+	border:0px;
+}
+.code   {
+	font-family: Courier, Fixed;
+}
+.small  {
+	font-size: 8pt;
+}
+.tiny   {
+	font-size: 6pt;
+}
+.left   {
+	text-align: left;
+}
+.center {
+	text-align: center;
+}
+.right  {
+	text-align: right;
+}
+.warn   {
+	color: #FF0000;
+}
+.hi     {
+	background-color: blue;
+}
+.lo     {
+	background-color: #6ba5d7;
+}
+.menu   {
+	background-color: #6ba5d7;
+	font-size:8pt;
+	font-weight: bold;
+	text-align:center;
+}
+.menusmall {
+	background-color: #6ba5d7;
+	font-size:7pt;
+	font-weight: bold;
+}
+.image, .image td {
+	background-image:url('@URL_PATH@@IMG_PATH@voimages.gif');
+}
+
+.r0 {
+	background-color: white;
+}
+.r1 {
+	background-color: #DDDDDD;
+}
+.hdr {
+	background-color: #FFFFCC;
+}
+
+
+th.filled    {
+	color: white;
+	background-color:#6BA5D7;
+	text-align: left;
+}
+th.filledcen {
+	color: white;
+	background-color:#6BA5D7;
+	text-align: center;
+}
+table.filled {
+	border-color:#6BA5D7;
+	background-color: white;
+	border-width:1px;
+	border-collapse:collapse;
+}
+a {
+	text-decoration:none;
+}
+a.lo:link,a.lo:visited {
+	color: #FFffff;
+	text-align:left;
+	font-size:8pt;
+	font-weight: bold;
+}
+a.lo:hover	{
+	background-color: #ff9999;
+	color: #3333FF;
+}
+a.hi:link,a.hi:visited  {
+	color: #FFffff;
+	text-align:left;
+	font-size:8pt;
+	font-weight: bold;
+}
+a.menu:link,a.menu:visited  {
+	color: #FFffff;
+}
+a.menu:hover {
+	background-color: #ff9999;
+	color: #3333FF;
+}
+a.doc:link,a.doc:visited {
+	color: white;
+}
+a.doc:hover {
+	color: red;
+}
+a.menusmall:link	{
+	color: #FFffff;
+}
+a.menusmall:visited {
+	color: #FFffff;
+}
+a.menusmall:hover	{
+	background-color: #ff9999;
+	color: #3333FF;
+}
+/* 
+Use the us-vo.org settings
+*/ /*
+a:link {
+	color: blue;
+}
+a:visited {
+	color: #336699;
+}
+a:hover {
+	background-color: #333399;
+	color: #FFFFFF;
+}
+*/
+div#footer {
+   clear: left;
+}
+div.content {
+   width: 120ex;
+   margin: 0 auto;
+}
+div#recent_queries {
+   margin-bottom: 5ex;
+}
+div#queryform {
+   margin-top: 3ex;
+}
+td.sel   {background: #FFAAAA}
+td.unsel {background: #FFFFFF}

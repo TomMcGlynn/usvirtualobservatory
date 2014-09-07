@@ -1,0 +1,3 @@
+
+ant -DINSTALL=/www.prod/htdocs install
+

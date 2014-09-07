@@ -1,0 +1,82 @@
+<project name="SkyView" default="jar" basedir=".">
+<description> Virtual Observatory SkyView service </description>
+
+<property environment="env"/>
+<condition property="proj_root" value="${env.PROJ_ROOT}" else="/www.prod/htdocs">
+   <available file="${env.PROJ_ROOT}"/>
+</condition>
+
+<echo>proj_root is ${proj_root}</echo>
+<property name="INSTALL" value="${proj_root}" />
+<property name="RUNTIME" value="/www/htdocs" />
+<property name="proj"     value="skyview" />
+<property name="proj_version"     value="2.5" />
+
+<property name="subdir"     value="vo" />
+
+<available file="${proj_root}/${subdir}/net_nvo/heasarc.properties" property="properties.present"/>
+<fail message="Cannot find ${proj_root}/${subdir}/net_nvo/heasarc.properties which 
+is required to build this project.  You may need to install the net_nvo utility project."
+   unless="properties.present"/>
+
+<property file="${proj_root}/${subdir}/net_nvo/heasarc.properties"/>
+
+<target name="check_dependencies"  >
+   <available file="${nvolib}" property="${nvolib}.present"/>
+   <fail message="Cannot find ${nvolib} which is required to build this project"
+      unless="${nvolib}.present"/>
+   <echo message="Found ${nvolib}" />
+</target>
+
+<target name="merge_java"  depends="check_dependencies" >
+   <mkdir dir="${srcdir}" />
+   <echo message="Merging Java files." />
+   <copy todir="${srcdir}">
+      <fileset includes="**/*.java" dir="${java}" />
+   </copy>
+</target>
+
+<target name="compile" depends="merge_java" >
+   <mkdir dir="${classes}" />
+   <javac destdir="${classes}" srcdir="${srcdir}" debug="on" >
+<!--
+<compilerarg value="-Xlint:unchecked" />
+<compilerarg value="-Xlint:deprecation" />
+-->
+      <classpath>
+         <pathelement location="${classes}" />
+         <pathelement location="${nvolib}/java/stilts.jar" />
+         <pathelement location="${nvolib}/java/junit-4.1.jar" />
+         <pathelement location="${nvolib}/java/axis.jar" />
+         <pathelement location="${nvolib}/java/wsdl4j-1.5.1.jar" />
+         <pathelement location="${nvolib}/java/jaxrpc.jar" />
+         <pathelement location="${nvolib}/java/net_nvo.jar" />
+      </classpath>
+   </javac>
+</target>
+
+<target name='jar' depends="compile" >
+   <mkdir dir="${jars}" />
+   <jar destfile="${jar}" update="false" basedir="${classes}" />
+   <jar destfile="${jar}" update="true" basedir="${data}" />
+<!-- make the entire tmp directory group writable -->
+   <chmod dir="${tmp}" type="both" includes="**" perm="g+w" />
+</target>
+
+<target name="install" depends="copy"> 
+	<tstamp />
+	<touch mkdirs="true" file="${docsdest}/.${DSTAMP}_${TSTAMP}_v${proj_version}" />
+</target>
+
+<target name="copy" depends="jar">
+   <echo message="Installing new JARs from ${jars} to ${jardest}" />
+   <copy todir="${jardest}" >
+      <fileset includes="**/*.jar" dir="${jars}" />
+   </copy>
+</target>
+
+<target name="test" depends="compile">
+   <echo message="Testing has not been implemented yet." />
+</target>
+
+</project>

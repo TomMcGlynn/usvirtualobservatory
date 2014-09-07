@@ -1,0 +1,11 @@
+td.nvoapptitle {
+   background: #CFE5FC url('http://nvo.stsci.edu/vor10/images/stars.jpg') repeat-y;
+   height: 43px;
+   top: 0; 
+}  
+img {
+   border: 0;
+}
+.tiny{
+   font-size: 7pt;
+}

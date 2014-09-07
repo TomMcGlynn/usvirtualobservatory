@@ -1,0 +1,236 @@
+<project name="DataScope" default="jar" basedir=".">
+<description> Virtual Observatory DataScope </description>
+
+<property environment="env"/>
+<condition property="proj_root" value="${env.PROJ_ROOT}" else="/www.prod/htdocs">
+   <available file="${env.PROJ_ROOT}"/>
+</condition>
+
+<property name="HOST" value="heasarc.gsfc.nasa.gov" />
+<property name="INSTALL" value="${proj_root}" />
+<property name="RUNTIME" value="/www/htdocs" />
+<!-- property name="RUNTIME" value="${proj_root}" -->
+<property name="proj"     value="datascope" />
+<property name="proj_version"     value="4.4.2"/>
+<property name="subdir"     value="vo" />
+
+<available file="${proj_root}/${subdir}/net_nvo/heasarc.properties" property="properties.present"/>
+<fail message="Cannot find ${proj_root}/${subdir}/net_nvo/heasarc.properties which 
+	is required to build this project.  You may need to install the net_nvo utility project."
+	   unless="properties.present"/>
+
+<property file="${proj_root}/${subdir}/net_nvo/heasarc.properties"/>
+
+
+<filter token="HOST" value="${HOST}"/>
+<filter token="RUNTIME" value="${RUNTIME}"/>
+<filter token="URL_PATH" value="${URL_PATH}"/>
+<filter token="CSS_PATH" value="${CSS_PATH}"/> 
+<filter token="CGI_PATH"  value="${CGI_PATH}"/>
+<filter token="JS_PATH"  value="${JS_PATH}"/>
+<filter token="ABS_PATH" value="${ABS_PATH}"/>
+<filter token="RUNTIME"  value="${RUNTIME}"/>
+<filter token="IMG_PATH" value="${IMG_PATH}"/>
+<filter token="XSL_PATH" value="${XSL_PATH}"/>
+<filter token="XSL_RUN"  value="${XSL_RUN}"/>
+<filter token="JAR_RUN"   value="${JAR_RUN}"/>
+<filter token="JAR_NAME"  value="${JAR_NAME}"/>
+<filter token="Inventory" value="${Inventory}"/>
+<filter token="DSData"   value="${DSData}"/>
+<filter token="DSCache"  value="${DSCache}"/>
+<filter token="SUBDIR"  value="${subdir}"/>
+
+<tstamp/>
+<filter token="VersMessage" value="(version ${proj_version}, last updated ${TODAY})"/>
+
+<target name="check_dependencies"  >
+   <available file="${nvolib}" property="${nvolib}.present"/>
+   <fail message="Cannot find ${nvolib} which is required to build this project"
+      unless="${nvolib}.present"/>
+   <echo message="Found ${nvolib}" />
+	
+   <available file="${vovlib}" property="${vovlib}.present"/>
+   <fail message="Cannot find ${vovlib} which is required to build this project"
+      unless="${vovlib}.present"/>
+   <echo message="Found ${vovlib}" />
+</target>
+
+<target name="merge_java"  depends="check_dependencies" >
+   <mkdir dir="${srcdir}" />
+   <echo message="Merging Java files." />
+   <copy todir="${srcdir}" filtering='true'>
+      <fileset includes="**/*.java" dir="${java}" />
+   </copy>
+</target>
+
+<target name="compile" depends="merge_java" >
+   <mkdir dir="${classes}" />
+   <javac destdir="${classes}" srcdir="${srcdir}" debug="yes" >
+      <classpath>
+         <pathelement location="${classes}" />
+         <pathelement location="${nvolib}/java/skyview.jar" />
+         <pathelement location="${nvolib}/java/net_nvo.jar" />
+         <pathelement location="${nvolib}/java/stilts.jar" />
+         <pathelement location="${nvolib}/java/tar.jar" />
+         <pathelement location="${nvolib}/java/axis.jar" />
+         <pathelement location="${nvolib}/java/jaxrpc.jar" />
+         <pathelement location="${nvolib}/java/wsdl4j-1.5.1.jar" />
+         <pathelement location="${nvolib}/java/commons-lang-2.4.jar" />
+         <pathelement location="${nvolib}/java/commons-exec-1.1.jar" />
+         <pathelement location="${nvolib}/java/javasysmon-0.3.3.jar" />
+      </classpath>
+   </javac>
+</target>
+
+<target name="clean">
+   <delete failonerror="false">
+      <fileset dir="${classes}" />
+      <fileset dir="${javadocs}/${proj}" />
+   </delete>
+   <delete file="${jar}" failonerror="false"/>
+   <exec executable="find">
+      <arg value="${cgi}" />
+      <arg value="-name" />
+      <arg value="*~"    />
+      <arg value="-exec" />
+      <arg value="rm"    />
+      <arg value="{}"    />
+      <arg value=";"     />
+   </exec>
+   <exec executable="find">
+      <arg value="${css}" />
+      <arg value="-name" />
+      <arg value="*~"    />
+      <arg value="-exec" />
+      <arg value="rm"    />
+      <arg value="{}"    />
+      <arg value=";"     />
+   </exec>
+   <exec executable="find">
+      <arg value="${docs}" />
+      <arg value="-name" />
+      <arg value="*~"    />
+      <arg value="-exec" />
+      <arg value="rm"    />
+      <arg value="{}"    />
+      <arg value=";"     />
+   </exec>
+   <exec executable="find">
+      <arg value="${js}" />
+      <arg value="-name" />
+      <arg value="*~"    />
+      <arg value="-exec" />
+      <arg value="rm"    />
+      <arg value="{}"    />
+      <arg value=";"     />
+   </exec>
+</target>
+
+<target name='jar' depends="compile" >
+   <mkdir dir="${jars}" />
+   <jar destfile="${jar}" update="false" basedir="${classes}" />
+<!--
+includes="net/ivoa/util/**,net/ivoa/registry/**,net/ivoa/datascope/**,net/nvo/**"
+-->
+<!-- make the entire tmp directory group writable -->
+   <chmod dir="${tmp}" type="both" includes="**" perm="g+w" />
+</target>
+
+<target name="release" depends="clean,jar">
+</target>
+
+<target name="install" depends="release">
+
+   <echo message="Clearing out old directories" />
+   <echo message="cgidest = ${cgidest}" />
+
+   <delete failonerror="false" dir="${cgidest}" />
+   <delete failonerror="false" dir="${jsdest}"  />
+   <delete failonerror="false" dir="${cssdest}" />
+   <delete failonerror="false" dir="${docsdest}"/>
+
+   <echo message="Copying CGI scripts" />
+   <copy todir="${cgidest}" includeEmptyDirs='false' filtering='true' preservelastmodified='true'>
+      <fileset dir="${cgi}" >
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+   <chmod dir="${cgidest}" includes="*" perm="ugo+x" />
+
+   <copy todir="${cgidest}" includeEmptyDirs='false' filtering='true' preservelastmodified='true'>
+      <filelist dir="${nvocgi}" files="Common.pm"/>
+   </copy>
+
+   <copy todir="${tmp}" filtering="true" preservelastmodified='true'>
+     <filelist dir="${nvocgi}" files="net_nvo.settings"/>
+   </copy>
+   <concat destfile="${cgidest}/vo.settings" append="true">
+      <filelist dir="${tmp}" files="net_nvo.settings"/>
+   </concat>
+
+   <echo message="Copying HTML documentation" />
+   <copy todir="${docsdest}" includeEmptyDirs='false' preservelastmodified='true'>
+      <fileset dir="${docs}">
+         <exclude name="**/versions/*" />
+      </fileset>
+      <fileset dir="${nvolib}">
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+
+   <echo message="Copying JavaScript" />
+   <copy todir="${jsdest}" includeEmptyDirs='false' filtering='true' preservelastmodified='true'>
+      <fileset includes="**/*.js" dir="${vovlib}/js/" />
+      <fileset dir="${js}" includes="**/*.js"/>
+   </copy>
+
+   <echo message="Copying CSS" />
+   <copy todir="${cssdest}" includeEmptyDirs='false' filtering='true' preservelastmodified='true'>
+      <fileset includes="**/*.css" dir="${nvolib}/css/" />
+      <fileset includes="**/*.css" dir="${vovlib}/css/" />
+      <fileset dir="${css}" includes="**/*.css" />
+   </copy>
+
+   <echo message="Merging all XSL in ${xsldest}" />
+   <copy todir="${xsldest}" overwrite='true' preservelastmodified='true'>
+      <fileset includes="**/*.xsl" dir="${vovlib}/xsl/" />
+      <!-- fileset includes="**/*.xsl" dir="${xsl}" / -->
+   </copy>
+
+   <echo message="Copying Jar files." />
+   <copy todir="${jardest}" file="${jar}" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/skyview.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/net_nvo.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/axis.jar" filtering='false' preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/commons-lang-2.4.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/jaxrpc.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/junit-4.1.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/stilts.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/tar.jar" preservelastmodified='true'/>
+   <copy todir="${jardest}" file="${nvolib}/java/wsdl4j-1.5.1.jar" preservelastmodified='true'/>
+
+   <echo message="Installing new JAR" />
+   <copy file="${jar}" todir="${jardest}" preservelastmodified='true'/>
+   <chmod dir="${cgidest}" includes="*" perm="ugo+x" />
+   <chmod dir="${docsdest}" includes="**" type="both" perm="g+w" />
+   <chmod dir="${cgidest}" includes="**" type="both" perm="g+w" />
+	
+	<touch file="${docsdest}/.${DSTAMP}_${TSTAMP}_v${proj_version}" />
+</target>
+
+<target name="javadoc">
+   <delete failonerror="false" >
+      <fileset dir="${javadocs}/${proj}" />
+   </delete>
+   <javadoc sourcepath="${srcdir}" destdir="${javadocs}/${proj}" 
+      packagenames="net.ivoa.util,net.ivoa.datascope,net.ivoa.registry,net.nvo" >
+      <classpath>
+         <pathelement location="${nvolib}/skyview.jar" />
+         <pathelement location="${nvolib}/tar.jar" />
+         <pathelement location="${nvolib}/axis.jar" />
+         <pathelement location="${nvolib}/jaxrpc.jar" />
+         <pathelement location="${nvolib}/wsdl4j-1.5.1.jar" />
+      </classpath>
+   </javadoc>
+</target>
+</project>

@@ -1,0 +1,46 @@
+<script language='JavaScript' type='text/javascript'>
+// <![CDATA[
+    var docBase       = '$docBase';
+    var url           = "$CGIProgram?$CGIParams";
+    var Psources      = null;
+    var PsourcesURL   = null;
+    var PRequestID    = null;
+    var Presources    = null;
+    var PresourcesURL = null;
+    var PRadius       = null;
+    var Punits        = null;
+    var PIVOID        = null;
+    var PreferralURL  = null;
+    var PviewLocal    = null;
+    var PviewURL      = null;
+    var Pverbosity    = null;
+    var Plimit        = null;
+    var VIM           = null;
+    var Inventory     = null;
+    Psources      = '$sources';
+    PsourcesURL   = '$sourcesURL';
+    PRequestID    = '$requestID';
+    Presources    = '$resources';
+    PresourcesURL = '$resourcesURL';
+    PRadius       = $radius;
+    Punits        = '$units';
+    PIVOID        = '$IVOID';
+    PreferralURL  = '$referralURL';
+    PviewLocal    = '$viewLocal';
+    PviewURL      = '$viewURL';
+    Pverbosity    = '$VERBOSITY';
+    Plimit        = '$limit';
+    VIM           = '$VIM';
+    Inventory     = '$Inventory';
+// ]]>
+</script>
+<button id='gobackto' title="Take VOTable back to" onclick="return sendTo(PreferralURL)">Go back to ...</button>
+<button title="Display results on Graph" onclick="return renderGraph()">Graph</button>
+<select onchange='return export_to(this.value)'>
+<option>Export to ...</option>
+<option value='ascii'>ASCII File</option>
+<option value='xml'>XML File</option>
+<option value='vim'>VIM Service</option>
+<option value='inventory'>Inventory Service</option>
+</select>
+<div id="output">Table should appear here.</div>

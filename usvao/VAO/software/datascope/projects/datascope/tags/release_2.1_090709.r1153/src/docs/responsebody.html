@@ -1,0 +1,57 @@
+<SCRIPT Language='JavaScript'>
+
+    // Capture the user inputs.
+    cacheDir   = '$cache'
+    userTarget = '$target' 
+    userRA     = $ra
+    userDec    = $dec
+    userSize   = $size
+    userErrorCircle    = $errorCircle 
+    
+    userSkipDataCache  = $skipDataCache
+    userSkipRegCache   = $skipRegCache
+    
+    sources       = '$sources'
+    sourcesList   = '$sourcesList'
+    resources     = '$resources'
+    resourcesList = '$resourcesList'
+    requestID     = '$requestID'
+    
+</SCRIPT>
+
+<p>
+
+<div bgcolor='#dddddd'>
+  <span id=status> Status Information </span><hr>
+  <div id=resources>
+    <ul>
+      <li><a href='#summary'>Summary</a></li>
+      <li><a href='#matches'>Resources</a></li>
+      <li><a href='#data'>Data Table</a></li>
+      <li><a href='#nonmatches'>No Data</a></li>
+      <li><a href='#processing'>Still Processing</a></li>
+      <li><a href='#errors'>Errors</a></li>
+      <li><a href='#help'>Help</a></li>
+    </ul>
+    
+    <div id=summary title=Summary>Summary of request</div>
+
+    <div id=matches title=Resources>Datasets with matching data</div>
+
+    <div id=data title='Data Table'>
+      <div id=datatitle>Data from a specified dataset</div><div id=datatable></div></div>
+
+    <div id=nonmatches title='No Data'>Datasets without matching data</div>
+
+    <div id=processing title='Still Processing'>Datasets still to be processed</div>
+
+    <div id=errors title=Errors>Datasets that incurred errors in processing</div>
+
+    <div id=help title=Help>Basic help on the interface</div>
+
+  </div>
+</div>
+
+<p>
+
+<div id=runoptions></div>

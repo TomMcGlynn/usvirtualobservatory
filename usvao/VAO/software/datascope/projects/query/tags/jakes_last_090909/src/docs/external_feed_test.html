@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>External feed test</title>
+</head>
+<script type="text/javascript" src="@URL_PATH@@JS_PATH@/jquery.js"></script>
+<script>
+function check (me) {
+   me.action = me.myaction.value;
+   if ( me.action.match('Inventory') ) {
+      document.getElementById("RADIUS").name  = 'radius';
+   }
+   $('#sources').val( $('#sources').val().replace(/\n/g,'').replace(/\'/g,"&apos;") );
+   return true;
+}
+</script>
+<body>
+<form onSubmit='return check(this);' action='form.sh' method='POST' enctype='multipart/form-data'>
+<!-- 
+enctype='multipart/form-data'>
+-->
+<table>
+   <tr>
+      <td width="20%" align='right'>Action</td>
+      <td>
+         <select name="myaction" >
+            <option value="form.sh" selected='selected'>Simple Query</option>
+            <option value="http://heasarcdev.gsfc.nasa.gov/jake/vo/datascope/jds.pl">DataScope</option>
+            <option value="http://envoy5.cacr.caltech.edu:8080/">VIM</option>
+            <option value="http://irsa.ipac.caltech.edu/cgi-bin/VOInventory/nph-voInventory/">Inventory</option>
+         </select>
+      </td>
+   </tr>
+   <tr>
+      <td align='right'>referralURL</td>
+      <td><input size='50' name='referralURL' value='http://heasarcdev.gsfc.nasa.gov@SUBDIR@/cgi-bin/vo/squery/form.sh' /></td>
+   </tr>
+   <tr>
+      <td align='right'>IVO Identifier</td>
+      <td><input size='50' name='IVOID' value='ivo://nasa.heasarc/abell' /></td>
+   </tr>
+   <tr>
+      <td align='right'>Position (target or coordinates):</td>
+      <td> <input size='50' id="POSITION" name='POSITION' value='' /></td>
+   </tr>
+   <tr>
+      <td align='right'>Radius:</td>
+      <td><input size='50' id='RADIUS' name='RADIUS' value='5' /> </td>
+   </tr>
+   <tr>
+      <td align='right'>Units:</td>
+      <td>
+         <select id='units' name='units'>
+            <option selected='true'>degree</option>
+            <option>arcmin</option>
+            <option>arcsec</option>
+         </select>
+      </td>
+   </tr>
+   <tr>
+      <td align='right'>Toolname(VIM)</td>
+      <td><input size='50' name='toolName' value='sources' /> </td>
+   </tr>
+<tr>
+<td align='right'>findResources(Inventory)</td>
+<td><input size='50' name='findResources' value='1' /> </td>
+</tr>
+<!--
+-->
+   <tr>
+      <td align=right>sourcesURL</td>
+      <td><input size='50' id='sourcesURL' name='sourcesURL' value='http://heasarc.gsfc.nasa.gov/jake/source.xml' ></td>
+   </tr>
+   <tr>
+      <td align=right>sources<br /><br /> 
+         (The contents of this will have ' transformed into &amp;apos; and all carriage returns removed)<br />
+      </td>
+      <td><textarea rows='50' cols='70' id='sources' name='sources' >
+<?xml version="1.0"?>
+<!DOCTYPE VOTABLE SYSTEM "http://us-vo.org/xml/VOTable.dtd">
+<VOTABLE version="1.0">
+  <DEFINITIONS>
+    <COOSYS system="eq_FK5" equinox="2000"/>
+  </DEFINITIONS>
+    
+  <RESOURCE ID="T9001">
+     <DESCRIPTION>
+       HEASARC Browse data service
+       Please send inquiries to mailto:request@athena.gsfc.nasa.gov
+    </DESCRIPTION>
+    <PARAM ID="default_search_radius" ucd="OBS_ANG-SIZE" value="0.25"/>
+    <TABLE>
+      <DESCRIPTION> Abell Clusters </DESCRIPTION>
+      
+      <FIELD name="unique_id" datatype="char" arraysize="*" ucd="ID_MAIN">
+        <DESCRIPTION> Integer key </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="ra" datatype="double" unit="degree" ucd="POS_EQ_RA_MAIN">
+        <DESCRIPTION> Right Ascension (hh mm.m) </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="dec" datatype="double" unit="degree" ucd="POS_EQ_DEC_MAIN">
+        <DESCRIPTION> Declination (dd mm) </DESCRIPTION>
+      </FIELD>
+
+      <DATA>
+        <TABLEDATA>
+<TR><TD>3397</TD><TD>188.75</TD><TD>1.83</TD></TR>
+<TR><TD>4823</TD><TD>206.57</TD><TD>54.03</TD></TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>
+</textarea></td>
+   </tr>
+
+   <tr>
+      <td align='right'>viewLocal (NEW)</td>
+      <td><input type='file' name='viewLocal' size='50'/></td>
+   </tr>
+   <tr>
+      <td align='right'>viewURL (NEW)</td>
+      <td><input name='viewURL' size='50'/></td>
+   </tr>
+   <tr>
+      <td align='right'><input type='submit' /></td>
+      <td><input type='reset' /></td>
+   </tr>
+</table>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!-- begin BaseQueryFormBegin.html -->
+<div>
+<table><tr><td width='15%'></td><td width='70%'>
+Simple Query lets you search catalogs and data collections for sources or
+observations within a given radius of a sky position.  Small (few thousand row) tables
+can be retrieved in their entirety with the All-sky option.  
+!$IVOID You will need to enter an 'IVO identifier' for the catalog or collection you are querying.  You can find these in the <a href=http://nvo.stsci.edu/vor10/index.aspx>Directory</a>.
+<p>
+To view an existing VOTable use our <a href='?view=1'>Table Viewer</a>.
+</td><td width='15%'></td></tr></table>
+</div>
+<form id='basequery' action='$cgibase/query.pl' onsubmit='return validate(this);' method='post' enctype='multipart/form-data' >
+<table id='formtable' width='100%'  style='border:1px solid silver;'>
+  <tr><td id='errorHolder'>
+   <p class='errorMessage' >$errorMessage</p>
+  </td></tr>
+  <tr><td>
+    <table id='querytable' width='100%' >
+     <tr><td colspan='3' align='center' id='querytitle' ><a class='h3' id='querytoggle' href='javascript:void(0)'>Query a resource</a></td></tr>
+     <tr><td colspan='3'>
+
+        <table id='innerquerytable' width='100%'>
+         <tr><td colspan='3'>
+           <table id='positiontable' width='100%'>
+            <tr id='trPOSITION'>
+             <td align='center'>
+              <a href='javascript:void(0)' id='positionmodal'>Position(s)</a>:
+             </td>
+             <td >
+              <input class='src' size='26' id='POSITION' name='POSITION' value='' />
+             </td>
+             <td align='center'><a href='javascript:void(0)' id='alldatamodal'>All Columns?</a>&nbsp;<input id='Verbosity' type='checkbox' name='Verbosity' /></td>
+            </tr>
+	    <tr><td colspan=3><font size=-2>Examples: 3c273 <i>or</i> 10.2 13.4 <i>or</i> 10 12 13, -2 14 56</font></td></tr>
+            <tr>
+             <td align='center'>
+              <a href='javascript:void(0)' id='radiusmodal'>Radius</a>:
+             </td>
+             <td id="tdRADIUS">
+              <input id='RADIUS' size='5' name='RADIUS' value='' />
+              <select id='units' name='units'>
+               <option value='degree'>degree</option>
+               <option value='arcmin'>arcmin</option>
+               <option value='arcsec'>arcsec</option>
+              </select>
+             </td>
+             <td id="tdallsky" align='right'>
+              <a href='javascript:void(0)' id='allskymodal'>All-sky</a>
+              <input id='allsky' name='allsky' type='checkbox' value='checked' />
+             </td>
+            </tr>
+           </table><!-- id='positiontable' -->
+          </td>
+         </tr>
+!$IVOID  <tr><td><a href='javascript:void(0)' id='ivoidmodal'>IVO Identifier</a>:</td><td ><input size='30' id='IVOID' name='IVOID' /></td>
+!$IVOID  <tr><td colspan=3><font size=-2>See <a href=http://nvo.stsci.edu/vor10/index.aspx> Directory</a> to find IVO ids.</font></td></tr>
+         </tr>
+        </table><!-- id='innerquerytable' -->
+       </div><!-- id='innerquerydiv' -->
+     </td></tr>
+  </table><!-- id='querytable' --></td></tr>
+  <tr><td align='center'><input type='submit' /><input id='reset' type='reset' /></td></tr>
+ </table><!-- id='formtable' -->
+ 
+ <input type='hidden' id='IVOID' name='IVOID' value='$ivoid' />
+ <input class='src' type='hidden' id='sources'    name='sources'    value='' />
+ <input class='src' type='hidden' id='sourcesURL' name='sourcesURL' value='' />
+ <input class='src' type='hidden' id='resources'    name='resources'    value='' />
+ <input class='src' type='hidden' id='resourcesURL' name='resourcesURL' value='' />
+ <input type='hidden' name='limit' value='5' />
+
+<!-- end BaseQueryFormBegin.html -->

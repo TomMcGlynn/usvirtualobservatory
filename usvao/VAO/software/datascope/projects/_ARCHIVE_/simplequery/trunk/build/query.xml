@@ -1,0 +1,218 @@
+<project name="SimpleQuery" default="jar" basedir="..">
+    <description> Virtual Observatory SimpleQuery service </description>
+    
+    <property name="proj"    value="query"               />
+    <property name="xproj"   value="simplequery"         />
+    <property name="base"    value="/www/htdocs"         />
+    <property name="srcproj" value="${proj}"             />
+    <property name="dstproj" value="${proj}"             />
+    <property name="classes" value="./class"             />
+    <property name="sources" value="./source"            />
+    <property name="javadocs" value="./javadoc"          />
+    <property name="css"     value="./css/${srcproj}"    />
+    <property name="data"    value="./data/${srcproj}"   />
+    <property name="cgi"     value="./cgi/${srcproj}"       />
+    <property name="js"      value="./js/${srcproj}"        />
+    <property name="docs"    value="./docs/${srcproj}"      />
+    <property name="fjars"   value="./fjar"                 />
+    <property name="ljars"   value="./ljar"                 />
+    <property name="jar"     value="${ljars}/${dstproj}.jar"/>
+    <property name="installdir" value="/www/server/vo/jars" />
+    
+    <property name="dest"     value="/vo/s${dstproj}/"       />    
+    <property name="docsdest" value="${base}/${dest}/"       />
+    <property name="jsdest"   value="${docsdest}/js/"        />
+    <property name="cssdest"  value="${docsdest}/css/"       />
+    
+    <property name="cgidest"  value="${base}/cgi-bin/${dest}/"/>
+    <property name="jardest"  value="/www/server/vo/jars/"   />
+    <property name="jarname"  value="${dstproj}.jar"         />
+    
+    <target name="compile"  >
+        <javac destdir="${classes}"
+	       srcdir="${sources}"
+	       includes="net/ivoa/util/**,net/nvo/**,net/ivoa/query/**"
+	       debug="on"
+	>
+           <classpath>
+	      <pathelement location="${classes}" />
+	      <pathelement location="${fjars}/stilts.jar" />
+	      <pathelement location="${ljars}/datascope.jar" />
+	   </classpath>
+	</javac>
+    </target>
+    
+    <target name="clean">
+        <delete failonerror="false">
+	    <fileset dir="${classes}" includes="net/ivoa/query/**,net/nvo/**" />
+	    <fileset dir="${javadocs}/${proj}" />
+	</delete>
+	<delete file="${jar}" failonerror="false"/>
+	<exec executable="find">
+	    <arg value="${sources}/net/ivoa/" />
+	    <arg value="-name"      />
+	    <arg value="*.java~"    />
+	    <arg value="-exec"      />
+	    <arg value="rm"         />
+	    <arg value="{}"         />
+	    <arg value=";"          />
+	</exec>
+	<exec executable="find">
+	    <arg value="${cgi}" />
+	    <arg value="-name"      />
+	    <arg value="*~"    />
+	    <arg value="-exec"      />
+	    <arg value="rm"         />
+	    <arg value="{}"         />
+	    <arg value=";"          />
+	</exec>
+	<exec executable="find">
+	    <arg value="${css}" />
+	    <arg value="-name"      />
+	    <arg value="*~"    />
+	    <arg value="-exec"      />
+	    <arg value="rm"         />
+	    <arg value="{}"         />
+	    <arg value=";"          />
+	</exec>
+	<exec executable="find">
+	    <arg value="${docs}" />
+	    <arg value="-name"      />
+	    <arg value="*~"    />
+	    <arg value="-exec"      />
+	    <arg value="rm"         />
+	    <arg value="{}"         />
+	    <arg value=";"          />
+	</exec>
+	<exec executable="find">
+	    <arg value="${js}" />
+	    <arg value="-name"      />
+	    <arg value="*~"    />
+	    <arg value="-exec"      />
+	    <arg value="rm"         />
+	    <arg value="{}"         />
+	    <arg value=";"          />
+	</exec>
+    </target>
+    	
+    <target name='jar' depends="compile" >
+    
+       <jar destfile="${jar}" update="false" basedir="${classes}" 
+	    includes="net/ivoa/util/**,net/ivoa/query/**,net/nvo/**"
+        />
+       <jar destfile="${jar}" update="true" basedir="${data}" />
+
+    </target>
+    
+    <target name="install" depends="jar,copy">
+    </target>
+    <target name="copy">
+        <echo message="Copying data:"                      />
+	
+	<echo message="  Host: ${host}"                    />
+	<echo message="  Documents to ${docsdest}"       />
+	<echo message="  JavaScript to ${jsdest}"        />
+	<echo message="  CGI Scripts to ${cgidest}"      />
+	<echo message="  CSS files to ${cssdest}"        />
+	<echo message="  JAR to ${jardest}${jarname}"   />
+	<echo message="  CGI files seen as: ${cgidest}"  />
+	<echo message="  DOCS files seen as: ${urldest}" />
+    
+        <echo message="Clearing out old directories" />
+    
+        <delete failonerror="false" dir="${cgidest}" />
+	<delete failonerror="false" dir="${jsdest}"  />
+	<delete failonerror="false" dir="${cssdest}" />
+	<delete failonerror="false" dir="${docsdest}"/>
+	
+        <echo message="Copying CGI scripts from ${cgi} to ${cgidest}" />
+	<copy todir="${cgidest}" >
+	   <fileset dir="${cgi}"  />
+	</copy>
+        <chmod dir="${cgidest}" includes="*" perm="ugo+x" />
+	
+	<echo message="Copying HTML elements" />
+	<copy todir="${docsdest}">
+	    <fileset dir="${docs}" />
+	</copy>
+        <chmod dir="${docsdest}" includes="*.csh" perm="ugo+x" />
+	
+	<echo message="Copying JavaScript from ${js} to ${jsdest}" />
+	<copy todir="${jsdest}">
+	    <fileset dir="${js}"   />
+	</copy>
+	
+	<echo message="Copying CSS from ${css} to ${cssdest}" />
+	<copy todir="${cssdest}">
+	    <fileset dir="${css}"  />
+	</copy>
+	
+	<echo message="Copying external Jar files." />
+        <copy todir="${jardest}" file="${ljars}/skyview.jar" />
+	
+	<echo message="Installing new JAR from ${jar} to ${jardest}/${jarname}" />
+	<copy file="${jar}" tofile="${jardest}/${jarname}" />
+	
+	<echo message="Install complete" />
+
+	
+    </target>
+    
+    <target name="release" depends="clean,install">
+    </target>
+    
+    <target name="javadoc">
+        <delete failonerror="false" >
+	    <fileset dir="${javadocs}/${proj}" />
+	</delete>
+        <javadoc sourcepath="${sources}" destdir="${javadocs}/${proj}" 
+	   packagenames="net.ivoa.util,net.ivoa.query,net.nvo" >
+           <classpath>
+	      <pathelement location="./classes" />
+	   </classpath>
+	</javadoc>
+    </target>
+    
+    <target name="tonvo">
+    
+        <echo message="Copying CGI scripts" />
+	<copy todir="../nvo/projects/${xproj}/trunk/cgi/" >
+	   <fileset dir="${cgi}"  />
+	</copy>
+        <chmod dir="../nvo/projects/${xproj}/trunk/cgi" includes="*" perm="ugo+x" />
+	
+	<echo message="Copying HTML documentation and XSL" />
+	<copy todir="../nvo/projects/${xproj}/trunk/htdocs" >
+	    <fileset dir="${docs}" />
+	</copy>
+        <chmod dir="../nvo/projects/${xproj}/trunk/htdocs" includes="*.csh" perm="ugo+x" />
+	
+	<echo message="Copying JavaScript" />
+	
+	<copy todir="../nvo/projects/${xproj}/trunk/htdocs/js">
+	    <fileset dir="${js}"     />
+	    <fileset dir="js/query/" />
+	</copy>
+	
+	<copy todir="../nvo/projects/${xproj}/trunk/source">
+	    <fileset dir="${sources}" includes="net/ivoa/query/** net/nvo/** net/ivoa/util/**" />
+	</copy>
+	
+	<echo message="Copying CSS" />
+	<copy todir="../nvo/projects/${xproj}/trunk/htdocs/css">
+	    <fileset dir="css/query" />
+	    <fileset dir="${css}"    />
+	</copy>
+	
+	<copy todir="../nvo/projects/${xproj}/trunk/build" >
+	    <fileset dir="./build" includes="query.xml" />
+	</copy>
+	
+	<copy todir="../nvo/projects/${xproj}/trunk/data" >
+	    <fileset dir="${data}" />
+	</copy>
+	
+	<echo message="Distribution complete" />
+    </target>
+
+</project>

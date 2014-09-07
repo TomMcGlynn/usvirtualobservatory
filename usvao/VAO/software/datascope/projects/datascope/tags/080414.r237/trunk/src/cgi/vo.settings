@@ -1,0 +1,5 @@
+host=heasarc.gsfc.nasa.gov
+cgibase=@URL_PATH@
+URLBase=@URL_PATH@
+cachebase=/vo/cache/
+urlprefix=@RUNTIME@

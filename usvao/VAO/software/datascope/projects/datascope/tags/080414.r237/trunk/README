@@ -1,0 +1,61 @@
+
+Datascope:
+
+Required projects: (relative location defined in build.xml)
+	net_nvo
+	net_ivoa
+
+The default values of this build.xml are
+
+	ant -DINSTALL=/www/htdocs -DRUNTIME=/www/htdocs -DSUBDIR= jar
+
+(Please note that the default target is jar and not install.)
+
+so the commmand
+
+	ant install
+
+will install the files relative to 
+
+	${INSTALL}${SUBDIR}
+
+For example,
+
+	ant -DINSTALL=/www/htdocs -DSUBDIR=/jake/test install
+
+will install in
+
+	/www/htdocs/jake/test/vo/datascope
+
+
+and will respond to the server
+
+	http://my.server.com/jake/test/vo/datascope/init.pl
+
+The RUNTIME variable is used here at heasarc because the installation for heasarc is done from heasarcdev and the files accessed during runtime are available through a different mountpoint and therefore a different location.  In this case, INSTALL=/www.prod/htdocs and RUNTIME=/www/htdocs.  This is seen from XSL files in the vo.settings file which is accessed from some java programs.  Most of the time INSTALL and RUNTIME will be the same, as they are when installing from heasarcdev for use from heasarcdev.
+
+The SUBDIR variable is used here at heasarc for installing in subdirectories, primarily for testing.
+If used the SUBDIR variable MUST begin with a slash.
+
+
+----------------------------------------------------------------------
+
+All the java is merged into ./tmp/source and compiled 
+	into ./tmp/class.
+
+Several of the scripts ant filter tokens like @VOCLIENT@.
+	These tokens are replaced with a value defined in the build.xml
+	during an ant copy.  This is very useful when installing during
+	testing or installing in multiple locations.
+
+Simple Query now pulls its external java source code from 
+	../../net_*/trunk/src/java/ and combines it with its own
+	java in ./tmp/source
+
+It also pulls much of its javascript from 
+	../../voview/trunk/src/javascript and 
+	../../voview/{foreign,mod}/javascript/
+
+It also pulls some of its xsl from 
+	../../voview/trunk/src/xsl and 
+

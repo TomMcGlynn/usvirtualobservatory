@@ -1,0 +1,7 @@
+COMPILE:
+
+ant
+
+INSTALL:
+
+ant install

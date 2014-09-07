@@ -1,0 +1,116 @@
+<!-- BEGIN queryform.html -->
+
+<div id="queryform" class="content">
+<script language='JavaScript' type='text/javascript'>
+ // <![CDATA[
+ // If a resources table has been specified,
+ // then the resources setting includes the resources
+ // suitably escaped.  We'll set the value of the
+ // hidden variable before we actually submit the form.
+ // It's hard to do this directly without getting into
+ // trouble about potential multiple levels of encodings.
+ var resources = "";
+ resources = "$resources"
+
+ function check(){
+
+   // convert radius to degrees (if needed)
+   var radius = document.getElementById('radius').value
+   var units = document.getElementById('units').value
+   document.getElementById('units').options[0].selected = true    // degree
+   if ( units == 'arcmin' ) radius /= 60
+   if ( units == 'arcsec' ) radius /= 3600
+   document.getElementById('radius').value =  radius
+
+   // Check for a reasonable radius.
+   if (!radius.toString(10).match(/^\s*[\d\.]*\s*$/)) {
+      alert('The entered radius does not seem to be a number:'+radius)
+      return false
+   } else if (radius > 2) {
+      alert('The radius you have selected ('+radius+')is too large, the maximum is 2 degrees')
+      return false
+   }
+
+   // Make sure a position was specified.
+   var pos = document.getElementById('position').value
+   if (pos == null || pos.length == 0) {
+      alert('Please enter a position')
+      return false
+   }
+
+   // Insert the resources value into the hidden variable.
+   if ((resources.length > 0)&&(resources.substring(1) != 'resources')) {
+      document.getElementById("resources").value=resources;
+   }
+   return true
+ }
+ // ]]>
+</script>
+<noscript>
+   <div style='background-color:#ff0000'><hr/><h3>**** JavaScript is not enabled. ****</h3>
+   DataScope makes extensive use of JavaScript.  Please enable JavaScript and reload before proceeding.<hr/>
+   </div>
+</noscript>
+
+<p>What do we  know about a given point or region in the sky?</p>
+<p>To find out, just enter a target or position.  The NVO DataScope will show you the results from hundreds of resources.</p>
+
+<form name='dsform' id='dsform' action='$cgibase/jds.pl' method='post' onsubmit='return check()'>
+ <table>
+  <tr>
+   <th class='right' colspan='2'><label for='position'>Position:</label></th>
+   <td colspan='2'><input size='40' id='position' name='position' value='$position'/></td>
+  </tr>
+  <tr>
+   <td colspan='2'></td>
+   <td colspan='2'><font size='-1'> Use a target name (e.g., 3c273) or position (e.g., 10 10 10.1, 20 20 20.2)</font></td>
+  </tr>
+  <tr>
+   <th class='right' colspan='2'><label for='radius'> Radius:</label></th>
+   <td colspan='2'>
+    <input id='radius' size='10' name='radius' value='$radius' />
+    <select id='units' name='units'>
+     <option value='degree'>degree</option>
+     <option value='arcmin'>arcmin</option>
+     <option value='arcsec'>arcsec</option>
+    </select>
+    (max is 2 degrees)
+   </td>
+  </tr>
+  <tr>
+   <td class='right'><label for='submit'><b>Run query:</b></label></td>
+   <td> <input id='submit' type='submit'/></td><td><input type='reset'/></td>
+  </tr>
+  <tr>
+   <td colspan='4'><label for='skipcache'> <b>Skip cache?</b></label>
+    <input id='skipcache'  name='skipcache' type='checkbox'/>&nbsp;&nbsp;
+    <label for='skipregsave'><b>Refresh registry?</b></label>
+    <input id='skipregsave' name='skipsave' type='checkbox'/>
+   </td>
+  </tr>
+  <tr>
+   <td colspan='4'><label for='skiplog'>Do not add to list of recent queries?</label><input id='skiplog' name='skiplog' type='checkbox'/></td>
+  </tr>
+ </table>
+ <input type='hidden' id='requestid'     name='RequestID'     value="$RequestID"/>
+ <input type='hidden' id='resources'     name='resources'     />
+ <input type='hidden' id='resourcesList' name='resourcesList' value="$ResourcesList"/>
+</form>
+
+<script type='text/javascript'>
+// <![CDATA[
+ u = document.getElementById('units');
+// u.add( new Option('degree', 'degree', false, '$units' == 'degree' ), null );
+// u.add( new Option('arcmin', 'arcmin', false, '$units' == 'arcmin' ), null );
+// u.add( new Option('arcsec', 'arcsec', false, '$units' == 'arcsec' ), null );
+for ( var i=0; i < u.options.length; i++) {
+   if ( u.options[i].value == '$units' ) {
+      u.options[i].selected = true
+   }
+}
+//new Option(text, value, defaultSelected, selected)
+// ]]>
+</script>
+
+</div><!-- id='queryform' class='content' -->
+<!-- END queryform.html -->

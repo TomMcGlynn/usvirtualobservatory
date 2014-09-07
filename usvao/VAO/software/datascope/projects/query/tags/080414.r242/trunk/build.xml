@@ -1,0 +1,342 @@
+<project name="SimpleQuery" default="jar" basedir=".">
+	<description> Virtual Observatory SimpleQuery service </description>
+	
+	<property name="SUBDIR" value="" />
+	<property name="INSTALL"    value="/www/htdocs" />
+	<!-- Runtime base (NOT /www.prod/ for heasarc !) -->
+	<property name="RUNTIME"    value="/www/htdocs" />
+	<property name="VOCLIENT"   value="/www/server/vo/080225" />
+
+	<property name="proj"     value="query" />
+	<property name="dest"     value="vo/s${proj}" />    
+<!--
+	INSTALL               /www.prod/htdocs
+	RUNTIME                    /www/htdocs
+	SUBDIR                                /jake/test
+	dest                                             vo/squery
+	URL       http://heasarc.gsfc.nasa.gov/jake/test/vo/squery/query.sh
+	URL_PATH                              /jake/test/vo/squery/query.sh
+	ABS_PATH              /www.prod/htdocs/jake/test/vo/squery/query.sh
+-->
+	<property name="DEST"     value="${INSTALL}${SUBDIR}/${dest}" />
+	<property name="URL_PATH" value="${SUBDIR}/${dest}" />
+	<property name="ABS_PATH" value="${RUNTIME}${URL_PATH}" />
+
+	<property name="XSL_URL"  value="${URL_PATH}/xsl" />
+	<property name="JS_URL"   value="${URL_PATH}/js" />
+	<property name="CSS_URL"  value="${URL_PATH}/css" />
+	<property name="IMG_URL"  value="${URL_PATH}/images" />
+
+	<property name="XSL_RUN"  value="${ABS_PATH}/xsl" />
+
+	<property name="root"     value="../.." />
+	<property name="ivoalib"  value="${root}/net_ivoa/" />
+	<property name="nvolib"   value="${root}/net_nvo/" />
+	<property name="vovlib"   value="${root}/voview/" />
+	<property name="tmp"      value="./tmp" />
+	<property name="classes"  value="${tmp}/class" />
+	<property name="srcdir"   value="${tmp}/source" />
+	<property name="javadocs" value="${tmp}/javadoc" />
+	<property name="ljars"    value="${tmp}/ljar" />
+	<property name="data"     value="./src/jardata" />
+	<property name="docs"     value="./src/docs" />
+	<property name="css"      value="./src/css" />
+	<property name="xsl"      value="./src/xsl" />
+	<property name="cgi"      value="./src/cgi" />
+	<property name="java"     value="./src/java" />
+	<property name="js"       value="./src/javascript" />
+	<property name="fjs"      value="../foreign/javascript" />
+	<property name="fjars"    value="../foreign/jars" />
+	<property name="mjs"      value="../mods/javascript" />
+	<property name="docsdest" value="${DEST}" />
+	<property name="cgidest"  value="${DEST}" />
+	<property name="jardest"  value="${cgidest}" />
+	<property name="jsdest"   value="${docsdest}/js/" />
+	<property name="cssdest"  value="${docsdest}/css/" />
+	<property name="xsldest"  value="${docsdest}/xsl/" />
+	<property name="imgdest"  value="${docsdest}/images/" />
+	<property name="jarname"  value="${proj}.jar" />
+	<property name="jar"      value="${ljars}/${jarname}"/>
+
+	<target name="check_dependencies"  >
+		<available file="${ivoalib}" property="${ivoalib}.present"/>
+		<fail message="Cannot find ${ivoalib} which is required to build this project"
+			unless="${ivoalib}.present"/>
+		<echo message="Found ${ivoalib}" />
+		<available file="${nvolib}" property="${nvolib}.present"/>
+		<fail message="Cannot find ${nvolib} which is required to build this project"
+			unless="${nvolib}.present"/>
+		<echo message="Found ${nvolib}" />
+		<available file="${vovlib}" property="${vovlib}.present"/>
+		<fail message="Cannot find ${vovlib} which is required to build this project"
+			unless="${vovlib}.present"/>
+		<echo message="Found ${vovlib}" />
+	</target>
+
+	<target name="merge_java"  depends="check_dependencies" >
+		<mkdir dir="${srcdir}" />
+		<echo message="Merging Java files." />
+		<copy todir="${srcdir}">
+			<fileset includes="**/*.java" dir="${ivoalib}/trunk/src/java/" />
+			<fileset includes="**/*.java" dir="${nvolib}/trunk/src/java/" />
+			<fileset includes="**/*.java" dir="${java}" />
+		</copy>
+	</target>
+
+	<target name="compile" depends="merge_java" >
+		<mkdir dir="${classes}" />
+
+		<javac destdir="${classes}"
+			srcdir="${srcdir}"
+			includes="net/ivoa/util/**,net/nvo/**,net/ivoa/query/**"
+			debug="on"
+		>
+			<classpath>
+				<pathelement location="${classes}" />
+				<pathelement location="${fjars}/stilts.jar" />
+				<pathelement location="${fjars}/datascope.jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="clean">
+		<delete failonerror="false" dir="${tmp}" />
+		<exec executable="find">
+			<arg value="${cgi}" />
+			<arg value="-name"      />
+			<arg value="*~"    />
+			<arg value="-exec"      />
+			<arg value="rm"         />
+			<arg value="{}"         />
+			<arg value=";"          />
+		</exec>
+		<exec executable="find">
+			<arg value="${css}" />
+			<arg value="-name"      />
+			<arg value="*~"    />
+			<arg value="-exec"      />
+			<arg value="rm"         />
+			<arg value="{}"         />
+			<arg value=";"          />
+		</exec>
+		<exec executable="find">
+			<arg value="${docs}" />
+			<arg value="-name"      />
+			<arg value="*~"    />
+			<arg value="-exec"      />
+			<arg value="rm"         />
+			<arg value="{}"         />
+			<arg value=";"          />
+		</exec>
+		<exec executable="find">
+			<arg value="${js}" />
+			<arg value="-name"      />
+			<arg value="*~"    />
+			<arg value="-exec"      />
+			<arg value="rm"         />
+			<arg value="{}"         />
+			<arg value=";"          />
+		</exec>
+	</target>
+
+	<target name='jar' depends="compile" >
+		<mkdir dir="${ljars}" />
+		<jar destfile="${jar}" update="false" basedir="${classes}" 
+			includes="net/ivoa/util/**,net/ivoa/query/**,net/nvo/**"
+		/>
+		<jar destfile="${jar}" update="true" basedir="${data}" />
+		<!-- make the entire tmp directory group writable -->
+		<chmod dir="${tmp}" type="both" includes="**" perm="g+w" />
+	</target>
+	
+	<target name="install" depends="jar,copy"> </target>
+
+	<target name="copy">
+		<echo message="Copying data:"                      />
+		<echo message="  Documents to ${docsdest}"       />
+		<echo message="  JavaScript to ${jsdest}"        />
+		<echo message="  CGI Scripts to ${cgidest}"      />
+		<echo message="  CSS files to ${cssdest}"        />
+		<echo message="  XSL files to ${xsldest}"        />
+		<echo message="  JAR to ${jardest}/${jarname}"   />
+		<echo message="  CGI files seen as: ${URL_PATH}"  />
+		<echo message="  DOCS files seen as: ${URL_PATH}" />
+		
+		<echo message="Clearing out old directories" />
+		<delete failonerror="false" dir="${cgidest}" />
+		<delete failonerror="false" dir="${jsdest}"  />
+		<delete failonerror="false" dir="${cssdest}" />
+		<delete failonerror="false" dir="${xsldest}" />
+		<delete failonerror="false" dir="${docsdest}"/>
+
+		<echo message="Copying CGI scripts from ${cgi} to ${cgidest}" />
+		<copy todir="${cgidest}" includeEmptyDirs='false' >
+			<fileset dir="${cgi}" >
+				<exclude name="**/versions/*" />
+			</fileset>
+			<filterset>
+				<filter token="VOCLIENT" value="${VOCLIENT}"/>
+				<filter token="URL_PATH"  value="${URL_PATH}"/>
+				<filter token="ABS_PATH"  value="${ABS_PATH}"/>
+				<filter token="XSL_RUN"  value="${XSL_RUN}"/>
+			</filterset>
+		</copy>
+		<chmod dir="${cgidest}" includes="*" perm="ugo+x" />
+
+		<echo message="Copying HTML elements" />
+		<copy todir="${docsdest}" includeEmptyDirs='false' >
+			<fileset dir="${docs}">
+				<exclude name="**/versions/*" />
+			</fileset>
+			<filterset>
+				<filter token="JS"  value="${JS_URL}"/>
+				<filter token="SUBDIR"  value="${SUBDIR}"/>
+			</filterset>
+		</copy>
+		<chmod dir="${docsdest}" includes="*.csh" perm="ugo+x" />
+
+<!-- 
+Absolutely no idea which takes precedence if file with the same 
+name exists in multiple dirs 
+-->
+		<echo message="Merging all JavaScript in ${jsdest}" />
+		<copy todir="${jsdest}" overwrite='true' >
+			<fileset includes="**/*.js" dir="${vovlib}/foreign/javascript/" />
+		</copy>
+		<copy todir="${jsdest}" overwrite='true' >
+			<fileset includes="**/*.js" dir="${vovlib}/mods/javascript/" />
+		</copy>
+		<copy todir="${jsdest}" overwrite='true' >
+			<fileset includes="**/*.js" dir="${vovlib}/trunk/src/javascript/" />
+			<filterset>
+				<filter token="CSS" value="${CSS_URL}"/>
+				<filter token="IMG" value="${IMG_URL}"/>
+				<filter token="JS"  value="${JS_URL}"/>
+				<filter token="XSL" value="${XSL_URL}"/>
+			</filterset>
+		</copy>
+		<copy todir="${jsdest}" overwrite='true' >
+			<fileset includes="**/*.js" dir="${fjs}" />
+			<filterset>
+				<filter token="CSS" value="${CSS_URL}"/>
+				<filter token="IMG" value="${IMG_URL}"/>
+				<filter token="JS"  value="${JS_URL}"/>
+			</filterset>
+		</copy>
+		<copy todir="${jsdest}" overwrite='true' >
+			<fileset includes="**/*.js" dir="${js}" />
+			<filterset>
+				<filter token="URL_PATH"  value="${URL_PATH}"/>
+				<filter token="CSS" value="${CSS_URL}"/>
+				<filter token="XSL" value="${XSL_URL}"/>
+				<filter token="IMG" value="${IMG_URL}"/>
+				<filter token="JS"  value="${JS_URL}"/>
+			</filterset>
+		</copy>
+
+		<echo message="Merging all CSS in ${cssdest}" />
+		<copy todir="${cssdest}" overwrite='true'>
+			<fileset includes="**/*.css" dir="${vovlib}/trunk/src/css/" />
+			<filterset>
+				<filter token="IMG" value="${IMG_URL}"/>
+			</filterset>
+		</copy>
+		<copy todir="${cssdest}" overwrite='true'>
+			<fileset includes="**/*.css" dir="${css}" />
+			<filterset>
+				<filter token="IMG" value="${IMG_URL}"/>
+			</filterset>
+		</copy>
+
+		<echo message="Merging all XSL in ${xsldest}" />
+		<copy todir="${xsldest}" overwrite='true'>
+			<fileset includes="**/*.xsl" dir="${vovlib}/trunk/src/xsl/" />
+		</copy>
+		<copy todir="${xsldest}" overwrite='true'>
+			<fileset includes="**/*.xsl" dir="${xsl}" />
+		</copy>
+
+		<echo message="Coping voview image to ${imgdest}" />
+		<copy todir="${imgdest}">
+			<fileset includes="**/*" dir="${vovlib}/trunk/src/images/" />
+		</copy>
+
+		<echo message="Copying external Jar files." />
+		<copy todir="${jardest}" >
+			<fileset includes="**/*.jar" dir="${fjars}" />
+		</copy>
+
+		<echo message="Installing new JAR from ${jar} to ${jardest}/${jarname}" />
+		<copy file="${jar}" tofile="${jardest}/${jarname}" />
+
+		<chmod dir="${docsdest}" includes="**" type="both" perm="g+w" />
+		<echo message="Install complete" />
+	</target>
+
+	<target name="release" depends="clean,install"> </target>
+
+	<target name="javadoc" depends="merge_java" >
+		<delete failonerror="false" >
+			<fileset dir="${javadocs}/${proj}" />
+		</delete>
+		<javadoc sourcepath="${srcdir}" destdir="${javadocs}/${proj}" 
+			packagenames="net.ivoa.util,net.ivoa.query,net.nvo" >
+			<classpath>
+				<pathelement location="${classes}" />
+				<pathelement location="${fjars}/stilts.jar" />
+			</classpath>
+		</javadoc>
+	</target>
+
+<!--
+	<target name="tonvo">
+	<property name="xproj"    value="simplequery" />
+		<echo message="Copying CGI scripts" />
+		<copy todir="../nvo/projects/${xproj}/trunk/cgi/" >
+			<fileset dir="${cgi}"  />
+		</copy>
+		<chmod dir="../nvo/projects/${xproj}/trunk/cgi" 
+			includes="*" perm="ugo+x" />
+	
+		<echo message="Copying HTML documentation and XSL" />
+		<copy todir="../nvo/projects/${xproj}/trunk/htdocs" >
+			<fileset dir="${docs}" />
+		</copy>
+		<chmod dir="../nvo/projects/${xproj}/trunk/htdocs" 
+			includes="*.csh" perm="ugo+x" />
+	
+		<echo message="Copying JavaScript" />
+	
+		<copy todir="../nvo/projects/${xproj}/trunk/htdocs/js">
+			<fileset dir="${js}"     />
+			<fileset dir="js/query/" />
+		</copy>
+	
+		<copy todir="../nvo/projects/${xproj}/trunk/source">
+			<fileset dir="${srcdir}" 
+				includes="net/ivoa/query/** net/nvo/** net/ivoa/util/**" />
+		</copy>
+	
+		<echo message="Copying CSS" />
+		<copy todir="../nvo/projects/${xproj}/trunk/htdocs/css">
+			<fileset dir="css/query" />
+			<fileset dir="${css}"    />
+		</copy>
+	
+		<copy todir="../nvo/projects/${xproj}/trunk/build" >
+			<fileset dir="./build" includes="query.xml" />
+		</copy>
+	
+		<copy todir="../nvo/projects/${xproj}/trunk/data" >
+			<fileset dir="${data}" />
+		</copy>
+	
+		<echo message="Distribution complete" />
+	</target>
+-->
+	
+	<target name="test" depends="compile">
+		<echo message="Testing has not been implemented yet." />
+	</target>
+
+</project>

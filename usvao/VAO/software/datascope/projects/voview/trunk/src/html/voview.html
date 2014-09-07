@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+	<title>VOTable Viewer</title>
+	<link rel="stylesheet" type="text/css" href="@CSS_PATH@voview.css"/>
+	<script type="text/javascript" src="@JS_PATH@cookie.js"></script>
+	<script type="text/javascript" src="@JS_PATH@sarissa.js"></script>
+	<script type="text/javascript" src="@JS_PATH@statemanager.js"></script>
+	<script type="text/javascript" src="@JS_PATH@query.js"></script>
+	<script type="text/javascript" src="@JS_PATH@filter.js"></script>
+	<script type="text/javascript" src="@JS_PATH@fsm.js"></script>
+	<script type="text/javascript" src="@JS_PATH@tablednd.js"></script>
+	<script type="text/javascript" src="@JS_PATH@voview.js"></script>
+	<!--  script type="text/javascript" src="@JS_PATH@jquery.js"></script -->
+
+	<script type="text/javascript">
+		test_format = function(cell){
+			cell.innerHTML = cell.innerHTML + "_blah";
+		};
+	
+		window.onload = function() {
+			var output = document.getElementById("output");
+			rd = voview({
+				output: output,
+				form: "searchForm",
+				searchparam: "query_string",
+				xsltdir: "@XSL_PATH@"
+            //, updateCallback: vo_ready
+			});
+
+//			rd.displayPrefixColumn(true);
+			rd.displaySelectColumn(true);
+			rd.columnFormat(2, "<a onclick=\"return nw(this.href, this.target)\" href=\"http://simbad.u-strasbg.fr/sim-id.pl?protcol=html&Ident=@@&Frame3=G\" title=\"Link to Simbad details\">@@</a>");
+//			rd.columnFormat("unique_id", test_format);
+//			rd.columnFormat(/DEC/i, test_format);
+			//			$('#examples').hide();
+		};
+	</script>
+</head>
+<body>
+
+<h1>VOTable Viewer</h1>
+
+<div id='examples' class="Examples">
+<a href="/cgi-bin/acsSIAP.cgi?pos=210.802,54.348&amp;size=0.1&amp;zoom=0.125&amp;format=jpeg" onclick="return insertTerm(this);">
+acsSIAP request
+</a><br />
+
+<a href="/masthla/HLA/catalogs/DAOcs.aspx?RA=180.4&amp;DEC=-19.0&amp;SR=0.01" onclick="return insertTerm(this);">
+Catalog request
+</a> (65 sources)<br />
+
+<a href="/masthla/HLA/catalogs/DAOcs.aspx?RA=210.802&amp;DEC=54.348&amp;SR=0.01" onclick="return insertTerm(this);">
+Catalog request v2
+</a> (1700 sources)<br />
+
+<a href="/masthla/HLA/catalogs/DAOcs.aspx?RA=210.802&amp;DEC=54.348&amp;SR=0.1" onclick="return insertTerm(this);">
+Catalog request v3
+</a> (74400 sources! 28 MByte VOTable!)<br />
+
+<a href="/masthla/HLA/Footprints/FPCone/fpcone.aspx?RA=210.802&amp;DEC=54.348&amp;SR=0.1" onclick="return insertTerm(this);">
+Footprint cone-search request
+</a><br />
+
+<a href="/masthla/HLA/Footprints/FPCone/fpcone.aspx?RA=210.802&amp;DEC=54.348&amp;SR=0.1&amp;level=2" onclick="return insertTerm(this);">
+Level=2 footprint cone-search request
+</a><br />
+
+<a href="/masthla/HLA/Footprints/FPCone/fpcone.aspx?RA=219.901&amp;DEC=-60.836&amp;SR=0.1" onclick="return insertTerm(this);">
+Alpha Cen footprint cone-search request
+</a><br />
+
+<a href="/masthla/HLA/Footprints/FPCone/fpcone.aspx?RA=219.901&amp;DEC=-60.836&amp;SR=0.1&amp;level=2" onclick="return insertTerm(this);">
+Level=2 Alpha Cen footprint cone-search request
+</a><br />
+
+<a href="/cgi-bin/voproxy?nedwww.ipac.caltech.edu/cgi-bin/nph-objsearch&amp;objname=m101&amp;extend=no&amp;out_csys=Equatorial&amp;out_equinox=J2000.0&amp;obj_sort=RA+or+Longitude&amp;of=xml_posn&amp;zv_breaker=30000.0&amp;list_limit=5&amp;img_stamp=YES" onclick="return insertTerm(this);">
+NED name resolver request
+</a><br />
+
+<a href="/masthla/HLA/catalogs/IMGcat.aspx?IMAGE=HST_10188_10_ACS_WFC_F814W" onclick="return insertTerm(this);">
+Image database request by name
+</a><br />
+
+<a href="/masthla/HLA/catalogs/IMGcat.aspx?IMAGE=HST_9289_52_ACS_HRC_F625W" onclick="return insertTerm(this);">
+HRC image database request by name
+</a><p />
+
+<a href="/gretchen.xml" onclick="return insertTerm(this);">
+Sample registry VOTable from Gretchen
+</a><p />
+
+<a href="/cgi-bin/jsonproxy?masthla.stsci.edu/HLA/Footprints/FPCone/fpcone.aspx&amp;RA=210.802&amp;DEC=54.348&amp;SR=0.25" onclick="return insertTerm(this);">
+Bad request (non-XML returned)
+</a><br />
+
+<a href="/cgi-bin/errorproxy?masthla.stsci.edu/HLA/Footprints/FPCone/fpcone.aspx&amp;RA=210.802&amp;DEC=54.348&amp;SR=0.25" onclick="return insertTerm(this);">
+Another bad request (non-existent script)
+</a><br />
+
+<a href="http://masthla.stsci.edu/HLA/Footprints/FPCone/fpcone.aspx?RA=210.802&amp;DEC=54.348&amp;SR=0.25" onclick="return insertTerm(this);">
+Another bad request (attempt to access data from external host)
+</a><p />
+
+<a href="http://heasarcdev.gsfc.nasa.gov/jake/rassfsc.xml" onclick="return insertTerm(this);">
+Heasarcdev test
+</a><br />
+
+</div>
+<!-- p onclick="$('#examples').slideToggle('slow')" >click to Toggle Examples</p -->
+
+<form method="get" name="searchForm" onsubmit="return rd.setView();" action="">
+	<input name="query_string" id="sterm" size="100" maxlength="500" value="" type="text"/>
+	<br/>
+	<input type="submit" class="submit" name=".submit" value="Search" />
+	<input type="reset" class="reset" name=".reset" value="Reset" onclick="return rd.clearState();" />
+	<div class="searchnote compact">
+		Requires Firefox, Safari, or compatible browser
+	</div>
+</form>
+
+<div id="output">
+Table should appear here.
+</div>
+
+</body></html>

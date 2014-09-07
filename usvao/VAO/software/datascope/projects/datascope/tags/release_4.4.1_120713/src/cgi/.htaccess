@@ -1,0 +1,3 @@
+AddHandler cgi-script .cgi .sh .pl
+Options +ExecCGI
+redirectmatch ^@CGI_PATH@$                         http://@HOST@@CGI_PATH@jobs

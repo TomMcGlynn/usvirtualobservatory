@@ -1,0 +1,39 @@
+<!-- begin BaseQueryFormBegin.html -->
+<div style="content">
+<table><tr><td width='15%'></td><td width='70%'>
+The NVO Table Viewer lets you display the columns and rows of
+a VOTable.  You can sort and filter the table interactively and send
+the filtered results to other data discovery tools.  The Table Viewer's
+capability for interactively viewing VOTables is used by the registry,
+Simple Query and the Inventory tools.
+<p>
+To query VO-enabled catalogs and data resources use our <a href=form.sh>Simple Query tool</a>.
+</td><td width='15%'></td></tr></table>
+</div>
+<form id='basequery' action='$cgibase/query.sh' onsubmit='return validate(this);' method='post' enctype='multipart/form-data' >
+ <table id='formtable' width='100%' style='border:1px solid silver;'>
+  <tr><td id='errorHolder'>
+   <p class='errorMessage' >$errorMessage</p>
+  </td></tr>
+  <tr><td>
+    <table id='viewtable' width='100%' >
+     <tr><td colspan='2' align='center'><a class='h3' id='viewtoggle' href='javascript:void(0)'>Select a VOTable</a></td></tr>
+     <tr><td colspan='2'>
+        <table id='innerviewtable' width='100%'>
+         <tr id='trviewLocal'><td align='right'>Local VO table</td><td><input size='30' class='src' id='viewLocal' name='viewLocal' type='file' /></td></tr>
+         <tr><td colspan='2' align='center'>- OR -</td></tr>
+         <tr id='trviewURL'><td align='right'>VO table URL</td><td><input size='30' class='src' id='viewURL' name='viewURL' /></td></tr>
+        </table><!-- id='innerviewtable' -->
+     </td></tr>
+    </table><!-- id='viewtable' -->
+  </td></tr>
+  <tr><td align='center'><input type='submit' /><input id='reset' type='reset' /></td></tr>
+ </table><!-- id='formtable' -->
+ <input class='src' type='hidden' id='sources'    name='sources'    value='' />
+ <input class='src' type='hidden' id='sourcesURL' name='sourcesURL' value='' />
+ <input class='src' type='hidden' id='resources'    name='resources'    value='' />
+ <input class='src' type='hidden' id='resourcesURL' name='resourcesURL' value='' />
+ <input class='src' type='hidden' id='viewform'     name='viewform'  value='1'>
+ <input type='hidden' name='limit' value='5' />
+
+<!-- end BaseQueryFormBegin.html -->

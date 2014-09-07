@@ -1,0 +1,24 @@
+		  ===================================
+		   LIBVOTABLE v1.0 Tools README File
+		  ===================================
+
+    This directory contains the source and documentation for the
+LIBVOTABLE (VOTable Parser) Interface.  See the INSTALL file for
+detailed installation instructions.
+
+Contents:
+---------
+	Makefile		Top-level Makefile for the source
+	README			This file
+	INSTALL			Installation instructions
+	examples/		Example task using the interface
+	include/		Library include files
+	lib/			Sources used to build the interface
+	src/			Public libVOTable interface source
+
+    Please report any bugs, comments, or suggestions to the author
+(fitz@noao.edu) or the NVO Help Desk (feedback@us-vo.org).
+
+
+Mike Fitzpatrick, fitz@noao.edu, NOAO
+Sep 7, 2007

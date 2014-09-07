@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head>
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+	
+	<title>VOTable Viewer</title>
+	
+	<link rel="stylesheet" type="text/css" href="@CSS_PATH@voview.css"/>
+	
+	<script type="text/javascript" src="@JS_PATH@sarissa.js"></script>
+	<script type="text/javascript" src="@JS_PATH@statemanager.js"></script>
+	<script type="text/javascript" src="@JS_PATH@query.js"></script>
+	<script type="text/javascript" src="@JS_PATH@filter.js"></script>
+	<script type="text/javascript" src="@JS_PATH@voview.js"></script>
+</head>
+<body>
+<h1>VOTable Viewer</h1>
+<div id='debug'></div>
+
+<a href="/cgi-bin/W3Browse/getvotable.pl?name=cosbraw" onclick="return insertTerm(this);"
+>
+COS-B Raw data (65 rows)
+</a><br />
+<a href="/cgi-bin/W3Browse/getvotable.pl?name=messier" onclick="return insertTerm(this);"
+>
+Messier catalog (109 rows)
+</a><br />
+
+<a href="/cgi-bin/W3Browse/getvotable.pl?name=ascamaster" onclick="return insertTerm(this);"
+>
+ASCA master catalog (3000 rows)
+</a><br />
+
+<a href="/cgi-bin/W3Browse/getvotable.pl?name=chanmaster" onclick="return insertTerm(this);"
+>
+Chandra master catalog (9000 rows including some with no position)
+</a><br />
+
+<a href="/cgi-bin/W3Browse/getvotable.pl?name=rosmaster" onclick="return insertTerm(this);"
+>
+ROSAT master catalog (11000 rows)
+</a><br />
+
+<a href="/cgi-bin/W3Browse/getvotable.pl?name=xtemaster" onclick="return insertTerm(this);"
+>
+XTE master catalog (100000 rows)
+</a><br />
+
+
+<form method="get" name="searchForm" onsubmit="return rd.setView();" action="">
+	<input name="query_string" id="sterm" size="100" maxlength="500" value="" type="text"/>
+	<br/>
+	<input type="submit" class="submit" name=".submit" value="Search" />
+	<input type="reset" class="reset" name=".reset" value="Reset" onclick="return rd.clearState();" />
+	<div class="searchnote">
+		Requires Firefox or compatible browser
+	</div>
+</form>
+
+<div id="output">
+Table should appear here.
+</div>
+
+</body></html>
