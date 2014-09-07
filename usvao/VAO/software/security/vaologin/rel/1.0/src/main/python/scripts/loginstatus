@@ -1,0 +1,36 @@
+#! /usr/bin/env python
+
+import sys, os
+
+# To change the default location of vaologin package or its configuration 
+# file, edit the following values.
+#
+# The directory where vaologin package is installed
+def_vaologin_home = "$INSTALLDIR"
+
+# The path to the configuration file (default is home/conf/vaologin-py.cfg)
+vaologin_config_file = None
+
+# The location of the vaologin python module (default is home/lib/python).
+def_vaologin_pythonpath = None
+
+##########################################################################
+
+vaologin_home = os.environ.get("VAOLOGIN_HOME", def_vaologin_home)
+vaologin_pythonpath = def_vaologin_pythonpath
+if not vaologin_pythonpath:
+    vaologin_pythonpath = os.path.join(vaologin_home, "lib", "python")
+
+if not vaologin_home.startswith('$'):
+    sys.path.insert(1, vaologin_pythonpath)
+
+import vaologin.cli.loginstatuscgi
+
+if vaologin_config_file:
+    vaologin.cli.loginstatuscgi.configfile = vaologin_config_file
+
+# see main() in vaologin/cli/loginstatuscgi.py for script implementation
+from vaologin.cli.loginstatuscgi import main
+from vaologin.cli.utils import run
+
+run(main)

@@ -1,0 +1,125 @@
+anyOpenID -- a simple vaologin example using Java and the Spring
+             Security Framework
+
+The Spring Security Framework (http://www.springsource.org/spring-security)
+is a convenient framework for managing authentication and
+authorization within Java servlet-based applications, and it includes 
+explicit support for OpenID.  We recommend using Spring Security if you
+keep track of user information using some kind of user database.  You
+can integrate your portal with the VAO Login Service using the simple
+examples described in the the Spring Security (with help from the 
+documentation at http://sso.usvao.org/help/support.html); however,
+this example shows how to plug in special support for VAO users.  
+
+WHAT THIS EXAMPLE DEMONSTRATES
+
+This examples shows two types of pages.  First is a publicly
+accessible page (i.e. no authentication required) whose contents
+change depending on whether the user is logged in.  Second is a
+"protected" page ("Attributes"): when the user attempts to access 
+the page, she is forced to log in. 
+
+In this example, we assume that any user with an OpenID may log into our
+portal, and no special local registration is required.  By default,
+users are identified within the portal by their OpenID URL; however,
+this example comes configured to identify a user by a shortened
+qualified name (see more below) when the user is recognized as being
+from a VAO-compatible login server. Authorizations are assigned to the
+user depending on the whether a recognized VAO-compatible service was
+used to authenticate. Click on Attributes to see your authorizations. 
+
+This example uses Spring Security's typical support for OpenID apart
+from one specialization.  We have plugged in a UserDetailsService
+implementation (SimpleUserDetailsService) which assigns the
+authorization roles and determines the form of the username. This
+class comes with the VAOLogin package and can be plugged in via the
+configuration file, conf/security-app-context.xml. A portal may plug
+in their own implementation to assign authorizations to the user. See
+the code embedded in the JSP pages (under src/main/jsp) to see how
+this information is accessed.  
+
+CONFIGURING, BUILDING AND DEPLOYING THIS EXAMPLE
+
+This example is deployed to a Servlet Engine (e.g. Apache Tomcat) via
+a WAR file called spring-anyOpenID.war.  
+
+Configuration:
+
+This example works without further configuration required; however,
+there are some things you can tweak.  This is done primarily via 
+conf/security-app-context.xml.  
+
+The <intercept-url> elements control which URLs within the application
+space (spring-anyOpenID) that require authentication.  See the Spring
+Security documentation  (http://www.springsource.org/spring-security)
+for details.  In summary:
+   o  access="permitAll" makes index.jsp is publically accessible
+   o  access="isAuthenticated()" causes attributes.jsp to require 
+         authentication; any authenticated user can access the document.
+   o  access="hasRole('ROLE_VAO_USER')" means that the user must have
+         authenticated via a recognized VAO-compatible login service
+         in order to access documents under the only4vao_users
+         directory.  
+
+This example is only connected to the (Test) VAO Login Service by
+virtue of the login-page attribute (see also the Login link in
+src/main/jsp/index.jsp); see the Spring Security documentation for
+information on supporting other services. 
+
+The SimpleUserDetailsService is plugged into the system via the bean
+configuration at the end of the file, and it has two configuration
+properties.  You can change the form that the displayed user name
+takes by adjusting the value of the localUserName property.  If not
+specified, the username will be the user's OpenID URL; however, you
+can change this to show just the shorter username that the user logged
+in with or a "qualified username" (e.g. username@usvao).  See the
+in-lined documentation for details.  This also controls what your
+application code sees as the username.  
+
+To display the shorter, alternative usernames, the OpenID must be
+recognized as being from a VAO-compatible login service.  This is
+controlled by the vaoDomains.  This gives a list of mappings of short
+"domain names" to OpenID base URLs (see in-lined example).  Multiple 
+URLs can have the same domain name label.  The domain name is what
+appears after the @ in the username when localUserName is set to
+QNAME.  If vaoDomains is not specified, the service sso.usvao.org will
+automatically recognized.  "VAO" is an alias for the service at
+sso.usvao.org.  
+
+Building:
+
+To build this example, you need Apache Ant.  Change into the directory 
+containing this example.  After editing security-app-context.xml (if
+desired), type:
+
+   ant war
+
+This produces the spring-anyOpenID.war file.  
+
+Deploying:
+
+Copy the spring-anyOpenID.war file to your servlet engine's
+applications directory (for Tomcat, this is $CATALINA_HOME/webapps;
+see docs/settingUpTomcat.txt for details).  
+
+RUNNING THE EXAMPLE
+
+With a browser, access the spring-anyOpenID home URL.  If you followed
+the example in docs/settingUpTomcat.txt this URL will be:
+
+   http://myserver.net/spring-anyOpenID/
+
+This brings up the public "home" page (index.jsp).
+
+To log in, you must first get a VAO login.  A login with the test
+login server can be obtained by following the "Get a VAO (Test) Login"
+link and completing the steps described there.  
+
+Once you have a VAO login, you can either login via the "Login" link
+or by clicking the "Attributes" link.  This latter one will display
+both your authorization roles and the user attributes share by the login
+service.  
+
+
+
+

@@ -1,0 +1,43 @@
+# This file assumes it is executed within the $(PKG) subdirectory
+PKG=openssl
+PKGS=               # this gets normally gets overriden on the make cmdline
+prefix=/usr/local   # this gets normally gets overriden on the make cmdline
+
+local_zlib = $(shell echo $(PKGS) | grep $(PKG))
+ZLIB_ROOT = $(if $(local_zlib),$(prefix))
+ZLIB_CONFIG_OPTS = $(if $(ZLIB_ROOT),--with-zlib-lib=$(ZLIB_ROOT)/lib --with-zlib-include=$(ZLIB_ROOT)/include)
+
+GLOBAL_CONFIG_OPTS=--prefix=$(prefix)
+CONFIG_OPTS=$(GLOBAL_CONFIG_OPTS) zlib shared $(ZLIB_CONFIG_OPTS)
+
+all: install
+
+configure:  configure.ok
+
+configure.ok: 
+	config $(CONFIG_OPTS)
+	touch configure.ok
+
+build: configure
+	$(MAKE)
+
+install: $(prefix)/installed/$(PKG)
+
+reinstall: clear-install $(prefix)/installed/$(PKG)
+
+$(prefix)/installed/$(PKG): configure.ok
+	$(MAKE) --jobs=1 install
+	mkdir -p $(prefix)/installed
+	touch $(prefix)/installed/$(PKG)
+
+clear-installed:
+	rm -f $(prefix)/installed/$(PKG)
+
+comment:
+	@ echo prefix: $(prefix)
+	@ echo PKGS: $(PKGS)
+	@ echo local: $(local_zlib)
+	@ echo ZLIB_ROOT: $(ZLIB_ROOT)
+	@ echo $(PKG) CONFIG_OPTS: $(CONFIG_OPTS)
+
+.PHONY: comment configure build install reinstall clear-installed

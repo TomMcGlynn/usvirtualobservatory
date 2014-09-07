@@ -1,0 +1,63 @@
+## Note: this file was hand created.
+# This file was created by the vaologin-support configure script
+#
+prefix = @prefix@
+includedir = ${prefix}/include
+libdir =  ${prefix}/lib
+
+PKGS = @PKGS@
+
+local_python = $(shell echo $(PKGS) | grep -E ' python |^python | python$$')
+PYTHON_LOCAL=$(prefix)/bin/python
+PYTHON_SYS=$(shell which python)
+PYTHON = $(if $(local_python),$(PYTHON_LOCAL),$(PYTHON_SYS))
+
+all: $(PKGS)
+	@ echo; \
+        echo 'Type "make install" to build/install prerequisite packages'; \
+        echo
+
+install-PREREQ: PREREQ
+	@ echo; echo Building $<; echo
+	$(MAKE) -C $< -f ../Makefile.$< prefix=$(prefix) PKGS="$(PKGS)" install
+
+$(PKGS):
+	@ tb=`pkgs/download-pkgs.sh pkgs/download-urls.txt list | grep ^$@: | sed -e 's/.*: *//'`; \
+        d=`tar tzf pkgs/$$tb | head -1 | sed -e 's/\/.*$$//'`; \
+        echo tar xzmf pkgs/$$tb; \
+        tar xzmf pkgs/$$tb && mv $$d $@
+
+python.sh: python.sh.in
+	filter_template.sh PYTHON=$(PYTHON) LIBDIR=$(prefix)/lib python.sh.in > python.sh
+
+$(prefix)/bin:
+	mkdir -p $(prefix)/bin
+
+$(prefix)/bin/python.sh: $(prefix)/bin python.sh
+	cp python.sh $@
+	chmod a+x $@
+
+install: install-pkgs $(prefix)/bin/python.sh
+
+install-pkgs: $(PKGS)
+	@ set -e; \
+        for pkg in $(PKGS); do \
+             $(MAKE) "PKGS=$(PKGS)" install-$$pkg; \
+             if [ "$$pkg" = "python" ]; then \
+                  $(MAKE) "PKGS=$(PKGS)" $(prefix)/bin/python.sh; \
+             fi; \
+        done
+
+clean:
+	rm -rf $(PKGS) python.sh
+
+distclean: clean
+	rm -f Makefile Makefile.tmp Makefile.PKG
+
+reposclean: distclean
+	rm -f pkgs/*.tar.gz pkgs/*.tgz pkgs/*.TGZ
+
+fetch: 
+	cd pkgs && download-pkgs.sh download-urls.txt
+
+.PHONY: clean distclean reposclean install-PKG

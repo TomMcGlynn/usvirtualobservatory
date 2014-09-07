@@ -1,0 +1,45 @@
+# This file assumes it is executed within the $(PKG) subdirectory
+PKG=pycurl
+PKGS=               # this gets normally gets overriden on the make cmdline
+prefix=             # this gets normally gets overriden on the make cmdline
+
+local_python = $(wildcard $(prefix)/bin/python.sh)
+PYTHON = $(if $(local_python),$(local_python),python)
+local_curl = $(wildcard $(prefix)/bin/curl-config)
+CURL_CONFIG = $(if $(local_curl),$(prefix)/bin/curl-config)
+local_openssl = $(shell echo $(PKGS) | grep openssl)
+OPENSSL_ROOT = $(if $(local_openssl),$(prefix))
+
+DEST_SETUP_OPTS=$(if $(prefix),--home=$(prefix))
+CURL_SETUP_OPTS=$(if $(CURL_CONFIG),--curl-config=$(CURL_CONFIG))
+SSL_SETUP_OPTS=$(if $(OPENSSL_ROOT),--openssl-dir=$(prefix) --with-ssl)
+# PYTHON_SETUP_OPTS=$(if $(local_python),-e $(PYTHON))
+
+LOCAL_SETUP_OPTS=$(CURL_SETUP_OPTS) $(SSL_SETUP_OPTS)
+SETUP_OPTS=$(DEST_SETUP_OPTS) $(LOCAL_SETUP_OPTS)
+GLOBAL_SETUP_OPTS=
+
+all: install
+
+configure:  
+
+build: configure
+	$(PYTHON) setup.py build $(SETUP_OPTS) 
+
+install: $(prefix)/installed/$(PKG)
+
+reinstall: clear-install $(prefix)/installed/$(PKG)
+
+$(prefix)/installed/$(PKG): 
+	$(PYTHON) setup.py install $(SETUP_OPTS) 
+	mkdir -p $(prefix)/installed
+	touch $(prefix)/installed/$(PKG)
+
+clear-installed:
+	rm -f $(prefix)/installed/$(PKG)
+
+comment:
+	echo $(PKG) python: $(PYTHON) SETUP_OPTS: $(SETUP_OPTS)
+
+
+.PHONY: comment configure build install

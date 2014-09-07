@@ -1,0 +1,214 @@
+#! /bin/bash
+#
+prefix=/usr/local
+cmds=(gcc make ar install)
+templates=(Makefile.in)
+
+. configure-data
+
+PKGS=${AVAIL_PKGS}
+pkgs=()
+
+help() {
+
+cat <<EOF
+configure helps orchestrate the building of vaologin prerequisite packages
+
+Usage configure [OPTION]... 
+
+Configuration options:
+  -h, --help        display this help and exit
+  -V, --version     display version information and exit
+  -a, --available   list the available prerequisite packages that can be 
+                      installed and exit
+  -l, --list-only   list the packages that will be installed and exit
+
+Installation directory:
+  --prefix=PREFIX   install packages in PREFIX [/usr/local]
+  --without-python  do not install a custom python interpreter
+  --without-zlib    do not install zlib (use the system version)
+  --without-openssl do not install openssl (nor zlib; use the system versions)
+  --without-curl    do not install curl (nor zlib and openssl; use the system 
+                       versions)
+  --without-pycurl  do not install pycurl.  Due to dependencies, this is 
+                       equivalent to --with-openid-only 
+  --with-openid-only
+                    install only the python-openid python module
+
+It is recommended that you provide the --prefix option and set it to 
+the same value as --home you will provide to vaologin installation.
+
+To restrict the build to specific prerequisite packages, use the 
+--without-* options.
+
+EOF
+}
+
+version() {
+    echo ${PACKAGE} ${VERSION} configure
+}
+
+check_for_exe() {
+    echo -n "Checking for $1... "
+    local exe=`which $1`
+    if [ "$exe" = "" ]; then
+        echo "None found"
+        false
+    else
+        echo $exe
+    fi
+}
+
+error() {
+    local out=$1
+    shift
+    echo "configure:" $@
+    [ "$out" = "0" ] || exit $out
+}
+
+filter_template() {
+    out=${1%.in}
+    local params=(`grep -oE '@[[:alnum:]]*@' $1 | sed -e 's/@//g' | sort -u`)
+    local filt=(sed)
+    local v
+    for p in ${params[@]}; do
+        v=`eval esc_sed_filt \\\$$p`
+        filt=("${filt[@]}" -e "s/@$p@/$v/g")
+    done
+    # echo filt: ${#filt[@]}: ${filt[@]}
+
+    echo creating $out
+    if [ ${#params[@]} -gt 0 ]; then
+        grep -v ^## $1 | "${filt[@]}" > $out
+    else 
+        grep -v ^## $1 > $out
+    fi
+}
+
+esc_sed_filt() {
+    echo "$@" | sed -e 's/\//\\\//g'
+}
+
+extract_install_pkg() {
+    local start=`find_install_pkg $1`
+    local end=`tail -n +$start $1 | grep -n '^$' | sed -e 's/:.*//' | head -1`
+    local out=${1}.PKG
+    tail -n +$start $1 | head -$end > $out
+    echo $out
+}
+
+find_install_pkg() {
+    grep -n install-PREREQ: $1 | sed -e 's/:.*//' | head -1
+}
+
+insert_subpkg_recipes() {
+    local use=$1.tmp
+    local mfpkg=`extract_install_pkg $1`
+    local inspt=`find_install_pkg $1`
+    local pre=`expr $inspt - 1`
+    head -$pre $1 > $use
+    for pkg in ${PKGS}; do 
+        cat $mfpkg | sed -e "s/PREREQ/$pkg/g" >> $use
+    done
+    tail -n +$inspt $1 >> $use
+    mv $use $1
+}
+
+remove_word() {
+    local list="$1"
+    shift
+    for word in $@; do
+      list=`echo $list | sed -e "s/ $word / /" -e "s/^$word //" -e s/$word'$//'`
+    done
+    echo $list
+}
+
+# set -x
+# Process any cmdline args.
+while [ $# -gt 0 ]
+do
+
+    case "$1" in
+    -h | --help)                                # print a help summary
+        help
+        exit 0
+        ;;
+    -V | --version)                             # print version info
+        version
+        exit 0
+        ;;
+    -a | --available)                             # print available packages
+        pkgs/download-pkgs.sh pkgs/download-urls.txt list
+        exit 0
+        ;;
+    -l | --list-only)
+        list_only=1
+        shift
+        ;;
+    -p)
+        case "$2" in
+            "") shift 2 ;;
+            "-") error 1 missing value to -p option ;;
+            *) prefix=$2 ; shift 2 ;;
+        esac
+        ;;
+    --prefix=*)
+        prefix="${1#*=}"
+        shift
+        ;;
+    --without-python)
+        PKGS=`remove_word "$PKGS" python`
+        echo PKGS=$PKGS
+        shift
+        ;;
+    --without-curl)
+        PKGS=`remove_word "$PKGS" zlib openssl curl`
+        shift
+        ;;
+    --without-openssl)
+        PKGS=`remove_word "$PKGS" zlib openssl`
+        shift
+        ;;
+    --without-zlib)
+        PKGS=`remove_word "$PKGS" zlib`
+        shift
+        ;;
+    --without-pycurl | --with-openid-only)
+        PKGS=python-openid
+        shift
+        ;;
+    -* | --*)
+        echo Ignoring unknown option: $1
+        shift
+        ;;
+    *)
+        pkgs=("${pkgs[@]}" $1)
+        shift
+        ;;
+    esac
+done
+
+[ ${#pkgs[@]} -gt 0 ] && {
+    echo restricting
+    PKGS=
+    for pkg in ${AVAIL_PKGS}; do
+        { echo ${pkgs[@]} | grep -qs $pkg; } && PKGS="$PKGS $pkg"
+    done
+}
+
+echo Installing the following packages:
+echo
+pkgs/download-pkgs.sh pkgs/download-urls.txt list $PKGS
+echo
+[ -n "$list_only" ] && exit 0
+
+for cmd in ${cmds[@]}; do
+    check_for_exe $cmd
+done
+
+for tmpl in ${templates[@]}; do
+    filter_template $tmpl
+done
+
+insert_subpkg_recipes Makefile
+

@@ -1,0 +1,19 @@
+zlib:
+
+./configure --prefix=$VAOLOGIN_SUPPORT
+
+openssl:
+
+./config --prefix=$VAOLOGIN_SUPPORT zlib shared \
+         --with-zlib-lib=$VAOLOGIN_SUPPORT/lib  \
+         --with-zlib-include=$VAOLOGIN_SUPPORT/include
+
+curl:
+
+./configure --prefix=$VAOLOGIN_SUPPORT \
+            --with-zlib=$VAOLOGIN_SUPPORT --with-ssl=$VAOLOGIN_SUPPORT
+
+python:
+
+setenv LD_LIBRARY_PATH $VAOLOGIN_SUPPORT
+./configure --prefix=$VAOLOGIN_SUPPORT --enable-shared

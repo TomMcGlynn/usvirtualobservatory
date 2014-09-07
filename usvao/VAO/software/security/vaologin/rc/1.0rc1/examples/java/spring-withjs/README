@@ -1,0 +1,84 @@
+withjs -- a vaologin example using Java and the Spring Security Framework
+          demonstrating use of Javascript
+
+The Spring Security Framework (http://www.springsource.org/spring-security)
+is a convenient framework for managing authentication and
+authorization within Java servlet-based applications, and it includes 
+explicit support for OpenID.  We recommend using Spring Security if you
+keep track of user information using some kind of user database.  You
+can integrate your portal with the VAO Login Service using the simple
+examples described in the the Spring Security (with help from the 
+documentation at http://sso.usvao.org/help/support.html); however,
+this example shows how to plug in special support for VAO users.  
+
+This demonstration is relevant to portals that are largely
+javascript-driven; it shows how to control output depending on whether
+the user is logged in or not.  
+
+WHAT THIS EXAMPLE DEMONSTRATES
+
+In this example, we build on the example in ../spring-useratts.  As in
+that demonstration, this one supports registering users locally.  The
+difference appears in the home page that uses Javascript to produce
+the dynamic content.  
+
+The key to this demonstration is a special purpose servlet called
+"loginstatus" (org.usvao.sso.openid.portal.spring.SSFLoginStatus)
+which returns information about the logged-in user.  This servlet
+is publically accessible (i.e. no authentication is required).  The
+portal's pages should, via AJAX, consult this state when loading a
+page before making any AJAX calls to login-protected services.  
+
+A key to this demonstration is that the portal issues its own session
+ids (i.e. via a cookie or equivalent mechanism) which allows it to
+keep track of whether the user has authenticated without having to go
+back to the VAO Login service with each call.  This comes for free
+when using Spring Security.  
+
+CONFIGURING, BUILDING AND DEPLOYING THIS EXAMPLE
+
+See the instructions for the ../spring-useratts example.  Note also
+that the vaologin Javascript module is initialized with parameters at
+the top of the index.html file (see src/main/html/index.html).  
+Building:
+
+To build this example, you need Apache Ant.  Change into the directory 
+containing this example.  After editing security-app-context.xml (if
+desired), type:
+
+   ant war
+
+This produces the spring-withjs.war file.  
+
+Deploying:
+
+Copy the spring-withjs.war file to your servlet engine's
+applications directory (for Tomcat, this is $CATALINA_HOME/webapps;
+see doc/settingUpTomcat.txt for details).  
+
+RUNNING THE EXAMPLE
+
+With a browser, access the spring-withjs home URL.  If you followed
+the example in doc/settingUpTomcat.txt this URL will be:
+
+   http://myserver.net/spring-withjs/
+
+This brings up the public "home" page (index.html).
+
+It does not matter whether you have a VAO login yet.  To become a
+portal user, you can register by clicking on either the "Get one now"
+or "register now..." link; both will wind up at the portal's
+registration page.  If you don't have a VAO Login, the first link
+let's you create one.  If you are not logged in, you will be prompted
+to do so.  Once you finally arrive at the portal registration page,
+you should see that 3 of the 4 fields requested are pre-populated. 
+
+The "Attributes" link shows everything the portal knows about the
+user.  If the user is logged in, user data from the user database is
+shown; see src/main/jsp/portal/attributes.jsp, which shows the use of
+the PortalUser instance, for details.
+
+
+
+
+

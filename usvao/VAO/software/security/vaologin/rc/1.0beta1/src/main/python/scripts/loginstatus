@@ -1,0 +1,15 @@
+#! /usr/bin/env python
+
+import vaologin.cli.loginstatuscgi
+
+# Uncomment this line and set the value to the full path to the 
+# configuration file.  See docs for info on default locations used 
+# when this is not set.
+# 
+# vaologin.cli.loginstatuscgi.configfile = "/etc/httpd/conf/vaologin.cfg"
+
+# see main() in vaologin/cli/portal.py for script implementation
+from vaologin.cli.loginstatuscgi import main
+from vaologin.cli.utils import run
+
+run(main)

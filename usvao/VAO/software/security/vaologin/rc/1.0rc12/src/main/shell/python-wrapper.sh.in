@@ -1,0 +1,25 @@
+#! /bin/sh
+#
+python="$exe"
+libs="$lib"
+homedir="$home"
+
+if [ -n "$home" ];then 
+    bindir="${homedir}/bin"
+else
+    bindir=`dirname $0`
+fi
+[ -n "$bindir" ] && bindir="$bindir/"
+pyscript="$script"
+pyscriptpath="${bindir}${pyscript}.py"
+
+if [ -z "$LD_LIBRARY_PATH" ]; then 
+    export LD_LIBRARY_PATH=${libs}
+else
+    export LD_LIBRARY_PATH=${libs}:$LD_LIBRARY_PATH
+fi
+
+exec ${python} ${pyscriptpath} "$@"
+
+
+

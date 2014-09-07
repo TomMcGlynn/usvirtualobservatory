@@ -1,0 +1,71 @@
+			USVAO OpenID Authentication for Java Containers
+
+
+INTRODUCTION
+
+This describes a way to use the USVAO OpenID Authentication service to
+authenticate and optionally retrieve attributes (including a credential)
+for a user in your Java container based portal.
+
+TEST APPLICATION
+
+A test application (testapp) that can run in a container such as Tomcat can be
+downloaded from <here>.
+
+The testapp uses Spring Security to act as the intermediary for communication
+with the OpenID service. A couple of significant benefits with using Spring
+Security in thei case are:
+
+a. Spring Security handles the round-trip to the OpenID service under the
+   wraps and once the user is authenticated, then the original request for a
+   secured resource that triggered the authentication in the first place is
+   retried. This eliminates the need to significantly modify existing apps to
+   accommodate the 2-step process involved with OpenID authentication.
+
+b. Use of other standard benefits that come from using Spring Security/Framework
+   such as session management, etc.
+
+After downloading and extracting the contents of the tar ball, please look
+at the following for information on how it has been setup to use the
+VAO OpenID service.
+
+1. web/WEB-INF/web.xml
+
+   This has the basic configuration to register Spring Security filters and
+   refer to more detailed configuration in a separate security-app-context.xml
+
+2. web/WEB-INF/security-app-context.xml
+
+   This specifies the following:
+
+
+
+3. web/index.jsp
+
+   This is the main/welcome page of the app that is not protected in its
+   entirety. As can be seen, it performs the following:
+
+   a. Displays the "Sign In" button if it detects the user is not authenticated.
+
+   b. Specifies a link to a secured secure.jsp page via the "secure" link.
+
+   c. Displays the various attributes of the user as are available if the user
+      has been authenticated.
+
+
+   A user's authentication with the OpenID service is triggered either when
+   the user clicks on the Sign In button or attempts to access secure.jsp via
+   the "secure" link. In either case, the user is redirected to the configured
+   OpenID service and on return from the service, the original access request is
+   automatically retried by Spring Security. Accessing index.jsp or secure.jsp
+   after a successfull authentication will display the retrieved user
+   information such as attributes as may have been returned by the OpenID
+   Provider/service.
+
+4. web/secure.jsp
+
+   A secured page, access to which requires successful OpenID authentication.
+   It displays the user info as may have been returned by the OpenID service
+   on successful authentication. This page is considered secured as it is
+   mentioned in security-app-context.xml as accessible only to authenticated
+   users.

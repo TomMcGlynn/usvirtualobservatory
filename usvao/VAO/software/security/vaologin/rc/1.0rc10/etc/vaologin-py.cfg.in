@@ -1,0 +1,90 @@
+# vaologin-py.cfg -- configuration file for the VAOLogin Python Portal Library
+#
+# See doc/vaologin-py-annotated.cfg for full documentation.
+#
+# Unless otherwise noted, values that are commented out show their default
+[DEFAULT]
+homedir: $INSTALLDIR
+
+[vaologin.auth]
+statedir:  %(homedir)s/var
+
+# sessionsdir: %(statedir)s/VAOsessions
+# certdir: %(statedir)s/certificates
+# providerOpenID: https://sso.usvao.org/openid/provider_id
+# useStatelessProtocol: false
+
+portalURLRealm: http://myportal.net/cgi-bin/portal
+
+caCertBundles: %(homedir)s/cacerts/incommon-ssl.ca-bundle %(homedir)s/cacerts/VAO-CA-cert.pem %(homedir)s/cacerts/VAO-TestCA-cert.pem 
+
+# uncomment this if you always want certain attributes to be required.
+# Allowed values include username, name, email, institution, phone, and country.
+#
+# Note that if you use the portal module, username will always be required.
+#
+# requiredAttributes: username, email
+
+# globalLogoutUrl:  https://sso.usvao.org/openid/logout
+# logoutMode: global    # default; use "local" to lo from portal only
+
+[vaologin.portal]
+
+# not specifying a directory disables sending static documents; keep a blank
+# value to avoid messages in the error log
+# documentRoot: /var/www/html-authenticated
+documentRoot: %(homedir)s/web/html-authenticated
+# docalias: 
+
+# not specifying either of these disables the running of scripts; keep a blank
+# value to avoid messages in the error log
+# scriptRoot:  /var/www/cgi-bin-authenticated
+scriptRoot:  %(homedir)s/web/cgi-bin-authenticated
+scriptAlias: /cgi-bin/
+
+loginAlias: /login
+# loginForwardUrl: /              # default
+# loginForwardUrl: /welcome.html
+
+logoutAlias: /logout
+# logoutForwardUrl: /
+
+defaultDocument: /index.html
+
+# Uncomment this if your portal uses HTTPS; default is http
+# 
+# protocolScheme: https
+
+sessionLifehours: 8
+
+# mimeTypeMapFile: /etc/mime.types
+mimeTypeMap: text/plain txt asc, application/fits fits fits.gz
+
+cookieRealm: http://myportal.net/
+
+# list the user attributes you would like to request by uncommenting
+# requestAttributes below and removing the attributes you don't need.  If 
+# you only need them when the user requests certain urls, list the paths
+# in pathsNeedingAttributes.  (Note that paths listed there imply 
+# forceAuthentication.)  If not set, the attributes will always be 
+# requested whenever authentication is needed (and only then). 
+# By default, no attributes are requested.
+# 
+# requestAttributes: name, institution, phone, email, country
+# pathsNeedingAttributes: /register
+
+# list the paths that require a certificate.  These would normally be 
+# cgi services that need to access other services on the users behalf.
+# (Note that paths listed there imply forceAuthentication.)  By default,
+# no paths will trigger a certificate retreival.
+#
+# pathsNeedingCert: /shareData
+
+# list the paths where you want to force an authentication check at 
+# the identity server.  This does not necessarily mean that the user will 
+# have to enter a username and password; it just means there will be a 
+# round trip with the survery where user information (particularly 
+# attributes) are updated. 
+# 
+# forceAuthentication: 
+

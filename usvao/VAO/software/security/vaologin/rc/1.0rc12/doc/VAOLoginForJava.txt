@@ -1,0 +1,315 @@
+VAOLogin for Java-based Portals
+
+Contents:
+   o  Introduction
+      + Why Use vaologin for Java
+   o  Building and Installing VAOLogin
+      + Prerequisites
+      + Building VAOLogin
+   o  The Java Spring Examples
+   o  VAOLogin and Spring Security: an Overview
+      + Spring Security Configuration
+      + Getting User Information
+      + Integrating with your User Database
+      + Integration with Javascript: the LoginStatus Servlet
+
+INTRODUCTION
+============
+
+This vaologin package helps portals whose services are delivered via
+Java servlets and/or Java Server Pages (JSP) to easily integrate
+support for VAO Login services.  It leverages the Spring Security
+Framework (http://projects.spring.io/spring-security/) to manage the
+authentication process and user sessions.  (Spring Security can also
+help you manage authorization as well.)  
+
+This package assumes you are familiar with Java Servlets and JSP pages
+and how to deploy them into your web server.  Familiarity with the 
+Spring Security Framework is not required; however, more information
+is available via the Spring Security Reference Manual
+(http://docs.spring.io/spring-security/site/docs/3.1.4.RELEASE/reference/springsecurity.html).
+
+Why Use vaologin for Python
+---------------------------
+
+Spring Security provides complete support for OpenID, and since the
+VAO Login Services are fully compliant with the OpenID standard, use
+of this package is optional.  However, this package provides helpful
+capabilities via helper Java classes that make integration more
+pluggable: 
+
+   o  it provides a ready-to-use classes for extracting user information
+      from the Spring Security Framework, callable from JSP pages or 
+      your own classes,
+
+   o  it provides transparent access to a short-lived X.509 certificate
+      representing the user (used by the portal to access other secure
+      services on the user's behalf),
+
+   o  it provides a rudimentary user database and basic authorization
+      roles,
+
+   o  it provides a means to integrate with your own portal's
+      registration process.  
+
+
+BUILDING AND INSTALLING VAOLOGIN
+================================
+
+Prerequisites
+-------------
+
+This package assumes that you run your portal through an Java
+Application servlet engine (Apache Tomcat, JBOSS, etc.); Apache Tomcat
+(v5.5 or later) is recommended, but other compliant engines should
+work.  
+
+To build the examples, you will need the Apache Ant build system
+(http://ant.apache.org/).  
+
+Distribution tar-balls come with all the prerequisite jar-libraries
+that are needed.  If you retrieved this product from our source
+repository, you will need (in addition to Ant) the following jars:
+
+  bcprov-jdk14-123.jar
+  commons-logging-1.1.1.jar
+  log4j-1.2.15.jar
+  servlet-api.jar
+  spring-beans-3.0.6.RELEASE.jar
+  spring-core-3.0.6.RELEASE.jar
+  spring-security-core-3.1.0.RELEASE.jar
+  spring-security-openid-3.1.0.RELEASE.jar
+  spring-security-web-3.1.0.RELEASE.jar
+
+  aopalliance-1.0.jar
+  commons-codec-1.4.jar
+  dom4j-1.6.1.jar
+  guice-2.0.jar
+  httpclient-4.0.jar
+  httpcore-4.0.1.jar
+  nekohtml-1.9.14.jar
+  openid4java.jar
+  openxri-client-1.0.1.jar
+  openxri-syntax-1.0.1.jar
+  spring-aop-3.0.6.RELEASE.jar
+  spring-asm-3.0.6.RELEASE.jar
+  spring-context-3.0.6.RELEASE.jar
+  spring-context-support-3.0.6.RELEASE.jar
+  spring-expression-3.0.6.RELEASE.jar
+  spring-security-config-3.1.0.RELEASE.jar
+  spring-web-3.0.6.RELEASE.jar
+  xercesImpl-2.8.1.jar
+
+Place these into the vaologin's lib/jars directory to build the
+Java library and its example applications.
+
+Building VAOLogin
+-----------------
+
+Normally, it is not necessary to build the core VAOLogin library.  The
+pre-built vaologin.jar file can be found in the lib directory of
+the vaologin tar-ball.  
+
+If you retrieved vaologin from the source repository, you can build
+the library from source using Ant.  To do this:
+
+   1. Be sure you have Ant installed on your system
+   2. Be sure the above-listed jar files can be found in the lib/jars 
+      directory
+   3. Type, "ant build".
+
+This will create lib/vaologin-1.0.jar.  It will also build the
+VAOLogin Java API into doc/japi.  
+
+The individual examples under the examples/java directoryhave build
+scripts as well; see their README files for details.  
+
+Building your WAR File
+----------------------
+
+When you build your WAR file with contains your web application, be
+sure to include the following:
+
+   1. lib/vaologin-1.0.jar into WEB-INF/lib
+   2. all jar files in lib/jars into WEB-INF/lib
+   3. a security-app-context.xml file (see Java examples) into WEB-INF
+
+The Java Spring Examples
+========================
+
+The examples/java directory contains several examples using VAOLogin
+within the Spring Security Framework, illustrating different levels of
+integration.  In particular:
+
+1. spring-anyOpenID
+    o  allows authentication by any OpenID provider
+    o  does not require users to register locally
+    o  will recognize when the user has authenticated with the VAO login
+         service 
+
+2. spring-registration
+    o  assumes user needs to register locally to use the portal
+    o  shows how to integrate registration with VAO logins and your
+       local user database.
+    o  introduces the VAOLogin helper class that provides access to 
+       user attribute data from the VAO login service.
+
+3. spring-useratts
+    o  assumes user needs to register locally to use the portal 
+    o  shows how to access user attribute and authorizations from 
+       your user database.
+    o  introduces the PortalUser helper class for accessing user
+       data. 
+
+4. spring-withjs
+    o  builds on spring-useratts
+    o  show how to make effective use of Javascript within the portal
+    o  provides a loginstatus service that returns a JSON message
+       describing the login status of the user
+
+Each example includes a configuration file, conf/security-app-context.xml, 
+that configures the Spring Security Framework; in particular, it
+indicates which URLs require authentication and connects them with the
+VAO Login Service.  Each example also includes some same JSP pages and
+Java classes that illustrate how to access and manage user information.  
+
+Consult the README with in the example directory to see how to
+configure, build and run the example.  
+
+VAOLogin and Spring Security: an Overview
+=========================================
+
+To learn more about OpenID and Spring Security, consult the Spring
+Security Referenc Manual 
+(http://docs.spring.io/spring-security/site/docs/3.1.4.RELEASE/reference/springsecurity.html).
+This manual covers the basics of Spring Security and configuring it
+for OpenID (section 3.3).  This section provides a summary of the
+framework to show how VAOLogin plugs in.  
+
+A main advantage of Spring Security is that it transparently handles
+user sessions.  It is not necessary to keep track of session
+identifiers or to set cookies to track the session; this is handle
+automatically with in the Spring Security Framework.  
+
+Spring Security Configuration
+-----------------------------
+
+Configuration is provided via the security-app-context.xml file which
+is included within the servlet war file's WEB-INF directory.  (As an
+example, see
+examples/java/spring-registration/conf/security-app-context.xml.)
+One indicates which pages require authentication via the <intercept-url>
+tag: 
+
+     <intercept-url pattern="/private.jsp" access="isAuthenticated()" />
+
+The pattern attribute indicates the URLs being protected, and access
+indicates the access restrictions.  Usually, access is set to one of
+the following values:  
+
+   o  access="permitAll" makes matching URLs publically accessible; no
+         authentication is required.  
+   o  access="isAuthenticated()" makes matching URLs require that the
+         user be logged in.  Authentication by Any OpenID server will 
+         be honored.
+   o  access="hasRole('ROLE_VAO_USER')" means that the user must be 
+         authenticated specifically by the VAO OpenID service.
+   o  access="hasRole('ROLE_REGISTERED_USER')" means that the user
+         must be a registered user--that is, one that has registered 
+         with your portal via a page you provide--to access the 
+         matching URLs.
+
+The <openid-login> section identifies the OpenID servers you support
+and what user attribute information you would like to get from them.  
+(See the VAO Login site, https://sso.usvao.org/help/OpenIDFeatures.html
+form more information about user attributes available from the VAO
+service.  
+
+With Spring Security, to get information about the authenticated user, 
+one provides a so-called UserDetailsService class; it is identified
+via the "user-service-of" attribute to the <openid-login> tag.  That
+value is a name that points to a bean definition (via a <beans:bean>
+tag) which gives the full class name for the class.  
+
+VAOLogins provides a few UserDetailsService classes; however, the
+recommended one to use is the PortalUserDetailsService.  This class
+enables the following:
+
+   o  access to the user's username is several different forms
+   o  easy access to requested user attributes, including 
+        the X.509 certificate representing the user.  
+   o  integration with your local user database
+
+Getting User Information
+------------------------
+
+By the time the code in your protected JSP page or Java servlet is
+executed, the user will already be authenticated (if required).
+Assuming you configured Spring to use the PortalUserDetailsService
+(see previous section), you can get information about the user via
+a static function call of the SSFOpenId class:
+
+   PortalUser user = SSFOpenId.getPortalUser();
+
+If this returns null, the user is not authenticated.  The
+PortalUser.getID() function will return the user's user name.  This
+class can also indicate if the user is registered and what
+authorizations they have.  The getProperty() function can return
+available attribute values; however, this information is accessible in
+a more conveniently programmatic way via the getLoginInfo() method:
+
+   VAOLogin login = user.getLoginInfo();
+
+This class provides access to the specific attributes supported by the
+VAO Login Service through specialized accessor functions like,
+getFullName() and getEmail().  You can also get a hold of the user
+certificate (assuming you configure spring to ask for one) in one of
+several forms, including a Java X509Certificate instance.  
+
+If you use the Spring Security Framework extensively, you will find
+that the VAO classes are well integrated the framework classes.  See
+the examples for illustrations of this.  
+
+Integrating with your User Database
+-----------------------------------
+
+The PortalUser class can provide information about the user that comes
+from your user database.  This String-type information are available
+as properties (i.e. via getProperty()) while information in the form
+of object instances are available via getAttribute().  To connect to
+your user database, you must provide an implementation of the
+UserDatabase interface which, given a user identifier string, can
+return a map of named attributes and a collection of named
+authorizations.  
+
+Getting users into your user database requires that you set up a
+registration process.  In general this means you provide a
+registration page that collects information that you cannot get from
+the VAOLogin service.  The examples/java/spring-registration demo
+illustrates how to provide this.  
+
+VAOLogin provides a very rudimentary user database in which registered
+users (along with their authorizations) are stored in a flat text
+file.  This is used in the provided examples.  
+
+Integration with Javascript: the LoginStatus Servlet
+----------------------------------------------------
+
+If your portal is heavily Javascript-driven, you probably will want to
+access protected URLs (URLs that require authentication) via AJAX
+calls.  In this case, you don't want an AJAX call to be inadvertently
+diverted to the VAO Login screen if the user is not yet
+authenticated.  
+
+To help prevent this, VAOLogin provides a servlet, SSFLoginStatusServlet,
+that will return information about the user's login status, including
+whether they are authenticated.  This information is returned in JSON
+format for easy consumption via Javascript.  Thus, your Javascript
+code can access this service to pull the status information to ensure
+the user is logged in before accessing a protected URL resource.  This
+toolkit also provides a small Javascript library, vaologin.js, that
+can be used to access and display this information.  
+
+See the examples/java/spring-withjs demo for an illustration of how to
+use this service.  
+

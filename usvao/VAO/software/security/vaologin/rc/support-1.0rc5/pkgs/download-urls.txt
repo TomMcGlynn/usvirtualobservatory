@@ -1,0 +1,7 @@
+zlib    http://zlib.net/zlib-1.2.8.tar.gz
+openssl http://www.openssl.org/source/openssl-1.0.1f.tar.gz
+curl    http://curl.haxx.se/download/curl-7.34.0.tar.gz
+python  http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
+pycurl  http://pycurl.sourceforge.net/download/pycurl-7.19.3.1.tar.gz
+python-openid https://pypi.python.org/packages/source/p/python-openid/python-openid-2.2.5.tar.gz
+

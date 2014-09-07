@@ -1,0 +1,36 @@
+# This file assumes it is executed within the $(PKG) subdirectory
+PKG=zlib
+PKGS=               # this gets normally gets overriden on the make cmdline
+prefix=/usr/local   # this gets normally gets overriden on the make cmdline
+
+GLOBAL_CONFIG_OPTS=--prefix=$(prefix)
+LOCAL_CONFIG_OPTS=
+CONFIG_OPTS=$(GLOBAL_CONFIG_OPTS) $(LOCAL_CONFIG_OPTS)
+
+all: install
+
+configure:  configure.ok
+
+configure.ok:
+	./configure $(CONFIG_OPTS)
+	touch configure.ok
+
+build: configure
+	$(MAKE)
+
+install: $(prefix)/installed/$(PKG)
+
+reinstall: clear-install $(prefix)/installed/$(PKG)
+
+$(prefix)/installed/$(PKG): configure.ok
+	$(MAKE) install
+	mkdir -p $(prefix)/installed
+	touch $(prefix)/installed/$(PKG)
+
+clear-installed:
+	rm -f $(prefix)/installed/$(PKG)
+
+comment:
+	echo $(PKG) CONFIG_OPTS: $(CONFIG_OPTS)
+
+.PHONY: comment configure build install reinstall clear-installed 

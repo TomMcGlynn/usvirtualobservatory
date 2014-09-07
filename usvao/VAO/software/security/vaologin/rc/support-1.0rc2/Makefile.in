@@ -1,0 +1,81 @@
+## Note: this file was hand created.
+# This file was created by the vaologin-support configure script
+#
+prefix = @prefix@
+includedir = ${prefix}/include
+libdir =  ${prefix}/lib
+
+PKGS = @PKGS@
+
+local_python = $(shell echo $(PKGS) | grep -E ' python |^python | python$$')
+PYTHON_LOCAL=$(prefix)/bin/python
+PYTHON_SYS=$(shell which python)
+PYTHON = $(if $(local_python),$(PYTHON_LOCAL).bin,$(PYTHON_SYS))
+
+all: $(PKGS)
+	@ echo; \
+        echo 'Type "make install" to build/install prerequisite packages'; \
+        echo
+
+install-PREREQ: PREREQ
+	@ echo; echo Building $<; echo
+	$(MAKE) -C $< -f ../Makefile.$< prefix=$(prefix) PKGS="$(PKGS)" install
+
+$(PKGS):
+	@ tb=`pkgs/download-pkgs.sh pkgs/download-urls.txt list | grep ^$@: | sed -e 's/.*: *//'`; \
+        d=`tar tzf pkgs/$$tb | head -1 | sed -e 's/\/.*$$//'`; \
+        echo tar xzmf pkgs/$$tb; \
+        tar xzmf pkgs/$$tb && mv $$d $@
+
+python.sh: python.sh.in
+	@ if [ "$(PYTHON)" = "$(prefix)/bin/python" ]; then \
+            echo Unable to sh-wrap $(PYTHON); echo; \
+            echo "   Remove $(prefix)/bin or set PYTHON make variable to the ";\
+            echo "   system python (e.g. make PYTHON=/usr/bin/python install)";\
+            echo; false; \
+        fi
+	filter_template.sh PYTHON=$(PYTHON) LIBDIR=$(prefix)/lib python.sh.in > python.sh
+
+$(prefix)/bin:
+	mkdir -p $(prefix)/bin
+
+wrap-python: python.sh $(prefix)/bin
+	cp python.sh $(prefix)/bin
+	chmod a+x $(prefix)/bin/python.sh
+	@ if [ -f $(prefix)/bin/python2.7 -a ! -L $(prefix)/bin/python2.7 ]; \
+        then \
+            echo mv $(prefix)/bin/python2.7 $(prefix)/bin/python.bin; \
+            mv $(prefix)/bin/python2.7 $(prefix)/bin/python.bin; \
+            echo linking $(prefix)/bin/python2.7 to python.sh;  \
+            (cd $(prefix)/bin && ln -s python.sh python2.7);    \
+        elif [ ! -e $(prefix)/bin/python ]; then \
+            echo linking $(prefix)/bin/python to python.sh;  \
+            (cd $(prefix)/bin && ln -s python.sh python);    \
+        else \
+            true; \
+        fi
+
+install: install-pkgs wrap-python
+
+install-pkgs: $(PKGS)
+	@ set -e; \
+        for pkg in $(PKGS); do \
+             $(MAKE) "PKGS=$(PKGS)" install-$$pkg; \
+             if [ "$$pkg" = "python" ]; then \
+                  $(MAKE) "PKGS=$(PKGS)" wrap-python; \
+             fi; \
+        done
+
+clean:
+	rm -rf $(PKGS) python.sh
+
+distclean: clean
+	rm -f Makefile Makefile.tmp Makefile.PKG
+
+reposclean: distclean
+	rm -f pkgs/*.tar.gz pkgs/*.tgz pkgs/*.TGZ
+
+fetch: 
+	cd pkgs && download-pkgs.sh download-urls.txt
+
+.PHONY: clean distclean reposclean install-PKG

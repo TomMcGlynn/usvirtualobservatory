@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<project name="vaologin" default="dist" basedir=".">
+
+  <import file="build-layout.xml" as="lo"/>
+  <property name="ptest.dir" value="${test.dir}/python"/>
+  <property name="plib.dir" value="${lib.dir}/python"/>
+  <pathconvert property="pythonpath">
+    <path>
+      <pathelement location="${plib.dir}"/>
+      <fileset dir="${lib.dir}" includes="*.egg"/>
+    </path>
+  </pathconvert>
+
+  <condition property="python.exe" value="python.exe">
+    <os family="windows" />
+  </condition>
+  <property name="python.exe" value="python" />
+
+  <target name="init" depends="lo.initOutputDirs">
+    <mkdir dir="${etc.dir}"/>
+  </target>
+
+  <target name="compile" depends="build-python"/>
+
+  <target name="build" depends="compile">
+
+
+  </target>
+
+  <target name="build-python">
+    <exec executable="${python.exe}">
+      <arg line="setup.py build"/>
+    </exec>
+  </target>
+
+  <target name="test" depends="test-python" />
+  <target name="test-python" depends="test-python-nonet,test-python-needsnet" />
+
+  <target name="test-python-nonet" depends="test-init">
+    <exec executable="${python.exe}">
+      <arg file="${ptest.dir}/testNoNet.py"/>
+      <arg file="${testreport.dir}"/>
+      <env key="PYTHONPATH" path="${pythonpath}" />
+    </exec>
+  </target>
+
+  <target name="test-python-needsnet" depends="test-init">
+    <exec executable="${python.exe}">
+      <arg file="${ptest.dir}/testNeedsNet.py"/>
+      <arg file="${testreport.dir}"/>
+      <env key="PYTHONPATH" path="${pythonpath}" />
+    </exec>
+  </target>
+
+  <target name="test-init" depends="build-python">
+    <mkdir dir="${testreport.dir}"/>
+  </target>
+
+  <target name="clean" depends="lo.cleanOutputDirs">
+
+  </target>
+
+  <target name="distclean" depends="lo.distCleanOutputDirs">
+
+  </target>
+
+</project>

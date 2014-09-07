@@ -1,0 +1,272 @@
+<?xml version="1.0"?>
+<project name="vaologin" default="build" basedir=".">
+
+  <import file="build-layout.xml" as="lo"/>
+  <property environment="env"/>
+  <property name="pkg.name" value="vaologin"/>
+  <property name="pkg.version" value="1.0"/>
+  <property name="debug" value="true"/>
+
+  <property name="target.jar" value="${pkg.name}-${pkg.version}.jar"/>
+  <property name="target.jar.path" value="${dir.lib}/${target.jar}"/>
+  <property name="target.js" value="${pkg.name}.js"/>
+  <property name="target.js.path" value="${dir.lib}/${target.js}"/>
+
+  <path id="classpath.build">
+    <pathelement location="${dir.build.classes}" />
+    <path refid="local.jar.path"/>
+  </path>
+  <path id="classpath.test">
+    <pathelement location="${dir.test.classes}" />
+    <path refid="classpath.build"/>
+    <pathelement location="${target.jar.path}" />
+  </path>
+
+  <property name="dir.ptest" value="${dir.test.src}/python"/>
+  <property name="dir.plib" value="${dir.lib}/python"/>
+
+  <target name="set-python" depends="set-python-usesupport">
+    <property name="python.exe" value="${python.exe.def}"/>
+    <pathconvert property="pythonpath">
+      <path refid="python.path.def"/>
+    </pathconvert>
+    <property name="python.ldlibpath" value=""/>
+  </target>
+
+  <target name="set-python-defaults">
+    <condition property="python.exe.def" value="python.exe" else="python">
+      <os family="windows" />
+    </condition>
+
+    <path id="python.path.def">
+      <pathelement location="${dir.plib}"/>
+      <fileset dir="${dir.lib}" includes="*.egg"/>
+    </path>
+
+    <condition property="ldlibpath.def" value="${env.LD_LIBRARY_PATH}"
+               else="">
+      <isset property="env.LD_LIBRARY_PATH"/>
+    </condition>
+    <path id="python.ldlibpath.def">
+      <pathelement path="${ldlibpath.def}"/>
+    </path>
+  </target>
+
+  <target name="set-python-usesupport" depends="set-python-defaults" 
+          if="support-home">
+
+    <!-- set PYTHONPATH and LD_LIBRARY_PATH values to include ${support-home} 
+      -->
+    <property name="support-pythonpath" value="${support-home}/lib/python"/>
+    <property name="support-ldlibpath" value="${support-home}/lib"/>
+
+    <!-- if ${support-home} has Python installed into it, use it -->
+    <available property="python.exe" value="${support-home}/bin/python"
+               file="${support-home}/bin/python"/>
+
+    <pathconvert property="pythonpath">
+      <path>
+        <path refid="python.path.def"/>
+        <pathelement location="${support-pythonpath}"/>
+      </path>
+    </pathconvert>
+
+    <pathconvert property="python.ldlibpath">
+      <path>
+        <pathelement location="${support-ldlibpath}"/>
+        <path refid="python.ldlibpath.def"/>
+      </path>
+    </pathconvert>
+  </target>
+
+  <target name="init" depends="lo.initOutputDirs">
+    <mkdir dir="${dir.etc}"/>
+  </target>
+
+  <target name="init-tests" depends="init">
+    <mkdir dir="${dir.test.classes}"/>
+    <mkdir dir="${dir.testreport}"/>
+  </target>
+
+  <target name="compile" depends="build-python,compile-java"/>
+
+  <target name="doc" depends="doc-java"/>
+
+  <target name="doc-java" depends="init">
+    <javadoc sourcepath="${dir.src.java}" destdir="${dir.doc}/japi"
+             author="true" version="true" use="true"
+             classpathref="classpath.build"/>
+  </target>
+
+  <target name="build" depends="build-java,build-python,build-js,doc"/>
+
+  <target name="build-java" depends="jar"/>
+
+  <target name="build-js">
+    <copy tofile="${target.js.path}" file="${dir.src.js}/vaologin.js"/>
+  </target>
+
+  <target name="build-python">
+    <exec executable="${python.exe}">
+      <arg line="setup.py build"/>
+      <env key="LD_LIBRARY_PATH" path="${python.ldlibpath}" />
+    </exec>
+  </target>
+
+  <target name="compile-java" depends="init">
+    <javac srcdir="${dir.src.java}" destdir="${dir.build.classes}" 
+           debug="${debug}" classpathref="classpath.build" deprecation="on"
+           optimize="off" source="1.5" includeantruntime="false"/>
+    <copy todir="${dir.build.classes}">
+      <fileset dir="${dir.src}">
+        <include name="**/*.properties"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="jar" depends="compile-java">
+    <jar jarfile="${target.jar.path}" basedir="${dir.build.classes}" />
+  </target>
+
+  <target name="test" depends="test-python" />
+
+  <target name="compile-java-tests" depends="init-tests,compile-java">
+    <javac srcdir="${dir.test.src.java}" destdir="${dir.test.classes}" 
+           debug="${debug}" classpathref="classpath.build" deprecation="on"
+           optimize="off" source="1.5" includeantruntime="true"/>
+    <copy todir="${dir.test.classes}">
+      <fileset dir="${dir.test.src.java}">
+        <include name="**/*.properties"/>
+        <include name="**/*.pem"/>
+        <include name="**/testUserDb.txt"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="test-java" depends="test-java-nonet,test-java-needsnet"/>
+
+  <target name="test-java-nonet" depends="init-tests,compile-java-tests">
+      <junit printsummary="yes"  includeAntRuntime="true" haltonfailure="yes">
+        <classpath refid="classpath.test" />
+        <formatter type="plain" />
+        <batchtest todir="${dir.testreport}">
+          <fileset dir="${dir.test.classes}">
+            <include name="**/*Test.class" />
+            <exclude name="**/*NetTest.class" />
+          </fileset>
+        </batchtest>
+        <sysproperty key="test.dbfile" 
+                     value="${dir.test.src.java}/testUserDb.txt"/>
+        <sysproperty key="test.tmpdir" value="${dir.tmp}"/>
+      </junit>
+  </target>
+
+  <target name="test-java-needsnet" depends="init-tests,compile-java-tests">
+      <junit printsummary="yes"  includeAntRuntime="true" haltonfailure="yes">
+        <classpath refid="classpath.test" />
+        <formatter type="plain" />
+        <batchtest todir="${dir.testreport}">
+          <fileset dir="${dir.test.classes}">
+            <include name="**/*NetTest.class" />
+          </fileset>
+        </batchtest>
+        <sysproperty key="test.dbfile" 
+                     value="${dir.test.src.java}/testUserDb.txt"/>
+        <sysproperty key="test.tmpdir" value="${dir.tmp}"/>
+      </junit>
+  </target>
+
+  <target name="test-python" depends="test-python-nonet,test-python-needsnet" />
+
+  <target name="test-python-nonet" depends="init-tests,set-python,build-python">
+    <exec executable="${python.exe}">
+      <arg file="${dir.ptest}/testNoNet.py"/>
+      <arg file="${dir.testreport}"/>
+      <env key="PYTHONPATH" path="${pythonpath}" />
+      <env key="LD_LIBRARY_PATH" path="${python.ldlibpath}" />
+    </exec>
+  </target>
+
+  <target name="test-python-needsnet" depends="init-tests,set-python,build-python">
+    <exec executable="${python.exe}">
+      <arg file="${dir.ptest}/testNeedsNet.py"/>
+      <arg file="${dir.testreport}"/>
+      <env key="PYTHONPATH" path="${pythonpath}" />
+      <env key="LD_LIBRARY_PATH" path="${python.ldlibpath}" />
+    </exec>
+  </target>
+
+  <target name="clean-target" 
+          depends="clean-target-python,clean-target-java,clean-target-js"
+          description="remove the output products so that they can be rebuilt"/>
+
+  <target name="clean-target-java"
+          description="remove the vaologin jar so that it can be rebuilt">
+    <delete file="${target.jar.path}"/>
+  </target>
+
+  <target name="clean-target-js"
+          description="remove the vaologin JS library so that it can be 'rebuilt'">
+    <delete file="${target.js.path}"/>
+  </target>
+
+  <target name="clean-target-python"
+          description="remove the python products so that they can be rebuilt">
+    <delete dir="${dir.plib}"/>
+    <delete includeEmptyDirs="true" verbose="true">
+      <fileset dir="${dir.bin}" erroronmissingdir="false">
+        <include name="loginstatus"/>
+        <include name="portal"/>
+        <include name="vaoopenid"/>
+      </fileset>
+      <dirset dir="${dir.bin}" erroronmissingdir="false"/>
+    </delete>
+    <delete file="${dir.etc}/vaologin-py.cfg"/>
+  </target>
+
+  <target name="clean" depends="lo.cleanOutputDirs">
+  </target>
+
+  <target name="distclean" depends="clean-target,lo.distCleanOutputDirs">
+    <echo message="distclean-ing examples" />
+    <ant dir="${basedir}/examples/java/spring-anyOpenID" 
+         target="distclean" inheritAll="false"/>
+    <ant dir="${basedir}/examples/java/spring-registration" 
+         target="distclean" inheritAll="false"/>
+    <ant dir="${basedir}/examples/java/spring-useratts" 
+         target="distclean" inheritAll="false"/>
+    <ant dir="${basedir}/examples/java/spring-withjs" 
+         target="distclean" inheritAll="false"/>
+  </target>
+
+  <target name="try" depends="set-python">
+    <echo message="python.exe: ${python.exe}"/>
+    <echo message="pythonpath: ${pythonpath}"/>
+    <echo message="python.ldlibpath: ${python.ldlibpath}"/>
+  </target>
+
+  <target name="show-test-cp">
+    <echo message="classpath: ${toString:classpath.test}"/>
+  </target>
+
+  <target name="show-build-cp">
+    <echo message="classpath: ${toString:classpath.build}"/>
+  </target>
+
+  <target name="test-java-now" depends="init-tests,compile-java-tests">
+      <junit printsummary="yes"  includeAntRuntime="true" haltonfailure="yes">
+        <classpath refid="classpath.test" />
+        <formatter type="plain" />
+        <batchtest todir="${dir.testreport}">
+          <fileset dir="${dir.test.classes}">
+            <include name="**/*FileUserDbTest.class" />
+            <exclude name="**/*NetTest.class" />
+          </fileset>
+        </batchtest>
+        <sysproperty key="test.dbfile" 
+                     value="${dir.test.src.java}/testUserDb.txt"/>
+        <sysproperty key="test.tmpdir" value="${dir.tmp}"/>
+      </junit>
+  </target>
+
+</project>

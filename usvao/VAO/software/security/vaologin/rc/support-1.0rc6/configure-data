@@ -1,0 +1,10 @@
+#! /bin/bash
+# 
+PACKAGE=vaologin-support
+VERSION=1.0
+
+templates=(Makefile.in)
+
+# this must list the packages in the order that they must be built
+AVAIL_PKGS="zlib openssl curl python pycurl python-openid"
+

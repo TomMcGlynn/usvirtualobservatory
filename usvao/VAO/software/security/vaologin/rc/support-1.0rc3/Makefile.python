@@ -1,0 +1,43 @@
+# This file assumes it is executed within the $(PKG) subdirectory
+PKG=python
+PKGS=               # this gets normally gets overriden on the make cmdline
+prefix=/usr/local   # this gets normally gets overriden on the make cmdline
+
+local_openssl = $(shell echo $(PKGS) | grep $(PKG))
+OPENSSL_ROOT = $(if $(local_openssl),$(prefix))
+OPENSSL_LIBDIR = $(if $(OPENSSL_ROOT),$(OPENSSL_ROOT)/lib)
+SET_LD_LIB_PATH= $(if $(OPENSSL_LIBDIR),LD_LIBRARY_PATH=$(OPENSSL_LIBDIR)$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH)))
+
+GLOBAL_CONFIG_OPTS=--prefix=$(prefix)
+LOCAL_CONFIG_OPTS=
+CONFIG_OPTS=$(GLOBAL_CONFIG_OPTS) --enable-shared $(LOCAL_CONFIG_OPTS)
+
+all: install
+
+configure:  configure.ok
+
+configure.ok: 
+	cp ../patch/Python-Setup.local Modules/Setup.local
+	$(SET_LD_LIB_PATH) configure $(CONFIG_OPTS)
+	touch configure.ok
+
+build: configure
+	$(MAKE)
+
+install: $(prefix)/installed/$(PKG)
+
+reinstall: clear-install $(prefix)/installed/$(PKG)
+
+$(prefix)/installed/$(PKG): configure.ok
+	echo SET_LD_LIB_PATH: $(SET_LD_LIB_PATH)
+	$(SET_LD_LIB_PATH) $(MAKE) install
+	mkdir -p $(prefix)/installed
+	touch $(prefix)/installed/$(PKG)
+
+clear-installed:
+	rm -f $(prefix)/installed/$(PKG)
+
+comment:
+	echo $(PKG) CONFIG_OPTS: $(CONFIG_OPTS)
+
+.PHONY: comment configure build install reinstall clear-installed

@@ -1,0 +1,21 @@
+#! /bin/sh
+[ -z "$VAOLOGIN_PYTHON_WRAPPER" ] || {
+    echo "python.sh: Infinite exec loop detected" 1>&2
+    exit 10
+}
+export VAOLOGIN_PYTHON_WRAPPER=1
+
+libdir=@LIBDIR@
+if [ -z "$LD_LIBRARY_PATH" ]; then
+    export LD_LIBRARY_PATH=${libdir}
+else
+    export LD_LIBRARY_PATH=${libdir}:$LD_LIBRARY_PATH
+fi
+if [ -z "$PYTHONPATH" ]; then 
+    export PYTHONPATH=${libdir}/python
+else
+    export PYTHONPATH=${libdir}/python:$PYTHONPATH
+fi
+
+python=@PYTHON@
+exec ${python} "$@"

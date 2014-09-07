@@ -1,0 +1,10 @@
+# User database written by SimpleFileUserDb
+_meta_ :  : fullname,email,color
+pres : ROLE_PRES ROLE_CIT : Robert F. Kennedy, pres@whitehouse.gov, red
+jack : ROLE_CIT : Jack Kennedy, rfk@gmail.com
+rfk # : ROLE_ME : RFK, rfk@gmail.com, 
+goob :  : # Goober Pyle, gurn@illinois.edu, blue
+goob0 : ROLE_ME : # Goober Pyle, gurn@illinois.edu, blue
+goob1:ROLE_ME#:Goober Pyle,gurn@illinois.edu,blue
+goob2:#ROLE_ME:Goober Pyle,gurn@illinois.edu,blue
+#goob3:ROLE_ME:#Goober Pyle,gurn@illinois.edu,blue

@@ -1,0 +1,11 @@
+# sample user database
+# add a record for your username
+# Format:  username@domain : role ...
+# 
+# You can also delete users either by removing their entries or
+# commenting  them out with the # character at the start of the line.
+# Placing a # just before the first colon will "disable" the account
+# with removing it.  The user will not be given any authorizations.
+#
+_meta_ :     : fullname,email,inst,color
+johndoe@usvao : ROLE_NOBODY ROLE_VAO_USER : 

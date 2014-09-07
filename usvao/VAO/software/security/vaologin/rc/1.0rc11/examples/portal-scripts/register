@@ -1,0 +1,87 @@
+#! /usr/bin/env python
+
+import os, sys, cgi, re
+from string import Template
+
+def main():
+    inputs = cgi.FieldStorage()
+    data = { "user": "", 
+             "fullname": "",
+             "inst": "",
+             "email": "" }
+
+    userAttributes = os.environ.get("VAOLOGIN_ATTRIBUTES")
+    if userAttributes:
+        userAttributes = cgi.parse_qs(userAttributes)
+        for key in userAttributes.keys():
+            if len(userAttributes[key]) == 1:
+                userAttributes[key] = userAttributes[key][0]
+    else:
+        print >> sys.stderr, "Missing attributes for %s in VAOLOGIN_ATTRIBUTES: %s" \
+            % (os.environ.get("VAOLOGIN_USERNAME", "??"), userAttributes)
+        userAttributes = {}
+
+    data["fullname"] = userAttributes.get("name", "")
+    data["user"] = data["fullname"]
+    if not data["user"]:
+        data["user"] = os.environ.get("VAOLOGIN_USERNAME", "")
+    data["inst"] = userAttributes.get("institution", "")
+    data["email"] = userAttributes.get("email", "")
+
+    page = Template(pageTemplate)
+    
+    print "Content-type: text/html"
+    print
+    print page.substitute(data)
+
+pageTemplate = """
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html> <head>
+<title>Register with Test Archive</title>
+
+</head>
+
+<body>
+<h1>Welcome ${user}: Please register to use this portal</h1>
+
+<form method="GET" action="registered">
+
+<p>
+<label>Your real name: </label>
+<input type="text" name="fullname" value="${fullname}" />
+</p>
+
+<p>
+<label>Your email address: </label>
+<input type="text" name="email" value="${email}" />
+</p>
+
+<p>
+<label>Your institution: </label>
+<input type="text" name="inst" value="${inst}" />
+</p>
+
+<p>
+<label>Your favorite color: </label>
+<input type="text" name="color" value="" />
+</p>
+
+<input type="submit" value="Complete registration"/>
+
+</form>
+
+<h3>Note to testers</h3>
+
+<p>
+This registration form is meant to demonstrate how a portal's registration 
+can be integrated with the VAO:  when configured properly and the user gives 
+permission, most of the above boxes will already be filled in.
+</p>
+
+</body>
+</html>
+
+"""
+
+if __name__ == "__main__":
+    main()

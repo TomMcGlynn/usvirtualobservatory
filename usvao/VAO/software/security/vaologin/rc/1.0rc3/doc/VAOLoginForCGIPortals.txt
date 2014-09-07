@@ -1,0 +1,366 @@
+VAOLogin for Simple CGI Portals
+
+Contents:
+   o  Introduction
+   o  Building and Installing VAOLogin
+   o  Deploying and Using the Portal
+   o  Developing Authentication-aware CGI Scripts
+   o  Retrieving User Attributes
+   o  Javascript and the loginstatus Service
+   o  An Example:  examples/cgi/testportal
+
+INTRODUCTION
+============
+
+This package includes a set of CGI programs that allow one to set up a 
+simple portal that uses the VAO OpenID login services to authenticate
+users.  That is, the portal is comprised of a mix of static documents
+and CGI programs that require authentication to access.  These are
+collectively served through a wrapper CGI program call "portal" that
+handles authentication.  This wrapper is configuration driven; no
+further programming is required.  Another key CGI program provided by
+this package is called "loginstatus" which helps support portals that 
+are heavily reliant on Javascript to present dynamic content.  
+
+Both the "portal" and "loginstatus" programs get deployed into your
+web server's CGI directory.  You then create separate directories for
+the documents and scripts that you want to protect.  Users then access
+these resources via URLs that invoke the portal script.  For example,
+you can set it up so that 
+
+  http://myportal.net/cgi-bin/portal/cgi-bin/my/service?verbose=true
+
+will require user authentication to execute the my/service CGI
+program.  
+
+The VAOLogin CGI programs are Python scripts built on the VAOLogin
+Python library.  Thus, it requires Python version 2.6 or later.  
+
+It's worth noting that if you are using the Apache Web Server and you
+have a portal that is this simple, you may instead wish to use the
+mod_auth_openid plug-in (http://findingscience.com/mod_auth_openid/)
+instead, which should perform better.  However, there are a few
+reasons you might use this package, instead:
+
+   o  This package can transparently download and cache a certificatie
+      that  represents the logged-in user.
+
+   o  If you plan to take greater control of the authentication process
+      using the underlying Python API, the CGI portal is a good place
+      to start.  
+
+It's also worth noting that because this solution is CGI-based, it
+will be limited in its performance.  If you have a complex portal or
+lots of busy users, consider a different solution.  Also, it is not
+recommended that you run complex web sites (like wikis or weblogs)
+through this system.  
+
+BUILDING AND INSTALLING VAOLOGIN
+================================
+
+Prerequisites:
+
+VAOLogin require Python 2.6 or later.  It has been tested on Ubuntu
+and Fedora Linux and on MacOS 10.5.  
+
+VAOLogin Python is built on the python-openid package 
+(https://pypi.python.org/pypi/python-openid/) which also requires the
+pycurl package.  If you are using Linux, you will find that both are
+typically available as installable packages (e.g. using yum, apt-get,
+or the like).  
+
+If you do not have root access to install these prerequisites or your
+web server runs in a restricted environment (via chroot), you may want
+or need to install these prerequisites in user space.  To help with
+this, a companion package, vaologin-support, is available from that
+vaologin product page (http://dev.usvao.org/vaologin).  Through this
+package, you can install as needed Python, the above python modules,
+and the system libraries those modules require (zlib, openssl,
+and curl).  
+
+Building and Installing:
+
+It is recommended that you install the prerequites using your OS's
+software distribution system (e.g. yum, apt-get, etc.).  If you are
+unable to do this (e.g. you don't have root access), you can download
+and install the vaologin-support tar-ball from the VAOLogin home page
+(http://dev.usvao.org/vaologin).  Unpack it:
+
+   tar xzf vaologin-support-1.0.tar.gz
+
+and follow the instructions provided in the README.txt within the
+vaologin-support-1.0 directory.
+
+Obtain the VAOLogin distribution tar-ball from the VAOLogin home
+page and unpack it:
+
+   tar xzf vaologin-1.0.tar.gz
+
+VAOLogin python is built using the setup.py script provided in the
+distribution's root directory.  It is recommended that you install
+into it's own home directory with everything installed below it,
+including the vaologin python module.  To do this, type:
+
+   python setup.py install --home=/path/to/home
+
+where /path/to/home is the path to the desired home directory where
+it will be installed.  
+
+Note that IF YOU INSTALLED VAOLOGIN-SUPPORT, you will need to add the
+-e option to the install command, as in:
+
+   python setup.py install --home=/path/to/home/bin/python
+
+See the vaologin-support documentation for details.  
+
+With this standard installation, the configuration file will be found
+automatically as conf/vaologin-py.cfg below the home directory.  If
+you want to place it elsewhere, add the "--conf-dir" option to the above
+command, setting the option to the directory where the vaologin-py.cfg
+file can be found.  (See next section if you wish to change the config
+file location after installation.)  
+
+The home directory will contain a var subdirectory that contains
+caches used by the CGI scripts.  It must be writable by the user that
+your web server runs as.  On Linux Red Hat-derived systems (RHEL, Fedora,
+CentOS, etc.), this is typically the apache user.  On Ubuntu, this is
+www-data.  Furthermore the certificates and VAOsessions subdirectories
+should *not* be world-readable.  To update, type:
+
+   cd /path/to/home    # i.e. where vaologin was installed
+   sudo chown -R apache:apache var
+   sudo chmod go-rwx var/certificates var/VAOsessions
+
+DEPLOYING AND USING THE PORTAL
+==============================
+
+In this section, we assume that the vaologin package has been
+installed into the $VAOLOGIN_HOME directory.  In summary, getting your
+portal up involves these steps:
+
+   1. Configure your web server
+   2. Create directories where portal documents and scripts will go.  
+   3. Configure vaologin via $VAOLOGIN_HOME/conf/vaologin-py.cfg.  
+   4. Deploy the documents and scripts you want to protect.  
+   5. Copy bin/portal and bin/loginstatus into the cgi-bin directory
+      for your web server.  
+   6. Start your web server
+   7. Test by accessing one of your protected documents or scripts. 
+
+Here are the details:  
+
+1. Configure your web server
+
+By default, the configuration file is $VAOLOGIN_HOME/conf/vaologin-py.cfg.
+(This is location is set at build-time; see previous section.)  If you
+wish to move the config file to a different location, you may either:
+
+  o  Set the VAOLOGIN_HOME environment variable in your web server.
+     (With the Apache Web Server, this can be set with the EnvSet 
+     configuration directive.)  Or,
+
+  o  Edit the default location in appropriate scripts installed into 
+     $VAOLOGIN_HOME/bin.
+
+Consult your web server documentation for configuring it to run CGI
+programs.  
+
+2. Create directories where portal documents and scripts will go.  
+
+These are the web resources that you want to require users to
+authenticate in order to access them.  Be default, these will be
+$VAOLOGIN_HOME/web/html-authenticated and $VAOLOGIN/web-authenticated; 
+however, you may wish to place these protected directories next to the
+normal, unprotected ones (e.g. under /var/www).  
+
+The paths to these directories go into the vaologin configuration
+file.  
+
+3. Configure vaologin via $VAOLOGIN_HOME/conf/vaologin-py.cfg.  
+
+Edit $VAOLOGIN_HOME/conf/vaologin-py.cfg for your portal
+applications.  Full documentation on all supported configuration
+properties can be found in doc/vaologin-py-annotated.cfg.  
+
+At a minimum, be sure to update the following parameters:
+
+(under [vaologin.auth])
+  o  homedir
+  o  portalURLRealm
+
+(under [vaologin.portal])
+  o  documentRoot 
+  o  scriptRoot 
+  o  cookieRealm
+
+documentRoot and scriptRoot are the protected directories discussed in
+the previous step.  URLs get mapped to files into these directories
+via the docAlias and scriptAlias properties, respectively.  For
+example, if portal CGI wrapper script is accessed via:
+
+   http://myportal.net/cgi-bin/portal
+
+and scriptAlias is set to "/cgi-bin", then 
+
+   http://myportal.net/cgi-bin/portal/cgi-bin/my/service?verbose=true
+
+will execute the my/service script located under the scriptRoot
+directory.  
+
+4. Deploy the documents and scripts you want to protect.  
+
+Put these into the documentRoot and scriptRoot directories as
+desired.  Note that directory hierarchies within these directories are
+allowed.  
+
+5. Copy bin/portal and bin/loginstatus into the cgi-bin directory for
+   your web server.  
+
+On many Linux systems, this is the /var/www/cgi-bin directory.  (Do
+not put these in the script directory that you configured in the
+previous steps!)
+
+6. Start your web server
+
+7. Test by accessing one of your protected documents or scripts. 
+
+DEVELOPING AUTHENTICATION-AWARE CGI SCRIPTS
+===========================================
+
+The programs that are protected by the portal wrapper are executed in a
+separate child process; thus, they can be written in any language.  In
+principle, the wrapped programs can be completely oblivious to the
+fact that user is authenticated (however, we caution against running
+large systems like wikis though a portal like this).  However, you
+may want to create a script that can, say, know the name of the user
+that's logged in.  Information about the authenticated user is passed
+in via environment variables.  
+
+The full CGI environment will be passed into those scripts (including
+standard input for POST scripts).  In addition to the usual CGI
+environment variables that will be set, vaologin will also set the
+following:
+
+VAOLOGIN_USERNAME, REMOTE_USER
+    Both set to the same value, this is the name that the user logged
+    in with.  
+
+OPENID_IDENTITY
+    The URL that represents the user's OpenID identitiy as assigned by 
+    the VAO.
+
+OPENID_CLAIMED_ID
+    The URI supplied by the user that represents the user's identity.
+    Normally, this has the same value as $OPENID_IDENTITY.
+
+VAOLOGIN_SESSION_ID 
+    The string that identifies the user session.  As long as the
+    user is logged in, this ID remain the same for that user.  (If the
+    user logs out or the session expires, the id will change.)
+
+VAOLOGIN_VALID_SINCE
+    The timestamp for the start of the session, in seconds; that is,
+    it is the number of seconds since the "Epoch" (Jan. 1, 1970) that
+    the session started.  
+
+VAOLOGIN_VALID_LIFETIME
+    The number of seconds after the start that the session is
+    scheduled to end.  
+
+AUTH_TYPE
+    set to "OpenID"
+
+VAOLOGIN_ATTRIBUTES
+    The requested attributes as name=value pairs, encoded in the same
+    way as QUERY_STRING.  (See also next section.)
+
+VAOLOGIN_USER_CERTIFICATE
+    If the portal requested an X.509 certificate representing the user
+    from the VAO login service, this variable will contain the path on 
+    the local file system where the certificate is located.  (See also
+    next section.) 
+
+RETRIEVING USER ATTRIBUTES
+==========================
+
+The VAO Login Service can provide more than just the user's login name
+to portals, and if you are creating authentication-aware scripts, you
+might want access to this additional information.  The most common use
+of this information is for implementing a portal registration page.
+This includes the following user attributes:
+
+ +---------------+------------------------------------------------+
+  Attribute Name   Description
+ +---------------+------------------------------------------------+
+  firstname        the user's first name
+  lastname         the user's last name
+  name             the user's full name (first and last together)
+  email            the user's email address
+  institution      the home institution 
+  phone            the user's contact phone number
+  country:         the user's country of residence 
+ +---------------+------------------------------------------------+
+
+You specify the attributes that you want in the configuration file
+(vaologin-py.cfg).  Set the requestAttributes property to list the
+attributes you want, drawing from the Attribute Names in the above
+table.  (See also the pathsNeedingAttributes property.)  The
+attributes will then be made available to your CGI program via the 
+VAOLOGIN_ATTRIBUTES environment variable (see above).  
+
+There is one additional, special attribute you can request with
+this property called "certificate".  If you specify this, the login
+service will deliver to your a portal an X.509 certificate.  The
+portal CGI script will automatically cache it to disk for you (see
+VAOLOGIN_USER_CERTIFICATE above).  Specify this attribute if you are
+creating a service that will contact another protected service on
+another server; you can present the certificate to that service to
+access protected resources on the user's behalf.  The certificate will
+be short-lived.  
+
+When the user logs in, they will be asked to confirm that it is okay
+to share this information (including the certificate).  The user may
+choose not to share certain information; in which case, it will not be
+returned as part of VAOLOGIN_ATTRIBUTES.  You can set certain
+attributes as required to be provided via the requiredAttributes
+configuration property; in this case, the user will be forced to
+cancel the login attempt if they do not want to share the information.
+(Be kind and respectful to you users, though, and be conservative in
+what information you require.)
+
+Javascript and the loginstatus Service
+======================================
+
+The loginstatus service is useful when your portal makes heavy use of
+Javascript to present content.  In particular, it assists when your
+Javascript needs access to protected documents and services that
+require authentication to access.  
+
+The loginservice will return a small piece of JSON that describes the
+status of the current user.  Your Javascript code should consult this
+service before attempting to access protected content.  
+
+The JSON data it returns will have the following properties:
+
+  +--------------+-----------------------------------------------------+
+   Property Name  Description
+  +--------------+-----------------------------------------------------+
+   state          One of "in" (if current user is logged in), "out" (if 
+                    current user is logged out), "ex" (if current user 
+                    is logged in but the session has expired).  
+   username       The name that the user logged in with
+   openid         The URL that represents the user's OpenID identity
+   minLeft        The number minutes left in the user's session before 
+                    it expires
+   dispLeft       The time left in the user's session formatted with
+                    the form, HH:MM
+  +--------------+-----------------------------------------------------+
+
+
+AN EXAMPLE:  examples/cgi/testportal
+====================================
+
+An example use of the portal CGI wrapper program can be found in
+examples/cgi/testportal of this package.  Consult the README file in
+this directory for more details.  
+

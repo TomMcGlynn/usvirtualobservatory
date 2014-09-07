@@ -1,0 +1,50 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                                 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                                 http://www.springframework.org/schema/security 
+                                 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+  <debug />
+
+  <global-method-security pre-post-annotations="enabled" />
+
+  <http use-expressions="true">
+      <intercept-url pattern="/index.jsp" access="permitAll" />
+      <intercept-url pattern="/secure.jsp" access="isAuthenticated()" />
+      <intercept-url pattern="/only4vao_users.jsp" access="ROLE_VAO_USER" />
+      <intercept-url pattern="/only4openid_users.jsp" access="ROLE_OPENID_USER" />
+
+      <openid-login login-page="/j_spring_openid_security_check?openid_identifier=https%3a%2f%2fnvoauth-stage.ncsa.illinois.edu%2fopenid%2fprovider_id" 
+                     authentication-success-handler-ref="VAOOpenIDAuthenticationSuccessHandler" user-service-ref="VAOUserDetailsService">
+
+          <attribute-exchange identifier-match=".*testsso.ncsa.illinois.edu.*">
+          <openid-attribute name="axUsername" type="http://axschema.org/namePerson/friendly" required="true"/>
+          <openid-attribute name="axName" type="http://axschema.org/namePerson" required="true"/>
+          <openid-attribute name="axContactEmail" type="http://axschema.org/contact/email" required="true"/>
+          <openid-attribute name="axContactPhone" type="http://axschema.org/contact/phone" required="true"/>
+          <openid-attribute name="axInstitution" type="http://sso.usvao.org/schema/institution" required="true"/>
+          <openid-attribute name="axCountry" type="http://sso.usvao.org/schema/country" required="true"/>
+          </attribute-exchange>
+
+          <attribute-exchange identifier-match="https://nvoauth-stage.ncsa.illinois.edu/openid/.*">
+          <openid-attribute name="axUsername" type="http://axschema.org/namePerson/friendly" required="true"/>
+          <openid-attribute name="axContactEmail" type="http://axschema.org/contact/email" required="true"/>
+          <openid-attribute name="axCredential" type="http://sso.usvao.org/schema/credential/x509" required="true"/>
+          </attribute-exchange>
+      </openid-login>
+  </http>
+
+  <authentication-manager>
+  </authentication-manager>
+
+  <beans:bean id="VAOUserDetailsService" name="userDetailsService" class="org.usvao.sso.client.VAOUserDetailsService" >
+    <beans:property name="acceptableOpenIDProviders" value="VAO https://nvoauth-stage.ncsa.illinois.edu/openid/id/ysvenkat"/>
+    <beans:property name="roleFile" value="/tmp/roles"/>
+  </beans:bean>
+
+  <beans:bean id="VAOOpenIDAuthenticationSuccessHandler" name="openIDAuthenticationSuccessHandler" class="org.usvao.sso.client.VAOOpenIDAuthenticationSuccessHandler" >
+  </beans:bean>
+
+</beans:beans>

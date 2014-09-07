@@ -1,0 +1,476 @@
+Using VAOLogin via the Command-Line
+
+Contents:
+   o  Introduction
+   o  Building and Installing VAOLogin
+   o  Configuring VAOLogin
+   o  Developing Portal Applications
+   o  Retrieving User Attributes
+   o  Logging the User Out
+   o  Summary of vaoopenid Options
+
+INTRODUCTION
+============
+
+While direct support for other languages may be added, this package
+currently only supports Java and Python.  As a fall back for portals
+written in other languages, we provide a command-line script called
+"vaoopenid" that can be called from another script to handle OpenID
+authentication with the VAO Login Service.  For example, this would
+allow you to create protected services written in Perl.  vaoopenid
+includes support for requesting and retrieving user attributes.  
+
+The vaoopenid script uses the Python toolkit underneath.  In addition
+to handling authentication, it can help you track your users by
+caching session information to disk.  (It does not handle setting
+cookies.) 
+
+BUILDING AND INSTALLING VAOLOGIN
+================================
+
+Prerequisites:
+
+VAOLogin require Python 2.6 or later.  It has been tested on Ubuntu
+and Fedora Linux and on MacOS 10.5.  
+
+VAOLogin Python is built on the python-openid package 
+(https://pypi.python.org/pypi/python-openid/) which also requires the
+pycurl package.  If you are using Linux, you will find that both are
+typically available as installable packages (e.g. using yum, apt-get,
+or the like).  
+
+If you do not have root access to install these prerequisites or your
+web server runs in a restricted environment (via chroot), you may want
+or need to install these prerequisites in user space.  To help with
+this, a companion package, vaologin-support, is available from that
+vaologin product page (http://dev.usvao.org/vaologin).  Through this
+package, you can install as needed Python, the above python modules,
+and the system libraries those modules require (zlib, openssl,
+and curl).  
+
+Building and Installing:
+
+It is recommended that you install the prerequites using your OS's
+software distribution system (e.g. yum, apt-get, etc.).  If you are
+unable to do this (e.g. you don't have root access), you can download
+and install the vaologin-support tar-ball from the VAOLogin home page
+(http://dev.usvao.org/vaologin).  Unpack it:
+
+   tar xzf vaologin-support-1.0.tar.gz
+
+and follow the instructions provided in the README.txt within the
+vaologin-support-1.0 directory.
+
+Obtain the VAOLogin distribution tar-ball from the VAOLogin home page
+(http://dev.usvao.org/vao/wiki/Products/vaologin) and unpack it:
+
+   tar xzf vaologin-1.0.tar.gz
+
+VAOLogin python is built using the setup.py script provided in the
+distribution's root directory.  It is recommended that you install
+into it's own home directory with everything installed below it,
+including the vaologin python module.  To do this, type:
+
+   python setup.py install --home=/path/to/home
+
+where /path/to/home is the path to the desired home directory where
+it will be installed.  
+
+Note that IF YOU INSTALLED VAOLOGIN-SUPPORT, you will need to add the
+-e option to the install command, as in:
+
+   python setup.py install --home=/path/to/home/bin/python
+
+See the vaologin-support documentation for details.  
+
+With this standard installation, the configuration file will be found
+automatically as conf/vaologin-py.cfg below the home directory.  If
+you want to place it elsewhere, add the "--conf-dir" option to the above
+command, setting the option to the directory where the vaologin-py.cfg
+file can be found.  (See next section if you wish to change the config
+file location after installation.)  
+
+The home directory will contain a var subdirectory that contains
+caches used by the CGI scripts.  It must be writable by the user that
+your web server runs as.  On Linux Red Hat-derived systems (RHEL, Fedora,
+CentOS, etc.), this is typically the apache user.  On Ubuntu, this is
+www-data.  Furthermore the certificates and VAOsessions subdirectories
+should *not* be world-readable.  To update, type:
+
+   cd /path/to/home    # i.e. where vaologin was installed
+   sudo chown -R apache:apache var
+   sudo chmod go-rwx var/certificates var/VAOsessions
+
+CONFIGURING VAOOPENID
+=====================
+
+One of the arguments that you will have to provide to the vaoopenid
+command is the configuration file.  The default location is
+$VAOLOGIN_HOME/conf/vaologin-py.cfg. 
+
+Edit $VAOLOGIN_HOME/conf/vaologin-py.cfg for your portal
+applications.  Full documentation on all supported configuration
+properties can be found in doc/vaologin-py-annotated.cfg.  Note that
+only the properties under the [vaologin.auth] section are used by
+vaoopenid.  
+
+At a minimum, be sure to update the following parameters:
+
+  o  homedir
+  o  portalURLRealm
+
+
+DEVELOPING THE PORTAL APPLICATIONS
+==================================
+
+  + Introduction
+  + Calling vaoopenid
+  + Forming return URLs
+  + Troubleshooting
+
+Introduction: 
+
+To support VAO Logins with vaoopenid, you create a web service that
+will log in the user.  This could be its only job: after
+authenticating a user, it could then set a cookie to track the user's
+session.  Other services could check for that cookie before delivering
+protected content.  You could create another script that logs the user
+out.  Alternatively, you can have each script that delivers protected
+content be able to login the user if they are not already logged in.
+
+Boiled down, OpenID authentication is a two step process.  To login a
+user, a login script must redirect the user's browser to the VAO Login
+Service.  As part of the redirect, the script includes an argument
+giving a URL to the service should return the user to after successfully
+authenticating the user.  (This can be the same script that is doing
+the redirect.)  The second step comes when the user is returned to the
+portal via the specified return URL.  This time the script will be
+accessed with extra arguments that contain the results of the
+authentication.  It's now the job of the script to verify the
+authentication and pull out the user information.  
+
+In particular, a login service might work as follows:
+
+   1.  Request authentication:
+       1.1. The user accesses the login service script
+       1.2. The script checks to see if the user is already logged in
+            by looking for a valid session id (e.g. by checking for a 
+            valid cookie).  If there is one, the script passes it to 
+            the vaoopenid command with the "status" operation to 
+            determine if the session is still valid.
+       1.3. If the user is not logged in (or the session is no longer 
+            valid), it calls vaoopenid with the "request" operation 
+            and provides the return URL.
+       1.4. The vaoopenid command prints out the URL to redirect the
+            user to so that they can authenticate.  
+
+   2.  Process the authentication:
+       2.1. The login service script is accessed by the user a second
+            time with extra OpenID arguments.  
+       2.2. The script checks for a valid session just as in step 1.2.
+            vaoopenid will return a status indicating that the 
+            authentication needs to be processed.
+       2.2. The script calls vaoopenid with the "process" operation 
+            and provides the input arguments.  
+       2.3. The vaoopenid prints out a list of name=value pairs giving 
+            information about the user.  
+       2.4. If the vaoopenid exits successfully, the script records
+            the start of the user's session (e.g. by setting a
+            cookie).  
+
+Calling vaoopenid:
+
+As mentioned above, we need to keep track of returning users.  This is
+most commonly done by setting a cookie (although Java can use URL
+arguments); for the moment, we will assume we are using cookies.  The
+typical thing to do is store a unique, random string in the cookie
+which represents the session identifier.  The service script is
+responsible for creating the session IDs and for setting and
+retrieving cookies (using your CGI or service framework library);
+however, vaoopenid will help you keep track of that ID, including
+saving it to disk on your server.
+
+Although we can have two different programs handle the two steps
+described above separately, we can eliminate a user error mode by
+building both steps into one script.  Such a script needs to be able
+to detect then which step it is on; vaoopenid can determine that.
+
+So before our first call to vaoopenid, our script needs to see if it
+received a cookie from the user.  If not, then the user has not
+started the log in process; we need to create a new session ID and
+save it into a cookie.  If there is a cookie, we need to extract the
+session id from it.  In either case, we will now have a session ID
+with which to track the user's authentication process and session.  
+
+If there is a cookie, then we to check the validity of the session ID
+it contains using vaoopenid:
+
+   vaoopenid --config vaologin-py.cfg --session-id 103947274 status
+
+where vaologin-py.cfg is the configuration file and 103947274 is the
+session ID extracted from the cookie.  If the user is logged in
+already, standard output will show something like the following:
+
+   status=in
+   username=johndoe
+   openid=https://sso.usvao.org/openid/id/johndoe
+   secsLeft=28630
+
+Regardless of the user's status, the output will always contain a
+status value with one of the following values:
+
+   in          the user is logged in
+   out         the user is logged out or never logged in
+   ex          the user was logged in but the session expired
+   incomplete  authentication has completed the first step but 
+                 not the second
+
+If the status is "in", then our script can proceed to deliver
+protected content.  If the status is either "out" or "ex", then it
+needs start the authentication process with the first step, the
+request.  To do this, we call vaoopenid with the "request" operation,
+pass in the URL that we want the user returned to after entering their
+username and password into the VAO login page.
+
+   vaoopenid -c vaologin-py -s 103947274 request \
+       http://myportal.net/cgi-bin/login
+
+We use the same config file and session ID as in our last call.
+Since we are using a single script to carry out both steps of the
+authentication, the URL is just the URL to script we are writing.  
+(we can usually get this from the service framework that we are
+using; see "Forming Return URLs" below).  The output of this 
+command will be the full URL we should redirect the user to--something
+like this: 
+
+   https://vaossotest.ncsa.illinois.edu/openid/provider?openid.assoc\
+   _handle=8ae8c11c2a73170d&openid.ax.mode=fetch_request&openid.ax.r\
+   equired=ext0&openid.ax.type.ext0=http%3A%2F%2Faxschema.org%2Fname\
+   Person%2Ffriendly&openid.claimed_id=http%3A%2F%2Fspecs.openid.net\
+   %2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fsp\
+   ecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=check\
+   id_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&ope\
+   nid.ns.ax=http%3A%2F%2Fopenid.net%2Fsrv%2Fax%2F1.0&openid.realm=h\
+   ttp%3A%2F%2Fexample.org%2Fprotected%2Fwelcome.html&openid.return_\
+   to=http%3A%2F%2Fmyportal.net%2Fcgi-bin%2Flogin%3Fjanrain_nonce%3D\
+   2013-03-06T04%253A30%253A56ZWC2yB7
+
+Obviously, the details of this URL are not important (if you look
+hard, you'll see the return URL provided as one of the arguments).
+We just capture the output from vaoopenid and send the user to that
+URL with a redirect.  Then our script should exit.  
+
+When our script gets called next we will start the same way: it looks
+for a cookie, extracts the session ID, and checks its validity with the
+vaoopenid status call.  This time the status will be "incomplete", and
+so we know we are ready for step two.  In order for vaoopenid validate
+that the authentication was successful, it must examine the full URL
+that was was used to access our script, including the query
+parameters, so we pass that it as part of the "process" operation:
+
+   vaoopenid -c vaologin-py -s 103947274 process --session-lifetime 2  \
+       http://myportal.net/cgi-bin/login?bin%2Flogin%3Fjanrain_nonce%3D\
+       2013-03-06T04%253A30%253A56ZWC2yB7&openid.mode%3D...
+
+Note that the URL will again be quite long:  it will start with the
+URL we gave it during the request operation but have a number of
+additional arguments added (most with names starting with "openid.").  
+
+Note also that we added the --lifetime (or -l) option.  This will set
+how long the session ID will be valid for, in decimal hours.  If our
+script gets called again within that time frame, the user status will
+come back as "in" (see above), and re-authentication will not be
+necessary.  
+
+If the "process" operation was successful--that is, authentication was
+found to be successful (and legitimate), vaoopenid will have an exit
+value of 0, and our script can start delivering protected content.  If
+it was not successful, vaoopenid will print an error message (to
+standard error) and return with one of the following exit codes:
+
+  +----------+-------------------------------------------------------+
+   Exit Code  Meaning
+  +----------+-------------------------------------------------------+
+     1        Bad or missing command-line arguments
+     2        User canceled the login
+     3        There is no record of a previous request operation with 
+                 the given session ID
+     4        OpenId protocol failure (including server failures)
+     >= 5     Other unexpected errors
+  +----------+-------------------------------------------------------+
+
+Note that the process operation, if it is successful, will write
+information about the user--i.e. user attributes--to the standard
+output.  See RETRIEVING USER ATTRIBUTES below for more information on
+the format.  Our script should capture this output to prevent it from
+interfering with the output of our script that goes to the user's
+browser.
+
+Forming Return URLs:
+
+The vaoopenid request and process operations both require a return
+URL.  As mentioned above, this is usually available from the service
+framework you are using.  Most likely, this framework will be simple
+CGI, in which case the URL is available, in parts, as environment
+variables.  Assuming that we were using Bourne shell (sh or bash) to
+write our script, we might put the pieces back together like this:
+
+   URL="http://$SERVER_NAME"
+   if [ -n "$SERVER_PORT" -a "$SERVER_PORT" != "80" ]; then
+       URL="${URL}:$SERVER_PORT"
+   fi
+   URL="${URL}/$SCRIPT_NAME"
+   if [ -n "$QUERY_STRING" ]; then
+       URL="${URL}?$QUERY_STRING"
+   fi
+
+Troubleshooting:
+
+The CGI script that calls vaoopenid should generally check the error
+status and react accordingly.  When things go wrong, vaoopenid will
+print messages to standard error, which usually ends up in your web
+server log.  (For Apache, this is the error_log file.)  Check this
+file for error messages to help determine what is going wrong.  
+
+RETRIEVING USER ATTRIBUTES
+==========================
+
+You can get information about the user by requesting user attributes
+from the VAO Login Service.  This is done in one of two ways.  The
+first is in the configuration file: set the requiredAttributes
+property (under the [vaologin.auth] section to list the short names of
+the attributes you desire:
+
+  requiredAttributes:  username, name, email
+
+It is recommended that you at least list username.  The available
+attributes include: 
+
+ +---------------+------------------------------------------------+
+  Attribute Name   Description
+ +---------------+------------------------------------------------+
+  firstname        the user's first name
+  lastname         the user's last name
+  name             the user's full name (first and last together)
+  email            the user's email address
+  institution      the home institution 
+  phone            the user's contact phone number
+  country:         the user's country of residence 
+  certificate      a short-lived X.509 certificate that represents 
+                     the user.
+ +---------------+------------------------------------------------+
+
+There is "certificate" attribute is handled specially; see "Requesting
+a Certificate" below for more information.  
+
+Note that attributes listed in the requiredAttributes property will be
+marked as required in the authentication request to the VAO Login
+Service.  This means that if the user does not want to share this
+information, he or she must cancel the login.  (Consequently, consider
+being kind and respectful to you users and be conservative in
+what information you require.)
+
+The way to make attribute sharing optional to the user is through the
+second way to request them:  by listing them on the vaoopenid command
+line during the request operation via the --attributes (or -a) option:
+
+   vaoopenid -c vaologin-py -s 103947274          \
+       -a institution,country,certificate request \
+       http://myportal.net/cgi-bin/login
+
+These options will be requested in addtion to any listed in the
+"requiredAttributes" property; the difference will be is that the user
+will be able to choose whether these optional ones should be shared.
+The values for those they decline to share will not be returned.  
+
+The values of requested attributes are returned as part of the output
+of the vaoopenid operation.  It will look something like this:
+
+  username=joindoe
+  name=John Doe
+  email=jdoe@gmail.com
+
+That is, each attribute appears on a separate line as a name=value
+pair.  
+
+Requesting a Certificate:
+
+One of the special features of the VAO Login Service is that it allows
+you to request a short-lived X.509 Certificate that represents the
+user.  This is useful if your service needs to access the user's
+protected assets from another VO-compatible service at another site.
+You can request a certificate by requesting the "certificate"
+attribute.  When the vaoopenid process operation returns, it will
+include two additional attribute values:
+
+   certificate=https://sso.usvao.org/portalcred/AOSID30DF02HFA/johdoe.pem
+   certfile=/usr/local/vaologin/var/certificates/johndoe.pem
+
+The "certfile" attribute give a location on local disk where the
+certificate has been cached.  We can ignore the "certificate"
+attribute; however, it represents a location from where it can be
+downloaded from.  (Note that this URL will only be available for about
+five minutes.)  
+
+The certificate will only be valid for a short time--by default, two
+hours.  
+
+LOGGING THE USER OUT
+====================
+
+You may want to provide your users with a service that logs them out
+of your portal.  To do this we first invalidated the session being
+tracked by vaoopenid and then delete the cookie that contains the
+session ID.  The first part of this can be done with the vaoopenid
+"end" operation; inside your logout service script, execute:
+
+   vaoopenid --config vaologin-py.cfg --session-id 103947274 end
+
+This produces no output on standard output.  Next, delete the cookie.  
+
+Note that while the user's session with your portal has now ended, the
+session with the VAO federation may still be active.  If so and the
+user immediate logs back into your portal, he or she will not be
+prompted for a username and password.  Authentication will be
+automatic.  Nothing in your login script needs to account for this.
+The user will still be routed to the VAO Login Service, but it will
+immediately send the user back without further interruption (unless
+attribute sharing needs approval).  
+
+SUMMARY OF VAOOPENID OPTIONS
+============================
+
+vaoopenid supports a --help (or -h) option to print out its usage.
+The output looks like this:
+
+Usage: vaoopenid [options] request|process|status|end [return_url]
+
+Authenticate a web service user via the OpenId protocol.  When either the
+request or process argument is specified, the return_url argument is required.
+
+Options:
+  -h, --help            show this help message and exit
+  -c CONFFILE, --config=CONFFILE
+                        Use the config file with given path
+  -s SESSIONID, --session-id=SESSIONID
+                        A session id as provided by the web service framework.
+                        If not provided, a new one will be created.
+  -Q QUERYSTRING, --query-string=QUERYSTRING
+                        The query string passed as part of the returned URL
+  -d DATA_PATH, --data-path=DATA_PATH
+                        Data directory for storing session state.
+  -a ATTRIBUTES, --attributes=ATTRIBUTES
+                        User attributes to request (which the user may veto), 
+                        given as a comma-separated string; either the short 
+                        name or URI can be provided
+  -f CRED_FILE, --cred-file=CRED_FILE
+                        Credential file to store X.509 certificate to (if
+                        requested via -a).
+  -u USERID, --user-id=USERID
+                        User-supplied identifier to login in as. This can be a
+                        VAO login name or an OpenId URI
+  -l LIFETIME, --session-lifetime=LIFETIME
+                        create a session with a lifetime in decimal hours.
+                        Used only by the 'process' operation
+  -q, --quiet           suppress messages to standard error
+  -v, --verbose         provide extra messages to standard error

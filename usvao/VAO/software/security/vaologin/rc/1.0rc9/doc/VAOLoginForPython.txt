@@ -1,0 +1,542 @@
+VAOLogin for Python-based Portals
+
+Contents:
+   o  Introduction
+      + Why Use vaologin for Python
+   o  Building and Installing VAOLogin
+   o  Configuring VAOLogin
+   o  Developing Portal Applications
+      + About OpenID Authentication
+      + Loading the Configuration
+      + Using vaologin.portal
+      + Using vaologin.authenticate
+   o  Retrieving User Attributes
+   o  Logging the User Out
+   o  Summary of vaoopenid Options
+
+INTRODUCTION
+============
+
+For portals whose services are delivered with python, this package
+provides two modules that enable integration with VAO Login Services:
+vaologin.authenticate and vaologin.portal.
+
+The latter module is primarily intended to be used via a CGI script
+called portal which can deliver both static documents and CGI output
+withough further programming.  See VAOLoginForCGIPortals.txt to see if
+this is sufficient for your puposes.  In particular, you can use the
+portal service to deliver static documents.  
+
+The both modules are available for direct use within a python program
+if you want to take greater control of the authentication interaction
+or to get better performance.  Different services that use the
+different modules or the portal CGI script or the vaoopenid command
+can be mixed together as they share a common user state cache.  These
+tools, however, cannot be mixed with the vaologin Java classes.  
+
+Why Use vaologin for Python:
+
+vaologin is built on top of the python-openid package.  The VAO Login 
+Services are fully compatible with python-openid, and so use of
+vaologin is optional.  However, the vaologin.authenticate module is a
+wrapper around offering a few handy, extra features:  
+
+   o  it provides a simpler interface for typical authentication 
+      with the VAO Login Service.  
+
+   o  it helps keep track of user sessions after authentication.  This
+      prevents having to interact with the VAO Login Service every
+      time a portal service is accessed.  
+
+   o  it makes retrieval of X.509 certificates from the VAO Login Service 
+      (a special feature of that service) transparent.  
+
+When using the vaologin.authenticate, it is the calling service's
+responsibility to set the user cookies (containing a unique session
+ID), but the module will track the validity of the user session.  If
+the session is still valid when a service is accessed, it does not
+need to request user authentication.  
+
+The vaologin.portal module is built on top of vaologin.authenticate;
+thus, it contains all of its features; in addition, it will
+automatically set cookies for tracking the user.  It also can deliver
+static documents or execute other CGI programs.  
+
+BUILDING AND INSTALLING VAOLOGIN
+================================
+
+Prerequisites:
+
+VAOLogin require Python 2.6 or later.  It has been tested on Ubuntu
+and Fedora Linux and on MacOS 10.5.  
+
+VAOLogin Python is built on the python-openid package 
+(https://pypi.python.org/pypi/python-openid/) which also requires the
+pycurl package.  If you are using Linux, you will find that both are
+typically available as installable packages (e.g. using yum, apt-get,
+or the like).  
+
+If you do not have root access to install these prerequisites or your
+web server runs in a restricted environment (via chroot), you may want
+or need to install these prerequisites in user space.  To help with
+this, a companion package, vaologin-support, is available from that
+vaologin product page (http://dev.usvao.org/vaologin).  Through this
+package, you can install as needed Python, the above python modules,
+and the system libraries those modules require (zlib, openssl,
+and curl).  
+
+Building and Installing:
+
+It is recommended that you install the prerequites using your OS's
+software distribution system (e.g. yum, apt-get, etc.).  If you are
+unable to do this (e.g. you don't have root access), you can download
+and install the vaologin-support tar-ball from the VAOLogin home page
+(http://dev.usvao.org/vaologin).  Unpack it:
+
+   tar xzf vaologin-support-1.0.tar.gz
+
+and follow the instructions provided in the README.txt within the
+vaologin-support-1.0 directory.
+
+Obtain the VAOLogin distribution tar-ball from the VAOLogin home
+page and unpack it:
+
+   tar xzf vaologin-1.0.tar.gz
+
+VAOLogin python is built using the setup.py script provided in the
+distribution's root directory.  It is recommended that you install
+into it's own home directory with everything installed below it,
+including the vaologin python module.  To do this, type:
+
+   python setup.py install --home=$VAOLOGIN_HOME
+
+where $VAOLOGIN_HOME is the path to the desired home directory where
+it will be installed.  
+
+Note that IF YOU INSTALLED VAOLOGIN-SUPPORT, you may need to add an
+additional option.  If you installed your own python (i.e. did not use
+the --without-python option), then you need to build vaologin like
+this:
+
+   python setup.py install --home=$VAOLOGIN_HOME --with-support
+
+See the vaologin-support documentation for details.  
+
+With a normal installation, the configuration file will be found
+automatically as conf/vaologin-py.cfg below the home directory.  If
+you want to place it elsewhere, add the "--conf-dir" option to the above
+command, setting the option to the directory where the vaologin-py.cfg
+file can be found.  (See next section if you wish to change the config
+file location after installation.)  
+
+The home directory will contain a var subdirectory that contains
+caches used by the CGI scripts.  It must be writable by the user that
+your web server runs as.  On Linux Red Hat-derived systems (RHEL, Fedora,
+CentOS, etc.), this is typically the apache user.  On Ubuntu, this is
+www-data.  Furthermore the certificates and VAOsessions subdirectories
+should *not* be world-readable.  To update, type:
+
+   cd $VAOLOGIN_HOME    # i.e. where vaologin was installed
+   sudo chown -R apache:apache var
+   sudo chmod go-rwx var/certificates var/VAOsessions
+
+CONFIGURING VAOOPENID
+=====================
+
+Edit $VAOLOGIN_HOME/conf/vaologin-py.cfg for your portal
+applications.  Full documentation on all supported configuration
+properties can be found in doc/vaologin-py-annotated.cfg.  
+
+At a minimum, be sure to update the following parameters:
+
+(under [vaologin.auth])
+  o  homedir
+  o  portalURLRealm
+
+(under [vaologin.portal])
+  o  cookieRealm
+
+DEVELOPING PORTAL APPLICATIONS
+==============================
+
+About OpenID Authentication:
+
+To support VAO Logins with vaoopenid, you create a web service that
+will log in the user.  This could be its only job: after
+authenticating a user, it could then set a cookie to track the user's
+session.  Other services could check for that cookie before delivering
+protected content.  You could create another script that logs the user
+out.  Alternatively, you can have each script that delivers protected
+content be able to login the user if they are not already logged in.
+
+Boiled down, OpenID authentication is a two step process.  To login a
+user, a login script must redirect the user's browser to the VAO Login
+Service.  As part of the redirect, the script provides a URL to the
+service should return the user to after successfully authenticating
+the user.  (This can be the same script that is doing the redirect.)
+The second step comes when the user is returned to the portal via the
+specified return URL.  This time the script will be accessed with
+extra arguments that contain the results of the authentication.  It's
+now the job of the script to verify the authentication and pull out
+the user information.
+
+In particular, a login service might work as follows:
+
+   1.  Request authentication:
+       1.1. The user access the login service script
+       1.2. The script checks to see if the user's session is valid.  
+       1.3. If the session is not valic, it requests authentication, 
+            providing the return URL.
+       1.4. The script redirects the user to the VAO Login Service
+
+   2.  Process the authentication:
+       2.1. The login service script is accessed by the user a second
+            time with extra OpenID arguments.  
+       2.2. The script checks for a valid session and detects that 
+            the authentication needs to be processed.
+       2.2. The script examines the input arguments to validate 
+            the authentication.
+       2.3. The script extracts any user attribute information it
+            needs.    
+
+vaologin.portal and vaologin.authenticate provides two different ways
+to carry out these steps easily.
+
+Loading the Configuration:
+
+When using either vaologin.authenticate or vaologin.portal, you need
+to first load the configuration file.  This is done with the
+valogin.config module.  Your script needs to know where this file is
+located on disk; usually, this is $VAOLOGIN_HOME/conf/vaologin-py.cfg.  
+To load, simply:
+
+   import vaologin.config as config
+
+   conffile = "/usr/local/vaologin/conf/vaologin-py.cfg"
+   conf = config.getConfig(conffile)
+
+The returned object is simply a dictionary of properties (with names
+reduced to lower case); however, normally you do not need to access
+these directly.  
+
+Note that it is okay to add other sections to the configuration file
+and new properties.  These will load into the dictionary with the
+vaologin properties.  Placing new properties in their own section
+(e.g. "[myportal]") is recommended to avoid name collisions.  
+
+Using vaologin.portal:
+
+  = Basic Usage
+  = Retrieving Attributes
+  = Retrieving a Certificate
+  = Logging the User Out
+  = Additional Features
+
+= Basic Usage
+
+The vaologin.portal module provides a high level interface to the user
+session and capabilities within a portal.  Consult the python
+documentation for this module for more details.  
+
+To protect content delivered by a service, one creates a
+ProtectedPortal object.  At its simplest, it is only necessary to pass
+in the configuration dictionary (see above):
+
+    from vaologin.portal import ProtectedPortal
+    import vaologin.config as config
+    
+    conf = config.getConfig(conffile)
+    portal = ProtectedPortal(conf)
+
+This will automatically load the user's session Cookie, if there one,
+and extract the session information.  If there is no cookie, it will
+create a new session and be set to set a Cookie.  
+
+The first thing the script needs to do is to determine if is the state
+of the session.  If the session is not valid, we need to start the
+authentication process.  If we are in the middle of the authentication
+process we need to complete it by validating it.  Depending on that
+state, you either start authentication, validate it, or deliver your
+content.  Here's how you can do this:
+
+    if portal.validationNeed():
+        # we're ready for Step 2 as described above
+        authResp = self.validate()
+        if not authResp.isAuthenticated():
+            print >> sys.err, "Validation failed: %s" % authResp.getWhy()
+            # send an error message to the user or otherwise 
+            # redirect to a public page
+            ...
+
+    if not portal.sessionValid():
+        # Step 1: request authentication
+        portal.authenticateFor()  
+
+        # exit your script now!
+        return
+
+    else: 
+        # user is logged in; deliver your protected content
+        ...
+
+The authenticateFor() function submits the authentication request.  It
+handles the redirect internally, so it is important that our script
+now exit without sending any more data to the user.  
+
+= Retrieving User Attributes
+
+If you want to receive user attribute information, you need to do two
+things:  request your attributes during the authentication request
+step and then extract the received attributes after the validation
+step.  
+
+In your configuration file, you can specify what options you need in
+two ways.  First is through the configuration property,
+requiredAttributes.  These will automatically be retrieved
+transparently whenever you call authenticateFor().  Note that these
+will be presented to the user as *required* in order to log in;
+consequently, the user can only refuse to share the data by canceling
+the login.  To be kinder, you can request sharing to be optional for
+the user.  To do this, provide the attribute identifiers as a list to
+the authenticateFor() function:
+
+    from vaologin.portal import Attributes
+
+    requested = [ Attributes.NAME, Attributes.EMAIL ]
+    portal.authenticateFor(atts=requested)  
+
+The values will be returned (if the user gives permission) in the
+validation response:
+
+    authResp = self.validate()
+    if not authResp.isAuthenticated():
+        print >> sys.err, "Validation failed: %s" % authResp.getWhy()
+        # send an error message to the user or otherwise 
+        # redirect to a public page
+        ...
+
+    attributes = authResp.getAttributes()
+
+The getAttributes() function will return a dictionary of the
+information that user agreed to share.  
+
+= Retreiving a Certificate
+
+One special attribute we can request is a short-lived X.509
+certificate that represents the user.  We request this if our service
+needs to access the user's resources from other protected,
+VO-compatible services at other sites.  To request a certificate,
+include Attributes.CERT in the attribute list.  The VAO Login Service
+will return a short-lived URL for downloading the certficate.  The
+portal object will automatically download it and cache it to disk.
+You can then get the file path as a data item of the session:
+
+    certfile = session.data.get('cert')
+
+This certificate is short-lived, typically expiring in two hours.  
+
+= Logging the User Out
+
+It is simple to provide a logout service.  It can work like this:
+
+    from vaologin.portal import ProtectedPortal
+    import vaologin.config as config
+    
+    conf = config.getConfig(conffile)
+    portal = ProtectedPortal(conf)
+    portal.logout("/goodbye.html")
+
+The logout() function will destroy the user's session, delete the
+user's session cookie, and redirect the user to the specified the
+relative URL.  
+
+= Additional Features
+
+The ProtectedPortal object can do other things like deliver static
+documents and execute other CGI scripts.  See this classes API
+documentation for details.  
+
+If your portal makes heavy use of Javascript and that Javascript needs
+to access protected URLs, then you should consider deploying the
+loginstatus service that comes with this package.  You can find it in
+$VAOLOGIN_HOME/bin; to deploy it, copy it to your web server's CGI bin
+directory (e.g. /var/www/cgi-bin).  
+
+
+Using vaologin.authenticate:
+
+  = Basic Usage
+  = Retrieving Attributes
+  = Retrieving a Certificate
+  = Logging the User Out
+  = Additional Features
+
+= Basic Usage
+
+The vaologin.authenticate module puts us closer to the authentication
+action.  It is only concerned with authenticating the user, retrieving
+attributes, and tracking user sessions.  It does not set cookies; it
+is up to our script to handle this.  (You may, for instance, use a
+different mechanism for recognizing users as the Java Servlet
+Framework can with a URL argument.)  Our script must handle all
+redirections itself as well.  For more information, consult the python
+documentation for this module.  
+
+The first thing our service needs to do is determine the state of the
+user session.  This starts by getting the user's session cookie.  Upon
+the user's first visit, of course, there will not be one.  In this
+case you need to create on and load it with a new session ID--a unique
+and random string that will identify the session.  
+
+To track a session, we use the session ID, along with a configuration
+object, to create a VAOLoginRequest object:
+
+    from vaologin.portal import VAOLoginRequest, Attributes
+    import vaologin.config as config
+
+    sessionid = ... # get the ID from the cookie or create a new one
+    
+    conf = config.getConfig(conffile)
+    req = VAOLoginRequest(conf, sessionid)
+
+Then we can determine whether the session is valid and carry out our
+authentication steps as necessary.  It will look something like this:
+
+    session = req.getSession()
+    if session.validationNeeded():
+        # we're ready for Step 2 as described above
+
+        # we need to form the return URL; see notes below
+        returnURL = getReturnURL()
+        qargs = parseQueryArgs()
+
+        authResp = self.processAuthentication(qargs, returnURL, 2)
+        if not authResp.isAuthenticated():
+            print >> sys.err, "Validation failed: %s" % authResp.getWhy()
+            # send an error message to the user or otherwise 
+            # redirect to a public page
+            ...
+
+    if not session.isValid():
+        # Step 1: request authentication
+        returnURL = getReturnURL()
+
+        redirectURL = portal.requestAuthentication(returnURL)
+
+        # redirect the user to redirectURL
+        ...
+
+    else: 
+        # user is logged in; deliver your protected content
+        ...
+    
+When starting Step 1, you need to put in your request, where you want
+the user to be returned after successfully logging in.  In this
+example, we want to return the user to this same script.  We have to
+consult the CGI environment to determine the URL of this script:
+
+    import os
+
+    def getReturnURL():
+        url = "http://" + os.environ['SERVER_NAME']
+        if os.environ.has_key('SERVER_PORT') and     \
+           os.environ['SERVER_PORT'] is not None and \
+           os.environ['SERVER_PORT'] != '80':
+            url += ":%s" % os.environ['SERVER_PORT']
+
+        if os.environ.has_key('SCRIPT_NAME'):
+            url += "/%s" % os.environ.get['SCRIPT_NAME']
+        if os.environ.has_key('PATH_INFO'):
+            url += "/%s" % os.environ.get['PATH_INFO']
+        if os.environ.has_key('QUERY_STRING'):
+            url += "?%s" % os.environ.get['QUERY_STRING']
+
+        return url
+
+Step 2, validation, needs both the URL that the script was called via
+as well as a parsed dictionary of URL query arguments that were
+attached to that URL:
+
+    import os, urlparse
+
+    def parseQueryArgs():
+        qstr = os.environ.get('QUERY_STRING')
+        if not qstr:
+            return {}
+
+        qargs = cgi.parse_qs(qstr)
+        for arg in qargs.keys():
+            if len(qargs[arg]) == 1:
+                qargs[arg] = qargs[arg][0]
+        return qargs
+
+= Retrieving User Attributes
+
+If you want to receive user attribute information, you need to do two
+things:  request your attributes during the authentication request
+step and then extract the received attributes after the validation
+step.  
+
+In your configuration file, you can specify what options you need in
+two ways.  First is through the configuration property,
+requiredAttributes.  These will automatically be retrieved
+transparently whenever you call requestAuthentication().  Note that these
+will be presented to the user as *required* in order to log in;
+consequently, the user can only refuse to share the data by canceling
+the login.  To be kinder, you can request sharing to be optional for
+the user.  To do this, provide the attribute identifiers as a list to
+the requestAuthentication() function:
+
+    from vaologin.authenticate import Attributes
+
+    requested = [ Attributes.NAME, Attributes.EMAIL ]
+    req.requestAuthentication(returnURL, requested)
+
+The values will be returned (if the user gives permission) in the
+validation response:
+
+    authResp = self.processAuthentication(qargs, returnURL, 2)
+    if not authResp.isAuthenticated():
+        print >> sys.err, "Validation failed: %s" % authResp.getWhy()
+        # send an error message to the user or otherwise 
+        # redirect to a public page
+        ...
+
+    attributes = authResp.getAttributes()    
+
+The getAttributes() function will return a dictionary of the
+information that user agreed to share.  
+
+= Retreiving a Certificate
+
+One special attribute we can request is a short-lived X.509
+certificate that represents the user.  We request this if our service
+needs to access the user's resources from other protected,
+VO-compatible services at other sites.  To request a certificate,
+include Attributes.CERT in the attribute list.  The VAO Login Service
+will return a short-lived URL for downloading the certficate.  We can
+do this transparent by calling the cacheCredential function on the
+AuthenticationResponse:
+
+    authResp.cacheCredential(localfile)
+
+where localfile is where we want to store it.  (Be sure this location
+is not world readable to protect it from being stolen by other users
+on the machine.)  This certificate is short-lived, typically expiring
+in two hours.  
+
+= Logging the User Out
+
+We can also provide a logout service.  It can work like this:
+
+    from vaologin.portal import VAOLoginRequest
+    import vaologin.config as config
+    
+    sessionid = ... # get the ID from the cookie
+    
+    conf = config.getConfig(conffile)
+    req = VAOLoginRequest(conf, sessionid)
+    req.getSession().endSession()
+
+Our script now will be responsible for deleting the user's cookie.  
+

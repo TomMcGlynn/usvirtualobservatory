@@ -1,0 +1,142 @@
+Setting up Tomcat as a Java Servlet Engine
+
+The most common way to serve Java servlets is using the Apache Tomcat
+server connected with the Apache Web Server.  This document gives a
+quick guide for setting up Tomcat on a Linux platform.
+
+Contents:  
+  o  Architecture
+  o  Obtaining the Server Software
+  o  Configuring the Apache Web Server
+  o  The Tomcat Server
+  o  Starting and Stopping Services
+
+ARCHITECTURE
+============
+
+The typical way to set up Tomcat is as an attachment to the Apache Web
+Server.  The latter takes responsibility serving static documents and
+traditional CGI services.  Tomcat responds to requests for JSP pages
+and Java servlets.  Apache can be configured to forward certain
+URLs to the Tomcat server via a special "pipe".  To the outside world,
+all URLs will still appear to come from one server.  
+
+
+OBTAINING THE SERVER SOFTWARE
+=============================
+
+On most Linux platforms, both the Apache Web Server and Tomcat are
+available as downloadable packages (via e.g yum, apt-get, etc.)  It is
+recommended that you get the latest version from your Linux
+distribution.  When you do, it will be set up to run securely through
+system services.  You should consult the Administrator's manual for
+your distribution for details on running the servers.  
+
+Apache Web Server 2.4 or later is recommended, as is Tomcat 6.X or
+later.  
+
+CONFIGURING THE APACHE WEB SERVER
+
+Distributions layout the configurations files on disk in slightly
+different ways.  Typically, it will be under /etc/httpd, /etc/apache
+or /etc/apache2.  
+
+On Red Hat-based systems (RHEL, Fedora, CentOS, SciLinux, etc.) 
+
+There are two files you need to edit.  First find
+/etc/httpd/conf/httpd.conf and search for LoadModule proxy_ajp_module;
+make sure it is uncommented:
+
+  LoadModule proxy_ajp_module modules/mod_proxy_ajp.so
+
+Next look for /etc/httpd/conf.d/proxy_ajp.conf.  In this file, you
+place the directives that will send certain URLs onto Tomcat for
+handling.  For example, you might send everything under the "portal"
+URL path to Tomcat; then you would put this in the configuration file:
+
+  ProxyPass /portal/      ajp://localhost:8009/
+
+The Java Spring examples included in the the vaologin package work
+most readily if you add the following:
+
+  ProxyPass /spring-    ajp://localhost:8009/spring-
+
+or 
+
+  ProxyPass /spring-anyOpenID ajp://localhost:8009/spring-anyOpenID
+  ProxyPass /spring-registration ajp://localhost:8009/spring-registration
+  ProxyPass /spring-useratts ajp://localhost:8009/spring-useratts
+  ProxyPass /spring-withjs ajp://localhost:8009/spring-withjs
+
+On Ubuntu:
+
+The web server configuration will be under /etc/apache or
+/etc/apache2.  Specialized configuration files are found under
+sub-directories mods-available and mods-enabled.  The latter one
+usually just contains links to files under mods-available,
+corresponding to modules that are "turned on".  To this end, create 
+(as root) links in mods-enabled that point to the proxy_ajp.* files:
+
+  cd /etc/apache2/mods-enabled
+  ln -s ../mods-available/proxy_ajp.load
+  ln -s ../mods-available/proxy_ajp.conf
+
+The edit the proxy_ajp.conf to add the necessary ProxyPass directives
+as described for Red Hat systems above.  
+
+THE TOMCAT SERVER
+=================
+
+The Tomcat server is usaully fully configured to run if installed by
+the system.  The location of Tomcat files will depend on the Linux
+distribution.  Here are the important locations on Red Hat-based
+systems:  
+
+  /etc/tomcat6               Tomcat configuration directory
+  /usr/share/java/tomcat6    The Tomcat library directory containg
+                               system-wide jar files
+  /var/lib/tomcat6/webapps   The directory where war files (containing
+                               the application services) are deployed.
+  /var/log/tomcat6           Containing the Tomcat logs, including 
+                               catalina.out
+
+STARTING AND STOPPING SERVICES
+
+Many distributions allow a root user to start and stop services with
+the "service" command.  The trick is to know how the system names to
+the service.  The web server might be called "httpd" (like on Red
+Hat-based systems) or "apache" or "apache2" (like on Ubuntu).  Tomcat
+might be called "tomcat" or "tomcat6"
+
+To start the services on many Linux systems you type:
+
+   sudo service httpd start
+   sudo service tomcat6 start
+
+If you want these to start automatically when the machine boots up,
+run the following:
+
+   sudo chkconfig httpd on
+   sudo chkconfig tomcat6 on
+
+To stop the services you can type:
+
+   sudo service httpd stop
+   sudo service tomcat6 stop
+
+Sometimes you need to just restart them:
+
+   sudo service httpd restart
+   sudo service tomcat6 restart
+
+If your distribution does not use the service command to manage these
+services, then it is probably done with init.d scripts:
+
+   sudo /etc/init.d/httpd start
+   sudo /etc/init.d/tomcat6 start
+
+
+
+
+
+

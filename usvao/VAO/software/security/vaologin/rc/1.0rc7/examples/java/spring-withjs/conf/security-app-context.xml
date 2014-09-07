@@ -1,0 +1,101 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                                 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                                 http://www.springframework.org/schema/security 
+                                 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+  <!-- uncomment to get lots of explanatory messages from spring 
+    -  in catalina.out 
+  <debug />
+    -->
+
+  <global-method-security pre-post-annotations="enabled" />
+
+  <http use-expressions="true">
+     <intercept-url pattern="/index.jsp" access="permitAll" />
+     <intercept-url pattern="/register/*" access="isAuthenticated()" />
+     <intercept-url pattern="/portal/*" 
+                    access="hasRole('ROLE_REGISTERED_USER')"/>
+
+     <logout logout-success-url="/index.html" delete-cookies="JSESSIONID"/>
+
+     <openid-login login-page="/j_spring_openid_security_check?openid_identifier=@vaosso.homeurl@/openid/provider_id"
+                   user-service-ref="PortalUserDetailsService">
+
+        <attribute-exchange identifier-match=".*sso.*\.ncsa\.illinois\.edu/.*">
+          <openid-attribute name="username" type="http://axschema.org/namePerson/friendly" required="true"/>
+          <openid-attribute name="name" type="http://axschema.org/namePerson" required="true"/>
+          <openid-attribute name="contactEmail" type="http://axschema.org/contact/email"/>
+          <openid-attribute name="contactPhone" type="http://axschema.org/contact/phone/default"/>
+          <openid-attribute name="institution" type="http://sso.usvao.org/schema/institution"/>
+          <openid-attribute name="country" type="http://sso.usvao.org/schema/country"/>
+        </attribute-exchange>
+
+        <attribute-exchange identifier-match=".*sso.*\.usvao\.org/.*">
+          <openid-attribute name="username" type="http://axschema.org/namePerson/friendly" required="true"/>
+          <openid-attribute name="name" type="http://axschema.org/namePerson" required="true"/>
+          <openid-attribute name="contactEmail" type="http://axschema.org/contact/email"/>
+          <openid-attribute name="contactPhone" type="http://axschema.org/contact/phone/default"/>
+          <openid-attribute name="institution" type="http://sso.usvao.org/schema/institution"/>
+        </attribute-exchange>
+
+     </openid-login>
+  </http>
+
+  <authentication-manager/>
+
+  <!--
+    - setup your own SSFUserDatabase bean to interface with your 
+    - portal's user database.
+    -
+    - This example bean uses a flat-file database; see conf/myuserdb.txt
+    -->
+  <beans:bean id="MyUserDatabase" name="userDatabase" 
+              class="net.myportal.MyUserDatabase">
+    <beans:property name="userDatabaseFile" 
+                    value="@basedir@/conf/myuserdb.txt"/>
+  </beans:bean>  
+
+  <!--
+    - This bean provides a PortalUser instance as the UserDetails
+    -->
+  <beans:bean id="PortalUserDetailsService" name="authUserDetailsService" 
+         class="org.usvao.sso.openid.portal.spring.PortalUserDetailsService">
+
+    <!--
+      -  Provide a reference to an SSFUserDatabase bean so that it can
+      -  be used to load user attribute and authorizations from your local
+      -  database.  
+      -  
+      -  This example uses a simple file-based user database; see 
+      -  src/main/java/net/myportal/MyUserDatabase.
+      -->
+    <beans:property name="userDatabase" ref="MyUserDatabase"/>
+
+    <!--
+      -  Indicate what you would like to display as the user's username and 
+      -  have passed to your UserDetailsService.  The value must be either 
+      -  OPENID (the OpenID URL), USERNAME (the name the user entered
+      -  into the VAO Login page), or QNAME (a qualified username, e.g. 
+      -  username@usvao).  If a VAO login service was not used (see below),
+      -  the username will default to the OpenID URL.  The default value for 
+      -  this property is OPENID, but QNAME is recommended.
+      -->
+    <beans:property name="useAsLocalUserName" value="QNAME"/>
+
+    <!-- 
+      -  Identify servers you want to recognize as VAO-compatible servers 
+      -  (the default is the service at sso.usvao.org).  This controls the 
+      -  the assignment of the ROLE_VAO_USER and, if localUserName!=OPENID,
+      -  the form of the user name.  
+      -
+      -  "VAO" below is an alias for the sso.usvao.org service, equivalient to 
+         "usvao:https://sso.usvao.org/openid/id/" 
+      -->
+    <beans:property name="vaoDomains" 
+           value="VAO usvao:https://vaossotest.ncsa.illinois.edu/openid/id/"/>
+  </beans:bean>
+
+</beans:beans>

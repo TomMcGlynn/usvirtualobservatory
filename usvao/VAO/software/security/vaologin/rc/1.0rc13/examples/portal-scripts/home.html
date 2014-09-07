@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html> <head>
+<title>Test Archive</title>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/vaologin.js"></script>
+<script type="text/javascript">
+vaologin.vaossoServerUrl = "https://vaossotest.ncsa.illinois.edu";
+vaologin.portalLogoutUrl = "/cgi-bin/portal/logout";
+// vaologin.displayStatusOnLoad("loginstatus");
+vaologin.portalRegisterUrl = vaologin.vaossoServerUrl + "/register?returnURL=http://vaoportaltest.ncsa.illinois.edu/cgi-bin/portal/login";
+
+function welcomeUser() {
+    vaologin.updateStatusDisplay("loginstatus");
+
+    if (vaologin.loginStatus == null ||
+        vaologin.loginStatus.username == null)
+       return
+
+    userspot = document.getElementById("user");
+    if (userspot != null) 
+        userspot.innerHTML = vaologin.loginStatus.username;
+    welcomespot = document.getElementById("welcome_user");
+    if (welcomespot != null) welcomespot.style.display = "inline";
+}
+jQuery(document).ready(welcomeUser);
+</script>
+</head>
+
+<body>
+<h1>Welcome<span id="welcome_user" style="display: none;">,
+<span id="user"></span>,</span> to the Acme Archive</h1>
+
+<div style="float: right; width: 200px; padding: 0 5px; border: 1px solid blue; font-size: small; margin-left: 10px;">
+<p style="margin-top: 0; margin-bottom: 0;">
+<img src="/images/vao-si.ico" align="middle" style="margin-right: 5px;"/>
+We support <a href="http://vaossotest.ncsa.illinois.edu/">VAO Logins</a>. </p>
+<center style="margin-top: 0; margin-bottom: 0;"><span id="loginstatus">
+<a href="/cgi-bin/portal/login">Login</a>  &nbsp;&nbsp;
+<a href="http://vaossotest.ncsa.illinois.edu/register?returnURL=http://vaoportaltest.ncsa.illinois.edu/cgi-bin/portal/login">Register</a>
+</span></center>
+</div>
+
+<p>
+This page has been set up for testing the VAO login services.  It represents
+what might appear as the home page of an archive or other portal that
+supports VAO logins.
+</p>
+
+<h2>Test activities</h2>
+
+<h3>Testing Portal Functions</h3>
+
+<p>
+These are activities that are typical for a user interacting with a
+portal that supports logins. 
+</p>
+
+<ul>
+  <li> Create a VAO login from simple portal:
+       <ul>
+         <li> Click on the "Register" link in the side panel. </li>
+         <li> Create an account: </li>
+              <ul>
+                <li> after filling in the registration page, you should
+                     eventually get an email with a confirmation code;
+                     follow it to complete the reservation </li>
+                <li> after confirming your account, you should get another
+                     email confirming the completion of registration. </li>
+              </ul>
+         <li> You should next see a login page; log in. </li>
+         <li> You should then be returned to this page and see that
+              you are logged in.  </li>
+       </ul></li> <p>
+  <li> Test the case where the portal wants to register users, too.
+       Click on one the links below to register locally: <p>
+
+       <div style="border: solid blue 1px; width: 500px">
+       <center>We support VAO Logins.</center>
+       <p>If you do not have a VAO account,
+       <a href="http://vaossotest.ncsa.illinois.edu/register?returnURL=http://vaoportaltest.ncsa.illinois.edu/cgi-bin/portal/cgi-bin/register">Get one now.</a> <br>
+       If you already have one, <a href="/cgi-bin/portal/cgi-bin/register">register now to use this site.</a>
+       </div>
+</ul>
+
+<h3>Testing the VAO Identity Portal</h3>
+
+<p>
+Visit the <a href="http://vaossotest.ncsa.illinois.edu/">VAO Logins
+web site</a> and click on "Profile and Preferences".  Test the various
+services provided there, including:
+</p>
+
+<ul>
+  <li> requesting a password reminder </li>
+  <li> change your user profile (your fname, email, institution, etc.) </li>
+  <li> change you privacy settings.  </li>
+</ul>
+
+<hr>
+<address></address>
+<!-- hhmts start -->
+Last modified: Tue Aug  7 14:59:14 2012
+<!-- hhmts end -->
+</body> </html>

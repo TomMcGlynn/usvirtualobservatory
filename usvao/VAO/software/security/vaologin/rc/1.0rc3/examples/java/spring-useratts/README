@@ -1,0 +1,163 @@
+useratts -- a vaologin example using Java and the Spring Security Framework
+            demonstrating access to user attributes after registration.
+
+The Spring Security Framework (http://www.springsource.org/spring-security)
+is a convenient framework for managing authentication and
+authorization within Java servlet-based applications, and it includes 
+explicit support for OpenID.  We recommend using Spring Security if you
+keep track of user information using some kind of user database.  You
+can integrate your portal with the VAO Login Service using the simple
+examples described in the Spring Security documentation (with help
+from the documentation at http://sso.usvao.org/help/support.html);
+however, this example shows how to plug in special support for VAO
+users.  
+
+Unless you have a very simple portal, you will need to do some
+programming to integrate VAO Logins with your local framework.  This
+example shows the use of an optional vaologin class called PortalUser
+which provides convenient access to user data from your user
+database.  
+
+WHAT THIS EXAMPLE DEMONSTRATES
+
+In this example, we build on the example in ../spring-regstration.  In
+addition to demonstrating how to register users, we show how you can 
+subsequently access the user data acquired during registration.  
+To help with that we provide a helper class called PortalUser, a
+container for user information, including the username that you use in
+your local database.  The PortalUser instance can also tell you 
+what permissions (or authorizations) the user has.  
+
+The examples shows three types of pages.  First is a publicly
+accessible page (i.e. no authentication required) whose contents
+change depending on whether the user is logged in.  A registration
+page shows how to register users to your portal; if they have to
+create a VAO login as part of this process, they won't have to
+re-enter certain information into the local registration form.   
+Finally, there is a "protected" page ("Attributes"): when the user
+attempts to access the page, she is forced to log in. 
+
+In this example, we assume that users must have a VAO Login to login
+and that they also have to complete a local registration page to use
+the portal.  This allows you to collect some information about your 
+users.  
+
+This example uses Spring Security's typical configuration for OpenID
+apart from one specialization.  We have plugged in a
+UserDetailsService implementation, PortalUserDetailsService, which
+sets up the PortalUser and VAOLogin instances.  See the code embedded
+in the JSP pages (under src/main/jsp) to see how you can access and
+use these objects.  
+
+This example uses the simple flat-file user database (like as was used
+in ../spring-registration).  To plug in your own user database, you
+create a Java class that implements the vaologin interface
+SSFUserDatabase.  An example can be found under src/main/java/net/myportal
+with MyUserDatabase.  
+
+CONFIGURING, BUILDING AND DEPLOYING THIS EXAMPLE
+
+This example is deployed to a Servlet Engine (e.g. Apache Tomcat) via
+a WAR file called spring-useratts.war.  
+
+Configuration:
+
+This example works without further configuration required; however,
+there are some things you can tweak.  This is done primarily via 
+conf/security-app-context.xml.  
+
+The <intercept-url> elements control which URLs within the application
+space (spring-anyOpenID) that require authentication.  See the Spring
+Security documentation  (http://www.springsource.org/spring-security)
+for details.  In summary:
+   o  access="permitAll" makes index.jsp is publically accessible
+   o  access="isAuthenticated()" makes documents in the register
+         subdirectory require that the user to log in.
+   o  access="hasRole('ROLE_REGISTERED_USER')" means that the user
+         must be a registered user to access documents under
+         the portal subdirectory.  
+
+This example is only connected to the (Test) VAO Login Service by
+virtue of the login-page attribute (see also the Login link in
+src/main/jsp/index.jsp); see the Spring Security documentation for
+information on supporting other services. 
+
+For this example to access our user database, we must configure a bean
+for it.  This can be found after the <openid> section and has the name
+"userDatabase".  With our sample, we need to set the location of the
+user database with the "userDatabaseFile" property.  (Note that the 
+examples ant build will replace "@basedir@" with a full path.)
+
+Next we define the PortalUserDetailsService bean; it has three
+configuration properties.  The userDatabase property is where we plug
+the reference to our SSFUserDatabase bean.  
+
+The useAsLocalUserName property sets the form of the username that
+gets stored in the user database; specifically, this is what is
+returned by PortalUser.getID() which is what the portal considers as
+the user's local username.  If not specified, the username will be the
+user's OpenID URL; however, you can change this to pass just the
+shorter username that the user logged in with or a "qualified
+username" (e.g. username@usvao).  See the in-lined documentation for
+details.  (Note that the flat-file user database, myuserdb.txt,
+currently assumes qualified names.) 
+
+To use the shorter, alternative usernames, the OpenID must be
+recognized as being from a VAO-compatible login service.  This is
+controlled by the vaoDomains.  This property gives a list of mappings
+of short "domain names" to OpenID base URLs (see in-lined example).
+Multiple URLs can have the same domain name label.  The domain name is
+what appears after the @ in the username when localUserName is set to
+QNAME.  If vaoDomains is not specified, the service sso.usvao.org will
+automatically recognized.  "VAO" is an alias for the service at
+sso.usvao.org.
+
+Finally, it is worth noting that the location of the user database
+file (i.e. when you are using our sample flat-file one), there is
+another place where the location must be place:  in the conf/web.xml
+file as a context parameter.  The service that actually registers
+users (src/main/jsp/register/registered.jsp) uses this parameter to
+find the user database.  
+
+Building:
+
+To build this example, you need Apache Ant.  Change into the directory 
+containing this example.  After editing security-app-context.xml (if
+desired), type:
+
+   ant war
+
+This produces the spring-useratts.war file.  
+
+Deploying:
+
+Copy the spring-useratts.war file to your servlet engine's
+applications directory (for Tomcat, this is $CATALINA_HOME/webapps;
+see doc/settingUpTomcat.txt for details).  
+
+RUNNING THE EXAMPLE
+
+With a browser, access the spring-useratts home URL.  If you followed
+the example in doc/settingUpTomcat.txt this URL will be:
+
+   http://myserver.net/spring-useratts/
+
+This brings up the public "home" page (index.jsp).
+
+It does not matter whether you have a VAO login yet.  To become a
+portal user, you can register by clicking on either the "Get one now"
+or "register now..." link; both will wind up at the portal's
+registration page.  If you don't have a VAO Login, the first link
+let's you create one.  If you are not logged in, you will be prompted
+to do so.  Once you finally arrive at the portal registration page,
+you should see that 3 of the 4 fields requested are pre-populated. 
+
+The "Attributes" link shows everything the portal knows about the
+user.  If the user is logged in, user data from the user database is
+shown; see src/main/jsp/portal/attributes.jsp, which shows the use of
+the PortalUser instance, for details.
+
+
+
+
+

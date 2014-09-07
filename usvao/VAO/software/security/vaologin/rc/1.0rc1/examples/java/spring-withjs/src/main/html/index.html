@@ -1,0 +1,74 @@
+<html> <head>
+<title>withjs: a Java Spring/Javascript Example</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/vaologin.js"></script>
+<script type="text/javascript">
+vaologin.vaossoServerUrl = "@vaosso.homeurl@";
+vaologin.portalLogoutUrl = "j_spring_security_logout";
+vaologin.portalRegisterUrl = "register/index.jsp";
+vaologin.loginStatusUrl = "loginstatus";
+vaologin.portalLoginUrl = "j_spring_openid_security_check?openid_identifier=@vaosso.homeurl@/openid/provider_id";
+
+// vaologin.displayStatusOnLoad("loginstatus");
+
+function welcomeUser() {
+    vaologin.updateStatusDisplay("loginstatus");
+
+    if (vaologin.loginStatus == null ||
+        vaologin.loginStatus.username == null)
+       return
+
+    userspot = document.getElementById("user");
+    if (userspot != null) 
+        userspot.innerHTML = vaologin.loginStatus.username;
+    welcomespot = document.getElementById("welcome_user");
+    if (welcomespot != null) welcomespot.style.display = "inline";
+}
+jQuery(document).ready(welcomeUser);
+</script>
+</head>
+
+<body>
+<h1>withjs: A Java Spring Security Example Portal using Javascript</h1>
+
+<h1>Welcome<span id="welcome_user" style="display: none;">,
+<span id="user"></span>,</span> to the Acme Archive</h1>
+
+<div style="float: right; width: 200px; padding: 0 5px; border: 1px solid blue; font-size: small; margin-left: 10px;">
+<p style="margin-top: 0; margin-bottom: 0;">
+<img src="images/vao-si.ico" align="middle" style="margin-right: 5px;"/>
+We support <a href="@vaosso.homeurl@/">VAO Logins</a>. </p>
+<center style="margin-top: 0; margin-bottom: 0;"><span id="loginstatus">
+<a href="@vaosso.homeurl@/register">Get one now.</a> <br />
+<a href="j_spring_openid_security_check?openid_identifier=@vaosso.homeurl@/openid/provider_id">Login</a>  &nbsp;&nbsp;
+<a href="@vaosso.homeurl@/register?returnURL=@portal.homeurl@/">Register</a>
+</span></center>
+</div>
+
+<div style="border: solid blue 1px; width: 500px">
+<center>The Acme Archive supports VAO Logins.</center>
+<p>If you do not have a VAO account,
+<a href="@vaosso.homeurl@/register?returnURL=@portal.homeurl@/register/">Get one now.</a> <br>
+If you already have one, <a href="/register/">register now to use this site.</a>
+</div>
+
+<p>
+This page shows an example of using Javascript within portal pages.  The
+challenge with using Javascript is to avoid AJAX calls that might trigger
+athentication.  This example provides a servlet (loginstatus) that returns
+info about whether the user is logged in or not; javascript code should
+consult this before making AJAX calls to protected documents.  Note
+that this technique requires that the portal use session ids
+(i.e. cookies or the equivalent) to track authenticated users;
+this comes for free when using Spring Security.  
+</p>
+
+<p>
+This example builds on spring-useratts, except that it replaces the JSP
+functionality in the home page with AJAX.  
+</p>
+
+<!-- hhmts start -->
+Last modified: Sat Mar  2 11:33:02 2013
+<!-- hhmts end -->
+</body> </html>

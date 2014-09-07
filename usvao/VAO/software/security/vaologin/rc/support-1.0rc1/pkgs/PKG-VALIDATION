@@ -1,0 +1,17 @@
+You can find credentials for validating distribution files in this
+directory via the following URLS
+
+Package        Val.Type   URL
+=======        =========  ================================================
+
+curl           PGPsig     http://curl.haxx.se/download/curl-7.19.0.tar.gz.asc
+
+openssl        MD5sum     http://www.openssl.org/source/openssl-1.0.1e.tar.gz.md5
+               PGPsig     http://www.openssl.org/source/openssl-1.0.1e.tar.gz.asc
+
+python         PGPsig     http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz.asc
+
+python-openid  MD5sum     https://pypi.python.org/pypi?:action=show_md5&digest=393f48b162ec29c3de9e2973548ea50d
+
+zlib           MD5sum     http://www.zlib.net/
+

@@ -1,0 +1,7 @@
+#! /usr/bin/env python
+
+# see main() in vaologin/cli/vaoopenid.py for script implementation
+from vaologin.cli.vaoopenid import main
+from vaologin.cli.utils import run
+
+run(main)

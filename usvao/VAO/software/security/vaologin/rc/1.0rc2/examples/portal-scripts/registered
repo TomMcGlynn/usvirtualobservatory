@@ -1,0 +1,54 @@
+#! /usr/bin/env python
+
+import os, sys, cgi, re
+from string import Template
+
+def main():
+    inputs = cgi.FieldStorage()
+
+    data = { "username": os.environ.get("VAOLOGIN_USERNAME",""), 
+             "id":   os.environ.get("OPENID_CLAIMED_ID",""), 
+             "fullname": inputs.getvalue("fullname"),
+             "inst":     inputs.getvalue("inst"),
+             "email":    inputs.getvalue("email"),
+             "color":    inputs.getvalue("color")  }
+
+    page = Template(pageTemplate)
+    
+    print "Content-type: text/html"
+    print
+    print page.substitute(data)
+
+pageTemplate = """
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html> <head>
+<title>Register with Test Archive</title>
+
+</head>
+
+<body>
+<h1>Thank you, <strong>${fullname}</strong>, for registering.</h1>
+<p>
+Please use your VAO login, $username, to get access to your
+proprietary data in this archive.  
+</p>
+
+<dl>
+  <dt> Your profile:
+  <dd> <strong>OpenID:</strong> ${id} <br>
+       <strong>Fullname:</strong> ${fullname} <br>
+       <strong>Email:</strong> ${email} <br>
+       <strong>Institution:</strong> ${inst} <br>
+       <strong>Favorite Color:</strong> ${color} <br>
+</dl>
+
+<a href="/">return to home page</a>
+
+
+</body>
+</html>
+
+"""
+
+if __name__ == "__main__":
+    main()

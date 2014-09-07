@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<project name="vaolayout" basedir=".">
+
+    <property name="dir.build" value="${basedir}/build"/>
+    <property name="dir.build.classes" value="${dir.build}/classes"/>    
+    <property name="dir.test.classes" value="${dir.build}/tclasses"/>    
+    <property name="dir.testreport" value="${dir.build}/testreports"/>    
+    <property name="dir.deps" value="${dir.build}/deps"/>
+    <property name="dir.tmp" value="${dir.build}/tmp"/>
+    <property name="dir.lib" value="${basedir}/lib"/>
+    <property name="dir.etc" value="${basedir}/etc"/>
+    <property name="dir.bin" value="${basedir}/bin"/>
+    <property name="dir.web" value="${basedir}/web"/>
+    <property name="dir.conf" value="${basedir}/conf"/>
+    <property name="dir.doc" value="${basedir}/doc"/>
+    <property name="dir.src" value="${basedir}/src"/>
+    <property name="dir.test.src" value="${dir.src}/test"/>
+    <property name="dir.src.js" value="${dir.src}/main/js"/>
+    <property name="dir.src.java" value="${dir.src}/main/java"/>
+    <property name="dir.test.src.java" value="${dir.test.src}/java"/>
+    <property environment="env"/>
+    <property name="dir.deploy.web" value="${env.WEB_DEPLOY_DIR}"/>
+    <property name="dir.deploy.war" value="${env.WAR_DEPLOY_DIR}"/>
+
+    <property name="dir.jar" value="${dir.lib}/jars" />
+    <path id="local.jar.path">
+      <fileset dir="${dir.jar}">
+        <include name="*.jar"/>
+      </fileset>
+    </path>
+
+    <target name="initOutputDirs">
+      <mkdir dir="${dir.build.classes}"/>
+      <mkdir dir="${dir.lib}"/>
+      <mkdir dir="${dir.doc}/japi"/>
+      <!-- <mkdir dir="${dest.dir}"/> -->
+    </target>
+
+    <target name="initTestDirs">
+        <mkdir dir="${dir.test.tclasses}"/>
+        <mkdir dir="${dir.testreport}"/>
+        <mkdir dir="${dir.tmp}"/>
+    </target>
+
+    <target name="cleanOutputDirs">
+      <delete includeemptydirs="true" failonerror="false">
+        <fileset dir="${dir.build.classes}" />
+        <fileset dir="${dir.test.tclasses}"/>
+        <fileset dir="${dir.testreport}"/>
+        <fileset dir="${dir.build}" />
+        <!-- <fileset dir="${dir.build}"/> -->
+      </delete>
+    </target>
+
+    <target name="distCleanOutputDirs" depends="cleanOutputDirs">
+      <delete includeemptydirs="true" failonerror="false">
+        <!-- <fileset dir="${dir.lib}" /> -->
+        <fileset dir="${dir.doc}/japi" />
+        <!-- <fileset dir="${dir.build}"/> -->
+      </delete>
+    </target>
+
+
+</project>

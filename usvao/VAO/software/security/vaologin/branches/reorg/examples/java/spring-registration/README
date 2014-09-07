@@ -1,0 +1,166 @@
+Registration -- a vaologin example using Java and the Spring Security 
+                Framework demonstrating registration of users with the
+                local portal
+
+The Spring Security Framework (http://www.springsource.org/spring-security)
+is a convenient framework for managing authentication and
+authorization within Java servlet-based applications, and it includes 
+explicit support for OpenID.  We recommend using Spring Security if you
+keep track of user information using some kind of user database.  You
+can integrate your portal with the VAO Login Service using the simple
+examples described in the the Spring Security (with help from the 
+documentation at http://sso.usvao.org/help/support.html); however,
+this example shows how to plug in special support for VAO users.  
+
+Unless you have a very simple portal, you will need to do some
+programming to integrate VAO Logins with your local framework.  This
+example shows the use of an optional vaologin class called VAOLogin 
+which provides convenient access to the OpenID authentication
+information, particularly the user attributes which can ease the
+process of registering users.
+
+WHAT THIS EXAMPLE DEMONSTRATES
+
+In this example, we show how you might register users to your portal.
+To help with that we provide a helper class called VAOLogin.  A 
+VAOLogin object is a container for information about
+the OpenID login.  It provides access to the user's identifier
+and the OpenID attributes of the user that were received from the 
+OpenID login service.  A VAOLogin actually provides three forms of
+the user identifier, and you can decide which form you want to
+identify the user by.  In particular, this would be the name you put
+into your user database.  One is the OpenID URL that represents the
+user, and another is the short username that the user entered into the
+VAO login page.  The last form is a "qualified name" which has the
+form "username@usvao".  We recommend you use this form in case other
+VO-OpenID services become available elsewhere in the world in the
+future. 
+
+The examples shows three types of pages.  First is a publicly
+accessible page (i.e. no authentication required) whose contents
+change depending on whether the user is logged in.  A registration
+page shows how to register users to your portal; if they have to
+create a VAO login as part of this process, they won't have to
+re-enter certain information into the local registration form.   
+Finally, there is a "protected" page ("Attributes"): when the user
+attempts to access the page, she is forced to log in. 
+
+In this example, we assume that users must have a VAO Login to login
+and that they also have to complete a local registration page to use
+the portal.  This allows you to collect some information about your 
+users.  In this example, we show how to integrate the registration
+page with the VAO Login services; you can use user attributes pulled 
+from the login service to pre-populate your registration form.  In
+this example, registration information is added to a simple user
+database stored in a flat file.  
+
+This example uses Spring Security's typical configuration for OpenID
+apart from one specialization.  We have plugged in a
+UserDetailsService implementation, VAOUserDetailsService, which sets
+up the VAOLogin instance and assigns default authorizations.  See
+the code embedded in the JSP pages (under src/main/jsp) to see how
+you can access the VAOLogin object and get at the attributes used to
+populate the registration form.  If you want to integrate information
+from your portal's own user database, you can create your own
+UserDetailsService and plug it into our VAOUserDetailsService.  An
+example of such a class (which you can try out as-is) is in 
+src/main/java/net/myportal/MyUserDetailsService.java.
+
+CONFIGURING, BUILDING AND DEPLOYING THIS EXAMPLE
+
+This example is deployed to a Servlet Engine (e.g. Apache Tomcat) via
+a WAR file called spring-registration.war.  
+
+Configuration:
+
+This example works without further configuration required; however,
+there are some things you can tweak.  This is done primarily via 
+conf/security-app-context.xml.  
+
+The <intercept-url> elements control which URLs within the application
+space (spring-anyOpenID) that require authentication.  See the Spring
+Security documentation  (http://www.springsource.org/spring-security)
+for details.  In summary:
+   o  access="permitAll" makes index.jsp is publically accessible
+   o  access="isAuthenticated()" causes attributes.jsp to require 
+         authentication; any authenticated user can access the document.
+   o  access="hasRole('ROLE_VAO_USER')" means that the user must have
+         authenticated via a recognized VAO-compatible login service
+         in order to access documents under the only4vao_users
+         directory.  This access authorization will not be set if you 
+         plug in your own UserDetailsService.
+
+This example is only connected to the (Test) VAO Login Service by
+virtue of the login-page attribute (see also the Login link in
+src/main/jsp/index.jsp); see the Spring Security documentation for
+information on supporting other services. 
+
+The VAOUserDetailsService is plugged into the system via the bean
+configuration at the end of the file, and it has three configuration
+properties.  First, you can provide a reference to your own
+UserDetailsService bean via the userDetailsService property.  If you
+don't provide one, an internal default is used (which sets the 
+ROLE_VAO_USER and ROLE_OPENID_USER authorization roles).  The
+src/main/java directory contains an example of a custom
+UserDetailsService (net/myportal/MyUserDetailService); this will
+attempt to look up the user in a flat-file user database,
+myuserdb.txt (which you can find in the conf directory and edit as 
+desired).  
+
+You can change the form that the displayed user name takes by
+adjusting the value of the localUserName property.  This is important 
+especially if you provide your own UserDetailsService class as it
+controls what gets passed to it as the username.  If not
+specified, the username will be the user's OpenID URL; however, you
+can change this to pass just the shorter username that the user logged
+in with or a "qualified username" (e.g. username@usvao).  See the
+in-lined documentation for details.  (Note that the flat-file user
+database, myuserdb.txt, currently assumes qualified names.)
+
+To use the shorter, alternative usernames, the OpenID must be
+recognized as being from a VAO-compatible login service.  This is
+controlled by the vaoDomains.  This property gives a list of mappings
+of short "domain names" to OpenID base URLs (see in-lined example).
+Multiple URLs can have the same domain name label.  The domain name is
+what appears after the @ in the username when localUserName is set to
+QNAME.  If vaoDomains is not specified, the service sso.usvao.org will
+automatically recognized.  "VAO" is an alias for the service at
+sso.usvao.org.
+
+Building:
+
+To build this example, you need Apache Ant.  Change into the directory 
+containing this example.  After editing security-app-context.xml (if
+desired), type:
+
+   ant war
+
+This produces the spring-registration.war file.  
+
+Deploying:
+
+Copy the spring-registration.war file to your servlet engine's
+applications directory (for Tomcat, this is $CATALINA_HOME/webapps;
+see docs/settingUpTomcat.txt for details).  
+
+RUNNING THE EXAMPLE
+
+With a browser, access the spring-registration home URL.  If you followed
+the example in docs/settingUpTomcat.txt this URL will be:
+
+   http://myserver.net/spring-registration/
+
+This brings up the public "home" page (index.jsp).
+
+It does not matter whether you have a VAO login yet.  To become a
+portal user, you can register by clicking on either the "Get one now"
+or "register now..." link; both will wind up at the portal's
+registration page.  If you don't have a VAO Login, the first link
+let's you create one.  If you are not logged in, you will be prompted
+to do so.  Once you finally arrive at the portal registration page,
+you should see that 3 of the 4 fields requested are pre-populated. 
+
+
+
+
+

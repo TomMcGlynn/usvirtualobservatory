@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<project default="lib" basedir=".">
+
+<property file="build.properties"/>
+<property file="build.static.properties"/>
+
+<property name="project.name" value="samplereg" />
+<property name="src.dir" value="${basedir}/src" />
+<property name="build.dir" value="${basedir}/build" />
+<property name="build.webapp" value="${build.dir}/webapp" />
+<property name="build.webinf" value="${build.webapp}/WEB-INF" />
+<property name="build.classes" value="${build.webinf}/classes" />
+<property name="war.assemble.dir" value="${build.webapp}" />
+<property name="war.file.name" value="${project.name}.war" />
+<property name="war.file" value="${build.dir}/${war.file.name}" />
+
+<path id="build.classpath">
+        <fileset dir="${src.lib.dir}">
+                <include name="**/*.jar"/>
+        </fileset>
+        <pathelement location="${servlet-api.jar}" />
+</path>
+
+<target name="compile">
+  <mkdir dir="${build.classes}" />
+  <javac srcdir="${src.dir}" destdir="${build.classes}" classpathref="build.classpath"/>
+</target>
+
+<target name="lib" depends="compile">
+        <mkdir dir="${build.lib.dir}"/>
+<!-- don't build openid.jar; instead, use classes dir
+-->
+        <jar jarfile="${build.lib.dir}/${lib.name}">
+                <fileset dir="${build.classes}" includes="**/*">
+                        <include name="**/*"/>
+                </fileset>
+        </jar>
+        <copy todir="${build.lib.dir}" flatten="true">
+                <fileset dir="${src.lib.dir}">
+                        <include name="**/*.jar"/>
+                        <exclude name="build/**"/>
+                </fileset>
+        </copy>
+</target>
+
+<target name="clean">
+  <delete dir="${build.dir}" />
+</target>
+
+</project>

@@ -1,0 +1,79 @@
+<project name="spring-registration" basedir="." default="deploy">
+
+  <property name="debug" value="true"/>
+  <property name="dir.pkg.parent" value="../../.." />
+  <import file="${dir.pkg.parent}/build-layout.xml" as="lo"/>
+
+  <property name="pkg.name" value="spring-registration"/>
+  <property name="pkg.version" value="1.0pre"/>
+
+  <property name="target.war" value="${pkg.name}.war"/>
+  <property name="target.war.path" value="${basedir}/${target.war}"/>
+
+  <property name="pkg.parent.name" value="vaologin"/>
+  <property name="dir.pkg.parent.lib" value="${dir.pkg.parent}/lib"/>
+  <property name="dir.pkg.parent.lib.jars" value="${dir.pkg.parent.lib}/jars"/>
+  <property name="dir.src.jsp" value="${dir.src}/main/jsp"/>
+  <property name="dir.src.html" value="${dir.src}/main/html"/>
+
+  <path id="classpath.build">
+    <pathelement location="${dir.build.classes}" />
+    <fileset dir="${dir.pkg.parent.lib}">
+      <include name="${pkg.parent.name}*.jar"/>
+    </fileset>
+    <fileset dir="${dir.pkg.parent.lib.jars}">
+      <include name="*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="init" depends="lo.initOutputDirs">
+  </target>
+
+  <target name="build" depends="war"/>
+
+  <target name="assemble" depends="compile">
+    <copy todir="${dir.build}">
+      <fileset file="${dir.conf}/web.xml"/>
+      <fileset file="${dir.conf}/security-app-context.xml"/>
+      <filterchain>
+        <replacetokens>
+          <token key="basedir" value="${basedir}"/>
+        </replacetokens>
+      </filterchain>
+    </copy>
+  </target>
+
+  <target name="compile" depends="init">
+    <javac srcdir="${dir.src.java}" destdir="${dir.build.classes}" 
+           debug="${debug}" classpathref="classpath.build" deprecation="on"
+           optimize="off" source="1.6" includeantruntime="false"/>
+    <copy todir="${dir.build.classes}">
+      <fileset file="${dir.conf}/myuserdb.txt"/>
+    </copy>
+  </target>
+
+  <target name="war" depends="assemble">
+    <war destfile="${target.war.path}" webxml="${dir.build}/web.xml">
+      <webinf dir="${basedir}/WEB-INF"/>
+      <webinf file="${dir.build}/security-app-context.xml"/>
+      <lib dir="${dir.lib}"/>
+      <lib dir="${basedir}/../lib"/>
+      <lib dir="${dir.pkg.parent.lib}">
+        <include name="${pkg.parent.name}*.jar" />
+      </lib>
+      <lib dir="${dir.pkg.parent.lib.jars}">
+        <exclude name="servlet-api.jar" />
+      </lib>
+      <classes file="${dir.conf}/log4j.properties"/>
+      <classes dir="${dir.build.classes}"/>
+      <fileset dir="${dir.src.jsp}"/>
+      <fileset dir="${dir.src.html}"/>
+    </war>
+  </target>
+
+  <target name="clean" depends="lo.cleanOutputDirs"/>
+  <target name="distclean" depends="lo.distCleanOutputDirs">
+    <delete file="${target.war.path}"/>
+  </target>
+
+</project>

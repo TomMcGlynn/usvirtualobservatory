@@ -1,0 +1,8 @@
+# Edit this file for local setup changes
+
+zlib zlibmodule.c -I$(prefix)/include -L$(exec_prefix)/lib -lz
+
+SSL=$(prefix)
+_ssl _ssl.c \
+	-DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl \
+	-L$(SSL)/lib -lssl -lcrypto
