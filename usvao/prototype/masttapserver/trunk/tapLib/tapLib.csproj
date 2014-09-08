@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B571671A-BB80-4DF4-BB3D-7AF3A987AB0A}</ProjectGuid>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>tapLib</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>tapLib</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\stsci\bin\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ObsCore.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="QueryParamBNF.txt" />
+    <Content Include="Test\Config\TestNewConfig.xml" />
+    <Content Include="Test\Config\TestTableConfig.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Args\DiagArg.cs" />
+    <Compile Include="Args\ITapPosProvider.cs" />
+    <Compile Include="Args\OneQuery.cs" />
+    <Compile Include="Args\ParamQuery\ConstraintGroupList.cs" />
+    <Compile Include="Args\ParamQuery\QueryArg.cs" />
+    <Compile Include="Args\ParamQuery\WhereClauseParser.cs" />
+    <Compile Include="Args\TapFormatArg.cs" />
+    <Compile Include="Args\TapMTime.cs" />
+    <Compile Include="Args\TapOutputArg.cs" />
+    <Compile Include="Args\TapPos.cs" />
+    <Compile Include="Args\TapPosArg.cs" />
+    <Compile Include="Args\TapQueryArgs.cs" />
+    <Compile Include="Args\TapRegionArg.cs" />
+    <Compile Include="Args\TapSizeArg.cs" />
+    <Compile Include="Args\TapTopArg.cs" />
+    <Compile Include="Config\NewConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\tapconfig.cs" />
+    <Compile Include="Config\TapConfiguration.cs" />
+    <Compile Include="Config\VOTableConfig.cs" />
+    <Compile Include="Db\ConnectionTester.cs">
+    </Compile>
+    <Compile Include="Db\DbConnections.cs" />
+    <Compile Include="Db\ParamQuery\AbstractConfigRewriter.cs" />
+    <Compile Include="Db\ParamQuery\AbstractSqllQueryGenerator.cs" />
+    <Compile Include="Db\ParamQuery\DefaultSqlQueryGenerator.cs" />
+    <Compile Include="Db\ParamQuery\ISqlGenerator.cs" />
+    <Compile Include="Db\ParamQuery\ParamQueryException.cs" />
+    <Compile Include="Db\ParamQuery\SqlGeneratorFactory.cs" />
+    <Compile Include="Exec\DatabaseTableQuery.cs" />
+    <Compile Include="Exec\ITapQueryExecutorInterfaces.cs" />
+    <Compile Include="Exec\ThreadedQueryExecutor.cs" />
+    <Compile Include="ServiceSupport\ITapQLService.cs" />
+    <Compile Include="ServiceSupport\TapQLServiceImpl.cs" />
+    <Compile Include="ServiceSupport\ThreadedQueryStyle.cs" />
+    <Compile Include="Stsci\ObsCoreGenerator.cs">
+    </Compile>
+    <Compile Include="Exec\RequestHandler.cs" />
+    <Compile Include="Test\Args\ParamQuery\QueryArgTests.cs" />
+    <Compile Include="Test\Args\ParamQuery\WhereParserTests.cs" />
+    <Compile Include="Test\Args\ParamQuery\WhereParsingTests.cs" />
+    <Compile Include="Test\Args\TapFormatArgTest.cs" />
+    <Compile Include="Test\Args\TapPosArgTests.cs" />
+    <Compile Include="Test\Args\TapPosTest.cs" />
+    <Compile Include="Test\Args\TapRegionArgTests.cs" />
+    <Compile Include="Test\Args\TapSizeArgTest.cs" />
+    <Compile Include="Test\Args\TapTopArgTests.cs" />
+    <Compile Include="Test\Config\NewConfigTests.cs" />
+    <Compile Include="Test\Db\ParamQuery\DatabaseQueryGeneratorTests.cs" />
+    <Compile Include="Test\Db\ParamQuery\SqlGeneratorTests.cs" />
+    <Compile Include="Test\Exec\ThreadTest.cs" />
+    <Compile Include="Test\Service\TapQueryExecutorTests.cs" />
+    <Compile Include="Test\Stsci\StsciGeneratorTests.cs" />
+    <Compile Include="Test\Stsci\StsciSqlTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VOTable\VOTable.csproj">
+      <Project>{D7E15F34-8C42-41E9-8580-F518053C74B3}</Project>
+      <Name>VOTable</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>

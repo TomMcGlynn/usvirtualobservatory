@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<NewConfig>
+  <Databases>
+    <Database schemaName="mast..obscore" database="mast" description="" utype="no utype">
+      <Connection value="" />
+      <Tables>
+        <Table name="obscore" internalName="obscore" type="table">
+          <Description>
+  OBSCORE table describing archived spectral data
+  for IVOA Obs TAP service
+  Multimission Archive at STScI (MAST)    archive.stsci.edu
+  send questions to: archive@stsci.edu
+</Description>
+          <Utype>Table.utype</Utype>
+          <Columns>
+            <Column name="s_ra" internalName="ra_obs" std="true">
+              <Unit>deg</Unit>
+              <Indexed>true</Indexed>
+              <Description>Right Ascension (J2000)
+   valid values: Range 0 to 360 deg
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char/spatialaxis.coverage.location.coord.position2d.value2.c1</Utype>
+              <Ucd>pos.eq.ra;meta.main</Ucd>
+            </Column>
+            <Column name="s_ra_min" internalName="ramin" std="false">
+              <Unit>deg</Unit>
+              <Indexed>false</Indexed>
+              <Description>Minimum RA value for spectrograph aperture. (Note extracted region may be smaller than aperture region.)
+   valid values: Range 0 to 360 deg
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char/spatialaxis.coverage.bounds.limits.coordinterval.lolimit2vec.c1</Utype>
+            </Column>
+            <Column name="s_ra_max" internalName="ramax" std="false">
+              <Unit>deg</Unit>
+              <Indexed>false</Indexed>
+              <Description>Maximum RA value for spectrograph aperture.(Note extracted region may be smaller than aperture region.)
+   valid values: Range 0 to 360 deg
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char/spatialaxis.coverage.bounds.limits.coordinterval.hilimit2vec.c1</Utype>
+            </Column>
+            <Column name="s_dec" internalName="dec_obs" std="false">
+              <Unit>deg</Unit>
+              <Indexed>true</Indexed>
+              <Description>Declination (J2000)
+   valid values: Range: -90 to +90 deg
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char/spatialaxis.coverage.location.coord.position2d.value2.c2</Utype>
+              <Ucd>pos.eq.dec;meta.main</Ucd>
+            </Column>
+            <Column name="s_dec_min" internalName="decmin" std="false">
+              <Unit>deg</Unit>
+              <Indexed>false</Indexed>
+              <Description>Minimum Declination for spectrograph aperture. (Note extracted region may be smaller than aperture region.)
+   valid values: Range 0 to 360 deg
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char/spatialaxis.coverage.bounds.limits.coordinterval.lolimit2vec.c2</Utype>
+            </Column>
+            <Column name="s_dec_max" internalName="decmax" std="false">
+              <Unit>deg</Unit>
+              <Indexed>false</Indexed>
+              <Description>Maximum declination for spectrograph aperture. (Note extracted region may be smaller than aperture region.)
+   valid values: Range 0 to 360 deg
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char/spatialaxis.coverage.bounds.limits.coordinterval.hilimit2vec.c2</Utype>
+            </Column>
+            <Column name="Target RA &amp; Dec" internalName="coord_targ" std="false">
+              <Unit>deg</Unit>
+              <Indexed>false</Indexed>
+              <Description>RA and Dec of target
+   valid values: 275.48815009  64.34342189
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>target.pos</Utype>
+              <Ucd>pos.eq;src</Ucd>
+            </Column>
+            <Column name="Observation RA &amp; Dec" internalName="coord_obs" std="false">
+              <Unit>deg</Unit>
+              <Indexed>false</Indexed>
+              <Description>RA and Dec of observation
+   valid values: 149.21833333 41.25638889
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>char.spatialaxis.coverage.location.value</Utype>
+              <Ucd>pos.eq</Ucd>
+            </Column>
+            <Column name="access_url" internalName="url" std="false">
+              <Indexed>true</Indexed>
+              <Description>URL of spectrum file
+   valid values: http://archive.stsci.edu/pub/vospectra/stis2/o5c01o010_x1d_vo.fits
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>access.reference</Utype>
+              <Ucd>meta.ref.url</Ucd>
+            </Column>
+            <Column name="target_name" internalName="object" std="false">
+              <Indexed>false</Indexed>
+              <Description>Target name
+   valid values: Examples: HZ43, HD1999
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>target.name</Utype>
+              <Ucd>meta.id;src</Ucd>
+            </Column>
+            <Column name="Number of Points" internalName="datalen" std="false">
+              <Indexed>false</Indexed>
+              <Description>Number of data points
+   valid values: range:100 to 22500
+   </Description>
+              <Datatype>long</Datatype>
+              <Utype>dataset.length</Utype>
+              <Ucd>meta.number</Ucd>
+            </Column>
+            <Column name="t_exptime" internalName="exposure" std="false">
+              <Unit>s</Unit>
+              <Indexed>false</Indexed>
+              <Description>Exposure time in seconds
+   valid values: Example: 2431.9500
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char/timeaxis.coverage.bounds.extent</Utype>
+              <Ucd>time.duration;obs.exposure</Ucd>
+            </Column>
+            <Column name="Observation start date" internalName="date_obs" std="false">
+              <Indexed>false</Indexed>
+              <Description>Observation start date
+   valid values: Example: 1992-04-27 06:33:43
+   </Description>
+              <Datatype>char</Datatype>
+              <Ucd>time.start;obs</Ucd>
+            </Column>
+            <Column name="t_start" internalName="tstart" std="false">
+              <Unit>d</Unit>
+              <Indexed>false</Indexed>
+              <Description>Time of start of exposure in MJD
+   valid values: Example: 50321.7888 days
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char.timeaxis.coverage.bounds.limits.timeinterval.starttime</Utype>
+              <Ucd>time.start;obs.exposure</Ucd>
+            </Column>
+            <Column name="MJD Mid time" internalName="tmid" std="false">
+              <Unit>d</Unit>
+              <Indexed>false</Indexed>
+              <Description>midpoint of exposure in MJD
+   valid values: Example: 48739.2856
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char.timeaxis.coverage.location.value</Utype>
+              <Ucd>time.epoch</Ucd>
+            </Column>
+            <Column name="t_stop" internalName="tstop" std="false">
+              <Unit>d</Unit>
+              <Indexed>false</Indexed>
+              <Description>Time of end of exposure (MJD)
+   valid values: Example: 48739.3006
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char/timeaxis.coverage.bounds.limits.timeinterval.stoptime</Utype>
+              <Ucd>time.end;obs.exposure</Ucd>
+            </Column>
+            <Column name="t_resolution" internalName="t_resolution" std="false">
+              <Unit>s</Unit>
+              <Indexed>false</Indexed>
+              <Description>Time resolution (or simply the exposure time for spectra)
+   valid values: Example: 739.3006
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char/timeaxis.resolution.refval</Utype>
+            </Column>
+            <Column name="s_resolution" internalName="s_resolution" std="false">
+              <Unit>arcsec</Unit>
+              <Indexed>false</Indexed>
+              <Description>Spatial resolution (or simply aperture length for spectra)
+   valid values: Example: 20
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char/spatialaxis.resolution.refval</Utype>
+            </Column>
+            <Column name="Data Format" internalName="format" std="false">
+              <Indexed>false</Indexed>
+              <Description>Mime type of file
+   valid values: Example: spectrum/fits
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>access.format</Utype>
+              <Ucd>meta.code.mime</Ucd>
+            </Column>
+            <Column name="Ref Frame" internalName="radecsys" std="false">
+              <Indexed>false</Indexed>
+              <Description>Coordinate system reference frame
+   valid values: Example: FK5
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>coordsys.spaceframe.name</Utype>
+              <Ucd>pos.frame</Ucd>
+            </Column>
+            <Column name="Equinox" internalName="equinox" std="false">
+              <Indexed>false</Indexed>
+              <Description>Epoch
+   valid values: 2000
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>coordsys.spaceframe.equinox</Utype>
+              <Ucd>time.equinox</Ucd>
+            </Column>
+            <Column name="Preview" internalName="preview" std="false">
+              <Indexed>false</Indexed>
+              <Description>Indicates a preview is available
+   valid values: n or y
+   </Description>
+              <Datatype>char</Datatype>
+              <Ucd>meta.id.assoc</Ucd>
+            </Column>
+            <Column name="Representative" internalName="representative" std="false">
+              <Indexed>false</Indexed>
+              <Description>Indicates a scrapbook selection
+   valid values: y or null
+   </Description>
+              <Datatype>char</Datatype>
+              <Ucd>meta.code.flag</Ucd>
+            </Column>
+            <Column name="em_min" internalName="min_wavelength" std="false">
+              <Unit>meter</Unit>
+              <Indexed>true</Indexed>
+              <Description>Minimum wavelength in spectrum
+   valid values: 64 - 10082 * 1.0E-10 meters
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char/spectralaxis.coverage.bounds.limits.interval.lolim</Utype>
+              <Ucd>em.wl;stat.min</Ucd>
+            </Column>
+            <Column name="em_max" internalName="max_wavelength" std="false">
+              <Unit>meter</Unit>
+              <Indexed>true</Indexed>
+              <Description>Maximum wavelength in spectrum
+   valid values: 189 - 10645 * 1.0E-10 meters
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char.spectralaxis.coverage.bounds.limits.interval.hilim</Utype>
+              <Ucd>em.wl;stat.max</Ucd>
+            </Column>
+            <Column name="Title" internalName="title" std="false">
+              <Indexed>false</Indexed>
+              <Description>data set name and target name
+   valid values: z-cam_175_a_imcscor_ph, Z-CAM
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>dataid.title</Utype>
+              <Ucd>meta.title;meta.dataset</Ucd>
+            </Column>
+            <Column name="Time Reference Frame" internalName="timesys" std="false">
+              <Indexed>false</Indexed>
+              <Description>time reference frame
+   valid values: TT
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>coordsys.timeframe.name</Utype>
+              <Ucd>time.scale</Ucd>
+            </Column>
+            <Column name="Spectrum Reference Frame" internalName="specsys" std="false">
+              <Indexed>false</Indexed>
+              <Description>spectrum reference frame
+   valid values: TOPOCENT
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>coordsys.spectralframe.refpos</Utype>
+              <Ucd>meta.ref;spec</Ucd>
+            </Column>
+            <Column name="VO Version" internalName="vover" std="false">
+              <Indexed>false</Indexed>
+              <Description>version number
+   valid values: Currently all values set to 1.0
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>curation.version</Utype>
+              <Ucd>meta.curation;meta.version</Ucd>
+            </Column>
+            <Column name="VO date" internalName="vodate" std="false">
+              <Indexed>false</Indexed>
+              <Description>Date of VO file creation?
+   valid values: Example: 2007-02-21 00:00:00
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>curation.date</Utype>
+              <Ucd>meta.curation;time</Ucd>
+            </Column>
+            <Column name="RA Target" internalName="ra_targ" std="false">
+              <Unit>deg</Unit>
+              <Indexed>false</Indexed>
+              <Description>Target RA
+   valid values: Example: 150.5234
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>target.pos</Utype>
+              <Ucd>pos.eq.ra;src</Ucd>
+            </Column>
+            <Column name="Dec Target" internalName="dec_targ" std="false">
+              <Unit>deg</Unit>
+              <Indexed>false</Indexed>
+              <Description>Target Dec
+   valid values: Example: 55.7160
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>target.pos</Utype>
+              <Ucd>pos.eq.dec;src</Ucd>
+            </Column>
+            <Column name="Author" internalName="author" std="false">
+              <Indexed>false</Indexed>
+              <Description>Data creator
+   valid values: Example: HST project
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>dataid.creator</Utype>
+              <Ucd>obs.observer</Ucd>
+            </Column>
+            <Column name="Collection" internalName="collection" std="false">
+              <Indexed>false</Indexed>
+              <Description>Mission/instrument
+   valid values: Example: HST/FOS
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>dataid.collection</Utype>
+              <Ucd>instr.obsty;instr</Ucd>
+            </Column>
+            <Column name="obs_creator_did" internalName="ds_ident" std="false">
+              <Indexed>false</Indexed>
+              <Description>data set identifier (using format approved by ADEC)
+   valid values: Example: ads/sa.fos#Y0X10103T
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>dataid.creatordid</Utype>
+              <Ucd>meta.ref.ivorn</Ucd>
+            </Column>
+            <Column name="obs_publisher_did" internalName="cr_ident" std="false">
+              <Indexed>true</Indexed>
+              <Description>Internal data set ID
+   valid values: Example: Y0X10103T
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>dataid.publisherdid</Utype>
+              <Ucd>meta.id;meta.dataset</Ucd>
+            </Column>
+            <Column name="Date" internalName="date" std="false">
+              <Indexed>true</Indexed>
+              <Description>Original Curation Date
+   valid values: Example: 2007-02-21 00:00:00
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>dataid.date</Utype>
+              <Ucd>time.creation</Ucd>
+            </Column>
+            <Column name="Version" internalName="version" std="false">
+              <Indexed>false</Indexed>
+              <Description>Verion of VO file
+   valid values: Example: 1.0
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>dataid.version</Utype>
+              <Ucd>meta.version;meta.file</Ucd>
+            </Column>
+            <Column name="instrument" internalName="instrume" std="false">
+              <Indexed>false</Indexed>
+              <Description>Mission/Instrument
+   valid values: FOS, HUT
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>provenance/obsconfig.instrument.name</Utype>
+              <Ucd>instr.obsty</Ucd>
+            </Column>
+            <Column name="Data Source" internalName="dssource" std="false">
+              <Indexed>false</Indexed>
+              <Description>type of data source
+   valid values: pointed
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>dataid.datasource</Utype>
+              <Ucd>src.morph.param</Ucd>
+            </Column>
+            <Column name="em_domain" internalName="specband" std="false">
+              <Indexed>false</Indexed>
+              <Description>wavelength region
+   valid values: UV
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>observation.waveband</Utype>
+              <Ucd>instr.bandpass</Ucd>
+            </Column>
+            <Column name="Derived SNR" internalName="der_snr" std="false">
+              <Indexed>false</Indexed>
+              <Description>Derived signal to noise ratio
+   valid values: Example: 1.7110
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>derived.snr</Utype>
+              <Ucd>stat.snr</Ucd>
+            </Column>
+            <Column name="Mean Wavelength" internalName="spec_val" std="false">
+              <Unit>angstrom</Unit>
+              <Indexed>false</Indexed>
+              <Description>Mean wavelength
+   valid values: Example: 1372.734
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char.spectralaxis.coverage.location.value</Utype>
+              <Ucd>em.wl.central</Ucd>
+            </Column>
+            <Column name="Bandpass width" internalName="spec_bw" std="false">
+              <Unit>angstrom</Unit>
+              <Indexed>false</Indexed>
+              <Description>Wavelength range (Wmax - Wmin)
+   valid values: Example: 465.0700
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char.spectralaxis.coverage.bounds.extent</Utype>
+              <Ucd>instr.bandwidth</Ucd>
+            </Column>
+            <Column name="Spectral Fill Factor" internalName="spec_fil" std="false">
+              <Indexed>false</Indexed>
+              <Description>actual coverage divided by total bandpass
+   valid values: generally all values are 1.0
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char.spectralaxis.coverage.support.fill</Utype>
+              <Ucd>stat.filling;em.wl</Ucd>
+            </Column>
+            <Column name="em_res_power" internalName="spec_rp" std="false">
+              <Indexed>false</Indexed>
+              <Description>Resolving Power (i.e., W divided by dW)
+   valid values: Examples: 500.0, 2000.0
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char.spectralaxis.resolution.resolpower</Utype>
+              <Ucd>spec.resolution</Ucd>
+            </Column>
+            <Column name="Aperture" internalName="aperture" std="false">
+              <Indexed>false</Indexed>
+              <Description>aperture dimensions (length x width)  or just diameter
+   valid values: Examples: 0.86, 0.25x2.0
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>char.spatialaxis.coverage.bounds.extent</Utype>
+              <Ucd>instr.param</Ucd>
+            </Column>
+            <Column name="telescope_name" internalName="telescop" std="false">
+              <Indexed>false</Indexed>
+              <Description>Telescope
+   valid values: Examples: HST, ASTRO
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>provenance/obsconfig.telescope.name</Utype>
+              <Ucd>instr.tel</Ucd>
+            </Column>
+            <Column name="Mean Flux" internalName="fluxavg" std="false">
+              <Unit>erg/cm**2/s/angstrom</Unit>
+              <Indexed>false</Indexed>
+              <Description>Average Flux value
+   valid values: Example: 2.82e-15
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char.fluxaxis.coverage.location.value</Utype>
+              <Ucd>phot.flux.density;stat.mean</Ucd>
+            </Column>
+            <Column name="98% Max Flux" internalName="fluxmax2" std="false">
+              <Unit>erg/cm**2/s/angstrom</Unit>
+              <Indexed>false</Indexed>
+              <Description>98th percentile Flux value
+   valid values: Example: 2.82e-15
+   </Description>
+              <Datatype>float</Datatype>
+              <Ucd>phot.flux.density;stat.value</Ucd>
+            </Column>
+            <Column name="Min Flux" internalName="min_flux" std="false">
+              <Unit>erg/cm**2/s/angstrom</Unit>
+              <Indexed>false</Indexed>
+              <Description>Minimum Flux value
+   valid values: Example: -5.62e-14
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char.fluxaxis.coverage.bounds.start</Utype>
+              <Ucd>phot.flux.density;stat.min</Ucd>
+            </Column>
+            <Column name="Max Flux" internalName="max_flux" std="false">
+              <Unit>erg/cm**2/s/angstrom</Unit>
+              <Indexed>false</Indexed>
+              <Description>Maximum Flux value
+   valid values: Example: 2.42e-13
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char.fluxaxis.coverage.bounds.stop</Utype>
+              <Ucd>phot.flux.density;stat.max</Ucd>
+            </Column>
+            <Column name="Min Error" internalName="min_error" std="false">
+              <Unit>erg/cm**2/s/angstrom</Unit>
+              <Indexed>false</Indexed>
+              <Description>Minimum Error Value
+   valid values: Example: 0.0, 1.1e-16
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char.fluxaxis.accuracy.coverage.bounds.start</Utype>
+              <Ucd>stat.error;phot.flux.density;stat.min</Ucd>
+            </Column>
+            <Column name="Max Error" internalName="max_error" std="false">
+              <Unit>erg/cm**2/s/angstrom</Unit>
+              <Indexed>false</Indexed>
+              <Description>Maximum Error Value
+   valid values: Example: 6.05e-14
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>char.fluxaxis.accuracy.coverage.bounds.stop</Utype>
+              <Ucd>stat.error;phot.flux.density;stat.max</Ucd>
+            </Column>
+            <Column name="File Size" internalName="filesize" std="false">
+              <Unit>kilobytes</Unit>
+              <Indexed>false</Indexed>
+              <Description>Size of file in kilobytes
+   valid values: Example: 51.840
+   </Description>
+              <Datatype>float</Datatype>
+              <Utype>access.size</Utype>
+              <Ucd>phys.size;meta.file</Ucd>
+            </Column>
+            <Column name="SpectralAxisName" internalName="spectralaxisname" std="false">
+              <Indexed>false</Indexed>
+              <Description>Name of the spectral axis
+   valid values: 'WAVE'
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>char.spectralaxis.name</Utype>
+            </Column>
+            <Column name="FluxAxisName" internalName="fluxaxisname" std="false">
+              <Indexed>false</Indexed>
+              <Description>Name of flux axis
+   valid values: 'FLUX'
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>char.fluxaxis.name</Utype>
+            </Column>
+            <Column name="SpectralSI" internalName="spectralsi" std="false">
+              <Indexed>false</Indexed>
+              <Description>SI scale factor and dimensions for spectral coordinate (i.e. wavelengths)
+   valid values: '1.0E-10 L'
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>dataset.spectralsi</Utype>
+            </Column>
+            <Column name="FluxSI" internalName="fluxsi" std="false">
+              <Indexed>false</Indexed>
+              <Description>SI scale factor and dimensions for fluxes
+   valid values: '1.0E-7 ML-1T-3'
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>dataset.fluxsi</Utype>
+            </Column>
+            <Column name="Spectral Units" internalName="spectralunit" std="false">
+              <Indexed>false</Indexed>
+              <Description>units used for wavelengths
+   valid values: 'amgstrom'
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>char.spectralaxis.unit</Utype>
+            </Column>
+            <Column name="Flux Units" internalName="fluxunit" std="false">
+              <Indexed>false</Indexed>
+              <Description>units for flux values
+   valid values: 'erg/cm**2/s/angstrom' or 'count/s'
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>char.fluxaxis.unit</Utype>
+            </Column>
+            <Column name="Flux UCD" internalName="fluxucd" std="false">
+              <Indexed>false</Indexed>
+              <Description>UCD for flux values
+   valid values: arith.rate;phot.count;em.wl  phot.flux.density;em.wl
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>char.fluxaxis.ucd</Utype>
+            </Column>
+            <Column name="Flux Cal" internalName="fluxcal" std="false">
+              <Indexed>false</Indexed>
+              <Description>Defines type of calibration used for flux values
+   valid values: Absolute, Relative, or Uncalibrated
+   </Description>
+              <Datatype>char</Datatype>
+              <Utype>char.fluxaxis.calibration</Utype>
+            </Column>
+          </Columns>
+        </Table>
+      </Tables>
+    </Database>
+  </Databases>
+</NewConfig>

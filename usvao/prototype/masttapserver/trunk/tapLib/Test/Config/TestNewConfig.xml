@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<NewConfig>
+    <Databases>
+        <Database name="Database1" value="Database1Connection" >
+            <Description>Test Database1</Description>
+            <!-- name required. type required. base_table, view, or output-->
+            <!-- optional attribute UTYPE-->
+            <Tables>
+                <Table name="Database1Table1" type="view">
+                    <Description>Test Table1</Description>
+
+                    <!-- meaning of "All" is determined by this entire listing. 
+        Meaning of "std" is determined by columns with "std" attribute, set to true. Lack of
+        "std" attribute is logically the same as "false"-->
+                    <!-- optional attribute UTYPE-->
+                    <Columns>
+                        <Column name="d1t1c1" std="true">
+                            <Description>D1T1C1</Description>
+                            <!-- optional elements -->
+                            <!--<Unit>string</Unit>
+            <arraysize>string</arraysize>
+            <datatype>string</datatype>
+            <primary>bool</primary>
+            <indexed>bool</indexed>
+            -->
+                        </Column>
+                        <Column name="d1t1c2" std="true">
+                            <Description>D1T1C2</Description>
+                        </Column>
+                        <Column name="d1t1c3">
+                            <Description>D1T1C3</Description>
+                        </Column>
+                        <Column name="d1t1c4">
+                            <Description>D1T1C4</Description>
+                        </Column>
+                        <Column name="d1t1c5">
+                            <Description>D1T1C5</Description>
+                        </Column>
+                    </Columns>
+                    <PositionData>
+                        <RA Column="d1t1c1"/>
+                        <DEC Column="d1t1c2"/>
+                    </PositionData>
+                </Table>
+                <!-- Can have multiple tables. 
+      Tables are logical tables from the client perspective, and may actually be views.-->
+                <Table name="Database1Table2" type="view">
+                    <Description>Test Table2</Description>
+                    <Columns>
+                        <Column name="d1t2c1" std="true">
+                            <Description>D1T2C1</Description>
+                            <!-- optional elements -->
+                            <!--<Unit>string</Unit>
+            <arraysize>string</arraysize>
+            <datatype>string</datatype>
+            <primary>bool</primary>
+            <indexed>bool</indexed>
+            -->
+                        </Column>
+                        <Column name="d1t2c2" std="true">
+                            <Description>D1T2C2</Description>
+                        </Column>
+                        <Column name="d1t2c3">
+                            <Description>D1T2C3</Description>
+                        </Column>
+                        <Column name="d1t2c4">
+                            <Description>D1T2C4</Description>
+                        </Column>
+                        <Column name="d1t2c5">
+                            <Description>D1T2C5</Description>
+                        </Column>
+                    </Columns>
+                    <PositionData>
+                        <RA Column="d1t2c1"/>
+                        <DEC Column="d1t2c2"/>
+                    </PositionData>
+                </Table>
+            </Tables>
+        </Database>
+        <Database name="Database2" value="Database2Connection" >
+            <Description>Test Database1</Description>
+            <Tables>
+                <Table name="Database2Table1" type="view">
+                    <Columns>
+                        <Column name="d2t1c1" std="true">
+                            <Description>D2T1C1</Description>
+                        </Column>
+                        <Column name="d2t1c2" std="true">
+                            <Description>D1T1C2</Description>
+                        </Column>
+                        <Column name="d2t1c3" std="true">
+                            <Description>D1T1C3</Description>
+                        </Column>
+                        <Column name="d2t1c4">
+                            <Description>D1T1C4</Description>
+                        </Column>
+                    </Columns>
+                    <PositionData>
+                        <RA Column="d2t1c1"/>
+                        <DEC Column="d2t1c2"/>
+                    </PositionData>
+                </Table>
+            </Tables>
+        </Database>
+    </Databases>
+</NewConfig>

@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<NewConfig>
+    <Databases>
+        <Database name="VOR10DEV" value="" >
+            <!-- name required. type required. base_table, view, or output-->
+            <!-- optional attribute UTYPE-->
+            <Tables>
+                <Table name="Resource" type="table">
+                    <Description>Primary Base Table</Description>
+                    <!-- meaning of "All" is determined by this entire listing. 
+        Meaning of "std" is determined by columns with "std" attribute, set to true. Lack of
+        "std" attribute is logically the same as "false"-->
+					<Columns>
+						<Column name="pkey" std="true">
+							<Description>object ID, primary key</Description>
+							<datatype>bigint</datatype>
+							<primary>true</primary>
+							<indexed>true</indexed>
+						</Column>
+						<Column name="title" >
+							<Description>Brief Title of Resource</Description>
+							<datatype>string</datatype>
+						</Column>
+						<Column name="identifier" >
+							<Description>The IVORN of the resource</Description>
+							<datatype>string</datatype>
+						</Column>
+						<Column name="shortName" >
+							<Description>A few characters that describe the resource</Description>
+							<datatype>string</datatype>
+						</Column>
+						<Column name="description" >
+							<Description>Detailed description of resource content</Description>
+							<datatype>string</datatype>
+						</Column>			
+					</Columns>
+                 </Table>
+            </Tables>
+            <!-- Can have multiple tables. 
+      Tables are logical tables from the client perspective, and may actually be views.-->
+        </Database>
+      <Database name="GSC232" value="" >
+        <!-- name required. type required. base_table, view, or output-->
+        <!-- optional attribute UTYPE-->
+        <Tables>
+          <Table name="PhotoPrimary" type="view">
+            <Description>PhotoPrimary Table</Description>
+            <!-- meaning of "All" is determined by this entire listing. 
+        Meaning of "std" is determined by columns with "std" attribute, set to true. Lack of
+        "std" attribute is logically the same as "false"-->
+            <Columns>
+              <Column name="objID" std="true">
+                <Description>object ID, primary key</Description>
+                <datatype>bigint</datatype>
+                <primary>true</primary>
+                <indexed>true</indexed>
+              </Column>
+              <Column name="gscID2" >
+                <Description>Guide Star 2 ID of the object</Description>
+                <datatype>string</datatype>
+              </Column>
+              <Column name="gsc1ID" >
+                <Description>Guide Star 1 ID of the object</Description>
+                <datatype>string</datatype>
+              </Column>
+              <Column name="hstID" >
+                <Description>HST Operations ID of the object</Description>
+                <datatype>string</datatype>
+              </Column>
+              <Column name="ra" std="true">
+                <Description>ra column</Description>
+                <unit>degree</unit>
+                <datatype>float</datatype>
+              </Column>
+              <Column name="dec" std="true">
+                <Description>dec column</Description>
+                <unit>degree</unit>
+                <datatype>float</datatype>
+              </Column>
+              <Column name="epoch">
+                <Description>epoch of observation</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="raEpsilon">
+                <Description>Error in ra measurement</Description>
+                <datatype>real</datatype>
+                <unit>arcsec</unit>
+              </Column>
+              <Column name="decEpsilon">
+                <Description>Error in dec measurement</Description>
+                <datatype>real</datatype>
+                <unit>arcsec</unit>
+              </Column>
+              <Column name="rapm">
+                <Description>Right ascension proper motion</Description>
+                <datatype>real</datatype>
+                <unit>milli-arcsec per year</unit>
+              </Column>
+              <Column name="decpm">
+                <Description>Declination proper motion</Description>
+                <datatype>real</datatype>
+                <unit>milli-arcsec per year</unit>
+              </Column>
+              <Column name="rapmErr">
+                <Description>error in right ascension proper motion</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="decpmErr">
+                <Description>error in declination proper motion</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="deltaEpoch">
+                <Description>delta Epoch for proper motion computation</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="FpgMag">
+                <Description>Photographic F Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="FpgMagErr">
+                <Description>Error in photographic F Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="FpgMagCode">
+                <Description>bandpass code</Description>
+                <datatype>int</datatype>
+              </Column>
+              <Column name="JpgMag">
+                <Description>Photographic J Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="JpgMagErr">
+                <Description>Error in photographic J Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="JpgMagCode">
+                <Description>bandpass code</Description>
+                <datatype>int</datatype>
+              </Column>
+              <Column name="VMag">
+                <Description>V Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="VMagErr">
+                <Description>Error in V Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="VMagCode">
+                <Description>bandpass code</Description>
+                <datatype>int</datatype>
+              </Column>
+              <Column name="NMag">
+                <Description>Photographic IVN Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="NMagErr">
+                <Description>Error in Photographic IVN Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="NMagCode">
+                <Description>bandpass code</Description>
+                <datatype>int</datatype>
+              </Column>
+              <Column name="UMag">
+                <Description>U Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="UMagErr">
+                <Description>Error in U Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="UMagCode">
+                <Description>bandpass code</Description>
+                <datatype>int</datatype>
+              </Column>
+              <Column name="BMag">
+                <Description>B Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="BMagErr">
+                <Description>Error in B Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="BMagCode">
+                <Description>bandpass code</Description>
+                <datatype>int</datatype>
+              </Column>
+              <Column name="RMag">
+                <Description>R Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="RMagErr">
+                <Description>Error in R Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="RMagCode">
+                <Description>bandpass code</Description>
+                <datatype>int</datatype>
+              </Column>
+              <Column name="IMag">
+                <Description>I Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="IMagErr">
+                <Description>Error in I Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="IMagCode">
+                <Description>bandpass code</Description>
+                <datatype>int</datatype>
+              </Column>
+              <Column name="JMag">
+                <Description>J (IR) Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="JMagErr">
+                <Description>Error in J Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="JMagCode">
+                <Description>bandpass code</Description>
+                <datatype>int</datatype>
+              </Column>
+              <Column name="HMag">
+                <Description>H Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="HMagErr">
+                <Description>Error in H Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="HMagCode">
+                <Description>bandpass code</Description>
+                <datatype>int</datatype>
+              </Column>
+              <Column name="KMag">
+                <Description>K Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="KMagErr">
+                <Description>Error in K Magnitude</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="KMagCode">
+                <Description>bandpass code</Description>
+                <datatype>int</datatype>
+              </Column>
+              <Column name="class">
+                <Description>classification 0 = star 3 = non-star</Description>
+                <datatype>int</datatype>
+              </Column>
+              <Column name="semiMajorAxis">
+                <Description>semi major axis</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="eccentricity">
+                <Description>eccentricity</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="positionangle">
+                <Description>position angle</Description>
+                <datatype>real</datatype>
+              </Column>
+              <Column name="sourceStatus">
+                <Description>processing status see documentation for key</Description>
+                <datatype>bigint</datatype>
+              </Column>
+              <!--<Column name="variableFlag">
+                      <Description>variable flag - not currently set</Description>
+                      <datatype>int</datatype>
+                    </Column>
+                    <Column name="multipleFlag">
+                      <Description>multiple flag - not currently set</Description>
+                      <datatype>int</datatype>
+                    </Column>
+                    <Column name="HTMID">
+                      <Description>unique HTM ID</Description>
+                      <datatype>bigint</datatype>
+                    </Column>
+                    <Column name="cx">
+                      <Description>Cartesian coordinate x</Description>
+                      <datatype>float</datatype>
+                    </Column>
+                    <Column name="cy">
+                      <Description>Cartesian coordinate y</Description>
+                      <datatype>float</datatype>
+                    </Column>
+                    <Column name="cz">
+                      <Description>Cartesian coordinate z</Description>
+                      <datatype>float</datatype>
+                    </Column>-->
+              <Column name="gLat">
+                <Description>Galactic Latitude</Description>
+                <datatype>float</datatype>
+              </Column>
+              <Column name="gLon">
+                <Description>Galactic Longitude</Description>
+                <datatype>float</datatype>
+              </Column>
+              <PositionData>
+                <RA Column="ra"/>
+                <DEC Column="dec"/>
+              </PositionData>
+            </Columns>
+          </Table>
+        </Tables>
+        <!-- Can have multiple tables. 
+      Tables are logical tables from the client perspective, and may actually be views.-->
+      </Database>
+        <Database name="HLATest" value="" >
+            <!-- name required. type required. base_table, view, or output-->
+            <!-- optional attribute UTYPE-->
+            <Tables>
+                <Table name="hlascience" type="table">
+                    <Description>Main HLA Science Table</Description>
+
+                    <!-- meaning of "All" is determined by this entire listing. 
+        Meaning of "std" is determined by columns with "std" attribute, set to true. Lack of
+        "std" attribute is logically the same as "false"-->
+                    <!-- optional attribute UTYPE-->
+                  <Columns>
+                    <Column name="objid" std="true">
+                      <Description>ObjID</Description>
+                      <datatype>bigint</datatype>
+                      <primary>true</primary>
+                      <indexed>true</indexed>
+                    </Column>
+                    <Column name="ra" std="true">
+                      <Description>ra column</Description>
+                      <unit>degree</unit>
+                      <datatype>float</datatype>
+                    </Column>
+                    <Column name="dec" std="true">
+                      <Description>dec column</Description>
+                      <datatype>float</datatype>
+                      <unit>degree</unit>
+                    </Column>
+                    <Column name="level">
+                      <Description>Processing level: 1=exposure 2=combined 4=color</Description>
+                      <datatype>int</datatype>
+                    </Column>
+                    <Column name="targetname">
+                      <Description>Target Name</Description>
+                      <datatype>string</datatype>
+                    </Column>
+                    <Column name="detector">
+                      <Description>Detector</Description>
+                      <datatype>string</datatype>
+                    </Column>
+                    <Column name="aperture">
+                      <Description>Instrument aperture or slit</Description>
+                      <datatype>string</datatype>
+                    </Column>
+                    <Column name="numexposures">
+                      <Description>Number of exposures combined in this image</Description>
+                      <datatype>int</datatype>
+                    </Column>
+                    <Column name="exposuretime">
+                      <Description>Total exposure time</Description>
+                      <datatype>float</datatype>
+                      <unit>seconds</unit>
+                    </Column>
+                    <Column name="starttime">
+                      <Description>start time of first exposure</Description>
+                      <datatype>string (datetime)</datatype>
+                    </Column>
+                    <Column name="stoptime">
+                      <Description>stop time of first exposure</Description>
+                      <datatype>string (datetime)</datatype>
+                    </Column>
+                    <Column name="datasetname">
+                      <Description>data set name: HST_propid_visit_detector_spectralelt_exposure</Description>
+                      <datatype>string</datatype>
+                    </Column>
+                    <Column name="prop_id">
+                      <Description>HST proposal number</Description>
+                      <datatype>int</datatype>
+                    </Column>
+                    <!--visit number???-->
+                    <Column name="pi_last_name">
+                      <Description>Last Name of PI</Description>
+                      <datatype>string</datatype>
+                    </Column>
+                    <Column name="mode">
+                      <Description>data collection mode</Description>
+                      <datatype>string</datatype>
+                    </Column>
+                    <Column name="dbcreationdate">
+                      <Description>date when this dataset was added to the database</Description>
+                      <datatype>string (datetime)</datatype>                   
+                    </Column>
+                    <Column name="wavelength">
+                      <Description>Characteristic wavelength for bandpass</Description>
+                      <datatype>float</datatype>
+                      <unit>0.1nm</unit>
+                    </Column>
+                    <Column name="instrument">
+                      <Description>Instrument Name</Description>
+                      <datatype>string</datatype>
+                    </Column>
+                    <!--format, title, naxis, scale, naxes, crpix, crval, cd_matric, filename-->
+                    
+                    <PositionData>
+                      <RA Column="ra"/>
+                      <DEC Column="dec"/>
+                    </PositionData>
+                  </Columns>
+                </Table>
+            </Tables>
+            <!-- Can have multiple tables. 
+      Tables are logical tables from the client perspective, and may actually be views.-->
+        </Database>
+    </Databases >
+</NewConfig>

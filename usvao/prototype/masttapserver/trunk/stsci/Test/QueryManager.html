@@ -1,0 +1,177 @@
+﻿<html>
+<head>
+    <title>Test Post for TAP Query</title>
+
+</head>
+
+<body>
+    <h1>ObsTAP Query Management</h1>
+    <center><table width="85%"><tr><td>
+    <div>
+    
+        <p>The STScI reference implementation Obs/TAP service provides observational data about spectra from all <a href="http://archive.stsci.edu" target="new">MAST</a>
+        missions at Space Telescope. 
+        </p>
+    
+        <p> This page contains simple web forms that can manage synchronous and asynchronous ADQL and PQL queries
+            to that Obs/TAP service, which will return the results of a basic table query in a VOTable. 
+            The following links may help to explain the basic query language and systems at work.</p>
+            <ul>
+                <li><a href="http://www.ivoa.net/Documents/TAP/" target="new">TAP</a> - Table Access Protocol. This is the underlying standard
+                behind ObsTAP, or Observation Data Model / TAP, services. All queries built using the forms on this page are formatted for TAP.
+                The standard provides a basic query mechanism, a mechanism for schema-related configuration queries, and VOSI support.</li>
+                <li>ObsTAP - Observation Data Model / Tap services. This is a type of service using the TAP protocol to expose a database table
+                using the Observation Data Model (in progress). This defines the columns available, whether they are returned by default,
+                and whether they are mandatory. It also defines the only valid non-schema table to query as ivoa.obscore.</li>
+                <li><a href="http://www.ivoa.net/Documents/VOSI/20100311/" target="new">VOSI</a> - Virtual Observatory Standard Interface.
+                This defines a protocol for discovering basic uptime, capability, descriptive, and schema-related information about a service.
+                We have implemented the REST version as explained in the VOSI 1.0 documentation.</li>
+                <li><a href="http://www.ivoa.net/Documents/latest/ADQL.html" target="new">ADQL</a> - Astronomical Data Query Language. 
+                This can be used for SQL-like string queries to the service</li>
+                <li><a href="http://www.ivoa.net/internal/IVOA/TableAccess/PQL-0.2-20090520.pdf" target="new">PQL</a> - Parameterized Query Language.
+                This can be used for listed parameter queries to the service in a similar manner to other DAL (SIA, SSA, and ConeSearch) services.
+                We have implemented the version 0.2 working draft.</li>
+                <li><a href="http://www.ivoa.net/Documents/latest/UWS-REST.html" target="new">UWS</a> - Universal Worker Service for asynchronous
+                web service communication. We have implemented this using REST protocols as explained in an IVOA note.</li>
+            </ul>
+    </div><br /><hr />
+    <h2>VOSI Queries - Availability, Capabilities, and Schema</h2>
+    <p>VOSI gives us the ability to query metadata about the service itself. Any of the following buttons will issue
+    a VOSI query about the service which can be used to determine whether the underlying service and its database are
+    available, and to plan your query itself.</p>
+    <form method="get" name="VOSIOptions" action="">
+            <input type="button" value="Get Availability" onclick="window.location.href='http://dower.stsci.edu/tapv1/vosi/availability.aspx'" />
+            <input type="button" value="Get Capabilities" onclick="window.location.href='http://dower.stsci.edu/tapv1/vosi/capabilities.aspx'" />
+            <input type="button" value="Get Tables" onclick="window.location.href='http://dower.stsci.edu/tapv1/vosi/tables.aspx'" />
+    </form>    
+    <div><br /><hr /></div>
+     
+    <div>    
+        <h2>Synchronous Query</h2>
+        
+        <p>Synchronous queries are run immediately on the server. There is not yet any hard maximum limit on the amount of data returned,
+        and there is a great deal of data. It is suggested that you use "top n" in the select statement of your ADQL query itself. 
+        When submitting your query, you will be redirected to your VOTable-encoded result set or error page. (<font color="red">todo: test maxrec</font>)</p>
+                
+        <form method="post" name="syncForm" action="http://dower.stsci.edu/tapv1/TapService.aspx/sync">
+            <input type="hidden" name="REQUEST" id="REQUEST" value="doQuery" />
+            <input type="hidden" name="LANG" id="LANG" value="ADQL" />
+
+            Enter Synchronous ADQL Query:
+            <input name="QUERY" id="QUERY" size="100" maxlength="500" value="select top 10 * from obscore" type="text"/>
+            <input type="submit" name=".submit" value="Submit" />
+        </form>       
+        <h3>-OR-</h3>
+        <form method="post" name="syncPQLForm" action="http://dower.stsci.edu/tapv1/TapService.aspx/sync">
+            <input type="hidden" name="REQUEST" id="Hidden3" value="doQuery" />
+            <input type="hidden" name="LANG" id="Hidden4" value="PQL" />
+
+            Enter Synchronous PQL Query:<br />
+            SELECT <input name="SELECT" size="100" maxlength="500" value="$STD" type="text"  title="select"/>
+            <br />FROM <input name="FROM" size="100" maxlength="500" value="ivoa.obscore" type="text"  title="from"/>
+            <br />WHERE <input name="WHERE" size="100" maxlength="500" value="" type="text"  title="where"/>
+            <br />POS <input name="POS" size="100" maxlength="500" value="" type="text"  title="pos"/>
+            <br />SIZE <input name="SIZE" size="100" maxlength="500" value="" type="text"  title="size"/>
+            <br />REGION <input name="REGION" size="100" maxlength="500" value="" type="text"  title="region"/>
+            <br />MAXREC <input name="MAXREC" size="30" maxlength="30" value="50" type="text"  title="maxrec"/>
+            <input type="submit" name=".submit" value="Submit" />
+        </form>
+        
+        <p>Synchronous queries can also be made using PQL to get VOSI-like table configuration data.</p>
+        <input type="button" value="Submit Synchronous PQL Table Only Config Query" onclick="window.location.href='http://dower.stsci.edu/tapv1/tapservice.aspx/sync?request=doquery&lang=pql&from=$TAP_SCHEMA.tables'" />
+        <input type="button" value="Submit Synchronous PQL Table/Column Config Query" onclick="window.location.href='http://dower.stsci.edu/tapv1/tapservice.aspx/sync?request=doquery&lang=pql&from=$TAP_SCHEMA.columns'" /><br />
+
+    </div><br /><hr />
+    <div>
+
+        <h2>Asynchronous Query (using the Universal Worker Service)</h2>
+        
+        <p>Asynchronous queries are managed using the UWS protocol, which allows queries with much larger result sets
+        to be efficiently managed by the service. In short, they are set up by the client, potentially negotiated with 
+        regards to the amount of time they are allowed to run or be stored on the server, then run by the client. The client
+        then polls the server to discover when the query has run and where potential error or completed result sets are stored.
+        </p>
+        
+        <p>This is all managed via a 'job ID'. To run a UWS query, first enter your ADQL- or PQL-based query. Given the RESTful
+        nature of UWS as implemented, you will be forwarded to a status page with a job number. Copy down this job
+        number - you will use it for the rest of the lifetime of your query. You can also query the UWS engine for a list of 
+        currently existent jobs.</p>
+        
+        <form method="post" name="asyncForm" action="http://dower.stsci.edu/tapv1/TapService.aspx/async">
+            <input type="hidden" name="REQUEST" id="Hidden1" value="doQuery" />
+            <input type="hidden" name="LANG" id="Hidden2" value="ADQL" />
+
+            Enter Asynchronous ADQL Query:
+            <input name="QUERY" id="Text1" size="100" maxlength="500" value="select top 10 * from ivoa.obscore" type="text"/>
+            <input type="submit" name=".submit" value="Submit" />
+        </form>
+        <h3>-OR-</h3>
+        <form method="post" name="asyncPQLForm" action="http://dower.stsci.edu/tapv1/TapService.aspx/async">
+            <input type="hidden" name="REQUEST" id="Hidden5" value="doQuery" />
+            <input type="hidden" name="LANG" id="Hidden6" value="PQL" />
+
+            Enter Asynchronous PQL Query:<br />
+            SELECT <input name="SELECT" size="100" maxlength="500" value="$STD" type="text"  title="select"/>
+            <br />FROM <input name="FROM" size="100" maxlength="500" value="ivoa.obscore" type="text"  title="from"/>
+            <br />WHERE <input name="WHERE" size="100" maxlength="500" value="" type="text"  title="where"/>
+            <br />POS <input name="POS" size="100" maxlength="500" value="" type="text"  title="pos"/>
+            <br />SIZE <input name="SIZE" size="100" maxlength="500" value="" type="text"  title="size"/>
+            <br />REGION <input name="REGION" size="100" maxlength="500" value="" type="text"  title="region"/>
+            <br />MAXREC <input name="MAXREC" size="30" maxlength="30" value="50" type="text"  title="maxrec"/>
+            <input type="submit" name=".submit" value="Submit" />
+        </form>
+        <form method="get" name="jobsummary" action="">
+            <input type="button" value="List Job Summary" onclick="window.location.href='http://dower.stsci.edu/tapv1/TapService.aspx/async/jobs'"/>
+        </form>
+        <br />
+        <h3>Asynchronous Query Management</h3>
+
+        <p>Once you have a job number, you can come back to this page with the browser 'back' button' after any step of the UWS
+        query process. Here, you can enter your job number
+        in the form below to renegotiate the deletion time of your results (if you expect it to take a long time to run, or will
+        be personally unable to check up on your results before they would be automatically deleted), to trigger the job to be run,
+        to poll your job for another status page giving the URL of its result set or error documentation,
+        and to delete your job when it is finished. Job deletion will bring you back to the job summary page.</p>
+ 
+         <form method="post" name="runasyncform" action="">
+            Enter job number to run: 
+            <input type="text" id="posturl" name="posturl" value="" size="100" maxlength="500" />
+            <input type="hidden" id="phase" name="phase" value="run" />
+            <input type="submit" name=".submit" value="Submit" onclick="document.runasyncform.action = 'http://dower.stsci.edu/tapv1/TapService.aspx/async/' + document.runasyncform.posturl.value"/>
+         </form><br />
+         <form method="post" name="pollasyncform" action="">
+            Enter job number to poll: <input type="text" id="Text4" name="posturl" value="" size="100" maxlength="500" />
+            <input type="submit" name=".submit" value="Submit" onclick="document.pollasyncform.action = 'http://dower.stsci.edu/tapv1/TapService.aspx/async/' + document.pollasyncform.posturl.value"/>
+         </form><br />
+         <form method="post" name="delayasyncform" action="">
+            Enter job number to delay destruction: <input type="text" id="Text3" name="posturl" value="" size="100" maxlength="500" /><br />
+            Enter New Destruction DateTime (format GMT, yyyy-mm-ddThh:mm:ss): <input type="text" id="destruction" name="destruction" value="" size="40" />
+            <input type="submit" name=".submit" value="Submit" onclick="document.delayasyncform.action = 'http://dower.stsci.edu/tapv1/TapService.aspx/async/' + document.delayasyncform.posturl.value"/>
+         </form><br />
+         <form method="post" name="resultsasyncform" action="">
+            Enter job number to view results or errors (if they exist): <input type="text" id="Text2" name="posturl" value="" size="100" maxlength="500" />
+            <input type="submit" name=".submit" value="Submit" onclick="document.resultsasyncform.action = 'http://dower.stsci.edu/tapv1/TapService.aspx/async/' + document.resultsasyncform.posturl.value + '/results/result'"/>
+         </form><br />
+         <form method="post" name="delasyncform" action="">
+            Enter job number to delete: 
+            <input type="text" id="delete" name="posturl" value="" size="100" maxlength="500" />
+            <input type="hidden" id="action" name="action" value="delete" />
+            <input type="submit" name=".submit" value="Submit" onclick="document.delasyncform.action = 'http://dower.stsci.edu/tapv1/TapService.aspx/async/' + document.delasyncform.posturl.value"/>
+         </form>
+
+        <!--<hr />
+
+        <h2>Asynchronous Query with UWS - CADC</h2>
+        <form method="post" name="cadcForm" action="http://www.cadc.hia.nrc.gc.ca/cadcSampleUWS/async">
+            <input type="hidden" name="REQUEST" id="Hidden3" value="doQuery" />
+            <input type="hidden" name="LANG" id="Hidden4" value="ADQL" />
+
+            Enter CADC UWS Query:
+            <input name="QUERY" id="Text2" size="100" maxlength="500" value="select top 10 * from ivoa.obscore" type="text"/>
+            <input type="submit" name=".submit" value="Submit" />
+        </form>-->
+
+    </div>
+    </td></tr></table></center>
+</body>
+</html>

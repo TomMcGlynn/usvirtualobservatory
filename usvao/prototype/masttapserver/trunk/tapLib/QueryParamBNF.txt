@@ -1,0 +1,33 @@
+﻿# This is a QueryParam BNF as specified in 0.2 of Table Access Protocol
+# K. Gillies, 17 July 2008
+# Comments:
+# V1 : doesn't include table resolution stuff
+#
+paramquery ::= query ,[ otherstuff ] ;
+
+query ::= 'FROM' tabledescription [ 'SELECT' fieldsdescription ] [ 'WHERE' wheredescription ] ;
+
+tabledescription ::= catalogtable | schematable ;
+
+catalogtable ::= catalog_name , [ table_name ] ;
+catalog_name ::= textname ;
+
+schematable ::= schema_name , [ table_name ] ;
+schema_name ::= "$VOSPACE" | "$UPLOAD" | "$TAP_SCHEMA" ;
+
+table_name ::= textname ;
+
+fieldsdescription ::= "$STD" | "$ALL" | fields ;
+# Must have one field name or many -- each separated by a ,
+fields ::= fieldname , {',', fieldname} ; 
+fieldname ::= fieldnamespace, ':' , punt on this for now
+
+wheredescription ::= constraint , [ ';' constraint ] ;
+constraint ::= [ '!' ] , fieldname , [ ',' rangedescription ] ;
+rangedescription ::= [ textrange [ ',' textrange ] | numericrange ] ;
+textrange ::= { '*' | chars } ;
+numericrange ::= numeric , [ '/' numeric ] ;
+
+
+numeric ::= ? digits ?
+textname ::= ? whatever ?

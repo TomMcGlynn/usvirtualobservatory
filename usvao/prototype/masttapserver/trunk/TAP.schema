@@ -1,0 +1,122 @@
+Minimal TAP Schema
+-------------------
+
+Our use cases for TAP include queries against a relational database as
+well as queries against a VOTable, for example the query response from
+a DAL service.  We want to be able to able to generate Table-related
+metadata for the registry in a standard form, as has been proposed for
+a VODataService.  Hence our information schema needs to merge aspects
+of the table views of VOTable, VODataService, and a conventional RDBMS.
+
+The following follows the concept and approach of the information
+schema but the content is based primarily on a merger of the VOTable
+and VODataService metadata, with a little information schema thrown in
+as well.  All of the following are tables and are potentially queryable.
+It is assumed here that a TAP service accesses a single database
+containing an arbitrary number of tables.  Generalization to multiple
+databases per service would be easy to add but is not addressed here.
+
+
+    TABLES		Lists all tables in DB (Mandatory)
+
+	Id		Unique Table ID
+	Name		Table name				(Required)
+	Type		Table type (base, view)			(Required)
+	Role		How table is used, e.g., "out"
+	Ucd		Can a table actually have a UCD?
+	Utype		UTYPE can apply to a table
+	Description	Short one line table description
+
+
+    COLUMNS		List all columns in DB (Mandatory)
+
+	Id		Unique Column ID
+	TableName	Table to which column belongs		(Required)
+	Name		Column name				(Required)
+	Datatype	Datatype (as in VOTable + "string")	(Required)
+	Arraysize	Arraysize (as in VOTable)
+	ColumnType	Column type (as in VOTable Field, Param)
+	Std		Standard column (boolean)
+	Value		Value if ColumnType=Param (fixed value)
+	Ucd		UCD for column
+	Utype		UTYPE for column
+	Unit		UNIT for column
+	Description	Brief one-line description of column
+
+
+    GROUPS		Lists all column groups in DB (Optional)
+
+	Id		Unique Group ID
+	TableName	Table to which group belongs		(Required)
+	Name		Group name				(Required)
+	Ref		Column or group ID			(Required)
+	RefType		Reference type (column or group)	(Required)
+	Utype		UTYPE for group
+
+
+It is not clear whether we really need the GROUPS table at the level
+of TAP and ADQL, but I included it to help evaluate how Group might
+be handled with a relational interface.  The question is whether we
+need to be able to deal with Group at this level, or whether it can be
+reserved to software which operates directly upon a VOTable (see also
+[4] below).  The optional nature of GROUP illustrates the extensibility
+of the information schema approach.
+
+
+Notes
+
+    1.	TABLES describes both baseTables and views.  The role could
+	be used with views to identify standard views of astronomical
+	catalogs, if defined by the service, e.g. like VERB in cone search
+	(perhaps "narrow" and "wide" where wide may be less than the full
+	table and the base table is the full table, for 3 options total).
+
+    2.	COLUMNS describes both real table columns (as in a DBMS or
+	with VOTable FIELD) and optionally, fixed properties of a table
+	(like VOTable PARAM).
+
+    3.	GROUPS is for representing the VOTable GROUP construct.  This is
+	not used for DBMS tables and is not needed to understand most
+	VOTables as the UTYPE will usually (but not always) identify the
+	elements of a GROUP.  (This may be needed if we want to process
+	VOTables, e.g., from a DAL query response, via a relational
+	interface like TAP/ADQL).
+
+    4.	The GROUPS table is not fully normalized (there are multiple
+	records with the same ID, Name, etc. with Ref and RefType
+	varying), however this simplfied form is probably adequate for
+	our purposes and does not require a join to use (a SimpleQuery
+	would be adequate for access).
+
+	If we were willing to have a restriction that a given
+	field/param/group can only belong to one parent group, then this
+	could be done more cleanly by adding a GroupId field to Columns,
+	with Group described by a single record in Groups.  This would
+	still permit hierarchically structured Group relationships.
+
+	In a typical use of Group we would want to identify all the items
+	belonging to a Group with a given Utype.  This would be done by
+	querying the GROUP table with a given TableName and Utype.  This
+	would list the items of zero, one or more groups, each identified
+	by a unique Group ID.  The Ref/RefType fields identify the members
+	of the group.  If one of these is another Group, the reference is
+	recursive.
+
+    5.	If a generic DBMS is exposed, most of the VOTable-like metadata
+	(Ucd, Utype, GROUPS, etc.) would be omitted or nil valued.
+	The minimum metdata should be directly computable from the
+	DBMS information schema (or other system tables), with only
+	minor conversions in the service code.	In other words it is
+	not necessary to create or modify DBMS tables for the minimal
+	required metadata.
+
+    6.  The Registry view of a table is directly computable by subsetting
+    	the information specified here.
+
+    7.	The concept of multiple databases per service may be needed
+	for some DBMSes.  It could also be useful in TAP to represent
+	a VOSpace logically as a named database, or to represent a HTTP
+	POST containing uploaded table data as a named database (useful
+	in queries).  The information schema itself could be considered
+	a database (in RDB terms a catalog or schema).
+

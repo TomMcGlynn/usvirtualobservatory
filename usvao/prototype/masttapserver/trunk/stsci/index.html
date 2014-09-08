@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+	<title>STScI ObsDM TAP Query Service</title>
+	<link rel="stylesheet" type="text/css" href="./css/voview.css"/>
+	<script type="text/javascript" src="./javascript/cookie.js"></script>
+	<script type="text/javascript" src="./javascript/sarissa.js"></script>
+	<script type="text/javascript" src="./javascript/statemanager.js"></script>
+	<script type="text/javascript" src="./javascript/query.js"></script>
+	<script type="text/javascript" src="./javascript/filter.js"></script>
+	<script type="text/javascript" src="./javascript/fsm.js"></script>
+	<script type="text/javascript" src="./javascript/tablednd.js"></script>
+	<script type="text/javascript" src="./javascript/voview.js"></script>
+
+	<script type="text/javascript">
+//		test_format = function(cell){
+//			cell.innerHTML = cell.innerHTML + "_blah";
+//		};
+//	
+		window.onload = function() {
+			var output = document.getElementById("output");
+			rd = voview({
+				output: output,
+				form: "searchForm",
+				searchparam: "query_string",
+				xsltdir: "./xsl/"
+            //, updateCallback: vo_ready
+			});
+
+//			rd.displayPrefixColumn(true);
+//			rd.displaySelectColumn(true);
+//			rd.columnFormat("unique_id", test_format);
+//			rd.columnFormat(/DEC/i, test_format);
+			//			$('#examples').hide();
+		};
+	</script>
+	
+	<script type="text/javascript">
+	    function checkAll(field) {
+	        for (i = 0; i < field.length; i++)
+	            field[i].checked = true;
+	    }
+
+	    function uncheckAll(field) {
+	        for (i = 0; i < field.length; i++)
+	            field[i].checked = false;
+	    }
+	    function show(id) {
+	        document.getElementById(id).style.display = "block";
+	    }
+
+	    function hide(id) {
+	        document.getElementById(id).style.display = "none";
+	    }
+    </script>
+
+</head>
+<body>
+
+<h1>Observation Data Model TAP Query Service</h1>
+	
+<form method="get" name="searchForm" onsubmit="return rd.setView();" action="">
+<div id="stringsearch" style="display:block">
+    Enter ADQL Query:
+    <input name="query_string" id="sterm" size="100" maxlength="500" value="" type="text"/>(<a class="options" onclick="show('formsearch');hide('stringsearch')">Use Form Search</a>)
+	<div class="searchnote compact">
+		table for search is ivoa.obscore
+	</div></div>
+	<div id="formsearch" style="display: none" >
+	(<a onclick="show('stringsearch');hide('formsearch')" class="options">Use String Search</a>)<br /><br />
+	
+	Select: <input type="button" name="CheckAll" value="Check All"
+onclick="checkAll(document.searchForm.select_column)" class="bbox">
+<input type="button" name="UnCheckAll" value="Uncheck All"
+onclick="uncheckAll(document.searchForm.select_column)" class="bbox">
+    <table width="80%">
+    <tr><td>
+    <input type="checkbox" name="select_column" value="s_ra" />s_ra</input><br/>		
+    <input type="checkbox" name="select_column" value="s_ra_min" />s_ra_min</input><br/>		
+    <input type="checkbox" name="select_column" value="s_ra_max" />s_ra_max</input><br/>		
+    <input type="checkbox" name="select_column" value="s_dec" />s_dec</input><br/>		
+    <input type="checkbox" name="select_column" value="s_dec_min" />s_dec_min</input><br/>
+    <input type="checkbox" name="select_column" value="s_dec_max" />s_dec_max</input><br/>	
+    </td><td>	
+    <input type="checkbox" name="select_column" value="access_url" />access_url</input><br/>		
+    <input type="checkbox" name="select_column" value="target_name" />target_name</input><br/>		
+    <input type="checkbox" name="select_column" value="t_exptime" />t_exptime</input><br/>		
+    <input type="checkbox" name="select_column" value="t_start" />t_start</input><br/>		
+    <input type="checkbox" name="select_column" value="t_stop" />t_stop</input><br/>		
+    <input type="checkbox" name="select_column" value="t_resolution" />t_resolution</input><br/>		
+    </td><td>
+    <input type="checkbox" name="select_column" value="s_resolution" />s_resolution</input><br/>		
+    <input type="checkbox" name="select_column" value="em_min" />em_min</input><br/>		
+    <input type="checkbox" name="select_column" value="em_max" />em_max</input><br/>		
+    <input type="checkbox" name="select_column" value="obs_creator_did" />obs_creator_did</input><br/>		
+    <input type="checkbox" name="select_column" value="obs_publisher_did" />obs_publisher_did</input><br/>		
+    <input type="checkbox" name="select_column" value="instrument" />instrument</input><br/>	
+    </td><td>
+    <input type="checkbox" name="select_column" value="em_domain" />em_domain</input><br/>		
+    <input type="checkbox" name="select_column" value="em_res_power" />em_res_power</input><br/>		
+    <input type="checkbox" name="select_column" value="o_ucd" />o_ucd</input><br/>		
+    <input type="checkbox" name="select_column" value="calib_level" />calib_level</input><br/>		
+    <input type="checkbox" name="select_column" value="dataproduct_type" />dataproduct_type</input><br/>		
+    <input type="checkbox" name="select_column" value="t_span" />t_span</input><br/>			
+    </td></tr></table>
+    <br /><br />
+</div>
+<input type="submit" class="submit" name=".submit" value="Search" /><input type="reset" class="reset" name=".reset" value="Reset" onclick="return rd.clearState();" />
+</form>
+
+
+<br /><br />
+<div id="output">
+Results will appear here.
+</div>
+
+</body></html>
