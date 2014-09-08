@@ -1,0 +1,5 @@
+cat \
+Constants.js \
+HealpixIndex.js \
+Json.js \
+> Healpix.js

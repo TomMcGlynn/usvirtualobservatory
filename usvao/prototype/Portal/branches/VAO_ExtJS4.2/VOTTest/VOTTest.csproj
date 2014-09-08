@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DE0BE1F1-34F4-4FCC-9546-E73EBD4DC3B1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>VOTTest</RootNamespace>
+    <AssemblyName>VOTTest</AssemblyName>
+    <StartupObject>VOTTest.VOTTest</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>True</Externalconsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AsyncWebTest.cs" />
+    <Compile Include="VOTTest.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\VAOPD-784\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VOTLib\VOTLib.csproj">
+      <Project>{4E3C1001-3AB5-4659-BDCE-13ED677D79FD}</Project>
+      <Name>VOTLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\log4net\log4net.csproj">
+      <Project>{FA2E72F6-D583-4B7D-A934-8553A54D7021}</Project>
+      <Name>log4net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{BEC86334-6BA5-4594-838B-C77A4FDB7FB3}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JsonFx.Json\JsonFx.Json.csproj">
+      <Project>{ABA23F14-7E47-43FE-A3E7-1FF97840C3FB}</Project>
+      <Name>JsonFx.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Collections\Collections.csproj">
+      <Project>{FD71C7F5-D3E7-491D-9916-27A7D8E73544}</Project>
+      <Name>Collections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mashup\Mashup.csproj">
+      <Project>{B0C99A3F-AB09-4984-B1C7-F95E8D169F31}</Project>
+      <Name>Mashup</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\simple.xml" />
+    <None Include="Resources\GalexSiapVotable.xml" />
+    <None Include="Resources\CaomConeVotable.xml" />
+    <None Include="Resources\GalexConeVotable.xml" />
+    <None Include="Resources\DataScopeTest.xml" />
+    <None Include="Resources\HEASARCChandra.xml" />
+    <None Include="Resources\2MASS_QL.29.xml" />
+    <None Include="Resources\CADC_CFHT.91.xml" />
+    <None Include="Resources\CADC_HST.90.xml" />
+    <None Include="Resources\ISSA.30.xml" />
+    <None Include="Resources\vizier_cs-7.xml" />
+    <None Include="Resources\HST_STIS_Spectra.9738.xml" />
+    <None Include="Resources\IUE.9748.xml" />
+    <None Include="app.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\VAOPD-784\input\3c066a.xml" />
+    <None Include="Resources\VAOPD-784\input\asdc-small.xml" />
+    <None Include="Resources\VAOPD-784\input\asdc.xml" />
+    <None Include="Resources\VAOPD-784\input\CSC-SCS.xml" />
+    <None Include="Resources\VAOPD-784\input\CXC-SIAP.xml" />
+    <None Include="Resources\VAOPD-784\input\IRAM-precision-test.xml" />
+    <None Include="Resources\VAOPD-784\input\m101-caom-0.xml" />
+    <None Include="Resources\VAOPD-784\input\m101-dss.xml" />
+    <None Include="Resources\VAOPD-784\input\m101-galex.xml" />
+    <None Include="Resources\VAOPD-784\input\m101-hla.xml" />
+    <None Include="Resources\VAOPD-784\input\SDSS-null-large.xml" />
+    <None Include="Resources\VAOPD-784\input\V_139__sdss9_.9660.xml" />
+    <None Include="Resources\VAOPD-784\input\vizier_votable.xml" />
+    <None Include="Resources\VAOPD-784\outArray\ZZ_Placeholder" />
+    <None Include="Resources\VAOPD-784\outLog\ZZ_Placeholder" />
+    <None Include="Resources\VAOPD-784\outDs2Json\ZZ_Placeholder" />
+    <None Include="Resources\VAOPD-784\outDs2Vot\ZZ_Placeholder" />
+    <None Include="Resources\VAOPD-784\outDs2Json2Vot\ZZ_Placeholder" />
+    <None Include="Resources\VAOPD-784\input\floatNulls.xml" />
+    <None Include="Resources\VAOPD-784\input\intNulls.xml" />
+    <None Include="Resources\VAOPD-784\input\CSC2-2.xml" />
+    <None Include="Resources\VAOPD-784\input\CSC2.xml" />
+    <None Include="Resources\VAOPD-784\input\boolean.xml" />
+  </ItemGroup>
+</Project>

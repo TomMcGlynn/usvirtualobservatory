@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE VOTABLE SYSTEM "http://us-vo.org/xml/VOTable.dtd">
+<VOTABLE version="1.1">
+  <DESCRIPTION>STScI Hubble Legacy Archive SIAP</DESCRIPTION>
+  <RESOURCE type="results">
+    <INFO name="QUERY_STATUS" value="OK"/>
+    <PARAM datatype="char" name="INPUT:POS" value="210.802270,54.348950" arraysize="*" unit="deg"/>
+    <PARAM datatype="double" name="INPUT:SIZE" value="0.000000" unit="deg"/>
+    <PARAM datatype="char" name="INPUT:FORMAT" value="image/fits" arraysize="*"/>
+    <PARAM datatype="char" name="INPUT:imagetype" value="best" arraysize="*"/>
+    <PARAM datatype="char" name="INPUT:inst" value="acs,acsgrism,wfc3,wfpc2,nicmos,nicgrism,cos,stis,fos,ghrs" arraysize="*"/>
+    <PARAM datatype="int" name="INPUT:hrcmatch" value="0"/>
+    <PARAM datatype="double" name="INPUT:zoom" value="1.000000"/>
+    <PARAM datatype="double" name="INPUT:autoscale" value="99.500000" unit="%"/>
+    <PARAM datatype="int" name="INPUT:asinh" value="1"/>
+    <PARAM datatype="char" arraysize="*" name="refframe" ucd="VOX:STC_CoordRefFrame" value="ICRS"/>
+    <PARAM datatype="char" arraysize="3" name="projection" ucd="VOX:WCS_CoordProjection" value="TAN"/>
+    <TABLE>
+      <FIELD ID="URL" name="URL" datatype="char" ucd="VOX:Image_AccessReference" arraysize="*">
+        <DESCRIPTION>Link to data</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="RA" name="RA" datatype="double" unit="deg" ucd="POS_EQ_RA_MAIN">
+        <DESCRIPTION>RA (J2000)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="DEC" name="DEC" datatype="double" unit="deg" ucd="POS_EQ_DEC_MAIN">
+        <DESCRIPTION>Dec (J2000)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="Level" name="Level" datatype="int" ucd="PRODUCT_LEVEL">
+        <DESCRIPTION>Processing level: 1=exposure 2=combined 3=mosaic 4=color 5=HLSP</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="Target" name="Target" datatype="char" ucd="TARGET_NAME" arraysize="*">
+        <DESCRIPTION>Proposal target name</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="Detector" name="Detector" datatype="char" ucd="INST_ID" arraysize="*">
+        <DESCRIPTION>Detector</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="Aperture" name="Aperture" datatype="char" ucd="INST_APERT" arraysize="*">
+        <DESCRIPTION>Instrument aperture or slit</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="Spectral_Elt" name="Spectral_Elt" datatype="char" ucd="MAIN_FILTER" arraysize="*">
+        <DESCRIPTION>Filter or spectral element name</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="NExposures" name="NExposures" datatype="int" ucd="NUM_EXPOSURES">
+        <DESCRIPTION>Number of exposures combined in this image</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="ExpTime" name="ExpTime" datatype="double" unit="s" ucd="EXPOSURE_TIME">
+        <DESCRIPTION>Total exposure time</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="StartTime" name="StartTime" datatype="char" arraysize="*" ucd="TIME_EPOCH">
+        <DESCRIPTION>Start time of first exposure</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="Dataset" name="Dataset" datatype="char" arraysize="*" ucd="ID_MAIN">
+        <DESCRIPTION>Name of image: HST_propid_visit_detector_spectralelt_exposure</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="PropID" name="PropID" datatype="int" ucd="ID_SET">
+        <DESCRIPTION>HST proposal number</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="VisitNum" name="VisitNum" datatype="char" arraysize="*" ucd="ID_SET">
+        <DESCRIPTION>Visit number within proposal</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="PI_Name" name="PI_Name" datatype="char" arraysize="*" ucd="NAME_PI">
+        <DESCRIPTION>PI last name</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="DAOCat" name="DAOCat" datatype="char" arraysize="*">
+        <DESCRIPTION>Processing status for DAOphot catalog</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="SEXCat" name="SEXCat" datatype="char" arraysize="*">
+        <DESCRIPTION>Processing status for SExtractor catalog</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="Mode" name="Mode" datatype="char" arraysize="*">
+        <DESCRIPTION>Data collection mode</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="DBCreationDate" name="DBCreationDate" datatype="char" arraysize="*" ucd="TIME_EPOCH">
+        <DESCRIPTION>Date when this dataset was added to database</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="Source" name="Source" datatype="char" arraysize="*">
+        <DESCRIPTION>Source for this dataset (one of HLA, ECF, CADC, DADS, HLSP, HSTONLINE)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="Wavelength" name="Wavelength" datatype="double" unit="0.1nm" ucd="INST_WAVELENGTH">
+        <DESCRIPTION>Characteristic wavelength for bandpass</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="Format" name="Format" datatype="char" ucd="VOX:Image_Format" arraysize="*">
+        <DESCRIPTION>Format of image</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="ReleaseDate" name="ReleaseDate" datatype="char" ucd="TIME_EPOCH" arraysize="*">
+        <DESCRIPTION>Date when these data are made public (GMT)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="NReleaseDate" name="NReleaseDate" datatype="long" ucd="TIME_EPOCH">
+        <DESCRIPTION>Date when these data are made public (seconds since 1970)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="Title" name="Title" datatype="char" ucd="VOX:Image_Title" arraysize="*">
+        <DESCRIPTION>Summary title</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="naxis" name="naxis" datatype="int" ucd="VOX:Image_Naxis" arraysize="*">
+        <DESCRIPTION>Image size (pixels)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="scale" name="scale" datatype="double" unit="deg/pix" ucd="VOX:Image_Scale" arraysize="*">
+        <DESCRIPTION>Pixel scale</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="naxes" name="naxes" datatype="int" ucd="VOX:Image_Naxes">
+        <DESCRIPTION>WCS info</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="crpix" name="crpix" datatype="double" unit="pix" ucd="VOX:WCS_CoordRefPixel" arraysize="*">
+        <DESCRIPTION>WCS info</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="crval" name="crval" datatype="double" unit="deg" ucd="VOX:WCS_CoordRefValue" arraysize="*">
+        <DESCRIPTION>WCS info</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="cd_matrix" name="cd_matrix" datatype="double" unit="deg/pix" ucd="VOX:WCS_CDMatrix" arraysize="*">
+        <DESCRIPTION>WCS info</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="filename" name="filename" datatype="char" arraysize="*">
+        <DESCRIPTION>Filename (comma-separated list for color)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="regionSTCS" name="regionSTCS" datatype="char" arraysize="*">
+        <DESCRIPTION>STC/S footprint region description</DESCRIPTION>
+      </FIELD>
+      <DATA>
+        <TABLEDATA>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=hst_08591_27_wfpc2_f547m_wf]]></TD>
+            <TD>210.802983</TD>
+            <TD>54.362052</TD>
+            <TD>2</TD>
+            <TD>NGC5457</TD>
+            <TD>WFPC2</TD>
+            <TD>PC1</TD>
+            <TD>F547M</TD>
+            <TD>4</TD>
+            <TD>1600.000000</TD>
+            <TD>2001-04-22 05:42:14</TD>
+            <TD>hst_08591_27_wfpc2_f547m_wf</TD>
+            <TD>8591</TD>
+            <TD>27</TD>
+            <TD>RICHSTONE</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>IMAGE</TD>
+            <TD>2010-02-05 21:57:30</TD>
+            <TD>CADC</TD>
+            <TD>5483.0</TD>
+            <TD>image/fits</TD>
+            <TD>2002-04-24 21:46:49</TD>
+            <TD>1019684809</TD>
+            <TD>08591_27 WFPC2 F547M (combined) NGC5457</TD>
+            <TD>2150 2150</TD>
+            <TD>2.77778E-05</TD>
+            <TD>2</TD>
+            <TD>1075.000 1075.000</TD>
+            <TD>210.802983 54.362052</TD>
+            <TD>-2.77778E-05 0 0 2.77778E-05</TD>
+            <TD>hst_08591_27_wfpc2_f547m_wf</TD>
+            <TD>Polygon J2000 210.82685628 54.37075268 210.82686327 54.37074759 210.82685600 54.37075200 210.82675936 54.37069793 210.80262000 54.38505400 210.80261179 54.38505888 210.80260500 54.38505500 210.77867302 54.37139147 210.77844539 54.37152465 210.77843800 54.37152900 210.77843000 54.37152500 210.75147000 54.35596500 210.75157439 54.35590331 210.75158053 54.35589970 210.77536289 54.34190487 210.77644413 54.34126827 210.77819900 54.34023500 210.79192708 54.34815792 210.80240800 54.34187400 210.81244903 54.34756590 210.82581400 54.33945600 210.85318655 54.35478227 210.85319500 54.35478700 210.82687100 54.37075200 210.82686335 54.37075664 Polygon J2000  210.79939068 54.35537785 210.77983422 54.36701233 Polygon J2000  210.82676670 54.37069357 210.82280097 54.36847477 210.82675851 54.37068907</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=hst_08591_27_wfpc2_f656n_wf]]></TD>
+            <TD>210.802983</TD>
+            <TD>54.362052</TD>
+            <TD>2</TD>
+            <TD>NGC5457</TD>
+            <TD>WFPC2</TD>
+            <TD>PC1</TD>
+            <TD>F656N</TD>
+            <TD>5</TD>
+            <TD>2100.000000</TD>
+            <TD>2001-04-22 07:27:14</TD>
+            <TD>hst_08591_27_wfpc2_f656n_wf</TD>
+            <TD>8591</TD>
+            <TD>27</TD>
+            <TD>RICHSTONE</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>IMAGE</TD>
+            <TD>2010-02-05 21:57:30</TD>
+            <TD>CADC</TD>
+            <TD>6564.0</TD>
+            <TD>image/fits</TD>
+            <TD>2002-04-24 21:52:58</TD>
+            <TD>1019685178</TD>
+            <TD>08591_27 WFPC2 F656N (combined) NGC5457</TD>
+            <TD>2150 2150</TD>
+            <TD>2.77778E-05</TD>
+            <TD>2</TD>
+            <TD>1075.000 1075.000</TD>
+            <TD>210.802983 54.362052</TD>
+            <TD>-2.77778E-05 0 0 2.77778E-05</TD>
+            <TD>hst_08591_27_wfpc2_f656n_wf</TD>
+            <TD>Polygon J2000 210.80262000 54.38505400 210.80261179 54.38505888 210.80260500 54.38505500 210.77867302 54.37139147 210.77844539 54.37152465 210.77843800 54.37152900 210.77843000 54.37152500 210.75147000 54.35596500 210.75157439 54.35590331 210.75158053 54.35589970 210.77536289 54.34190487 210.77644413 54.34126827 210.77819900 54.34023500 210.79192708 54.34815792 210.80240800 54.34187400 210.81244903 54.34756590 210.82581400 54.33945600 210.85318655 54.35478227 210.85319500 54.35478700 210.82687100 54.37075200 210.82686335 54.37075664 210.82685628 54.37075268 210.82686327 54.37074759 210.82685600 54.37075200 210.82675936 54.37069793 Polygon J2000  210.79939068 54.35537785 210.77983422 54.36701233 Polygon J2000  210.82676670 54.37069357 210.82280097 54.36847477 210.82675851 54.37068907</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=hst_08591_27_wfpc2_total_wf]]></TD>
+            <TD>210.802983</TD>
+            <TD>54.362052</TD>
+            <TD>2</TD>
+            <TD>NGC5457</TD>
+            <TD>WFPC2</TD>
+            <TD>PC1</TD>
+            <TD>detection</TD>
+            <TD>9</TD>
+            <TD>3700.000000</TD>
+            <TD>2001-04-22 05:42:14</TD>
+            <TD>hst_08591_27_wfpc2_total_wf</TD>
+            <TD>8591</TD>
+            <TD>27</TD>
+            <TD>RICHSTONE</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>IMAGE</TD>
+            <TD>2010-02-05 21:57:30</TD>
+            <TD>CADC</TD>
+            <TD>6083.55555556</TD>
+            <TD>image/fits</TD>
+            <TD>2002-04-24 21:52:58</TD>
+            <TD>1019685178</TD>
+            <TD>08591_27 WFPC2 detection (combined) NGC5457</TD>
+            <TD>2150 2150</TD>
+            <TD>2.77778E-05</TD>
+            <TD>2</TD>
+            <TD>1075.000 1075.000</TD>
+            <TD>210.802983 54.362052</TD>
+            <TD>-2.77778E-05 0 0 2.77778E-05</TD>
+            <TD>hst_08591_27_wfpc2_total_wf</TD>
+            <TD>Polygon J2000 210.77983422 54.36701233 210.79939068 54.35537785 Polygon J2000  210.82685600 54.37075200 210.82675936 54.37069793 210.80262000 54.38505400 210.80261179 54.38505888 210.80260500 54.38505500 210.77867302 54.37139147 210.77844539 54.37152465 210.77843800 54.37152900 210.77843000 54.37152500 210.75147000 54.35596500 210.75157439 54.35590331 210.75158053 54.35589970 210.77536289 54.34190487 210.77644413 54.34126827 210.77819900 54.34023500 210.79192708 54.34815792 210.80240800 54.34187400 210.81244903 54.34756590 210.82581400 54.33945600 210.85318655 54.35478227 210.85319500 54.35478700 210.82687100 54.37075200 210.82686335 54.37075664 210.82685628 54.37075268 210.82686327 54.37074759 Polygon J2000  210.82280097 54.36847477 210.82675851 54.37068907 210.82676670 54.37069357</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=hst_08591_27_wfpc2_f656n_wf&amp;blue=hst_08591_27_wfpc2_f547m_wf&amp;size=ALL&amp;format=fits]]></TD>
+            <TD>210.802983</TD>
+            <TD>54.362052</TD>
+            <TD>4</TD>
+            <TD>NGC5457</TD>
+            <TD>WFPC2</TD>
+            <TD>PC1</TD>
+            <TD>F656N/F547M</TD>
+            <TD>9</TD>
+            <TD>3700.000000</TD>
+            <TD>2001-04-22 05:42:14</TD>
+            <TD>hst_08591_27_wfpc2_f656n_f547m_wf</TD>
+            <TD>8591</TD>
+            <TD>27</TD>
+            <TD>RICHSTONE</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>IMAGE</TD>
+            <TD>2010-02-05 21:57:30</TD>
+            <TD>CADC</TD>
+            <TD>6024.0</TD>
+            <TD>image/fits</TD>
+            <TD>2002-04-24 21:52:58</TD>
+            <TD>1019685178</TD>
+            <TD>08591_27 WFPC2 F656N/F547M (color) NGC5457</TD>
+            <TD>2150 2150</TD>
+            <TD>2.77778E-05</TD>
+            <TD>2</TD>
+            <TD>1075.000 1075.000</TD>
+            <TD>210.802983 54.362052</TD>
+            <TD>-2.77778E-05 0 0 2.77778E-05</TD>
+            <TD>hst_08591_27_wfpc2_f656n_wf,hst_08591_27_wfpc2_f547m_wf</TD>
+            <TD>Polygon J2000 210.80262000 54.38505400 210.80261179 54.38505888 210.80260500 54.38505500 210.77867302 54.37139147 210.77844539 54.37152465 210.77843800 54.37152900 210.77843000 54.37152500 210.75147000 54.35596500 210.75157439 54.35590331 210.75158053 54.35589970 210.77536289 54.34190487 210.77644413 54.34126827 210.77819900 54.34023500 210.79192708 54.34815792 210.80240800 54.34187400 210.81244903 54.34756590 210.82581400 54.33945600 210.85318655 54.35478227 210.85319500 54.35478700 210.82687100 54.37075200 210.82686335 54.37075664 210.82685628 54.37075268 210.82686327 54.37074759 210.82685600 54.37075200 210.82675936 54.37069793 Polygon J2000  210.79939068 54.35537785 210.77983422 54.36701233 Polygon J2000  210.82676670 54.37069357 210.82280097 54.36847477 210.82675851 54.37068907</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=hst_09720_01_wfpc2_f336w_wf]]></TD>
+            <TD>210.782872</TD>
+            <TD>54.349301</TD>
+            <TD>2</TD>
+            <TD>M101-POS1</TD>
+            <TD>WFPC2</TD>
+            <TD>WFALL-FIX</TD>
+            <TD>F336W</TD>
+            <TD>2</TD>
+            <TD>2400.000000</TD>
+            <TD>2004-02-10 00:09:15</TD>
+            <TD>hst_09720_01_wfpc2_f336w_wf</TD>
+            <TD>9720</TD>
+            <TD>01</TD>
+            <TD>CHANDAR</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>IMAGE</TD>
+            <TD>2010-02-05 09:49:09</TD>
+            <TD>CADC</TD>
+            <TD>3344.0</TD>
+            <TD>image/fits</TD>
+            <TD>2005-02-10 18:03:11</TD>
+            <TD>1108058591</TD>
+            <TD>09720_01 WFPC2 F336W (combined) M101-POS1</TD>
+            <TD>1950 1950</TD>
+            <TD>2.77778E-05</TD>
+            <TD>2</TD>
+            <TD>975.000 975.000</TD>
+            <TD>210.782872 54.349301</TD>
+            <TD>-2.77778E-05 0 0 2.77778E-05</TD>
+            <TD>hst_09720_01_wfpc2_f336w_wf</TD>
+            <TD>Polygon J2000 210.75570600 54.34358500 210.76887105 54.34080811 210.76219400 54.33026000 210.79780200 54.32260300 210.81095100 54.34337500 210.81081358 54.34340458 210.82243800 54.36233400 210.79088842 54.36891495 210.79099900 54.36909800 210.75520900 54.37643600 210.75516011 54.37635506 210.74394219 54.35777674 210.74343311 54.35693323 210.74260500 54.35556100 210.76082792 54.35182417</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=hst_09720_01_wfpc2_total_wf]]></TD>
+            <TD>210.782872</TD>
+            <TD>54.349301</TD>
+            <TD>2</TD>
+            <TD>M101-POS1</TD>
+            <TD>WFPC2</TD>
+            <TD>WFALL-FIX</TD>
+            <TD>detection</TD>
+            <TD>2</TD>
+            <TD>2400.000000</TD>
+            <TD>2004-02-10 00:09:15</TD>
+            <TD>hst_09720_01_wfpc2_total_wf</TD>
+            <TD>9720</TD>
+            <TD>01</TD>
+            <TD>CHANDAR</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>IMAGE</TD>
+            <TD>2010-02-05 09:49:09</TD>
+            <TD>CADC</TD>
+            <TD>3344.0</TD>
+            <TD>image/fits</TD>
+            <TD>2005-02-10 18:03:11</TD>
+            <TD>1108058591</TD>
+            <TD>09720_01 WFPC2 detection (combined) M101-POS1</TD>
+            <TD>1950 1950</TD>
+            <TD>2.77778E-05</TD>
+            <TD>2</TD>
+            <TD>975.000 975.000</TD>
+            <TD>210.782872 54.349301</TD>
+            <TD>-2.77778E-05 0 0 2.77778E-05</TD>
+            <TD>hst_09720_01_wfpc2_total_wf</TD>
+            <TD>Polygon J2000 210.75520900 54.37643600 210.75516011 54.37635506 210.74394219 54.35777674 210.74343311 54.35693323 210.74260500 54.35556100 210.76082792 54.35182417 210.75570600 54.34358500 210.76887105 54.34080811 210.76219400 54.33026000 210.79780200 54.32260300 210.81095100 54.34337500 210.81081358 54.34340458 210.82243800 54.36233400 210.79088842 54.36891495 210.79099900 54.36909800</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=HST_11080_a6_NIC_NIC3_F187N]]></TD>
+            <TD>210.803343</TD>
+            <TD>54.349648</TD>
+            <TD>2</TD>
+            <TD>NGC5457</TD>
+            <TD>NIC3</TD>
+            <TD>NIC3</TD>
+            <TD>F187N</TD>
+            <TD>6</TD>
+            <TD>959.760000</TD>
+            <TD>2007-05-30 06:28:45</TD>
+            <TD>HST_11080_a6_NIC_NIC3_F187N</TD>
+            <TD>11080</TD>
+            <TD>a6</TD>
+            <TD>Calzetti</TD>
+            <TD/>
+            <TD/>
+            <TD>MULTIACCUM</TD>
+            <TD>2009-12-07 20:12:06</TD>
+            <TD>HLA</TD>
+            <TD>18747.8</TD>
+            <TD>image/fits</TD>
+            <TD>2007-05-30 12:31:58</TD>
+            <TD>1180528318</TD>
+            <TD>11080_a6 NIC3 F187N (combined) NGC5457</TD>
+            <TD>650 650</TD>
+            <TD>2.77778E-05</TD>
+            <TD>2</TD>
+            <TD>325.000 325.000</TD>
+            <TD>210.803343 54.349648</TD>
+            <TD>-2.77778E-05 0 0 2.77778E-05</TD>
+            <TD>HST_11080_a6_NIC_NIC3_F187N</TD>
+            <TD>Polygon J2000 210.79416342 54.35841940 210.79374400 54.35847220 210.79365560 54.35822750 210.78850997 54.34415367 210.78842060 54.34390920 210.81247489 54.34087853 210.81247535 54.34087980 210.81289560 54.34082680 210.81804922 54.35489962 210.81813725 54.35514296 210.81822730 54.35538870 210.79416390 54.35842070</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=HST_11080_a6_NIC_NIC3_F190N]]></TD>
+            <TD>210.803343</TD>
+            <TD>54.349648</TD>
+            <TD>2</TD>
+            <TD>NGC5457</TD>
+            <TD>NIC3</TD>
+            <TD>NIC3</TD>
+            <TD>F190N</TD>
+            <TD>6</TD>
+            <TD>1343.760000</TD>
+            <TD>2007-05-30 06:31:46</TD>
+            <TD>HST_11080_a6_NIC_NIC3_F190N</TD>
+            <TD>11080</TD>
+            <TD>a6</TD>
+            <TD>Calzetti</TD>
+            <TD/>
+            <TD/>
+            <TD>MULTIACCUM</TD>
+            <TD>2009-12-07 20:12:06</TD>
+            <TD>HLA</TD>
+            <TD>19003.4</TD>
+            <TD>image/fits</TD>
+            <TD>2007-05-30 12:33:00</TD>
+            <TD>1180528380</TD>
+            <TD>11080_a6 NIC3 F190N (combined) NGC5457</TD>
+            <TD>650 650</TD>
+            <TD>2.77778E-05</TD>
+            <TD>2</TD>
+            <TD>325.000 325.000</TD>
+            <TD>210.803343 54.349648</TD>
+            <TD>-2.77778E-05 0 0 2.77778E-05</TD>
+            <TD>HST_11080_a6_NIC_NIC3_F190N</TD>
+            <TD>Polygon J2000 210.78842060 54.34390920 210.81247489 54.34087853 210.81247535 54.34087980 210.81289560 54.34082680 210.81804922 54.35489962 210.81813725 54.35514296 210.81822730 54.35538870 210.79416390 54.35842070 210.79416342 54.35841940 210.79374400 54.35847220 210.79365560 54.35822750 210.78850997 54.34415367</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=HST_11080_a6_NIC_NIC3_total]]></TD>
+            <TD>210.803343</TD>
+            <TD>54.349648</TD>
+            <TD>2</TD>
+            <TD>NGC5457</TD>
+            <TD>NIC3</TD>
+            <TD>NIC3</TD>
+            <TD>detection</TD>
+            <TD>12</TD>
+            <TD>2303.520000</TD>
+            <TD>2007-05-30 06:28:45</TD>
+            <TD>HST_11080_a6_NIC_NIC3_total</TD>
+            <TD>11080</TD>
+            <TD>a6</TD>
+            <TD>Calzetti</TD>
+            <TD/>
+            <TD/>
+            <TD>MULTIACCUM</TD>
+            <TD>2009-12-07 20:12:06</TD>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>image/fits</TD>
+            <TD>2007-05-30 12:33:00</TD>
+            <TD>1180528380</TD>
+            <TD>11080_a6 NIC3 detection (combined) NGC5457</TD>
+            <TD>650 650</TD>
+            <TD>2.77778E-05</TD>
+            <TD>2</TD>
+            <TD>325.000 325.000</TD>
+            <TD>210.803343 54.349648</TD>
+            <TD>-2.77778E-05 0 0 2.77778E-05</TD>
+            <TD>HST_11080_a6_NIC_NIC3_total</TD>
+            <TD>Polygon J2000 210.81247535 54.34087980 210.81289560 54.34082680 210.81804922 54.35489962 210.81813725 54.35514296 210.81822730 54.35538870 210.79416390 54.35842070 210.79416342 54.35841940 210.79374400 54.35847220 210.79365560 54.35822750 210.78850997 54.34415367 210.78842060 54.34390920 210.81247489 54.34087853</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=HST_11080_a6_NIC_NIC3_F190N&amp;blue=HST_11080_a6_NIC_NIC3_F187N&amp;size=ALL&amp;format=fits]]></TD>
+            <TD>210.803343</TD>
+            <TD>54.349648</TD>
+            <TD>4</TD>
+            <TD>NGC5457</TD>
+            <TD>NIC3</TD>
+            <TD>NIC3</TD>
+            <TD>F190N/F187N</TD>
+            <TD>12</TD>
+            <TD>2303.520000</TD>
+            <TD>2007-05-30 06:28:45</TD>
+            <TD>HST_11080_a6_NIC_NIC3_F190N_F187N</TD>
+            <TD>11080</TD>
+            <TD>a6</TD>
+            <TD>Calzetti</TD>
+            <TD/>
+            <TD/>
+            <TD>MULTIACCUM</TD>
+            <TD>2009-12-07 20:12:06</TD>
+            <TD>HLA</TD>
+            <TD>18876.0</TD>
+            <TD>image/fits</TD>
+            <TD>2007-05-30 12:33:00</TD>
+            <TD>1180528380</TD>
+            <TD>11080_a6 NIC3 F190N/F187N (color) NGC5457</TD>
+            <TD>650 650</TD>
+            <TD>2.77778E-05</TD>
+            <TD>2</TD>
+            <TD>325.000 325.000</TD>
+            <TD>210.803343 54.349648</TD>
+            <TD>-2.77778E-05 0 0 2.77778E-05</TD>
+            <TD>HST_11080_a6_NIC_NIC3_F190N,HST_11080_a6_NIC_NIC3_F187N</TD>
+            <TD>Polygon J2000 210.78842060 54.34390920 210.81247489 54.34087853 210.81247535 54.34087980 210.81289560 54.34082680 210.81804922 54.35489962 210.81813725 54.35514296 210.81822730 54.35538870 210.79416390 54.35842070 210.79416342 54.35841940 210.79374400 54.35847220 210.79365560 54.35822750 210.78850997 54.34415367</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=hst_11635_11_wfc3_uvis_f469n]]></TD>
+            <TD>210.796730</TD>
+            <TD>54.331820</TD>
+            <TD>2</TD>
+            <TD>M101-K</TD>
+            <TD>WFC3/UVIS</TD>
+            <TD>UVIS-CENTER</TD>
+            <TD>F469N</TD>
+            <TD>4</TD>
+            <TD>6106.000000</TD>
+            <TD>2010-04-07 22:26:26</TD>
+            <TD>hst_11635_11_wfc3_uvis_f469n</TD>
+            <TD>11635</TD>
+            <TD>11</TD>
+            <TD>Shara</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2011-11-28 14:09:20</TD>
+            <TD>HLA</TD>
+            <TD>4688.0</TD>
+            <TD>image/fits</TD>
+            <TD>2011-04-08 07:41:06</TD>
+            <TD>1302248466</TD>
+            <TD>11635_11 WFC3/UVIS F469N (combined) M101-K</TD>
+            <TD>5691 5559</TD>
+            <TD>1.10052E-05</TD>
+            <TD>2</TD>
+            <TD>2845.500 2779.500</TD>
+            <TD>210.796730 54.331820</TD>
+            <TD>-1.10052E-05 0 0 1.10052E-05</TD>
+            <TD>hst_11635_11_wfc3_uvis_f469n</TD>
+            <TD>Polygon J2000 210.78283680 54.35297000 210.78281058 54.35296311 210.78279649 54.35295941 210.78278680 54.35297440 210.74730300 54.34364620 210.74732957 54.34360516 210.74730310 54.34359820 210.77470500 54.30122683 210.77473150 54.30118580 210.77477203 54.30119646 210.77478150 54.30118180 210.81019444 54.31049137 210.81022092 54.31049833 210.81023490 54.31050200 210.81020820 54.31054339 210.81023450 54.31055030 Polygon J2000  210.81879960 54.36222380 210.78370160 54.35303980 210.81047900 54.31075240 210.84554700 54.31992860</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=hst_11635_11_wfc3_uvis_total]]></TD>
+            <TD>210.796730</TD>
+            <TD>54.331820</TD>
+            <TD>2</TD>
+            <TD>M101-K</TD>
+            <TD>WFC3/UVIS</TD>
+            <TD>UVIS-CENTER</TD>
+            <TD>detection</TD>
+            <TD>4</TD>
+            <TD>6106.000000</TD>
+            <TD>2010-04-07 22:26:26</TD>
+            <TD>hst_11635_11_wfc3_uvis_total</TD>
+            <TD>11635</TD>
+            <TD>11</TD>
+            <TD>Shara</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2011-11-28 14:09:20</TD>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>image/fits</TD>
+            <TD>2011-04-08 07:41:06</TD>
+            <TD>1302248466</TD>
+            <TD>11635_11 WFC3/UVIS detection (combined) M101-K</TD>
+            <TD>5691 5559</TD>
+            <TD>1.10052E-05</TD>
+            <TD>2</TD>
+            <TD>2845.500 2779.500</TD>
+            <TD>210.796730 54.331820</TD>
+            <TD>-1.10052E-05 0 0 1.10052E-05</TD>
+            <TD>hst_11635_11_wfc3_uvis_total</TD>
+            <TD>Polygon J2000 210.77477203 54.30119646 210.77478150 54.30118180 210.81019444 54.31049137 210.81022092 54.31049833 210.81023490 54.31050200 210.81020820 54.31054339 210.81023450 54.31055030 210.78283680 54.35297000 210.78281058 54.35296311 210.78279649 54.35295941 210.78278680 54.35297440 210.74730300 54.34364620 210.74732957 54.34360516 210.74730310 54.34359820 210.77470500 54.30122683 210.77473150 54.30118580 Polygon J2000  210.78370160 54.35303980 210.81047900 54.31075240 210.84554700 54.31992860 210.81879960 54.36222380</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=HST_9490_01_ACS_WFC_F435W]]></TD>
+            <TD>210.845581</TD>
+            <TD>54.353595</TD>
+            <TD>2</TD>
+            <TD>NGC5457-1</TD>
+            <TD>ACS/WFC</TD>
+            <TD>WFC</TD>
+            <TD>F435W</TD>
+            <TD>2</TD>
+            <TD>900.000000</TD>
+            <TD>2002-11-15 22:45:54</TD>
+            <TD>HST_9490_01_ACS_WFC_F435W</TD>
+            <TD>9490</TD>
+            <TD>01</TD>
+            <TD>Kuntz</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2010-01-21 21:17:28</TD>
+            <TD>HLA</TD>
+            <TD>4317.4</TD>
+            <TD>image/fits</TD>
+            <TD>2003-11-16 17:05:09</TD>
+            <TD>1069002309</TD>
+            <TD>9490_01 ACS/WFC F435W (combined) NGC5457-1</TD>
+            <TD>5700 5700</TD>
+            <TD>1.38889E-05</TD>
+            <TD>2</TD>
+            <TD>2850.000 2850.000</TD>
+            <TD>210.845581 54.353595</TD>
+            <TD>-1.38889E-05 0 0 1.38889E-05</TD>
+            <TD>HST_9490_01_ACS_WFC_F435W</TD>
+            <TD>Polygon J2000 210.91292450 54.34004220 210.89086830 54.36561720 210.80112670 54.34364540 210.82322700 54.31808670 Polygon J2000  210.80090200 54.34480080 210.89008890 54.36582350 210.86841810 54.39044660 210.77918880 54.36940790</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=HST_9490_01_ACS_WFC_F555W]]></TD>
+            <TD>210.845581</TD>
+            <TD>54.353595</TD>
+            <TD>2</TD>
+            <TD>NGC5457-1</TD>
+            <TD>ACS/WFC</TD>
+            <TD>WFC</TD>
+            <TD>F555W</TD>
+            <TD>2</TD>
+            <TD>720.000000</TD>
+            <TD>2002-11-15 23:06:14</TD>
+            <TD>HST_9490_01_ACS_WFC_F555W</TD>
+            <TD>9490</TD>
+            <TD>01</TD>
+            <TD>Kuntz</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2010-01-21 21:17:28</TD>
+            <TD>HLA</TD>
+            <TD>5359.55</TD>
+            <TD>image/fits</TD>
+            <TD>2003-11-16 03:27:44</TD>
+            <TD>1068953264</TD>
+            <TD>9490_01 ACS/WFC F555W (combined) NGC5457-1</TD>
+            <TD>5700 5700</TD>
+            <TD>1.38889E-05</TD>
+            <TD>2</TD>
+            <TD>2850.000 2850.000</TD>
+            <TD>210.845581 54.353595</TD>
+            <TD>-1.38889E-05 0 0 1.38889E-05</TD>
+            <TD>HST_9490_01_ACS_WFC_F555W</TD>
+            <TD>Polygon J2000 210.80090500 54.34480090 210.89008700 54.36582260 210.86841730 54.39044530 210.77919290 54.36940750 Polygon J2000  210.82322800 54.31808730 210.91292280 54.34004190 210.89086720 54.36561660 210.80112840 54.34364570</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=HST_9490_01_ACS_WFC_F814W]]></TD>
+            <TD>210.845581</TD>
+            <TD>54.353595</TD>
+            <TD>2</TD>
+            <TD>NGC5457-1</TD>
+            <TD>ACS/WFC</TD>
+            <TD>WFC</TD>
+            <TD>F814W</TD>
+            <TD>2</TD>
+            <TD>720.000000</TD>
+            <TD>2002-11-15 23:23:25</TD>
+            <TD>HST_9490_01_ACS_WFC_F814W</TD>
+            <TD>9490</TD>
+            <TD>01</TD>
+            <TD>Kuntz</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2010-01-21 21:17:28</TD>
+            <TD>HLA</TD>
+            <TD>8059.76</TD>
+            <TD>image/fits</TD>
+            <TD>2003-11-16 04:11:02</TD>
+            <TD>1068955862</TD>
+            <TD>9490_01 ACS/WFC F814W (combined) NGC5457-1</TD>
+            <TD>5700 5700</TD>
+            <TD>1.38889E-05</TD>
+            <TD>2</TD>
+            <TD>2850.000 2850.000</TD>
+            <TD>210.845581 54.353595</TD>
+            <TD>-1.38889E-05 0 0 1.38889E-05</TD>
+            <TD>HST_9490_01_ACS_WFC_F814W</TD>
+            <TD>Polygon J2000 210.77919610 54.36940640 210.80090800 54.34480110 210.89008610 54.36582040 210.86841660 54.39044180 Polygon J2000  210.82322960 54.31808890 210.91292050 54.34004180 210.89086560 54.36561500 210.80113070 54.34364580</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=HST_9490_01_ACS_WFC_total]]></TD>
+            <TD>210.845581</TD>
+            <TD>54.353595</TD>
+            <TD>2</TD>
+            <TD>NGC5457-1</TD>
+            <TD>ACS/WFC</TD>
+            <TD>WFC</TD>
+            <TD>detection</TD>
+            <TD>6</TD>
+            <TD>2340.000000</TD>
+            <TD>2002-11-15 22:45:54</TD>
+            <TD>HST_9490_01_ACS_WFC_total</TD>
+            <TD>9490</TD>
+            <TD>01</TD>
+            <TD>Kuntz</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2010-01-21 21:17:28</TD>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>image/fits</TD>
+            <TD>2003-11-16 17:05:09</TD>
+            <TD>1069002309</TD>
+            <TD>9490_01 ACS/WFC detection (combined) NGC5457-1</TD>
+            <TD>5700 5700</TD>
+            <TD>1.38889E-05</TD>
+            <TD>2</TD>
+            <TD>2850.000 2850.000</TD>
+            <TD>210.845581 54.353595</TD>
+            <TD>-1.38889E-05 0 0 1.38889E-05</TD>
+            <TD>HST_9490_01_ACS_WFC_total</TD>
+            <TD>Polygon J2000 210.80090200 54.34480080 210.89008890 54.36582350 210.86841810 54.39044660 210.77918880 54.36940790 Polygon J2000  210.80112670 54.34364540 210.82322700 54.31808670 210.91292450 54.34004220 210.89086830 54.36561720</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=HST_9490_01_ACS_WFC_F814W&amp;green=HST_9490_01_ACS_WFC_F555W&amp;blue=HST_9490_01_ACS_WFC_F435W&amp;size=ALL&amp;format=fits]]></TD>
+            <TD>210.845581</TD>
+            <TD>54.353595</TD>
+            <TD>4</TD>
+            <TD>NGC5457-1</TD>
+            <TD>ACS/WFC</TD>
+            <TD>WFC</TD>
+            <TD>F814W/F555W/F435W</TD>
+            <TD>6</TD>
+            <TD>2340.000000</TD>
+            <TD>2002-11-15 22:45:54</TD>
+            <TD>HST_9490_01_ACS_WFC_F814W_F555W_F435W</TD>
+            <TD>9490</TD>
+            <TD>01</TD>
+            <TD>Kuntz</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2010-01-21 21:17:28</TD>
+            <TD>HLA</TD>
+            <TD>5912.0</TD>
+            <TD>image/fits</TD>
+            <TD>2003-11-16 04:11:02</TD>
+            <TD>1068955862</TD>
+            <TD>9490_01 ACS/WFC F814W/F555W/F435W (color) NGC5457-1</TD>
+            <TD>5700 5700</TD>
+            <TD>1.38889E-05</TD>
+            <TD>2</TD>
+            <TD>2850.000 2850.000</TD>
+            <TD>210.845581 54.353595</TD>
+            <TD>-1.38889E-05 0 0 1.38889E-05</TD>
+            <TD>HST_9490_01_ACS_WFC_F814W,HST_9490_01_ACS_WFC_F555W,HST_9490_01_ACS_WFC_F435W</TD>
+            <TD>Polygon J2000 210.77919610 54.36940640 210.80090800 54.34480110 210.89008610 54.36582040 210.86841660 54.39044180 Polygon J2000  210.82322960 54.31808890 210.91292050 54.34004180 210.89086560 54.36561500 210.80113070 54.34364580</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=HST_9490_02_ACS_WFC_F435W]]></TD>
+            <TD>210.759629</TD>
+            <TD>54.339233</TD>
+            <TD>2</TD>
+            <TD>NGC5457-7</TD>
+            <TD>ACS/WFC</TD>
+            <TD>WFC</TD>
+            <TD>F435W</TD>
+            <TD>2</TD>
+            <TD>900.000000</TD>
+            <TD>2002-11-13 17:20:48</TD>
+            <TD>HST_9490_02_ACS_WFC_F435W</TD>
+            <TD>9490</TD>
+            <TD>02</TD>
+            <TD>Kuntz</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2010-01-21 21:46:27</TD>
+            <TD>HLA</TD>
+            <TD>4317.4</TD>
+            <TD>image/fits</TD>
+            <TD>2003-11-14 05:59:06</TD>
+            <TD>1068789546</TD>
+            <TD>9490_02 ACS/WFC F435W (combined) NGC5457-7</TD>
+            <TD>5400 5400</TD>
+            <TD>1.38889E-05</TD>
+            <TD>2</TD>
+            <TD>2700.000 2700.000</TD>
+            <TD>210.759629 54.339233</TD>
+            <TD>-1.38889E-05 0 0 1.38889E-05</TD>
+            <TD>HST_9490_02_ACS_WFC_F435W</TD>
+            <TD>Polygon J2000 210.73005900 54.30547790 210.82354130 54.32109880 210.80683560 54.34801420 210.71329850 54.33238040 Polygon J2000  210.69674670 54.35947390 210.71330970 54.33354320 210.80610390 54.34827270 210.78959370 54.37421610</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=HST_9490_02_ACS_WFC_F555W]]></TD>
+            <TD>210.759629</TD>
+            <TD>54.339233</TD>
+            <TD>2</TD>
+            <TD>NGC5457-7</TD>
+            <TD>ACS/WFC</TD>
+            <TD>WFC</TD>
+            <TD>F555W</TD>
+            <TD>2</TD>
+            <TD>720.000000</TD>
+            <TD>2002-11-13 17:41:08</TD>
+            <TD>HST_9490_02_ACS_WFC_F555W</TD>
+            <TD>9490</TD>
+            <TD>02</TD>
+            <TD>Kuntz</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2010-01-21 21:46:27</TD>
+            <TD>HLA</TD>
+            <TD>5359.55</TD>
+            <TD>image/fits</TD>
+            <TD>2003-11-14 06:07:36</TD>
+            <TD>1068790056</TD>
+            <TD>9490_02 ACS/WFC F555W (combined) NGC5457-7</TD>
+            <TD>5400 5400</TD>
+            <TD>1.38889E-05</TD>
+            <TD>2</TD>
+            <TD>2700.000 2700.000</TD>
+            <TD>210.759629 54.339233</TD>
+            <TD>-1.38889E-05 0 0 1.38889E-05</TD>
+            <TD>HST_9490_02_ACS_WFC_F555W</TD>
+            <TD>Polygon J2000 210.78959260 54.37421500 210.69675050 54.35947330 210.71331250 54.33354310 210.80610200 54.34827210 Polygon J2000  210.73006010 54.30547830 210.82353980 54.32109860 210.80683460 54.34801380 210.71330000 54.33238060</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=HST_9490_02_ACS_WFC_F814W]]></TD>
+            <TD>210.759629</TD>
+            <TD>54.339233</TD>
+            <TD>2</TD>
+            <TD>NGC5457-7</TD>
+            <TD>ACS/WFC</TD>
+            <TD>WFC</TD>
+            <TD>F814W</TD>
+            <TD>2</TD>
+            <TD>720.000000</TD>
+            <TD>2002-11-13 17:58:19</TD>
+            <TD>HST_9490_02_ACS_WFC_F814W</TD>
+            <TD>9490</TD>
+            <TD>02</TD>
+            <TD>Kuntz</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2010-01-21 21:46:27</TD>
+            <TD>HLA</TD>
+            <TD>8059.76</TD>
+            <TD>image/fits</TD>
+            <TD>2003-11-14 06:13:54</TD>
+            <TD>1068790434</TD>
+            <TD>9490_02 ACS/WFC F814W (combined) NGC5457-7</TD>
+            <TD>5400 5400</TD>
+            <TD>1.38889E-05</TD>
+            <TD>2</TD>
+            <TD>2700.000 2700.000</TD>
+            <TD>210.759629 54.339233</TD>
+            <TD>-1.38889E-05 0 0 1.38889E-05</TD>
+            <TD>HST_9490_02_ACS_WFC_F814W</TD>
+            <TD>Polygon J2000 210.71331550 54.33354310 210.80610070 54.34827000 210.78959120 54.37421160 210.69675340 54.35947200 Polygon J2000  210.71330230 54.33238050 210.73006190 54.30547990 210.82353750 54.32109870 210.80683270 54.34801220</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=HST_9490_02_ACS_WFC_total]]></TD>
+            <TD>210.759629</TD>
+            <TD>54.339233</TD>
+            <TD>2</TD>
+            <TD>NGC5457-7</TD>
+            <TD>ACS/WFC</TD>
+            <TD>WFC</TD>
+            <TD>detection</TD>
+            <TD>6</TD>
+            <TD>2340.000000</TD>
+            <TD>2002-11-13 17:20:48</TD>
+            <TD>HST_9490_02_ACS_WFC_total</TD>
+            <TD>9490</TD>
+            <TD>02</TD>
+            <TD>Kuntz</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2010-01-21 21:46:27</TD>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>image/fits</TD>
+            <TD>2003-11-14 06:13:54</TD>
+            <TD>1068790434</TD>
+            <TD>9490_02 ACS/WFC detection (combined) NGC5457-7</TD>
+            <TD>5400 5400</TD>
+            <TD>1.38889E-05</TD>
+            <TD>2</TD>
+            <TD>2700.000 2700.000</TD>
+            <TD>210.759629 54.339233</TD>
+            <TD>-1.38889E-05 0 0 1.38889E-05</TD>
+            <TD>HST_9490_02_ACS_WFC_total</TD>
+            <TD>Polygon J2000 210.69674670 54.35947390 210.71330970 54.33354320 210.80610390 54.34827270 210.78959370 54.37421610 Polygon J2000  210.82354130 54.32109880 210.80683560 54.34801420 210.71329850 54.33238040 210.73005900 54.30547790</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=HST_9490_02_ACS_WFC_F814W&amp;green=HST_9490_02_ACS_WFC_F555W&amp;blue=HST_9490_02_ACS_WFC_F435W&amp;size=ALL&amp;format=fits]]></TD>
+            <TD>210.759629</TD>
+            <TD>54.339233</TD>
+            <TD>4</TD>
+            <TD>NGC5457-7</TD>
+            <TD>ACS/WFC</TD>
+            <TD>WFC</TD>
+            <TD>F814W/F555W/F435W</TD>
+            <TD>6</TD>
+            <TD>2340.000000</TD>
+            <TD>2002-11-13 17:20:48</TD>
+            <TD>HST_9490_02_ACS_WFC_F814W_F555W_F435W</TD>
+            <TD>9490</TD>
+            <TD>02</TD>
+            <TD>Kuntz</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2010-01-21 21:46:27</TD>
+            <TD>HLA</TD>
+            <TD>5912.0</TD>
+            <TD>image/fits</TD>
+            <TD>2003-11-14 06:13:54</TD>
+            <TD>1068790434</TD>
+            <TD>9490_02 ACS/WFC F814W/F555W/F435W (color) NGC5457-7</TD>
+            <TD>5400 5400</TD>
+            <TD>1.38889E-05</TD>
+            <TD>2</TD>
+            <TD>2700.000 2700.000</TD>
+            <TD>210.759629 54.339233</TD>
+            <TD>-1.38889E-05 0 0 1.38889E-05</TD>
+            <TD>HST_9490_02_ACS_WFC_F814W,HST_9490_02_ACS_WFC_F555W,HST_9490_02_ACS_WFC_F435W</TD>
+            <TD>Polygon J2000 210.71331550 54.33354310 210.80610070 54.34827000 210.78959120 54.37421160 210.69675340 54.35947200 Polygon J2000  210.71330230 54.33238050 210.73006190 54.30547990 210.82353750 54.32109870 210.80683270 54.34801220</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=HST_9720_02_ACS_WFC_F658N]]></TD>
+            <TD>210.775922</TD>
+            <TD>54.354601</TD>
+            <TD>2</TD>
+            <TD>ANY</TD>
+            <TD>ACS/WFC</TD>
+            <TD>WFC</TD>
+            <TD>F658N</TD>
+            <TD>2</TD>
+            <TD>2430.000000</TD>
+            <TD>2003-08-27 07:44:47</TD>
+            <TD>HST_9720_02_ACS_WFC_F658N</TD>
+            <TD>9720</TD>
+            <TD>02</TD>
+            <TD>Chandar</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2008-01-02 03:30:37</TD>
+            <TD>HLA</TD>
+            <TD>6584.01</TD>
+            <TD>image/fits</TD>
+            <TD>2004-08-27 11:07:45</TD>
+            <TD>1093604865</TD>
+            <TD>9720_02 ACS/WFC F658N (combined) ANY</TD>
+            <TD>5750 5750</TD>
+            <TD>1.38889E-05</TD>
+            <TD>2</TD>
+            <TD>2875.000 2875.000</TD>
+            <TD>210.775922 54.354601</TD>
+            <TD>-1.38889E-05 0 0 1.38889E-05</TD>
+            <TD>HST_9720_02_ACS_WFC_F658N</TD>
+            <TD>Polygon J2000 210.75890230 54.38019650 210.79889830 54.32921760 210.84012320 54.34291740 210.80016510 54.39391000 Polygon J2000  210.79858090 54.32875470 210.75693070 54.38001520 210.71409030 54.36600310 210.75577980 54.31475730</TD>
+          </TR>
+          <TR>
+            <TD><![CDATA[http://hla.stsci.edu/cgi-bin/getdata.cgi?dataset=HST_9720_02_ACS_WFC_total]]></TD>
+            <TD>210.775922</TD>
+            <TD>54.354601</TD>
+            <TD>2</TD>
+            <TD>ANY</TD>
+            <TD>ACS/WFC</TD>
+            <TD>WFC</TD>
+            <TD>detection</TD>
+            <TD>2</TD>
+            <TD>2430.000000</TD>
+            <TD>2003-08-27 07:44:47</TD>
+            <TD>HST_9720_02_ACS_WFC_total</TD>
+            <TD>9720</TD>
+            <TD>02</TD>
+            <TD>Chandar</TD>
+            <TD>Loaded</TD>
+            <TD>Loaded</TD>
+            <TD>ACCUM</TD>
+            <TD>2008-01-02 03:30:37</TD>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>image/fits</TD>
+            <TD>2004-08-27 11:07:45</TD>
+            <TD>1093604865</TD>
+            <TD>9720_02 ACS/WFC detection (combined) ANY</TD>
+            <TD>5750 5750</TD>
+            <TD>1.38889E-05</TD>
+            <TD>2</TD>
+            <TD>2875.000 2875.000</TD>
+            <TD>210.775922 54.354601</TD>
+            <TD>-1.38889E-05 0 0 1.38889E-05</TD>
+            <TD>HST_9720_02_ACS_WFC_total</TD>
+            <TD>Polygon J2000 210.71409030 54.36600310 210.75577980 54.31475730 210.79858090 54.32875470 210.75693070 54.38001520 Polygon J2000  210.75890230 54.38019650 210.79889830 54.32921760 210.84012320 54.34291740 210.80016510 54.39391000</TD>
+          </TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>

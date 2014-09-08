@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VOTABLE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ivoa.net/xml/VOTable/v1.1" version="1.0">
+  <DESCRIPTION> Results from MAST/GALEX SIAP Web Service </DESCRIPTION>
+  <DEFINITIONS>
+    <COOSYS ID="J3000" equinox="2000." epoch="2000." system="eq_FK5"/>
+  </DEFINITIONS>
+  <INFO name="SUCCESS" value="Parameters validated"/>
+  <RESOURCE type="results">
+    <DESCRIPTION>GALEX Simple Image Access Service Results</DESCRIPTION>
+    <INFO name="QUERY_STATUS" value="OK"/>
+    <PARAM unit="degrees" datatype="char" name="INPUT:POS" value="210.80227,54.34895" arraysize="*"/>
+    <PARAM unit="degrees" datatype="char" name="INPUT:SIZE" value="0.0416666666666667,0.0416666666666667" arraysize="*"/>
+    <PARAM datatype="char" name="INPUT:FORMAT" value="ALL" arraysize="*"/>
+    <PARAM datatype="char" name="INPUT:BANDPASS" value="ALL" arraysize="*"/>
+    <PARAM datatype="char" name="INPUT:INTERSECT" value="OVERLAPS"/>
+    <PARAM unit="int" datatype="int" name="INPUT:NAXIS" value="100,100"/>
+    <PARAM datatype="char" name="INPUT:CFRAME" value="FK5"/>
+    <PARAM unit="char" datatype="char" name="INPUT:EQUINOX" value="2000"/>
+    <PARAM unit="double" datatype="double" name="INPUT:CRPIX" value="50.5,50.5" arraysize="*"/>
+    <PARAM unit="double" datatype="double" name="INPUT:CRVAL" value="210.80227,54.34895" arraysize="*"/>
+    <PARAM unit="double" datatype="double" name="INPUT:CDELT" value="-0.000416666666666667,0.000416666666666667" arraysize="*"/>
+    <PARAM unit="double" datatype="double" name="INPUT:ROTANG" value="0"/>
+    <PARAM datatype="char" name="INPUT:PROJ" value="TAN"/>
+    <TABLE name="GALEX">
+      <DESCRIPTION> MAST/GALEX SIAP Search : 5 returned</DESCRIPTION>
+      <FIELD name="title" datatype="char" ucd="VOX:Image_Title" ID="title">
+        <DESCRIPTION>Survey</DESCRIPTION>
+      </FIELD>
+      <FIELD name="instrument" datatype="char" ucd="VOX:INST_ID" ID="instrument">
+        <DESCRIPTION>Instrument</DESCRIPTION>
+      </FIELD>
+      <FIELD name="obsdate" datatype="char" ucd="VOX:Image_MJDateObs" ID="obsdate">
+        <DESCRIPTION>Observation Date</DESCRIPTION>
+      </FIELD>
+      <FIELD name="ra" datatype="char" ucd="POS_EQ_RA_MAIN" ID="ra">
+        <DESCRIPTION>ICRS right-ascension of the center of the image</DESCRIPTION>
+      </FIELD>
+      <FIELD name="dec" datatype="char" ucd="POS_EQ_DEC_MAIN" ID="dec">
+        <DESCRIPTION>ICRS declination of the center of the image</DESCRIPTION>
+      </FIELD>
+      <FIELD name="naxes" datatype="char" ucd="VOX:Image_Naxes" ID="naxes">
+        <DESCRIPTION>Number of image axes</DESCRIPTION>
+      </FIELD>
+      <FIELD name="naxis" datatype="char" ucd="VOX:Image_Naxis" ID="naxis">
+        <DESCRIPTION>Length in pixels of each image axis</DESCRIPTION>
+      </FIELD>
+      <FIELD name="scale" datatype="char" ucd="VOX:Image_Scale" ID="scale">
+        <DESCRIPTION>Degrees per pixel of each image axis</DESCRIPTION>
+      </FIELD>
+      <FIELD name="format" datatype="char" ucd="VOX:Image_Format" ID="format">
+        <DESCRIPTION>MIME-type of the image</DESCRIPTION>
+      </FIELD>
+      <FIELD name="cframe" datatype="char" ucd="VOX:STC_CoordRefFrame" ID="cframe">
+        <DESCRIPTION>Coordinate system reference frame</DESCRIPTION>
+      </FIELD>
+      <FIELD name="equinox" datatype="char" ucd="VOX:STC_CoordEquinox" ID="equinox">
+        <DESCRIPTION>Equinox of the coordinate system used for the image WCS</DESCRIPTION>
+      </FIELD>
+      <FIELD name="cproj" datatype="char" ucd="VOX:STC_CoordProjection" ID="cproj">
+        <DESCRIPTION>Celestial projection</DESCRIPTION>
+      </FIELD>
+      <FIELD name="crpix" datatype="char" ucd="VOX:WCS_CoordRefPixel" ID="crpix">
+        <DESCRIPTION>Image pixel coordinates of the WCS reference pixel</DESCRIPTION>
+      </FIELD>
+      <FIELD name="crval" datatype="char" ucd="VOX:WCS_CoordRefValue" ID="crval">
+        <DESCRIPTION>World coordinates of the WCS reference pixel</DESCRIPTION>
+      </FIELD>
+      <FIELD name="band_id" datatype="char" ucd="VOX:BandPass_ID" ID="band_id">
+        <DESCRIPTION>Bandpass</DESCRIPTION>
+      </FIELD>
+      <FIELD name="band_unit" datatype="char" ucd="VOX:BandPass_Unit" ID="band_unit">
+        <DESCRIPTION>Unit used to represent the spectral values</DESCRIPTION>
+      </FIELD>
+      <FIELD name="band_rval" datatype="char" ucd="VOX:BandPass_RefValue" ID="band_rval">
+        <DESCRIPTION>Characteristic reference frequency for the bandpass model</DESCRIPTION>
+      </FIELD>
+      <FIELD name="band_hlim" datatype="char" ucd="VOX:BandPass_HiLimit" ID="band_hlim">
+        <DESCRIPTION>Bandpass upper limit</DESCRIPTION>
+      </FIELD>
+      <FIELD name="band_llim" datatype="char" ucd="VOX:BandPass_LoLimit" ID="band_llim">
+        <DESCRIPTION>Bandpass lower limit</DESCRIPTION>
+      </FIELD>
+      <FIELD name="pixflag" datatype="char" ucd="VOX:Image_PixFlag" ID="pixflag">
+        <DESCRIPTION>Bandpass upper limit</DESCRIPTION>
+      </FIELD>
+      <FIELD name="url" datatype="char" ucd="VOX:Image_AccessReference" ID="url">
+        <DESCRIPTION>URL of image file</DESCRIPTION>
+      </FIELD>
+      <DATA>
+        <TABLEDATA>
+          <TR>
+            <TD/>
+            <TD>GALEX</TD>
+            <TD>Friday, June 20, 2003</TD>
+            <TD>210.80227</TD>
+            <TD>54.34895</TD>
+            <TD>1</TD>
+            <TD>100,100</TD>
+            <TD>0.000416666666666667</TD>
+            <TD>image/jpeg</TD>
+            <TD>FK5</TD>
+            <TD>2000</TD>
+            <TD>TAN</TD>
+            <TD>50.5,50.5</TD>
+            <TD>210.80227,54.34895</TD>
+            <TD>FUV+NUV</TD>
+            <TD>meters</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>C</TD>
+            <TD>http://galex.stsci.edu/gxWS/SIAP6/getJpeg.aspx?ra=210.80227&amp;dec=54.34895&amp;width=100&amp;height=100</TD>
+          </TR>
+          <TR>
+            <TD/>
+            <TD>GALEX Far UV </TD>
+            <TD>Friday, June 20, 2003</TD>
+            <TD>210.80227</TD>
+            <TD>54.34895</TD>
+            <TD>1</TD>
+            <TD>100,100</TD>
+            <TD>0.000416666666666667</TD>
+            <TD>image/jpeg</TD>
+            <TD>FK5</TD>
+            <TD>2000</TD>
+            <TD>TAN</TD>
+            <TD>50.5,50.5</TD>
+            <TD>210.80227,54.34895</TD>
+            <TD>FUV</TD>
+            <TD>meters</TD>
+            <TD>1516</TD>
+            <TD>1350</TD>
+            <TD>1750</TD>
+            <TD>C</TD>
+            <TD>http://galex.stsci.edu/gxWS/SIAP6/getJpeg.aspx?ra=210.80227&amp;dec=54.34895&amp;width=100&amp;height=100&amp;bandpass=F</TD>
+          </TR>
+          <TR>
+            <TD/>
+            <TD>GALEX Near UV </TD>
+            <TD>Friday, June 20, 2003</TD>
+            <TD>210.80227</TD>
+            <TD>54.34895</TD>
+            <TD>1</TD>
+            <TD>100,100</TD>
+            <TD>0.000416666666666667</TD>
+            <TD>image/jpeg</TD>
+            <TD>FK5</TD>
+            <TD>2000</TD>
+            <TD>TAN</TD>
+            <TD>50.5,50.5</TD>
+            <TD>210.80227,54.34895</TD>
+            <TD>NUV</TD>
+            <TD>meters</TD>
+            <TD>2267</TD>
+            <TD>1750</TD>
+            <TD>2800</TD>
+            <TD>C</TD>
+            <TD>http://galex.stsci.edu/gxWS/SIAP6/getJpeg.aspx?ra=210.80227&amp;dec=54.34895&amp;width=100&amp;height=100&amp;bandpass=N</TD>
+          </TR>
+          <TR>
+            <TD/>
+            <TD>GALEX Far UV </TD>
+            <TD>Friday, June 20, 2003</TD>
+            <TD>210.80227</TD>
+            <TD>54.34895</TD>
+            <TD>1</TD>
+            <TD>100,100</TD>
+            <TD>0.000416666666666667</TD>
+            <TD>image/fits</TD>
+            <TD>FK5</TD>
+            <TD>2000</TD>
+            <TD>TAN</TD>
+            <TD>50.5,50.5</TD>
+            <TD>210.80227,54.34895</TD>
+            <TD>FUV</TD>
+            <TD>meters</TD>
+            <TD>1516</TD>
+            <TD>1350</TD>
+            <TD>1750</TD>
+            <TD>C</TD>
+            <TD>http://galex.stsci.edu/data/GR67/pipe/01-vsn/05295-NGA_M101/d/01-main/0001-img/07-try/NGA_M101-fd-int.fits.gz</TD>
+          </TR>
+          <TR>
+            <TD/>
+            <TD>GALEX Near UV </TD>
+            <TD>Friday, June 20, 2003</TD>
+            <TD>210.80227</TD>
+            <TD>54.34895</TD>
+            <TD>1</TD>
+            <TD>100,100</TD>
+            <TD>0.000416666666666667</TD>
+            <TD>image/fits</TD>
+            <TD>FK5</TD>
+            <TD>2000</TD>
+            <TD>TAN</TD>
+            <TD>50.5,50.5</TD>
+            <TD>210.80227,54.34895</TD>
+            <TD>NUV</TD>
+            <TD>meters</TD>
+            <TD>2267</TD>
+            <TD>1750</TD>
+            <TD>2800</TD>
+            <TD>C</TD>
+            <TD>http://galex.stsci.edu/data/GR67/pipe/01-vsn/05295-NGA_M101/d/01-main/0001-img/07-try/NGA_M101-nd-int.fits.gz</TD>
+          </TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE xmlns="http://www.ivoa.net/xml/VOTable/v1.1" xmlns:spec="http://www.ivoa.net/xml/Spectrum/Spectrum-1.01.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" xsi:noNamespaceSchemaLocation="http://www.ivoa.net/xml/VOTable/v1.1">
+  <RESOURCE utype="spec:Spectrum.Sed">
+    <TABLE utype="spec:Segment">
+      <PARAM arraysize="*" datatype="char" name="DataModel" utype="spec:Spectrum.DataModel" value="Spectrum-1.0"/>
+      <PARAM arraysize="*" datatype="char" name="DataSetType" utype="spec:Spectrum.Type" value="Spectrum"/>
+      <GROUP utype="spec:Spectrum.Target">
+        <PARAM arraysize="*" datatype="char" name="TargetName" ucd="meta.id;src" utype="spec:Spectrum.Target.Name" value="3EG J1229+0210"/>
+        <PARAM arraysize="2" datatype="double" name="TargetPos" ucd="pos.eq;src" utype="spec:Spectrum.Target.Pos" value="187.25 2.17"/>
+      </GROUP>
+      <GROUP utype="spec:Spectrum.Char">
+        <GROUP utype="spec:Spectrum.Char.SpatialAxis">
+          <PARAM arraysize="*" datatype="char" name="Sky" ucd="pos.frame;pos.eq" unit="deg" utype="spec:Spectrum.Char.SpatialAxis.Name" value="Sky"/>
+          <PARAM arraysize="*" datatype="char" name="SpatialCalibration" ucd="meta.code.qual" utype="spec:Spectrum.Char.SpatialAxis.Calibration" value="CALIBRATED"/>
+          <GROUP utype="spec:Spectrum.Char.SpatialAxis.Coverage">
+            <GROUP utype="spec:Spectrum.Char.SpatialAxis.Coverage.Location">
+              <PARAM arraysize="2" datatype="double" name="SpatialLocation" ucd="pos.eq" utype="spec:Spectrum.Char.SpatialAxis.Coverage.Location.Value" value="187.25 2.17"/>
+            </GROUP>
+            <GROUP utype="spec:Spectrum.Char.SpatialAxis.Coverage.Bounds">
+              <PARAM datatype="double" name="SpatialExtend" ucd="instr.fov" utype="spec:Spectrum.Char.SpatialAxis.Coverage.Bounds.Extent" value="0.32"/>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Char.TimeAxis">
+          <PARAM arraysize="*" datatype="char" name="Time" ucd="time" unit="d" utype="spec:Spectrum.Char.TimeAxis.Name" value="Time"/>
+          <PARAM arraysize="*" datatype="char" name="TimeCalibration" ucd="meta.code.equal" utype="spec:Spectrum.Char.TimeAxis.Calibration" value="CALIBRATED"/>
+          <GROUP utype="spec:Spectrum.Char.TimeAxis.Coverage">
+            <GROUP utype="spec:Spectrum.Char.TimeAxis.Coverage.Location">
+              <PARAM datatype="double" name="TimeLocation" ucd="time.epoch" utype="spec:Spectrum.Char.TimeAxis.Coverage.Location.Value" value="49180.5"/>
+            </GROUP>
+            <GROUP utype="spec:Spectrum.Char.TimeAxis.Coverage.Bounds">
+              <PARAM datatype="double" name="TimeExtent" ucd="time.duration" utype="spec:Spectrum.Char.TimeAxis.Coverage.Bounds.Extent" value="1625.0"/>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Char.SpectralAxis">
+          <PARAM arraysize="*" datatype="char" name="Frequency" ucd="em.freq" unit="Hz" utype="spec:Spectrum.Char.SpectralAxis.Name" value="Frequency"/>
+          <PARAM arraysize="*" datatype="char" name="SpectralCalibration" ucd="meta.code.equal" utype="spec:Spectrum.Char.SpectralAxis.Calibration" value="CALIBRATED"/>
+          <GROUP utype="spec:Spectrum.Char.SpectralAxis.Coverage">
+            <GROUP utype="spec:Spectrum.Char.SpectralAxis.Coverage.Location">
+              <PARAM datatype="double" name="SpectralLocation" ucd="em.wl;instr.bandpass" utype="spec:Spectrum.Char.SpectralAxis.Coverage.Location.Value" value="1.2211E24"/>
+            </GROUP>
+            <GROUP utype="spec:Spectrum.Char.SpectralAxis.Coverage.Bounds">
+              <PARAM datatype="double" name="SpectralExtent" ucd="em.wl;instr.bandwidth" utype="spec:Spectrum.Char.SpectralAxis.Coverage.Bounds.Extent" value="2.3938E24"/>
+              <PARAM datatype="double" name="SpectralStart" ucd="em.wl;stat.min" utype="spec:Spectrum.Char.SpectralAxis.Coverage.Bounds.Min" value="2.418E22"/>
+              <PARAM datatype="double" name="SpectralStop" ucd="em.wl;stat.max" utype="spec:Spectrum.Char.SpectralAxis.Coverage.Bounds.Max" value="2.418E24"/>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Char.FluxAxis">
+          <PARAM arraysize="*" datatype="char" name="Flux" ucd="phot.flux.density;em.wl" unit="erg cm**(-2) s**(-1)" utype="spec:Spectrum.Char.FluxAxis.Name" value="Flux"/>
+          <PARAM arraysize="*" datatype="char" name="FluxCalibration" utype="spec:Spectrum.Char.FluxAxis.Calibration" value="CALIBRATED"/>
+        </GROUP>
+      </GROUP>
+      <GROUP utype="spec:Spectrum.CoordSys">
+        <GROUP utype="spec:Spectrum.CoordSys.SpaceFrame">
+          <PARAM datatype="double" name="SpaceFrameEquinox" ucd="time.equinox;pos.frame" utype="spec:Spectrum.CoordSys.SpaceFrame.Equinox" value="J2000"/>
+          <PARAM arraysize="*" datatype="char" name="ucd" utype="spec:Spectrum.CoordSys.SpaceFrame.UCD" value="pos.frame;pos.eq"/>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.CoordSys.TimeFrame">
+          <PARAM datatype="double" name="TimeFrameZero" ucd="time;arith.zp" utype="spec:Spectrum.CoordSys.TimeFrame.Zero" value="0.0"/>
+          <PARAM arraysize="*" datatype="char" name="name" utype="spec:Spectrum.CoordSys.TimeFrame.Name" value="TT"/>
+          <PARAM arraysize="*" datatype="char" name="referencePosition" utype="spec:Spectrum.CoordSys.TimeFrame.RefPos" value="TOPOCENTER"/>
+          <PARAM arraysize="*" datatype="char" name="ucd" utype="spec:Spectrum.CoordSys.TimeFrame.UCD" value="time"/>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.CoordSys.SpectralFrame">
+          <PARAM datatype="double" name="SpectralFrameRedshift" utype="spec:Spectrum.CoordSys.SpectralFrame.Redshift" value="0.0"/>
+          <PARAM arraysize="*" datatype="char" name="referencePosition" utype="spec:Spectrum.CoordSys.SpectralFrame.RefPos" value="TOPOCENTER"/>
+          <PARAM arraysize="*" datatype="char" name="ucd" utype="spec:Spectrum.CoordSys.SpectralFrame.UCD" value="erm.freq"/>
+        </GROUP>
+      </GROUP>
+      <GROUP utype="spec:Spectrum.Curation">
+        <PARAM arraysize="*" datatype="char" name="Publisher" ucd="meta.curation" utype="spec:Spectrum.Curation.Publisher" value="ASDC"/>
+        <PARAM arraysize="*" datatype="char" name="PublisherDID" ucd="meta.ref.url;meta.curation" utype="spec:Spectrum.Curation.PublisherDID" value="ASDC"/>
+        <PARAM arraysize="*" datatype="char" name="PublisherVersion" ucd="meta.version;meta.curation" utype="spec:Spectrum.Curation.Version" value="2.0"/>
+        <PARAM arraysize="*" datatype="char" name="Rights" utype="spec:Spectrum.Curation.Rights" value="PUBLIC"/>
+      </GROUP>
+      <GROUP utype="spec:Spectrum.DataID">
+        <PARAM arraysize="*" datatype="char" name="Title" ucd="meta.title;meta.dataset" utype="spec:Spectrum.DataID.Title" value="SED element"/>
+        <PARAM arraysize="*" datatype="char" name="Creator" utype="spec:Spectrum.DataID.Creator" value="ASDC"/>
+        <PARAM arraysize="*" datatype="char" name="CreatorVersion" ucd="meta.version;meta.dataset" utype="spec:Spectrum.DataID.Version" value="2.0"/>
+        <PARAM arraysize="*" datatype="char" name="DataSource" utype="spec:Spectrum.DataID.DataSource" value="ARCHIVE"/>
+        <PARAM arraysize="*" datatype="char" name="Collection" utype="spec:Spectrum.DataID.Collection" value="EGRET3"/>
+      </GROUP>
+      <PARAM arraysize="*" datatype="char" name="CreatorDID" ucd="meta.id" value="ASDC"/>
+      <PARAM arraysize="*" datatype="char" name="Creators" ucd="meta.id" value="ASDC_SED_BUILDER"/>
+      <PARAM arraysize="*" datatype="char" name="ContactName" ucd="meta.bib.author;meta.curation" value="VO_HELPDESK"/>
+      <PARAM arraysize="*" datatype="char" name="ContactEmail" ucd="meta.ref.url;meta.email" value="vo_helpdesk@asdc.asi.it"/>
+      <PARAM arraysize="*" datatype="char" name="SpaceFrameName" ucd="pos.frame" value="FK5"/>
+      <PARAM datatype="double" name="SpatialFillFactor" ucd="stat.fill;pos.eq" value="1.0"/>
+      <PARAM datatype="double" name="SpectralFillFactor" ucd="sta.fill;em" value="1.0"/>
+      <PARAM arraysize="*" datatype="char" name="Model_Name" ucd="meta.id" value="PowerLaw"/>
+      <PARAM datatype="int" name="ParamNumber" value="1"/>
+      <PARAM arraysize="*" datatype="char" name="Param_X_Name" ucd="meta.id" value="Photon_Index"/>
+      <PARAM datatype="double" name="Param_X_Value" value="2.58"/>
+      <PARAM datatype="double" name="Param_X_errPos" ucd="stat.error" value="0.09"/>
+      <PARAM datatype="double" name="Param_X_errNeg" ucd="stat.error" value="0.0"/>
+      <GROUP utype="spec:Spectrum.Data">
+        <GROUP utype="spec:Spectrum.Data.TimeAxis">
+          <GROUP utype="spec:Spectrum.Data.TimeAxis.Accuracy">
+            <FIELDref ref="1774"/>
+            <FIELDref ref="1773"/>
+          </GROUP>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Data.SpectralAxis">
+          <FIELDref ref="1777"/>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Data.FluxAxis">
+          <FIELDref ref="1776"/>
+          <GROUP utype="spec:Spectrum.Data.FluxAxis.Accuracy">
+            <FIELDref ref="1775"/>
+          </GROUP>
+        </GROUP>
+      </GROUP>
+      <FIELD ID="1774" datatype="double" name="START_TIME" ucd="time;stat.min" utype="spec:Spectrum.Data.TimeAxis.Accuracy.BinLow"/>
+      <FIELD ID="1773" datatype="double" name="STOP_TIME" ucd="time;stat.max" utype="spec:Spectrum.Data.TimeAxis.Accuracy.BinHigh"/>
+      <FIELD ID="1777" datatype="double" name="FREQUENCY" ucd="em.freq" unit="Hz" utype="spec:Spectrum.Data.SpectralAxis.Value"/>
+      <FIELD ID="1776" datatype="double" name="FLUX" ucd="phot.flux.density;em.wl" unit="erg cm**(-2) s**(-1)" utype="spec:Spectrum.Data.FluxAxis.Value"/>
+      <FIELD ID="1775" datatype="double" name="FLUX_ERROR" ucd="phot.flux.density" utype="spec:Spectrum.Data.FluxAxis.Accuracy.StatError"/>
+      <DATA>
+        <TABLEDATA>
+          <TR>
+            <TD>48368.5</TD>
+            <TD>49993.5</TD>
+            <TD>2.4200000273883E22</TD>
+            <TD>5.037134225007662E-11</TD>
+            <TD>2.354037602641772E-11</TD>
+          </TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+    <TABLE utype="spec:Segment">
+      <PARAM arraysize="*" datatype="char" name="DataModel" utype="spec:Spectrum.DataModel" value="Spectrum-1.0"/>
+      <PARAM arraysize="*" datatype="char" name="DataSetType" utype="spec:Spectrum.Type" value="Spectrum"/>
+      <GROUP utype="spec:Spectrum.Target">
+        <PARAM arraysize="*" datatype="char" name="TargetName" ucd="meta.id;src" utype="spec:Spectrum.Target.Name" value="3EG J1229+0210"/>
+        <PARAM arraysize="2" datatype="double" name="TargetPos" ucd="pos.eq;src" utype="spec:Spectrum.Target.Pos" value="187.25 2.17"/>
+      </GROUP>
+      <GROUP utype="spec:Spectrum.Char">
+        <GROUP utype="spec:Spectrum.Char.SpatialAxis">
+          <PARAM arraysize="*" datatype="char" name="Sky" ucd="pos.frame;pos.eq" unit="deg" utype="spec:Spectrum.Char.SpatialAxis.Name" value="Sky"/>
+          <PARAM arraysize="*" datatype="char" name="SpatialCalibration" ucd="meta.code.qual" utype="spec:Spectrum.Char.SpatialAxis.Calibration" value="CALIBRATED"/>
+          <GROUP utype="spec:Spectrum.Char.SpatialAxis.Coverage">
+            <GROUP utype="spec:Spectrum.Char.SpatialAxis.Coverage.Location">
+              <PARAM arraysize="2" datatype="double" name="SpatialLocation" ucd="pos.eq" utype="spec:Spectrum.Char.SpatialAxis.Coverage.Location.Value" value="187.25 2.17"/>
+            </GROUP>
+            <GROUP utype="spec:Spectrum.Char.SpatialAxis.Coverage.Bounds">
+              <PARAM datatype="double" name="SpatialExtend" ucd="instr.fov" utype="spec:Spectrum.Char.SpatialAxis.Coverage.Bounds.Extent" value="0.32"/>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Char.TimeAxis">
+          <PARAM arraysize="*" datatype="char" name="Time" ucd="time" unit="d" utype="spec:Spectrum.Char.TimeAxis.Name" value="Time"/>
+          <PARAM arraysize="*" datatype="char" name="TimeCalibration" ucd="meta.code.equal" utype="spec:Spectrum.Char.TimeAxis.Calibration" value="CALIBRATED"/>
+          <GROUP utype="spec:Spectrum.Char.TimeAxis.Coverage">
+            <GROUP utype="spec:Spectrum.Char.TimeAxis.Coverage.Location">
+              <PARAM datatype="double" name="TimeLocation" ucd="time.epoch" utype="spec:Spectrum.Char.TimeAxis.Coverage.Location.Value" value="49180.5"/>
+            </GROUP>
+            <GROUP utype="spec:Spectrum.Char.TimeAxis.Coverage.Bounds">
+              <PARAM datatype="double" name="TimeExtent" ucd="time.duration" utype="spec:Spectrum.Char.TimeAxis.Coverage.Bounds.Extent" value="1625.0"/>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Char.SpectralAxis">
+          <PARAM arraysize="*" datatype="char" name="Frequency" ucd="em.freq" unit="Hz" utype="spec:Spectrum.Char.SpectralAxis.Name" value="Frequency"/>
+          <PARAM arraysize="*" datatype="char" name="SpectralCalibration" ucd="meta.code.equal" utype="spec:Spectrum.Char.SpectralAxis.Calibration" value="CALIBRATED"/>
+          <GROUP utype="spec:Spectrum.Char.SpectralAxis.Coverage">
+            <GROUP utype="spec:Spectrum.Char.SpectralAxis.Coverage.Location">
+              <PARAM datatype="double" name="SpectralLocation" ucd="em.wl;instr.bandpass" utype="spec:Spectrum.Char.SpectralAxis.Coverage.Location.Value" value="1.2211E24"/>
+            </GROUP>
+            <GROUP utype="spec:Spectrum.Char.SpectralAxis.Coverage.Bounds">
+              <PARAM datatype="double" name="SpectralExtent" ucd="em.wl;instr.bandwidth" utype="spec:Spectrum.Char.SpectralAxis.Coverage.Bounds.Extent" value="2.3938E24"/>
+              <PARAM datatype="double" name="SpectralStart" ucd="em.wl;stat.min" utype="spec:Spectrum.Char.SpectralAxis.Coverage.Bounds.Min" value="2.418E22"/>
+              <PARAM datatype="double" name="SpectralStop" ucd="em.wl;stat.max" utype="spec:Spectrum.Char.SpectralAxis.Coverage.Bounds.Max" value="2.418E24"/>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Char.FluxAxis">
+          <PARAM arraysize="*" datatype="char" name="Flux" ucd="phot.flux.density;em.wl" unit="erg cm**(-2) s**(-1)" utype="spec:Spectrum.Char.FluxAxis.Name" value="Flux"/>
+          <PARAM arraysize="*" datatype="char" name="FluxCalibration" utype="spec:Spectrum.Char.FluxAxis.Calibration" value="CALIBRATED"/>
+        </GROUP>
+      </GROUP>
+      <GROUP utype="spec:Spectrum.CoordSys">
+        <GROUP utype="spec:Spectrum.CoordSys.SpaceFrame">
+          <PARAM datatype="double" name="SpaceFrameEquinox" ucd="time.equinox;pos.frame" utype="spec:Spectrum.CoordSys.SpaceFrame.Equinox" value="J2000"/>
+          <PARAM arraysize="*" datatype="char" name="ucd" utype="spec:Spectrum.CoordSys.SpaceFrame.UCD" value="pos.frame;pos.eq"/>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.CoordSys.TimeFrame">
+          <PARAM datatype="double" name="TimeFrameZero" ucd="time;arith.zp" utype="spec:Spectrum.CoordSys.TimeFrame.Zero" value="0.0"/>
+          <PARAM arraysize="*" datatype="char" name="name" utype="spec:Spectrum.CoordSys.TimeFrame.Name" value="TT"/>
+          <PARAM arraysize="*" datatype="char" name="referencePosition" utype="spec:Spectrum.CoordSys.TimeFrame.RefPos" value="TOPOCENTER"/>
+          <PARAM arraysize="*" datatype="char" name="ucd" utype="spec:Spectrum.CoordSys.TimeFrame.UCD" value="time"/>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.CoordSys.SpectralFrame">
+          <PARAM datatype="double" name="SpectralFrameRedshift" utype="spec:Spectrum.CoordSys.SpectralFrame.Redshift" value="0.0"/>
+          <PARAM arraysize="*" datatype="char" name="referencePosition" utype="spec:Spectrum.CoordSys.SpectralFrame.RefPos" value="TOPOCENTER"/>
+          <PARAM arraysize="*" datatype="char" name="ucd" utype="spec:Spectrum.CoordSys.SpectralFrame.UCD" value="erm.freq"/>
+        </GROUP>
+      </GROUP>
+      <GROUP utype="spec:Spectrum.Curation">
+        <PARAM arraysize="*" datatype="char" name="Publisher" ucd="meta.curation" utype="spec:Spectrum.Curation.Publisher" value="ASDC"/>
+        <PARAM arraysize="*" datatype="char" name="PublisherDID" ucd="meta.ref.url;meta.curation" utype="spec:Spectrum.Curation.PublisherDID" value="ASDC"/>
+        <PARAM arraysize="*" datatype="char" name="PublisherVersion" ucd="meta.version;meta.curation" utype="spec:Spectrum.Curation.Version" value="2.0"/>
+        <PARAM arraysize="*" datatype="char" name="Rights" utype="spec:Spectrum.Curation.Rights" value="PUBLIC"/>
+      </GROUP>
+      <GROUP utype="spec:Spectrum.DataID">
+        <PARAM arraysize="*" datatype="char" name="Title" ucd="meta.title;meta.dataset" utype="spec:Spectrum.DataID.Title" value="SED element"/>
+        <PARAM arraysize="*" datatype="char" name="Creator" utype="spec:Spectrum.DataID.Creator" value="ASDC"/>
+        <PARAM arraysize="*" datatype="char" name="CreatorVersion" ucd="meta.version;meta.dataset" utype="spec:Spectrum.DataID.Version" value="2.0"/>
+        <PARAM arraysize="*" datatype="char" name="DataSource" utype="spec:Spectrum.DataID.DataSource" value="ARCHIVE"/>
+        <PARAM arraysize="*" datatype="char" name="Collection" utype="spec:Spectrum.DataID.Collection" value="EGRET3"/>
+      </GROUP>
+      <PARAM arraysize="*" datatype="char" name="CreatorDID" ucd="meta.id" value="ASDC"/>
+      <PARAM arraysize="*" datatype="char" name="Creators" ucd="meta.id" value="ASDC_SED_BUILDER"/>
+      <PARAM arraysize="*" datatype="char" name="ContactName" ucd="meta.bib.author;meta.curation" value="VO_HELPDESK"/>
+      <PARAM arraysize="*" datatype="char" name="ContactEmail" ucd="meta.ref.url;meta.email" value="vo_helpdesk@asdc.asi.it"/>
+      <PARAM arraysize="*" datatype="char" name="SpaceFrameName" ucd="pos.frame" value="FK5"/>
+      <PARAM datatype="double" name="SpatialFillFactor" ucd="stat.fill;pos.eq" value="1.0"/>
+      <PARAM datatype="double" name="SpectralFillFactor" ucd="sta.fill;em" value="1.0"/>
+      <PARAM arraysize="*" datatype="char" name="Model_Name" ucd="meta.id" value="PowerLaw"/>
+      <PARAM datatype="int" name="ParamNumber" value="1"/>
+      <PARAM arraysize="*" datatype="char" name="Param_X_Name" ucd="meta.id" value="Photon_Index"/>
+      <PARAM datatype="double" name="Param_X_Value" value="2.58"/>
+      <PARAM datatype="double" name="Param_X_errPos" ucd="stat.error" value="0.09"/>
+      <PARAM datatype="double" name="Param_X_errNeg" ucd="stat.error" value="0.0"/>
+      <GROUP utype="spec:Spectrum.Data">
+        <GROUP utype="spec:Spectrum.Data.TimeAxis">
+          <GROUP utype="spec:Spectrum.Data.TimeAxis.Accuracy">
+            <FIELDref ref="1769"/>
+            <FIELDref ref="1768"/>
+          </GROUP>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Data.SpectralAxis">
+          <FIELDref ref="1772"/>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Data.FluxAxis">
+          <FIELDref ref="1771"/>
+          <GROUP utype="spec:Spectrum.Data.FluxAxis.Accuracy">
+            <FIELDref ref="1770"/>
+          </GROUP>
+        </GROUP>
+      </GROUP>
+      <FIELD ID="1769" datatype="double" name="START_TIME" ucd="time;stat.min" utype="spec:Spectrum.Data.TimeAxis.Accuracy.BinLow"/>
+      <FIELD ID="1768" datatype="double" name="STOP_TIME" ucd="time;stat.max" utype="spec:Spectrum.Data.TimeAxis.Accuracy.BinHigh"/>
+      <FIELD ID="1772" datatype="double" name="FREQUENCY" ucd="em.freq" unit="Hz" utype="spec:Spectrum.Data.SpectralAxis.Value"/>
+      <FIELD ID="1771" datatype="double" name="FLUX" ucd="phot.flux.density;em.wl" unit="erg cm**(-2) s**(-1)" utype="spec:Spectrum.Data.FluxAxis.Value"/>
+      <FIELD ID="1770" datatype="double" name="FLUX_ERROR" ucd="phot.flux.density" utype="spec:Spectrum.Data.FluxAxis.Accuracy.StatError"/>
+      <DATA>
+        <TABLEDATA>
+          <TR>
+            <TD>48368.5</TD>
+            <TD>49993.5</TD>
+            <TD>2.4200000273883E22</TD>
+            <TD>1.3567356505548277E-10</TD>
+            <TD>0.0</TD>
+          </TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+    <TABLE utype="spec:Segment">
+      <PARAM arraysize="*" datatype="char" name="DataModel" utype="spec:Spectrum.DataModel" value="Spectrum-1.0"/>
+      <PARAM arraysize="*" datatype="char" name="DataSetType" utype="spec:Spectrum.Type" value="Spectrum"/>
+      <GROUP utype="spec:Spectrum.Target">
+        <PARAM arraysize="*" datatype="char" name="TargetName" ucd="meta.id;src" utype="spec:Spectrum.Target.Name" value="3EG J1229+0210"/>
+        <PARAM arraysize="2" datatype="double" name="TargetPos" ucd="pos.eq;src" utype="spec:Spectrum.Target.Pos" value="187.25 2.17"/>
+      </GROUP>
+      <GROUP utype="spec:Spectrum.Char">
+        <GROUP utype="spec:Spectrum.Char.SpatialAxis">
+          <PARAM arraysize="*" datatype="char" name="Sky" ucd="pos.frame;pos.eq" unit="deg" utype="spec:Spectrum.Char.SpatialAxis.Name" value="Sky"/>
+          <PARAM arraysize="*" datatype="char" name="SpatialCalibration" ucd="meta.code.qual" utype="spec:Spectrum.Char.SpatialAxis.Calibration" value="CALIBRATED"/>
+          <GROUP utype="spec:Spectrum.Char.SpatialAxis.Coverage">
+            <GROUP utype="spec:Spectrum.Char.SpatialAxis.Coverage.Location">
+              <PARAM arraysize="2" datatype="double" name="SpatialLocation" ucd="pos.eq" utype="spec:Spectrum.Char.SpatialAxis.Coverage.Location.Value" value="187.25 2.17"/>
+            </GROUP>
+            <GROUP utype="spec:Spectrum.Char.SpatialAxis.Coverage.Bounds">
+              <PARAM datatype="double" name="SpatialExtend" ucd="instr.fov" utype="spec:Spectrum.Char.SpatialAxis.Coverage.Bounds.Extent" value="0.32"/>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Char.TimeAxis">
+          <PARAM arraysize="*" datatype="char" name="Time" ucd="time" unit="d" utype="spec:Spectrum.Char.TimeAxis.Name" value="Time"/>
+          <PARAM arraysize="*" datatype="char" name="TimeCalibration" ucd="meta.code.equal" utype="spec:Spectrum.Char.TimeAxis.Calibration" value="CALIBRATED"/>
+          <GROUP utype="spec:Spectrum.Char.TimeAxis.Coverage">
+            <GROUP utype="spec:Spectrum.Char.TimeAxis.Coverage.Location">
+              <PARAM datatype="double" name="TimeLocation" ucd="time.epoch" utype="spec:Spectrum.Char.TimeAxis.Coverage.Location.Value" value="49180.5"/>
+            </GROUP>
+            <GROUP utype="spec:Spectrum.Char.TimeAxis.Coverage.Bounds">
+              <PARAM datatype="double" name="TimeExtent" ucd="time.duration" utype="spec:Spectrum.Char.TimeAxis.Coverage.Bounds.Extent" value="1625.0"/>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Char.SpectralAxis">
+          <PARAM arraysize="*" datatype="char" name="Frequency" ucd="em.freq" unit="Hz" utype="spec:Spectrum.Char.SpectralAxis.Name" value="Frequency"/>
+          <PARAM arraysize="*" datatype="char" name="SpectralCalibration" ucd="meta.code.equal" utype="spec:Spectrum.Char.SpectralAxis.Calibration" value="CALIBRATED"/>
+          <GROUP utype="spec:Spectrum.Char.SpectralAxis.Coverage">
+            <GROUP utype="spec:Spectrum.Char.SpectralAxis.Coverage.Location">
+              <PARAM datatype="double" name="SpectralLocation" ucd="em.wl;instr.bandpass" utype="spec:Spectrum.Char.SpectralAxis.Coverage.Location.Value" value="1.2211E24"/>
+            </GROUP>
+            <GROUP utype="spec:Spectrum.Char.SpectralAxis.Coverage.Bounds">
+              <PARAM datatype="double" name="SpectralExtent" ucd="em.wl;instr.bandwidth" utype="spec:Spectrum.Char.SpectralAxis.Coverage.Bounds.Extent" value="2.3938E24"/>
+              <PARAM datatype="double" name="SpectralStart" ucd="em.wl;stat.min" utype="spec:Spectrum.Char.SpectralAxis.Coverage.Bounds.Min" value="2.418E22"/>
+              <PARAM datatype="double" name="SpectralStop" ucd="em.wl;stat.max" utype="spec:Spectrum.Char.SpectralAxis.Coverage.Bounds.Max" value="2.418E24"/>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Char.FluxAxis">
+          <PARAM arraysize="*" datatype="char" name="Flux" ucd="phot.flux.density;em.wl" unit="erg cm**(-2) s**(-1)" utype="spec:Spectrum.Char.FluxAxis.Name" value="Flux"/>
+          <PARAM arraysize="*" datatype="char" name="FluxCalibration" utype="spec:Spectrum.Char.FluxAxis.Calibration" value="CALIBRATED"/>
+        </GROUP>
+      </GROUP>
+      <GROUP utype="spec:Spectrum.CoordSys">
+        <GROUP utype="spec:Spectrum.CoordSys.SpaceFrame">
+          <PARAM datatype="double" name="SpaceFrameEquinox" ucd="time.equinox;pos.frame" utype="spec:Spectrum.CoordSys.SpaceFrame.Equinox" value="J2000"/>
+          <PARAM arraysize="*" datatype="char" name="ucd" utype="spec:Spectrum.CoordSys.SpaceFrame.UCD" value="pos.frame;pos.eq"/>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.CoordSys.TimeFrame">
+          <PARAM datatype="double" name="TimeFrameZero" ucd="time;arith.zp" utype="spec:Spectrum.CoordSys.TimeFrame.Zero" value="0.0"/>
+          <PARAM arraysize="*" datatype="char" name="name" utype="spec:Spectrum.CoordSys.TimeFrame.Name" value="TT"/>
+          <PARAM arraysize="*" datatype="char" name="referencePosition" utype="spec:Spectrum.CoordSys.TimeFrame.RefPos" value="TOPOCENTER"/>
+          <PARAM arraysize="*" datatype="char" name="ucd" utype="spec:Spectrum.CoordSys.TimeFrame.UCD" value="time"/>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.CoordSys.SpectralFrame">
+          <PARAM datatype="double" name="SpectralFrameRedshift" utype="spec:Spectrum.CoordSys.SpectralFrame.Redshift" value="0.0"/>
+          <PARAM arraysize="*" datatype="char" name="referencePosition" utype="spec:Spectrum.CoordSys.SpectralFrame.RefPos" value="TOPOCENTER"/>
+          <PARAM arraysize="*" datatype="char" name="ucd" utype="spec:Spectrum.CoordSys.SpectralFrame.UCD" value="erm.freq"/>
+        </GROUP>
+      </GROUP>
+      <GROUP utype="spec:Spectrum.Curation">
+        <PARAM arraysize="*" datatype="char" name="Publisher" ucd="meta.curation" utype="spec:Spectrum.Curation.Publisher" value="ASDC"/>
+        <PARAM arraysize="*" datatype="char" name="PublisherDID" ucd="meta.ref.url;meta.curation" utype="spec:Spectrum.Curation.PublisherDID" value="ASDC"/>
+        <PARAM arraysize="*" datatype="char" name="PublisherVersion" ucd="meta.version;meta.curation" utype="spec:Spectrum.Curation.Version" value="2.0"/>
+        <PARAM arraysize="*" datatype="char" name="Rights" utype="spec:Spectrum.Curation.Rights" value="PUBLIC"/>
+      </GROUP>
+      <GROUP utype="spec:Spectrum.DataID">
+        <PARAM arraysize="*" datatype="char" name="Title" ucd="meta.title;meta.dataset" utype="spec:Spectrum.DataID.Title" value="SED element"/>
+        <PARAM arraysize="*" datatype="char" name="Creator" utype="spec:Spectrum.DataID.Creator" value="ASDC"/>
+        <PARAM arraysize="*" datatype="char" name="CreatorVersion" ucd="meta.version;meta.dataset" utype="spec:Spectrum.DataID.Version" value="2.0"/>
+        <PARAM arraysize="*" datatype="char" name="DataSource" utype="spec:Spectrum.DataID.DataSource" value="ARCHIVE"/>
+        <PARAM arraysize="*" datatype="char" name="Collection" utype="spec:Spectrum.DataID.Collection" value="EGRET3"/>
+      </GROUP>
+      <PARAM arraysize="*" datatype="char" name="CreatorDID" ucd="meta.id" value="ASDC"/>
+      <PARAM arraysize="*" datatype="char" name="Creators" ucd="meta.id" value="ASDC_SED_BUILDER"/>
+      <PARAM arraysize="*" datatype="char" name="ContactName" ucd="meta.bib.author;meta.curation" value="VO_HELPDESK"/>
+      <PARAM arraysize="*" datatype="char" name="ContactEmail" ucd="meta.ref.url;meta.email" value="vo_helpdesk@asdc.asi.it"/>
+      <PARAM arraysize="*" datatype="char" name="SpaceFrameName" ucd="pos.frame" value="FK5"/>
+      <PARAM datatype="double" name="SpatialFillFactor" ucd="stat.fill;pos.eq" value="1.0"/>
+      <PARAM datatype="double" name="SpectralFillFactor" ucd="sta.fill;em" value="1.0"/>
+      <PARAM arraysize="*" datatype="char" name="Model_Name" ucd="meta.id" value="PowerLaw"/>
+      <PARAM datatype="int" name="ParamNumber" value="1"/>
+      <PARAM arraysize="*" datatype="char" name="Param_X_Name" ucd="meta.id" value="Photon_Index"/>
+      <PARAM datatype="double" name="Param_X_Value" value="2.58"/>
+      <PARAM datatype="double" name="Param_X_errPos" ucd="stat.error" value="0.09"/>
+      <PARAM datatype="double" name="Param_X_errNeg" ucd="stat.error" value="0.0"/>
+      <GROUP utype="spec:Spectrum.Data">
+        <GROUP utype="spec:Spectrum.Data.TimeAxis">
+          <GROUP utype="spec:Spectrum.Data.TimeAxis.Accuracy">
+            <FIELDref ref="1764"/>
+            <FIELDref ref="1763"/>
+          </GROUP>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Data.SpectralAxis">
+          <FIELDref ref="1767"/>
+        </GROUP>
+        <GROUP utype="spec:Spectrum.Data.FluxAxis">
+          <FIELDref ref="1766"/>
+          <GROUP utype="spec:Spectrum.Data.FluxAxis.Accuracy">
+            <FIELDref ref="1765"/>
+          </GROUP>
+        </GROUP>
+      </GROUP>
+      <FIELD ID="1764" datatype="double" name="START_TIME" ucd="time;stat.min" utype="spec:Spectrum.Data.TimeAxis.Accuracy.BinLow"/>
+      <FIELD ID="1763" datatype="double" name="STOP_TIME" ucd="time;stat.max" utype="spec:Spectrum.Data.TimeAxis.Accuracy.BinHigh"/>
+      <FIELD ID="1767" datatype="double" name="FREQUENCY" ucd="em.freq" unit="Hz" utype="spec:Spectrum.Data.SpectralAxis.Value"/>
+      <FIELD ID="1766" datatype="double" name="FLUX" ucd="phot.flux.density;em.wl" unit="erg cm**(-2) s**(-1)" utype="spec:Spectrum.Data.FluxAxis.Value"/>
+      <FIELD ID="1765" datatype="double" name="FLUX_ERROR" ucd="phot.flux.density" utype="spec:Spectrum.Data.FluxAxis.Accuracy.StatError"/>
+      <DATA>
+        <TABLEDATA>
+          <TR>
+            <TD>48368.5</TD>
+            <TD>49993.5</TD>
+            <TD>2.4200000273883E22</TD>
+            <TD>4.758699669856485E-11</TD>
+            <TD>2.6577843900794196E-11</TD>
+          </TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>

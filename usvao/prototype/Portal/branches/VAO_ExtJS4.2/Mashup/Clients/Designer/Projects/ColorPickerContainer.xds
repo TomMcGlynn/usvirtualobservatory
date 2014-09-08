@@ -1,0 +1,73 @@
+{
+    "name": "ColorPickerContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.2",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1871",
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 20,
+                "width": 30,
+                "layout": "hbox",
+                "designer|userClassName": "ColorPickerContainer",
+                "container|align": "stretch"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen4432",
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 20,
+                        "itemId": "colorSwatch",
+                        "width": 20,
+                        "layout": null,
+                        "designer|userClassName": "MyContainer2",
+                        "layout|flex": 1
+                    }
+                },
+                {
+                    "id": "ExtBox1-ext-gen2063",
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 20,
+                        "itemId": "pickerButton",
+                        "width": 20,
+                        "icon": "../Shared/img/palette.png",
+                        "text": " ",
+                        "designer|userClassName": "MyButton"
+                    }
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

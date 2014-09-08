@@ -1,0 +1,1100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ivoa.net/xml/VOTable/v1.2" xmlns:stc="http://www.ivoa.net/xml/STC/v1.3" version="1.2">
+  <RESOURCE name="CAOM_OBSPOINTING">
+    <TABLE>
+      <DESCRIPTION>
+Objects found : 23 , CAOM_OBSPOINTING, ConeSearch: RA=210.80227 DEC=54.34895 SR=0,OK</DESCRIPTION>
+      <FIELD name="dataproduct_type" ID="dataproduct_type" datatype="char" arraysize="*" ucd="meta.code.class" utype="ObsPointing.obs.dataproducttype">
+        <DESCRIPTION>Type of product</DESCRIPTION>
+      </FIELD>
+      <FIELD name="calib_level" ID="calib_level" datatype="int" ucd="meta.code.status" utype="ObsPointing.obs.caliblevel">
+        <DESCRIPTION>Calibration level</DESCRIPTION>
+      </FIELD>
+      <FIELD name="obs_collection" ID="obs_collection" datatype="char" arraysize="*" ucd="meta.id" utype="ObsPointing.dataid.collection">
+        <DESCRIPTION>Collection</DESCRIPTION>
+      </FIELD>
+      <FIELD name="obs_id" ID="obs_id" datatype="char" arraysize="*" ucd="meta.id" utype="ObsPointing.dataid.creatorid">
+        <DESCRIPTION>Obervation identifier</DESCRIPTION>
+      </FIELD>
+      <FIELD name="obs_publisher_id" ID="obs_publisher_id" datatype="char" arraysize="*" ucd="meta.curation" utype="ObsPointing.curation.publisherid">
+        <DESCRIPTION>Unique Archive id</DESCRIPTION>
+      </FIELD>
+      <FIELD name="access_estsize" ID="access_estsize" datatype="int" ucd="meta.number" unit="kB" utype="ObsPointing.access.size">
+        <DESCRIPTION>Dataset size</DESCRIPTION>
+      </FIELD>
+      <FIELD name="target_name" ID="target_name" datatype="char" arraysize="*" ucd="meta.id" utype="ObsPointing.target.name">
+        <DESCRIPTION>Target Name</DESCRIPTION>
+      </FIELD>
+      <FIELD name="s_ra" ID="s_ra" datatype="double" ucd="pos.eq.ra" unit="deg" utype="ObsPointing.char.spatialaxis.coverage.location.coord.position2d.value2.c1">
+        <DESCRIPTION>Observation RA</DESCRIPTION>
+      </FIELD>
+      <FIELD name="s_dec" ID="s_dec" datatype="double" ucd="pos.eq.dec" unit="deg" utype="ObsPointing.char.spatialaxis.coverage.location.coord.position2d.value2.c2">
+        <DESCRIPTION>Observation DEC</DESCRIPTION>
+      </FIELD>
+      <FIELD name="s_fov" ID="s_fov" datatype="double" ucd="phys.angSize;instr.fov" unit="deg" utype="ObsPointing.char.spatialaxis.coverage.bounds.extent">
+        <DESCRIPTION>Est.diameter FOV</DESCRIPTION>
+      </FIELD>
+      <FIELD name="s_resolution" ID="s_resolution" datatype="double" ucd="pos.angResolution" unit="arcsec" utype="ObsPointing.char.spatialaxis.resolution.refval.cresolution">
+        <DESCRIPTION>Spatial resolution</DESCRIPTION>
+      </FIELD>
+      <FIELD name="t_min" ID="t_min" datatype="double" ucd="time.start;obs.exposure" unit="d" utype="ObsPointing.char.timeaxis.coverage.bounds.limits.interval.starttime">
+        <DESCRIPTION>Observation start</DESCRIPTION>
+      </FIELD>
+      <FIELD name="t_max" ID="t_max" datatype="double" ucd="time.end;obs.exposure" unit="d" utype="ObsPointing.char.timeaxis.coverage.bounds.limits.interval.stoptime">
+        <DESCRIPTION>Observation stop</DESCRIPTION>
+      </FIELD>
+      <FIELD name="obsStartTime" ID="obsStartTime" datatype="char" arraysize="*" ucd="time.start;obs.exposure" unit="d" utype="ObsPointing.char.timeaxis.coverage.bounds.limits.interval.starttime">
+        <DESCRIPTION>Observation start</DESCRIPTION>
+      </FIELD>
+      <FIELD name="obsStopTime" ID="obsStopTime" datatype="char" arraysize="*" ucd="time.end;obs.exposure" unit="d" utype="ObsPointing.char.timeaxis.coverage.bounds.limits.interval.stoptime">
+        <DESCRIPTION>Observation stop</DESCRIPTION>
+      </FIELD>
+      <FIELD name="t_exptime" ID="t_exptime" datatype="double" ucd="time.duration;obs.exposure" unit="s" utype="ObsPointing.char.timeaxis.coverage.support.extent">
+        <DESCRIPTION>Observation stop</DESCRIPTION>
+      </FIELD>
+      <FIELD name="t_resolution" ID="t_resolution" datatype="double" ucd="time.resolution" unit="arcsec" utype="ObsPointing.char.timeaxis.resolution.refval">
+        <DESCRIPTION>Time resolution</DESCRIPTION>
+      </FIELD>
+      <FIELD name="wavelength_region" ID="wavelength_region" datatype="char" arraysize="*" ucd="em" utype="ObsPointing.char.spectralaxis.coverage.bounds.limits.interval">
+        <DESCRIPTION>Wavelength Region</DESCRIPTION>
+      </FIELD>
+      <FIELD name="em_min" ID="em_min" datatype="double" ucd="em.wl;stat.min" unit="m" utype="ObsPointing.char.spectralaxis.coverage.bounds.limits.interval.lolim">
+        <DESCRIPTION>Min.wavelength</DESCRIPTION>
+      </FIELD>
+      <FIELD name="em_max" ID="em_max" datatype="double" ucd="em.wl;stat.max" unit="m" utype="ObsPointing.char.spectralaxis.coverage.bounds.limits.interval.hilim">
+        <DESCRIPTION>Max.wavelength</DESCRIPTION>
+      </FIELD>
+      <FIELD name="em_res_power" ID="em_res_power" datatype="double" ucd="spect.resolution" utype="ObsPointing.char.spectralaxis.resolution.resolpower.refval">
+        <DESCRIPTION>Resolving Power</DESCRIPTION>
+      </FIELD>
+      <FIELD name="o_ucd" ID="o_ucd" datatype="char" arraysize="*" ucd="meta.ucd" utype="ObsPointing.char.spatialaxis.ucd">
+        <DESCRIPTION>UCD for spatial</DESCRIPTION>
+      </FIELD>
+      <FIELD name="target_class" ID="target_class" datatype="char" arraysize="*" ucd="src.class" utype="ObsPointing.target.class">
+        <DESCRIPTION>Type of target</DESCRIPTION>
+      </FIELD>
+      <FIELD name="obs_creation_date" ID="obs_creation_date" datatype="char" arraysize="*" ucd="time;meta.dataset" utype="ObsPointing.dataid.date">
+        <DESCRIPTION>Dataset creation</DESCRIPTION>
+      </FIELD>
+      <FIELD name="obs_creator_name" ID="obs_creator_name" datatype="char" arraysize="*" ucd="meta;instr.obsty" utype="ObsPointing.dataid.creator">
+        <DESCRIPTION>Dataset creator</DESCRIPTION>
+      </FIELD>
+      <FIELD name="obs_title" ID="obs_title" datatype="char" arraysize="*" ucd="meta.title" utype="ObsPointing.dataid.title">
+        <DESCRIPTION>Dataset description</DESCRIPTION>
+      </FIELD>
+      <FIELD name="publisher_id" ID="publisher_id" datatype="char" arraysize="*" ucd="meta.curation" utype="ObsPointing.curation.publisherid">
+        <DESCRIPTION>Dataset curator</DESCRIPTION>
+      </FIELD>
+      <FIELD name="bib_reference" ID="bib_reference" datatype="char" arraysize="*" ucd="meta.bib.bibcode" utype="ObsPointing.curation.reference">
+        <DESCRIPTION>Dataset reference</DESCRIPTION>
+      </FIELD>
+      <FIELD name="data_rights" ID="data_rights" datatype="char" arraysize="*" ucd="meta.note" utype="ObsPointing.curation.rights">
+        <DESCRIPTION>Datarights</DESCRIPTION>
+      </FIELD>
+      <FIELD name="obs_release_date" ID="obs_release_date" datatype="char" arraysize="*" ucd="time.release;meta.dataset" utype="ObsPointing.curation.releasedata">
+        <DESCRIPTION>Dataset release</DESCRIPTION>
+      </FIELD>
+      <FIELD name="s_ucd" ID="s_ucd" datatype="char" arraysize="*" ucd="meta.ucd" utype="ObsPointing.char.spatialaxis.ucd">
+        <DESCRIPTION>UCD for spatial</DESCRIPTION>
+      </FIELD>
+      <FIELD name="em_resolution" ID="em_resolution" datatype="double" ucd="time.resolution" unit="m" utype="ObsPointing.char.spectralaxis.resolution.refval.value">
+        <DESCRIPTION>Spectral resolution</DESCRIPTION>
+      </FIELD>
+      <FIELD name="instrument" ID="instrument" datatype="char" arraysize="*" ucd="instr" utype="ObsPointing.provenance.obsconfig.instrument.name">
+        <DESCRIPTION>Instrument</DESCRIPTION>
+      </FIELD>
+      <FIELD name="proposal_pi" ID="proposal_pi" datatype="char" arraysize="*" ucd="meta.id.PI" utype="ObsPointing.provenance.proposalid">
+        <DESCRIPTION>Proposer</DESCRIPTION>
+      </FIELD>
+      <FIELD name="objID" ID="objID" datatype="long" ucd="meta.record">
+        <DESCRIPTION>Database ID</DESCRIPTION>
+      </FIELD>
+      <FIELD name="s_region" ID="s_region" datatype="char" arraysize="*" ucd="pos.field" utype="ObsPointing.char.spatialaxis.coverage.bounds">
+        <DESCRIPTION>Footprint</DESCRIPTION>
+      </FIELD>
+      <FIELD name="jpegURL" ID="jpegURL" datatype="char" arraysize="*" ucd="meta.ref.url" utype="ObsPointing.access.reference">
+        <DESCRIPTION>Preview Image</DESCRIPTION>
+      </FIELD>
+      <FIELD name="obsID" ID="obsID" datatype="long" ucd="meta.record">
+        <DESCRIPTION>Database ID</DESCRIPTION>
+      </FIELD>
+      <FIELD name="objID1" ID="objID1" datatype="long" ucd="meta.record">
+        <DESCRIPTION>Database ID</DESCRIPTION>
+      </FIELD>
+      <FIELD name="distance" ID="distance" datatype="float" ucd="pos.angDistance" unit="arcsec">
+        <DESCRIPTION>Separation</DESCRIPTION>
+      </FIELD>
+      <DATA>
+        <TABLEDATA nrows="23">
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>GALEX</TD>
+            <TD>3116774753642217472</TD>
+            <TD>ivo://stsci.edu/collections#GALEX/3116774753642217472</TD>
+            <TD>-1</TD>
+            <TD>GI3_050008_NGC5457</TD>
+            <TD>210.809200491573</TD>
+            <TD>54.3629874122275</TD>
+            <TD>1.25</TD>
+            <TD>1.5</TD>
+            <TD>54560.3066782407</TD>
+            <TD>54598.3912962963</TD>
+            <TD>4/4/2008 7:21:37 AM</TD>
+            <TD>5/12/2008 9:23:28 AM</TD>
+            <TD>13294.4</TD>
+            <TD>1329.44</TD>
+            <TD>#UV#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>GALEX</TD>
+            <TD>Tracing the Extreme Edges of Galaxies in UV and HI</TD>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>4/23/2010 11:39:44 PM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>GALEX</TD>
+            <TD>Frank Bigiel</TD>
+            <TD>1000000700</TD>
+            <TD>CIRCLE ICRS 210.80920049  54.36298741 0.625</TD>
+            <TD>http://galex.stsci.edu/data/GR6/pipe/01-vsn/23048-GI3_050008_NGC5457/d/01-main/0001-img/07-try/qa/GI3_050008_NGC5457-xd-int_2color.jpg</TD>
+            <TD>1000012892</TD>
+            <TD>1000000700</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>GALEX</TD>
+            <TD>3212159586375041024</TD>
+            <TD>ivo://stsci.edu/collections#GALEX/3212159586375041024</TD>
+            <TD>-1</TD>
+            <TD>GI5_028139_W3_00783_0105o</TD>
+            <TD>209.932194655286</TD>
+            <TD>53.9891675792406</TD>
+            <TD>1.25</TD>
+            <TD>1.5</TD>
+            <TD>54953.8774652778</TD>
+            <TD>54953.8885069444</TD>
+            <TD>5/2/2009 9:03:33 PM</TD>
+            <TD>5/2/2009 9:19:27 PM</TD>
+            <TD>954.6</TD>
+            <TD>954.6</TD>
+            <TD>#UV#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>GALEX</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>4/24/2010 2:05:12 AM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>GALEX</TD>
+            <TD/>
+            <TD>1000005925</TD>
+            <TD>CIRCLE ICRS 209.93219466  53.98916758 0.625</TD>
+            <TD>http://galex.stsci.edu/data/GR6/pipe/01-vsn/25759-GI5_028139_W3_00783_0105o/d/01-main/0001-img/07-try/qa/GI5_028139_W3_00783_0105o-xd-int_2color.jpg</TD>
+            <TD>1000014317</TD>
+            <TD>1000005925</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>GALEX</TD>
+            <TD>6374469411427844096</TD>
+            <TD>ivo://stsci.edu/collections#GALEX/6374469411427844096</TD>
+            <TD>-1</TD>
+            <TD>AIS_101_1_32</TD>
+            <TD>210.907894475898</TD>
+            <TD>54.5758747448299</TD>
+            <TD>1.25</TD>
+            <TD>1.5</TD>
+            <TD>53170.2155092593</TD>
+            <TD>53170.3535763889</TD>
+            <TD>6/14/2004 5:10:20 AM</TD>
+            <TD>6/14/2004 8:29:09 AM</TD>
+            <TD>184</TD>
+            <TD>92</TD>
+            <TD>#UV#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>GALEX</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>6/28/2010 5:53:59 PM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>GALEX</TD>
+            <TD/>
+            <TD>1000007086</TD>
+            <TD>CIRCLE ICRS 210.90789448  54.57587474 0.625</TD>
+            <TD>http://galex.stsci.edu/data/GR6/pipe/02-vsn/50101-AIS_101/d/01-main/0001-img/07-try/qa/AIS_101_sg32-xd-int_2color.jpg</TD>
+            <TD>1000025262</TD>
+            <TD>1000007086</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>GALEX</TD>
+            <TD>2492146595949182976</TD>
+            <TD>ivo://stsci.edu/collections#GALEX/2492146595949182976</TD>
+            <TD>-1</TD>
+            <TD>NGA_M101</TD>
+            <TD>210.809645452159</TD>
+            <TD>54.3589239982987</TD>
+            <TD>1.25</TD>
+            <TD>1.5</TD>
+            <TD>52810.9249189815</TD>
+            <TD>52810.9968865741</TD>
+            <TD>6/20/2003 10:11:53 PM</TD>
+            <TD>6/20/2003 11:55:31 PM</TD>
+            <TD>1037.05</TD>
+            <TD>518.525</TD>
+            <TD>#UV#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>GALEX</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>5/11/2010 1:01:22 AM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>GALEX</TD>
+            <TD/>
+            <TD>1000033529</TD>
+            <TD>CIRCLE ICRS 210.80964545  54.35892400 0.625</TD>
+            <TD>http://galex.stsci.edu/data/GR6/pipe/01-vsn/05295-NGA_M101/d/01-main/0001-img/07-try/qa/NGA_M101-xd-int_2color.jpg</TD>
+            <TD>1000006502</TD>
+            <TD>1000033529</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>hst_08591_27_wfpc2_f656n_wf</TD>
+            <TD>ivo://stsci.edu/collections#HLA/hst_08591_27_wfpc2_f656n_wf</TD>
+            <TD>-1</TD>
+            <TD>NGC5457</TD>
+            <TD>210.80298</TD>
+            <TD>54.362052</TD>
+            <TD/>
+            <TD/>
+            <TD>52021.3105787002</TD>
+            <TD>52021.3934490699</TD>
+            <TD>4/22/2001 7:27:14 AM</TD>
+            <TD>4/22/2001 9:26:34 AM</TD>
+            <TD>2100</TD>
+            <TD/>
+            <TD>#OPTICAL#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>4/24/2002 9:52:58 PM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>WFPC2/WFPC2</TD>
+            <TD>RICHSTONE</TD>
+            <TD>2000327878</TD>
+            <TD>POLYGON ICRS (-149.14680500097128 54.354787000719213  -149.16077479138016 54.363261669101696  210.826864 54.370757  -149.17324108970206 54.370698203660048  -149.1909342494699 54.381222063036439  210.802612 54.385059  -149.22132773990666 54.37139192248123  210.778446 54.371525  -149.22155460449795 54.371524650679071  210.778438 54.371529  -149.22156947029239 54.371524690391659  -149.22156999913989 54.371525000349465  -149.24853000040744 54.355964999640719  -149.24852174822536 54.355960147591738  -149.2485220008447 54.355960000214054  -149.24841946890092 54.355899700387027  -149.22463710980324 54.341904869625239  -149.22355586968075 54.341268269190273  -149.22180099932572 54.340234999211823  -149.20807292108196 54.348157920041352  -149.19759199927836 54.341873999383559  -149.18755127485085 54.347565726375343  -149.17798339487484 54.341760745556662  -149.17418599917 54.339455999210024  -149.14681299820433 54.354782000501977  -149.14681344865954 54.354782273793049  -149.14680500097128 54.354787000719213</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=hst_08591_27_wfpc2_f656n_wf&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000327877</TD>
+            <TD>2000327878</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>hst_08591_27_wfpc2_f547m_wf</TD>
+            <TD>ivo://stsci.edu/collections#HLA/hst_08591_27_wfpc2_f547m_wf</TD>
+            <TD>-1</TD>
+            <TD>NGC5457</TD>
+            <TD>210.80298</TD>
+            <TD>54.362052</TD>
+            <TD/>
+            <TD/>
+            <TD>52021.2376620402</TD>
+            <TD>52021.30756944</TD>
+            <TD>4/22/2001 5:42:14 AM</TD>
+            <TD>4/22/2001 7:22:54 AM</TD>
+            <TD>1600</TD>
+            <TD/>
+            <TD>#OPTICAL#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>4/24/2002 9:46:49 PM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>WFPC2/WFPC2</TD>
+            <TD>RICHSTONE</TD>
+            <TD>2000327879</TD>
+            <TD>POLYGON ICRS (-149.14680500097435 54.354787000710424  -149.16076839429849 54.363257789518691  210.826864 54.370757  -149.17324108970513 54.370698203651251  -149.19093424947297 54.381222063027636  210.802612 54.385059  -149.2213277399097 54.371391922472434  210.778446 54.371525  -149.22155460450102 54.371524650670281  210.778438 54.371529  -149.22156947035336 54.371524690398374  -149.22156999913989 54.371525000349465  -149.24853000041051 54.355964999631915  -149.24852174947421 54.355960146081735  -149.24852200084774 54.355960000205251  210.75158053 54.3558997  210.77536289 54.34190487  210.77644413 54.34126827  210.778199 54.340235  210.79192708 54.34815792  210.802408 54.341874  -149.18755127485085 54.347565726375329  -149.17798339487484 54.341760745556655  210.825814 54.339456  -149.14681299820739 54.354782000493181  -149.14681344866261 54.354782273784245  -149.14680500097435 54.354787000710424</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=hst_08591_27_wfpc2_f547m_wf&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000327878</TD>
+            <TD>2000327879</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>hst_08591_27_wfpc2_total_wf</TD>
+            <TD>ivo://stsci.edu/collections#HLA/hst_08591_27_wfpc2_total_wf</TD>
+            <TD>-1</TD>
+            <TD>NGC5457</TD>
+            <TD>210.80298</TD>
+            <TD>54.362052</TD>
+            <TD/>
+            <TD/>
+            <TD>52021.2376620402</TD>
+            <TD>52021.3934490699</TD>
+            <TD>4/22/2001 5:42:14 AM</TD>
+            <TD>4/22/2001 9:26:34 AM</TD>
+            <TD>3700</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>4/24/2002 9:52:58 PM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>WFPC2/WFPC2</TD>
+            <TD>RICHSTONE</TD>
+            <TD>2000327880</TD>
+            <TD>POLYGON ICRS (-149.14680499838644 54.354786999074911  -149.16076756569294 54.363257287354  -149.17313599855021 54.370756999938386  -149.17324109003806 54.370698203750564  -149.17746844081307 54.373213349789168  -149.19093424959522 54.381222063061514  -149.19738800134303 54.385058999824224  -149.221327738345 54.371391922200338  -149.22155400008637 54.371525000354488  -149.22155460609133 54.37152465078838  -149.22156200108566 54.3715290002707  -149.22156947081268 54.371524691571594  -149.22156999900417 54.371525000383166  -149.24852999932389 54.355965000065481  -149.24852174717915 54.355960147994736  -149.24852199979958 54.355960000617713  -149.24841946884902 54.355899700417531  -149.22463710975134 54.341904869655721  -149.22355586962885 54.341268269220762  -149.2218009992738 54.340234999242305  -149.20807292103004 54.348157920071827  -149.19759199922643 54.341873999414027  -149.18755127484621 54.347565726429337  -149.17798339487015 54.341760745610678  -149.17418599911804 54.339455999240485  -149.14681299823232 54.354781999606928  -149.14681344783045 54.354782273212251  -149.14680499838644 54.354786999074911</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=hst_08591_27_wfpc2_total_wf&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000327879</TD>
+            <TD>2000327880</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>hst_09720_01_wfpc2_f336w_wf</TD>
+            <TD>ivo://stsci.edu/collections#HLA/hst_09720_01_wfpc2_f336w_wf</TD>
+            <TD>-1</TD>
+            <TD>M101-POS1</TD>
+            <TD>210.78287</TD>
+            <TD>54.349301</TD>
+            <TD/>
+            <TD/>
+            <TD>53045.0064236098</TD>
+            <TD>53045.0362847201</TD>
+            <TD>2/10/2004 12:09:15 AM</TD>
+            <TD>2/10/2004 12:52:15 AM</TD>
+            <TD>2400</TD>
+            <TD/>
+            <TD>#OPTICAL#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>2/10/2005 6:03:11 PM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>WFPC2/WFPC2</TD>
+            <TD>CHANDAR</TD>
+            <TD>2000327881</TD>
+            <TD>POLYGON ICRS (-149.20219800024367 54.322603000657509  210.810951 54.343375  -149.18904900178768 54.343374999974834  -149.18904900154814 54.343375000046564  -149.1891864194944 54.343404579070267  -149.17756200042885 54.362333999766939  -149.20911157944454 54.368914949623239  -149.20900099936046 54.369098000725053  -149.24479100010319 54.376436000782221  -149.24483989152159 54.376355059644467  -149.25605781094134 54.357776740629994  -149.25656689076365 54.3569332309831  -149.25739500068426 54.355561000394047  -149.23917208127727 54.3518241695633  -149.24429400102505 54.343585000501477  210.76887105 54.34080811  -149.23780599942057 54.330260000167527  -149.20219800024367 54.322603000657509</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=hst_09720_01_wfpc2_f336w_wf&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000327880</TD>
+            <TD>2000327881</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>hst_09720_01_wfpc2_total_wf</TD>
+            <TD>ivo://stsci.edu/collections#HLA/hst_09720_01_wfpc2_total_wf</TD>
+            <TD>-1</TD>
+            <TD>M101-POS1</TD>
+            <TD>210.78287</TD>
+            <TD>54.349301</TD>
+            <TD/>
+            <TD/>
+            <TD>53045.0064236098</TD>
+            <TD>53045.0362847201</TD>
+            <TD>2/10/2004 12:09:15 AM</TD>
+            <TD>2/10/2004 12:52:15 AM</TD>
+            <TD>2400</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>2/10/2005 6:03:11 PM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>WFPC2/WFPC2</TD>
+            <TD>CHANDAR</TD>
+            <TD>2000327882</TD>
+            <TD>POLYGON ICRS (-149.20219800024367 54.322603000657509  210.810951 54.343375  -149.18904900178768 54.343374999974834  -149.18904900154814 54.343375000046564  -149.1891864194944 54.343404579070267  -149.17756200042885 54.362333999766939  -149.20911157944454 54.368914949623239  -149.20900099936046 54.369098000725053  -149.24479100010319 54.376436000782221  -149.24483989152159 54.376355059644467  -149.25605781094134 54.357776740629994  -149.25656689076365 54.3569332309831  -149.25739500068426 54.355561000394047  -149.23917208127727 54.3518241695633  -149.24429400102505 54.343585000501477  210.76887105 54.34080811  -149.23780599942057 54.330260000167527  -149.20219800024367 54.322603000657509</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=hst_09720_01_wfpc2_total_wf&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000327881</TD>
+            <TD>2000327882</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>hst_08591_27_wfpc2_f656n_pc</TD>
+            <TD>ivo://stsci.edu/collections#HLA/hst_08591_27_wfpc2_f656n_pc</TD>
+            <TD>-1</TD>
+            <TD>NGC5457</TD>
+            <TD>210.80327</TD>
+            <TD>54.348874</TD>
+            <TD/>
+            <TD/>
+            <TD>52021.3105787002</TD>
+            <TD>52021.3934490699</TD>
+            <TD>4/22/2001 7:27:14 AM</TD>
+            <TD>4/22/2001 9:26:34 AM</TD>
+            <TD>2100</TD>
+            <TD/>
+            <TD>#OPTICAL#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>4/24/2002 9:52:58 PM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>WFPC2/PC</TD>
+            <TD>RICHSTONE</TD>
+            <TD>2000328171</TD>
+            <TD>POLYGON ICRS (-149.18514300031507 54.348931000012385  -149.19474983377123 54.354688105617335  210.802747 54.356188  -149.20545725531082 54.351538897362445  -149.20970100029871 54.349134000135543  -149.20969282448348 54.349129099751067  -149.20969300048932 54.349128999816621  -149.19759200039653 54.341873999886182  -149.18515100018814 54.348926000042916  -149.18515140025383 54.348926239877088  -149.18514300031507 54.348931000012385</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=hst_08591_27_wfpc2_f656n_pc&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000328170</TD>
+            <TD>2000328171</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>hst_08591_27_wfpc2_f547m_pc</TD>
+            <TD>ivo://stsci.edu/collections#HLA/hst_08591_27_wfpc2_f547m_pc</TD>
+            <TD>-1</TD>
+            <TD>NGC5457</TD>
+            <TD>210.80327</TD>
+            <TD>54.348874</TD>
+            <TD/>
+            <TD/>
+            <TD>52021.2376620402</TD>
+            <TD>52021.30756944</TD>
+            <TD>4/22/2001 5:42:14 AM</TD>
+            <TD>4/22/2001 7:22:54 AM</TD>
+            <TD>1600</TD>
+            <TD/>
+            <TD>#OPTICAL#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>4/24/2002 9:46:49 PM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>WFPC2/PC</TD>
+            <TD>RICHSTONE</TD>
+            <TD>2000328172</TD>
+            <TD>POLYGON ICRS (-149.18514299979321 54.34893099996858  -149.19474983214042 54.354688104736745  210.802747 54.356188  -149.20546011323287 54.351537277927854  -149.20970100042086 54.349134000260428  -149.20969282396189 54.349129099694267  -149.20969300061148 54.349128999941506  210.802408 54.341874  -149.1851510003099 54.348926000180938  -149.18515139990689 54.348926239734148  -149.18514299979321 54.34893099996858</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=hst_08591_27_wfpc2_f547m_pc&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000328171</TD>
+            <TD>2000328172</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>hst_08591_27_wfpc2_total_pc</TD>
+            <TD>ivo://stsci.edu/collections#HLA/hst_08591_27_wfpc2_total_pc</TD>
+            <TD>-1</TD>
+            <TD>NGC5457</TD>
+            <TD>210.80327</TD>
+            <TD>54.348874</TD>
+            <TD/>
+            <TD/>
+            <TD>52021.2376620402</TD>
+            <TD>52021.3934490699</TD>
+            <TD>4/22/2001 5:42:14 AM</TD>
+            <TD>4/22/2001 9:26:34 AM</TD>
+            <TD>3700</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>4/24/2002 9:52:58 PM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>WFPC2/PC</TD>
+            <TD>RICHSTONE</TD>
+            <TD>2000328173</TD>
+            <TD>POLYGON ICRS (-149.18514299978605 54.3489310000787  -149.19475520154182 54.354691321873524  -149.19725299969525 54.356187999899561  -149.20545912962865 54.35153783541228  -149.20970100017706 54.34913400034258  -149.20969282438534 54.349129099944776  -149.20969300007997 54.349129000385823  -149.20969299952469 54.349129000005135  -149.19759199997111 54.341874000166882  -149.1851509999951 54.348925999747145  -149.18515100056038 54.348925999938466  -149.18515100025334 54.348926000112463  -149.18515139982458 54.348926239627517  -149.18514299978605 54.3489310000787</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=hst_08591_27_wfpc2_total_pc&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000328172</TD>
+            <TD>2000328173</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>HST_9720_02_ACS_WFC_F658N</TD>
+            <TD>ivo://stsci.edu/collections#HLA/HST_9720_02_ACS_WFC_F658N</TD>
+            <TD>-1</TD>
+            <TD>ANY</TD>
+            <TD>210.77592</TD>
+            <TD>54.354601</TD>
+            <TD/>
+            <TD/>
+            <TD>52878.3227662002</TD>
+            <TD>52878.3524884302</TD>
+            <TD>8/27/2003 7:44:47 AM</TD>
+            <TD>8/27/2003 8:27:35 AM</TD>
+            <TD>2430</TD>
+            <TD/>
+            <TD>#OPTICAL#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>8/27/2004 11:07:45 AM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>ACS/ACS/WFC</TD>
+            <TD>CHANDAR</TD>
+            <TD>2000497360</TD>
+            <TD>POLYGON ICRS (-149.20141909976584 54.328754700685721  -149.24306930134622 54.38001519975807  -149.28590970009657 54.366003100780532  -149.24422020102898 54.314757300483492  -149.20141909976584 54.328754700685721))  ((-149.15987680078263 54.342917400106714  -149.19983489841454 54.393910000243174  -149.24109769969505 54.380196500184105  -149.24109740918652 54.380196130409104  -149.24109779982282 54.380196000473916  210.7988975 54.3292179  -149.2011020518627 54.329218049672285  -149.20110169975246 54.329217599068336  -149.15987680078263 54.342917400106714</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=HST_9720_02_ACS_WFC_F658N&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000497359</TD>
+            <TD>2000497360</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>HST_9720_02_ACS_WFC_total</TD>
+            <TD>ivo://stsci.edu/collections#HLA/HST_9720_02_ACS_WFC_total</TD>
+            <TD>-1</TD>
+            <TD>ANY</TD>
+            <TD>210.77592</TD>
+            <TD>54.354601</TD>
+            <TD/>
+            <TD/>
+            <TD>52878.3227662002</TD>
+            <TD>52878.3524884302</TD>
+            <TD>8/27/2003 7:44:47 AM</TD>
+            <TD>8/27/2003 8:27:35 AM</TD>
+            <TD>2430</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>8/27/2004 11:07:45 AM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>ACS/ACS/WFC</TD>
+            <TD>CHANDAR</TD>
+            <TD>2000497361</TD>
+            <TD>POLYGON ICRS (-149.20141909976584 54.328754700685721  -149.24306930134622 54.38001519975807  -149.28590970009657 54.366003100780532  -149.24422020102898 54.314757300483492  -149.20141909976584 54.328754700685721))  ((-149.15987680078263 54.342917400106714  -149.19983489841454 54.393910000243174  -149.24109769969505 54.380196500184105  -149.24109740918652 54.380196130409104  -149.24109779982282 54.380196000473916  210.7988975 54.3292179  -149.2011020518627 54.329218049672285  -149.20110169975246 54.329217599068336  -149.15987680078263 54.342917400106714</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=HST_9720_02_ACS_WFC_total&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000497360</TD>
+            <TD>2000497361</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>HST_9490_02_ACS_WFC_F435W</TD>
+            <TD>ivo://stsci.edu/collections#HLA/HST_9490_02_ACS_WFC_F435W</TD>
+            <TD>-1</TD>
+            <TD>NGC5457-7</TD>
+            <TD>210.75963</TD>
+            <TD>54.339233</TD>
+            <TD/>
+            <TD/>
+            <TD>52591.7227777801</TD>
+            <TD>52591.7347800899</TD>
+            <TD>11/13/2002 5:20:48 PM</TD>
+            <TD>11/13/2002 5:38:05 PM</TD>
+            <TD>900</TD>
+            <TD/>
+            <TD>#OPTICAL#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>11/14/2003 5:59:06 AM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>ACS/ACS/WFC</TD>
+            <TD>KUNTZ</TD>
+            <TD>2000497481</TD>
+            <TD>POLYGON ICRS (-149.19389610105526 54.348272700202891  210.7895937 54.3742161  -149.21040639125636 54.374216084546823  -149.21040640099432 54.374216099669624  -149.25846496382928 54.366595584520489  -149.30325329960652 54.359473899600481  210.7133097 54.3335432  -149.28669020757266 54.333543214648138  -149.28669019866265 54.333543200520161  -149.19389610105526 54.348272700202891))  ((-149.17645869973703 54.321098799570713  -149.193164399287 54.348014199982615  -149.28670149859357 54.332380400220885  210.730059 54.3054779  -149.26994091087997 54.305477914584628  -149.26994090165135 54.305477899588745  -149.22479568929904 54.313032188357049  -149.17645869973703 54.321098799570713</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=HST_9490_02_ACS_WFC_F435W&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000497480</TD>
+            <TD>2000497481</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>HST_9490_02_ACS_WFC_F555W</TD>
+            <TD>ivo://stsci.edu/collections#HLA/HST_9490_02_ACS_WFC_F555W</TD>
+            <TD>-1</TD>
+            <TD>NGC5457-7</TD>
+            <TD>210.75963</TD>
+            <TD>54.339233</TD>
+            <TD/>
+            <TD/>
+            <TD>52591.7368981498</TD>
+            <TD>52591.7468171301</TD>
+            <TD>11/13/2002 5:41:08 PM</TD>
+            <TD>11/13/2002 5:55:25 PM</TD>
+            <TD>720</TD>
+            <TD/>
+            <TD>#OPTICAL#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>11/14/2003 6:07:36 AM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>ACS/ACS/WFC</TD>
+            <TD>KUNTZ</TD>
+            <TD>2000497482</TD>
+            <TD>POLYGON ICRS (-149.19389800133089 54.348272099369183  -149.19389800208393 54.3482721005533  -149.19389800008369 54.348272100869927  -149.21040740011415 54.374214999742691  -149.30324949934118 54.359473299899747  -149.28668749876547 54.333543100228709  -149.2866874093931 54.3335431143935  210.7133126 54.3335431  -149.20104632366545 54.347140310985765  -149.19389800133089 54.348272099369183))  ((-149.17646019952468 54.3210985994007  -149.19316540173398 54.348013799713662  -149.28670000072498 54.332380601031744  -149.26993990002953 54.30547829928237  -149.17646019952468 54.3210985994007</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=HST_9490_02_ACS_WFC_F555W&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000497481</TD>
+            <TD>2000497482</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>HST_9490_02_ACS_WFC_F814W</TD>
+            <TD>ivo://stsci.edu/collections#HLA/HST_9490_02_ACS_WFC_F814W</TD>
+            <TD>-1</TD>
+            <TD>NGC5457-7</TD>
+            <TD>210.75963</TD>
+            <TD>54.339233</TD>
+            <TD/>
+            <TD/>
+            <TD>52591.7488310202</TD>
+            <TD>52591.75875</TD>
+            <TD>11/13/2002 5:58:19 PM</TD>
+            <TD>11/13/2002 6:12:36 PM</TD>
+            <TD>720</TD>
+            <TD/>
+            <TD>#OPTICAL#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>11/14/2003 6:13:54 AM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>ACS/ACS/WFC</TD>
+            <TD>KUNTZ</TD>
+            <TD>2000497483</TD>
+            <TD>POLYGON ICRS (-149.1938992995324 54.348269999655216  -149.21040879982559 54.3742115998726  -149.3032465995183 54.359471999239794  -149.28668449978957 54.33354309990802  -149.28668440971538 54.333543114147822  210.7133156 54.3335431  -149.193899401037 54.348269900465837  -149.19389944906663 54.348269975986923  -149.1938992995324 54.348269999655216))  ((-149.17646250054503 54.3210986995144  -149.19316729876539 54.34801220045766  -149.19316739129778 54.3480121849352  210.8068326 54.3480122  -149.23994139047909 54.34020538988085  -149.28669770093452 54.332380499656225  -149.26993809977958 54.305479900743329  -149.26993800999261 54.305479915684437  210.730062 54.3054799  -149.22320916865488 54.31329833235737  -149.17646250054503 54.3210986995144</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=HST_9490_02_ACS_WFC_F814W&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000497482</TD>
+            <TD>2000497483</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>HST_9490_02_ACS_WFC_total</TD>
+            <TD>ivo://stsci.edu/collections#HLA/HST_9490_02_ACS_WFC_total</TD>
+            <TD>-1</TD>
+            <TD>NGC5457-7</TD>
+            <TD>210.75963</TD>
+            <TD>54.339233</TD>
+            <TD/>
+            <TD/>
+            <TD>52591.7227777801</TD>
+            <TD>52591.75875</TD>
+            <TD>11/13/2002 5:20:48 PM</TD>
+            <TD>11/13/2002 6:12:36 PM</TD>
+            <TD>2340</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>11/14/2003 6:13:54 AM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>ACS/ACS/WFC</TD>
+            <TD>KUNTZ</TD>
+            <TD>2000497484</TD>
+            <TD>POLYGON ICRS (-149.19389610041719 54.348272700154354  210.7895937 54.3742161  -149.21040639125636 54.374216084546823  -149.21040640099432 54.374216099669624  -149.25846496382928 54.366595584520489  -149.30325330189851 54.359473900412787  210.7133097 54.3335432  -149.28669020757266 54.333543214648138  -149.28669019866265 54.333543200520161  -149.28668780759315 54.333543580523184  210.7133125 54.3335431  -149.28668740847931 54.33354311479507  210.7133126 54.3335431  -149.28668476696873 54.333543519425383  210.7133155 54.3335431  -149.28668440975483 54.3335431138826  210.7133156 54.3335431  -149.19389940008153 54.348269900085839  -149.19389944886487 54.348269976791954  -149.19389929733177 54.348270000776637  -149.19390039264681 54.348271720014274  -149.19389799784102 54.348272100038521  -149.19389817136144 54.348272373219991  -149.19389610041719 54.348272700154354))  ((-149.17645870235791 54.321098799566009  -149.193164399287 54.348014199982615  -149.2867015002991 54.332380401167129  210.730059 54.3054779  -149.26994091087997 54.305477914584628  -149.26994090165135 54.305477899588745  -149.22479568929904 54.313032188357049  -149.17645870235791 54.321098799566009</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=HST_9490_02_ACS_WFC_total&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000497483</TD>
+            <TD>2000497484</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>HST_9490_01_ACS_WFC_F435W</TD>
+            <TD>ivo://stsci.edu/collections#HLA/HST_9490_01_ACS_WFC_F435W</TD>
+            <TD>-1</TD>
+            <TD>NGC5457-1</TD>
+            <TD>210.84558</TD>
+            <TD>54.353595</TD>
+            <TD/>
+            <TD/>
+            <TD>52593.9485416701</TD>
+            <TD>52593.9605439799</TD>
+            <TD>11/15/2002 10:45:54 PM</TD>
+            <TD>11/15/2002 11:03:11 PM</TD>
+            <TD>900</TD>
+            <TD/>
+            <TD>#OPTICAL#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>11/16/2003 5:05:09 PM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>ACS/ACS/WFC</TD>
+            <TD>KUNTZ</TD>
+            <TD>2000497531</TD>
+            <TD>POLYGON ICRS (-149.10991110104624 54.365823399665146  -149.10991117376651 54.365823482348475  -149.10991110040587 54.365823499604815  -149.13158189917468 54.39044659908199  -149.22081120045667 54.369407899637473  -149.19909799855785 54.344800800233237  -149.19909791624281 54.344800819552432  210.8009021 54.3448008  -149.10991110104624 54.365823399665146))  ((-149.08707549994219 54.340042199645822  -149.1091316992763 54.365617200497631  -149.10913178351367 54.365617179787726  210.8908682 54.3656172  -149.15294075302 54.354902504063581  -149.19887329949302 54.343645400879169  -149.17677300003217 54.31808669977417  -149.08707549994219 54.340042199645822</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=HST_9490_01_ACS_WFC_F435W&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000497530</TD>
+            <TD>2000497531</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>HST_9490_01_ACS_WFC_F555W</TD>
+            <TD>ivo://stsci.edu/collections#HLA/HST_9490_01_ACS_WFC_F555W</TD>
+            <TD>-1</TD>
+            <TD>NGC5457-1</TD>
+            <TD>210.84558</TD>
+            <TD>54.353595</TD>
+            <TD/>
+            <TD/>
+            <TD>52593.9626620398</TD>
+            <TD>52593.9725810201</TD>
+            <TD>11/15/2002 11:06:14 PM</TD>
+            <TD>11/15/2002 11:20:31 PM</TD>
+            <TD>720</TD>
+            <TD/>
+            <TD>#OPTICAL#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>11/16/2003 3:27:44 AM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>ACS/ACS/WFC</TD>
+            <TD>KUNTZ</TD>
+            <TD>2000497532</TD>
+            <TD>POLYGON ICRS (-149.10991300124059 54.36582260012274  -149.13158269910795 54.390445299749793  -149.2208071006738 54.369407500147396  -149.19909499976887 54.344800900253446  -149.19909491826584 54.344800919609874  210.8009051 54.3448009  -149.10991300124059 54.36582260012274))  ((-149.08707720268765 54.34004189915597  -149.1091328008352 54.365616600400244  -149.10913288377733 54.3656165802553  210.8908671 54.3656166  -149.15278899789135 54.354939430346882  -149.1988716022399 54.343645700692029  -149.17677199874282 54.318087300404059  -149.17677191754552 54.318087320439069  210.8232281 54.3180873  -149.13179217204691 54.329108258946761  -149.08707720268765 54.34004189915597</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=HST_9490_01_ACS_WFC_F555W&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000497531</TD>
+            <TD>2000497532</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>HST_9490_01_ACS_WFC_F814W</TD>
+            <TD>ivo://stsci.edu/collections#HLA/HST_9490_01_ACS_WFC_F814W</TD>
+            <TD>-1</TD>
+            <TD>NGC5457-1</TD>
+            <TD>210.84558</TD>
+            <TD>54.353595</TD>
+            <TD/>
+            <TD/>
+            <TD>52593.9745949102</TD>
+            <TD>52593.98451389</TD>
+            <TD>11/15/2002 11:23:25 PM</TD>
+            <TD>11/15/2002 11:37:42 PM</TD>
+            <TD>720</TD>
+            <TD/>
+            <TD>#OPTICAL#</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>11/16/2003 4:11:02 AM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>ACS/ACS/WFC</TD>
+            <TD>KUNTZ</TD>
+            <TD>2000497533</TD>
+            <TD>POLYGON ICRS (-149.10991389942748 54.365820399308141  -149.13158339858137 54.390441799886446  -149.22080389997845 54.369406400455922  -149.19909199972824 54.344801100488567  -149.10991389942748 54.365820399308141))  ((-149.08707950042611 54.340041799514474  -149.10913439959216 54.365614999599849  -149.19886930091479 54.343645800652034  -149.17677040021209 54.318088900514084  -149.08707950042611 54.340041799514474</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=HST_9490_01_ACS_WFC_F814W&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000497532</TD>
+            <TD>2000497533</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>image</TD>
+            <TD>2</TD>
+            <TD>HLA</TD>
+            <TD>HST_9490_01_ACS_WFC_total</TD>
+            <TD>ivo://stsci.edu/collections#HLA/HST_9490_01_ACS_WFC_total</TD>
+            <TD>-1</TD>
+            <TD>NGC5457-1</TD>
+            <TD>210.84558</TD>
+            <TD>54.353595</TD>
+            <TD/>
+            <TD/>
+            <TD>52593.9485416701</TD>
+            <TD>52593.98451389</TD>
+            <TD>11/15/2002 10:45:54 PM</TD>
+            <TD>11/15/2002 11:37:42 PM</TD>
+            <TD>2340</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>TBD</TD>
+            <TD/>
+            <TD/>
+            <TD>HLA</TD>
+            <TD/>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD>11/16/2003 5:05:09 PM</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>ACS/ACS/WFC</TD>
+            <TD>KUNTZ</TD>
+            <TD>2000497534</TD>
+            <TD>POLYGON ICRS (-149.10991110124459 54.365823400337121  -149.10991117321595 54.365823481904485  -149.10991110060402 54.365823500276775  -149.13158189917468 54.39044659908199  -149.22081119935666 54.369407899038642  -149.19909799855785 54.344800800233237  -149.19909791624281 54.344800819552432  210.8009021 54.3448008  -149.1990954263286 54.344801383445251  210.800905 54.3448009  -149.19909491669813 54.344800920088453  210.8009051 54.3448009  -149.19909235417609 54.344801501058392  -149.19909200023449 54.344801099677269  -149.10991390075748 54.365820399682569  -149.10991534929772 54.365822046665571  -149.10991300087147 54.365822599655331  -149.10991325868832 54.365822893306195  -149.10991110124459 54.365823400337121))  ((-149.08707549934604 54.340042200172412  -149.1091316992763 54.365617200497631  -149.10913178351367 54.365617179787726  210.8908682 54.3656172  -149.15294075302 54.354902504063581  -149.19887329731517 54.343645400780638  -149.17677300003217 54.31808669977417  -149.08707549934604 54.340042200172412</TD>
+            <TD>http://hla.stsci.edu/cgi-bin/fitscut.cgi?red=HST_9490_01_ACS_WFC_total&amp;size=ALL&amp;output_size=256</TD>
+            <TD>2000497533</TD>
+            <TD>2000497534</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>spectrum</TD>
+            <TD>2</TD>
+            <TD>IUE</TD>
+            <TD>swp09442</TD>
+            <TD>ivo://stsci.edu/collections#IUE/swp09442</TD>
+            <TD>-1</TD>
+            <TD>NGC 5457</TD>
+            <TD>210.8029717291</TD>
+            <TD>54.348920041</TD>
+            <TD>0.00601388888889</TD>
+            <TD>21.65</TD>
+            <TD>44425.70184</TD>
+            <TD>44425.9935</TD>
+            <TD>7/5/1980 4:50:38 PM</TD>
+            <TD>7/5/1980 11:50:38 PM</TD>
+            <TD>25199.689</TD>
+            <TD/>
+            <TD>#UV#</TD>
+            <TD>1.15058E-07</TD>
+            <TD>1.97869E-07</TD>
+            <TD/>
+            <TD>TBD</TD>
+            <TD>SPIRAL GALAXY</TD>
+            <TD/>
+            <TD>IUE</TD>
+            <TD>OB/HII Complexes in External Gagaxies</TD>
+            <TD>STScI/MAST</TD>
+            <TD>TBD</TD>
+            <TD>TBD</TD>
+            <TD/>
+            <TD>TBD</TD>
+            <TD>320</TD>
+            <TD>SWP</TD>
+            <TD>Hill</TD>
+            <TD>3000038876</TD>
+            <TD>Circle J2000 210.8029717291 54.348920041 0.00300694444444</TD>
+            <TD>http://archive.stsci.edu/browse/previews/iue/mx/swp/09000/gif/swp09442.gif</TD>
+            <TD>3000035897</TD>
+            <TD>3000038876</TD>
+            <TD>0</TD>
+          </TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+    <INFO name="QUERY_STATUS" value="OK"> </INFO>
+  </RESOURCE>
+</VOTABLE>

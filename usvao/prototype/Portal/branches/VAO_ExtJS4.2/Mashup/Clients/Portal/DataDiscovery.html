@@ -1,0 +1,48 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Data Discovery</title>
+		
+
+    <!-- Start timing this load. -->
+    <script type="text/javascript">
+        window.STSCI_startTime = new Date().getTime();
+    </script>
+    
+	<!-- Initialize Google Analytics -->
+    <script type="text/javascript" src="../Shared/InitializeAnalytics.js"></script>
+    
+    <!-- The JavaScript for the SAMP. -->
+    <script type="text/javascript" src="../Shared/samp.js"></script>    
+    <script type="text/javascript" src="../Shared/flXHR.js"></script>
+    
+    <!-- Initialize ExtJS and our local libraries. -->
+    <script type="text/javascript" src="../Shared/InitializeJavaScript.js"></script>
+    
+    <!-- The JavaScript for the AstroView. -->
+    <link rel="stylesheet" type="text/css" href="../AstroView/jo/css/jo2.css">
+    <script type="text/javascript" src="../AstroView/jo/js/jo.js"></script>
+	<script type="text/javascript" src="../AstroView/Three/build/Three.js"></script>
+	<script type="text/javascript" src="../AstroView/AstroView.js"></script>
+    <script type="text/javascript" src="../swfobject/swfobject.js"></script>
+    
+    <!-- Start this application. -->
+    <script type="text/javascript">
+        Ext.onReady(function() {Ext.create('Vao.Bootstrap', {mainDiv: 'portalDiv'});}, this);
+    </script>
+    
+    <!-- Test data view style sheet -->
+    <link rel="stylesheet" type="text/css" href="../Shared/css/data-view.css" />
+     
+    <!-- Other custom styles -->
+    <link rel="stylesheet" type="text/css" href="../Shared/css/customStyles.css" />
+
+    <link rel="shortcut icon" type="image/png" href="data/images/vao_icon.png" /> <!-- use 200px logo because it will be loaded anyways -->
+    <link rel="icon" type="image/png" href="data/images/vao_icon.png" />
+
+</head>
+<body>
+    <div id="portalDiv"></div>
+</body>
+</html>

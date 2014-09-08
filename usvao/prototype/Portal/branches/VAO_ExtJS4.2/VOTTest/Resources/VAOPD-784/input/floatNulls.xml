@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ivoa.net/xml/VOTable/v1.2" version="1.2" xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.2 http://www.ivoa.net/xml/VOTable/v1.2">
+  <RESOURCE type="results">
+    <TABLE>
+      <FIELD name="Title" ucd="VOX:Image_Title" datatype="char" arraysize="*">
+        <DESCRIPTION>Row Number</DESCRIPTION>
+      </FIELD>
+      <FIELD name="singleTestNumber" datatype="float">
+        <DESCRIPTION>Test datatype="float"</DESCRIPTION>
+        <VALUES null="-6666"/>
+      </FIELD>
+      <FIELD name="doubleTestNumber" datatype="double">
+        <DESCRIPTION>Test datatype="double"</DESCRIPTION>
+        <VALUES null="999999999999"/>
+      </FIELD>
+      <FIELD name="singleTestInf" datatype="float">
+        <DESCRIPTION>Test datatype="float" Inf</DESCRIPTION>
+        <VALUES null="Inf"/>
+      </FIELD>
+      <FIELD name="doubleTestInf" datatype="double">
+        <DESCRIPTION>Test datatype="double" -Inf</DESCRIPTION>
+        <VALUES null="-Inf"/>
+      </FIELD>
+      <FIELD name="singleTestNaN" datatype="float">
+        <DESCRIPTION>Test datatype="float" NaN</DESCRIPTION>
+        <VALUES null="NaN"/>
+      </FIELD>
+      <FIELD name="doubleTestNaN" datatype="double">
+        <DESCRIPTION>Test datatype="double" NaN</DESCRIPTION>
+        <VALUES null="NaN"/>
+      </FIELD>
+      <DATA>
+        <TABLEDATA>
+          <TR>
+            <TD>row 01</TD>
+            <TD>1.234</TD>
+            <TD>1.2345678</TD>
+            <TD>1.234e2</TD>
+            <TD>1.2345678e18</TD>
+            <TD>-1.234</TD>
+            <TD>-1.2345678</TD>
+          </TR>
+          <TR>
+            <TD>row 02</TD>
+            <TD></TD>
+            <TD></TD>
+            <TD></TD>
+            <TD></TD>
+            <TD></TD>
+            <TD></TD>
+          </TR>
+          <TR>
+            <TD>row 03</TD>
+            <TD>NaN</TD>
+            <TD>NaN</TD>
+            <TD>NaN</TD>
+            <TD>NaN</TD>
+            <TD>NaN</TD> <!--Expect blank output-->
+            <TD>NaN</TD> <!--Expect blank output-->
+          </TR>
+          <TR>
+            <TD>row 04</TD>
+            <TD>Inf</TD>
+            <TD>-Inf</TD>
+            <TD>Inf</TD> <!--Expect blank output-->
+            <TD>Inf</TD>
+            <TD>Inf</TD>
+            <TD>Inf</TD>
+          </TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>

@@ -1,0 +1,756 @@
+{
+    "name": "ChartContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.2",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1952",
+            "type": "panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 600,
+                "width": 800,
+                "layout": "border",
+                "title": null,
+                "designer|userClassName": "ChartContainer"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen2196",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "chartPanel",
+                        "layout": "fit",
+                        "title": null,
+                        "designer|userClassName": "MyPanel1",
+                        "layout|region": "center"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen9217",
+                            "type": "container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "chartContainer",
+                                "autoScroll": true,
+                                "designer|userClassName": "MyContainer3"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen2424",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "propertiesPanel",
+                        "width": 350,
+                        "collapseDirection": "left",
+                        "collapsed": null,
+                        "collapsible": true,
+                        "title": "Properties",
+                        "titleCollapse": null,
+                        "designer|userClassName": "MyPanel2",
+                        "layout|floatable": false,
+                        "layout|region": "west",
+                        "dock": null
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen44956",
+                            "type": "fieldset",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "chartTypeField",
+                                "margin": "5 0 5 0",
+                                "title": "Type",
+                                "designer|userClassName": "MyFieldSet4"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen38640",
+                                    "type": "container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "chartHeaderContainer",
+                                        "margin": " 0 4 0 4",
+                                        "designer|userClassName": "MyContainer15"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen10648",
+                                            "type": "splitbutton",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "itemId": "chartTypeButton",
+                                                "width": 150,
+                                                "text": "Scatter",
+                                                "designer|userClassName": "MySplitButton"
+                                            },
+                                            "cn": [
+                                                {
+                                                    "id": "ExtBox1-ext-gen11415",
+                                                    "type": "menu",
+                                                    "reference": {
+                                                        "name": "menu",
+                                                        "type": "object"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "itemId": "chartTypeMenu",
+                                                        "width": 150,
+                                                        "designer|userClassName": "MyMenu"
+                                                    },
+                                                    "cn": [
+                                                        {
+                                                            "id": "ExtBox1-ext-gen14537",
+                                                            "type": "menucheckitem",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "itemId": "areaMenu",
+                                                                "text": "Area",
+                                                                "group": "chartType",
+                                                                "designer|userClassName": "MyCheckItem"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen15300",
+                                                            "type": "menucheckitem",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "itemId": "barMenu",
+                                                                "text": "Bar",
+                                                                "group": "chartType",
+                                                                "designer|userClassName": "MyCheckItem"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen15165",
+                                                            "type": "menucheckitem",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "itemId": "columnMenu",
+                                                                "text": "Column",
+                                                                "group": "chartType",
+                                                                "designer|userClassName": "MyCheckItem"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen15031",
+                                                            "type": "menucheckitem",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "itemId": "lineMenu",
+                                                                "text": "Line",
+                                                                "group": "chartType",
+                                                                "designer|userClassName": "MyCheckItem"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen14898",
+                                                            "type": "menucheckitem",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "itemId": "scatterMenu",
+                                                                "text": "Scatter",
+                                                                "checked": true,
+                                                                "group": "chartType",
+                                                                "designer|userClassName": "MyCheckItem"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen5366",
+                            "type": "container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 200,
+                                "itemId": "axesContainer",
+                                "layout": "hbox",
+                                "designer|userClassName": "MyContainer2",
+                                "container|align": "stretch"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen4195",
+                                    "type": "fieldset",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "height": 200,
+                                        "itemId": "xAxisPanel",
+                                        "width": 175,
+                                        "autoScroll": true,
+                                        "layout": "vbox",
+                                        "title": "x-Axis",
+                                        "designer|userClassName": "MyContainer",
+                                        "container|align": "stretch",
+                                        "layout|margins": "4 0 4 0"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen19753",
+                                            "type": "container",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "height": 200,
+                                                "itemId": "xAxisContainer",
+                                                "width": 150,
+                                                "autoScroll": true,
+                                                "layout": null,
+                                                "designer|userClassName": "MyContainer2",
+                                                "layout|flex": 1
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen4307",
+                                    "type": "fieldset",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "height": 200,
+                                        "itemId": "yAxisPanel",
+                                        "width": 175,
+                                        "autoScroll": true,
+                                        "layout": "vbox",
+                                        "title": "y-Axis",
+                                        "designer|userClassName": "MyContainer1",
+                                        "container|align": "stretch",
+                                        "layout|margins": "4 0 4 0"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen20112",
+                                            "type": "container",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "height": 200,
+                                                "itemId": "yAxisContainer",
+                                                "width": 150,
+                                                "autoScroll": true,
+                                                "layout": null,
+                                                "designer|userClassName": "MyContainer2",
+                                                "layout|flex": 1
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen33440",
+                            "type": "fieldset",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "rangeField",
+                                "margin": 5,
+                                "padding": null,
+                                "title": "Range",
+                                "designer|userClassName": "MyFieldSet1"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen4193",
+                                    "type": "container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "height": null,
+                                        "itemId": "xRangeContainer",
+                                        "margin": 4,
+                                        "layout": "hbox",
+                                        "designer|userClassName": "MyContainer4",
+                                        "container|align": "middle"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen2582",
+                                            "type": "label",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "text": "x-Range",
+                                                "designer|userClassName": "MyLabel1",
+                                                "layout|flex": 1,
+                                                "layout|margins": "4 4 0 10"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen2735",
+                                            "type": "textfield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "disabled": true,
+                                                "itemId": "xMinText",
+                                                "width": 55,
+                                                "fieldLabel": null,
+                                                "validator": "function (value) {\nvar isDecimal = /^\\s*(\\+|-)?((\\d+(\\.\\d+)?)|(\\.\\d+))\\s*$/;\nreturn value.match(isDecimal);\n}",
+                                                "designer|userClassName": "MyTextField",
+                                                "layout|margins": "4 4 0 10"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen2909",
+                                            "type": "textfield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "disabled": true,
+                                                "itemId": "xMaxText",
+                                                "width": 70,
+                                                "fieldLabel": "to",
+                                                "labelSeparator": " ",
+                                                "labelWidth": 15,
+                                                "validator": "function (value) {\nvar isDecimal = /^\\s*(\\+|-)?((\\d+(\\.\\d+)?)|(\\.\\d+))\\s*$/;\nreturn value.match(isDecimal);\n}\n",
+                                                "designer|userClassName": "MyTextField1",
+                                                "layout|margins": "4 4 0 10"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen8831",
+                                            "type": "checkboxfield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "itemId": "xAutoCheckbox",
+                                                "width": 50,
+                                                "fieldLabel": "auto",
+                                                "labelPad": 0,
+                                                "labelSeparator": " ",
+                                                "labelWidth": 30,
+                                                "boxLabel": "",
+                                                "checked": true,
+                                                "designer|userClassName": "MyCheckbox",
+                                                "layout|flex": 1,
+                                                "layout|margins": "4 4 0 10"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen6760",
+                                    "type": "container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "height": null,
+                                        "itemId": "yRangeContainer",
+                                        "margin": 4,
+                                        "layout": "hbox",
+                                        "designer|userClassName": "MyContainer4",
+                                        "container|align": "middle"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen6765",
+                                            "type": "label",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "width": null,
+                                                "text": "y-Range",
+                                                "designer|userClassName": "MyLabel1",
+                                                "layout|flex": 1,
+                                                "layout|margins": "4 4 0 10"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen6770",
+                                            "type": "textfield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "disabled": true,
+                                                "itemId": "yMinText",
+                                                "width": 55,
+                                                "fieldLabel": null,
+                                                "validator": "function (value) {\nvar isDecimal = /^\\s*(\\+|-)?((\\d+(\\.\\d+)?)|(\\.\\d+))\\s*$/;\nreturn value.match(isDecimal);\n}",
+                                                "designer|userClassName": "MyTextField",
+                                                "layout|margins": "4 4 0 10"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen6775",
+                                            "type": "textfield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "disabled": true,
+                                                "itemId": "yMaxText",
+                                                "width": 70,
+                                                "fieldLabel": "to",
+                                                "labelSeparator": " ",
+                                                "labelWidth": 15,
+                                                "validator": "function (value) {\nvar isDecimal = /^\\s*(\\+|-)?((\\d+(\\.\\d+)?)|(\\.\\d+))\\s*$/;\nreturn value.match(isDecimal);\n}",
+                                                "designer|userClassName": "MyTextField1",
+                                                "layout|margins": "4 4 0 10"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen11254",
+                                            "type": "checkboxfield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "itemId": "yAutoCheckbox",
+                                                "width": 50,
+                                                "fieldLabel": "auto",
+                                                "labelPad": 0,
+                                                "labelSeparator": " ",
+                                                "labelWidth": 30,
+                                                "boxLabel": "",
+                                                "checked": true,
+                                                "designer|userClassName": "MyCheckbox",
+                                                "layout|flex": 1,
+                                                "layout|margins": "4 4 0 10"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen26346",
+                            "type": "fieldset",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": null,
+                                "itemId": "markersField",
+                                "margin": "5 0 5 0",
+                                "padding": null,
+                                "layout": "fit",
+                                "title": "Markers",
+                                "designer|userClassName": "MyFieldSet"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen17058",
+                                    "type": "container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "height": null,
+                                        "itemId": "markersContainer",
+                                        "margin": 4,
+                                        "layout": "hbox",
+                                        "designer|userClassName": "MyContainer6",
+                                        "container|align": "middle"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen18710",
+                                            "type": "splitbutton",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "itemId": "iconButton",
+                                                "width": null,
+                                                "text": "Circle",
+                                                "designer|userClassName": "MySplitButton1",
+                                                "layout|flex": 1
+                                            },
+                                            "cn": [
+                                                {
+                                                    "id": "ExtBox1-ext-gen20585",
+                                                    "type": "menu",
+                                                    "reference": {
+                                                        "name": "menu",
+                                                        "type": "object"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "itemId": "iconMenu",
+                                                        "width": 120,
+                                                        "designer|userClassName": "MyMenu1"
+                                                    },
+                                                    "cn": [
+                                                        {
+                                                            "id": "ExtBox1-ext-gen22437",
+                                                            "type": "menucheckitem",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "itemId": "circle",
+                                                                "text": "Circle",
+                                                                "checked": true,
+                                                                "group": "icons",
+                                                                "designer|userClassName": "MyCheckItem5"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen22817",
+                                                            "type": "menucheckitem",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "itemId": "square",
+                                                                "text": "Square",
+                                                                "group": "icons",
+                                                                "designer|userClassName": "MyCheckItem5"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen23050",
+                                                            "type": "menucheckitem",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "itemId": "cross",
+                                                                "text": "Cross",
+                                                                "group": "icons",
+                                                                "designer|userClassName": "MyCheckItem5"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen23168",
+                                                            "type": "menucheckitem",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "itemId": "plus",
+                                                                "text": "Plus",
+                                                                "group": "icons",
+                                                                "designer|userClassName": "MyCheckItem5"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen22933",
+                                                            "type": "menucheckitem",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "itemId": "triangle",
+                                                                "text": "Triangle",
+                                                                "group": "icons",
+                                                                "designer|userClassName": "MyCheckItem5"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen23287",
+                                                            "type": "menucheckitem",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "itemId": "diamond",
+                                                                "text": "Diamond",
+                                                                "group": "icons",
+                                                                "designer|userClassName": "MyCheckItem5"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen23407",
+                                                            "type": "menucheckitem",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "itemId": "line",
+                                                                "text": "Line",
+                                                                "group": "icons",
+                                                                "designer|userClassName": "MyCheckItem5"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen23528",
+                                                            "type": "menucheckitem",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "itemId": "arrow",
+                                                                "text": "Arrow",
+                                                                "group": "icons",
+                                                                "designer|userClassName": "MyCheckItem5"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen10122",
+                                            "type": "slider",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "itemId": "markerSizeSlider",
+                                                "margin": 4,
+                                                "width": null,
+                                                "value": 3,
+                                                "fieldLabel": "Size",
+                                                "labelWidth": 40,
+                                                "maxValue": 15,
+                                                "designer|userClassName": "MySlider",
+                                                "layout|flex": 1
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

@@ -1,0 +1,185 @@
+{
+    "name": "DatascopeDetailsContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.3",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1746",
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 500,
+                "itemId": "datascopeDetailsContainer",
+                "width": null,
+                "layout": "border",
+                "designer|userClassName": "DatascopeDetailsContainer"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen1960",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "summaryPanel",
+                        "autoScroll": true,
+                        "maintainFlex": true,
+                        "layout": null,
+                        "collapseFirst": false,
+                        "collapsed": false,
+                        "title": "Summary",
+                        "designer|userClassName": "MyPanel",
+                        "layout|region": "center"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen2881",
+                            "type": "toolbar",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 35,
+                                "itemId": "detailsToolbar",
+                                "width": null,
+                                "maintainFlex": true,
+                                "designer|userClassName": "MyToolbar",
+                                "dock": "top"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen3370",
+                                    "type": "button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "loadButton",
+                                        "margin": "0 1 0 1",
+                                        "icon": "../Shared/img/exp_24x24_up.png",
+                                        "scale": "medium",
+                                        "text": null,
+                                        "tooltip": "Continue to Data",
+                                        "designer|userClassName": "MyButton",
+                                        "layout|flex": null
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen3245",
+                                    "type": "tbseparator",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "separator1",
+                                        "designer|userClassName": "MySeparator",
+                                        "layout|flex": null
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen4542",
+                                    "type": "button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "downloadButton",
+                                        "margin": "0 1 0 1",
+                                        "icon": "../Shared/img/savas_24x24.png",
+                                        "scale": "medium",
+                                        "text": null,
+                                        "tooltip": "Download Resource XML",
+                                        "designer|userClassName": "MyButton1",
+                                        "layout|flex": null
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen3443",
+                                    "type": "tbseparator",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "separator2",
+                                        "designer|userClassName": "MySeparator1",
+                                        "layout|flex": null
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen7003",
+                            "type": "container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 270,
+                                "itemId": "summaryContainer",
+                                "autoScroll": null,
+                                "maintainFlex": true,
+                                "layout": "anchor",
+                                "designer|userClassName": "MyContainer1"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen2256",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 280,
+                        "itemId": "detailsPanel",
+                        "autoScroll": null,
+                        "layout": "fit",
+                        "collapseDirection": "bottom",
+                        "collapsed": true,
+                        "collapsible": true,
+                        "title": "Expand for Details",
+                        "designer|userClassName": "MyPanel1",
+                        "layout|floatable": false,
+                        "layout|region": "south"
+                    }
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

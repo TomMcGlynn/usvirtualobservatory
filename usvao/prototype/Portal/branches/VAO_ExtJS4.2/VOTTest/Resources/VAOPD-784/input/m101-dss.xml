@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ivoa.net/xml/VOTable/v1.1" version="1.1" xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.1 http://www.ivoa.net/xml/VOTable/v1.1">
+  <RESOURCE type="results">
+    <INFO name="QUERY_STATUS" value="OK"/>
+    <INFO name="WARNING">Parameter requestID is not supported by this server. It will be ignored.</INFO>
+    <TABLE>
+      <PARAM name="requestID" value="unknown" datatype="char" arraysize="*"/>
+      <FIELD name="Title" ucd="VOX:Image_Title" datatype="char" arraysize="*">
+        <DESCRIPTION>Short description of the image</DESCRIPTION>
+      </FIELD>
+      <FIELD name="Ra" ucd="POS_EQ_RA_MAIN" datatype="double" arraysize="" unit="deg">
+        <DESCRIPTION>ICRS right-ascension of the center of the image</DESCRIPTION>
+      </FIELD>
+      <FIELD name="Dec" ucd="POS_EQ_DEC_MAIN" datatype="double" arraysize="" unit="deg">
+        <DESCRIPTION>ICRS declination of the center of the image</DESCRIPTION>
+      </FIELD>
+      <FIELD name="Dim" ucd="VOX:Image_Naxes" datatype="int" arraysize="">
+        <DESCRIPTION>Number of image axes</DESCRIPTION>
+      </FIELD>
+      <FIELD name="Size" ucd="VOX:Image_Naxis" datatype="int" arraysize="*" unit="pix">
+        <DESCRIPTION>Length in pixel of each axis</DESCRIPTION>
+      </FIELD>
+      <FIELD name="Scale" ucd="VOX:Image_Scale" datatype="double" arraysize="*" unit="deg/pix">
+        <DESCRIPTION>Scale in degree per pixel of each image axis</DESCRIPTION>
+      </FIELD>
+      <FIELD name="Format" ucd="VOX:Image_Format" datatype="char" arraysize="*">
+        <DESCRIPTION>MIME-type of the object associated with the image: e.g. "image/fits"</DESCRIPTION>
+      </FIELD>
+      <FIELD name="Url" ucd="VOX:Image_AccessReference" datatype="char" arraysize="*">
+        <DESCRIPTION>URL to be used to access or retrieve the image</DESCRIPTION>
+      </FIELD>
+      <FIELD name="Equinox" ucd="VOX:STC_CoordEquinox" datatype="char" arraysize="*">
+        <DESCRIPTION>Equinox of the coordinate system used for the image World Coordinate System</DESCRIPTION>
+      </FIELD>
+      <FIELD name="Bandpass" ucd="VOX:BandPass_ID" datatype="char" arraysize="*">
+        <DESCRIPTION>Bandpass by name</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="Name of the DSS survey" name="SurveyName" ucd="survey" datatype="char" arraysize="*"/>
+      <DATA>
+        <TABLEDATA>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>71,71</TD>
+            <TD>-0.000473,0.000473</TD>
+            <TD>image/fits</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=download-fits&Sky-Survey=DSS-1&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>optical</TD>
+            <TD>DSS-1</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>71,71</TD>
+            <TD>-0.000473,0.000473</TD>
+            <TD>image/gz-fits</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=download-gz-fits&Sky-Survey=DSS-1&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>optical</TD>
+            <TD>DSS-1</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>71,71</TD>
+            <TD>-0.000473,0.000473</TD>
+            <TD>image/gif</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=download-gif&Sky-Survey=DSS-1&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>optical</TD>
+            <TD>DSS-1</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>71,71</TD>
+            <TD>-0.000473,0.000473</TD>
+            <TD>text/html</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=image/gif&Sky-Survey=DSS-1&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>optical</TD>
+            <TD>DSS-1</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>119,119</TD>
+            <TD>-0.000280,0.000280</TD>
+            <TD>image/fits</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=download-fits&Sky-Survey=DSS2-red&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>optical</TD>
+            <TD>DSS2-red</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>119,119</TD>
+            <TD>-0.000280,0.000280</TD>
+            <TD>image/gz-fits</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=download-gz-fits&Sky-Survey=DSS2-red&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>optical</TD>
+            <TD>DSS2-red</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>119,119</TD>
+            <TD>-0.000280,0.000280</TD>
+            <TD>image/gif</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=download-gif&Sky-Survey=DSS2-red&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>optical</TD>
+            <TD>DSS2-red</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>119,119</TD>
+            <TD>-0.000280,0.000280</TD>
+            <TD>text/html</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=image/gif&Sky-Survey=DSS2-red&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>optical</TD>
+            <TD>DSS2-red</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>119,119</TD>
+            <TD>-0.000281,0.000281</TD>
+            <TD>image/fits</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=download-fits&Sky-Survey=DSS2-blue&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>optical</TD>
+            <TD>DSS2-blue</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>119,119</TD>
+            <TD>-0.000281,0.000281</TD>
+            <TD>image/gz-fits</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=download-gz-fits&Sky-Survey=DSS2-blue&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>optical</TD>
+            <TD>DSS2-blue</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>119,119</TD>
+            <TD>-0.000281,0.000281</TD>
+            <TD>image/gif</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=download-gif&Sky-Survey=DSS2-blue&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>optical</TD>
+            <TD>DSS2-blue</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>119,119</TD>
+            <TD>-0.000281,0.000281</TD>
+            <TD>text/html</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=image/gif&Sky-Survey=DSS2-blue&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>optical</TD>
+            <TD>DSS2-blue</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>119,119</TD>
+            <TD>-0.000280,0.000281</TD>
+            <TD>image/fits</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=download-fits&Sky-Survey=DSS2-infrared&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>ir</TD>
+            <TD>DSS2-infrared</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>119,119</TD>
+            <TD>-0.000280,0.000281</TD>
+            <TD>image/gz-fits</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=download-gz-fits&Sky-Survey=DSS2-infrared&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>ir</TD>
+            <TD>DSS2-infrared</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>119,119</TD>
+            <TD>-0.000280,0.000281</TD>
+            <TD>image/gif</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=download-gif&Sky-Survey=DSS2-infrared&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>ir</TD>
+            <TD>DSS2-infrared</TD>
+          </TR>
+          <TR>
+            <TD>ESO Digitized Sky Survey</TD>
+            <TD>210.802271</TD>
+            <TD>54.348950</TD>
+            <TD>2</TD>
+            <TD>119,119</TD>
+            <TD>-0.000280,0.000281</TD>
+            <TD>text/html</TD>
+            <TD><![CDATA[http://archive.eso.org/dss/dss/image?ra=14%203%2012.545000&dec=+54%2020%2056.22&x=2.000000&y=2.000000&mime-type=image/gif&Sky-Survey=DSS2-infrared&equinox=J2000]]></TD>
+            <TD>J2000</TD>
+            <TD>ir</TD>
+            <TD>DSS2-infrared</TD>
+          </TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>
