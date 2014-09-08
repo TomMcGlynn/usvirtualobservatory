@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet type='text/xsl' href='csccapabilities.xsl'?>
+<vosi:capabilities xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataSource/v1.0" xmlns:vosi="http://www.ivoa.net/xml/VOSICapabilities/v1.0" xsi:schemaLocation="http://www.ivoa.net/xml/VOSI/v1.0 http://www.ivoa.net/xml/VOSI/v1.0 http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VODataSource/v1.0 http://www.ivoa.net/xml/VODataSource/v1.0">
+<vosi:capability standardID="ivo://ivoa.net/std/TAP">
+<vosi:interface xsi:type="vs:ParamHTTP">
+<vosi:accessURL use="full">http://cda.cfa.harvard.edu/csctap</vosi:accessURL>
+</vosi:interface>
+</vosi:capability>
+<vosi:capability standardID="ivo://ivoa.net/std/VOSI#capabilities">
+<vosi:interface xsi:type="vs:ParamHTTP" role="std">
+<vosi:accessURL use="full">http://cda.cfa.harvard.edu/cscvosi/capabilities</vosi:accessURL>
+<vosi:queryType>GET</vosi:queryType>
+<vosi:resultType>application/xml</vosi:resultType>
+</vosi:interface>
+</vosi:capability>
+<vosi:capability standardID="ivo://ivoa.net/std/VOSI#availability">
+<vosi:interface xsi:type="vs:ParamHTTP" role="std">
+<vosi:accessURL use="full">http://cda.cfa.harvard.edu/cscvosi/availability</vosi:accessURL>
+<vosi:queryType>GET</vosi:queryType>
+<vosi:resultType>application/xml</vosi:resultType>
+</vosi:interface>
+</vosi:capability>
+<vosi:capability standardID="ivo://ivoa.net/std/VOSI#tables">
+<vosi:interface xsi:type="vs:ParamHTTP">
+<vosi:accessURL use="full">http://cda.cfa.harvard.edu/cscvosi/tables</vosi:accessURL>
+<vosi:queryType>GET</vosi:queryType>
+<vosi:resultType>application/xml</vosi:resultType>
+</vosi:interface>
+</vosi:capability>
+</vosi:capabilities>
+

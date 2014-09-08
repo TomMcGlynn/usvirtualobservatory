@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet type='text/xsl' href='cscavailability.xsl'?>
+<tns:availability xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://www.ivoa.net/xml/VOSIAvailability/v1.0" xsi:schemaLocation="http://www.ivoa.net/xml/VOSIAvailability/v1.0 http://www.ivoa.net/xml/VOSIAvailability/v1.0">
+<tns:available>true</tns:available>
+<tns:upSince>2011-06-27T16:57:42Z</tns:upSince>
+</tns:availability>
+

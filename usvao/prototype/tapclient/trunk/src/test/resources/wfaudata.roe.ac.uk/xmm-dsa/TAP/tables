@@ -1,0 +1,1821 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet type='text/xsl' href='tables.xsl'?>
+<tab:tables
+   xmlns:vr='http://www.ivoa.net/xml/VOResource/v1.0'
+   xmlns:vs='http://www.ivoa.net/xml/VODataService/v1.0'
+   xmlns:tab='urn:astrogrid:schema:TableMetadata'
+   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+   xsi:schemaLocation='      http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd
+      http://www.ivoa.net/xml/VODataService/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VODataService/v1.0/VODataService.xsd
+      urn:astrogrid:schema:TableMetadata Tables.xsd'>
+<table>
+<name>twoxmm</name>
+<description> Contains the parameters provided for each source in the 2XMM catalogu</description>
+<column>
+<name>DETID</name>
+<description>A consecutive number which identifies each entry (detection) in the catalogue.</description>
+<unit></unit>
+<dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>SRCID</name>
+<description>A unique number assigned to a group of catalogue entries which are assumed to be the same source. To identify members of the same group the distance in arcseconds between each pair of sources was compared on the two-sigma level of both positional errors. A maximum distance of 7&amp;quot; was assumed, which was reduced to 0.9 * DIST_NN (distance to the nearest neighbour) where necessary.</description>
+<unit></unit>
+<ucd></ucd><dataType>int</dataType>
+</column>
+<column>
+<name>IAUNAME</name>
+<description>The IAU name assigned to the unique SRCID.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>SRC_NUM</name>
+<description>The (decimal) source number in the individual source list for this observation; in the hexadecimal system it identifies the source-specific product files belonging to this detection.</description>
+<unit></unit>
+<ucd></ucd><dataType>int</dataType>
+</column>
+<column>
+<name>MATCH_1XMM</name>
+<description>The IAU name of the 1XMM source ID matched within radius of 3 arcsec and using the closest candidate.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>SEP_1XMM</name>
+<description>The distance between this source and the matched 1XMM source (MATCH_1XMM) in arcseconds.</description>
+<unit>arcsec</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SRCID_2XMMP</name>
+<description>The source ID of the 2XMMp unique source matched within radius of 3&amp;quot; and using the closest candidate.</description>
+<unit></unit>
+<ucd></ucd><dataType>int</dataType>
+</column>
+<column>
+<name>MATCH_2XMMP</name>
+<description>The IAU name of the 2XMMp source ID matched within radius of 3&amp;quot; and using the closest candidate.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>SEP_2XMMP</name>
+<description>The distance between this source and the matched 2XMMp source (MATCH_2XMMp) in arcseconds.</description>
+<unit>arcsec</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>OBSID</name>
+<description>The XMM-Newton observation identification.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>REVOLUT</name>
+<description>The XMM-Newton revolution number.</description>
+<unit>orbit</unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>MJD_START</name>
+<description>Modified Julian Date (i.e., JD - 2400000.5) of the start of the observation.</description>
+<unit>days</unit>
+<ucd></ucd><dataType>float</dataType>
+</column>
+<column>
+<name>MJD_STOP</name>
+<description>Modified Julian Date (i.e., JD - 2400000.5) of the end of the observation.</description>
+<unit></unit>
+<ucd></ucd><dataType>float</dataType>
+</column>
+<column>
+<name>OBS_CLASS</name>
+<description>Quality classification of the whole observation based on the area flagged as bad in the manual flagging process as compared to the whole detection area. 0 means nothing has been flagged; 1 indicates that 0% &amp;lt; area &amp;lt; 0.1% of the total detection mask has been flagged; 2 indicates that 0.1% &amp;lt;= area &amp;lt; 1% has been flagged; 3 indicates that 1% &amp;lt;= area &amp;lt; 10% has been flagged; 4 indicates that 10% &amp;lt;= area &amp;lt; 100% has been flagged; and 5 means that the whole field was flagged as bad.</description>
+<unit></unit>
+<ucd></ucd><dataType>int</dataType>
+</column>
+<column>
+<name>PN_FILTER</name>
+<description>PN filter. The options are Thick, Medium, Thin1, Thin2, and Open, depending on the efficiency of the optical blocking.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>M1_FILTER</name>
+<description>M1 filter. The options are Thick, Medium, Thin1, and Open, depending on the efficiency of the optical blocking.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>M2_FILTER</name>
+<description>M2 filter. The options are Thick, Medium, Thin1, and Open, depending on the efficiency of the optical blocking.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>PN_SUBMODE</name>
+<description>PN observing mode. The options are full frame mode with the full FOV exposed (in two sub-modes), and large window mode with only parts of the FOV exposed.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>M1_SUBMODE</name>
+<description>M1 observing mode. The options are full frame mode with the full FOV exposed, partial window mode with only parts of the central CCD exposed (in different sub-modes), and timing mode where the central CCD was not exposed ('Fast Uncompressed').</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>M2_SUBMODE</name>
+<description>M2 observing mode. The options are full frame mode with the full FOV exposed, partial window mode with only parts of the central CCD exposed (in different sub-modes), and timing mode where the central CCD was not exposed ('Fast Uncompressed').</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>RA</name>
+<description>Corrected Right Ascension of the detection in degrees (J2000) after statistical correlation of the emldetect coordinates, RA_UNC and DEC_UNC, with the USNO B1.0 optical source catalogue using the SAS task eposcorr. In case where the cross-correlation is determined to be unreliable no correction is applied and this value is therefore the same as RA_UNC.</description>
+<unit>deg</unit>
+<dataType>double</dataType>
+</column>
+<column>
+<name>DEC</name>
+<description>Corrected Declination of the detection in degrees (J2000) after statistical correlation of the emldetect coordinates, RA_UNC and DEC_UNC, with the USNO B1.0 optical source catalogue using the SAS task eposcorr. In case where the cross-correlation is determined to be unreliable no correction is applied and this value is therefore the same as DEC_UNC.</description>
+<unit>deg</unit>
+<dataType>double</dataType>
+</column>
+<column>
+<name>POSERR</name>
+<description>Total position uncertainty in arcseconds calculated by combining the statistical error RADEC_ERR and the systematic error SYSERR as follows: POSERR = SQRT ( RADEC_ERR&amp;amp;sup2; + SYSERR&amp;amp;sup2; ).</description>
+<unit>arcsec</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>LII</name>
+<description>Galactic longitude of the detection in degrees corresponding to the (corrected) coordinates RA and DEC.</description>
+<unit>deg</unit>
+<ucd></ucd><dataType>float</dataType>
+</column>
+<column>
+<name>BII</name>
+<description>Galactic latitude of the detection in degrees corresponding to the (corrected) coordinates RA and DEC.</description>
+<unit>deg</unit>
+<ucd></ucd><dataType>float</dataType>
+</column>
+<column>
+<name>RADEC_ERR</name>
+<description>Statistical 1 &amp;amp;sigma; error on the detection position in arcseconds.</description>
+<unit>arcsec</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SYSERR</name>
+<description>The systematic 1 &amp;amp;sigma; error on the detection position in arcseconds. It is set to be 0.35 arcsec if the SAS task eposcorr results in a statistically reliable cross-correlation with USNO B1.0 optical catalogue. Otherwise the error is 1.0 arsec.</description>
+<unit>arcsec</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>RA_UNC</name>
+<description>Right Ascension of the source in degrees (J2000) as determined by the SAS task emldetect by fitting a detection simultaneously in all cameras and energy bands.</description>
+<unit>deg</unit>
+<ucd></ucd><dataType>float</dataType>
+</column>
+<column>
+<name>DEC_UNC</name>
+<description>Declination of the source in degrees (J2000) as determined by the SAS task emldetect by fitting a detection simultaneously in all cameras and energy bands.</description>
+<unit>deg</unit>
+<ucd></ucd><dataType>float</dataType>
+</column>
+<column>
+<name>CX</name>
+<description>unit vector of spherical co-ordinates</description>
+<unit></unit>
+<ucd>pos.distance;pos.cartesian.x</ucd><dataType>float</dataType>
+</column>
+<column>
+<name>CY</name>
+<description>unit vector of spherical co-ordinates</description>
+<unit></unit>
+<ucd>pos.distance;pos.cartesian.y</ucd><dataType>float</dataType>
+</column>
+<column>
+<name>CZ</name>
+<description>unit vector of spherical co-ordinates</description>
+<unit></unit>
+<ucd>pos.distance;pos.cartesian.z</ucd><dataType>float</dataType>
+</column>
+<column>
+<name>HTMID</name>
+<description>Hierarchical Triangular Mesh (HTM) index, 20 deep, for equatorial co-ordinates</description>
+<unit></unit>
+<ucd>pos.eq</ucd><dataType>long</dataType>
+</column>
+<column>
+<name>EP_1_FLUX</name>
+<description>EP band 1 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_1_FLUX_ERR</name>
+<description>EP band 1 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_2_FLUX</name>
+<description>EP band 2 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_2_FLUX_ERR</name>
+<description>EP band 2 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_3_FLUX</name>
+<description>EP band 3 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_3_FLUX_ERR</name>
+<description>EP band 3 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_4_FLUX</name>
+<description>EP band 4 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_4_FLUX_ERR</name>
+<description>EP band 4 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_5_FLUX</name>
+<description>EP band 5 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_5_FLUX_ERR</name>
+<description>EP band 5 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_8_FLUX</name>
+<description>EP band 8 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_8_FLUX_ERR</name>
+<description>EP band 8 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_9_FLUX</name>
+<description>EP band 9 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_9_FLUX_ERR</name>
+<description>EP band 9 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_1_FLUX</name>
+<description>PN band 1 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_1_FLUX_ERR</name>
+<description>PN band 1 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_2_FLUX</name>
+<description>PN band 2 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_2_FLUX_ERR</name>
+<description>PN band 2 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_3_FLUX</name>
+<description>PN band 3 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_3_FLUX_ERR</name>
+<description>PN band 3 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_4_FLUX</name>
+<description>PN band 4 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_4_FLUX_ERR</name>
+<description>PN band 4 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_5_FLUX</name>
+<description>PN band 5 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_5_FLUX_ERR</name>
+<description>PN band 5 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_8_FLUX</name>
+<description>PN band 8 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_8_FLUX_ERR</name>
+<description>PN band 8 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_9_FLUX</name>
+<description>PN band 9 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_9_FLUX_ERR</name>
+<description>PN band 9 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_1_FLUX</name>
+<description>M1 band 1 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_1_FLUX_ERR</name>
+<description>M1 band 1 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_2_FLUX</name>
+<description>M1 band 2 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_2_FLUX_ERR</name>
+<description>M1 band 2 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_3_FLUX</name>
+<description>M1 band 3 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_3_FLUX_ERR</name>
+<description>M1 band 3 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_4_FLUX</name>
+<description>M1 band 4 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_4_FLUX_ERR</name>
+<description>M1 band 4 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_5_FLUX</name>
+<description>M1 band 5 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_5_FLUX_ERR</name>
+<description>M1 band 5 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_8_FLUX</name>
+<description>M1 band 8 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_8_FLUX_ERR</name>
+<description>M1 band 8 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_9_FLUX</name>
+<description>M1 band 9 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_9_FLUX_ERR</name>
+<description>M1 band 9 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_1_FLUX</name>
+<description>M2 band 1 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_1_FLUX_ERR</name>
+<description>M2 band 1 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_2_FLUX</name>
+<description>M2 band 2 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_2_FLUX_ERR</name>
+<description>M2 band 2 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_3_FLUX</name>
+<description>M2 band 3 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_3_FLUX_ERR</name>
+<description>M2 band 3 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_4_FLUX</name>
+<description>M2 band 4 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_4_FLUX_ERR</name>
+<description>M2 band 4 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_5_FLUX</name>
+<description>M2 band 5 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_5_FLUX_ERR</name>
+<description>M2 band 5 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_8_FLUX</name>
+<description>M2 band 8 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_8_FLUX_ERR</name>
+<description>M2 band 8 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_9_FLUX</name>
+<description>M2 band 9 flux</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_9_FLUX_ERR</name>
+<description>M2 band 9 flux error</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_8_RATE</name>
+<description>EP band 8 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_8_RATE_ERR</name>
+<description>EP band 8 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_9_RATE</name>
+<description>EP band 9 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_9_RATE_ERR</name>
+<description>EP band 9 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_1_RATE</name>
+<description>PN band 1 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_1_RATE_ERR</name>
+<description>PN band 1 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_2_RATE</name>
+<description>PN band 2 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_2_RATE_ERR</name>
+<description>PN band 2 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_3_RATE</name>
+<description>PN band 3 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_3_RATE_ERR</name>
+<description>PN band 3 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_4_RATE</name>
+<description>PN band 4 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_4_RATE_ERR</name>
+<description>PN band 4 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_5_RATE</name>
+<description>PN band 5 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_5_RATE_ERR</name>
+<description>PN band 5 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_8_RATE</name>
+<description>PN band 8 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_8_RATE_ERR</name>
+<description>PN band 8 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_9_RATE</name>
+<description>PN band 9 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_9_RATE_ERR</name>
+<description>PN band 9 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_1_RATE</name>
+<description>M1 band 1 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_1_RATE_ERR</name>
+<description>M1 band 1 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_2_RATE</name>
+<description>M1 band 2 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_2_RATE_ERR</name>
+<description>M1 band 2 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_3_RATE</name>
+<description>M1 band 3 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_3_RATE_ERR</name>
+<description>M1 band 3 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_4_RATE</name>
+<description>M1 band 4 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_4_RATE_ERR</name>
+<description>M1 band 4 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_5_RATE</name>
+<description>M1 band 5 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_5_RATE_ERR</name>
+<description>M1 band 5 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_8_RATE</name>
+<description>M1 band 8 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_8_RATE_ERR</name>
+<description>M1 band 8 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_9_RATE</name>
+<description>M1 band 9 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_9_RATE_ERR</name>
+<description>M1 band 9 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_1_RATE</name>
+<description>M2 band 1 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_1_RATE_ERR</name>
+<description>M2 band 1 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_2_RATE</name>
+<description>M2 band 2 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_2_RATE_ERR</name>
+<description>M2 band 2 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_3_RATE</name>
+<description>M2 band 3 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_3_RATE_ERR</name>
+<description>M2 band 3 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_4_RATE</name>
+<description>M2 band 4 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_4_RATE_ERR</name>
+<description>M2 band 4 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_5_RATE</name>
+<description>M2 band 5 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_5_RATE_ERR</name>
+<description>M2 band 5 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_8_RATE</name>
+<description>M2 band 8 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_8_RATE_ERR</name>
+<description>M2 band 8 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_9_RATE</name>
+<description>M2 band 9 Count rates</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_9_RATE_ERR</name>
+<description>M2 band 9 Count rates error</description>
+<unit>counts/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_8_CTS</name>
+<description>Combined band source counts</description>
+<unit>counts</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_8_CTS_ERR</name>
+<description>Combined band source counts 1 &amp;amp;sigma; error</description>
+<unit>counts</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_8_CTS</name>
+<description>Combined band source counts</description>
+<unit>counts</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_8_CTS_ERR</name>
+<description>Combined band source counts 1 &amp;amp;sigma; error</description>
+<unit>counts</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_8_CTS</name>
+<description>Combined band source counts</description>
+<unit>counts</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_8_CTS_ERR</name>
+<description>Combined band source counts 1 &amp;amp;sigma; error</description>
+<unit>counts</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_8_CTS</name>
+<description>Combined band source counts</description>
+<unit>counts</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_8_CTS_ERR</name>
+<description>Combined band source counts 1 &amp;amp;sigma; error</description>
+<unit>counts</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_8_DET_ML</name>
+<description>EP band 8 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_9_DET_ML</name>
+<description>EP band 9 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_1_DET_ML</name>
+<description>PN band 1 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_2_DET_ML</name>
+<description>PN band 2 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_3_DET_ML</name>
+<description>PN band 3 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_4_DET_ML</name>
+<description>PN band 4 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_5_DET_ML</name>
+<description>PN band 5 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_8_DET_ML</name>
+<description>PN band 8 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_9_DET_ML</name>
+<description>PN band 9 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_1_DET_ML</name>
+<description>M1 band 1 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_2_DET_ML</name>
+<description>M1 band 2 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_3_DET_ML</name>
+<description>M1 band 3 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_4_DET_ML</name>
+<description>M1 band 4 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_5_DET_ML</name>
+<description>M1 band 5 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_8_DET_ML</name>
+<description>M1 band 8 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_9_DET_ML</name>
+<description>M1 band 9 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_1_DET_ML</name>
+<description>M2 band 1 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_2_DET_ML</name>
+<description>M2 band 2 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_3_DET_ML</name>
+<description>M2 band 3 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_4_DET_ML</name>
+<description>M2 band 4 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_5_DET_ML</name>
+<description>M2 band 5 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_8_DET_ML</name>
+<description>M2 band 8 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_9_DET_ML</name>
+<description>M2 band 9 Maximum likelihood</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_EXTENT</name>
+<description>The Extent radius of a source detected as extended.</description>
+<unit>arcsec</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_EXTENT_ERR</name>
+<description>The Extent error of a source detected as extended.</description>
+<unit>arcsec</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_EXTENT_ML</name>
+<description>The extent likelihood is the likelihood of the detection being extended as given by P = - ln (EXTENT_ML) , where P is the probability the extent occurring by chance.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_HR1</name>
+<description>The EP hardness ratio between the bands 1 &amp;amp; 2</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_HR1_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the EP hardness ratio between the bands 1 &amp;amp; 2</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_HR2</name>
+<description>The EP hardness ratio between the bands 2 &amp;amp; 3</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_HR2_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the EP hardness ratio between the bands 2 &amp;amp; 3</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_HR3</name>
+<description>The EP hardness ratio between the bands 3 &amp;amp; 4</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_HR3_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the EP hardness ratio between the bands 3 &amp;amp; 4</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_HR4</name>
+<description>The EP hardness ratio between the bands 4 &amp;amp; 5</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>EP_HR4_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the EP hardness ratio between the bands 4 &amp;amp; 5</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_HR1</name>
+<description>The PN hardness ratio between the bands 1 &amp;amp; 2</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_HR1_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the PN hardness ratio between the bands 1 &amp;amp; 2</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_HR2</name>
+<description>The PN hardness ratio between the bands 2 &amp;amp; 3</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_HR2_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the PN hardness ratio between the bands 2 &amp;amp; 3</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_HR3</name>
+<description>The PN hardness ratio between the bands 3 &amp;amp; 4</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_HR3_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the PN hardness ratio between the bands 3 &amp;amp; 4</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_HR4</name>
+<description>The PN hardness ratio between the bands 4 &amp;amp; 5</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_HR4_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the PN hardness ratio between the bands 4 &amp;amp; 5</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_HR1</name>
+<description>The M1 hardness ratio between the bands 1 &amp;amp; 2</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_HR1_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the M1 hardness ratio between the bands 1 &amp;amp; 2</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_HR2</name>
+<description>The M1 hardness ratio between the bands 2 &amp;amp; 3</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_HR2_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the M1 hardness ratio between the bands 2 &amp;amp; 3</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_HR3</name>
+<description>The M1 hardness ratio between the bands 3 &amp;amp; 4</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_HR3_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the M1 hardness ratio between the bands 3 &amp;amp; 4</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_HR4</name>
+<description>The M1 hardness ratio between the bands 4 &amp;amp; 5</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_HR4_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the M1 hardness ratio between the bands 4 &amp;amp; 5</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_HR1</name>
+<description>The M2 hardness ratio between the bands 1 &amp;amp; 2</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_HR1_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the M2 hardness ratio between the bands 1 &amp;amp; 2</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_HR2</name>
+<description>The M2 hardness ratio between the bands 2 &amp;amp; 3</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_HR2_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the M2 hardness ratio between the bands 2 &amp;amp; 3</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_HR3</name>
+<description>The M2 hardness ratio between the bands 3 &amp;amp; 4</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_HR3_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the M2 hardness ratio between the bands 3 &amp;amp; 4</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_HR4</name>
+<description>The M2 hardness ratio between the bands 4 &amp;amp; 5</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_HR4_ERR</name>
+<description>The 1 &amp;amp;sigma; error of the M2 hardness ratio between the bands 4 &amp;amp; 5</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_1_EXP</name>
+<description>The PN band 1 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_2_EXP</name>
+<description>The PN band 2 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_3_EXP</name>
+<description>The PN band 3 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_4_EXP</name>
+<description>The PN band 4 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_5_EXP</name>
+<description>The PN band 5 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_1_EXP</name>
+<description>The M1 band 1 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_2_EXP</name>
+<description>The M1 band 1 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_3_EXP</name>
+<description>The M1 band 2 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_4_EXP</name>
+<description>The M1 band 3 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_5_EXP</name>
+<description>The M1 band 4 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_1_EXP</name>
+<description>The M2 band 5 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_2_EXP</name>
+<description>The M2 band 2 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_3_EXP</name>
+<description>The M2 band 3 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_4_EXP</name>
+<description>The M2 band 4 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_5_EXP</name>
+<description>The M2 band 5 exposure map, combining the mirror vignetting, detector efficiency, bad pixels and CCD gaps.</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_1_BG</name>
+<description>The PN band 1 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_2_BG</name>
+<description>The PN band 2 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_3_BG</name>
+<description>The PN band 3 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_4_BG</name>
+<description>The PN band 4 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_5_BG</name>
+<description>The PN band 5 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_1_BG</name>
+<description>The M1 band 1 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_2_BG</name>
+<description>The M1 band 2 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_3_BG</name>
+<description>The M1 band 3 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_4_BG</name>
+<description>The M1 band 4 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_5_BG</name>
+<description>The M1 band 5 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_1_BG</name>
+<description>The M2 band 1 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_2_BG</name>
+<description>The M2 band 2 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_3_BG</name>
+<description>The M2 band 3 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_4_BG</name>
+<description>The M2 band 4 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_5_BG</name>
+<description>The M2 band 5 background map.</description>
+<unit>counts/pixel</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_1_VIG</name>
+<description>The PN band 1 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_2_VIG</name>
+<description>The PN band 2 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_3_VIG</name>
+<description>The PN band 3 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_4_VIG</name>
+<description>The PN band 4 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_5_VIG</name>
+<description>The PN band 5 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_1_VIG</name>
+<description>The M1 band 1 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_2_VIG</name>
+<description>The M1 band 2 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_3_VIG</name>
+<description>The M1 band 3 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_4_VIG</name>
+<description>The M1 band 4 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_5_VIG</name>
+<description>The M1 band 5 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_1_VIG</name>
+<description>The M2 band 1 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_2_VIG</name>
+<description>The M2 band 2 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_3_VIG</name>
+<description>The M2 band 3 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_4_VIG</name>
+<description>The M2 band 4 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_5_VIG</name>
+<description>The M2 band 5 vignetting value.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_ONTIME</name>
+<description>The PN ontime value (the total good exposure time (after GTI filtering) of the CCD where the detection is positioned).</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_ONTIME</name>
+<description>The M1 ontime value (the total good exposure time (after GTI filtering) of the CCD where the detection is positioned).</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_ONTIME</name>
+<description>The M2 ontime value (the total good exposure time (after GTI filtering) of the CCD where the detection is positioned).</description>
+<unit>s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_OFFAX</name>
+<description>The PN offaxis angle (the distance between the detection position and the onaxis position on the respective detector).</description>
+<unit>arcmin</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_OFFAX</name>
+<description>The M1 offaxis angle (the distance between the detection position and the onaxis position on the respective detector).</description>
+<unit>arcmin</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_OFFAX</name>
+<description>The M2 offaxis angle, (the distance between the detection position and the onaxis position on the respective detector).</description>
+<unit>arcmin</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_MASKFRAC</name>
+<description>The PSF weighted mean of the detector coverage of a detection as derived from the detection mask.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_MASKFRAC</name>
+<description>The PSF weighted mean of the detector coverage of a detection as derived from the detection mask.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_MASKFRAC</name>
+<description>The PSF weighted mean of the detector coverage of a detection as derived from the detection mask.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>DIST_NN</name>
+<description>The distance to the nearest detection.</description>
+<unit>arcsec</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SUM_FLAG</name>
+<description>The summary flag of the source is derived from EP_FLAG. It is 0 if none of the nine flags was set; it is set to 1 if at least one of the warning flags (flag 1, 2, 3, 9) was set but no possible-spurious-detection flag (flag 7, 8); it is set to 2 if at least one of the possible-spurious-detection flags (flag 7, 8) was set but not the manual flag (flag 11); it is set to 3 if the manual flag (flag 11) was set but no possible-spurious-detection flags (flag 7, 8); it is set to 4 if the manual flag (flag 11) as well as one of the possible-spurious-detection flags (flag 7, 8) is set. The meaning is thus: 0 = good, 1 = source parameters may be affected, 2 = possibly spurious, 3 = located in a area where spurious detection may occur, 4 = located in a area where spurious detection may occur and possibly spurious. .</description>
+<unit></unit>
+<ucd></ucd><dataType>int</dataType>
+</column>
+<column>
+<name>EP_FLAG</name>
+<description>EPIC flag string made of the flags 1 - 12 (counted from left to right), where flag 10 is not used: it combines the PN, M1, and M2 flags, that is, a flag is set in EP_FLAG if at least one of the camera-dependent flags is set.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>PN_FLAG</name>
+<description>PN flag string made of the flags 1 - 12 (counted from left to right) for the PN source detection.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>M1_FLAG</name>
+<description>M1 flag string made of the flags 1 - 12 (counted from left to right) for the PN source detection.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>M2_FLAG</name>
+<description>PN flag string made of the flags 1 - 12 (counted from left to right) for the M2 source detection.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>TSERIES</name>
+<description>The flag is set to True if this source has a time series made in at least one exposure.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>SPECTRA</name>
+<description>The flag is set to True if this source has a spectrum made in at least one exposure.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>EP_CHI2PROB</name>
+<description>The Chi&amp;amp;sup2; probability (based on the null hypothesis) that the source as detected by any of the cameras, is constant. The minimum value of the available camera probabilities (PN_CHI2PROB, M1_CHI2PROB, M2_CHI2PROB) is given.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>PN_CHI2PROB</name>
+<description>The Chi&amp;amp;sup2; probability (based on the null hypothesis) that the source as detected by the PN camera is constant.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M1_CHI2PROB</name>
+<description>The Chi&amp;amp;sup2; probability (based on the null hypothesis) that the source as detected by the M1 camera is constant.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>M2_CHI2PROB</name>
+<description>The Chi&amp;amp;sup2; probability (based on the null hypothesis) that the source as detected by the M2 camera is constant.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>VAR_FLAG</name>
+<description>The flag is set to True if this source was detected as variable (Chi&amp;amp;sup2; probability &amp;lt; 1E-5, see PN_CHI2PROB, M1_CHI2PROB, M2_CHI2PROB) in at least one exposure.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>VAR_EXP_ID</name>
+<description>If the source is detected as variable (that is, if VAR_FLAG is set to True), the exposure ID ('S' or 'U' followed by a three-digit number) of the exposure with the smallest Chi&amp;amp;sup2; probability is given here.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>VAR_INST_ID</name>
+<description>If the source is detected as variable (that is, if VAR_FLAG is set to True), the instrument ID (PN, M1, M2) of the exposure given in VAR_EXP_ID is listed here.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>SC_RA</name>
+<description>The mean Right Ascension in degrees (J2000) of all the detections of the source SRCID (see RA) weighted by the positional errors POSERR.</description>
+<unit>deg</unit>
+<ucd></ucd><dataType>float</dataType>
+</column>
+<column>
+<name>SC_DEC</name>
+<description>The mean Declination in degrees (J2000) of all the detections of the source SRCID (see DEC) weighted by the positional errors POSERR.</description>
+<unit>deg</unit>
+<ucd></ucd><dataType>float</dataType>
+</column>
+<column>
+<name>SC_POSERR</name>
+<description>The error of the weighted mean position given in SC_RA and SC_DEC in arcseconds.</description>
+<unit>arcsec</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_1_FLUX</name>
+<description>The mean band 1 flux (0.2 - 0.5 keV) of all the detections of the source SRCID (see EP_1_FLUX) weighted by the errors (EP_1_FLUX_ERR), in erg/cm2/s.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_1_FLUX_ERR</name>
+<description>Error on the weighted mean band 1 flux in SC_EP_1_FLUX.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_2_FLUX</name>
+<description>The mean band 2 flux (0.5 - 1.0 keV) of all the detections of the source SRCID (see EP_2_FLUX) weighted by the errors (EP_2_FLUX_ERR), in erg/cm2/s.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_2_FLUX_ERR</name>
+<description>Error on the weighted mean band 2 flux in SC_EP_2_FLUX.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_3_FLUX</name>
+<description>The mean band 3 flux (1.0 - 2.0 keV) of all the detections of the source SRCID (see EP_3_FLUX) weighted by the errors (EP_3_FLUX_ERR), in erg/cm2/s.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_3_FLUX_ERR</name>
+<description>Error on the weighted mean band 3 flux in SC_EP_3_FLUX.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_4_FLUX</name>
+<description>The mean band 4 flux (2.0 - 4.5 keV) of all the detections of the source SRCID (see EP_4_FLUX) weighted by the errors (EP_4_FLUX_ERR), in erg/cm2/s.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_4_FLUX_ERR</name>
+<description>Error on the weighted mean band 4 flux in SC_EP_4_FLUX.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_5_FLUX</name>
+<description>The mean band 5 flux (4.5 - 12 keV) of all the detections of the source SRCID (see EP_5_FLUX) weighted by the errors (EP_5_FLUX_ERR), in erg/cm2/s.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_5_FLUX_ERR</name>
+<description>Error on the weighted mean band 5 flux in SC_EP_5_FLUX.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_8_FLUX</name>
+<description>The mean total band flux (0.2 - 12 keV) of all the detections of the source SRCID (see EP_8_FLUX) weighted by the errors (EP_8_FLUX_ERR), in erg/cm2/s.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_8_FLUX_ERR</name>
+<description>Error on the weighted mean total band flux in SC_EP_8_FLUX.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_9_FLUX</name>
+<description>The mean band 9 flux (0.5 - 4.5 keV) of all the detections of the source SRCID (see EP_9_FLUX) weighted by the errors (EP_9_FLUX_ERR), in erg/cm2/s.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EP_9_FLUX_ERR</name>
+<description>Error on the weighted mean band 9 flux in SC_EP_9_FLUX.</description>
+<unit>erg/cm**2/s</unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_HR1</name>
+<description>The mean hardness ratio of the bands 1 and 2 of all the detections of the source SRCID (EP_HR1) weighted by the errors(EP_HR1_ERR).</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_HR1_ERR</name>
+<description>Error on the weighted mean hardness ratio in SC_HR1.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_HR2</name>
+<description>The mean hardness ratio of the bands 2 and 3 of all the detections of the source SRCID (EP_HR2) weighted by the errors(EP_HR2_ERR).</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_HR2_ERR</name>
+<description>Error on the weighted mean hardness ratio in SC_HR2.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_HR3</name>
+<description>The mean hardness ratio of the bands 3 and 4 of all the detections of the source SRCID (EP_HR3) weighted by the errors(EP_HR3_ERR).</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_HR3_ERR</name>
+<description>Error on the weighted mean hardness ratio in SC_HR3.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_HR4</name>
+<description>The mean hardness ratio of the bands 4 and 5 of all the detections of the source SRCID (EP_HR4) weighted by the errors(EP_HR4_ERR).</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_HR4_ERR</name>
+<description>Error on the weighted mean hardness ratio in SC_HR4.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_DET_ML</name>
+<description>The total band detection likelihood of the source SRCID is the maximum of the likelihoods of all detections of this source (EP_8_DET_ML).</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_EXT_ML</name>
+<description>The total band detection likelihood of the extended source SRCID is the average of the extent likelihoods of all detections of this source (EP_EXTENT_ML).</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_CHI2PROB</name>
+<description>The Chi&amp;amp;sup2; probability (based on the null hypothesis) that the unique source SRCID as detected by any of the observations is constant, that is, the minimum value of the EPIC probabilities in each detection, EP_CHI2PROB, is given.</description>
+<unit></unit>
+<ucd></ucd><dataType>double</dataType>
+</column>
+<column>
+<name>SC_VAR_FLAG</name>
+<description>The variability flag for the unique source SRCID is set to VAR_FLAG of the most variable detection of this source.</description>
+<unit></unit>
+<ucd></ucd><dataType arraysize='*'>char</dataType>
+</column>
+<column>
+<name>SC_SUM_FLAG</name>
+<description>The summary flag for the unique source SRCID is taken to be the worst flag of all detections of this source (SUM_FLAG).</description>
+<unit></unit>
+<ucd></ucd><dataType>int</dataType>
+</column>
+<column>
+<name>N_DETECTIONS</name>
+<description>The number of detections of the unique source SRCID used to derive the averaged values.</description>
+<unit></unit>
+<ucd></ucd><dataType>int</dataType>
+</column>
+</table>
+</tab:tables>

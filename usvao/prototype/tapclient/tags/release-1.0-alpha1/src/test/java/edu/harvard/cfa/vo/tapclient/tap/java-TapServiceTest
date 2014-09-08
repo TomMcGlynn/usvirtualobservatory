@@ -1,0 +1,91 @@
+import java.io.InputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
+import java.util.Calendar;
+
+import com.sun.net.httpserver.Headers;
+import com.sun.net.httpserver.HttpContext;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+import edu.harvard.cfa.vo.tap.TapService;
+import edu.harvard.cfa.vo.util.HttpException;
+import edu.harvard.cfa.vo.util.ResponseFormatException;
+import edu.harvard.cfa.vo.vosi.Availability;
+
+public class TapServiceTest {
+    private static HttpServer server;
+
+    @BeforeClass public static void setUpClass() throws UnknownHostException, IOException {
+	server = HttpServer.create(new InetSocketAddress(InetAddress.getLocalHost(), 0), 0);
+	HttpContext availabilityContext = server.createContext("/tap/availability");
+	HttpHandler availabilityHandler = new HttpHandler() {
+		public void handle(HttpExchange exchange) throws IOException {
+		    String requestMethod = exchange.getRequestMethod();
+		    Headers requestHeaders = exchange.getRequestHeaders();
+		    InputStream requestBody = exchange.getRequestBody();
+
+		    Headers responseHeaders = exchange.getResponseHeaders();
+		    int responseCode;
+		    byte[] responseBuffer;
+		    if ("GET".equals(requestMethod)) {
+			responseCode = HttpURLConnection.HTTP_OK;
+			responseBuffer = "<availability/>".getBytes();
+		    } else {
+			responseCode = HttpURLConnection.HTTP_BAD_METHOD;
+			responseBuffer = "405 Method Not Allowed".getBytes();
+			responseHeaders.add("Allow", "GET");
+		    }
+
+		    exchange.sendResponseHeaders(responseCode, responseBuffer.length);
+		    OutputStream responseBody = exchange.getResponseBody();
+		    responseBody.write(responseBuffer);
+		    responseBody.close();
+		}
+ 	    };
+
+	availabilityContext.setHandler(availabilityHandler);
+
+	server.setExecutor(null);
+	server.start();
+    }
+
+    @AfterClass public static void tearDownClass() {
+	server.stop(0);
+    }
+
+    @Ignore @Test(expected=HttpException.class) public void notFound() throws HttpException, ResponseFormatException, IOException {
+	String baseURL = "http:/"+server.getAddress();
+
+	TapService tapService = new TapService(baseURL);
+	Availability availability = tapService.getAvailability();
+    }
+
+    @Ignore @Test public void getAvailabilityTest() throws HttpException, ResponseFormatException, IOException {
+	String baseURL = "http:/"+server.getAddress()+"/tap";
+
+	TapService tapService = new TapService(baseURL);
+	Availability availability = tapService.getAvailability();
+
+	Calendar now = Calendar.getInstance();
+
+	assertTrue(availability.isAvailable());
+	assertTrue(0 > availability.getUpSince().compareTo(now));
+	assertTrue(0 < availability.getDownAt().compareTo(now));
+	assertTrue(0 < availability.getBackAt().compareTo(now));
+	assertTrue(2 == availability.getNotes().size());
+	assertEquals("First note", availability.getNotes().get(0));
+    }
+
+}

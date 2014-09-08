@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet type='text/xsl' href='../VOSI/availability.xsl'?>
+<avail:availability
+   xmlns:avail='http://www.ivoa.net/xml/Availability/v0.4'
+   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+   xsi:schemaLocation='http://www.ivoa.net/xml/Availability/v0.4 Availability.xsd'>
+  <avail:available>false</avail:available>
+  <avail:upSince>2011-05-16T14:44:53</avail:upSince>
+</avail:availability>

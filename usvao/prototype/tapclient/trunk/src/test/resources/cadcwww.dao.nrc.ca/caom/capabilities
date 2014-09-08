@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vosi:capabilities xmlns:vosi="http://www.ivoa.net/xml/VOSICapabilities/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vod="http://www.ivoa.net/xml/VODataService/v1.1">
+  <capability standardID="ivo://ivoa.net/std/VOSI#capabilities">
+    <interface xsi:type="vod:ParamHTTP">
+      <accessURL use="full">http://cadcwww.dao.nrc.ca/caom/capabilities</accessURL>
+    </interface>
+  </capability>
+  <capability standardID="ivo://ivoa.net/std/VOSI#availability">
+    <interface xsi:type="vod:ParamHTTP">
+      <accessURL use="full">http://cadcwww.dao.nrc.ca/caom/availability</accessURL>
+    </interface>
+  </capability>
+  <capability standardID="ivo://ivoa.net/std/TAP">
+    <interface xsi:type="vod:ParamHTTP" role="std">
+      <accessURL use="full">http://cadcwww.dao.nrc.ca/caom/</accessURL>
+    </interface>
+  </capability>
+  <capability standardID="ivo://ivoa.net/std/VOSI#tables">
+    <interface xsi:type="vod:ParamHTTP">
+      <accessURL use="full">http://cadcwww.dao.nrc.ca/caom/tables</accessURL>
+    </interface>
+  </capability>
+</vosi:capabilities>
+

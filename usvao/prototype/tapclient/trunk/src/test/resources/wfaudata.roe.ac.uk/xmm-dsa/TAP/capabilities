@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet type='text/xsl' href='../VOSI/capabilities.xsl'?>
+<cap:capabilities
+   xmlns:vr='http://www.ivoa.net/xml/VOResource/v1.0'
+   xmlns:vs='http://www.ivoa.net/xml/VODataService/v1.0'
+   xmlns:cs='http://www.ivoa.net/xml/ConeSearch/v1.0'
+   xmlns:tap='http://www.ivoa.net/xml/TAP/v0.1'
+   xmlns:cea='http://www.ivoa.net/xml/CEA/v1.0rc1'
+   xmlns:cap='urn:astrogrid:schema:Capabilities'
+   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+   xsi:schemaLocation=
+     'http://www.ivoa.net/xml/VOResource/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VOResource/v1.0/VOResource.xsd
+      http://www.ivoa.net/xml/VODataService/v1.0 http://software.astrogrid.org/schema/vo-resource-types/VODataService/v1.0/VODataService.xsd
+      http://www.ivoa.net/xml/ConeSearch/v1.0 http://www.ivoa.net/xml/ConeSearch/ConeSearch-v1.0.xsd 
+      http://www.ivoa.net/xml/TAP/v0.1 http://vo.ari.uni-heidelberg.de/docs/schemata/TAPRegExt-v0.1.xsd 
+      http://www.ivoa.net/xml/CEA/v1.0rc1 http://software.astrogrid.org/schema/vo-resource-types/CEAService/v1.0rc1/CEAService.xsd
+      urn:astrogrid:schema:Capabilities Capabilities.xsd'>
+  <capability xsi:type='cs:ConeSearch'
+      standardID='ivo://ivoa.net/std/ConeSearch'>
+    <description>TwoXMM, twoxmm: cone search</description>
+    <interface xsi:type='vs:ParamHTTP' role='std'>
+      <accessURL use='base'>http://wfaudata.roe.ac.uk/xmm-dsa//SubmitCone?DSACAT=TwoXMM&amp;DSATAB=twoxmm&amp;</accessURL>
+    </interface>
+    <maxSR>1.500000</maxSR>
+    <maxRecords>2000000</maxRecords>
+    <verbosity>false</verbosity>
+    <testQuery>
+      <ra>96.0</ra>
+      <dec>5.0</dec>
+      <sr>0.001</sr>
+    </testQuery>
+  </capability>
+<capability standardID='ivo://ivoa.net/std/TAP' xsi:type='tap:TableAccess'>
+  <interface xsi:type='vs:ParamHTTP'>
+    <accessURL use='full'>http://wfaudata.roe.ac.uk/xmm-dsa//TAP</accessURL>
+  </interface>
+    <language>
+    <name>ADQL</name>
+    <version>2.0</version>
+    <description>ADQL 2.0</description>  </language>  <outputFormat>
+    <mime>application/x-votable+xml</mime>
+    <alias>votable</alias>
+    <description>VOTable with XML data</description>
+  </outputFormat>
+  <outputFormat>
+    <mime>application/x-votable+xml; encoding="binary"</mime>
+    <description>VOtable with binary data</description>
+  </outputFormat>
+  <outputFormat>
+    <mime>text/csv</mime>
+    <alias>csv</alias>
+    <description>Comma-separated values</description>
+  </outputFormat>
+  <outputFormat>
+    <mime>text/tab-separated-values</mime>
+    <alias>tsv</alias>
+    <description>Tab-separated values</description>
+  </outputFormat>
+</capability>
+  <capability xsi:type="cea:CeaCapability" standardID="ivo://org.astrogrid/std/CEA/v1.0">
+    <description>Access to two applications: general ADQL query, and asynchronous cone-search where relevant/enabled.</description>
+    <interface  xsi:type="cea:CECInterface">
+      <accessURL use='full'>http://wfaudata.roe.ac.uk/xmm-dsa//services/CommonExecutionConnectorService</accessURL>
+    </interface>
+    <managedApplications>
+      <ApplicationReference>ivo://wfau.roe.ac.uk/xmm_dsa/ceaApplication</ApplicationReference>
+    </managedApplications>
+  </capability>
+<capability standardID="ivo://org.astrogrid/std/VOSI/v0.3#capabilities">
+  <interface xsi:type="vs:ParamHTTP">
+  <accessURL use="full">http://wfaudata.roe.ac.uk/xmm-dsa//VOSI/capabilities</accessURL>
+  <queryType>GET</queryType>
+  <resultType>application/xml</resultType>
+  </interface>
+</capability>
+<capability standardID="ivo://ivoa.net/std/VOSI#capabilities">
+  <interface xsi:type="vs:ParamHTTP">
+  <accessURL use="full">http://wfaudata.roe.ac.uk/xmm-dsa//VOSI/capabilities</accessURL>
+  <queryType>GET</queryType>
+  <resultType>application/xml</resultType>
+  </interface>
+</capability>
+<capability standardID="ivo://org.astrogrid/std/VOSI/v0.3#availability">
+  <interface xsi:type="vs:ParamHTTP">
+    <accessURL use="full">http://wfaudata.roe.ac.uk/xmm-dsa//VOSI/availability</accessURL>
+    <queryType>GET</queryType>
+    <resultType>application/xml</resultType>
+  </interface>
+</capability>
+<capability standardID="ivo://ivoa.net/std/VOSI#availability">
+  <interface xsi:type="vs:ParamHTTP">
+    <accessURL use="full">http://wfaudata.roe.ac.uk/xmm-dsa//VOSI/availability</accessURL>
+    <queryType>GET</queryType>
+    <resultType>application/xml</resultType>
+  </interface>
+</capability>
+<capability standardID="ivo://org.astrogrid/std/VOSI/v0.3#tables">
+   <interface xsi:type="vs:ParamHTTP">
+   <accessURL use="full">http://wfaudata.roe.ac.uk/xmm-dsa//VOSI/tables</accessURL>
+   <queryType>GET</queryType>
+   <resultType>application/xml</resultType>
+   </interface>
+</capability>
+<capability standardID="ivo://org.astrogrid/std/VOSI/v0.3#ceaApplication">
+   <interface xsi:type="vs:ParamHTTP">
+   <accessURL use="full">http://wfaudata.roe.ac.uk/xmm-dsa//VOSI/applications</accessURL>
+   <queryType>GET</queryType>
+   <resultType>application/xml</resultType>
+   </interface>
+</capability>
+<capability standardID='ivo://ivoa.net/std/Delegation'>
+  <interface xsi:type='vs:ParamHTTP'  role='std'>
+    <accessURL use='full'>http://wfaudata.roe.ac.uk/xmm-dsa//delegations</accessURL>
+    <queryType>GET</queryType>
+    <resultType>application/xml</resultType>
+  </interface>
+</capability>
+</cap:capabilities>
