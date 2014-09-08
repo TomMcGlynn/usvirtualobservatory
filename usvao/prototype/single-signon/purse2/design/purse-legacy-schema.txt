@@ -1,0 +1,51 @@
+group_table
+  - group_id
+  - group_name
+  - group_desc
+
+ra_table
+  - ra_id
+  - ra_name
+  - ra_email
+  - ra_description
+
+role_table
+  - role_id
+  - role_name
+  - role_description
+
+status_table
+  - status_id
+  - status_name
+  - status_description
+
+user_group_table
+  - group_id
+  - user_id
+
+user_roles_table
+  - user_id
+  - role_id
+
+user_table
+  - user_id
+  - token
+  - first_name
+  - last_name
+  - contact_person
+  - stmt_of_work
+  - user_name
+  - password
+  - institution
+  - project_name
+  - email
+  - phone
+  - dn
+  - status_id
+  - creation_time
+  - number_logins
+  - last_access_time
+  - ra_id
+  - password_sha1
+
+

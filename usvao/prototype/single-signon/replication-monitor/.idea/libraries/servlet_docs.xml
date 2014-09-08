@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="servlet docs">
+    <CLASSES />
+    <JAVADOC>
+      <root url="file://$USER_HOME$/download/java/j2ee-install/docs/api" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

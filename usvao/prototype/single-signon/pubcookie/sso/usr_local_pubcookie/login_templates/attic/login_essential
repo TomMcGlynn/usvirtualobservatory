@@ -1,0 +1,26 @@
+<html>
+<head><title>Minimal login</title></head>
+
+<body bgcolor="#FFFFFF" onLoad="document.query.elements[0].focus()">
+
+<form name="query" method="POST" action="%loginuri%"
+ enctype="application/x-www-form-urlencoded" autocomplete="off">
+
+%message%
+%reason%
+
+User ID: %user_field%
+Password: <input type="password" name="pass" size="24">
+
+%hiddenuser%
+%hiddenfields%
+%getcredhidden%
+
+<input type="SUBMIT" name="submit" value="Log in">
+
+</form>
+
+<!-- Version: %version% -->
+
+</body>
+</html>

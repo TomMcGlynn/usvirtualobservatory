@@ -1,0 +1,94 @@
+<!-- begin tmpl logout_part1 -->
+<html>
+<head>
+<title>NVO Logout</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="usvo3.css" type="text/css" rel="stylesheet">
+<link href="nvo.css" type="text/css" rel="stylesheet">
+<link href="sso.css" type="text/css" rel="stylesheet">
+<script language="JavaScript"><!-- // redirect, for example with "...&redirect=http://example.edu/public/&..." in the URL
+var s = window.location.search;
+if (s.length > 0) s = s.substr(1); // remove "?"
+var ss = s.split("&");
+var appId, appServer, appUrl, logoutDest;
+for (var i = 0; i < ss.length; ++i) {
+   var e = ss[i].indexOf("=");
+   if (e > 0 && e < ss[i].length - 1) {
+      var name = ss[i].substring(0, e);
+      var value = ss[i].substr(e+1);
+      if (name == "one") appServer = value;
+      if (name == "two") appId = value;
+   }
+}
+var logoutKey = "logoutgoto_";
+var suffixIndex = appId.toLowerCase().indexOf(logoutKey);
+var debug = (appId.toLowerCase().indexOf("debug") >= 0);
+// debug = true;
+if (debug) alert("App Server = " + appServer + "\nApp ID = " + appId + "\nsuffix index = " + suffixIndex);
+if (suffixIndex >= 0) {
+   urlSuffix = appId.substr(suffixIndex + logoutKey.length);
+   urlSuffix = urlSuffix.replace("%2f", "/"); // could do proper parsing
+   logoutDest = "http://" + appServer + "/" + urlSuffix;
+   if (debug) alert("URL suffix = " + urlSuffix + "\ndestination = " + logoutDest);
+   window.setTimeout("delay(5,'goToAppServer()')",100);
+}
+
+function goToAppServer() {
+//   alert("would go to http://" + appServer + "/");
+   window.location.assign(logoutDest);
+}
+--></script>
+</head>
+
+<body leftmargin="0" topmargin="0">
+
+<table width="800" border="0" align="center" cellpadding="0">
+
+<tr align="left" valign="top">
+  <td width="220" style="vertical-align:middle">
+    <div style="padding-bottom:.35em"><a class="nav" href="https://sso.us-vo.org/">Login to the NVO</a></div>
+    <div style="padding-bottom:.35em"><a class="nav" href="https://nvologin1.ncsa.uiuc.edu/">Identity Portal</a></div>
+    <div style="padding-bottom:.35em"><a class="nav" href="http://sso.us-vo.org/register/?returnURL=https://nvologin1.ncsa.uiuc.edu/protected/welcome&portalName=the+NVO+Identity+Portal">Create an account</a></div>
+    <div><a class="nav" href="http://dev.usvao.org/vao/wiki/SSOforPortals/Overview">Documentation</a></div>
+  </td>
+
+  <td width="360"><div align="center">
+    <div class="big"><img src="/images/NVOwords_200pixels.jpg" alt="" width="198" height="108" /></div>
+  </div></td>
+
+  <td width="220" style="vertical-align:middle">
+    <div align="right">
+      <a class="nav" href="http://www.us-vo.org/what.cfm">what is the nvo</a><br />
+      <a class="nav" href="http://www.us-vo.org/faq.cfm">faq</a><br />
+      <a class="nav" href="http://blogs.us-vo.org/news/?p=3">the nvo book</a><br />
+      <a class="nav" href="http://www.us-vo.org/behindthescenes/index.cfm">behind the scenes</a><br />
+      <a class="nav" href="http://www.us-vo.org/pubs/index.cfm">documents</a>
+    </div>
+  </td>
+</tr>
+
+<tr><td class="divider" colspan="3"><hr noshade="noshade" /></td></tr>
+
+<tr><td colspan="3">
+<h1 class="top" id="title">Logged out of the Virtual Observatory</h1>
+
+<h2 id="subtitle"></h2>
+
+<p class="announce">
+To completely log out of all Virtual Observatory sites, exit your web browser.
+</p>
+
+<script language="JavaScript"><!--
+function delay(d,thenWhat) {
+   var subtitle = document.getElementById("subtitle");
+   subtitle.innerHTML = "You will be returned to <a href=\"" + logoutDest + "\">" + appServer + "</a> in " + d + " seconds.";
+   if (d == 0) window.setTimeout(thenWhat, 1);
+   else {
+      timerArg = "delay(" + (d-1) + ",'" + thenWhat + "')";
+      window.setTimeout(timerArg, 1000);
+   }
+}
+--></script>
+
+<!-- end tmpl logout_part1 -->
+

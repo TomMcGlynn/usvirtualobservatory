@@ -1,0 +1,44 @@
+# 1 is a good starting point
+logging_level: 5
+
+# the credential verifier used by the basic flavor
+#basic_verifier: alwaystrue
+basic_verifier: verify_fork
+verify_exe: /usr/local/pubcookie/myproxy_fork.pl
+
+# SSL session keypair
+#ssl_key_file: /etc/httpd/conf/ssl.key/server.key
+#ssl_cert_file: /etc/httpd/conf/ssl.crt/server.crt
+ssl_key_file: /etc/grid-security/pubcookie_hostkey.pem
+ssl_cert_file: /etc/grid-security/hostcert.pem
+
+# granting keypair 
+#granting_key_file: /usr/local/pubcookie/keys/pubcookie_granting.key
+#granting_cert_file: /usr/local/pubcookie/keys/pubcookie_granting.cert 
+granting_key_file: /etc/grid-security/pubcookie_hostkey.pem
+granting_cert_file: /etc/grid-security/hostcert.pem
+
+# login server config
+login_uri: https://nvologin.ncsa.uiuc.edu/
+login_host: nvologin.ncsa.uiuc.edu
+enterprise_domain: .ncsa.uiuc.edu
+logout_prog: /logout/index.cgi
+
+# keyserver config
+keymgt_uri: https://nvologin.ncsa.uiuc.edu:2222/index.cgi
+#keyserver_client_list: login.example.edu trusted.example.edu
+#keyserver_client_list: bluejay.cosmology.uiuc.edu
+#keyserver_client_list: nvoapp1.ncsa.uiuc.edu
+keyserver_client_list: nvoapp1.ncsa.uiuc.edu nvologin.ncsa.uiuc.edu
+#ssl_ca_file: /etc/httpd/conf/ssl.crt/ca-bundle.crt
+ssl_ca_path: /etc/grid-security/certificates
+
+# site-specific policies
+default_l_expire: 8h
+form_expire_time: 120
+
+# custom logout msgs
+app_logout_string-appserver.example.edu-testapp: <font size="+1">Testapp logout worked just fine.</font>
+app_logout_string-webmail.example.edu-webmail: <font size="+1">Webmail Logout Successful!</font>
+
+app_logout_string-nvoapp1.ncsa.uiuc.edu-Portal: <font size="+1">NVO Identity Portal logout successful.</font><script language="JavaScript"><!-- alert("foo"); --></script>

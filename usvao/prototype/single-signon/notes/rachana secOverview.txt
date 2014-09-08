@@ -1,0 +1,65 @@
+GT Security Overview
+
+- HTTPS
+        - CoG library 
+                - http://www-unix.globus.org/cog/java/
+                - cog-jglobus.jar
+        - server side (GSIServiceThread.java)
+        - cog-axis.jar
+                - client side (HTTPS Sender)
+- Overall security
+    = http://www.globus.org/toolkit/docs/4.0/security/message/
+    = http://www.globus.org/toolkit/docs/4.0/security/authzframe/
+    = Handlers 
+    = Server side steps:
+      * Request
+                Authentication
+                Security policy enforcement
+                authorization
+        
+        - Authentication
+                - WSSecurityHandler (WSRequestEngine)
+                        - Identitfy different methods
+                        - extract from SOAP Message (Apache WSS4J)  
+                        - certificate validation (CoG)
+                        - signature/encryption (Apache XML security)
+                - add credenials to Subject associated with thread
+                - AuthenticationServiceHandler
+        - Security policy enforcement
+                - SecurityPolicyHandler(DescriptorHandler)
+                        - based on properties set in authentication step
+                          and requirements set by service owner
+                - RunAsHandler
+                        - based on configuration by service owner
+        -  Authorization
+                - only if authentication was done
+                - Chain of authorization methods
+                        - deny override
+      * Response
+                - same security mechanism as request is used
+                - X509(Sign/Encrypt)Handler, GSSHandler
+                - WSSecurityResponseEngine
+                - To construct and embed SOAP header - Apache WSS4J
+                - To sign/encrypt - Apache XML Security
+    = Client side steps
+        - configuration is in stubs
+       * Request
+                - X509(Sign/Encrypt)Handler, 
+                - SecContextHandler
+                - Authentication
+                        - sign/encrypt message
+                        - HTTPSSender for transport security
+       * Response
+                - WSSecurityClientHandler
+                        - Ensure server response secure (same as request)
+                        - authorization
+        
+
+GSISecureConversation:
+        - Redirect to AuthenticationService
+        - Negotiate context
+        - Redirect back to service                
+
+Delegation Service 
+        - http://www.globus.org/toolkit/docs/4.0/security/delegation/
+               

@@ -1,0 +1,18 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <SCRIPT LANGUAGE="JavaScript">
+      window.location.replace("%url%");
+    </SCRIPT> 
+    <NOSCRIPT>
+      <meta http-equiv="Refresh" content="%delay%;URL=%url%">
+    </NOSCRIPT> 
+    <title>pubcookie redirect</title>
+  </head>
+
+  <body bgcolor="white">
+  </body>
+</html>
+
+

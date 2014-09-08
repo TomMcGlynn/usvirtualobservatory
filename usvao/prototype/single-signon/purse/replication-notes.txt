@@ -1,0 +1,12 @@
+Replication notes for coil and core:
+  - replication slave user repl (repl@core.ncsa.uiuc.edu), pw grit_my_muffins
+  - MySQL log bin in /var/local/nvo/mysql/mysql-bin.log
+  - server-id, in my.cnf
+      - nvoauth1.ncsa.uiuc.edu id #1
+      - coil.ncsa.uiuc.edu id #1001
+      - core.ncsa.uiuc.edu id #1002
+  - auto_increment_...
+      - all: set auto_increment_increment = 100;
+      - nvoauth1: set auto_increment_offset = 11;
+      - coil: set auto_increment_offset = 91;
+      - core: set auto_increment_offset = 92;

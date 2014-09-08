@@ -1,0 +1,116 @@
+Main Goal: Usability & Mobility
+  1. run gridlogon (from anywhere)
+  2. ready to go -- gs ssh etc.
+     - targeted at Globus / GSI
+
+Questions:
+  - grid log OFF?
+  - standards?
+      - PAM, for pluggable modules?
+      - standard protocol allows multiple implementations (SACRED?)
+  - broader x509 applicability?
+  - host certs, too?  or just users?  Maybe only users in v1
+      - more of an admin interface
+      - need a notion of who can request what certs from you
+      - would set up whole /etc/grid-security for that host
+
+Secondary Goals:
+  - short term: LTER is first customer
+      - but we don't expect them to use GS SSH
+      - need to call it from a portal
+      - they want a PAM CA for their LDAP
+          - SASL CA?
+  - maintainable
+  - extensible -- other forms of authentication?
+  - but this may still be a prototype
+
+Functional Features:
+  - support any sort of typed-in auth system
+      - anything PAM can do
+  - auditing on the server
+      - what credentials were issued at a certain point
+      - be able to revoke them
+      - keep enough information about every cert ever issued
+          - flush expired
+          - DN etc?
+  - leverage an existing authentication system
+      - via PAM, probably
+  - map users to DNs -- flexible, pluggable way
+  - ability to suspend particular user accounts
+  - ability to add trust roots to your user's config
+      - need trust of, say, TeraGrid
+      - global config for now is okay
+          - may need to configure it per user / organization in future
+      - CRLs too -- need active background process?
+  - configurable certificate life
+      - global setting -- but what about host certs
+      - overrideable
+  - config file for administrators
+  - multiple certs for the same user
+      - definitely if you allow for host certs
+      - a default one, and then a way to request more
+          - with a policy check
+  - Security features
+      - wire:
+          - no passwords in clear text over the wire ...
+          - no private keys?  at least not clear text
+      - how can the user be sure they're talking to the right GridLogon server?
+          - use CA certs
+              - first time, explicitly bootstrap
+              - after first time, use the cached CA certs to validate
+              - keep track of the DNs of the GridLogon server(s)
+  - What happens if the GridLogon server gets compromised?
+      - users would have to reset to a non-trusting state
+      - need to always maintain the trust roots
+          - clean up ones that are no longer trusted
+          - need to know which root certs we've installed, so that we know which are safe to clean up
+              - if something is already installed, we just leave it
+              - if we installed something in the past, and it should go away, we delete it
+          - configurable
+              - "do you want me to delete these certs?"
+              - end-user config -- "I want these trust roots every time I log in" (advanced use?)
+                  - "but these roots are just on this machine"
+  - "Simple" configuration -- no PAM back-end
+      - simple file?
+  - Credential renewal? (non-interactive)
+      - add a field to the cert saying whether renewable (like Kerberos does)
+  - Single sign-on?
+      - Kerberos
+      - Client-side PAM
+      - 
+
+Design:
+  - Get the server and protocol right
+      - then we can write a bunch of clients
+
+  - Client APIs
+      - Java, for portals
+      - C API?
+          - would make PAM integration on client side nice (Unix)
+
+  - Server APIs
+      - plugin framework -- Java interfaces?  C shared library?
+
+  - need Windows & Unix client support
+
+  - Protocol
+      1. Private Channel
+          - SSL / TLS
+      2. Soap (for framing, extensibility)
+          a. Hello exchange
+          b. User authentication (SSH keybd-interactive)
+          c. C->S request
+	      i. Cert request (PKCS #10),
+              ii. info (target, creds, options) (security context)
+          d. S->C response
+	      i. cert (PEM)
+	      ii. trust roots (PKCS #7), etc.
+
+      - Why couldn't it be a web service?
+          - web services repeatedly make new connections
+
+To Do:
+  - design doc (a few pages)
+      - design
+      - order of implementation
+      - how to get end-to-end

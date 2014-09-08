@@ -1,0 +1,14 @@
+Pubcookie is growing long in the tooth; to build in current Linux
+distributions (such as CentOS 5), use/modify these scripts.
+
+Take a look at them first; they are very simple and mostly just
+specify an extra variable or two.
+
+If you are building on a 32-bit platform, you will need to modify
+make.sh to point to /usr/lib instead of /usr/lib64.
+
+  * configure-app-server.sh   -- configure mod_pubcookie
+                                 (optional ./configure should also work)
+  * configure-login-server.sh -- configure to build login server
+  * make.sh                   -- make (with extra parameters)
+  * sudo make.sh install      -- make install (with extra parameters)

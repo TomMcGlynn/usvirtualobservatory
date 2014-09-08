@@ -1,0 +1,4 @@
+<!-- begin tmpl welcome_back -->
+<p>Login successful - you are logged in to NVO as <b>%contents%</b>.</p>
+<!-- end tmpl welcome_back -->
+

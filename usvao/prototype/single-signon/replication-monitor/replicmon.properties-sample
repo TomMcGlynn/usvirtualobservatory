@@ -1,0 +1,37 @@
+# config file for replication monitor
+
+# recommended practice on each server to be tested:
+# 1. create a table
+#    mysql> create table purseDatabase.replication_monitor
+#         >    (id serial, version int, server varchar(100), last_check timestamp);
+# 2. create a MySQL user and grant it limited privileges
+#    mysql> create user 'replicmon'@'%' identified by '<password>';
+#    mysql> grant select,insert,delete,update on purseDatabase.replication_monitor to 'replicmon'@'%';
+
+# build-time config
+tomcat.dir = /usr/local/tomcat/default
+
+# runtime config
+test.table = replication_monitor
+filter.column = server
+test.column = version
+date.column = last_check
+replication.patience.millis = 5000
+
+1.name = NCSA primary
+1.url = jdbc:mysql://nvoauth1.ncsa.uiuc.edu:28365/purseDatabase
+1.username = replicmon
+1.password = <password>
+1.master = 2
+
+2.name = NOAO primary
+2.url = jdbc:mysql://nvoauth1.tuc.noao.edu:28365/purseDatabase
+2.username = replicmon
+2.password = <password>
+2.master = 1
+
+3.name = NCSA backup
+3.url = jdbc:mysql://nvoauth-backup.ncsa.uiuc.edu:28365/purseDatabase
+3.username = replicmon
+3.password = <password>
+3.master = 1

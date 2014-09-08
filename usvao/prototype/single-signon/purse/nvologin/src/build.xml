@@ -1,0 +1,369 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+
+Build script for building Purse Registration and Certificate Management code base.
+
+Copyright (c) 1999 University of Chicago and The University of 
+Southern California. All Rights Reserved.
+
+default target: compile (compiles only source)
+
+compile : Compiles source
+compileTests : Compiles Tests
+compileAll : Compiles both
+clean : Cleans the build
+
+=========================================================================== -->
+
+<project default="compile" basedir=".">
+
+  <!-- Properties file -->
+  <property file="${user.home}/build.properties"/>
+  <property file="../build.properties"/>
+
+  <!-- Override if defaults are not used -->
+  <property name="purse.test.properties" value="test.properties"/>
+  <property name="purse.role" value="etc/purse_roles"/>
+  <property name="purse.status" value="etc/purse_status"/>
+  <property name="purse.ra" value="etc/purse_ra"/>
+  <property name="debug" value="true"/>
+  <!-- Existing directories -->
+  <property name="src.dir" value="src"/>
+  <property name="lib.dir" value="lib"/>
+ 
+  <!-- Directories created during build -->
+  <property name="build.dir" value="build" />
+  <property name="build.javadocs" value="${build.dir}/javadocs"/>
+  <property name="build.dest" value="${build.dir}/classes"/>
+  <property name="build.lib" value="${build.dir}/lib"/>
+  <property name="test.reports.dir" value="test-reports"/>
+  <property name="jar.name" value="purse.jar"/>
+  <property name="war.name" value="purse.war"/>
+ <!-- For Webstart -->
+  <property name="webstart.dir" value="./purseweb"/>
+  <property name="webstart.lib" value="${webstart.dir}"/>
+  <property name="webstart.origin" value="./etc"/>
+  <property name="keystore" value="${build.dir}/purse.jks"/>
+  <property name="keystore.pwd" value="dummypass"/>
+  <property name="key.pwd" value="${keystore.pwd}"/>
+  <property name="signalias" value="PURSE"/>
+  <property name="dname" value="CN=PURSE, OU=MCS, O=ANL. C=US"/>
+  <property name="signed.dir" value="${build.dir}/signed"/>
+
+  <!-- Prepare build environment -->
+  <target name="setenv">
+    <mkdir dir="${build.dest}"/>
+    <uptodate property="javadoc.notrequired"
+              targetfile="${build.javadocs}/index.html">
+      <srcfiles dir="${src.dir}" includes="**/*.java" />
+    </uptodate>
+    <available property="key.present" file="${keystore}" />
+  </target>
+
+  <!-- Set claspath -->
+  <path id="classpath">
+   <pathelement location="."/>
+   <pathelement location="${java.home}/../lib/tools.jar"/>
+   <pathelement location="${ogsa.root}/build/classes"/>
+   <pathelement location="${servlet.api}"/>
+   <pathelement location="${build.dest}"/>
+    <fileset dir="lib">
+     <include name="*.jar"/>
+    </fileset>
+    <pathelement path="${java.class.path}"/>
+  </path>
+
+  <!-- Compile source and tests -->
+  <target name="compileAll" depends="compile,compileTests">
+<!--
+   <antcall target="compile"/>
+   <antcall target="compileTests"/>
+-->
+  </target>
+
+  <!-- Compile source -->
+  <target name="compile" depends="setenv">
+   <javac srcdir="${src.dir}" destdir="${build.dest}" debug="${debug}"
+    deprecation="${deprecation}"
+    classpathref="classpath">
+    <exclude name="**/test/**"/> 
+   </javac>
+  </target>
+  
+  <!-- Compile tests -->
+  <target name="compileTests" depends="compile">
+   <javac srcdir="${src.dir}" destdir="${build.dest}" debug="${debug}"
+    deprecation="${deprecation}"
+    classpathref="classpath">
+    <include name="**/test/**"/> 
+   </javac>
+   <mkdir dir="${test.reports.dir}"/>
+  </target>
+
+  <!-- Jar -->
+  <target name="jar" depends="compileAll">
+   <mkdir dir="${build.lib}"/>
+   <jar jarfile="${build.lib}/${jar.name}" basedir="${build.dest}"/>
+  </target>
+
+  <!-- Bootstrap -->
+  <target name="bootstrap" depends="compileAll">
+   <java classname ="org.globus.purse.registration.BootstrapDatabase"
+         fork      = "yes"
+	 classpathref="classpath" 
+	 failonerror="yes">
+    <arg line="${purse.test.properties} ${purse.status} ${purse.role}"/>
+   </java>
+  </target>
+
+  <!-- Bootstrap with RA File -->
+  <target name="bootstrapRA" depends="compileAll">
+   <java classname ="org.globus.purse.registration.BootstrapDatabase"
+         fork      = "yes"
+	 classpathref="classpath" 
+	 failonerror="yes">
+    <arg line="${purse.test.properties} ${purse.status} ${purse.role} 
+    ${purse.ra} "/>
+   </java>
+  </target>
+  
+  <target name="prepareSign" depends="generateKey">
+    <mkdir dir="${signed.dir}"/>
+  </target>
+  <target name="sign" depends="signcog"/>
+   
+   <target name="signcog" depends="prepareSign" >
+    <antcall target="signAny">
+       <param name="dir" value="${lib.dir}" />
+       <param name="jar" value="cog-jglobus.jar"/>
+    </antcall>
+    <antcall target="signAny">
+       <param name="dir" value="${lib.dir}" />
+       <param name="jar" value="cryptix.jar"/>
+    </antcall>
+    <antcall target="signAny">
+       <param name="dir" value="${lib.dir}" />
+       <param name="jar" value="cryptix32.jar"/>
+    </antcall>
+    <antcall target="signAny">
+       <param name="dir" value="${lib.dir}" />
+       <param name="jar" value="puretls.jar"/>
+    </antcall>
+    <antcall target="signAny">
+       <param name="dir" value="${lib.dir}" />
+       <param name="jar" value="cryptix-asn1.jar"/>
+    </antcall>
+    <antcall target="signAny">
+       <param name="dir" value="${lib.dir}" />
+       <param name="jar" value="cog-certmanagement-1.0.jar"/>
+    </antcall>
+    <antcall target="signAny">
+       <param name="dir" value="${lib.dir}" />
+       <param name="jar" value="log4j-core.jar"/>
+    </antcall>
+    <antcall target="signAny">
+       <param name="dir" value="${build.lib}" />
+       <param name="jar" value="${jar.name}"/>
+    </antcall>
+    <copy file="${lib.dir}/jce-jdk13-120.jar" toDir="${signed.dir}"/>
+  </target>
+
+ <target name="signAny" >
+    <signjar jar="${dir}/${jar}"
+             signedjar="${signed.dir}/${jar}"
+             alias="${signalias}"
+             storepass="${keystore.pwd}"
+             keystore="${keystore}" 
+         keypass="${key.pwd}" />
+ </target>
+ 
+ <target name="generateKey" depends="jar" unless="key.present">
+     <genkey alias="${signalias}" 
+             storepass="${keystore.pwd}" 
+         keystore="${keystore}"
+         dname="${dname}" />
+  </target>
+ <target name="webstart" depends="sign">
+    <mkdir dir="${webstart.lib}"/>
+    <copy toDir="${webstart.lib}">
+      <fileset dir="${signed.dir}" casesensitive="yes">
+        <include name="**/*.jar"/>
+      </fileset>
+    </copy>
+    <copy toDir="${webstart.dir}">
+      <fileset dir="${webstart.origin}" casesensitive="yes">
+        <include name="**/*.jnlp"/>
+      </fileset>
+    </copy>
+ </target>
+
+ <target name="war" depends="jar">
+    <war destfile="${build.dir}/${war.name}" webxml="etc/web.xml">
+       <fileset dir="samples/jsp" />
+       <webinf dir="etc/">
+         <!-- TODO: REMOVE those ugly .jsp and .html files from CVS! -->
+         <exclude name="*.jsp" />
+         <exclude name="*.html" />
+         <exclude name="web.xml" />
+       </webinf>
+       <lib dir="lib">
+          <include name="*.jar" />
+       </lib>
+       <lib dir="${build.lib}">
+          <include name="${jar.name}" />
+       </lib>
+    </war>
+ </target>
+
+  <!-- Run tests -->
+  <target name="databaseTests" depends="compileAll">
+   <junit printsummary="yes" haltonfailure="yes" haltonerror="yes" fork="yes">
+    <classpath refid="classpath" />
+    <formatter type="xml" />
+    <batchtest todir="${test.reports.dir}">
+     <fileset dir="${build.dir}/classes">
+      <include name="**/databaseAccess/**/PackageTests.class"/>
+     </fileset>
+    </batchtest>
+    <jvmarg value="-DpurseTestProperties=${purse.test.properties}"/>
+   </junit>
+  </target>
+
+  <target name="certGenerationTest" depends="compileAll">
+   <junit printsummary="yes" haltonfailure="yes" haltonerror="yes" fork="yes">
+    <classpath refid="classpath" />
+    <formatter type="xml" />
+    <batchtest todir="${test.reports.dir}">
+     <fileset dir="${build.dir}/classes">
+      <include name="**/certificateGeneration/**/PackageTests.class"/>
+     </fileset>
+    </batchtest>
+    <jvmarg value="-DpurseTestProperties=${purse.test.properties}"/>
+   </junit>
+  </target>
+
+  <target name="mailProcessingTest" depends="compileAll">
+   <junit printsummary="yes" haltonfailure="yes" haltonerror="yes" fork="yes">
+    <classpath refid="classpath" />
+    <formatter type="xml" />
+    <batchtest todir="${test.reports.dir}">
+     <fileset dir="${build.dir}/classes">
+      <include name="**/mailProcessing/**/PackageTests.class"/>
+     </fileset>
+    </batchtest>
+    <jvmarg value="-DpurseTestProperties=${purse.test.properties}"/>
+   </junit>
+  </target>
+
+  <target name="register" depends="compileAll">
+   <java classname ="org.globus.purse.registration.test.TestRegistration"
+         fork      = "yes"
+	 classpathref="classpath" 
+	 failonerror="yes">
+    <arg line="register ${purse.test.properties}"/>
+   </java>
+  </target>
+
+
+  <target name="enrollUser" depends="compileAll">
+   <java classname ="org.globus.purse.registration.test.TestRegistration"
+         fork      = "yes"
+	 classpathref="classpath" 
+	 failonerror="yes">
+    <arg line="enrollUser ${purse.test.properties}"/>
+   </java>
+  </target>
+
+
+  <target name="startMailRetrieval" depends="compileAll">
+   <java classname ="org.globus.purse.registration.mailProcessing.test.StartMailRetrieval"
+         fork      = "yes"
+         classpathref="classpath"
+         failonerror="yes">
+    <arg line="${purse.test.properties}"/>
+  </java>
+  </target>
+
+  <target name="confirm" depends="compileAll">
+   <java classname ="org.globus.purse.registration.test.TestRegistration"
+         fork      = "yes"
+	 classpathref="classpath" 
+	 failonerror="yes">
+    <arg line="confirm ${purse.test.properties}"/>
+   </java>
+  </target>
+
+  <target name="changePassword" depends="compileAll">
+   <java classname ="org.globus.purse.registration.test.TestRegistration"
+         fork      = "yes"
+	 classpathref="classpath" 
+	 failonerror="yes">
+    <arg line="changePassword ${purse.test.properties}"/>
+   </java>
+  </target>
+
+ <target name="RAConfirmsUser" depends="compileAll">
+   <java classname ="org.globus.purse.registration.test.TestRegistration"
+         fork      = "yes"
+	 classpathref="classpath" 
+	 failonerror="yes">
+    <arg line="RAConfirmsUser ${purse.test.properties}"/>
+   </java>
+  </target>
+
+  <target name="caAccept" depends="compileAll">
+   <java classname ="org.globus.purse.registration.test.TestRegistration"
+         fork      = "yes"
+	 classpathref="classpath" 
+	 failonerror="yes">
+    <arg line="caAccept ${purse.test.properties} "/>
+   </java>
+  </target>
+    
+ <target name="caAcceptPendingUpload" depends="compileAll">
+   <java classname ="org.globus.purse.registration.test.TestRegistration"
+         fork      = "yes"
+	 classpathref="classpath" 
+	 failonerror="yes">
+    <arg line="caAcceptPendingUpload ${purse.test.properties} "/>
+   </java>
+  </target>
+
+  <target name="caReject" depends="compileAll">
+   <java classname ="org.globus.purse.registration.test.TestRegistration"
+         fork      = "yes"
+	 classpathref="classpath" 
+	 failonerror="yes">
+    <arg line="caReject ${purse.test.properties} "/>
+   </java>
+  </target>
+
+  <target name="expireWarn" depends="compileAll">
+   <java classname ="org.globus.purse.registration.test.TestRegistration"
+         fork      = "yes"
+	 classpathref="classpath" 
+	 failonerror="yes">
+    <arg line="expireWarn ${purse.test.properties} "/>
+   </java>
+  </target>
+
+  <!-- Generate java docs -->  
+  <target name="javaDocs" depends="setenv" unless="javadoc.notrequired">
+    <mkdir dir="${build.javadocs}"/>
+    <javadoc classpathref="classpath"
+             destdir="${build.javadocs}"
+             use="true"
+             windowtitle="Purse API ">
+      <packageset dir="${src.dir}">
+	<exclude name="**/test/**"/>
+      </packageset>
+    </javadoc>
+  </target>
+
+  <!-- Clean source -->
+  <target name="clean">
+   <delete dir="${build.dir}"/>
+   <delete dir="${test.reports.dir}"/>
+   <delete dir="${webstart.dir}"/>
+  </target>
+</project>

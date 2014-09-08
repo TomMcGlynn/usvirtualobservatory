@@ -1,0 +1,18 @@
+# modify these values to make sense locally and copy to war/WEB-INF/
+
+# pam module used for authentication
+#authn.module: ds33.ncsa.uiuc.edu
+authn.module: purse
+authn.cmd: /home/bbaker/source/svnadmin/trunk/auth/pam_cmd
+login.instructions=Log in using your NVO identity and password.
+admins=bbaker
+
+# used on the client
+debug=true
+
+# strings that appear in the UI
+title=Event Tide
+welcome=\
+  <p>Welcome to <i>Event Tide</i>, the\
+  <a href="https://sso.us-vo.org/">NVO single-signon</a> \
+  logging facility.</p>

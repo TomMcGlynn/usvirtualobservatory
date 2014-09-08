@@ -1,0 +1,94 @@
+Wednesday 9 am -- BI 4169
+
+To Do: investigate GAMA (using MyProxy and CAS on back-end)
+To Do: investigate Kepler (we had thought to use OGCE framework)
+
+If we use MyProxy without GAMA, that's not incompatible if GAMA is used later
+
+Protect scientists, their data, and their models, which they feel protective of
+
+
+----------------
+----  3/30  ----
+----------------
+Metacat -- has its own API -- served by a Servlet
+  - internally talks to LDAP
+
+EcoGrid Query
+  - want to figure out how to manage state
+      - used to use web session
+      - now use (proxy) credentials?
+
+Goals for these six months (Mark)
+  - Single signon
+  - Search via Metacat
+  - Select one or two datasets to apply a particular analysis
+  - Analysis run at a different site
+      - therefore, data has to be available to that site
+  - Visualization sent back to user at another site
+  - Audit trails for data owners
+
+But:
+  - Unless the analysis is run on HPC, what benefit is this to
+    scientists?
+      - no help from single signon when you're only signing in to a
+        single place anyway
+      - as a pilot, it's unlikely to show great capacity right away,
+        which may not be very exciting to scientists
+      - most of this stuff, if it works, you don't see it -- need to
+        make sure the complexity is explained
+      - audit trail events can be used, for example, to let scientists
+        know when their data is accessed, and by whom
+
+Security Notes:
+
+  - Plan to modify MetaCat to use certificates (GSI) instead of just
+    username/password everywhere
+
+  - Note that the LDAP system is distributed
+
+      1. Check central server, which returns a referral
+      2. Go to remote server for actual authentication
+
+      - But when a remote server is down, the timeouts bring the
+        system to its knees
+      - Using OpenLDAP
+      - Looking into replication in addition to referrals
+
+      http://www.imaginator.com/~simon/ldap/ -- OpenLDAP and PAM
+
+      http://www.tldp.org/HOWTO/LDAP-Implementation-HOWTO/pamnss.html
+      -- pam_ldap and nss_ldap
+
+      http://www.padl.com/OSS/pam_ldap.html
+
+Concrete: (* SRD will do)
+
+  - Portal: GridSphere
+      - already uses MyProxy
+      - drop in proxy mgmt portlets (OGCE)
+  * MyProxy LDAP/PAM
+      * new development by SRD
+      - would be nice to deploy the server to an LTER community
+        machine (long-term)
+      * in the meantime, provide access to the test server
+      * need to get our own test accounts in LTER LDAP and get client
+        access to the servers
+  * Securing MetaCat with GSSI
+  * Audit logging & Event Service
+      * still need to capture requirements
+      - may not be solvable, since there's not always a feedback loop
+        from the end-user back to the originator
+      - owner of data wants to know who is accessing data and why
+          - track the LDAP identity
+      * if getting full data from MetaCat, you can log it
+      - however, when EML has only metadata (no data), the sites each
+        have their own mechanisms, some of which don't have a useful
+        audit log
+      - maybe we can do it on our POP (point of presence) from the
+        LTER site (that is, if we use POPs at all ...)
+      - then we need to transform it into a notification that's
+        appropriate for the site (but we may just accumulate a list of
+        file accesses)
+      - watch out for backing ourselves into a corner and unable to
+        audit

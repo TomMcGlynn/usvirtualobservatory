@@ -1,0 +1,6 @@
+<!-- begin tmpl logout_time_remaining -->
+<p>Time remaining: %remaining%</p>
+
+<p>To log out completely from NVO SSO, completely exit your web browser when you are finished.</p>
+<!-- end tmpl logout_time_remaining -->
+

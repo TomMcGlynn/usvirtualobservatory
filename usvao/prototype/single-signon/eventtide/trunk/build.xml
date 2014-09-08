@@ -1,0 +1,119 @@
+<project name="adminkit" basedir="." default="full">
+<property file="build.properties" />
+<property file="build.static.properties" />
+
+<path id="build.classpath">
+	<fileset dir="${lib.dir}">
+		<include name="**/*.jar" />
+	</fileset>
+	<fileset dir="${gwt.toolkit.dir}">
+		<include name="gwt-dev*.jar" />
+		<include name="gwt-user.jar" />
+		<include name="gwt-servlet.jar" />
+	</fileset>
+        <pathelement location="${adminkit.dir}/src"/>
+</path>
+
+<path id="js.build.classpath">
+        <pathelement location="${src.dir}"/>
+        <pathelement location="${adminkit.dir}/src"/>
+	<path refid="build.classpath"/>
+</path>
+	
+<target name="prep">
+	<mkdir dir="${build.war.dir}"/>
+	<copy todir="${build.war.dir}">
+		<fileset dir="${src.war.dir}" includes="**/*"/>
+	</copy>
+</target>
+
+<target name="javac" depends="prep">
+	<mkdir dir="${classes.dir}" />
+	<javac destdir="${classes.dir}" debug="on" source="1.6" deprecation="on" classpathref="build.classpath">
+		<src path="${src.dir}" />
+		<src path="${adminkit.dir}/src" />
+		<include name="**/*.java" />
+	</javac>
+	<copy todir="${classes.dir}">
+		<fileset dir="${src.dir}" excludes="**/*.java" />
+		<fileset dir="${adminkit.dir}/src" excludes="**/*.java" />
+	</copy>
+</target>
+	
+<!--<target name="webapp" depends="clean.webapp,gwtc">-->
+<!--<target name="webapp" depends="javac">-->
+<target name="webapp" depends="javac,gwtc">
+</target>
+
+<target name="gwtc" depends="javac">
+	<java classpathref="js.build.classpath"
+	 classname="com.google.gwt.dev.Compiler" fork="true" maxmemory="768m" failonerror="true">
+		<arg value="-ea"/>
+		<arg value="-localWorkers"/><arg value="2"/>
+		<arg value="-war"/><arg value="${build.war.dir}"/>
+		<arg value="${gwt-xml-ep.name}"/>
+
+<!--		<arg value="-logLevel"/><arg value="TRACE"/> -->
+<!--		<arg value="-help"/> -->
+<!--		<arg value="-style"/><arg value="DETAILED"/> -->
+	</java>
+</target> 
+	
+<target name="devmode" depends="javac" description="Run development mode">
+	<java failonerror="true" fork="true" classname="com.google.gwt.dev.DevMode"
+	 classpathref="js.build.classpath" maxmemory="768m">
+		<arg value="-startupUrl"/>
+		<arg value="EventTide.html"/>
+		<!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+		<arg value="org.nvo.eventtide.EventTide"/>
+	</java>
+</target>
+
+<target name="clean.webapp">
+	<delete dir="${build.war.dir}" />
+</target>
+	
+<target name="jar" depends="javac">
+	<mkdir dir="${build.lib.dir}" />
+	<jar jarfile="${build.lib.dir}/${lib.name}">
+		<fileset dir="${classes.dir}" includes="**/*">
+			<include name="**/*"/>
+		</fileset>
+	</jar>
+</target>
+
+<target name="war" depends="jar, webapp">
+<!-- <target name="war" depends="jar"> -->
+	<copy todir="${build.lib.dir}">
+		<fileset dir="${gwt.toolkit.dir}">
+			<include name="gwt-servlet.jar" />
+		</fileset>
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>
+	<war warfile="${war.file}" webxml="${web.xml}">
+		<fileset dir="${build.war.dir}" />
+		<lib dir="${build.lib.dir}" />
+	</war>
+</target>
+
+<target name="full" depends="clean.webapp,gwtc,deploy" />
+<target name="lite" depends="deploy" />
+
+<target name="deploy" depends="war">
+	<copy file="${war.file}" todir="${deploy.dir}"/>
+</target>
+
+<target name="clean">
+	<delete dir="${build.dir}"/>
+</target>
+
+<target name="clean.all" depends="clean, cleanTomcatWebappExtracted">
+	<delete dir="${build.dir}"/>
+</target>
+
+<target name="cleanTomcatWebappExtracted">
+	<delete dir="${deploy.webapp.dir}"/>
+</target>
+</project>

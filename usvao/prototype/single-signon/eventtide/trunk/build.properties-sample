@@ -1,0 +1,5 @@
+gwt.toolkit.dir=/usr/local/gwt/default
+#gwt.toolkit.dir=/home/bbaker/downloads/gwt/default
+tomcat.dir=/usr/local/tomcat/default
+application.name = eventtide
+adminkit.dir=/home/bbaker/source/svnadmin/trunk/adminkit

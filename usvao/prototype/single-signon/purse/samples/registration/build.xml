@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<project default="deploy" basedir=".">
+
+<property file="build.properties"/>
+
+<property name="project.name" value="samplereg" />
+<property name="src.dir" value="${basedir}/src" />
+<property name="build.dir" value="${basedir}/build" />
+<property name="build.webapp" value="${build.dir}/webapp" />
+<property name="build.webinf" value="${build.webapp}/WEB-INF" />
+<property name="build.classes" value="${build.webinf}/classes" />
+<property name="war.assemble.dir" value="${build.webapp}" />
+<property name="war.file.name" value="${project.name}.war" />
+<property name="war.file" value="${build.dir}/${war.file.name}" />
+
+<target name="deploy" depends="war" description="sample reg web app to tomcat">
+  <copy todir="${tomcat.webapps.dir}" file="${war.file}" />
+</target>
+
+<target name="compile">
+  <mkdir dir="${build.classes}" />
+  <javac srcdir="${src.dir}" destdir="${build.classes}" classpath="${servlet.api}"/>
+</target>
+
+<target name="war" depends="compile" description="build war file">
+  <mkdir dir="${war.assemble.dir}" />
+  <copy todir="${war.assemble.dir}">
+    <fileset dir="web">
+      <exclude name="**/.svn/**" />
+    </fileset>
+  </copy>
+  <replace file="${war.assemble.dir}/WEB-INF/registration.properties"
+           token="%regurl%" value="${registration.url}" />
+  <war destfile="${war.file}" webxml="${war.assemble.dir}/WEB-INF/web.xml">
+    <fileset dir="${war.assemble.dir}" />
+  </war>
+</target>
+
+<target name="clean">
+  <delete dir="${build.dir}" />
+</target>
+
+</project>

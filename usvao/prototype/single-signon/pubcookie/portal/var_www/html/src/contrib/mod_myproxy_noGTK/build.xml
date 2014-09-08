@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<project default="run" basedir=".">
+
+<path id="build.classpath">
+    <fileset dir="build/lib">
+        <include name="**/*.jar" />
+    </fileset>
+</path>
+
+<path id="run.classpath">
+    <pathelement location="build"/>
+    <path refid="build.classpath"/>
+</path>
+
+
+<!--<target name="compile" depends="unpack" description="compile MyProxyLogon.java">-->
+<target name="compile" description="compile MyProxyLogon.java">
+    <javac destdir="build" debug="on" srcdir="src" classpathref="build.classpath"/>
+</target>
+
+<target name="run" depends="compile" description="run MyProxyLogon">
+    <java classpathref="run.classpath" classname="MyProxyLogon">
+        <arg value="-s"/><arg value="sso.us-vo.org"/>
+        <arg value="-l"/><arg value="neolefty"/>
+        <arg value="-o"/><arg value="."/>
+    </java>
+</target>
+
+<target name="clean">
+    <delete dir="build"/>
+</target>
+
+<target name="unpack" description="unpack JARs into build/lib dir">
+    <mkdir dir="build"/>
+    <unzip src="jars4MyProxyLogon.zip" dest="build" overwrite="false"/>
+</target>
+
+</project>

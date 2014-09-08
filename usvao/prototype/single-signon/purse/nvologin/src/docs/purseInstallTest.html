@@ -1,0 +1,635 @@
+<html>
+<head>
+<title> PURSE installation and testing guide </title>
+</head>
+<body>
+
+<h3>Contents</h3>
+
+<ol>
+<li><a href="#intro">Introduction</li>
+<li><a href="#prereq">Pre-requisites</li>
+<li><a href="#purseInstall">PURSE Installation</a>
+<li><a href="#myproxyInstall">MyProxy Installation</a> 
+<li><a href="#mySqlInstall">MySQL Installation</a> 
+<li><a href="#simpleCAInstall">SimpleCA Installation</a>
+<li><a href="#purseTest">PURSE Tests</a>
+<ol>
+<li> <a href="#purseTestConfig">PURSE test configuration</a>
+<li> <a href="#junitTest"> Junit Tests </a>
+<li> <a href="#driverTest"> Registration Test Driver </a>
+<li> <a href="#sampleScenario">Sample test scenarios</a> </h4>
+</ol>
+</ol>
+
+<h3><a name="intro"></a>1. Introduction</h3>
+
+This document describes the steps involved in installing PURSE and
+testing the install. The architecture of the system is described in
+this <a href="./Purse-july2821.doc">document</a>.
+
+<h3><a name="prereq"></a>2. Pre-requisites</h3>
+<ul>
+<li> Apache Ant 1.5 or greater
+<li> Sun JDK 1.4 
+<li> MySQL installation
+</ul>
+
+<h3><a name="purseInstall"></a>3. PURSE Installation </h3>
+
+<ol>
+
+<li> Set CVSROOT variable to
+:pserver:anonymous@cvs.globus.org:/home/globdev/CVS/purse
+
+<pre> setenv CVSROOT :pserver:anonymous@cvs.globus.org:/home/globdev/CVS/purse </pre>
+
+<li> cvs co purse
+<li> cd purse
+
+<p> This location is referred to as PURSE_LOCATION in this
+document. Furthermore, all sample commands assume C shell</p>
+<li> To compile code, run
+
+<pre> ant </pre>
+
+and to create a jar
+
+<pre> ant jar </pre>
+
+purse.jar is palced in $PURSE_LOCATION/build
+
+<li> If deploying PURSE elsewhere, all jars in $PURSE_LOCATION/lib
+needs to be on classpath. Tests that are distributed with the software
+pick up these jars automatically.
+
+</ol>
+
+<h3> <a name="myproxyInstall">4. MyProxy Installation</a> </h3>
+
+<p>The MyProxy installation and configuration instructions can be found
+<a
+href="http://www-unix.globus.org/toolkit/docs/development/3.9.5/security/myproxy">here</a>. The code base has been tested with 4.0 version of the software.
+
+<p>Typically the server is started up using command <a
+href="http://www-unix.globus.org/toolkit/docs/development/3.9.5/security/myproxy/user/#myproxy-server">myproxy-server</a>. Also,
+following <a
+href="http://www-unix.globus.org/toolkit/docs/development/3.9.5/security/myproxy/Cred_Mgmt_MyProxy_Public_Interfaces.html#env">environment
+variables</a> are honored by the server. Based on this, the following
+properties, that are required for configuring the PURSE system can be
+determined. </p>
+
+
+<ul>
+<li>The host and port on which this service is run is referenced as
+"MY_PROXY_HOST" and "MY_PROXY_PORT" in this document.
+<li> The MyProxy executables are located typically in <intall
+dir>/sbin. This directory is referred to as MY_PROXY_BIN in this
+document.
+<li> The credentials MyProxy server is started with is referred to as
+MY_PROXY_DN in this document. 
+<li> The directory used by MyProxy server to store data is referred to
+as MY_PROXY_DIR
+</ul>
+
+<h3><a name="mySqlInstall"></a> 5. MySQL Installation </h3>
+
+<p> It is assumed that a MySQL server has been installed and
+username/password to access the same is available. Since this software
+uses encode/decode features, it required MySQL.</p>
+
+<ol>
+
+<li> Create a database with PURSE specific database schema to persist
+registration information.. Assuming you have MySQL binaries in your
+path and the databse name is <i>purseDatabase</i>. Substitute
+<i>user</i> with username and provide password when prompted.
+
+<pre>mysqladmin -h &ltdbHostName&gt; [-u &lt;user&gt;] [-p] create purseDatabase</pre>
+
+<li> Populate the database with purse schema. 
+
+<pre> mysql [-u &lt;user&gt;>] [-p] purseDatabase &lt; $PURSE_LOCATION/etc/purse_database_schema.sql
+</pre>
+
+<li> To ensure that database has been created correctly and access is set up, the following comamnd can be used:
+
+<pre>mysql -h &lt;dbHostName&gt; -u &lt;user&gt; -p -D purseDatabase</pre>
+
+If you get a MySQL prompt, you have created the database successfully.
+</ol>
+
+<h3><a name="simpleCAInstall"></a> 6. SimpleCA Installation</h3>
+
+<p>
+<ul>
+<li> Install latest version of Globus Toolkit (3.9.5). You can download it from
+<a href="http://www-unix.globus.org/ftppub/gt3/3.9/3.9.5/gt3.9.5-all-source-installer.tar.gz">here</a>. 
+</li>
+<li> Installation instructions of GT 3.9.5 can be found <a href="http://www-unix.globus.org/toolkit/docs/development/3.9.5/admin/docbook/ch04.html">here</a> </li>
+<li> Installing and configuring Simple CA can be found <a href=http://www-unix.globus.org/toolkit/docs/development/4.0-drafts/admin/docbook/apa.html#simpleca">
+here</a> . <b>Please note that during the configuration of Simple CA please run the <code> setup-gsi </code>as root. </li></b>
+<li> No environment variable is set in Java code.
+<li> Sample command to check simple ca install:
+
+<pre> /sandbox/ranantha/gt2.4.2/bin/grid-cert-request -dir /sandbox/ranantha/gt2.4.2/tmp/purseAlphaTest -cn purseAlphaTest -nopassphrase -ca 1ecf26d5</pre>
+
+Replace executable path, directory path and CA hash (if CA being used is not default). 
+</ul>
+<h3><a name="purseTest"></a>7. PURSE Tests</h3>
+
+The PURSE distribution has two types of tests.
+
+<ul>
+
+<li><a href="#junitTest">Junit test</a>: One is a set of Junit tests
+that test individual features like, certificate generation, mail
+processing etc and is independent of overall flow. This involves
+setting configuration information requried by <a
+href="#regSysConfig">registration system</a> and the <a
+href="junitConfig">junit test</a>
+
+<li><a href="#driverTest">Registration Driver Test</a>The second set
+of tests include a driver that can be used to test the flow of
+registration, i,e user resgitsers, confirms, ca accepts/rejects and so
+on. This involves setting configuration information requried by <a
+href="#regSysConfig">registration system</a> and dynamically altering
+the properties by using the output of previous test in the
+registration flow as shown <a href="#driverTestConfig">here<a/> </ul>
+
+<h4><a name="purseTestConfig">7.1 PURSE test configuration </a></h4>
+
+<p>This involves editing $PURSE_LOCATION/test.properties file. The
+properties file has been populated with some values. Some of the
+properties default to the right values, while a few others have to be
+overridden. Any line that does not start with # is not
+a comment and is a propery. </p>
+
+<p> In the tables below, any property set in bold, may not work with
+the configuration set here and needs to be altered. It is receommended
+though, that you go through all the properties in the file to ensure
+it fits your configuration. </p>
+
+<ul>
+<li><h4><p><a name="regSysConfig"></a>Configuration required by registration system </p></h4>
+
+<table border=1>
+<tr>
+<td width=127 valign=top> dbDriver=com.mysql.jdbc.Driver  </td><td width=463 valign=top><p> Driver to use to contact MySQL database. Unless drover is changed, this property can be left unchanged..</p></td></tr>
+
+<tr>
+<td width=127 valign=top> <b>dbConnectionURL</b>=jdbc:mysql://mysql.mcs.anl.gov/purseDatabase  </td><td width=463 valign=top><p> Connection URL. jdbc:mysql://<host on which MySQL server is running>/<name of created database> </p></td></tr>
+
+<tr>
+<td width=127 valign=top> <b>dbUsername</b.=tester  </td><td width=463 valign=top><p> Username to use to contact database. In sample, it is set to tester.</p></td></tr>
+
+<tr>
+<td width=127 valign=top> <b>dbPassword</b>=tester </td><td width=463 valign=top><p> Password to use to contact database for above user. In sample, it is set to tester.</p></td></tr>
+
+<tr>
+<td width=127 valign=top>  dbPropFile=etc/databaseFilename </td><td width=463 valign=top><p> Filename that contains data about table and column names used in the backend database.</p></td></tr>
+
+<tr>
+<td width=127 valign=top>  passPhrase=passPhrase</td><td width=463 valign=top><p> Passphrase used to encrypt passwords of registered users. In sample, it is set to passPhrase</p></td></tr>
+
+<tr>
+<td width=127 valign=top> <b>caAddress</b>=madduri@mcs.anl.gov </td><td width=463 valign=top><p> Email of address of CA (where mail is sent to request for approving new credentials and signing them). </p></td></tr>
+
+<tr>
+<td width=127 valign=top>  <b>purseAdminAddr</b>=madduri@mcs.anl.gov</td><td width=463 valign=top><p> Email id of registration system administrator. It is expected that errors from which system cannot recover and such are sent to this address.</p></td></tr>
+
+
+<tr>
+<td width=127 valign=top>  purseAdminAddr=madduri@mcs.anl.gov</td><td width=463 valign=top><p> Email id of registration system administrator. It is expected that errors from which system cannot recover and such are sent to this address.</p></td></tr>
+
+<tr>
+<td width=127 valign=top> incomingProtocol=pop3 </td><td width=463 valign=top><p> Incoming mail proptocol.</p></td></tr>
+
+<tr>
+<td width=127 valign=top>  <b>incomingHost</b>=pop.mcs.anl.gov</td><td width=463 valign=top><p> Mail server host for reading incoming mails.</p></td></tr>
+
+<tr>
+<td width=127 valign=top> incomingPort=110 </td><td width=463 valign=top><p> Mail sever port for reading incoming mails</p></td></tr>
+
+<tr>
+<td width=127 valign=top>  outgoingProtocol=smtp</td><td width=463 valign=top><p> Outgoing mail protocol</p></td></tr>
+
+<tr>
+<td width=127 valign=top> <b>outgoingHost</b>=smtp.mcs.anl.gov </td><td width=463 valign=top><p> Mail server to use to send mails.</p></td></tr>
+<tr>
+
+<td width=127 valign=top> outgoingPort=25 </td><td width=463 valign=top><p> Mail server port for outgoing mails.</p></td></tr>
+
+<td width=127 valign=top> <b>userAccount</b>=madduri@mcs.anl.gov </td><td width=463 valign=top><p> Mail account username</p></td></tr>
+
+<td width=127 valign=top>  sendTokenTemplate=etc/tokenMailTemplate</td><td width=463 valign=top><p> Template used to send mail with the inital token generated when a user starts the registration process.</p></td></tr>
+
+<td width=127 valign=top> caAcceptTemplate=etc/caAcceptTemplate </td><td width=463 valign=top><p> Template used to send mail when CA accepts the user's request</p></td></tr>
+
+<td width=127 valign=top> caRejectTemplate=etc/caRejectTemplate </td><td width=463 valign=top><p> Template used to send mail when CA rejects the user's request</p></td></tr>
+
+<td width=127 valign=top>  expireWarnTemplate=etc/expireWarnTemplate</td><td width=463 valign=top><p> Template used to send mail to users to warn about impending credential expiration</p></td></tr>
+
+<td width=127 valign=top> renewTemplate=etc/renewTemplate </td><td width=463 valign=top><p> Template used to send mail to users when renewal is successful.</p></td></tr>
+
+<td width=127 valign=top> caTemplate=etc/caMailTemplate </td><td width=463 valign=top><p> Template to send mail to CA with details about user request</p></td></tr>
+<td width=127 valign=top>  subjectLine=Purse Registration</td><td width=463 valign=top><p> Subject line for user emails</p></td></tr>
+
+<td width=127 valign=top>  caSubjectLine=Purse Registration</td><td width=463 valign=top><p> Subjec line for CA email.</p></td></tr>
+
+<td width=127 valign=top> portalBaseUrl=http://foo.portal.purse </td><td width=463 valign=top><p> Base URL that hosts the registration system.</p></td></tr>
+
+<td width=127 valign=top> caBaseUrl=http://foo.bar.ca </td><td width=463 valign=top><p> Base URL to which parameters required for CA to access specific user data is appended.</p></td></tr>
+
+<td width=127 valign=top> userBaseUrl=http://foo.bar.user </td><td width=463 valign=top><p> Base URL to which parameters are appended while sending links to user </p></td></tr>
+
+<td width=127 valign=top> renewBaseUrl=http://foo.bar.renew </td><td width=463 valign=top><p> Base URL used while sending links about renewal of registration.</p></td></tr>
+
+<td width=127 valign=top> caAdminTemplate=etc/caAdminTemplate </td><td width=463 valign=top><p> Template used to send email to administrator who approves the account creation.</p></td></tr>
+
+<td width=127 valign=top> caAdmTemplate=etc/caAdminTemplate <font color="red">this is same as previous property</font> </td><td width=463 valign=top><p> Template used to send email to administrator who approves the account creation.</p></td></tr>
+
+<td width=127 valign=top> adminSubjectLine=Admin Subject line </td><td width=463 valign=top><p> Fill in appropriate subject line that you want to appear in the emails from PURSE.</p></td></tr>
+
+<td width=127 valign=top> proxyUploadInstructionsTemplate=etc/proxyUploadMailTemplate </td><td width=463 valign=top><p> Template with steps to upload user proxy to MyProxy</p></td></tr>
+
+<td width=127 valign=top> <b>binLocation</b>=/sandbox/madduri/rc6/gt4/bin </td><td width=463 valign=top><p> Location of bin directory in SimpleCA install</p></td></tr>
+
+<td width=127 valign=top> <b>tmpLocation</b>=/sandbox/madduri/rc6/gt4/tmp </td><td width=463 valign=top><p> Location of tmp directory in SimpleCA install</p></td></tr>
+
+<td width=127 valign=top>  <b>caDir</b>=/homes/madduri/.globus/simpleCA</td><td width=463 valign=top><p> Location where the CA is installed. If you installed simpleCA you have to remember where you chose it to be installed when you configure simpleCA. By default it will be installed in ~/.globus/simpleCA </td></tr>
+
+<td width=127 valign=top> <b>caHash</b>=68ea3306 </td><td width=463 valign=top><p> Hash of the CA being used. You can find this in the name of setup package used to install simpleCA. The hash of CA is embedded in the name of setup package used to install simpleCA. The name of setup package will be something of this form <code> globus_simple_ca_HASH-VALUE_setup-0.17.tar.gz </code>. You can find this package if you list contents of configured caDir location.</p></td></tr>
+
+<td width=127 valign=top>  <b>myProxyHost</b>=myproxy.ncsa.uiuc.edu</td><td width=463 valign=top><p> Host on which MyProxy server is running. <a href="#myproxyInstall">MY_PROXY_HOST</a></p></td></tr>
+ 
+<td width=127 valign=top> <b>myProxyPort</b>=7512 </td><td width=463 valign=top><p> Port on which MyProxy server is running. <a href="myproxyInstall">MY_PROXY_PORT</a></p></td></tr>
+
+<td width=127 valign=top> <b>myProxyBin</b>=/sandbox/madduri/rc6/gt4/sbin </td><td width=463 valign=top><p> Directory where MyProxy scripts are installed. <a href="#myproxyInstall">MY_PROXY_BIN</a></p></td></tr>
+
+<td width=127 valign=top> <b>myProxyDn</b>=dummy </td><td width=463 valign=top><p> The DN of the credential used by MyProxy server. <a href="#myproxyInstall">MY_PROXY_DN</a></p></td></tr>
+
+<td width=127 valign=top>  <b>myProxyDir</b>=/sandbox/madduri/rc6/gt4/myproxy</td><td width=463 valign=top><p> MyProxy storage directory. <a href="#myproxyInstall">MY_PROXY_DIR</a></p></td></tr>
+
+<td width=127 valign=top>  expirationLeadTime=1</td><td width=463 valign=top><p>Time in days before which a warning mail about certificate expiration needs to be sent</p></td></tr>
+
+<td width=127 valign=top> <b>caPassPhrase</b>=password </td><td width=463 valign=top><p> Passphrase of the CA signing the certificate</p></td></tr>
+
+</table>
+
+<li><h4><p><a name="driverTestConfig"></a>Configuration required by registration flow test  </p></h4>
+
+<p> The properties listed in this table are required only for testing
+of the flow of PURSE system using the test driver that is available
+with the distribution. <b>The testing system generates the value for
+some of the properties and so this file cannot be populated completely
+prior to start of all tests.</b></p>
+
+<table border="1">
+<td width=127 valign=top> firstName=John </td><td width=463 valign=top><p> First name of the test user</p></td></tr>
+
+<td width=127 valign=top> lastName=Doe </td><td width=463 valign=top><p> Last name of test user</p></td></tr>
+
+<td width=127 valign=top>  contactPerson=Foo Bar</td><td width=463 valign=top><p> Contact person for the test user</p></td></tr>
+
+<td width=127 valign=top>  stmtOfWork=Project4</td><td width=463 valign=top><p> Statement of work</p></td></tr>
+
+<td width=127 valign=top> userName=testuser24 </td><td width=463 valign=top><p> Requested username to be used in the registration system.</p></td></tr>
+
+<td width=127 valign=top> password=password </td><td width=463 valign=top><p> Chosen password to access the registration system.</p></td></tr>
+
+<td width=127 valign=top>  institution=foo</td><td width=463 valign=top><p> Institution the user is associated with</p></td></tr>
+
+<td width=127 valign=top> projectName=bar </td><td width=463 valign=top><p> Project the user is associated with</p></td></tr>
+
+<td width=127 valign=top> emailAddress=madduri@mcs.anl.gov </td><td width=463 valign=top><p> Email address of the user</p></td></tr>
+
+<td width=127 valign=top> phone=1234 </td><td width=463 valign=top><p> Phone numer of the user</p></td></tr>
+
+<td width=127 valign=top>
+confirmToken=00000102-801e-1e86-000027e1-fbbaee7e97af </td><td
+width=463 valign=top><p> This contains the value generated and set in
+an email to the user on running the <a href="#register">register</a>
+test. Copy the token from theuser email and paste here to complete
+user enrollment using <a href="#confirms">confirms</a>
+test.</p></td></tr>
+
+<td width=127 valign=top>
+acceptToken=00000102-801e-1e86-000027e1-fbbaee7e97af </td><td
+width=463 valign=top><p> This property also contains a token geneated
+on running <a href="#register">register</a> test, but must also have
+run through <a href="#confirms">confirms</a> test to have the user
+completely added into the system. This property is used by <a
+href="#caAccept">caAccept</a> test exercising the scenario where CA
+accepts a user.</p></td></tr>
+
+<td width=127 valign=top>
+rejectToken=00000100-8570-fc83-ffff997f-7910f640b182 </td><td
+width=463 valign=top><p>This property contains a token geneated on
+running <a href="#register">register</a> test, but must also have run
+through <a href="#confrims">confirms</a> test to have the user
+completely added into the system. This property is used by <a
+href="#caReject">caReject</a> test exercising the scenario where CA
+accepts a user.</p></td></tr>
+
+<td width=127 valign=top> rejectMsg=Rejected! </td><td width=463 valign=top><p>Message sent as a part of reject email.</p></td></tr>
+
+<td width=127 valign=top>
+revokeUser=00000100-8570-fc83-ffff997f-7910f640b182 </td><td width=463
+valign=top><p>This property contains a token geneated on running <a
+href="#regsiter">register</a> test, but must also have run through <a
+href="#confirms">confirms</a> test to have the user completely added
+into the system. This property is used by <a
+href="#deleteUser">deleteUser</a> test exercising the scenario where
+CA accepts a user.</p></td></tr>
+
+<td width=127 valign=top>
+chPassUser==00000100-8570-fc83-ffff997f-7910f640b182 </td><td
+width=463 valign=top><p>This property contains a token geneated on
+running <a href="#register">register</a> test, but must also have run
+through <a href="#confirms">confirms</a> test to have the user
+completely added into the system. This property is used by <a
+href="#changePassword">changePassword</a> test exercising the scenario
+where CA accepts a user.</p></td></tr>
+
+<td width=127 valign=top> oldPass= </td><td width=463 valign=top><p> Old passowrd, property used in <a href="#changePassword">changePassword</a> test</p></td></tr>
+
+<td width=127 valign=top> newPass= </td><td width=463 valign=top><p> New password, proeprty used in <a href="#changePassword">changePassword</a> test</p></td></tr>
+
+<td width=127 valign=top> <b>proxyFile</b>=/tmp/x509up_u1811 </td><td width=463 valign=top><p> This property is used in scenario where the user does not want new credentials generated, but rather upload existing credential. The value of this property should be the path to the proxy file to uplaod.</p></td></tr>
+
+</table>
+
+<li><h4><p><a name="junitConfig"></a>Configuration required by Junit test  </p></h4>
+
+<table border="1">
+
+<tr><td width=127 valign=top> testUserMailPassword= </td><td width=463 valign=top><p> Password of mail account mail processing tests will use</p></td></tr>
+<td width=127 valign=top>testToAddress=casadmin.cs.anl.gov</td><td width=463 valign=top><p> Address used to send test mails to</p></td></tr>
+<td width=127 valign=top>testCaPassPhrase=password</td><td width=463 valign=top><p> <font color="red">password of the CA used.</font></p></td></tr>
+<td width=127 valign=top>rolesFilename=etc/purse_roles</td><td width=463 valign=top><p> File with roles in the registration system</p></td></tr>
+<td width=127 valign=top>statusFilename=etc/purse_status</td><td width=463 valign=top><p> File with status in the registration system</p></td></tr>
+<td width=127 valign=top>signerCertificate=/home/madduri/.globus/usercert.pem</td><td width=463 valign=top><p> </p></td></tr>
+<td width=127 valign=top></td><td width=463 valign=top><p> Ceritificate you are using to sign the mail.</p></td></tr>
+<td width=127 valign=top>signerKey=/homes/madduri/.globus/userkey.pem</td><td width=463 valign=top><p> Key for the above certificate.</p></td></tr>
+<td width=127 valign=top> signerPass=</td><td width=463 valign=top><p> Password of the key provided above</p></td></tr>
+</table>
+</ul>
+
+<h4> <a name="junitTest"></a>7.2 Junit Tests </h4>
+
+<p>For running Junit tests you need to be in $PURSE_LOCATION.</p>
+
+<ul>
+<li><h4> Running database tests </h4>
+<ol>
+
+<li> Ensure database is empty
+<pre>  mysql -h &lt;dbHost&gt; -u &lt;username&gt; -p -D purseDatabase<br>  source etc/database_delete.sql</pre>
+
+<li> <pre>ant databaseTests</pre>
+<li> If the following is in output, it indicates a successful run,
+<pre>    [junit] Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 1.77 sec</pre>
+
+<li> Test reports are in $PURSE_LOCATION/test-reports/TEST-org.globus.purse.registration.databaseAccess.test.PackageTests
+
+<li> Log in to your MySQL servser and clean-up rows created by this test.
+
+<pre>  mysql -h &lt;dbHost&gt; -u &lt;username&gt; -p -D purseDatabase<br>  source etc/database_delete.sql</pre>
+</ol>
+
+
+<li><h4> Running certificate generation tests </h4>
+<ol>
+<li> <pre>ant certGenerationTest</pre>
+<li>  If the following is the output, it indicates a successful run.
+<pre>   [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 1.41 sec</pre>
+
+<li> Test report ae in $PURSE_LOCATION/test-reports/ TEST-org.globus.purse.registration.certificateGeneration.test.PackageTests
+
+<li>For each independent run of this test, <i>testUserName</i>
+property in test.properties files needs to be changed, since
+certificate is generated for a said user when this test is run.
+
+</ol>
+<li><h4> Running mail processing tests </h4>
+<p>This will send a test mail to user account provided in test.properties under 
+User Data and polls the mail server specified in test.properties for succesful
+delivery. You need to fill in appropriate values for following properties in the test.properties file for this to work :
+<pre>
+signerCertificate="certificate used to sign the mail"
+signerKey="key for the cert above"
+signerPass="passphrase"
+incomingProtocol=pop3 or imap
+incomingHost=
+incomingPort=
+outgoingProtocol=smtp
+outgoingHost=
+outgoingPort=25
+userAccount=
+</pre>
+This test will return success if mail (which is signed by certificate
+provided in Mail signer Properties section of test.properties) is sent and 
+received succesfully.</p>
+Run :
+<pre> ant mailProcessingTest </p>
+</ul>
+
+<h4> <a name="driverTest"></a> 7.3 Registration Test Driver </h4>
+
+<p> These tests are run using a test driver that has the following
+options. The description of each option also lists the properties in
+the test.properties file required to be set. Please refer to <a
+href="#purseTetsConfig">PURSE test configuration</a> section of the
+document for detials about each property.</p>
+
+<ul>
+
+<li><b><a name="bootstrap">bootstrap</a></b>: This tests the bootstrap
+process that can be used to load the registration system with inherant
+information (like user roles, status of request) and also sets up
+tools used as a part of system (like database properties, CA
+generation tool properties). Relevant properties read from
+test.properties are "dbDriver", "dbConnectionURL", "dbUsername",
+"dbPassword", "dbPropFile", "passPhrase", "caAddress", "userAccount",
+"incomingHost","incomingPort", "incomingProtocol", "outgoingHost",
+"outgoingPort", "outgoingProtocol", "sendTokenTemplate",
+"caAcceptTemplate", "caRejectTemplate", "expireWarnTemplate",
+"renewTemplate", "caBaseUrl", "userBaseUrl", "renewBaseUrl",
+"caTemplate","purseAdminAddr", "subjectLine", "adminSubjectLine",
+"caSubjectLine", "caAdminTemplate", "portalBaseUrl",
+"signerCertificate", "signerKey", "signerPass", and
+"proxyUploadInstructionsTemplate".
+ 
+<li><b><a name="register">register</a></b>: This is used by the user
+to make a request for an account with the registration system. This is
+used when there is no independent RA authority. This adds in user data
+in the databse and sends mail with token to user to be used for
+confirming request. Other than properties requried for bootstrap, the
+following proepties need to be set in test.proeperties, "firstName",
+"lastName", "contactPerson", "stmtOfWork", "userName", "password",
+"institution", "projectName", "emailAddress" and "phone"
+
+<li><b><a name="enrollUser">enrollUser</a></b>: This is used by the
+user to make a request for an account with the registration
+system. This is used when there is an independent RA authority.This
+adds in user data in the databse and sends mail with token to user to
+be used for confirming request. Other than properties requried for
+bootstrap, the following proepties need to be set in test.proeperties,
+"firstName", "lastName", "contactPerson", "stmtOfWork", "userName",
+"password", "institution", "projectName", "emailAddress" and "phone"
+
+<li><b><a name="confirms">confirms</a></b>: This tests the code used to
+confirm a user's request and requires the token emailed to the user
+from one of above test targets to be set as value for
+<i>confirmToken</i> property.
+
+<li><b><a name="RAConfirmsUser">RAConfirmsUser</a></b>:  This comes into play
+if there  is an external RA  and tests the  code that is used  when an
+external RA  confirms the user. It  requires the token  emailed to the
+user  from  onr  of  above  test  targets  to  be  set  as  value  for
+<i>confirmToken</i> property.
+
+<li><b><a name="caAccept">caAccept</a></b>: This target exercises code that
+is used when a CA accepts a user's request. It generates certificates
+for the user, uploads it to MyProxy server and sends mail to user. It
+is used in tandem with <i>register</i> and <i>confirms</i>.
+
+<li><b><a name="caAcceptPendingUpload">caAcceptPendingUpload</a></b>: This
+target tests code that is used when an external RA accepts the user
+and credentials have already been generated at request time. It is
+used in tandem with <i>enrollUser</i> and <i>confirms</i>.
+
+<li><b><a name="caReject">caReject</a></b>: This target tests code when a CA
+rejects a user. The value of property <i>rejectToken</i> in
+test.properties is read in as the token rejected and <i>rejectMsg</i>
+value is the message sent to the user. It is used in tandem with
+<i>register</i> and
+<i>confirms</i> or <i>enrollUser</i> and <i>confirms</i>.
+
+<li><b><a  name="changePassword">changePassword</a></b>: Exercises  code that
+is  used  to   change  a  user's  password.  The   value  of  property
+<i>chPassUser</i>  in test.properties  is read  in as  user  token for
+which  the password  needs  to  be changed.  The  value of  properties
+<i>oldPass</i> and <i>newPass</i>  is read in as the  old password and
+new password respectively. The token  must have been generated and the
+following steps must have been done:
+<i>register</i>, <i>confirms</i> and
+<i>caAccept</i> or <i>enrollUser</i>, <i>confirms</i> and
+<i>caAcceptPendingUpload</i>
+
+<li><b><a name="deleteUser">deleteUser</a></b>: Tests code used when a user
+is deleted from registration system. The value of property
+<i>revokeUser</i> is read in as the token of the user who needs to be
+revoked. The token must have been generated and the following steps
+must have been done:
+<i>register</i>, <i>confirms</i> and <i>caAccept</i> or
+<i>enrollUser</i>, <i>confirms</i> and <i>caAcceptPendingUpload</i>
+
+<li><b><a name="expireWarn">expireWarn</a></b>: Sends out an email warning
+expiration of credentials if the lifetime (in days) is less than
+property
+<i>expirationLeadTime</i> set in test.properties.
+
+</ul>
+</p>
+
+<h4> <a name="sampleScenario">7.4 Sample test scenarios</a> </h4>
+
+<ul>
+<li> <b>Sample scenario 1:</b> This scenario describes the steps
+involved in testing the following sample scenario: user registers with
+PURSE, confirms requests, there is no RA authority, CA accepts
+requests, user attempts to change password.
+
+<ol>
+<li><pre>cd $PURSE_LOCATION</pre>
+
+<li> <a href="#register">register</a> test is run to register user
+without external RA involved. Configure all parameters required by the
+test as described in the link.
+
+<pre> ant register</pre>
+
+<p> This test should send mail with a token to the email address
+configured as value of property <i>emailAddress</i>
+
+<li> <a href="#confirms">confirms</a> test is run to confirm user
+without external RA involved. Configure all parameters required by the
+test as described in the link and token to be used is picked up from
+email sent by previous step.
+
+<pre> ant confirms</pre>
+
+<li> <a href="#caAccept">caAccept</a> test is run to test case where
+CA accepts this user registration. Configure all parameters required
+by the test as described in the link and token to be used is one used
+in previous step.
+
+<pre> ant caAccept</pre>
+
+<li> <a href="#changePassword">changePassword</a> test is run to
+attempt to change user password.. Configure all parameters required by
+the test as described in the link and token to be used is one used in
+previous step.
+
+<p> An email should have been sent to address configured as value of
+property <i>emailAddress</i> indicating a successful registration.</p>
+
+<pre> ant changePassword</pre>
+
+</ol>
+
+<li> <b>Sample scenario 2:</b> This scenario describes the steps
+involved in testing the following sample scenario: user registers with
+PURSE, confirms requests, there is no RA authority, CA rejects.
+
+<p> Steps 1, 2 and 3 remain the same as previous scenario. CA reject
+is tested using <a href="#caReject">caReject</a> test. Configure all
+parameters required by the test as described in the link and token to
+be used is one used in step 3.</p>
+
+<pre> ant caReject</pre>
+
+<p>An email should have been sent to address configured as value of
+property <i>emailAddress</i> indicating a reject with message
+including the value of property <i>rejectMsg</i>.</p>
+
+<li> <b>Sample scenario 3:</b> This scenario describes the steps
+involved in testing the following sample scenario: user register with
+PURSE but already has credentials to upload, external RA confirms
+request, CA accepts pending upload of credentials by user.
+
+<ol>
+<li><pre>cd $PURSE_LOCATION</pre>
+
+<LI>For this scenario, you need to prepare a distribution of jars to be 
+installed in your web space. For this you need to run 
+<pre> ant webstart</pre>
+<p>  It creates a dir called purseweb which contains all the needed jars signed
+and ready to be deployed. This directory needs to be copied to portal's web 
+space. The signing of jars ( which is required for Java Web start) to work is 
+built into the build file. If you want to change it to use a different 
+certificate, please look at the "webstart" target in build.xml. 
+</p>
+<p> This will create a directory "purseweb" in your $PURSE_LOCATION. This 
+directory contains all the jars needed to run myproxy upload gui at the client
+side and <b> myproxy.jnlp </b> file that is needed to invoke Java webstart.
+<p> Please copy the directory purseweb along with its contents to your 
+web space (eg: public_html dir in your tomcat install). Please note down the 
+location you are copying it to. </p>
+<p> Edit $PURSE_LOCATION/etc/proxyUploadMailTemplate and change the hyperlink
+to myproxy.jnp file there with the hyperlink from your webspace from where the
+jnlp file can be accessed from. </p>
+
+<li> <a href="#register">Register User</a> 
+
+<pre> Run ant confirms</pre>
+
+<li> <a href="#caAcceptPendingUpload">caAcceptPendingUpload</a> will send the 
+user an email with a link to download the client that will let users upload
+credentials.
+</ol>
+</body>
+
+</html>

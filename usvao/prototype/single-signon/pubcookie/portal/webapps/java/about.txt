@@ -1,0 +1,5 @@
+Simple demo Java credential loader
+  * Written by Bill Baker (bbb@uiuc.edu), July 2006
+  * Java code in show_cred.jsp is derived from Terry Fleury's
+    MyProxyDelegator class
+  * JARs are from Globus toolkit 4.0.2

@@ -1,0 +1,73 @@
+<project name="ax" basedir="." default="deploy">
+
+<property name="config.file.name" value="replicmon.properties"/>
+<property name="config.file" value="${basedir}/${config.file.name}"/>
+<property file="${config.file}"/>
+<property file="build.properties"/>
+
+<path id="build.classpath">
+	<fileset dir="${src.lib.dir}">
+		<include name="**/*.jar"/>
+	</fileset>
+	<pathelement location="${servlet-api.jar}" />
+</path>
+
+<target name="deploy" depends="war">
+	<copy file="${war.file}" todir="${deploy.dir}"/>
+</target>
+
+<target name="war" depends="webapp">
+	<war destfile="${war.file}">
+		<fileset dir="${build.webapp.dir}"/>
+		<lib dir="${src.lib.dir}"/>
+	</war>
+</target>
+
+<target name="webapp" depends="clean.webapp,compile">
+	<mkdir dir="${build.webapp.dir}"/>
+	<copy todir="${build.webapp.dir}">
+		<fileset dir="${src.webapp.dir}" includes="**/*"/>
+	</copy>
+	<copy todir="${build.lib.dir}" flatten="true">
+		<fileset dir="${src.lib.dir}" includes="**/*.jar"/>
+	</copy>
+	<copy todir="${build.web-inf.dir}" file="${config.file}"/>
+</target>
+
+<target name="compile" depends="check">
+	<mkdir dir="${build.classes.dir}"/>
+	<javac destdir="${build.classes.dir}" source="1.6"
+	       classpathref="build.classpath" includeantruntime="false">
+		<src path="${src.dir}"/>
+		<include name="**/*.java"/>
+	</javac>
+	<copy todir="${build.classes.dir}">
+		<fileset dir="${src.dir}">
+			<include name="**/*.properties"/>
+			<include name="**/*.xml"/>
+		</fileset>
+	</copy>
+</target>
+	
+<target name="check" description="check to see whether config files exist">
+	<available file="${config.file}" property="config.file.exists" />
+	<fail message="Could not find ${config.file}.  Please copy ${config.file.name}-sample and customize it for your local configuration.   Don't check it in to version control, because it will probably contain passwords.">
+		<condition>
+			<not><isset property="config.file.exists"/></not>
+		</condition>
+	</fail>
+</target>
+
+<target name="clean.webapp">
+	<delete dir="${build.webapp.dir}"/>
+</target>
+	
+<target name="clean">
+	<delete dir="${build.dir}"/>
+</target>
+
+<target name="cleanall" depends="clean">
+	<delete dir="${deploy.webapp.dir}"/>
+</target>
+
+</project>

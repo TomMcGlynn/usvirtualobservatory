@@ -1,0 +1,164 @@
+0. Themes
+
+     A. Secure (of course)
+
+         * Transport-layer security:
+             - We have to transmit certain things, due to our
+               dependence on PAM and because we are shipping around
+               security credentials.  Just don't transmit them in
+               the clear.
+                 > no passwords in clear text over the wire
+                 > no private keys in clear text over the wire
+
+     B. Usable
+
+         * Mobility -- run grid logon from anywhere
+             - client configuration travels with user
+             - Windows, Unix client support
+         * Ready to go
+             - log on, and then gs ssh, etc.
+             - targeted at Globus / GSSI
+         * Non-intrusive
+             - doesn't disrupt existing GSI configuration
+
+     C. Standards
+
+         * PAM, for pluggable modules
+             - support any sort of typed-in auth system -- anything
+               that PAM can do
+         * define custom protocol, to allow for multiple
+           implementations
+         * API
+
+     D. Maintainable & Extensible
+
+         * allow for other forms of authentication?
+         * keep protocol platform-neutral for multiple client
+           implementations
+         * keep protocol open-ended enough (in the HELLO msg, for
+           example) to allow for future additions
+
+1. Design specifics
+
+     - Protocol
+         1. Hello exchange (?)
+         2. Private channel
+         3. Soap for framing & extensibility
+              a. Hello exchange (?)
+              b. user authentication (SSH keybd-interactive)
+              c. C->S request
+                  i. Cert request (PKCS #10),
+                  ii. info (target, creds, options) (security context)
+              d. S->C response
+                  i. cert (PEM)
+                  ii. trust roots (PKCS #7), etc.
+
+     - Q: Why couldn't it be a web service?
+       A: Web services repeatedly make new connections
+
+2. Short-term goals
+
+     - LTER is first customer
+         * Prototype, but stay smart about it
+         * LDAP
+         * Grid Portal (OGCE or GridSphere)
+         * don't need GS SSH right away (probably)
+         * other requirements?
+
+     - Leverage an existing authentication system
+         * connect LDAP to MyProxy via PAM
+         * emit short-term user certificates
+             > DN derived from PAM (LDAP) username
+                 - configurable, flexible
+                 - API plugin?
+             > look at SASL CA?
+
+     - Make available from a Grid Portal
+         * Java client API
+
+     - Administration
+         * Config file for administrators
+         * Ability to suspend particular user accounts
+         * Add trust roots to users' configuration (e.g. TeraGrid)
+             > at first, global config is okay
+             > in future, may need to configure per user or org.
+
+3. Medium-term goals
+
+     - auditing on the server
+         * what credentials were issued at a certain point
+         * keep enough information about every cert ever issued 
+             > DN? more?
+         * be able to revoke them
+         * flush expired
+
+     - How can the user be sure they're talking with the right Grid
+       Logon server?
+
+         * use CA certs
+             > first time, explicitly bootstrap
+             > after first time, use the cached CA certs to validate
+             > keep track of the DNs of the GridLogon server(s)
+
+     - "Simple" configuration -- no PAM back-end
+
+4. Long-term goals
+
+     - host certs
+         * more of an administrative interface
+         * need auth -- notion of who can request what certs
+         * usability: set up whole /etc/grid-security for that host
+             > other trust roots etc.
+         * configurable lifetime
+
+     - More configurability
+         * scope
+             * per user
+             * per organization
+             * overridable
+         * trust roots
+         * certificate lifetime
+         * CRLs
+             > updated as needed on logon?
+             > active background process?
+         * end-user config -- "I want these trust roots every time I
+           log in" (advanced use?)
+             > "but these roots are just on this machine"
+         * config API to replace config file?
+
+     - multiple certs per user
+         * multiple authentication mechanisms
+         * multiple host certs managed by a single user
+         * a default cert, and then a way to request more?
+             > with a policy check
+
+     - grid log off
+         * remove what we installed, but not what was there already
+             > specially mark the trust roots (and other stuff) that
+               we installed
+             > if something was already installed, just leave it
+             > if we installed something in the past, and it should
+               go away, we delete it
+                 - clean up trust roots that are no longer trusted
+
+     - What happens if the GridLogon server gets compromised?
+         * users would have to reset to a non-trusting state
+
+     - Automatic credential renewal
+         * add a field to the cert saying whether it is renewable
+           (like Kerberos)?
+
+     - Single sign-on
+         * Client-side PAM
+             > need C API for Linux
+         * Kerberos
+
+5. Questions
+
+     - broader x.509 applicability?
+
+6. To Do:
+     - design doc (a few pages)
+        * design
+        * order of implementation
+        * how to get end-to-end

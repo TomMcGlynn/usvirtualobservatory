@@ -1,0 +1,51 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1484 (0x5cc)
+        Signature Algorithm: md5WithRSAEncryption
+        Issuer: C=US, O=National Virtual Observatory, OU=Certificate Authorities, CN=MyProxy
+        Validity
+            Not Before: Feb  6 22:03:30 2009 GMT
+            Not After : Feb 26 22:03:30 2011 GMT
+        Subject: C=US, O=National Virtual Observatory, OU=Certificate Authorities, CN=sso.us-vo.org
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:b1:f2:7e:7f:0c:fc:99:fb:31:ea:2d:75:4c:07:
+                    59:aa:a4:3d:06:43:fc:7f:6f:10:e7:46:22:21:31:
+                    cf:d9:7c:9a:32:21:39:06:0d:8e:d9:8e:39:44:2d:
+                    e6:ed:eb:63:45:f6:b6:ee:ff:e1:e5:51:c8:b0:84:
+                    d5:ab:23:bd:22:27:6c:44:92:af:8d:da:35:a0:7a:
+                    61:c6:fa:20:e7:99:14:58:e0:72:cc:55:ff:31:62:
+                    c1:7f:e9:1d:4a:30:60:1e:b2:92:88:e1:64:dc:75:
+                    db:d5:fe:14:2c:5e:e9:77:f2:88:db:80:b6:9b:88:
+                    ef:fd:c3:4d:10:84:04:63:53
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            Netscape Cert Type: 
+                SSL Client, SSL Server, S/MIME, Object Signing
+    Signature Algorithm: md5WithRSAEncryption
+        d5:9f:16:31:43:91:95:23:97:d1:aa:05:fd:1f:17:ea:8b:bf:
+        fc:20:d5:da:02:fe:c4:bc:b1:6f:4b:e4:ae:d5:e8:56:5a:92:
+        b7:5f:d0:de:77:0f:ca:3b:86:8b:51:3b:fd:ff:3e:20:43:ca:
+        bc:f0:ec:a3:48:bc:20:3a:a1:e6:1a:91:9e:b6:8a:96:27:c5:
+        88:8f:0a:a4:16:06:d6:e7:7d:f1:a6:2d:80:05:5a:1e:bc:61:
+        ed:d8:a6:41:82:aa:0f:f4:10:c9:5f:f2:f4:c8:80:8f:cd:0c:
+        ac:77:20:e2:e4:44:8e:a9:43:3d:ce:71:23:d2:17:bb:29:07:
+        18:5b
+-----BEGIN CERTIFICATE-----
+MIICYjCCAcugAwIBAgICBcwwDQYJKoZIhvcNAQEEBQAwaDELMAkGA1UEBhMCVVMx
+JTAjBgNVBAoTHE5hdGlvbmFsIFZpcnR1YWwgT2JzZXJ2YXRvcnkxIDAeBgNVBAsT
+F0NlcnRpZmljYXRlIEF1dGhvcml0aWVzMRAwDgYDVQQDEwdNeVByb3h5MB4XDTA5
+MDIwNjIyMDMzMFoXDTExMDIyNjIyMDMzMFowbjELMAkGA1UEBhMCVVMxJTAjBgNV
+BAoTHE5hdGlvbmFsIFZpcnR1YWwgT2JzZXJ2YXRvcnkxIDAeBgNVBAsTF0NlcnRp
+ZmljYXRlIEF1dGhvcml0aWVzMRYwFAYDVQQDEw1zc28udXMtdm8ub3JnMIGfMA0G
+CSqGSIb3DQEBAQUAA4GNADCBiQKBgQCx8n5/DPyZ+zHqLXVMB1mqpD0GQ/x/bxDn
+RiIhMc/ZfJoyITkGDY7ZjjlELebt62NF9rbu/+HlUciwhNWrI70iJ2xEkq+N2jWg
+emHG+iDnmRRY4HLMVf8xYsF/6R1KMGAespKI4WTcddvV/hQsXul38ojbgLabiO/9
+w00QhARjUwIDAQABoxUwEzARBglghkgBhvhCAQEEBAMCBPAwDQYJKoZIhvcNAQEE
+BQADgYEA1Z8WMUORlSOX0aoF/R8X6ou//CDV2gL+xLyxb0vkrtXoVlqSt1/Q3ncP
+yjuGi1E7/f8+IEPKvPDso0i8IDqh5hqRnraKlifFiI8KpBYG1ud98aYtgAVaHrxh
+7dimQYKqD/QQyV/y9MiAj80MrHcg4uREjqlDPc5xI9IXuykHGFs=
+-----END CERTIFICATE-----

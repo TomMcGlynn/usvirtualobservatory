@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+    <!-- GWT Services -->
+    <servlet>
+        <servlet-name>logService</servlet-name>
+        <servlet-class>org.nvo.eventtide.server.LogServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logService</servlet-name>
+        <url-pattern>/org.nvo.eventtide.EventTide/LogService</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>edu.uiuc.ncsa.adminkit.Adminkit AdminKitService</servlet-name>
+        <servlet-class>edu.uiuc.ncsa.adminkit.server.AdminKitServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>edu.uiuc.ncsa.adminkit.Adminkit AdminKitService</servlet-name>
+        <url-pattern>/org.nvo.eventtide.EventTide/AdminKitService</url-pattern>
+    </servlet-mapping>
+
+    <!-- servlet: record log steps REST-ishly -->
+    <servlet>
+        <servlet-name>recordServlet</servlet-name>
+        <servlet-class>org.nvo.eventtide.server.RecordStepServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>recordServlet</servlet-name>
+        <url-pattern>/step/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Default page to serve -->
+    <welcome-file-list><welcome-file>EventTide.html</welcome-file></welcome-file-list>
+</web-app>

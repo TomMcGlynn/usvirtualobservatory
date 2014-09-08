@@ -1,0 +1,45 @@
+<!-- begin tmpl pinit_response1 -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>NVO - Logged In</title>
+<link href="usvo3.css" type="text/css" rel="stylesheet">
+<link href="nvo.css" type="text/css" rel="stylesheet">
+<link href="sso.css" type="text/css" rel="stylesheet">
+</head>
+
+<body leftmargin="0" topmargin="0">
+
+<table width="800" border="0" align="center" cellpadding="0">
+
+<tr align="left" valign="top">
+  <td width="220" style="vertical-align:middle">
+    <div style="padding-bottom:.35em"><a class="nav" href="https://sso.us-vo.org/">Login to the NVO</a></div>
+    <div style="padding-bottom:.35em"><a class="nav" href="https://nvologin1.ncsa.uiuc.edu/">Identity Portal</a></div>
+    <div style="padding-bottom:.35em"><a class="nav" href="http://sso.us-vo.org/register/?returnURL=https://nvologin1.ncsa.uiuc.edu/protected/welcome&portalName=the+NVO+Identity+Portal">Create an account</a></div>
+    <div><a class="nav" href="http://dev.usvao.org/vao/wiki/SSOforPortals/Overview">Documentation</a></div>
+  </td>
+
+  <td width="360"><div align="center">
+    <div class="big"><img src="/images/NVOwords_200pixels.jpg" alt="" width="198" height="108" /></div>
+  </div></td>
+
+  <td width="220" style="vertical-align:middle">
+    <div align="right">
+      <a class="nav" href="http://www.us-vo.org/what.cfm">what is the nvo</a><br />
+      <a class="nav" href="http://www.us-vo.org/faq.cfm">faq</a><br />
+      <a class="nav" href="http://blogs.us-vo.org/news/?p=3">the nvo book</a><br />
+      <a class="nav" href="http://www.us-vo.org/behindthescenes/index.cfm">behind the scenes</a><br />
+      <a class="nav" href="http://www.us-vo.org/pubs/index.cfm">documents</a>
+    </div>
+  </td>
+</tr>
+
+<tr><td class="divider" colspan="3"><hr noshade="noshade" /></td></tr>
+
+<tr><td colspan="3">
+
+<blockquote>
+<!-- end tmpl pinit_response1 -->
+

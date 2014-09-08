@@ -1,0 +1,51 @@
+General "Entity" to represent users, RAs, SPs
+
+entity
+  - created timestamp
+  - name
+  - description
+  - type (user, sp, ra)
+
+authentication
+  - entity id
+  - duration (from & to dates)
+  - registration status
+  - password hash
+
+biographical (n to 1 user)
+  - entity id
+  - duration (from & to dates)
+  - type (name, email, phone, institution, etc.)
+  - label (work, home, etc.)
+  - text (address, number, name, etc.)
+  - also text1, text2, text3 ...?
+
+privacy (n to n entity to entity)
+  - protected entity id
+  - viewing entity id
+  - bio type
+  - bio label
+  - duration of permission
+
+session (n to n user to authn)
+  - entity id
+  - authn id
+  - login time
+
+role (n to n entity to entity)
+  - user entity id
+  - group entity id (ra, sp)
+  - role (contact, admin, owner, member-of, etc)
+
+entity attestation
+  - user entity id
+  - ra entity id
+  - ra admin id
+  - comment
+  - status
+  - duration (start & end)
+
+db update
+  - serial number (not auto-numbered)
+  - description
+  - date

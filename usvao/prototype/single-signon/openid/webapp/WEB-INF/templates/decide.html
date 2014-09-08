@@ -1,0 +1,41 @@
+<!--include:head.html-->
+<h2>Do you trust <em title="<!--relyingUrl-->"><!--relyingName--></em></h2>
+<p>
+    The website <em title="<!--relyingUrl-->"><!--relyingName--></em> has asked you to confirm
+    your NVO identity as <strong><!--name--></strong>.
+</p>
+
+<!--axDescription-->
+
+<div class="choice-block">
+    <form action="signin">
+        <div style="margin: 0.5em 0 0.5em 1.5em">
+            <!--axInputs-->
+            <div class="highlight-box check">
+                <label style="vertical-align:middle">
+                    <input type="checkbox" name="nvo_sso_enabled" value="true" <!--ssoChecked--> style="float:left">
+                    Remember these settings for <em title="<!--relyingUrl-->"><!--relyingName--></em> and don't ask me again next time.
+                </label>
+            </div>
+        </div>
+        <div>
+            <input type="hidden" name="confirm" value="true" >
+            <input type="submit" value="Sign in" class="link-button" id="yes">
+            <span class="choice-description">
+                Yes, I trust <em title="<!--relyingUrl-->"><!--relyingName--></em>.
+                Sign in with my NVO login, <strong><!--name--></strong>.
+            </span>
+        </div>
+    </form>
+</div>
+
+<div class="choice-block">
+    <a href="<!--noUrl-->" class="link-button" id="no">Cancel</a>
+    <span class="choice-description">
+        No, I decline. Return to <em title="<!--relyingUrl-->"><!--relyingName--></em> without signing in.
+    </span>
+</div>
+
+<!--choiceLogout-->
+
+<!--include:foot.html-->
