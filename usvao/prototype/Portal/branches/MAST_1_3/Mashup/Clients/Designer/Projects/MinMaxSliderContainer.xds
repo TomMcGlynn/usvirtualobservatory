@@ -1,0 +1,145 @@
+{
+    "name": "MinMaxSliderContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.2",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1666",
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": null,
+                "margin": null,
+                "width": 260,
+                "layout": "column",
+                "designer|userClassName": "MinMaxSliderContainer"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen2079",
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "histogramContainer",
+                        "designer|userClassName": "MyContainer3"
+                    }
+                },
+                {
+                    "id": "ExtBox1-ext-gen6983",
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": null,
+                        "itemId": "sliderContainer",
+                        "margin": "0 0 0 10",
+                        "width": 260,
+                        "layout": null,
+                        "designer|userClassName": "MyContainer2"
+                    }
+                },
+                {
+                    "id": "ExtBox1-ext-gen3060",
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": null,
+                        "itemId": "minmaxContainer",
+                        "margin": "0 0 0 5",
+                        "width": 255,
+                        "layout": "hbox",
+                        "designer|userClassName": "MyContainer1",
+                        "container|align": "middle"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen2427",
+                            "type": "textfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": null,
+                                "itemId": "minBox",
+                                "margin": null,
+                                "width": 100,
+                                "fieldLabel": null,
+                                "labelWidth": null,
+                                "allowBlank": false,
+                                "designer|userClassName": "MyTextField",
+                                "layout|margins": "0 0 0 3"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen2654",
+                            "type": "textfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "maxBox",
+                                "width": 100,
+                                "fieldLabel": null,
+                                "labelAlign": null,
+                                "labelWidth": null,
+                                "allowBlank": false,
+                                "designer|userClassName": "MyTextField",
+                                "layout|flex": null,
+                                "layout|margins": "0 10 10 5"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen4544",
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "resetButton",
+                                "width": 20,
+                                "text": "X",
+                                "designer|userClassName": "MyButton",
+                                "layout|flex": 0
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

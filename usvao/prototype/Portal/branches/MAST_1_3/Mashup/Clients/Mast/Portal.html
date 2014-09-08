@@ -1,0 +1,39 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html5/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MAST Portal</title>
+    
+    <!-- Initialize Google Analytics -->
+    <script type="text/javascript" src="../Shared/InitializeAnalytics.js"></script>
+    
+    <!-- Initialize ExtJS and our local libraries. -->
+    <script type="text/javascript" src="../Shared/InitializeJavaScript.js"></script>
+
+    <!-- Needed for Album View -->
+     <link rel="stylesheet" type="text/css" href="data-view.css" />
+     
+     <!-- Initialize this application. -->
+    <link rel="stylesheet" type="text/css" href="./PortalCustomStyles.css" />
+    <script type="text/javascript" src="MastNamespace.js"></script>
+    <script type="text/javascript" src="Bootstrap.js"></script>
+    
+   <!-- The JavaScript for the SAMP. -->
+    <script type="text/javascript" src="../Shared/samp.js"></script>    
+    <script type="text/javascript" src="../Shared/flXHR.js"></script>
+    
+    <!-- The JavaScript for the AstroView. -->
+	<!-- <script type="text/javascript" src="http://vao.stsci.edu/portal/Three/build/Three.js"></script>
+	<script type="text/javascript" src="../AstroView/AstroView.js"></script> -->
+    <script type="text/javascript" src="../swfobject/swfobject.js"></script>
+    
+    <!-- Start this application. -->
+    <script type="text/javascript">
+        Ext.onReady(Mast.Bootstrap.createAndRun, Mast.Bootstrap, {mainDiv: 'portalDiv'});
+    </script>
+</head>
+<body>
+    <div id="portalDiv"></div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+        /* style rows on mouseover */
+       /* .x-grid-row-over .x-grid-cell-inner {
+            font-weight: bold;
+        }*/
+        
+        /*****************************************/
+        
+        /* Attempt to use the default css instead of the VAO css for invalid fields. */
+        .x-form-invalid-field, textarea.x-form-invalid-field {
+            /*background-color: white;*/
+            background-image: url("data/images/invalid_line.gif");
+            background-position: center bottom;
+            background-repeat: repeat-x;
+            border-color: #CC3300;
+        }
+        
+        /* Undo what the VAO does that causes the line to be wallpapered all over the text field label. */
+        .x-form-invalid, textarea.x-form-invalid {
+            background-color: #D3E4ED;
+            /*background-image: url("images/vao4/grid/invalid_line.gif");*/
+            background-image: none !important;
+            border-color: #030000;
+        }
+        
+        .x-panel-body-default {
+            border-style: none;
+            color: black;
+        }
+
+/* Overwrite the default to keep the scrollbar always visible */
+
+
+
+::-webkit-scrollbar-button        
+{
+         background: rgba(0,0,0,.5);
+}
+
+::-webkit-scrollbar {
+    height: 12px;
+    overflow: visible;
+    width: 12px;
+    background: #fff;
+}
+
+::-webkit-scrollbar-track {
+    background-clip: border-box;
+    border-width: 1px;
+    border-style: solid;
+    color: #c9dcFF;
+}
+::-webkit-scrollbar-track:hover {
+    background-color:rgba(0,0,0,.05);
+}
+::-webkit-scrollbar-track:active {
+    background-color:rgba(0,0,0,.05);
+}
+::-webkit-scrollbar-track:horizontal {
+    border-width: 1px;
+}
+::-webkit-scrollbar-track:horizontal:hover {
+}
+::-webkit-scrollbar-track:horizontal:active {
+}
+::-webkit-scrollbar-thumb {
+    background-clip: border-box;
+    background-color: #D9ECFF;
+    min-height: 28px;
+    padding: 100px 0 0;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color:#c9dcFF;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color:#c9dcFF;
+}
+::-webkit-scrollbar-thumb:horizontal {
+    border-width: 6px 1px 1px;
+    padding: 0 0 0 100px;
+}
+
+::-webkit-scrollbar-corner {
+    background-clip: border-box;
+    background-color: #f5f5f5;
+    border-width: 3px 0 0 3px;
+    border: solid #fff;
+}
+
+::-webkit-scrollbar-button:horizontal:decrement 
+{
+    border: 0px;
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    background-image: url(http://mastdev.stsci.edu/portal/mashup/clients/shared/img/left-btn.png);
+}
+ 
+::-webkit-scrollbar-button:horizontal:increment 
+{
+    border: 0px;
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    background-image: url(http://mastdev.stsci.edu/portal/mashup/clients/shared/img/right-btn.png);
+}
+ 
+::-webkit-scrollbar-button:vertical:decrement 
+{
+    border: 0px;
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    background-image: url(http://mastdev.stsci.edu/portal/mashup/clients/shared/img/up-btn.png);
+}
+ 
+::-webkit-scrollbar-button:vertical:increment 
+{
+    border: 0px;
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    background-image: url(http://mastdev.stsci.edu/portal/mashup/clients/shared/img/down-btn.png);
+}
