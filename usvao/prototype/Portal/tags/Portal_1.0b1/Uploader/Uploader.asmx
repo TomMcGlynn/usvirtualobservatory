@@ -1,0 +1,1 @@
+﻿<%@ WebService Language="C#" CodeBehind="Uploader.asmx.cs" Class="Uploader.Uploader" %>
