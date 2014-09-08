@@ -1,0 +1,91 @@
+{
+    "name": "TopBarContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.2",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1671",
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": null,
+                "itemId": "topBarContainer",
+                "width": 1500,
+                "layout": "hbox",
+                "designer|userClassName": "TopBarContainer",
+                "container|align": "stretch"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen11797",
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "logoContainer",
+                        "margin": "5 5 5 5",
+                        "width": null,
+                        "designer|userClassName": "MyContainer1",
+                        "layout|flex": null
+                    }
+                },
+                {
+                    "id": "ExtBox1-ext-gen1873",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "border-style: none",
+                        "itemId": "actionPanel",
+                        "margin": "0 5 0 0",
+                        "width": null,
+                        "layout": "vbox",
+                        "designer|userClassName": "MyContainer2",
+                        "layout|flex": null
+                    }
+                },
+                {
+                    "id": "ExtBox1-ext-gen1962",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "border-style: none",
+                        "itemId": "searchPanel",
+                        "margin": null,
+                        "layout": "vbox",
+                        "designer|userClassName": "MyContainer3",
+                        "layout|flex": null
+                    }
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

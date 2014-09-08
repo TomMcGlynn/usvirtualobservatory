@@ -1,0 +1,121 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>HLSP Grid with Filter Row Example</title>
+    
+    <!-- Initialize ExtJS and our local libraries. -->
+    <script type="text/javascript" src="../Shared/InitializeJavaScript.js"></script>
+
+    <!-- set the style sheet -->
+	<link rel="stylesheet" type="text/css" href="../Shared/css/ext-all-access.css" />
+
+    <!-- set font size -->
+	<script type="text/javascript">
+	function changeFontSize(inc)
+	{  
+	   var p = document.getElementsByTagName('div');
+	  for(n=0; n<p.length; n++) {
+		if(p[n].style.fontSize) {
+		   var size = parseInt(p[n].style.fontSize.replace("px", ""));
+		} else {
+		   var size = 12;
+		}
+		p[n].style.fontSize = size+inc + 'px';
+	   }
+	}
+	</script>
+
+    <!-- dynamic theme switch -->
+    <style>
+	        h1 a:link, h1 a:visited {
+	            color: #046BCA;
+	        }
+
+	        h1 a:hover, h1 a:focus, h1 a:active {
+	            color: #1C417C;
+	        }
+
+	        div#headerss {
+	            height: 65px;
+	            width: 1090px;
+	            padding: 25px 0 10px 0;
+	            margin: 0 50px;
+	        }
+	        div#headerss h1 {
+	            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	            font-size: 24px;
+	            font-weight: 600;
+	        }
+	        form#styleswitcher {
+	            background-color: #f3f3f3;
+	            background-color: rgba(243,243,243,.333);
+	            border: 1px solid #ddd;
+	            border-color: rgba(221,221,221,.333);
+	            border-radius:         8px;
+	            -moz-border-radius:    8px;
+	            -ms-border-radius:     8px;
+	            -o-border-radius:      8px;
+	            -webkit-border-radius: 8px;
+
+	            float: right;
+	            padding: 8px 10px;
+
+	            width: auto;
+	        }
+	        form#styleswitcher select {
+	            font-size: 13px;
+	            line-height: 13px;
+	        }
+	        div#headerss h1 span {
+	            color: inherit;
+	            font-family: Helvetica, Arial, sans-serif;
+	            font-size: 13px;
+	            font-weight: normal;
+	            line-height: 30px;
+	            padding-left: 25px;
+	        }
+        </style>
+	
+	 
+    <script type="text/javascript" src="filterrow4.js"></script> 
+	<script type="text/javascript" src="array-grid_EJ4.js"></script>
+</head>
+<body id="about">
+	<div id="headerss">
+			<form id="styleswitcher">
+				<label for="styleswitcher_select">Choose Theme: </label>
+				<select name="styleswitcher_select" id="styleswitcher_select">
+					<option value="array-grid_EJ4.html">Default Theme</option>
+					<option value="array-grid_EJ4_access.html" selected="true">Accessibility Theme</option>					
+					<option value="array-grid_EJ4_vao1.html">VAO THEME 1</option>					
+					<option value="array-grid_EJ4_vao2.html">VAO Theme 2</option>				
+					<option value="array-grid_EJ4_vao4.html">VAO Theme 3</option>
+				</select>
+			</form>
+	</div>
+	<div id="main-wrapper">
+	<div id="content-area">
+		<br /> 
+		<!-- <div id="content-top"></div>  -->
+		<table border="0" padding="0"><tr><td><div id="content-top_left"></div></td><td width='1300px'><div id="content-top_middle"></div></td><td><div id="content-top_right"></div></td></tr></table>
+		<div id="content-main" width="1300px"> 
+			<div id="text-size">
+				<a href="javascript:changeFontSize(1)">Increase Font Size</a> 
+				<a href="javascript:changeFontSize(-1)">Decrease Font Size</a>
+			</div>
+			<div id="lyr">
+				<h2>Hlsp Grid Example</h2>
+				<p>This example shows how to create a grid from Array data.</p>
+				<p>The grid is stateful so you can move or hide columns, reload the page, and come </p>
+				<div id="grid-example"></div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="bottom-panel"> 
+		<h4 title="small panel">small panel title</h4> 
+	</div>
+</body>
+</html>
