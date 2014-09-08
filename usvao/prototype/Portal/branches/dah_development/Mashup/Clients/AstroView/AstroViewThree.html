@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>AstroView - Explore the Night Sky</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Verdana;
+				background-color: #222222;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="jo/css/jo2.css">
+	</head>
+	<body>
+
+		<script src="./Three/build/three.js"></script>	
+		<script src="./Healpix/Healpix.js"></script>
+		<script src="AstroBasicView.js"></script>
+		<script src="CameraController.js"></script>
+		<script src="Coord.js"></script>
+		<script src="Diamond.js"></script>
+		<script src="GraphicsLayer.js"></script>
+	    <script src="CatalogLayer.js"></script>
+		<script src="FootprintLayer.js"></script>
+		<script src="HealpixSphere.js"></script>
+		<script src="HealpixGeometry.js"></script>
+		<script src="RaDecView.js"></script>
+		<script src="Surveys.js"></script>
+		<script src="Stats.js"></script>
+		<script src="Timer.js"></script>
+		<script src="ToastSphere.js"></script>
+		<script src="ToastGeometry.js"></script>
+		<script src="Utils.js"></script>
+		<script src="M101.js"></script>
+    
+	    <script src="jo/js/jo.js"></script>
+
+		<script>
+		    // Define a function for retrieving parameters from a URL.  The 3rd argument is
+		    // the default value to use if the parameter is not found in the URL.
+		    var getUrlParam = function (param, url, default_) 
+		    {
+		        if (default_ == null) default_ = "";
+		        param = param.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		        var regex = new RegExp("[\\?&]" + param + "=([^&#]*)");
+		        var qs = regex.exec(url);
+		        if (qs == null)
+		        {
+		            return default_;
+		        }
+		        else
+		        {
+		            return qs[1];
+		        }
+		    };
+		    
+		    var getUrlBoolean = function (param, url, default_) 
+		    {
+		        if (default_ == null) default_ = false;
+		        param = param.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		        var regex = new RegExp("[\\?&]" + param);
+		        var qs = regex.exec(url);
+		        if (qs == null)
+		        {
+		            return default_;
+		        }
+		        else
+		        {
+		            return true;
+		        }
+		    };
+    
+            // Retreive avRenderType from URL
+            var url = window.location.search;
+		    var rendertype = getUrlParam('avRenderType', url, 'canvas').toLowerCase();
+		    var surveytype = getUrlParam('avSurveyType', url, 'DSS');
+		    var debug = getUrlBoolean('debug', url, false);
+		    
+		    // Create AstroView using avRenderType
+			var view = new ASTROVIEW.AstroBasicView({"div":null, 
+													 "rendertype":rendertype, 
+													 "surveytype":surveytype,
+													 "debug":debug});
+		</script>
+
+	</body>
+</html>

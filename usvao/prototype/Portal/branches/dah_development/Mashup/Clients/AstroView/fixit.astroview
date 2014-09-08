@@ -1,0 +1,31 @@
+[X] FIXIT: canvas is missing initial zoom level on very first 'move' operation.
+[X] FIXIT: Frame rate window should not be visible in &nodebug Mode.
+[X] FIXIT: Improve hover graphics for Catalog/Spectra Objects.
+[X] FIXIT: Try hover line thickness of 3.
+[X] FIXIT: Remove image flicker while zooming in/out in canvas viewer
+
+Control:
+[ ] FIXIT: Add Zoom In/Out Pan Left/Right Controls
+[ ] FIXIT: Improve pan and zoom action to behave more like iOS devices.  
+
+Visualization:
+[ ] FIXIT: Load image layers sooner in viewer to avoid blurry pixelated view.
+[ ] FIXIT: Add NE Indicator.
+[ ] FIXIT: Load Additional Surveys.
+
+Navigation:
+[ ] FIXIT: Provide 'back/forward' button to recenter Astroview on the '+' point coord location(s).  
+[ ] FIXIT: Add a 'jump to' any location in the cached list of the cross location coords '+'.
+[ ] FIXIT: Add jump to any location on the sky by name or position.
+
+Misc:
+Anastasia:
+[ ] DISCUSS: Use distinct graphics for Catalog Objects vs. Spectra Objects.
+[ ] DISCUSS: Improve catalog object graphics size?  They are too small on M51 arms.
+[ ] DISCUSS: Unselected vs. Selected Color vs. Hover Mode: Can we do better ?
+[ ] DISCUSS: Color of loaded DataSets in AstroView should map to a color displayed in the Grid Tab so the User can easily make the association.
+Tony:
+[ ] DISCUSS: Extremely small Footprints (HLA/m65/NICMOS/Grism) : Can't find them in the Field of View
+[ ] DISCUSS: Center and Zoom on a selected record from the Grid
+[ ] DISCUSS: Image Brightness and Contrast
+[ ] DISCUSS: Sky Map for Navigation and Current Location

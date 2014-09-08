@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.ivoa.net/xml/VOTable/v1.2"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.2 http://www.ivoa.net/xml/VOTable/v1.2">
+ <DESCRIPTION>
+   VizieR Astronomical Server vizier.u-strasbg.fr
+    Date: 2013-03-25T16:09:03 [V1.97 (28-Nov-2012)]
+   Explanations and Statistics of UCDs:			See LINK below
+   In case of problem, please report to:	question@simbad.u-strasbg.fr
+ </DESCRIPTION>
+<!-- VOTable description at http://www.ivoa.net/Documents/latest/VOT.html -->
+<INFO ID="VERSION" name="votable-version" value="1.97 (28-Nov-2012)"/>
+<INFO ID="Ref" name="-ref" value="VIZ51507686675d"/>
+<INFO ID="MaxTuples" name="-out.max" value="50"/>
+<INFO name="queryParameters" value="5">
+-oc.form=dec
+-out.max=50
+-nav=cat:J/A+A/527/A109&amp;tab:{J/A+A/527/A109/models}&amp;tab:{J/A+A/527/A109/coeff}&amp;key:source=J/A+A/527/A109&amp;HTTPPRM:&amp;-out=*Mime(spectrum/SED),*&amp;
+-source=J/A+A/527/A109
+-out=*Mime(spectrum/SED),*
+</INFO>
+
+<!--
+Execution Reports
+ -->
+
+<RESOURCE ID="yCat_35270109" name="J/A+A/527/A109">
+  <DESCRIPTION>Dust and PAH emission SEDs of disk galaxies (Popescu+, 2011)</DESCRIPTION>
+  <TABLE ID="J_A_A_527_A109_models" name="J/A+A/527/A109/models">
+    <DESCRIPTION>List of models for SED</DESCRIPTION>
+    <!-- Definitions of GROUPs and FIELDs -->
+    <FIELD name="SED" ucd="meta.ref.url" datatype="char" arraysize="3"><!-- ucd="DATA_LINK" -->
+      <DESCRIPTION>SED plot for this model</DESCRIPTION>
+    </FIELD>
+    <FIELD name="tau" ucd="phys.absorption.opticalDepth" datatype="float" width="4" precision="1"><!-- ucd="PHYS_OPTICAL-DEPTH" -->
+      <DESCRIPTION>[0.1/8.0] Face-on central opacity in B band model parameter (1)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="SFR" ucd="phys.SFR;meta.modelled" datatype="float" width="5" precision="2" unit="solMass/yr"><!-- ucd="PHYS_STAR-FORM_RATE" -->
+      <DESCRIPTION>[0/20] SFR model parameter (2)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Old" ucd="phys.SFR" datatype="float" width="5" precision="2" unit="solMass/yr"><!-- ucd="PHYS_STAR-FORM_RATE" -->
+      <DESCRIPTION>[0/20] Old model parameter(2)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="B/D" ucd="stat.param" datatype="float" width="5" precision="2"><!-- ucd="MODEL_PARAM" -->
+      <DESCRIPTION>[0/2] B/D model parameter (3)</DESCRIPTION>
+    </FIELD>
+<DATA><TABLEDATA>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>10.00</TD><TD>0.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>10.00</TD><TD>1.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>10.00</TD><TD>2.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>10.00</TD><TD>0.25</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>10.00</TD><TD>0.50</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>1.00</TD><TD>0.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>1.00</TD><TD>1.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>1.00</TD><TD>2.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>1.00</TD><TD>0.25</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>1.00</TD><TD>0.50</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.10</TD><TD>0.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.10</TD><TD>1.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.10</TD><TD>2.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.10</TD><TD>0.25</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.10</TD><TD>0.50</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>20.00</TD><TD>0.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>20.00</TD><TD>1.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>20.00</TD><TD>2.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>20.00</TD><TD>0.25</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>20.00</TD><TD>0.50</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>2.00</TD><TD>0.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>2.00</TD><TD>1.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>2.00</TD><TD>2.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>2.00</TD><TD>0.25</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>2.00</TD><TD>0.50</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.20</TD><TD>0.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.20</TD><TD>1.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.20</TD><TD>2.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.20</TD><TD>0.25</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.20</TD><TD>0.50</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>5.00</TD><TD>0.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>5.00</TD><TD>1.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>5.00</TD><TD>2.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>5.00</TD><TD>0.25</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>5.00</TD><TD>0.50</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.50</TD><TD>0.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.50</TD><TD>1.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.50</TD><TD>2.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.50</TD><TD>0.25</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>0.00</TD><TD>0.50</TD><TD>0.50</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>10.00</TD><TD>0.00</TD><TD>0.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>10.00</TD><TD>0.00</TD><TD>1.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>10.00</TD><TD>0.00</TD><TD>2.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>10.00</TD><TD>0.00</TD><TD>0.25</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>10.00</TD><TD>0.00</TD><TD>0.50</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>10.00</TD><TD>10.00</TD><TD>0.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>10.00</TD><TD>10.00</TD><TD>1.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>10.00</TD><TD>10.00</TD><TD>2.00</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>10.00</TD><TD>10.00</TD><TD>0.25</TD></TR>
+<TR><TD>SED</TD><TD>1.0</TD><TD>10.00</TD><TD>10.00</TD><TD>0.50</TD></TR>
+</TABLEDATA></DATA>
+</TABLE>
+
+<!--
+Execution Reports
+ -->
+  <TABLE ID="J_A_A_527_A109_coeff" name="J/A+A/527/A109/coeff">
+    <DESCRIPTION>Attenuation coefficients for 14 wavelengths x 3 morphological components, where the disk and the bulge is only sampled at optical/NIR wavelengths (5 wavelengths)</DESCRIPTION>
+    <!-- Definitions of GROUPs and FIELDs -->
+    <FIELD name="Mcomp" ucd="stat.param" datatype="char" arraysize="5"><!-- ucd="MODEL_PARAM" -->
+      <DESCRIPTION>Morphological component (disk, sdisk, bulge)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Band" ucd="instr.bandpass" datatype="char" arraysize="5*"><!-- ucd="OBS_BAND" -->
+      <DESCRIPTION>Wavelength/waveband (1)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="tau" ucd="phys.absorption.opticalDepth" datatype="float" width="4" precision="1"><!-- ucd="PHYS_OPTICAL-DEPTH" -->
+      <DESCRIPTION>Face-on central opacity in B band (tau^f^_B_)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="a0" ucd="meta.note" datatype="float" width="6" precision="3"><!-- ucd="FIT_PARAM_VALUE" -->
+      <DESCRIPTION>a0 attenuation coefficient (2)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="a1" ucd="meta.note" datatype="float" width="6" precision="3"><!-- ucd="FIT_PARAM_VALUE" -->
+      <DESCRIPTION>a1 attenuation coefficient (2)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="a2" ucd="meta.note" datatype="float" width="6" precision="3"><!-- ucd="FIT_PARAM_VALUE" -->
+      <DESCRIPTION>a2 attenuation coefficient (2)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="a3" ucd="meta.note" datatype="float" width="6" precision="3"><!-- ucd="FIT_PARAM_VALUE" -->
+      <DESCRIPTION>a3 attenuation coefficient (2)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="a4" ucd="meta.note" datatype="float" width="7" precision="3"><!-- ucd="FIT_PARAM_VALUE" -->
+      <DESCRIPTION>a4 attenuation coefficient (2)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="a5" ucd="meta.note" datatype="float" width="6" precision="3"><!-- ucd="FIT_PARAM_VALUE" -->
+      <DESCRIPTION>? a5 attenuation coefficient (2)</DESCRIPTION>
+      <VALUES null="NaN" />
+    </FIELD>
+<DATA><TABLEDATA>
+<TR><TD>bulge</TD><TD>B</TD><TD>0.1</TD><TD>-0.007</TD><TD>-0.084</TD><TD>0.787</TD><TD>-1.898</TD><TD>1.563</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>B</TD><TD>0.3</TD><TD>0.002</TD><TD>-0.169</TD><TD>1.631</TD><TD>-3.832</TD><TD>3.294</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>B</TD><TD>0.5</TD><TD>0.024</TD><TD>-0.064</TD><TD>1.017</TD><TD>-2.183</TD><TD>2.437</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>B</TD><TD>1.0</TD><TD>0.103</TD><TD>0.127</TD><TD>1.509</TD><TD>-2.620</TD><TD>2.527</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>B</TD><TD>2.0</TD><TD>0.357</TD><TD>0.703</TD><TD>0.051</TD><TD>-0.354</TD><TD>1.181</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>B</TD><TD>4.0</TD><TD>0.788</TD><TD>0.443</TD><TD>1.660</TD><TD>-3.857</TD><TD>3.338</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>B</TD><TD>8.0</TD><TD>1.220</TD><TD>0.007</TD><TD>2.474</TD><TD>-4.905</TD><TD>4.038</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>I</TD><TD>0.1</TD><TD>-0.006</TD><TD>-0.068</TD><TD>0.486</TD><TD>-1.036</TD><TD>0.795</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>I</TD><TD>0.3</TD><TD>-0.012</TD><TD>-0.147</TD><TD>1.148</TD><TD>-2.471</TD><TD>1.947</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>I</TD><TD>0.5</TD><TD>-0.014</TD><TD>-0.205</TD><TD>1.704</TD><TD>-3.659</TD><TD>2.892</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>I</TD><TD>1.0</TD><TD>-0.003</TD><TD>-0.107</TD><TD>1.464</TD><TD>-3.170</TD><TD>2.983</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>I</TD><TD>2.0</TD><TD>0.055</TD><TD>0.058</TD><TD>1.614</TD><TD>-2.725</TD><TD>2.562</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>I</TD><TD>4.0</TD><TD>0.263</TD><TD>0.772</TD><TD>-0.368</TD><TD>0.430</TD><TD>0.755</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>I</TD><TD>8.0</TD><TD>0.670</TD><TD>0.604</TD><TD>0.968</TD><TD>-2.539</TD><TD>2.545</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>J</TD><TD>0.1</TD><TD>-0.002</TD><TD>-0.037</TD><TD>0.256</TD><TD>-0.525</TD><TD>0.398</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>J</TD><TD>0.3</TD><TD>-0.004</TD><TD>-0.094</TD><TD>0.691</TD><TD>-1.419</TD><TD>1.087</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>J</TD><TD>0.5</TD><TD>-0.005</TD><TD>-0.134</TD><TD>1.034</TD><TD>-2.129</TD><TD>1.647</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>J</TD><TD>1.0</TD><TD>-0.004</TD><TD>-0.179</TD><TD>1.602</TD><TD>-3.307</TD><TD>2.620</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>J</TD><TD>2.0</TD><TD>0.012</TD><TD>-0.138</TD><TD>1.955</TD><TD>-4.083</TD><TD>3.454</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>J</TD><TD>4.0</TD><TD>0.082</TD><TD>0.231</TD><TD>0.428</TD><TD>-0.459</TD><TD>1.272</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>J</TD><TD>8.0</TD><TD>0.290</TD><TD>0.481</TD><TD>0.897</TD><TD>-1.325</TD><TD>1.538</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>K</TD><TD>0.1</TD><TD>-0.001</TD><TD>-0.004</TD><TD>0.081</TD><TD>-0.191</TD><TD>0.153</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>K</TD><TD>0.3</TD><TD>-0.003</TD><TD>-0.013</TD><TD>0.241</TD><TD>-0.558</TD><TD>0.445</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>K</TD><TD>0.5</TD><TD>-0.004</TD><TD>-0.023</TD><TD>0.394</TD><TD>-0.901</TD><TD>0.717</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>K</TD><TD>1.0</TD><TD>-0.004</TD><TD>-0.050</TD><TD>0.736</TD><TD>-1.649</TD><TD>1.313</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>K</TD><TD>2.0</TD><TD>0.004</TD><TD>-0.082</TD><TD>1.218</TD><TD>-2.667</TD><TD>2.157</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>K</TD><TD>4.0</TD><TD>0.031</TD><TD>-0.066</TD><TD>1.565</TD><TD>-3.355</TD><TD>2.863</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>K</TD><TD>8.0</TD><TD>0.105</TD><TD>0.130</TD><TD>1.084</TD><TD>-2.219</TD><TD>2.384</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>V</TD><TD>0.1</TD><TD>-0.008</TD><TD>-0.073</TD><TD>0.631</TD><TD>-1.487</TD><TD>1.211</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>V</TD><TD>0.3</TD><TD>-0.010</TD><TD>-0.189</TD><TD>1.624</TD><TD>-3.690</TD><TD>2.983</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>V</TD><TD>0.5</TD><TD>-0.002</TD><TD>-0.128</TD><TD>1.399</TD><TD>-3.262</TD><TD>3.042</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>V</TD><TD>1.0</TD><TD>0.042</TD><TD>-0.159</TD><TD>2.272</TD><TD>-3.967</TD><TD>3.292</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>V</TD><TD>2.0</TD><TD>0.197</TD><TD>0.682</TD><TD>-0.340</TD><TD>0.446</TD><TD>0.792</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>V</TD><TD>4.0</TD><TD>0.566</TD><TD>0.701</TD><TD>0.548</TD><TD>-1.730</TD><TD>2.063</TD><TD></TD></TR>
+<TR><TD>bulge</TD><TD>V</TD><TD>8.0</TD><TD>1.021</TD><TD>0.244</TD><TD>1.921</TD><TD>-4.222</TD><TD>3.635</TD><TD></TD></TR>
+<TR><TD>disk</TD><TD>B</TD><TD>0.1</TD><TD>-0.006</TD><TD>0.071</TD><TD>-0.789</TD><TD>2.958</TD><TD>-4.449</TD><TD>2.434</TD></TR>
+<TR><TD>disk</TD><TD>B</TD><TD>0.3</TD><TD>-0.010</TD><TD>0.138</TD><TD>-1.522</TD><TD>5.819</TD><TD>-8.766</TD><TD>4.869</TD></TR>
+<TR><TD>disk</TD><TD>B</TD><TD>0.5</TD><TD>-0.008</TD><TD>0.157</TD><TD>-1.696</TD><TD>6.681</TD><TD>-10.135</TD><TD>5.735</TD></TR>
+<TR><TD>disk</TD><TD>B</TD><TD>1.0</TD><TD>-0.004</TD><TD>0.359</TD><TD>-2.661</TD><TD>9.380</TD><TD>-13.212</TD><TD>7.199</TD></TR>
+<TR><TD>disk</TD><TD>B</TD><TD>2.0</TD><TD>0.045</TD><TD>0.429</TD><TD>-2.524</TD><TD>9.317</TD><TD>-13.072</TD><TD>7.204</TD></TR>
+<TR><TD>disk</TD><TD>B</TD><TD>4.0</TD><TD>0.164</TD><TD>0.573</TD><TD>-2.611</TD><TD>9.766</TD><TD>-13.606</TD><TD>7.476</TD></TR>
+<TR><TD>disk</TD><TD>B</TD><TD>8.0</TD><TD>0.374</TD><TD>0.686</TD><TD>-2.524</TD><TD>9.408</TD><TD>-13.003</TD><TD>7.208</TD></TR>
+<TR><TD>disk</TD><TD>I</TD><TD>0.1</TD><TD>-0.005</TD><TD>0.020</TD><TD>-0.240</TD><TD>1.006</TD><TD>-1.616</TD><TD>0.942</TD></TR>
+<TR><TD>disk</TD><TD>I</TD><TD>0.3</TD><TD>-0.013</TD><TD>0.051</TD><TD>-0.614</TD><TD>2.637</TD><TD>-4.240</TD><TD>2.471</TD></TR>
+<TR><TD>disk</TD><TD>I</TD><TD>0.5</TD><TD>-0.017</TD><TD>0.077</TD><TD>-0.926</TD><TD>3.959</TD><TD>-6.288</TD><TD>3.638</TD></TR>
+<TR><TD>disk</TD><TD>I</TD><TD>1.0</TD><TD>-0.025</TD><TD>0.173</TD><TD>-1.575</TD><TD>6.251</TD><TD>-9.493</TD><TD>5.391</TD></TR>
+<TR><TD>disk</TD><TD>I</TD><TD>2.0</TD><TD>-0.022</TD><TD>0.260</TD><TD>-1.821</TD><TD>7.189</TD><TD>-10.658</TD><TD>6.102</TD></TR>
+<TR><TD>disk</TD><TD>I</TD><TD>4.0</TD><TD>0.016</TD><TD>0.409</TD><TD>-2.131</TD><TD>8.182</TD><TD>-11.574</TD><TD>6.491</TD></TR>
+<TR><TD>disk</TD><TD>I</TD><TD>8.0</TD><TD>0.130</TD><TD>0.643</TD><TD>-2.816</TD><TD>10.186</TD><TD>-13.823</TD><TD>7.439</TD></TR>
+<TR><TD>disk</TD><TD>J</TD><TD>0.1</TD><TD>-0.002</TD><TD>0.023</TD><TD>-0.248</TD><TD>0.902</TD><TD>-1.299</TD><TD>0.685</TD></TR>
+</TABLEDATA></DATA>
+</TABLE>
+</RESOURCE>
+</VOTABLE>
