@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1" />
+  <title>VAO Tutorial: Data Discovery Portal</title>
+  <meta name="robots" content="index, follow" />
+  <meta name="revisit-after" content="21 days" />
+  <meta name="author" content="" />
+  <meta name="copyright" content="" />
+  <meta name="rating" content="Global" />
+  <meta http-equiv="imagetoolbar" content="no" />
+  <meta name="Description" content="" />
+  <meta name="Keywords" content="" />
+  <meta name="abstract" content="" />
+  <link type="text/css" rel="stylesheet"
+ href="http://www.usvao.org/documents/Templates/HTML/vao_documentation_layout.css"
+ title="default" media="all" />
+</head>
+<body id="about">
+<div id="main-wrapper">
+<div id="logo"><a href="http://www.usvao.org" title="Home"><img
+ src="images/VAO_logo_100.png" alt="vao logo" border="0" height="50"
+ width="100" /></a></div>
+<div id="nav-wrapper">
+<div id="navigation">
+<ul>
+  <li>
+    <h6><strong>US Virtual Astronomical Observatory User Documentation</strong></h6>
+  </li>
+</ul>
+</div>
+</div>
+<div class="clear">
+<div class="clear"></div>
+</div>
+<div id="content-area"><br />
+<div id="content-top"></div>
+<div id="content-main">
+<h1>Tutorial: Data Discovery Portal</h1>
+<h2>Discovering New Data on the Enigmatic T Tau Young Stellar Object</h2>
+<p>Authors: August Muench, Sarah Emery Bunn, Geoff Wallace, Tom
+Donaldson</p>
+<p><em>Version 1.4 - November, 2012</em></p>
+<p><strong>Summary</strong><br />
+The purpose of this tutorial is to demonstrate the pan-archive search,
+interrogate, data retrieval and visualization features of the Data
+Discovery Tool.</p>
+<hr />
+<h3><br />
+A Case Study for the VAO Data Discovery Portal
+</h3>
+<p>T Tau is a multiple component protostar in the Taurus molecular
+cloud. It has companions on scales of a few arcseconds and a reflection
+nebula between 45" and 60" from the system (Hind&rsquo;s Nebula).&nbsp;
+Motivations for studying T-Tau include:</p>
+<ul>
+  <li>Can the source&rsquo;s spectral energy distribution (SED) be
+improved using recently released measurements in infrared catalogs such
+as WISE or UKIDSS?&nbsp; [See also the VAO Iris SED tool.]</li>
+  <li>How variable has T Tau been in the near-IR (e.g., comparing
+UKIDSS to 2MASS) or in the mid-IR (e.g., comparing Spitzer to WISE)?</li>
+  <li>Are there new high-resolution images of the binary components?</li>
+</ul>
+<h3>Finding High Resolution Images of T Tau<br />
+</h3>
+<ol>
+  <li>Launch the Data Discovery Portal, accessible from <a
+ target="_blank" href="http://vao.stsci.edu/discover">http://vao.stsci.edu/discover</a><br />
+    <br />
+  </li>
+  <li>Enter &ldquo;T Tau&rdquo; as the object.&nbsp; Name resolution of
+sources is provided via various databases. <br />
+    <br />
+  </li>
+  <li>Given the small size of the object enter 10 and
+&lsquo;Arcsec&rsquo; into the search radius box. <br />
+    <br />
+The Portal conducts its searches asynchronously, meaning that new
+results stream in as remote services respond. Unless the query has been
+cached, you will need to press the "Refresh Table" button to load new
+results. Expect that the number of results will increase rapidly at
+first, but then continues to increase as more services respond. <br />
+    <br />
+    <img src="images/img1.png" alt="Search Results" height="400"
+ width="716" /><br />
+As results stream back, a new tab (labeled &lsquo;T Tau r=10s&rdquo;)
+is produced in the main panel and a set of data categories (images,
+catalogs, etc.) is constructed in the left panel.<br />
+    <br />
+  </li>
+  <li>Click on &lsquo;Image&rsquo; in the Category filter. <br />
+    <br />
+  </li>
+  <li>In order to assess what Hubble Legacy Archive/Advanced Camera for
+Surveys data exist, type &lsquo;HLA&rsquo; into the free text search
+box at the top of the filters panel to narrow the results list.
+&nbsp;Note that &nbsp;entering "HST" or "Hubble" will also narrow the
+results significantly, and the Hubble Legacy Archive row will be
+included.<br />
+    <br />
+  </li>
+  <li> Select the row "HLA [1]" from the results panel.&nbsp; A popup
+window labeled "Details: &nbsp;t tau r=10s" will give details about
+that resource.<br />
+    <br />
+  </li>
+  <li>From the Details window, click "Continue to Data" to send the
+results into a new table labeled &ldquo;T Tau r=10s:HLA [1]&rdquo;.<br />
+    <br />
+  </li>
+  <li>The table returned gives data specific to these observations; for
+example, the column labeled &ldquo;Exposure Time&rdquo; indicates the
+duration of the exposure in seconds. In particular, this table is
+specially recognized by the tool and, rather than displaying only data
+in the grid, it knows to present preview images inline with the data.
+However, this capability is the exception rather than the norm at
+present.<br />
+    <br />
+  </li>
+  <li>Notice that the AstroView all-sky viewer has detected image
+footprints in this grid and projected them on to the default sky survey.<br />
+    <br />
+  </li>
+  <li>Enter "ACS" in the filters panel to filter down to the available
+ACS data, which also filters down to only the ACS/SBC footprints in
+AstroView. For each row, a popup Details window describes the
+individual image. At this point you can open/download the JPG file of
+the image.<br />
+    <br />
+  </li>
+  <li>Press the "Clear Filters" button in the filters panel to reset
+the display. <strong>Select</strong> an image of interest from the
+grid by checking the box on its row. This visually highlights the row
+the corresponding footprint in AstroView. Unselect this image and
+scroll to the top of the grid.<br />
+    <br />
+  </li>
+  <li>In AstroView, click on a footprint of interest. Many footprints
+are actually a stack of coincidental exposures, so it is likely that
+several of the grid rows have been selected. This also highlights the
+footprints, selects their rows in the grid, and moves them to the top
+of the grid for easy location.</li>
+</ol>
+<h3>Finding Infrared Catalogs about T Tau</h3>
+<p>This example picks up from the previous one, except that instead of
+looking for images, one is looking for catalogs.</p>
+<ol>
+  <li>Return to the first table of results (&ldquo;T Tau r=10s&rdquo;)
+and reset the filters by clicking on &ldquo;Clear Filters&rdquo; in the
+filters panel. <br />
+    <br />
+  </li>
+  <li>Select &ldquo;Catalog&rdquo; under the Categories filter, and
+&ldquo;Infrared&rdquo; under the Waveband filter.<br />
+    <br />
+  </li>
+  <li>Locate and click on the result labeled &ldquo;2MASS-PSC" , then
+click Continue to Data in the resulting Details panel.<br />
+    <br />
+  </li>
+  <li>In the AstroView Controls section of the grid for this catalog,
+choose the palette icon on the right and select a color other than
+orange (cyan works well). AstroView has overlayed diamond markers
+indicating positions from the catalog, in this case a single marker
+centered directly on the target. This allows the user to visualize
+catalogs and image footprints simultaneously. <br />
+    <br />
+  </li>
+  <li>Due to the small search radius, there will likely not be more
+than one 2MASS object in that result.</li>
+  <li>If interested in more 2MASS objects from the surrounding area,
+the initial search can be repeated with a larger radius, but it is also
+possible to initated a search for just the 2MASS-PSC resource. &nbsp;To
+do this, return to step #3 above, but instead of clicnk on Continue to
+Data, enter "t tau" in the box labelled "Search this Resource".
+&nbsp;That search will by default have a search radius of 0.2 degress.
+&nbsp;To change the default radius, enter r=&lt;number&gt;[d|m|s] where
+the last letter refers to degrees, minutes or seconds.</li>
+  <li>You can then export the table of results to one of several
+formats, such as CSV, by clicking on &ldquo;Export Table
+As&rdquo;.&nbsp; You can also &ldquo;broadcast&rdquo; the results to
+SAMP-enabled applications such as TOPCAT. </li>
+</ol>
+<ul>
+  <p><br />
+  <img src="images/img2.png"
+ alt="Interplay Between Image Footprints and Catalogs" height="400"
+ width="716" /></p>
+</ul>
+<hr /><br />
+<h3>Supplemental Questions/Exercises</h3>
+<ol>
+  <li>What Spitzer images are available for T Tau? &nbsp;WISE?<br />
+    <br />
+  </li>
+  <li>Broadcast to DS9 all the USNOB1 sources with a B1magnitude &lt;=
+16.</li>
+</ol>
+<br />
+<br />
+<br />
+<br />
+</div>
+</div>
+<div
+ style="width: 100%; text-align: right; float: left; padding-top: 5px; padding-right: 5px;">x<br />
+&copy;<strong> 2012 VAO, LLC</strong></div>
+</div>
+</body>
+</html>

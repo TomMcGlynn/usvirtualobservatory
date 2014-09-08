@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE VOTABLE SYSTEM "http://us-vo.org/xml/VOTable.dtd">
+<VOTABLE version="v1.0">
+  <DEFINITIONS>
+  <COOSYS ID="J2000" equinox="2000." epoch="2000." system="eq_FK5"/>
+  </DEFINITIONS>
+    <RESOURCE type="results">
+    <INFO name="QUERY_STATUS" value="OK"/>
+      <TABLE>
+        <FIELD ID="ra" ucd="POS_EQ_RA_MAIN" ref="J2000" datatype="float" unit="deg" precision="F3" width="7"/>
+        <FIELD ID="dec" ucd="POS_EQ_DEC_MAIN" ref="J2000" datatype="float" unit="deg" precision="F3" width="7"/>
+        <FIELD ID="cra" datatype="char" arraysize="*"/>
+        <FIELD ID="cdec" datatype="char" arraysize="*"/>
+        <FIELD ID="naxis1" datatype="int" unit=""/>
+        <FIELD ID="naxis2" datatype="int" unit=""/>
+        <FIELD ID="ctype1" datatype="char" arraysize="*"/>
+        <FIELD ID="ctype2" datatype="char" arraysize="*"/>
+        <FIELD ID="crval1" datatype="double" unit=""/>
+        <FIELD ID="crval2" datatype="double" unit=""/>
+        <FIELD ID="crpix1" datatype="double" unit=""/>
+        <FIELD ID="crpix2" datatype="double" unit=""/>
+        <FIELD ID="cdelt1" datatype="double" unit=""/>
+        <FIELD ID="cdelt2" datatype="double" unit=""/>
+        <FIELD ID="crota2" datatype="double" unit=""/>
+        <FIELD ID="ra1" datatype="double" unit=""/>
+        <FIELD ID="dec1" datatype="double" unit=""/>
+        <FIELD ID="ra2" datatype="double" unit=""/>
+        <FIELD ID="dec2" datatype="double" unit=""/>
+        <FIELD ID="ra3" datatype="double" unit=""/>
+        <FIELD ID="dec3" datatype="double" unit=""/>
+        <FIELD ID="ra4" datatype="double" unit=""/>
+        <FIELD ID="dec4" datatype="double" unit=""/>
+        <FIELD ID="equinox" datatype="double" unit=""/>
+        <FIELD ID="hdu" datatype="int" unit=""/>
+        <FIELD ID="fname" datatype="char" arraysize="*"/>
+        <FIELD ID="dataset" datatype="char" arraysize="*"/>
+        <FIELD ID="cutout" datatype="char" arraysize="*"/>
+        <FIELD ID="sia_desc" ucd="VOX:Image_Title" datatype="char" arraysize="*"/>
+        <FIELD ID="sia_naxes" ucd="VOX:Image_Naxes" datatype="int"/>
+        <FIELD ID="sia_naxis" ucd="VOX:Image_Naxis" datatype="int" arraysize="*"/>
+        <FIELD ID="sia_scale" ucd="VOX:Image_Scale" datatype="double" arraysize="*"/>
+        <FIELD ID="sia_cdmatrix" ucd="VOX:WCS_CDMatrix" datatype="double" arraysize="*"/>
+        <FIELD ID="sia_format" ucd="VOX:Image_Format" datatype="char" arraysize="*"/>
+        <FIELD ID="sia_url" ucd="VOX:Image_AccessReference" datatype="char" arraysize="*"/>
+          <DATA>
+          <TABLEDATA>
+            <TR>
+                <TD>195.5535148</TD>
+                <TD>49.7314328</TD>
+                <TD>13h 02m 12.84s</TD>
+                <TD>+49d 43m 53.2s</TD>
+                <TD>500</TD>
+                <TD>500</TD>
+                <TD>RA---TAN</TD>
+                <TD>DEC--TAN</TD>
+                <TD>195.0000000</TD>
+                <TD>50.0000000</TD>
+                <TD>250.00</TD>
+                <TD>250.00</TD>
+                <TD>-2.5000e-02</TD>
+                <TD>2.5000e-02</TD>
+                <TD>0.0000000</TD>
+                <TD>204.0902247</TD>
+                <TD>43.1873692</TD>
+                <TD>187.0539564</TD>
+                <TD>43.1655780</TD>
+                <TD>184.5480992</TD>
+                <TD>55.4618362</TD>
+                <TD>206.5226547</TD>
+                <TD>55.4898752</TD>
+                <TD>1950.00</TD>
+                <TD>0</TD>
+                <TD>ISSA_complete/i378b1h0.fit</TD>
+                <TD>ISSA</TD>
+                <TD>NO</TD>
+                <TD>The IRAS Sky Survey Atlas (ISSA)</TD>
+                <TD>2</TD>
+                <TD>500 500</TD>
+                <TD>-2.5000e-02 2.5000e-02</TD>
+                <TD>-0.025 -1.85126e-306 -1.85126e-306 0.025</TD>
+                <TD>image/fits</TD>
+                <TD><![CDATA[http://irsa.ipac.caltech.edu/data/ISSA/ISSA_complete/i378b1h0.fit]]></TD>
+            </TR>
+            <TR>
+                <TD>195.5535148</TD>
+                <TD>49.7314328</TD>
+                <TD>13h 02m 12.84s</TD>
+                <TD>+49d 43m 53.2s</TD>
+                <TD>500</TD>
+                <TD>500</TD>
+                <TD>RA---TAN</TD>
+                <TD>DEC--TAN</TD>
+                <TD>195.0000000</TD>
+                <TD>50.0000000</TD>
+                <TD>250.00</TD>
+                <TD>250.00</TD>
+                <TD>-2.5000e-02</TD>
+                <TD>2.5000e-02</TD>
+                <TD>0.0000000</TD>
+                <TD>204.0902247</TD>
+                <TD>43.1873692</TD>
+                <TD>187.0539564</TD>
+                <TD>43.1655780</TD>
+                <TD>184.5480992</TD>
+                <TD>55.4618362</TD>
+                <TD>206.5226547</TD>
+                <TD>55.4898752</TD>
+                <TD>1950.00</TD>
+                <TD>0</TD>
+                <TD>ISSA_complete/i378b2h0.fit</TD>
+                <TD>ISSA</TD>
+                <TD>NO</TD>
+                <TD>The IRAS Sky Survey Atlas (ISSA)</TD>
+                <TD>2</TD>
+                <TD>500 500</TD>
+                <TD>-2.5000e-02 2.5000e-02</TD>
+                <TD>-0.025 -1.85126e-306 -1.85126e-306 0.025</TD>
+                <TD>image/fits</TD>
+                <TD><![CDATA[http://irsa.ipac.caltech.edu/data/ISSA/ISSA_complete/i378b2h0.fit]]></TD>
+            </TR>
+            <TR>
+                <TD>195.5535148</TD>
+                <TD>49.7314328</TD>
+                <TD>13h 02m 12.84s</TD>
+                <TD>+49d 43m 53.2s</TD>
+                <TD>500</TD>
+                <TD>500</TD>
+                <TD>RA---TAN</TD>
+                <TD>DEC--TAN</TD>
+                <TD>195.0000000</TD>
+                <TD>50.0000000</TD>
+                <TD>250.00</TD>
+                <TD>250.00</TD>
+                <TD>-2.5000e-02</TD>
+                <TD>2.5000e-02</TD>
+                <TD>0.0000000</TD>
+                <TD>204.0902247</TD>
+                <TD>43.1873692</TD>
+                <TD>187.0539564</TD>
+                <TD>43.1655780</TD>
+                <TD>184.5480992</TD>
+                <TD>55.4618362</TD>
+                <TD>206.5226547</TD>
+                <TD>55.4898752</TD>
+                <TD>1950.00</TD>
+                <TD>0</TD>
+                <TD>ISSA_complete/i378b3h0.fit</TD>
+                <TD>ISSA</TD>
+                <TD>NO</TD>
+                <TD>The IRAS Sky Survey Atlas (ISSA)</TD>
+                <TD>2</TD>
+                <TD>500 500</TD>
+                <TD>-2.5000e-02 2.5000e-02</TD>
+                <TD>-0.025 -1.85126e-306 -1.85126e-306 0.025</TD>
+                <TD>image/fits</TD>
+                <TD><![CDATA[http://irsa.ipac.caltech.edu/data/ISSA/ISSA_complete/i378b3h0.fit]]></TD>
+            </TR>
+            <TR>
+                <TD>195.5535148</TD>
+                <TD>49.7314328</TD>
+                <TD>13h 02m 12.84s</TD>
+                <TD>+49d 43m 53.2s</TD>
+                <TD>500</TD>
+                <TD>500</TD>
+                <TD>RA---TAN</TD>
+                <TD>DEC--TAN</TD>
+                <TD>195.0000000</TD>
+                <TD>50.0000000</TD>
+                <TD>250.00</TD>
+                <TD>250.00</TD>
+                <TD>-2.5000e-02</TD>
+                <TD>2.5000e-02</TD>
+                <TD>0.0000000</TD>
+                <TD>204.0902247</TD>
+                <TD>43.1873692</TD>
+                <TD>187.0539564</TD>
+                <TD>43.1655780</TD>
+                <TD>184.5480992</TD>
+                <TD>55.4618362</TD>
+                <TD>206.5226547</TD>
+                <TD>55.4898752</TD>
+                <TD>1950.00</TD>
+                <TD>0</TD>
+                <TD>ISSA_complete/i378b4h0.fit</TD>
+                <TD>ISSA</TD>
+                <TD>NO</TD>
+                <TD>The IRAS Sky Survey Atlas (ISSA)</TD>
+                <TD>2</TD>
+                <TD>500 500</TD>
+                <TD>-2.5000e-02 2.5000e-02</TD>
+                <TD>-0.025 -1.85126e-306 -1.85126e-306 0.025</TD>
+                <TD>image/fits</TD>
+                <TD><![CDATA[http://irsa.ipac.caltech.edu/data/ISSA/ISSA_complete/i378b4h0.fit]]></TD>
+            </TR>
+            <TR>
+                <TD>210.4741482</TD>
+                <TD>49.7594721</TD>
+                <TD>14h 01m 53.80s</TD>
+                <TD>+49d 45m 34.1s</TD>
+                <TD>500</TD>
+                <TD>500</TD>
+                <TD>RA---TAN</TD>
+                <TD>DEC--TAN</TD>
+                <TD>210.0000000</TD>
+                <TD>50.0000000</TD>
+                <TD>250.00</TD>
+                <TD>250.00</TD>
+                <TD>-2.5000e-02</TD>
+                <TD>2.5000e-02</TD>
+                <TD>0.0000000</TD>
+                <TD>219.0316842</TD>
+                <TD>43.2250625</TD>
+                <TD>201.9876767</TD>
+                <TD>43.1834071</TD>
+                <TD>199.4444844</TD>
+                <TD>55.4765445</TD>
+                <TD>221.4344272</TD>
+                <TD>55.5301561</TD>
+                <TD>1950.00</TD>
+                <TD>0</TD>
+                <TD>ISSA_complete/i379b1h0.fit</TD>
+                <TD>ISSA</TD>
+                <TD>NO</TD>
+                <TD>The IRAS Sky Survey Atlas (ISSA)</TD>
+                <TD>2</TD>
+                <TD>500 500</TD>
+                <TD>-2.5000e-02 2.5000e-02</TD>
+                <TD>-0.025 -1.85126e-306 -1.85126e-306 0.025</TD>
+                <TD>image/fits</TD>
+                <TD><![CDATA[http://irsa.ipac.caltech.edu/data/ISSA/ISSA_complete/i379b1h0.fit]]></TD>
+            </TR>
+            <TR>
+                <TD>210.4741482</TD>
+                <TD>49.7594721</TD>
+                <TD>14h 01m 53.80s</TD>
+                <TD>+49d 45m 34.1s</TD>
+                <TD>500</TD>
+                <TD>500</TD>
+                <TD>RA---TAN</TD>
+                <TD>DEC--TAN</TD>
+                <TD>210.0000000</TD>
+                <TD>50.0000000</TD>
+                <TD>250.00</TD>
+                <TD>250.00</TD>
+                <TD>-2.5000e-02</TD>
+                <TD>2.5000e-02</TD>
+                <TD>0.0000000</TD>
+                <TD>219.0316842</TD>
+                <TD>43.2250625</TD>
+                <TD>201.9876767</TD>
+                <TD>43.1834071</TD>
+                <TD>199.4444844</TD>
+                <TD>55.4765445</TD>
+                <TD>221.4344272</TD>
+                <TD>55.5301561</TD>
+                <TD>1950.00</TD>
+                <TD>0</TD>
+                <TD>ISSA_complete/i379b2h0.fit</TD>
+                <TD>ISSA</TD>
+                <TD>NO</TD>
+                <TD>The IRAS Sky Survey Atlas (ISSA)</TD>
+                <TD>2</TD>
+                <TD>500 500</TD>
+                <TD>-2.5000e-02 2.5000e-02</TD>
+                <TD>-0.025 -1.85126e-306 -1.85126e-306 0.025</TD>
+                <TD>image/fits</TD>
+                <TD><![CDATA[http://irsa.ipac.caltech.edu/data/ISSA/ISSA_complete/i379b2h0.fit]]></TD>
+            </TR>
+            <TR>
+                <TD>210.4741482</TD>
+                <TD>49.7594721</TD>
+                <TD>14h 01m 53.80s</TD>
+                <TD>+49d 45m 34.1s</TD>
+                <TD>500</TD>
+                <TD>500</TD>
+                <TD>RA---TAN</TD>
+                <TD>DEC--TAN</TD>
+                <TD>210.0000000</TD>
+                <TD>50.0000000</TD>
+                <TD>250.00</TD>
+                <TD>250.00</TD>
+                <TD>-2.5000e-02</TD>
+                <TD>2.5000e-02</TD>
+                <TD>0.0000000</TD>
+                <TD>219.0316842</TD>
+                <TD>43.2250625</TD>
+                <TD>201.9876767</TD>
+                <TD>43.1834071</TD>
+                <TD>199.4444844</TD>
+                <TD>55.4765445</TD>
+                <TD>221.4344272</TD>
+                <TD>55.5301561</TD>
+                <TD>1950.00</TD>
+                <TD>0</TD>
+                <TD>ISSA_complete/i379b3h0.fit</TD>
+                <TD>ISSA</TD>
+                <TD>NO</TD>
+                <TD>The IRAS Sky Survey Atlas (ISSA)</TD>
+                <TD>2</TD>
+                <TD>500 500</TD>
+                <TD>-2.5000e-02 2.5000e-02</TD>
+                <TD>-0.025 -1.85126e-306 -1.85126e-306 0.025</TD>
+                <TD>image/fits</TD>
+                <TD><![CDATA[http://irsa.ipac.caltech.edu/data/ISSA/ISSA_complete/i379b3h0.fit]]></TD>
+            </TR>
+            <TR>
+                <TD>210.4741482</TD>
+                <TD>49.7594721</TD>
+                <TD>14h 01m 53.80s</TD>
+                <TD>+49d 45m 34.1s</TD>
+                <TD>500</TD>
+                <TD>500</TD>
+                <TD>RA---TAN</TD>
+                <TD>DEC--TAN</TD>
+                <TD>210.0000000</TD>
+                <TD>50.0000000</TD>
+                <TD>250.00</TD>
+                <TD>250.00</TD>
+                <TD>-2.5000e-02</TD>
+                <TD>2.5000e-02</TD>
+                <TD>0.0000000</TD>
+                <TD>219.0316842</TD>
+                <TD>43.2250625</TD>
+                <TD>201.9876767</TD>
+                <TD>43.1834071</TD>
+                <TD>199.4444844</TD>
+                <TD>55.4765445</TD>
+                <TD>221.4344272</TD>
+                <TD>55.5301561</TD>
+                <TD>1950.00</TD>
+                <TD>0</TD>
+                <TD>ISSA_complete/i379b4h0.fit</TD>
+                <TD>ISSA</TD>
+                <TD>NO</TD>
+                <TD>The IRAS Sky Survey Atlas (ISSA)</TD>
+                <TD>2</TD>
+                <TD>500 500</TD>
+                <TD>-2.5000e-02 2.5000e-02</TD>
+                <TD>-0.025 -1.85126e-306 -1.85126e-306 0.025</TD>
+                <TD>image/fits</TD>
+                <TD><![CDATA[http://irsa.ipac.caltech.edu/data/ISSA/ISSA_complete/i379b4h0.fit]]></TD>
+            </TR>
+          </TABLEDATA>
+          </DATA>
+      </TABLE>
+    </RESOURCE>
+</VOTABLE>

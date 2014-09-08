@@ -1,0 +1,43 @@
+Contents of this directory
+
+0readme.1st - this file
+
+robcopyFromMASTTESTIISVM1ToOPS.bat - robocopy e:\web\VAO to mastopsiisvm[1,2],
+see the file for more documentation.
+
+Run this file from a "run as administrator" "command prompt".
+How do you start up a "run as adminstrator" "command prompt", Click on Start,
+All Programs, Accessories and right click on "command prompt" 
+and select "Run as Administrator" 
+This file should be run whenever testing is complete and a copy of the software
+ is to be delivered into ops. Check the log files upon completion.
+
+
+extractIISVAOConfig.bat - extract IIS configuration information for the VAO
+web site and store it in VAO.zip. A log file called VAO.log is created this
+file is appended to upon each invocation. Check the log file upon completion.
+
+Run this file as administrator, see steps on how to do this above. This file 
+should be run whenever changes are made to the IIS configuration on 
+masttestiisvm1 so it can be deployed to masttestiisvm2 and upon completion of 
+testing to mastopsiisvm[1,2].
+
+syncIISVAOConfigToMASTTESTIISVM2.bat - deploy VAO IIS configuration to 
+MASTTESTIISVM2, appends to log file VAOSyncIISConfigTomasttestiisvm2.log
+Check the log file upon completion.
+
+Run this file as administrator, see steps on how to do this above. This file 
+should be run whenever changes are made to the IIS configuration on 
+masttestiisvm1 so it can be deployed to masttestiisvm2.
+
+syncIISVAOConfigToMASTOPSIISVM1And2.bat - deploy VAO IIS configuration to 
+MASTTESTIISVM2, appends to log files
+VAOSyncIISConfigTomastopsiisvm1.log and VAOSyncIISConfigTomastopsiisvm2.log
+Check the log files upon completion.
+
+Run this file as administrator, see steps on how to do this above. This file 
+should be run whenever changes are made to the IIS configuration on 
+masttestiisvm1 AND they have been fully and completely tested. 
+
+
+robocopyHelp.txt - output from robocopy /? to a file.

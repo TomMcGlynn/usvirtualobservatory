@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ivoa.net/xml/VOTable/v1.2" version="1.2" xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.2 http://www.ivoa.net/xml/VOTable/v1.2">
+  <RESOURCE type="results">
+    <TABLE>
+      <FIELD name="Title" ucd="VOX:Image_Title" datatype="char" arraysize="*">
+        <DESCRIPTION>Row Number</DESCRIPTION>
+      </FIELD>
+      <FIELD name="shortTest" datatype="short">
+        <DESCRIPTION>Test datatype="short"</DESCRIPTION>
+        <VALUES null="-6666"/>
+      </FIELD>
+      <FIELD name="intTest" datatype="int">
+        <DESCRIPTION>Test datatype="int"</DESCRIPTION>
+        <VALUES null="999999"/>
+      </FIELD>
+      <FIELD name="longTest" datatype="long">
+        <DESCRIPTION>Test datatype="long"</DESCRIPTION>
+        <VALUES null="-88888888888"/>
+      </FIELD>
+      <DATA>
+        <TABLEDATA>
+          <TR>
+            <TD>row 01</TD>
+            <TD>1234</TD>
+            <TD>12345678</TD>
+            <TD>1234567890123</TD>
+          </TR>
+          <TR>
+            <TD>row 02</TD>
+            <TD></TD>
+            <TD></TD>
+            <TD></TD>
+          </TR>
+          <TR>
+            <TD>row 03</TD>
+            <TD>-6666</TD> <!--Expect blank output-->
+            <TD>999999</TD> <!--Expect blank output-->
+            <TD>-88888888888</TD> <!--Expect blank output-->
+          </TR>
+          <TR>
+            <TD>row 04</TD>
+            <TD>4321</TD>
+            <TD>-87654321</TD>
+            <TD>-3210987654321</TD>
+          </TR>
+          <TR>
+            <TD>row 05</TD>
+            <TD>0x0010</TD> <!--Expect 16-->
+            <TD>0xffffffff</TD> <!--Expect -1-->
+            <TD>0x1000000000</TD> <!--Expect 68719476736-->
+          </TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>

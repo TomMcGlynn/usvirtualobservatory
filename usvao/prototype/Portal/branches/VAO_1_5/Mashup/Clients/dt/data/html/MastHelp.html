@@ -1,0 +1,516 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 11 February 2007), see www.w3.org" />
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>MAST Portal v1.3 User Guide</title>
+  <meta name="robots" content="index, follow" />
+  <meta name="revisit-after" content="21 days" />
+  <meta name="author" content="" />
+  <meta name="copyright" content="" />
+  <meta name="rating" content="Global" />
+  <meta http-equiv="imagetoolbar" content="no" />
+  <meta name="Description" content="" />
+  <meta name="Keywords" content="" />
+  <meta name="abstract" content="" />
+</head>
+
+<body id="about">
+  <div id="content-area">
+    <div id="content-main">
+      <div id="content-area2">
+        <div id="content-main2">
+          <h1><img src="../images/mastlogo.png" alt="MAST logo" /></h1>
+
+          <h1>The MAST Portal</h1>
+
+          <!-- <h4><a name="Version" id="Version"><em>Version 1.3, 06/2012</em></a></h4> -->
+
+          <h3>Contents</h3>
+
+          <ul>
+            <li><a href="#Intro">Introduction</a></li>
+
+            <li><a href="#Search">Initiating a Search</a></li>
+
+            <li><a href="#Grid">Exploring Search Results</a></li>
+
+            <li><a href="#Filters">Refining the Results with Filters</a></li>
+
+            <li><a href="#Download">Retrieving Results</a></li>
+
+            <li><a href="#AstroView">The AstroView Tool</a></li>
+
+            <li><a href="#Caveats">Tips &amp; Notes</a></li>
+
+            <li><a href="#Demo">Video Demo</a></li>
+          </ul>
+
+          <h2><a name="Intro" id="Intro">Introduction</a></h2>
+
+          <p>The Barbara A. Mikulski Archive for Space Telescopes (MAST) Portal is a web application for searching repositories of information about
+          Astronomical Data, Publications and Images.</p>
+
+          <p>(Note: Throughout this user's guide there are screenshots taken from a development environment that may include features or data states
+          that are not normally reachable by users. They are only meant to serve as visual guides.)</p>
+
+          <table cellpadding="2" width="850">
+            <tbody>
+              <tr>
+                <td><img src="../../../Shared/help/startup.png" alt="startup" /></td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><font size="-1">Fig. 1&mdash;Anatomy of the MAST Portal as it appears prior to the first search. Circled numbers in
+                orange are keyed to descriptions in the text.</font></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>The initial screen layout consists of the following components, numbered as in Fig. 1:</p>
+
+          <dl>
+            <dt><b>1. "Select Collection" Box and other basic tools</b></dt>
+
+            <dd>Use the dropdown menu to choose the collection to search (results vary depending on the information contained within each particular
+            collection). Also has a link to the "about" screen, allows a user to import a CSV or VO table they have saved on their local machine, a
+            button that brings up the user's download basket (if populated), and a button for the user's guide.</dd>
+
+            <dt><b>2. Search Box</b></dt>
+
+            <dd>Depending on the collection chosen, a hint appears describing the kind of query that should be performed. Also contains examples that
+            populate the search box for you.</dd>
+
+            <dt><b>3. Data View Panel</b></dt>
+
+            <dd>Presents data and images returned from the query or queries, sometimes allowing multiple views of a dataset, such as a grid layout or
+            an album view. If filtering is available for the data panel, applicable filters are grouped into <em>facets</em> by semantic type, and
+            will appear in this panel. Note that the Filters panel can be resized or (un)hidden using screen widgets.</dd>
+
+            <dt><b>4. Astroview Panel</b></dt>
+
+            <dd>This panel may be optionally loaded by the tool. It is a powerful all-sky viewer provides visualization context and
+            imagery for either aribtrary positions specified within the viewer itself or while being tied to data from Portal queries. </dd>
+          </dl>
+
+          <h2><a name="Search" id="Search"></a> Initiating a Search</h2>
+
+          <p>All searches begin by choosing a collection and entering either the name of an astronomical object, or the RA/Dec coordinates of a sky position
+          in the <em>search entry box</em> in decimal degrees, sexagesimal or galactic coordinates (on the left in Fig. 2). A radius can be appended to the
+          search by adding "r=" and a radius, with units of "d" (degrees), "m" (minutes) or "s" (seconds). Some collections have search radius limitations, and the default radius is
+          usually 0.2 degrees. The search can be initiated by clicking the <b>Search</b> button or by pressing the <em>Return</em> key on your
+          keyboard while the cursor is in the search entry box.</p>
+
+          <table cellpadding="2" width="500">
+            <tbody>
+              <tr>
+                <td><img src="../../../Shared/help/search.png" alt="Search Entry Box" border="0" /></td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><font size="-1">Fig. 2&mdash;Search panel includes the <em>Collection</em> pulldown menu, <em>Search</em> box and
+                button, examples of valid search text, and basic tool links.</font></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>Names of objects are passed to a name resolver (one of many Virtual Observatory services that support the Portal), which associates
+          known object names with sky coordinates. A wide variety of catalog and common names can be resolved to known objects. Coordinates can be
+          given in a variety of formats; right ascensions must be positive and southern declinations require a leading negative sign. Examples of
+          valid names and coordinate formats are given below.</p><!-- table width="700" cellpadding="1" -->
+
+          <table cellpadding="1">
+            <tbody>
+              <tr>
+                <th colspan="2" bgcolor="#DAF2FF"><font color="black">Object Names</font></th>
+              </tr>
+
+              <tr>
+                <td><code>M101, NGC45</code></td>
+
+                <td>Objects from standard catalogs such as Messier and NGC will be resolved</td>
+              </tr>
+
+              <tr>
+                <td><code>Antennae, Eta Carinae</code></td>
+
+                <td>Common names often work</td>
+              </tr>
+
+              <tr>
+                <td><code>T Tau</code></td>
+
+                <td>Variable star names often work</td>
+              </tr>
+
+              <tr>
+                <td><code>BD+19 706</code></td>
+
+                <td>Star catalogs with coordinate symbols</td>
+              </tr>
+
+              <tr>
+                <td><code>png 000.8-07.6</code></td>
+
+                <td>Other catalogs with coordinate and decimal symbols</td>
+              </tr>
+
+              <tr>
+                <td><code>2MASS J04215943+1932063</code></td>
+
+                <td>All-sky catalogs with coordinate symbols</td>
+              </tr>
+
+              <tr>
+                <td><code>TYC 1272-470-1</code></td>
+
+                <td>All-sky satellite catalogs with restricted symbols</td>
+              </tr>
+
+              <tr>
+                <th colspan="2" bgcolor="#DAF2FF"><font color="black">Coordinates</font></th>
+              </tr>
+
+              <tr>
+                <td><code>14 03 12.6 54 20 56.7</code></td>
+
+                <td>Sexagesimal coordinates delimited with spaces</td>
+              </tr>
+
+              <tr>
+                <td><code>14:03.210 54:20.945</code></td>
+
+                <td>Sexagesimal coordinates delimited with colons; decimal minutes/arcminutes</td>
+              </tr>
+
+              <tr>
+                <td><code>14h03m12.6s +54d20m56.7s</code></td>
+
+                <td>Sexagesimal coordinates with explicit hms/dms</td>
+              </tr>
+
+              <tr>
+                <td><code>g102.0373+59.7711</code></td>
+
+                <td>Galactic coordinates of the form g[lon][+/-lat] with no spaces</td>
+              </tr>
+
+              <tr>
+                <td><code>180.468 -18.866</code></td>
+
+                <td>Coordinates in decimal degrees</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>Further rules and caveats for valid searches may be found in <a href="#Caveats">Tips &amp; Notes</a>.</p>
+
+          <h2><a name="Grid" id="Grid"></a>Exploring Search Results</h2>
+
+          <p>A successful search, such as that shown for M57 below, populates a new <em>Search Results</em> panel with a table of resources, a
+          corresponding <em>Filters</em> panel applicable to these resources, and focuses the AstroView component on the position. If the software
+          detects image outlines (footprints), it will draw them, and will attempt to mark non-images, such as catalogs, by marking the position
+          listed for that row. The results of subsequent searches will be stored in new tables, and can be accessed by clicking on the tabs at the
+          top of the Results panel. To eliminate a results table (and discard the results for that search), click the "x" icon on the tab. Concurrent
+          searches are possible; if a new search is initiated prior to the last one completing, a new tab will be created while the previous search
+          continues. Just below the tabs is a status panel with the following items from left to right:</p>
+
+          <ul>
+            <li>the number of rows retrieved (and update information for searches in progress)</li>
+
+            <li>controls for AstroView (more on these later)</li>
+
+            <li>an <b>Export Table As...</b> button which can write the table of results to your local storage. This works in conjunction with the
+            "Import Table..." link at the top of the page.</li>
+
+            <li>the object name and coordinates from the name resolver</li>
+
+            <li>the search radius</li>
+          </ul>
+
+          <table cellpadding="2" width="820">
+            <tbody>
+              <tr>
+                <td><img src="../../../Shared/help/m57_Results.png" alt="SearchResults" border="0" /></td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><font size="-1">Fig. 3&mdash;Appearance of the Portal after a search for <b>m57</b> within <b>radius = 0.2
+                degrees</b>, showing the filters (left panel) that can be applied to the Search Results (center panel), and the AstroView component.
+                The results of a prior search/tab may be viewed by clicking the tab (labelled <b>Start Page</b> in this case) at the top of the
+                Search Results panel.</font></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>The records are listed in the table, one per row. Each record represents data about a particular image, catalog or spectra, with the columns
+          defining each datum about the record. In the example above, each displayed record is about an IUE spectrum that was found within the bounds
+          of the search.</p>
+
+          <h3><a name="ResultDetails" id="ResultDetails"></a>Search Details Pop-Up</h3>
+
+          <p>Clicking on any row in the Search Results panel pops up a panel with summary information about the resource; clicking the double arrows
+          at the bottom of this panel (labelled "Expand for Details") exposes all of the attributes for the resource.</p>
+
+          <table cellpadding="2" width="870">
+            <tbody>
+              <tr>
+                <td><img src="../../../Shared/help/details_popup.png" alt="Resource_PopUp" border="0" /></td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><font size="-1">Fig. 4&mdash;Summary of a <b>m57</b> image, showing the summary description of the resource (left).
+                Clicking the double-arrow at the lower-right of the pop-up brings up all available details. Different details panel formats exist for
+                the various collections - for collections where the tool knows, for example, that there will be an image and a URL that links to a
+                large-format version, it will pop up a details panel such as this one that links to it. Other image records may be displayed
+                differently, and sometimes the format is unavailable, therefore the tool can only provide a generic view of the data.</font></td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <h3>Virtual Observatory (VO or VAO) Search Results</h3>
+
+          <p>For search results from the VAO, the initial list returned is only the first half of the search. It contains a list of resources from the
+          VAO that claim to have data within the searched cone. These data are catalogs, images and spectra. From this list, the user must click the
+          desired object to view a summary of its details. The user may then load the full data from that object by clicking on the "Load" button 
+          in the Summary Panel, which will display all of its
+          associated data records into a new tab for further browsing of that resource's objects, images or spectra. This action is referred to as a
+          "drilldown", and is a key component of using the Portal to explore multi-tiered data hierarchies such as the VAO. Additionally, the user may
+          download exactly the table, including all metadata, to a file on their local machine, or initiate another search using that resource.</p>
+
+          <table cellpadding="2" width="870">
+            <tbody>
+              <tr>
+                <td><img src="../../../Shared/help/datascope.png" alt="Datascope Search" border="0" /></td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><font size="-1">Fig. 4.1&mdash;Summary of a <b>m57</b> VAO search, with the underlying catalog having already been
+                loaded. The details panel for the search allows the user to load the records, which places it into a new tab (marked M101: GALEX as
+                shown). The "Download File" button will download the entire VO table to the user's machine as a file, including all metadata. In this
+                example, the user has prepared to initiate a new M83 search using the GALEX resource, rather than querying all of the VAO again.
+                </font></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2><a name="Filters" id="Filters"></a>Refining Results with Filters</h2>
+
+          <p>Many searches, particularly on popular targets or of a sufficiently large area of sky, generate sometimes hundreds or even thousands of
+          rows. The Filters panel allows the user to restrict the list of search results to those of most interest.</p>
+
+          <h3><a name="FilterFacets" id="FilterFacets"></a>Facet Filters</h3>
+
+          <p>The list of potential filters is quite large, and includes as many attributes of the matched data collections as the data providers
+          offer. The filters in the panel are grouped into semantically related <em>facets</em> depending on the data. You can view the list of
+          allowed facets by clicking the <b>Edit Facets</b> button at the top of the panel; select the desired facets by clicking the check-boxes in
+          the pop-up window (middle) and clicking the <b>Apply</b> button. Note that not all facets are displayed or even available by default.</p>
+
+          <p>There are three types of filters:</p>
+
+          <ul>
+            <li>Discrete filters - Used for text and most integer-based facets (columns of data). A filter can be applied by clicking the check-box
+            next to the desired facet values.</li>
+
+            <li style="list-style: none; display: inline">
+              <ul>
+                <li>A special discrete filter can exist when the data rows are selectable, allowing the user to choose whether to filter selected or
+                unselected rows.</li>
+              </ul>
+            </li>
+
+            <li>Ranged sliders - Used for continuous numeric data, some integer data, and dates. Each facet presents the user with a histogram
+            approximating the distribution of the data, a 2 handled slider for constraining endpoints, and a min/max box displaying the current
+            endpoints, which also allows a user to manually type the desired endpoints. Some numeric facets are known to have certain values that
+            represent a null or undefined entry, and the facet will alert the user that it is ignoring such a value.</li>
+
+            <li>A search box, which allows <a href="http://en.wikipedia.org/wiki/Regular_expression">regular expression</a> matching by 
+            searching all records and columns of the data (even ones not visible in the
+            display grid).</li>
+          </ul>
+
+          <table cellpadding="2" width="700">
+            <tbody>
+              <tr>
+                <td><img src="../../../Shared/help/filtered_search.png" alt="Filtered Search" align="middle" border="0" /></td>
+              </tr>
+
+              <tr>
+                <td colspan="3"><font size="-1">Fig. 5&mdash; The search has been filtered for rows where the Mission is "HLA" with RA between the
+                given values. This updates the counts of the other facet values based on how many other rows can be selected. For example, 29 of the
+                original 58 rows where the Product Type was "image" intersect with the currently applied filters, while the "spectrum" value is
+                grayed out because it cannot possibly intersect with the current selection. Regular expressions may also be used as filters by
+                entering a regular expression in the dialog box near the top of the panel. In the numeric facet above, the data was recognized as RA
+                coordinates and is presented in these boxes in sexagesimal format, but a user may define his or her own bounds using sexagesimal or
+                degrees.</font></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2><a name="Download" id="Download"></a> Retrieving Results</h2>
+
+          <p>A core capability of the MAST Portal is to enable users to download resources, or to direct them to other desktop applications for
+          analysis. As used here, <em>resources</em> is a rather generic term used to refer to individual data files (images, tables, and the like),
+          or collections of them, or to services that provide data upon request. Any of these resources may be of use scientifically, and the Portal
+          has simple mechanisms for retrieving them.</p>
+
+          <h3>Images</h3>
+
+          <p>Continuing with the example shown in Fig. 4 (details of a M57 image), clicking the image will bring up a large-scale version of the
+          image using the HLA's FITS viewer.</p>
+
+          <h3>Tables</h3>
+
+          <p>Downloading catalogs or tables is somewhat simpler than downloading images, in that any table displayed in the results panel may be
+          saved with the following steps:</p>
+
+          <ol>
+            <li>click the <b>Export Table As...</b> button</li>
+
+            <li>select the output format and other parameters from the pop-up panel</li>
+
+            <li>click the <b>Export</b> button</li>
+          </ol>
+
+          <h3>Broadcasting Data via SAMP</h3>
+
+          <p>Many popular applications, including <a href="http://www.star.bris.ac.uk/~mbt/topcat/">TOPCAT</a> and <a href=
+          "http://hea-www.harvard.edu/RD/ds9/">DS9</a>, have the ability to broadcast/receive in-memory data to another desktop application that is similarly
+          enabled. The Portal can also broadcast a table, via the Simple Application Messaging Protocol (SAMP). The procedure is exactly the same as
+          illustrated in Fig. 8 for downloading a table, except that instead of clicking <b>Export</b> as the last step, click the <b>Broadcast</b>
+          button. Note that at least one other SAMP-enabled application, such as <a href="http://www.star.bris.ac.uk/~mbt/topcat/">TOPCAT</a> or
+          <a href="http://aladin.u-strasbg.fr/">Aladin</a> must already be running in order for data to be transferred anywhere. When a table is
+          broadcast (in this case, from the Portal to TOPCAT) for the first time during a session a security notification may appear.</p>
+
+          <p>Finally, note that the Portal does not currently support receiving broadcasts of data from other applications.</p>
+
+          <h3>Using a Download Basket</h3>
+
+          <p>For MAST data, the rows of the grid are only a summary of the data products available for download. Select the rows you wish to
+          investigate by checking the box on the far left of the row, and add the associated products to the download basket by clicking the orange
+          plus sign in the grid. This pops up a window containing the current download basket, which itself is filterable like any other grid. Most
+          summaries represent many actual data products, so each product gets its own row in the grid. These can then be then be further selected and
+          downloaded using the supplied button.</p>
+
+          <table cellpadding="2" width="700">
+            <tbody>
+              <tr>
+                <td><img src="../../../Shared/help/addtobasket.png" alt="Adding to DownloadBasket" align="middle" border="0" /></td>
+              </tr>
+
+              <tr>
+                <td colspan="3"><font size="-1">Fig. 6&mdash; Adding the products associated with a record to the download basket. Note that the 3
+                rows translated into 7 actual data products - frequently a single row can translate into hundreds of products.</font></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2><a name="AstroView" id="AstroView"></a>The AstroView Tool</h2>
+
+          <p>The AstroView Tool is an all-sky-viewing component. It was developed as a standalone application, but was later
+          afforded a means of interaction with the Portal. It uses the same positional search and name- resolving capabilities as the Portal, but
+          instead of displaying tabular results and image files it presents a view of the sky from Earth. This view can be panned, zoomed and
+          searched, and the imagery displayed can be changed based on the survey selected using the tool.</p>
+
+          <p>One interaction between the Portal and AstroView is the notion of projecting image "footprints", i.e. the detector shape, size and
+          orientation for a given image, onto a background sky map from all-sky survey images. 
+          Selected rows in the grid are highlighted in this tool. Clicking footprints or
+          markers in AstroView will not only highlight them, but will select them in the grid and bubble them to the top. Selecting is somewhat
+          inexact by design - many footprints overlay each other exactly, so many rows may be highlighted in the grid with a single click. Figure 7
+          demonstrates footprints and highlighting.</p>
+
+          <p>The AstroView controls listed for each grid contain 3 components:
+            <ul>
+                <li>Display - A toggle/drop-down menu indicating which footprints are to be displayed</li>
+                <ul>
+                    <li>None - show no footprints</li>
+                    <li>All - show all footprints. Unselected footprints will be the color of the swatch, and selected footprints will appear 
+                    slightly highlighted.</li>
+                    <li>Selected - show only footprints that are selected in the grid. This acts as a filter for the tool, and can help viewing a 
+                    crowded area.</li>
+                </ul>
+                <li>Color - a swatch indicating the color of footprints associated with this search. Each search/grid may have its own color to 
+                allow a user to distinguish different grid interactions.</li>
+                <li>Palette button - allows user to pick the color for this grid's footprints.</li>
+            </ul>
+        </p>
+
+          <table cellpadding="2" width="700">
+            <tbody>
+              <tr>
+                <td><img src="../../../Shared/help/astroview.png" alt="Filtered Search" align="middle" border="0" /></td>
+              </tr>
+
+              <tr>
+                <td colspan="3"><font size="-1">Fig. 7&mdash; Footprints from were selected in the AstroView component, so they were highlighted in
+                AstroView, then selected and bubbled to the top of the grid.</font></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2><a name="Caveats" id="Caveats"></a>Tips &amp; Notes</h2>
+
+          <p>When <b>formulating a search</b>, note the following:</p>
+
+          <ul>
+            <li>Leading zeros are ignored in the name. For example, M5 returns results for object Messier 005.</li>
+
+            <li>Object names are not case-sensitive, and spaces between the characters (e.g. M51 and M 51) are ignored unless the space indicates a
+            real character in the name.</li>
+
+            <li>If an object name is incomplete the name resolvers from <a href="http://ned.ipac.caltech.edu">NED</a> and 
+            <a href="http://simbad.u-strasbg.fr/simbad/">SIMBAD</a> return the closest match. This can lead to surprising results
+            however.</li>
+
+            <li>All coordinates are interpreted as J2000.</li>
+
+            <li>Maximum search radius is limited on a collection-by-collection basis.</li>
+
+            <li>Queries are currently limited to a single object or position. However, multiple queries may be submitted sequentially, even if one or
+            more queries are still executing.</li>
+          </ul>
+
+          <p>When <b>downloading an image</b>, note the following:</p>
+
+          <ul>
+            <li>Large images may take a while to download. Download progress can only be monitored using browser tools.</li>
+
+            <li>Downloading is disabled for data products that are embargoed by the provider. It may not be obvious when this happens, except that no
+            file will be downloaded to your computer.</li>
+          </ul>
+
+          <p>When <b>downloading a table</b>, note the following:</p>
+
+          <ul>
+            <li>The <b>Export Table As...</b> operation refers to the currently visible table, and <b>not</b> to a selected row within the
+            table.</li>
+          </ul>
+
+          <p>When <b>broadcasting a table</b>, note the following:</p>
+
+          <ul>
+            <li>At least one other SAMP-enabled application, such as <a href="http://www.star.bris.ac.uk/~mbt/topcat/">TOPCAT</a> or <a href=
+            "http://aladin.u-strasbg.fr/">Aladin</a> must already be running in order for data to be sent anywhere.</li>
+
+            <li>The MAST Portal cannot currently receive data sent from other applications.</li>
+          </ul>
+
+          <p>Tabs of search results are not saved between sessions; once the application has been abandoned, returning to it will not bring up
+          previously searched objects.</p>
+
+          <h2><a name="Demo" id="Demo"></a>Video Demo</h2><iframe width="560" height="315" src="http://www.youtube.com/embed/EDjRnnKG9T8" frameborder="0" allowfullscreen></iframe>
+
+          <hr />
+          To help improve the MAST Portal, please send feedback to <a href="mailto:archive@stsci.edu?subject=Portal%20Feedback">The MAST Portal</a>.
+            Please note: the above link may cause you to leave the current page if your browser does not have a default email client setup! In this case, please
+            send email to archive[at]stsci.edu with the subject "Portal Feedback".
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

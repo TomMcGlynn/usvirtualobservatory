@@ -1,0 +1,1 @@
+ls *.bat | awk '{print "sed \"s/VAO/MAST/g\" " $1 " > /cygdrive/e/web/MAST/deploy/" $1}' > doSed.bsh

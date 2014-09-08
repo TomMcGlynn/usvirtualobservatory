@@ -1,0 +1,5 @@
+sed "s/VAO/MAST/g" extractIISVAOConfig.bat > /cygdrive/e/web/MAST/deploy/extractIISVAOConfig.bat
+sed "s/VAO/MAST/g" robocopyFromMASTTESTIISVM1ToMASTTESTIISVM2.bat > /cygdrive/e/web/MAST/deploy/robocopyFromMASTTESTIISVM1ToMASTTESTIISVM2.bat
+sed "s/VAO/MAST/g" robocopyFromMASTTESTIISVM1ToOPS.bat > /cygdrive/e/web/MAST/deploy/robocopyFromMASTTESTIISVM1ToOPS.bat
+sed "s/VAO/MAST/g" syncIISVAOConfigToMASTOPSIISVM1And2.bat > /cygdrive/e/web/MAST/deploy/syncIISVAOConfigToMASTOPSIISVM1And2.bat
+sed "s/VAO/MAST/g" syncIISVAOConfigToMASTTESTIISVM2.bat > /cygdrive/e/web/MAST/deploy/syncIISVAOConfigToMASTTESTIISVM2.bat

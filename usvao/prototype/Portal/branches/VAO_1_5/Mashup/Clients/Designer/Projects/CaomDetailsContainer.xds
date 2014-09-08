@@ -1,0 +1,304 @@
+{
+    "name": "CaomDetailsContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.3",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen2182",
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 500,
+                "itemId": "caomDetailsContainer",
+                "width": null,
+                "layout": "border",
+                "designer|userClassName": "CaomDetailsContainer"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen2428",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "hideMode": null,
+                        "itemId": "summaryPanel",
+                        "autoScroll": true,
+                        "layout": null,
+                        "collapsed": false,
+                        "title": "Summary",
+                        "designer|userClassName": "MyPanel",
+                        "layout|region": "center"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen1952",
+                            "type": "toolbar",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "detailsToolbar",
+                                "designer|userClassName": "MyToolbar",
+                                "dock": "top"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen2453",
+                                    "type": "button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "downloadButton",
+                                        "icon": "../Shared/img/savas_24x24.png",
+                                        "scale": "medium",
+                                        "text": null,
+                                        "tooltip": "Download Associated Data Now",
+                                        "designer|userClassName": "MyButton",
+                                        "layout|flex": null
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen3038",
+                                    "type": "tbseparator",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "separator1",
+                                        "designer|userClassName": "MySeparator",
+                                        "layout|flex": null
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen2647",
+                                    "type": "button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "addToBasketButton",
+                                        "icon": "../Shared/img/add_basket.png",
+                                        "scale": "medium",
+                                        "text": null,
+                                        "tooltip": "Add Associated Files to Download Basket",
+                                        "designer|userClassName": "MyButton1",
+                                        "layout|flex": null
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen3209",
+                                    "type": "tbseparator",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "separator2",
+                                        "designer|userClassName": "MySeparator1",
+                                        "layout|flex": null
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen2842",
+                                    "type": "button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "searchVoButton",
+                                        "icon": "../Shared/img/srchvo_24x24.png",
+                                        "scale": "medium",
+                                        "text": null,
+                                        "tooltip": "Search the VO at this Position",
+                                        "designer|userClassName": "MyButton2",
+                                        "layout|flex": null
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen3995",
+                                    "type": "tbseparator",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "separator3",
+                                        "designer|userClassName": "MySeparator2",
+                                        "layout|flex": null
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen6384",
+                                    "type": "button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "moreButton",
+                                        "icon": "../Shared/img/opnbr_24x24.png",
+                                        "scale": "medium",
+                                        "text": null,
+                                        "tooltip": "View External Info Page",
+                                        "designer|userClassName": "MyButton4",
+                                        "layout|flex": null
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen6585",
+                                    "type": "tbseparator",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "separator4",
+                                        "designer|userClassName": "MySeparator3",
+                                        "layout|flex": null
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen4181",
+                                    "type": "button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "interactiveDisplayButton",
+                                        "icon": "../Shared/img/zoomi_24x24.png",
+                                        "scale": "medium",
+                                        "text": null,
+                                        "tooltip": "View in Interactive Display",
+                                        "designer|userClassName": "MyButton3",
+                                        "layout|flex": null
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen11113",
+                            "type": "container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 50,
+                                "hideMode": null,
+                                "itemId": "titleContainer",
+                                "margin": "10 0 0 0",
+                                "autoScroll": null,
+                                "layout": "anchor",
+                                "designer|userClassName": "MyContainer2"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen3297",
+                            "type": "container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 260,
+                                "itemId": "imageContainer",
+                                "margin": "10 0 0 0",
+                                "padding": 2,
+                                "width": null,
+                                "maintainFlex": true,
+                                "layout": "anchor",
+                                "designer|userClassName": "MyContainer1"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen11559",
+                            "type": "container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 170,
+                                "hideMode": null,
+                                "itemId": "summaryContainer",
+                                "margin": "10 5 0 5",
+                                "width": null,
+                                "autoScroll": null,
+                                "layout": "vbox",
+                                "designer|userClassName": "MyContainer3",
+                                "container|align": "center",
+                                "container|pack": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen2544",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 250,
+                        "hideMode": null,
+                        "itemId": "detailsPanel",
+                        "layout": "fit",
+                        "animCollapse": null,
+                        "collapseDirection": null,
+                        "collapsed": true,
+                        "collapsible": true,
+                        "frameHeader": null,
+                        "title": "Expand for Details",
+                        "designer|userClassName": "MyPanel1",
+                        "layout|floatable": false,
+                        "layout|region": "south"
+                    }
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}
