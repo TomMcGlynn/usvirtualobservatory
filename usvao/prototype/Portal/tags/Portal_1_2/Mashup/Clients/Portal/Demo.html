@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Portal Component Demo</title>
+    
+    <!-- Initialize ExtJS and our local libraries. -->
+    <script type="text/javascript" src="../Shared/InitializeJavaScript.js"></script>
+
+    <!-- Initialize this application. 
+    <link rel="stylesheet" type="text/css" href="../Shared/css/customStyle1.css" />-->
+    <link rel="stylesheet" type="text/css" href="./customStyles.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="./FilterRow.css" />-->
+    <script type="text/javascript" src="DemoApp.js"></script>
+    <script type="text/javascript" src="filterrow4.js"></script>
+    <script type="text/javascript" src="../pagebus/pagebus.js"></script>
+    <script type="text/javascript" src="../pagebus/pagebusAstroView.js"></script>
+    <script type="text/javascript" src="../swfobject/swfobject.js"></script>
+    <script type="text/javascript" src="Layout.js"></script>
+    <script type="text/javascript" src="Portal.js"></script>
+    
+    <!-- Start this application. -->
+    <script type="text/javascript">
+        Ext.onReady(DemoApp.Portal.createAndRun, DemoApp.Portal, {mainDiv: 'demo-div'});
+    </script>
+</head>
+<body>
+    <div id="demo-div"></div>
+</body>
+</html>

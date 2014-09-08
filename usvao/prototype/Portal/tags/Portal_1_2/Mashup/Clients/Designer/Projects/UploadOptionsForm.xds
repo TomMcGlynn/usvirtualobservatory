@@ -1,0 +1,452 @@
+{
+    "name": "upload form.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Exports",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpd"
+    },
+    "xdsVersion": "1.2.2",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1666",
+            "type": "window",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 350,
+                "id": "",
+                "itemId": "uploadOptionsForm",
+                "width": 450,
+                "bodyPadding": 10,
+                "title": "Upload Options",
+                "designer|userClassName": "UploadOptionsForm"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen29189",
+                    "type": "radiogroup",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": null,
+                        "itemId": "actionRadioGroup",
+                        "layout": "column",
+                        "fieldLabel": "Action",
+                        "designer|userClassName": "MyRadioGroup"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen29895",
+                            "type": "radiofield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "",
+                                "itemId": "viewSavedDataRadio",
+                                "width": 150,
+                                "name": "actionRadio",
+                                "fieldLabel": null,
+                                "boxLabel": "View Saved Data",
+                                "designer|userClassName": "MyRadio2"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen29208",
+                            "type": "radiofield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "",
+                                "itemId": "convertFileFormatRadio",
+                                "width": 150,
+                                "name": "actionRadio",
+                                "fieldLabel": null,
+                                "boxLabel": "Convert File Format",
+                                "designer|userClassName": "MyRadio1"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen29200",
+                            "type": "radiofield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "hidden": true,
+                                "id": "",
+                                "itemId": "uploadToServerRadio",
+                                "width": 150,
+                                "name": "actionRadio",
+                                "fieldLabel": null,
+                                "boxLabel": "Upload to Server",
+                                "designer|userClassName": "MyRadio"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen30202",
+                            "type": "radiofield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "hidden": true,
+                                "id": "",
+                                "itemId": "searchTargetsRadio",
+                                "width": 150,
+                                "name": "actionRadio",
+                                "fieldLabel": null,
+                                "boxLabel": "Search List of Targets",
+                                "designer|userClassName": "MyRadio4"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen25839",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 200,
+                        "id": "fileFormatPanel",
+                        "layout": "hbox",
+                        "title": null,
+                        "designer|userClassName": "MyPanel",
+                        "container|align": "stretch"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen21786",
+                            "type": "panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": null,
+                                "id": "",
+                                "itemId": "fromFilePanel",
+                                "width": 220,
+                                "layout": "column",
+                                "title": "From",
+                                "designer|userClassName": "MyPanel3"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen21791",
+                                    "type": "radiogroup",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "height": null,
+                                        "id": "",
+                                        "itemId": "fromRadioGroup",
+                                        "width": 220,
+                                        "layout": "column",
+                                        "fieldLabel": null,
+                                        "designer|userClassName": "MyRadioGroup"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen21797",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "id": "",
+                                                "itemId": "fromCSVRadio",
+                                                "width": 200,
+                                                "name": "fromRadio",
+                                                "fieldLabel": null,
+                                                "boxLabel": "Comma-Separated Values (.csv)",
+                                                "designer|userClassName": "MyRadio"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen21802",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "id": "",
+                                                "itemId": "fromVOTRadio",
+                                                "width": 200,
+                                                "name": "fromRadio",
+                                                "fieldLabel": null,
+                                                "boxLabel": "VO Table (.xml)",
+                                                "designer|userClassName": "MyRadio1"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen6703",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "disabled": true,
+                                                "hidden": true,
+                                                "id": "",
+                                                "itemId": "fromTSVRadio",
+                                                "name": "fromRadio",
+                                                "fieldLabel": null,
+                                                "boxLabel": "Tab-Separated Values (.tsv)",
+                                                "designer|userClassName": "MyRadio14"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen21807",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "hidden": true,
+                                                "id": "",
+                                                "itemId": "fromXLSRadio",
+                                                "width": 200,
+                                                "name": "fromRadio",
+                                                "fieldLabel": null,
+                                                "boxLabel": "Excel Spreadsheet (.xls)",
+                                                "designer|userClassName": "MyRadio4"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen21812",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "hidden": true,
+                                                "id": "",
+                                                "itemId": null,
+                                                "width": 200,
+                                                "name": "fromRadio",
+                                                "fieldLabel": null,
+                                                "boxLabel": "HTML file (.html)",
+                                                "designer|userClassName": "MyRadio5"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen21817",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "hidden": true,
+                                                "id": "",
+                                                "itemId": null,
+                                                "width": 200,
+                                                "name": "fromRadio",
+                                                "fieldLabel": null,
+                                                "boxLabel": "Generic XML (.xml)",
+                                                "designer|userClassName": "MyRadio2"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen12497",
+                            "type": "panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": null,
+                                "id": "",
+                                "itemId": "toFilePanel",
+                                "width": 220,
+                                "layout": "column",
+                                "title": "To",
+                                "designer|userClassName": "MyPanel3"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen12504",
+                                    "type": "radiogroup",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "id": "",
+                                        "itemId": "toRadioGroup",
+                                        "width": 220,
+                                        "layout": "column",
+                                        "fieldLabel": null,
+                                        "designer|userClassName": "MyRadioGroup"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen12510",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "id": "",
+                                                "itemId": "toCSVRadio",
+                                                "width": 200,
+                                                "name": "toRadio",
+                                                "fieldLabel": null,
+                                                "boxLabel": "Comma-Separated Values (.csv)",
+                                                "designer|userClassName": "MyRadio"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen12515",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "id": "",
+                                                "itemId": "toVOTRadio",
+                                                "width": 200,
+                                                "name": "toRadio",
+                                                "fieldLabel": null,
+                                                "boxLabel": "VO Table (.xml)",
+                                                "designer|userClassName": "MyRadio1"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen7440",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "disabled": true,
+                                                "id": "",
+                                                "itemId": "toTSVRadio",
+                                                "name": "toRadio",
+                                                "fieldLabel": null,
+                                                "boxLabel": "Tab-Separated Values (.tsv)",
+                                                "designer|userClassName": "MyRadio15"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen12520",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "id": "",
+                                                "itemId": "toXLSRadio",
+                                                "width": 200,
+                                                "name": "toRadio",
+                                                "fieldLabel": null,
+                                                "boxLabel": "Excel Spreadsheet (.xls)",
+                                                "designer|userClassName": "MyRadio4"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen12525",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "id": "",
+                                                "itemId": "toHTMLRadio",
+                                                "width": 200,
+                                                "name": "toRadio",
+                                                "fieldLabel": null,
+                                                "boxLabel": "HTML file (.html)",
+                                                "checked": true,
+                                                "designer|userClassName": "MyRadio5"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen12530",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "id": "",
+                                                "itemId": "toXMLRadio",
+                                                "width": 200,
+                                                "name": "toRadio",
+                                                "fieldLabel": null,
+                                                "boxLabel": "Generic XML (.xml)",
+                                                "designer|userClassName": "MyRadio2"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

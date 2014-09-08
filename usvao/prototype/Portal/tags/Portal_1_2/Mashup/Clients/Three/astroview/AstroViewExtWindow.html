@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>AstroViewExt</title>
+    <script src="../../Shared/InitializeJavaScript.js"></script>
+	<script src="../build/Three.js"></script>
+	
+	<script src="AstroBasicView.js"></script>
+	<script src="Stats.js"></script>
+	<script src="DiamondSphere.js"></script>
+	<script src="DiamondMesh.js"></script>
+	<script src="DiamondGeometry.js"></script>
+	<script src="CameraController.js"></script>
+	<script src="FootprintLayer.js"></script>
+	<script src="CatalogLayer.js"></script>
+    
+	<style>
+		.astroview .x-container {background:red}
+	</style>
+	
+    <!-- Start this application. -->
+    <script type="text/javascript">
+	  
+		Ext.onReady(function() {
+		    loadAstroView();  
+		});
+		
+		function loadAstroView()
+		{ 
+			var win = Ext.widget('window', {
+				title: "AstroView",
+				layout: 'fit',
+				width: 1200,
+				height: 600,
+				x: 20,
+				y: 20,
+				resizable: true,
+				items: {
+					id: "itemAstroView",
+					xtype: 'container',
+					itemCls: 'astroview'
+				}
+			});
+			win.show();
+			var item = Ext.get('itemAstroView');
+			var dom = item.dom;
+			var avs = new ASTROVIEW.AstroBasicView(dom);
+		};
+		
+		function onAstroViewEvent(msg)
+		{
+			alert("onAstroViewEvent:" + msg);
+		}
+
+	</script>
+
+</head>
+
+</html>
