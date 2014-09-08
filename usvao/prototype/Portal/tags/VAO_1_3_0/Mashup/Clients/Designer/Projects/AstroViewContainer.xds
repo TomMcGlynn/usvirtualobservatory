@@ -1,0 +1,40 @@
+{
+    "name": "AstroViewContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.2",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1666",
+            "type": "panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": null,
+                "itemId": "astroViewContainer",
+                "width": null,
+                "layout": "fit",
+                "animCollapse": false,
+                "collapsible": true,
+                "title": "AstroView",
+                "designer|userClassName": "AstroViewContainer"
+            }
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

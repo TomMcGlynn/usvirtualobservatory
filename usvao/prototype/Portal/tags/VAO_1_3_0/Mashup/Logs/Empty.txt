@@ -1,0 +1,2 @@
+This is Empty Placeholder file so that Logs Directory will be deployed.
+

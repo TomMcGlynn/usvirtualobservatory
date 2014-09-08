@@ -1,0 +1,83 @@
+{
+    "name": "ImportContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.1.0/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.2",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1666",
+            "type": "window",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 130,
+                "id": "",
+                "itemId": "importForm",
+                "width": 450,
+                "layout": "fit",
+                "bodyPadding": null,
+                "closeAction": "hide",
+                "title": "Import Table",
+                "designer|userClassName": "ImportTableContainer"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen7890",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "importPanel",
+                        "bodyPadding": 10,
+                        "title": null,
+                        "designer|userClassName": "MyPanel",
+                        "layout|flex": 1
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen8215",
+                            "type": "combobox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "formatPulldown",
+                                "fieldLabel": "Format",
+                                "labelWidth": 50,
+                                "allowBlank": false,
+                                "editable": false,
+                                "displayField": "displayField",
+                                "forceSelection": true,
+                                "queryMode": "local",
+                                "store": "FormatStore",
+                                "valueField": "valueField",
+                                "designer|userClassName": "MyComboBox"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

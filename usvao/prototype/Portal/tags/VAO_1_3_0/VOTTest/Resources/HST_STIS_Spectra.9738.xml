@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.1" xmlns:sed="http://www.ivoa.net/xml/SedModel/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ivoa.net/xml/VOTable/v1.1" xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.1 http://www.ivoa.net/xml/VOTable/VOTable-1.1.xsd">
+<DESCRIPTION>
+  Mukulski Archive for Space Telescopes (MAST)    archive.stsci.edu
+  send questions to: archive@stsci.edu
+</DESCRIPTION>
+<RESOURCE type="results">
+<INFO name="QUERY_STATUS" value="OK"/>
+<INFO name="SERVICE_PROTOCOL" value="1.02">SSAP</INFO>
+<!-- <DESCRIPTION>Input Parameters:</DESCRIPTION> -->
+<INFO name="id" value="STIS"/>
+<!-- <DESCRIPTION>Search position POS in form ra,dec (decimal deg)</DESCRIPTION> -->
+<INFO name="pos" value="148.88822,69.06529"/>
+<INFO name="requestid" value="DS1334804703355"/>
+<INFO name="max_records" value="2000"/>
+<INFO name="collection" value="HST/STIS"/>
+<INFO name="RA" value="148.88822"/>
+<INFO name="DEC" value="69.06529"/>
+<!-- <DESCRIPTION>Search radius used in query (arcmin)</DESCRIPTION> -->
+<INFO name="sr" value="0.05"/>
+<!-- <DESCRIPTION>Search diameter SIZE (decimal deg)</DESCRIPTION> -->
+<INFO name="size" value="0.1"/>
+<INFO name="mission" value="ssap"/>
+<INFO name="found_rows" value="38"/>
+
+<TABLE name="SSAP">
+<DESCRIPTION>MAST SSAP Search: 38 row(s) returned!</DESCRIPTION>
+<PARAM ID="voclass" name="voclass" ucd="meta.note" utype="ssa:dataset.datamodel" value="Spectrum-1.0"> 
+<DESCRIPTION>VO Data model name and version</DESCRIPTION>
+</PARAM>
+<PARAM ID="vopub" name="vopub" datatype="char" arraysize="*" ucd="meta.id" utype="ssa:curation.publisher" value="MAST"> 
+   <DESCRIPTION>VO Publisher</DESCRIPTION>
+</PARAM>
+<PARAM ID="cretype" name="cretype" datatype="char" arraysize="*" utype="ssa:dataid.creationtype" value="archival"> 
+   <DESCRIPTION>Dataset Creation Type</DESCRIPTION>
+</PARAM>
+<PARAM ID="vologo" name="vologo" datatype="char" arraysize="*" utype="ssa:dataid.logo" value="http://archive.stsci.edu/images/100.mastlogo.gif"> 
+  <DESCRIPTION>MAST logo</DESCRIPTION>
+</PARAM>
+<PARAM ID="vopubid" name="vopubid" datatype="char" arraysize="*" utype="ssa:curation.publisherid" value="ivo://mast.stsci.edu">
+  <DESCRIPTION>VO Publisher ID</DESCRIPTION>
+</PARAM>
+<PARAM ID="contact" name="contact" datatype="char" arraysize="*" utype="ssa:curation.contact" value="archive help desk">
+   <DESCRIPTION>Contact</DESCRIPTION>
+</PARAM>
+<PARAM ID="email" name="email" datatype="char" arraysize="*" utype="ssa:curation.contactemail" value="archive@stsci.edu">
+   <DESCRIPTION>Contact email</DESCRIPTION>
+</PARAM>
+<PARAM ID="vorights" name="vorights" datatype="char" arraysize="*" utype="ssa:curation.rights" value="public">
+   <DESCRIPTION>VO Version</DESCRIPTION>
+</PARAM>
+<PARAM ID="mjdref" name="mjdref" datatype="float" utype="ssa:coordsys.timeframe.zero" value="0.0">
+  <DESCRIPTION>Time Offset</DESCRIPTION>
+</PARAM>
+<PARAM ID="waveucd" name="waveucd" datatype="char" arraysize="*" utype="ssa:char.spectralaxis.ucd" value="em.wl">
+  <DESCRIPTION>Spectral axis UCD</DESCRIPTION>
+</PARAM><FIELD name="ra_obs" datatype="double" ucd="pos.eq.ra;meta.main" utype="ssa:char.spatialaxis.coverage.ra" unit="deg"><DESCRIPTION>Right Ascension (J2000)
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="dec_obs" datatype="double" ucd="pos.eq.dec;meta.main" utype="ssa:char.spatialaxis.coverage.dec" unit="deg"><DESCRIPTION>Declination (J2000)
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="coord_targ" datatype="double" ucd="pos.eq;src" utype="ssa:target.pos" unit="deg" arraysize="2"><DESCRIPTION>RA and Dec of target
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="coord_obs" datatype="double" ucd="pos.eq" utype="ssa:char.spatialaxis.coverage.location.value" unit="deg" arraysize="2"><DESCRIPTION>RA and Dec of observation
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="url" datatype="char" ucd="meta.ref.url" utype="ssa:access.reference" arraysize="*"><DESCRIPTION>URL of spectrum file
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="object" datatype="char" ucd="meta.id;src" utype="ssa:target.name" arraysize="*"><DESCRIPTION>Target name
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="datalen" datatype="long" ucd="meta.number" utype="ssa:dataset.length"><DESCRIPTION>Number of data points
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="exposure" datatype="double" ucd="time.duration;obs.exposure" utype="ssa:char.timeaxis.coverage.bounds.extent" unit="s"><DESCRIPTION>Exposure time
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="date_obs" datatype="char" ucd="time.start;obs" arraysize="*"><DESCRIPTION>Observation start date
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="tstart" datatype="double" ucd="time.start;obs.exposure" utype="ssa:char.timeaxis.coverage.bounds.start" unit="d"><DESCRIPTION>Time of start of exposure in MJD
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="tmid" datatype="double" ucd="time.epoch" utype="ssa:char.timeaxis.coverage.location.value" unit="d"><DESCRIPTION>midpoint of exposure in MJD
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="tstop" datatype="double" ucd="time.end;obs.exposure" utype="ssa:char.timeaxis.coverage.bounds.stop" unit="d"><DESCRIPTION>Time of end of exposure (MJD)
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="format" datatype="char" ucd="meta.code.mime" utype="ssa:access.format" arraysize="*"><DESCRIPTION>Mime type of file
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="radecsys" datatype="char" ucd="pos.frame" utype="ssa:coordsys.spaceframe.name" arraysize="*"><DESCRIPTION>Coordinate system reference frame
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="equinox" datatype="double" ucd="time.equinox" utype="ssa:coordsys.spaceframe.equinox"><DESCRIPTION>Epoch
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="preview" datatype="char" ucd="meta.id.assoc" arraysize="*"><DESCRIPTION>Indicates a preview is available
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="representative" datatype="char" ucd="meta.code.flag" arraysize="*"><DESCRIPTION>Indicates a scrapbook selection
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="min_wavelength" datatype="double" ucd="em.wl;stat.min" utype="ssa:char.spectralaxis.coverage.bounds.start" unit="angstrom"><DESCRIPTION>Minimum wavelength in spectrum
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="max_wavelength" datatype="double" ucd="em.wl;stat.max" utype="ssa:char.spectralaxis.coverage.bounds.stop" unit="angstrom"><DESCRIPTION>Maximum wavelength in spectrum
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="title" datatype="char" ucd="meta.title;meta.dataset" utype="ssa:dataid.title" arraysize="*"><DESCRIPTION>data set name and target name
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="timesys" datatype="char" ucd="time.scale" utype="ssa:coordsys.timeframe.name" arraysize="*"><DESCRIPTION>time reference frame
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="specsys" datatype="char" ucd="meta.ref;spec" utype="ssa:coordsys.spectralframe.refpos" arraysize="*"><DESCRIPTION>spectrum reference frame
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="vover" datatype="double" ucd="meta.curation;meta.version" utype="ssa:curation.version"><DESCRIPTION>version number
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="vodate" datatype="char" ucd="meta.curation;time" utype="ssa:curation.date" arraysize="*"><DESCRIPTION>Date of VO file creation?
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="author" datatype="char" ucd="obs.observer" utype="ssa:dataid.creator" arraysize="*"><DESCRIPTION>Data creator
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="collection" datatype="char" ucd="instr.obsty;instr" utype="ssa:dataid.collection" arraysize="*"><DESCRIPTION>Mission/instrument
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="ds_ident" datatype="char" ucd="meta.ref.ivorn" utype="ssa:dataid.datasetid" arraysize="*"><DESCRIPTION>data set identifier (using format approved by ADEC)
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="cr_ident" datatype="char" ucd="meta.id;meta.dataset" utype="ssa:dataid.creatordid" arraysize="*"><DESCRIPTION>Internal data set ID
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="date" datatype="char" ucd="time.creation" utype="ssa:dataid.date" arraysize="*"><DESCRIPTION>Original Curation Date
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="version" datatype="char" ucd="meta.version;meta.file" utype="ssa:dataid.version" arraysize="*"><DESCRIPTION>Verion of VO file
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="instrume" datatype="char" ucd="instr.obsty" utype="ssa:dataid.instrument" arraysize="*"><DESCRIPTION>Mission/Instrument
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="dssource" datatype="char" ucd="src.morph.param" utype="ssa:dataid.datasource" arraysize="*"><DESCRIPTION>type of data source
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="specband" datatype="char" ucd="instr.bandpass" utype="ssa:dataid.bandpass" arraysize="*"><DESCRIPTION>wavelength region
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="der_snr" datatype="double" ucd="stat.snr" utype="ssa:derived.snr"><DESCRIPTION>Derived signal to noise ratio
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="spec_val" datatype="double" ucd="em.*;instr.bandpass" utype="ssa:char.spectralaxis.coverage.location.value" unit="angstrom"><DESCRIPTION>Mean wavelength
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="spec_bw" datatype="double" ucd="instr.bandwidth" utype="ssa:char.spectralaxis.coverage.bounds.extent" unit="angstrom"><DESCRIPTION>Wavelength range (Wmax - Wmin)
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="spec_fil" datatype="double" ucd="stat.filling;em.wl" utype="ssa:char.spectralaxis.coverage.support.fill"><DESCRIPTION>actual coverage divided by total bandpass
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="spec_rp" datatype="double" ucd="spec.resolution" utype="ssa:char.spectralaxis.respower"><DESCRIPTION>Resolving Power (i.e., W divided by dW)
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="s_fov" datatype="double" ucd="instr.fov" utype="ssa:char.spatialaxis.coverage.bounds.extent" unit="deg"><DESCRIPTION>Approximate size of region in degrees (based on largest dimension of aperture)
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="aperture" datatype="char" unit="arcsec" arraysize="*"><DESCRIPTION>aperture dimensions (length x width)
+                           or just diameter
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="telescop" datatype="char" ucd="instr.tel" arraysize="*"><DESCRIPTION>Telescope
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="fluxavg" datatype="double" ucd="phot.flux.density;stat.mean" utype="ssa:char.fluxaxis.coverage.location.value" unit="erg/cm**2/s/angstrom"><DESCRIPTION>Average Flux value
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="fluxmax2" datatype="double" ucd="phot.flux.density;stat.value" unit="erg/cm**2/s/angstrom"><DESCRIPTION>98th percentile Flux value
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="min_flux" datatype="double" ucd="phot.flux.density;stat.min" utype="ssa:char.fluxaxis.coverage.bounds.start" unit="erg/cm**2/s/angstrom"><DESCRIPTION>Minimum Flux value
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="max_flux" datatype="double" ucd="phot.flux.density;stat.max" utype="ssa:char.fluxaxis.coverage.bounds.stop" unit="erg/cm**2/s/angstrom"><DESCRIPTION>Maximum Flux value
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="min_error" datatype="double" ucd="stat.error;phot.flux.density;stat.min" utype="ssa:char.fluxaxis.accuracy.coverage.bounds.start" unit="erg/cm**2/s/angstrom"><DESCRIPTION>Minimum Error Value
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="max_error" datatype="double" ucd="stat.error;phot.flux.density;stat.max" utype="ssa:char.fluxaxis.accuracy.coverage.bounds.stop" unit="erg/cm**2/s/angstrom"><DESCRIPTION>Maximum Error Value
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="filesize" datatype="double" ucd="phys.size;meta.file" utype="ssa:access.size" unit="kilobytes"><DESCRIPTION>Size of file in kilobytes
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="spectralaxisname" datatype="char" utype="ssa:char.spectralaxis.name" arraysize="*"><DESCRIPTION>Name of the spectral axis
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="fluxaxisname" datatype="char" utype="ssa:char.fluxaxis.name" arraysize="*"><DESCRIPTION>Name of flux axis
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="spectralsi" datatype="char" utype="ssa:dataset.spectralsi" arraysize="*"><DESCRIPTION>SI scale factor and dimensions for spectral coordinate (i.e. wavelengths)
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="fluxsi" datatype="char" utype="ssa:dataset.fluxsi" arraysize="*"><DESCRIPTION>SI scale factor and dimensions for fluxes
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="spectralunit" datatype="char" utype="ssa:char.spectralaxis.unit" arraysize="*"><DESCRIPTION>units used for wavelengths
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="fluxunit" datatype="char" utype="ssa:char.fluxaxis.unit" arraysize="*"><DESCRIPTION>units for flux values
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="fluxucd" datatype="char" utype="ssa:char.fluxaxis.ucd" arraysize="*"><DESCRIPTION>UCD for flux values
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="fluxcal" datatype="char" utype="ssa:char.fluxaxis.calibration" arraysize="*"><DESCRIPTION>Defines type of calibration used for flux values
+   </DESCRIPTION>
+</FIELD>
+<FIELD name="ang_sep" datatype="double"/>
+<DATA>
+<TABLEDATA>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o48z30010_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3600.000</TD><TD>1998-04-17 10:26:57</TD><TD>50920.435</TD><TD>50920.456</TD><TD>50920.477</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1120.660</TD><TD>1717.948</TD><TD>o48z30010_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o48z30010_x1d_vo.fits</TD><TD>o48z30010</TD><TD>2007-07-12 02:42:06</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV</TD><TD>1.762</TD><TD>1419.304</TD><TD>597.287</TD><TD>1.000</TD><TD>1190.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>1.421e-16</TD><TD>1.136e-15</TD><TD>-4.425e-15</TD><TD>2.626e-15</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o48z30020_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3600.000</TD><TD>1998-04-17 11:30:59</TD><TD>50920.480</TD><TD>50920.501</TD><TD>50920.522</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1120.832</TD><TD>1718.119</TD><TD>o48z30020_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o48z30020_x1d_vo.fits</TD><TD>o48z30020</TD><TD>2007-07-12 03:10:51</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV</TD><TD>2.038</TD><TD>1419.475</TD><TD>597.287</TD><TD>1.000</TD><TD>1190.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>1.482e-16</TD><TD>1.192e-15</TD><TD>-7.810e-15</TD><TD>1.935e-15</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o48z30030_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3600.000</TD><TD>1998-04-17 12:35:01</TD><TD>50920.524</TD><TD>50920.545</TD><TD>50920.566</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1120.854</TD><TD>1718.141</TD><TD>o48z30030_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o48z30030_x1d_vo.fits</TD><TD>o48z30030</TD><TD>2007-07-12 02:42:34</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV</TD><TD>2.114</TD><TD>1419.498</TD><TD>597.287</TD><TD>1.000</TD><TD>1190.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>1.508e-16</TD><TD>1.143e-15</TD><TD>-5.412e-15</TD><TD>1.697e-15</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o48z30040_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3600.000</TD><TD>1998-04-17 13:39:03</TD><TD>50920.569</TD><TD>50920.590</TD><TD>50920.610</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1120.800</TD><TD>1718.087</TD><TD>o48z30040_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o48z30040_x1d_vo.fits</TD><TD>o48z30040</TD><TD>2007-07-12 03:10:53</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV</TD><TD>1.815</TD><TD>1419.444</TD><TD>597.287</TD><TD>1.000</TD><TD>1190.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>1.356e-16</TD><TD>1.206e-15</TD><TD>-1.252e-14</TD><TD>2.034e-15</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o48z30050_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3600.000</TD><TD>1998-04-17 14:43:05</TD><TD>50920.613</TD><TD>50920.634</TD><TD>50920.655</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1120.852</TD><TD>1718.139</TD><TD>o48z30050_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o48z30050_x1d_vo.fits</TD><TD>o48z30050</TD><TD>2007-07-12 02:44:34</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV</TD><TD>2.000</TD><TD>1419.495</TD><TD>597.287</TD><TD>1.000</TD><TD>1190.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>1.530e-16</TD><TD>1.159e-15</TD><TD>-8.544e-15</TD><TD>1.511e-15</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o48z30060_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>2200.000</TD><TD>1998-04-17 15:47:07</TD><TD>50920.658</TD><TD>50920.670</TD><TD>50920.683</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1120.916</TD><TD>1718.203</TD><TD>o48z30060_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o48z30060_x1d_vo.fits</TD><TD>o48z30060</TD><TD>2007-07-12 03:11:46</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV</TD><TD>1.653</TD><TD>1419.559</TD><TD>597.287</TD><TD>1.000</TD><TD>1190.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>1.677e-16</TD><TD>1.176e-15</TD><TD>-2.246e-15</TD><TD>3.102e-15</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o48z35010_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3000.000</TD><TD>1998-02-21 15:42:05</TD><TD>50865.654</TD><TD>50865.672</TD><TD>50865.689</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1574.662</TD><TD>3158.420</TD><TD>o48z35010_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o48z35010_x1d_vo.fits</TD><TD>o48z35010</TD><TD>2007-07-12 02:45:10</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV,Near-UV</TD><TD>2.197</TD><TD>2366.541</TD><TD>1583.758</TD><TD>1.000</TD><TD>740.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>5.992e-17</TD><TD>4.697e-16</TD><TD>-4.710e-14</TD><TD>2.701e-14</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o48z35020_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3000.000</TD><TD>1998-02-21 16:36:02</TD><TD>50865.692</TD><TD>50865.709</TD><TD>50865.726</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1574.227</TD><TD>3157.984</TD><TD>o48z35020_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o48z35020_x1d_vo.fits</TD><TD>o48z35020</TD><TD>2007-07-12 03:11:47</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV,Near-UV</TD><TD>2.361</TD><TD>2366.106</TD><TD>1583.756</TD><TD>1.000</TD><TD>740.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>-3.358e-17</TD><TD>4.970e-16</TD><TD>-1.616e-13</TD><TD>3.184e-14</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o48z35030_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3300.000</TD><TD>1998-02-21 17:29:59</TD><TD>50865.729</TD><TD>50865.748</TD><TD>50865.767</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1573.980</TD><TD>3157.735</TD><TD>o48z35030_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o48z35030_x1d_vo.fits</TD><TD>o48z35030</TD><TD>2007-07-12 02:45:30</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV,Near-UV</TD><TD>2.446</TD><TD>2365.858</TD><TD>1583.755</TD><TD>1.000</TD><TD>740.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>5.595e-17</TD><TD>4.534e-16</TD><TD>-2.888e-14</TD><TD>1.302e-14</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o5i230010_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3400.000</TD><TD>2000-04-18 05:24:19</TD><TD>51652.225</TD><TD>51652.245</TD><TD>51652.265</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1119.420</TD><TD>1715.680</TD><TD>o5i230010_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o5i230010_x1d_vo.fits</TD><TD>o5i230010</TD><TD>2007-03-14 12:32:58</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV</TD><TD>1.857</TD><TD>1417.550</TD><TD>596.259</TD><TD>1.000</TD><TD>1190.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>3.459e-17</TD><TD>5.646e-16</TD><TD>-5.171e-14</TD><TD>2.649e-15</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o5i230020_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3400.000</TD><TD>2000-04-18 06:24:47</TD><TD>51652.267</TD><TD>51652.287</TD><TD>51652.307</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1119.120</TD><TD>1715.512</TD><TD>o5i230020_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o5i230020_x1d_vo.fits</TD><TD>o5i230020</TD><TD>2007-03-14 15:42:55</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV</TD><TD>1.542</TD><TD>1417.316</TD><TD>596.392</TD><TD>1.000</TD><TD>1190.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>6.782e-17</TD><TD>5.676e-16</TD><TD>-1.200e-14</TD><TD>2.768e-15</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o5i230030_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3400.000</TD><TD>2000-04-18 07:28:33</TD><TD>51652.312</TD><TD>51652.331</TD><TD>51652.351</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1118.974</TD><TD>1715.497</TD><TD>o5i230030_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o5i230030_x1d_vo.fits</TD><TD>o5i230030</TD><TD>2007-03-14 18:30:25</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV</TD><TD>1.655</TD><TD>1417.236</TD><TD>596.523</TD><TD>1.000</TD><TD>1190.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>7.819e-17</TD><TD>5.288e-16</TD><TD>-1.126e-14</TD><TD>1.537e-15</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o5i230040_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3400.000</TD><TD>2000-04-18 08:32:33</TD><TD>51652.356</TD><TD>51652.376</TD><TD>51652.395</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1118.770</TD><TD>1715.420</TD><TD>o5i230040_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o5i230040_x1d_vo.fits</TD><TD>o5i230040</TD><TD>2007-03-15 18:44:46</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV</TD><TD>1.495</TD><TD>1417.095</TD><TD>596.650</TD><TD>1.000</TD><TD>1190.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>9.002e-17</TD><TD>6.157e-16</TD><TD>-3.134e-15</TD><TD>3.246e-15</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o5i230050_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3120.000</TD><TD>2000-04-18 09:42:27</TD><TD>51652.404</TD><TD>51652.423</TD><TD>51652.441</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1118.375</TD><TD>1715.171</TD><TD>o5i230050_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o5i230050_x1d_vo.fits</TD><TD>o5i230050</TD><TD>2007-03-15 22:00:01</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV</TD><TD>1.158</TD><TD>1416.773</TD><TD>596.796</TD><TD>1.000</TD><TD>1190.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>5.642e-17</TD><TD>5.976e-16</TD><TD>-2.822e-14</TD><TD>4.418e-15</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o5i230060_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>2820.000</TD><TD>2000-04-18 10:42:55</TD><TD>51652.446</TD><TD>51652.463</TD><TD>51652.479</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1118.603</TD><TD>1715.153</TD><TD>o5i230060_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o5i230060_x1d_vo.fits</TD><TD>o5i230060</TD><TD>2007-03-16 01:19:33</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV</TD><TD>1.523</TD><TD>1416.878</TD><TD>596.550</TD><TD>1.000</TD><TD>1190.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>7.393e-17</TD><TD>4.937e-16</TD><TD>-8.635e-15</TD><TD>9.534e-16</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o5i235010_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3000.000</TD><TD>2000-04-24 08:31:42</TD><TD>51658.355</TD><TD>51658.373</TD><TD>51658.390</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1568.122</TD><TD>3151.730</TD><TD>o5i235010_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o5i235010_x1d_vo.fits</TD><TD>o5i235010</TD><TD>2007-03-16 21:57:59</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV,Near-UV</TD><TD>1.413</TD><TD>2359.926</TD><TD>1583.608</TD><TD>1.000</TD><TD>740.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>-5.199e-17</TD><TD>2.652e-16</TD><TD>-5.709e-14</TD><TD>1.051e-14</TD><TD>0.000</TD><TD>2580.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o5i235020_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3000.000</TD><TD>2000-04-24 09:59:43</TD><TD>51658.416</TD><TD>51658.434</TD><TD>51658.451</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1567.719</TD><TD>3151.517</TD><TD>o5i235020_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o5i235020_x1d_vo.fits</TD><TD>o5i235020</TD><TD>2007-03-17 00:23:10</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV,Near-UV</TD><TD>1.549</TD><TD>2359.618</TD><TD>1583.798</TD><TD>1.000</TD><TD>740.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>2.417e-16</TD><TD>4.008e-16</TD><TD>-1.228e-14</TD><TD>1.835e-13</TD><TD>0.000</TD><TD>2564.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.8542625</TD><TD>69.0205</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o5i235030_x1d_vo.fits]]></TD><TD>SN1993J-STIS</TD><TD>1024</TD><TD>3300.000</TD><TD>2000-04-24 11:36:14</TD><TD>51658.484</TD><TD>51658.503</TD><TD>51658.522</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>1567.484</TD><TD>3151.464</TD><TD>o5i235030_x1d, SN1993J-STIS</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o5i235030_x1d_vo.fits</TD><TD>o5i235030</TD><TD>2007-03-17 02:42:08</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Far-UV,Near-UV</TD><TD>1.635</TD><TD>2359.474</TD><TD>1583.981</TD><TD>1.000</TD><TD>740.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>-1.034e-16</TD><TD>2.768e-16</TD><TD>-2.116e-13</TD><TD>1.885e-14</TD><TD>0.000</TD><TD>2580.000</TD><TD>53.438</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>2.784</TD>
+</TR>
+<TR>
+<TD>148.888333333</TD><TD>69.06531</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o4qa01020_sx1_vo.fits]]></TD><TD>NGC3031</TD><TD>1024</TD><TD>3600.000</TD><TD>1999-01-26 13:35:54</TD><TD>51204.567</TD><TD>51204.588</TD><TD>51204.609</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>8275.102</TD><TD>8841.862</TD><TD>o4qa01020_sx1, NGC3031</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o4qa01020_sx1_vo.fits</TD><TD>o4qa01020</TD><TD>2007-03-13 07:26:18</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Near-IR</TD><TD>44.889</TD><TD>8558.482</TD><TD>566.760</TD><TD>1.000</TD><TD>7780.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>2.184e-15</TD><TD>2.547e-15</TD><TD>-1.365e-16</TD><TD>6.701e-15</TD><TD>0.000</TD><TD>16656.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.003</TD>
+</TR>
+<TR>
+<TD>148.888333333</TD><TD>69.06531</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o4qa01040_sx1_vo.fits]]></TD><TD>NGC3031</TD><TD>1024</TD><TD>3600.000</TD><TD>1999-01-26 14:43:04</TD><TD>51204.613</TD><TD>51204.634</TD><TD>51204.655</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>8274.993</TD><TD>8841.754</TD><TD>o4qa01040_sx1, NGC3031</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o4qa01040_sx1_vo.fits</TD><TD>o4qa01040</TD><TD>2007-03-14 02:41:04</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Near-IR</TD><TD>50.544</TD><TD>8558.374</TD><TD>566.761</TD><TD>1.000</TD><TD>7780.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>2.188e-15</TD><TD>2.561e-15</TD><TD>8.809e-18</TD><TD>6.658e-15</TD><TD>0.000</TD><TD>10240.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.003</TD>
+</TR>
+<TR>
+<TD>148.888333333</TD><TD>69.06531</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o4qa01050_sx1_vo.fits]]></TD><TD>NGC3031</TD><TD>1024</TD><TD>3600.000</TD><TD>1999-01-26 16:16:32</TD><TD>51204.678</TD><TD>51204.699</TD><TD>51204.720</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>8274.882</TD><TD>8841.644</TD><TD>o4qa01050_sx1, NGC3031</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o4qa01050_sx1_vo.fits</TD><TD>o4qa01050</TD><TD>2007-03-14 05:42:43</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Near-IR</TD><TD>51.513</TD><TD>8558.263</TD><TD>566.762</TD><TD>1.000</TD><TD>7780.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>2.182e-15</TD><TD>2.605e-15</TD><TD>1.708e-15</TD><TD>3.653e-15</TD><TD>0.000</TD><TD>10240.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.003</TD>
+</TR>
+<TR>
+<TD>148.888333333</TD><TD>69.06531</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o4qa01070_sx1_vo.fits]]></TD><TD>NGC3031</TD><TD>1024</TD><TD>3600.000</TD><TD>1999-01-26 17:52:38</TD><TD>51204.745</TD><TD>51204.766</TD><TD>51204.787</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>8274.796</TD><TD>8841.558</TD><TD>o4qa01070_sx1, NGC3031</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o4qa01070_sx1_vo.fits</TD><TD>o4qa01070</TD><TD>2007-03-14 12:09:19</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Near-IR</TD><TD>49.872</TD><TD>8558.177</TD><TD>566.763</TD><TD>1.000</TD><TD>7780.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>2.177e-15</TD><TD>2.787e-15</TD><TD>1.763e-15</TD><TD>3.566e-15</TD><TD>0.000</TD><TD>10240.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.003</TD>
+</TR>
+<TR>
+<TD>148.888333333</TD><TD>69.06531</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o4qa01080_sx1_vo.fits]]></TD><TD>NGC3031</TD><TD>1024</TD><TD>3600.000</TD><TD>1999-01-26 18:55:24</TD><TD>51204.788</TD><TD>51204.810</TD><TD>51204.831</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>8274.783</TD><TD>8841.546</TD><TD>o4qa01080_sx1, NGC3031</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o4qa01080_sx1_vo.fits</TD><TD>o4qa01080</TD><TD>2007-03-14 15:20:50</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Near-IR</TD><TD>48.032</TD><TD>8558.165</TD><TD>566.763</TD><TD>1.000</TD><TD>7780.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>2.153e-15</TD><TD>2.801e-15</TD><TD>-1.315e-14</TD><TD>3.584e-15</TD><TD>0.000</TD><TD>16400.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.003</TD>
+</TR>
+<TR>
+<TD>148.888333333</TD><TD>69.06531</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o4qa02020_sx1_vo.fits]]></TD><TD>NGC3031</TD><TD>1024</TD><TD>3600.000</TD><TD>1999-01-27 07:02:25</TD><TD>51205.293</TD><TD>51205.314</TD><TD>51205.336</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>8274.677</TD><TD>8841.440</TD><TD>o4qa02020_sx1, NGC3031</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o4qa02020_sx1_vo.fits</TD><TD>o4qa02020</TD><TD>2007-03-16 11:47:43</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Near-IR</TD><TD>43.290</TD><TD>8558.058</TD><TD>566.763</TD><TD>1.000</TD><TD>7780.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>2.164e-15</TD><TD>2.525e-15</TD><TD>3.587e-16</TD><TD>3.689e-15</TD><TD>0.000</TD><TD>10240.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.003</TD>
+</TR>
+<TR>
+<TD>148.888333333</TD><TD>69.06531</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o4qa02040_sx1_vo.fits]]></TD><TD>NGC3031</TD><TD>1024</TD><TD>3600.000</TD><TD>1999-01-27 08:29:59</TD><TD>51205.354</TD><TD>51205.375</TD><TD>51205.396</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>8274.767</TD><TD>8841.529</TD><TD>o4qa02040_sx1, NGC3031</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o4qa02040_sx1_vo.fits</TD><TD>o4qa02040</TD><TD>2007-03-16 21:40:54</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Near-IR</TD><TD>43.910</TD><TD>8558.148</TD><TD>566.762</TD><TD>1.000</TD><TD>7780.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>2.159e-15</TD><TD>2.534e-15</TD><TD>-1.881e-15</TD><TD>3.626e-15</TD><TD>0.000</TD><TD>16656.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.003</TD>
+</TR>
+<TR>
+<TD>148.888333333</TD><TD>69.06531</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o4qa02050_sx1_vo.fits]]></TD><TD>NGC3031</TD><TD>1024</TD><TD>3600.000</TD><TD>1999-01-27 10:02:46</TD><TD>51205.419</TD><TD>51205.440</TD><TD>51205.461</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>8274.811</TD><TD>8841.572</TD><TD>o4qa02050_sx1, NGC3031</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o4qa02050_sx1_vo.fits</TD><TD>o4qa02050</TD><TD>2007-03-16 23:58:59</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Near-IR</TD><TD>45.836</TD><TD>8558.191</TD><TD>566.761</TD><TD>1.000</TD><TD>7780.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>2.152e-15</TD><TD>2.554e-15</TD><TD>-1.829e-15</TD><TD>4.065e-15</TD><TD>0.000</TD><TD>16656.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.003</TD>
+</TR>
+<TR>
+<TD>148.888333333</TD><TD>69.06531</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o4qa02070_sx1_vo.fits]]></TD><TD>NGC3031</TD><TD>1024</TD><TD>3600.000</TD><TD>1999-01-27 11:09:56</TD><TD>51205.465</TD><TD>51205.486</TD><TD>51205.507</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>8274.861</TD><TD>8841.621</TD><TD>o4qa02070_sx1, NGC3031</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o4qa02070_sx1_vo.fits</TD><TD>o4qa02070</TD><TD>2007-03-17 04:30:47</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Near-IR</TD><TD>42.951</TD><TD>8558.241</TD><TD>566.760</TD><TD>1.000</TD><TD>7780.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>2.136e-15</TD><TD>2.538e-15</TD><TD>1.572e-15</TD><TD>4.574e-15</TD><TD>0.000</TD><TD>10240.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.003</TD>
+</TR>
+<TR>
+<TD>148.888333333</TD><TD>69.06531</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o4qa02080_sx1_vo.fits]]></TD><TD>NGC3031</TD><TD>1024</TD><TD>3600.000</TD><TD>1999-01-27 12:12:42</TD><TD>51205.509</TD><TD>51205.530</TD><TD>51205.551</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>8274.873</TD><TD>8841.632</TD><TD>o4qa02080_sx1, NGC3031</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o4qa02080_sx1_vo.fits</TD><TD>o4qa02080</TD><TD>2007-03-17 06:40:24</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Near-IR</TD><TD>48.292</TD><TD>8558.252</TD><TD>566.760</TD><TD>1.000</TD><TD>7780.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>2.125e-15</TD><TD>2.529e-15</TD><TD>1.414e-16</TD><TD>4.582e-15</TD><TD>0.000</TD><TD>10256.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.003</TD>
+</TR>
+<TR>
+<TD>148.888333333</TD><TD>69.06531</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o4qa02090_sx1_vo.fits]]></TD><TD>NGC3031</TD><TD>1024</TD><TD>1600.000</TD><TD>1999-01-27 13:15:28</TD><TD>51205.552</TD><TD>51205.562</TD><TD>51205.571</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>8274.854</TD><TD>8841.613</TD><TD>o4qa02090_sx1, NGC3031</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o4qa02090_sx1_vo.fits</TD><TD>o4qa02090</TD><TD>2007-03-17 08:56:30</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Near-IR</TD><TD>36.115</TD><TD>8558.233</TD><TD>566.759</TD><TD>1.000</TD><TD>7780.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>2.133e-15</TD><TD>2.546e-15</TD><TD>1.791e-15</TD><TD>4.570e-15</TD><TD>0.000</TD><TD>10256.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.003</TD>
+</TR>
+<TR>
+<TD>148.888333333</TD><TD>69.06531</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o4qa01090_sx1_vo.fits]]></TD><TD>NGC3031</TD><TD>1024</TD><TD>1600.000</TD><TD>1999-01-26 19:58:10</TD><TD>51204.832</TD><TD>51204.842</TD><TD>51204.851</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>8274.792</TD><TD>8841.554</TD><TD>o4qa01090_sx1, NGC3031</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o4qa01090_sx1_vo.fits</TD><TD>o4qa01090</TD><TD>2007-03-14 17:55:14</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Near-IR</TD><TD>31.577</TD><TD>8558.173</TD><TD>566.762</TD><TD>1.000</TD><TD>7780.000</TD><TD>0.014</TD><TD>52x0.2</TD><TD>HST</TD><TD>2.165e-15</TD><TD>2.625e-15</TD><TD>-4.491e-15</TD><TD>4.305e-15</TD><TD>0.000</TD><TD>16400.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.003</TD>
+</TR>
+<TR>
+<TD>148.889083333</TD><TD>69.06532</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o51301010_sx1_vo.fits]]></TD><TD>NGC3031-NUC</TD><TD>1024</TD><TD>1000.000</TD><TD>1999-07-14 17:48:27</TD><TD>51373.742</TD><TD>51373.748</TD><TD>51373.754</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>6297.636</TD><TD>6866.185</TD><TD>o51301010_sx1, NGC3031-NUC</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o51301010_sx1_vo.fits</TD><TD>o51301010</TD><TD>2006-11-28 21:27:14</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Optical</TD><TD>26.988</TD><TD>6581.911</TD><TD>568.549</TD><TD>1.000</TD><TD>5980.000</TD><TD>0.014</TD><TD>52x0.1</TD><TD>HST</TD><TD>4.805e-15</TD><TD>2.424e-14</TD><TD>-1.335e-14</TD><TD>3.032e-14</TD><TD>0.000</TD><TD>16656.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.019</TD>
+</TR>
+<TR>
+<TD>148.889083333</TD><TD>69.06532</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o51301020_sx1_vo.fits]]></TD><TD>NGC3031-NUC</TD><TD>1024</TD><TD>1000.000</TD><TD>1999-07-14 18:07:01</TD><TD>51373.755</TD><TD>51373.761</TD><TD>51373.767</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>6297.664</TD><TD>6866.213</TD><TD>o51301020_sx1, NGC3031-NUC</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o51301020_sx1_vo.fits</TD><TD>o51301020</TD><TD>2006-12-11 09:28:33</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Optical</TD><TD>17.690</TD><TD>6581.939</TD><TD>568.549</TD><TD>1.000</TD><TD>5980.000</TD><TD>0.014</TD><TD>52x0.1</TD><TD>HST</TD><TD>1.321e-15</TD><TD>5.304e-15</TD><TD>-7.160e-15</TD><TD>8.136e-15</TD><TD>0.000</TD><TD>16656.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.019</TD>
+</TR>
+<TR>
+<TD>148.889083333</TD><TD>69.06532</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o51301030_sx1_vo.fits]]></TD><TD>NGC3031-NUC</TD><TD>1024</TD><TD>1000.000</TD><TD>1999-07-14 18:26:15</TD><TD>51373.768</TD><TD>51373.775</TD><TD>51373.781</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>6297.693</TD><TD>6866.242</TD><TD>o51301030_sx1, NGC3031-NUC</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o51301030_sx1_vo.fits</TD><TD>o51301030</TD><TD>2006-12-11 11:33:11</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Optical</TD><TD>14.145</TD><TD>6581.967</TD><TD>568.549</TD><TD>1.000</TD><TD>5980.000</TD><TD>0.014</TD><TD>52x0.1</TD><TD>HST</TD><TD>1.063e-15</TD><TD>3.807e-15</TD><TD>-4.507e-16</TD><TD>1.089e-14</TD><TD>0.000</TD><TD>16400.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.019</TD>
+</TR>
+<TR>
+<TD>148.889083333</TD><TD>69.06532</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o51301040_sx1_vo.fits]]></TD><TD>NGC3031-NUC</TD><TD>1024</TD><TD>1100.000</TD><TD>1999-07-14 19:25:55</TD><TD>51373.810</TD><TD>51373.816</TD><TD>51373.823</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>6297.694</TD><TD>6866.243</TD><TD>o51301040_sx1, NGC3031-NUC</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o51301040_sx1_vo.fits</TD><TD>o51301040</TD><TD>2006-12-15 14:13:13</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Optical</TD><TD>11.828</TD><TD>6581.969</TD><TD>568.549</TD><TD>1.000</TD><TD>5980.000</TD><TD>0.014</TD><TD>52x0.1</TD><TD>HST</TD><TD>5.515e-16</TD><TD>1.222e-15</TD><TD>-6.051e-17</TD><TD>1.632e-14</TD><TD>0.000</TD><TD>16400.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.019</TD>
+</TR>
+<TR>
+<TD>148.889083333</TD><TD>69.06532</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o51301050_x1d_vo.fits]]></TD><TD>NGC3031-NUC</TD><TD>1024</TD><TD>600.000</TD><TD>1999-07-14 19:46:09</TD><TD>51373.824</TD><TD>51373.827</TD><TD>51373.831</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>6297.931</TD><TD>6865.682</TD><TD>o51301050_x1d, NGC3031-NUC</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o51301050_x1d_vo.fits</TD><TD>o51301050</TD><TD>2006-12-15 17:25:38</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Optical</TD><TD>-0.229</TD><TD>6581.807</TD><TD>567.752</TD><TD>1.000</TD><TD>5980.000</TD><TD>0.014</TD><TD>52x0.1</TD><TD>HST</TD><TD>1.481e-16</TD><TD>1.063e-15</TD><TD>-1.518e-16</TD><TD>3.179e-14</TD><TD>2560.000</TD><TD>19984.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.019</TD>
+</TR>
+<TR>
+<TD>148.889083333</TD><TD>69.06532</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o51301060_x1d_vo.fits]]></TD><TD>NGC3031-NUC</TD><TD>1024</TD><TD>610.000</TD><TD>1999-07-14 19:59:31</TD><TD>51373.833</TD><TD>51373.837</TD><TD>51373.840</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>6295.905</TD><TD>6864.173</TD><TD>o51301060_x1d, NGC3031-NUC</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o51301060_x1d_vo.fits</TD><TD>o51301060</TD><TD>2006-12-15 20:57:40</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Optical</TD><TD>-2.426</TD><TD>6580.039</TD><TD>568.268</TD><TD>1.000</TD><TD>5980.000</TD><TD>0.014</TD><TD>52x0.1</TD><TD>HST</TD><TD>1.813e-16</TD><TD>5.060e-15</TD><TD>-3.197e-14</TD><TD>2.719e-14</TD><TD>2048.000</TD><TD>19472.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.019</TD>
+</TR>
+<TR>
+<TD>148.889083333</TD><TD>69.06532</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o51301070_sx1_vo.fits]]></TD><TD>NGC3031-NUC</TD><TD>1024</TD><TD>1000.000</TD><TD>1999-07-14 21:05:38</TD><TD>51373.879</TD><TD>51373.885</TD><TD>51373.891</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>6297.720</TD><TD>6866.269</TD><TD>o51301070_sx1, NGC3031-NUC</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o51301070_sx1_vo.fits</TD><TD>o51301070</TD><TD>2006-12-15 23:23:22</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Optical</TD><TD>10.931</TD><TD>6581.994</TD><TD>568.549</TD><TD>1.000</TD><TD>5980.000</TD><TD>0.014</TD><TD>52x0.1</TD><TD>HST</TD><TD>5.020e-16</TD><TD>1.100e-15</TD><TD>-1.027e-14</TD><TD>2.202e-15</TD><TD>0.000</TD><TD>16656.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.019</TD>
+</TR>
+<TR>
+<TD>148.889083333</TD><TD>69.06532</TD><TD/><TD/><TD><![CDATA[http://archive.stsci.edu/pub/vospectra/stis2/o51301080_sx1_vo.fits]]></TD><TD>NGC3031-NUC</TD><TD>1024</TD><TD>1050.000</TD><TD>1999-07-14 21:24:12</TD><TD>51373.892</TD><TD>51373.899</TD><TD>51373.905</TD><TD>fits</TD><TD>FK4</TD><TD>2000.000</TD><TD/><TD/><TD>6297.726</TD><TD>6866.275</TD><TD>o51301080_sx1, NGC3031-NUC</TD><TD>UTC</TD><TD>HELIOCEN</TD><TD>1.000</TD><TD>2010-03-19 00:00:00</TD><TD>HST project</TD><TD>HST/STIS</TD><TD>ads/sa.stis#o51301080_sx1_vo.fits</TD><TD>o51301080</TD><TD>2006-12-16 00:25:57</TD><TD>1.0</TD><TD>STIS</TD><TD>POINTED</TD><TD>Optical</TD><TD>10.851</TD><TD>6582.001</TD><TD>568.549</TD><TD>1.000</TD><TD>5980.000</TD><TD>0.014</TD><TD>52x0.1</TD><TD>HST</TD><TD>3.759e-16</TD><TD>7.398e-16</TD><TD>-1.766e-14</TD><TD>1.619e-15</TD><TD>0.000</TD><TD>16656.000</TD><TD>56.250</TD><TD>WAVE</TD><TD>FLUX</TD><TD>1.0E-10 L</TD><TD>1.0E+7 ML-1T-3</TD><TD>angstrom</TD><TD>erg/cm**2/s/angstrom</TD><TD>phot.flux.density;em.wl</TD><TD>ABSOLUTE</TD><TD>0.019</TD>
+</TR>
+</TABLEDATA>
+</DATA>
+</TABLE>
+</RESOURCE>
+</VOTABLE>
