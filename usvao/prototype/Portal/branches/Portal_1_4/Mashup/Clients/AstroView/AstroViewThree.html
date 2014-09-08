@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>AstroView [three.js]</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #111111;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+
+		<script src="./Three/build/Three.js"></script>	
+		<script src="Stats.js"></script>
+		<script src="AstroBasicView.js"></script>
+		<script src="DiamondSphere.js"></script>
+		<script src="Diamond.js"></script>
+		<script src="DiamondGeometry.js"></script>
+		<script src="CameraController.js"></script>
+		<script src="GraphicsLayer.js"></script>
+		<script src="FootprintLayer.js"></script>
+		<script src="CatalogLayer.js"></script>
+
+		<script>
+		    // Define a function for retrieving parameters from a URL.  The 3rd argument is
+		    // the default value to use if the parameter is not found in the URL.
+		    var getUrlParam = function (param, url, default_) 
+		    {
+		        if (default_ == null) default_ = "";
+		        param = param.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		        var regex = new RegExp("[\\?&]" + param + "=([^&#]*)");
+		        var qs = regex.exec(url);
+		        if (qs == null)
+		            return default_;
+		        else
+		            return qs[1];
+		    };
+    
+            // Retreive avRenderType from URL
+            var url = window.location.search;
+		    var renderType = getUrlParam('avRenderType', url, 'canvas').toLowerCase();
+		    
+		    // Create AstroView using avRenderType
+			var view = new ASTROVIEW.AstroBasicView(null, renderType);
+		</script>
+
+	</body>
+</html>

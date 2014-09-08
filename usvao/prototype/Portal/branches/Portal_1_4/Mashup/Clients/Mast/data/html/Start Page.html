@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- <link rel="stylesheet" type="text/css" href="http://vao.stsci.edu/portal/extjs/extjs-4.1.0/resources/css/ext-all.css" /> -->
+<style>
+ <!--
+ body {
+ background-image: url("../images/mastwatermark_small.png");
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+ background-position: right bottom;
+ font-family: "Arial";
+ }
+ //-->
+ </style>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Start Page</title>
+  <script>
+    var p = (window.opener && window.opener.top) || window.top;
+    if (p && (p != window)) {
+      if (p.Mvp && !window.Mvp) {
+        p.Mvp.util.Util.adoptContext(p, window);
+        Ext.log('Context adopted!');
+      }
+    }
+    if (!Mvp || !Mvp.injectSearchText) {
+      // There is nowhere to inject search text, so just make the function a no-op.
+      Mvp = {injectSearchText: function () {}};      
+    }
+  </script>
+</head>
+<body>
+<table width="75%" >
+<tr><td><img src="../images/mastbanner.png" /></td></tr>
+<tr>
+<td>
+<br />
+<h2>
+Welcome to the MAST Portal
+</h2>
+<h3>
+This website allows you to search various collections of astronomical resources by integrating resources in MAST and the Virtual Astronomical Observatory (VAO) in one place.<br>
+</h3>
+<br>
+To begin, select the collection you wish to search, then enter search terms in the search box at the top right.<br>
+<br>
+<ul>
+<li style="list-style: disc;">Objects from standard catalogs such as Messier and NGC will be resolved: <strong>M101 r=10s</strong>, <strong>NGC45</strong></li>
+<li style="list-style: disc;">Common names often work: <strong>Antennae</strong>, <strong>Eta Carinae r=1d</strong></li>
+<li style="list-style: disc;">Positions in RA/Dec: <strong>9.0 -43.0 r=.2d</strong>, <strong>0 45 r=30m</strong></li>
+<li style="list-style: disc;">Sexagesimal coordinates delimited with spaces: <strong>14 03 12.6 54 20 56.7</strong></li>
+<li style="list-style: disc;">Galactic coordinates of the form g[lon][+/-lat] with no spaces: <strong>g102.0373+59.7711</strong></li>
+</ul>
+</td>
+</tr>
+</div>
+</body>
+</html>

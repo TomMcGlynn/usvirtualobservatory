@@ -1,0 +1,152 @@
+{
+    "name": "JqPlotContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.3",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1666",
+            "type": "panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": null,
+                "html": null,
+                "id": null,
+                "width": null,
+                "autoScroll": null,
+                "layout": "border",
+                "title": null,
+                "designer|userClassName": "JqPlotContainer"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen2206",
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": null,
+                        "itemId": "chartContainer",
+                        "margin": null,
+                        "padding": "10 10 10 30",
+                        "autoScroll": null,
+                        "layout": "fit",
+                        "designer|userClassName": "MyContainer1",
+                        "layout|region": "center"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen8558",
+                            "type": "container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "chartContainer",
+                                "designer|userClassName": "MyContainer3"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen2068",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "configPanel",
+                        "width": 300,
+                        "collapsible": true,
+                        "title": "Configuration",
+                        "designer|userClassName": "MyContainer1",
+                        "layout|region": "west",
+                        "dock": null
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen4524",
+                            "type": "fieldset",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "seriesContainer",
+                                "title": "Series",
+                                "designer|userClassName": "MyFieldSet"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen5756",
+                            "type": "fieldset",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "rangeContainer",
+                                "title": "Range",
+                                "designer|userClassName": "MyFieldSet1"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen6053",
+                            "type": "fieldset",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "markersContainer",
+                                "title": "Markers",
+                                "designer|userClassName": "MyFieldSet2"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen7958",
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "drawButton",
+                                "text": "Draw",
+                                "designer|userClassName": "MyButton"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

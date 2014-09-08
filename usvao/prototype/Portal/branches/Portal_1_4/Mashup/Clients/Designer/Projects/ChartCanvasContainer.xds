@@ -1,0 +1,72 @@
+{
+    "name": "ChartCanvasContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.3",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1666",
+            "type": "panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": null,
+                "html": null,
+                "id": null,
+                "width": null,
+                "autoScroll": true,
+                "layout": null,
+                "title": null,
+                "designer|userClassName": "ChartCanvasContainer"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen2206",
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 550,
+                        "id": "thePlot",
+                        "margin": null,
+                        "designer|userClassName": "MyContainer1"
+                    }
+                },
+                {
+                    "id": "ExtBox1-ext-gen6267",
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "thePlotConfigButton",
+                        "style": "{position: absolute; bottom: \n20px; left: 10px}",
+                        "text": "Config",
+                        "designer|userClassName": "MyButton"
+                    }
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}
