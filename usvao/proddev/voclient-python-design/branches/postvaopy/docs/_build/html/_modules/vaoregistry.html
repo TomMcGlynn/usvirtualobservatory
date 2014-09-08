@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>vaoregistry &mdash; VOClient Python API 1.0rc1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0rc1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="VOClient Python API 1.0rc1 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/vao_logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for vaoregistry</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A module for basic VO Registry interactions.  </span>
+
+<span class="sd">A VO registry is a database of VO resources--data collections and</span>
+<span class="sd">services--that are available for VO applications.  Typically, it is </span>
+<span class="sd">aware of the resources from all over the world.  A registry can find </span>
+<span class="sd">relevent data collections and services through search</span>
+<span class="sd">queries--typically, subject-based.  The registry responds with a list</span>
+<span class="sd">of records describing matching resources.  With a record in hand, the </span>
+<span class="sd">application can use the information in the record to access the </span>
+<span class="sd">resource directly.  Most often, the resource is a data service that</span>
+<span class="sd">can be queried for individual datasets of interest.  </span>
+
+<span class="sd">This module provides basic, low-level access to the VAO Registry at </span>
+<span class="sd">STScI using (proprietary) VOTable-based services.  In most cases,</span>
+<span class="sd">the Registry task, with its higher-level features (e.g. result caching</span>
+<span class="sd">and resource aliases), can be a more convenient interface.  The more  </span>
+<span class="sd">basic interface provided here allows developers to code their own </span>
+<span class="sd">interaction models.  </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="RegistrySearch"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistrySearch">[docs]</a><span class="k">class</span> <span class="nc">RegistrySearch</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class for submitting searches to the VAO registry.  </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">STScIRegistryURL</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="RegistrySearch.connect"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistrySearch.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Connect to an STScI registry at the given URL</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *url*:   The base URL of the STScI registry.  If None, </span>
+<span class="sd">                     the standard endpoint will be used.  </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">url</span><span class="p">:</span>  <span class="n">url</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">STScIRegistryURL</span>
+        <span class="k">return</span> <span class="n">RegistrySearch</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="c"># Note: it&#39;s not clear that the C interface would allow us to</span>
+        <span class="c"># override the URL.  </span>
+</div>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Connect to an STScI registry at the given URL</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
+        <span class="c"># Note: it&#39;s not clear that the C interface would allow us to</span>
+        <span class="c"># override the URL.  </span>
+
+<div class="viewcode-block" id="RegistrySearch.search"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistrySearch.search">[docs]</a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keywords</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">serviceType</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+               <span class="n">bandpass</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">contentLevel</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sqlpred</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prepare and execute a registry search of the specified</span>
+<span class="sd">        keywords. </span>
+<span class="sd"> </span>
+<span class="sd">        A search can be constrained by::</span>
+<span class="sd">        - bandpass: Radio, Millimeter, Infrared (IR), Optical, </span>
+<span class="sd">                    Ultraviolet (UV),  X-Ray (xray), Gamma-Ray (GR)</span>
+<span class="sd">        - service type: catalog (SCS), image (SIA), spectra (SSA), </span>
+<span class="sd">                        table (Vizier), ResourceType from Registry record</span>
+<span class="sd">        - content level: ...</span>
+
+<span class="sd">        The result will be a RegistryResults instance pointing to the</span>
+<span class="sd">        first matching in the query results</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    </div>
+<div class="viewcode-block" id="RegistrySearch.resolve"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistrySearch.resolve">[docs]</a>    <span class="k">def</span> <span class="nf">resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ivoid</span><span class="p">,</span> <span class="n">asVOResource</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resolve the identifier against the registry, returning a</span>
+<span class="sd">        resource record.  </span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *ivoid*:          the IVOA Identifier of the resource</span>
+
+<span class="sd">            *asVOResource*:   if True, return the VOResource-formated </span>
+<span class="sd">                              XML record; otherwise, a SimpleResource</span>
+<span class="sd">                              instance is returned.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Note: it doesn&#39;t look like the C interface provides this.  </span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="RegistrySearch.createQuery"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistrySearch.createQuery">[docs]</a>    <span class="k">def</span> <span class="nf">createQuery</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a RegistryQuery object that can be refined or saved</span>
+<span class="sd">        before submitting.  </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">RegistryQuery</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+</div></div>
+<div class="viewcode-block" id="RegistryQuery"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery">[docs]</a><span class="k">class</span> <span class="nc">RegistryQuery</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A representation of a registry query that can be built up over</span>
+<span class="sd">    successive method calls and then executed.  An instance is normally</span>
+<span class="sd">    obtained via a call to RegistrySearch.createQuery()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">registry</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create the query instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="o">=</span> <span class="n">registry</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kw</span> <span class="o">=</span> <span class="p">[]</span>          <span class="c"># list of individual keyword phrases</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preds</span> <span class="o">=</span> <span class="p">[]</span>       <span class="c"># list of SQL predicates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">svctype</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">band</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orKw</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doSort</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dalonly</span> <span class="o">=</span> <span class="bp">False</span>
+
+<div class="viewcode-block" id="RegistryQuery.addKeywords"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.addKeywords">[docs]</a>    <span class="k">def</span> <span class="nf">addKeywords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keywords</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add keywords that should be added to this query.  Keywords </span>
+<span class="sd">        are searched against key fields in the registry record.  A</span>
+<span class="sd">        keyword can in fact be a phrase--a sequence of words; in this</span>
+<span class="sd">        case the sequence of words must appear verbatim in the record</span>
+<span class="sd">        for that record to be matched. </span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *keywords*:  either a single keyword phrase (as a string) </span>
+<span class="sd">                         or a list of keyword phrases to add to the </span>
+<span class="sd">                         query.  </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keywords</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">keywords</span> <span class="o">=</span> <span class="p">[</span><span class="n">keywords</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kw</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">keywords</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.removeKeywords"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.removeKeywords">[docs]</a>    <span class="k">def</span> <span class="nf">removeKeywords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keywords</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove the given keyword or keywords from the query.  A</span>
+<span class="sd">        keyword can in fact be a phrase--a sequence of words; in this</span>
+<span class="sd">        case, the phrase will be remove.  </span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *keywords*:  either a single keyword phrase (as a string) </span>
+<span class="sd">                         or a list of keyword phrases to remove from</span>
+<span class="sd">                         the query.  </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keywords</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">keywords</span> <span class="o">=</span> <span class="p">[</span><span class="n">keywords</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kw</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">kw</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.orKeywords"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.orKeywords">[docs]</a>    <span class="k">def</span> <span class="nf">orKeywords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ored</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set whether keywords are OR-ed or AND-ed together.  When</span>
+<span class="sd">        the keywords are OR-ed, returned records will match at </span>
+<span class="sd">        least one of the keywords.  When they are AND-ed, the </span>
+<span class="sd">        records will match all of the keywords provided.  </span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *ored*:   true, if the keywords should be OR-ed; false,</span>
+<span class="sd">                      if they should be AND-ed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orKw</span> <span class="o">=</span> <span class="n">ored</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.willOrKeywords"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.willOrKeywords">[docs]</a>    <span class="k">def</span> <span class="nf">willOrKeywords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set true if the keywords will be OR-ed or AND-ed together</span>
+<span class="sd">        in the query.  True is returned if the keywords will be </span>
+<span class="sd">        OR-ed.  </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">orKw</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.getKeywords"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.getKeywords">[docs]</a>    <span class="k">def</span> <span class="nf">getKeywords</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the current set of keyword constraints</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kw</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.getKeywordCount"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.getKeywordCount">[docs]</a>    <span class="k">def</span> <span class="nf">getKeywordCount</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the number of currently set keyword constraints</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kw</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.setServiceTypeConstraint"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.setServiceTypeConstraint">[docs]</a>    <span class="k">def</span> <span class="nf">setServiceTypeConstraint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceType</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Restrict the results to contain services of the given type.</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *serviceType*:   the desired type of service, one of </span>
+<span class="sd">                             &quot;catalog&quot;, &quot;table&quot;, &quot;image&quot;, or </span>
+<span class="sd">                             &quot;spectra&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">svcType</span> <span class="o">=</span> <span class="n">serviceType</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.clearServiceTypeConstraint"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.clearServiceTypeConstraint">[docs]</a>    <span class="k">def</span> <span class="nf">clearServiceTypeConstraint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove any currently set service type constraint.  The query</span>
+<span class="sd">        then will not be restricted to a particular type of service.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">svcType</span> <span class="o">=</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.setWavebandConstraint"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.setWavebandConstraint">[docs]</a>    <span class="k">def</span> <span class="nf">setWavebandConstraint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">band</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Restrict the results to contain resources provides data </span>
+<span class="sd">        covering a given waveband</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">band</span> <span class="o">=</span> <span class="n">band</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.clearWavebandConstraint"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.clearWavebandConstraint">[docs]</a>    <span class="k">def</span> <span class="nf">clearWavebandConstraint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove any currently set waveband constraint.  The query</span>
+<span class="sd">        then will not be restricted to a particular type of service.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">band</span> <span class="o">=</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.addPredicate"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.addPredicate">[docs]</a>    <span class="k">def</span> <span class="nf">addPredicate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add an SQL search predicate to the query.  This predicate should</span>
+<span class="sd">        be of form supported by STScI VOTable search services.  This </span>
+<span class="sd">        predicate will be AND-ed with all other constraints (including</span>
+<span class="sd">        previously added predicates); that is, this constraint must be</span>
+<span class="sd">        satisfied in addition to the other constraints to match a </span>
+<span class="sd">        particular resource record.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.removePredicate"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.removePredicate">[docs]</a>    <span class="k">def</span> <span class="nf">removePredicate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove the give predicate from the current set of predicate</span>
+<span class="sd">        constraints.  </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preds</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.clearPredicates"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.clearPredicates">[docs]</a>    <span class="k">def</span> <span class="nf">clearPredicates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove all previously added predicates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preds</span> <span class="o">=</span> <span class="p">[]</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.getPredicates"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.getPredicates">[docs]</a>    <span class="k">def</span> <span class="nf">getPredicates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return (a copy of) the list of predicate constraints that will </span>
+<span class="sd">        be applied to the query.  These will be AND-ed with all other </span>
+<span class="sd">        constraints (including previously added predicates); that is, </span>
+<span class="sd">        this constraint must be satisfied in addition to the other </span>
+<span class="sd">        constraints to match a particular resource record.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">preds</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.execute"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Submit the query and return the results as a RegistryResults</span>
+<span class="sd">        instance.  </span>
+
+<span class="sd">        :Throws:</span>
+<span class="sd">	    *RegistryServiceError*:	For errors connecting to or communicating</span>
+<span class="sd">					with the service.</span>
+<span class="sd">        :Throws:</span>
+<span class="sd">	    *RegistryQueryError*:	If the service responds with an error,</span>
+<span class="sd">					including a query syntax error.  A syntax</span>
+<span class="sd">					error should only occur if the query</span>
+<span class="sd">					query contains non-sensical predicates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.executeRaw"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.executeRaw">[docs]</a>    <span class="k">def</span> <span class="nf">executeRaw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Submit the query and return the raw VOTable XML as a string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="RegistryQuery.getQueryURL"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQuery.getQueryURL">[docs]</a>    <span class="k">def</span> <span class="nf">getQueryURL</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the GET URL that will submit the query and return the </span>
+<span class="sd">        results as a VOTable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+</div></div>
+<div class="viewcode-block" id="RegistryAccessError"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryAccessError">[docs]</a><span class="k">class</span> <span class="nc">RegistryAccessError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A base class for registry access failures</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="RegistryServiceError"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryServiceError">[docs]</a><span class="k">class</span> <span class="nc">RegistryServiceError</span><span class="p">(</span><span class="n">RegistryAccessError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An exception indicating a failure communicating with a registry </span>
+<span class="sd">    service.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="RegistryQueryError"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryQueryError">[docs]</a><span class="k">class</span> <span class="nc">RegistryQueryError</span><span class="p">(</span><span class="n">RegistryAccessError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An exception indicating an error by the registry in processing a</span>
+<span class="sd">    query, including query-syntax errors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="RegistryResults"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryResults">[docs]</a><span class="k">class</span> <span class="nc">RegistryResults</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An iterable set of results from a registry query.  Each record is</span>
+<span class="sd">    returned as SimpleResource instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="RegistryResults.getRecordCount"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryResults.getRecordCount">[docs]</a>    <span class="k">def</span> <span class="nf">getRecordCount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the total number of records returned in this result</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="RegistryResults.meta"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryResults.meta">[docs]</a>    <span class="k">def</span> <span class="nf">meta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List table metadata.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Note: it doesn&#39;t look like the C interface provides this </span>
+        <span class="c">#       itself.</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="RegistryResults.attributeNames"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryResults.attributeNames">[docs]</a>    <span class="k">def</span> <span class="nf">attributeNames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the names of the available record attributes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Note: it doesn&#39;t look like the C interface provides this </span>
+        <span class="c">#       itself.</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="RegistryResults.getAttribute"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryResults.getAttribute">[docs]</a>    <span class="k">def</span> <span class="nf">getAttribute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the value of an attribute from a particular record in </span>
+<span class="sd">        the results</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *name*:   the name of the attribute</span>
+
+<span class="sd">            *index*:  the zero-based index of the record</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="RegistryResults.getRecord"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryResults.getRecord">[docs]</a>    <span class="k">def</span> <span class="nf">getRecord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return all the attributes of a record with the given index</span>
+<span class="sd">        as SimpleResource instance</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *index*:  the zero-based index of the record</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div></div>
+<div class="viewcode-block" id="RegistryCursor"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryCursor">[docs]</a><span class="k">class</span> <span class="nc">RegistryCursor</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class for iterating through the result of a registry query</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="RegistryCursor.getRecordCount"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryCursor.getRecordCount">[docs]</a>    <span class="k">def</span> <span class="nf">getRecordCount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the number of records left to access by this result cursor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="RegistryCursor.next"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryCursor.next">[docs]</a>    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the next available resource record as a SimpleResource</span>
+<span class="sd">        object.  This is equivalent to fetch.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">fetch</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="RegistryCursor.fetch"><a class="viewcode-back" href="../api_registry.html#vaoregistry.RegistryCursor.fetch">[docs]</a>    <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the next available resource record as a SimpleResource</span>
+<span class="sd">        object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div></div>
+<div class="viewcode-block" id="SimpleResource"><a class="viewcode-back" href="../api_registry.html#vaoregistry.SimpleResource">[docs]</a><span class="k">class</span> <span class="nc">SimpleResource</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A container for the resource attributes returned by a registry query.</span>
+<span class="sd">    A SimpleResource is a dictionary, so in general, all attributes can </span>
+<span class="sd">    be accessed by name via the [] operator, and the attribute names can </span>
+<span class="sd">    by returned via the keys() function.  For convenience, it also stores </span>
+<span class="sd">    key values as public python attributes; these include::</span>
+
+<span class="sd">       title         the title of the resource</span>
+<span class="sd">       shortName     the resource&#39;s short name</span>
+<span class="sd">       ivoid         the IVOA identifier for the resource</span>
+<span class="sd">       accessURL     when the resource is a service, the service&#39;s access </span>
+<span class="sd">                       URL.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shortName</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ivoid</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accessURL</span> <span class="o">=</span> <span class="bp">None</span>
+
+
+    </div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, US Virtual Astronomical Observatory.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

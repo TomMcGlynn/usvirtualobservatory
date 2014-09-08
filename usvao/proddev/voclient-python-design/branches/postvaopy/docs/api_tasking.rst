@@ -1,0 +1,12 @@
+===================
+Tasking Module API
+===================
+
+:mod:`vaopackage`: Application Packages and Tasks
+=================================================
+
+.. automodule:: vaopackage
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

@@ -1,0 +1,7 @@
+samp Module
+===========
+
+.. automodule:: vaosamp
+    :members:
+    :undoc-members:
+    :show-inheritance:

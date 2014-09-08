@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dalquery &mdash; VOClient Python API 1.0rc1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0rc1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="VOClient Python API 1.0rc1 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/vao_logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for dalquery</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A module for walking through the query response of VO data access layer</span>
+<span class="sd">(DAL) queries and general VOTable-based datasets.</span>
+
+<span class="sd">Most data queries in the VO return a table as a result, usually</span>
+<span class="sd">formatted as a VOTable.  Each row of the table describes a single</span>
+<span class="sd">physical or virtual dataset which can be retrieved.  For uniformity,</span>
+<span class="sd">datasets are described via standard metadata defined by a data model</span>
+<span class="sd">specific to the type of data being queried.  The fields of the data</span>
+<span class="sd">model are identified most generally by their VOClient alias as defined</span>
+<span class="sd">in this interface, or at a lower level by the Utype or UCD of the</span>
+<span class="sd">specific standard and version of the standard being queried.  While</span>
+<span class="sd">the data model differs depending upon the type of data being queried,</span>
+<span class="sd">the form of the query response is the same for all classes of data,</span>
+<span class="sd">allowing a common query response interface to be used.</span>
+
+<span class="sd">An exception to this occurs when querying an astronomical catalog or</span>
+<span class="sd">other externally defined table.  In this case there is no VO defined</span>
+<span class="sd">standard data model.  Usually the field names are used to uniquely</span>
+<span class="sd">identify table columns.</span>
+
+<span class="sd">The high level query interface described here walks through the query</span>
+<span class="sd">response row by row, much as if we were querying a typical relational</span>
+<span class="sd">database.  The interface implements the Python Database API V2.0</span>
+<span class="sd">(PY-DBI).  Once a connection is obtained, generic PY-DBI code may be</span>
+<span class="sd">used to traverse the query response.  VOClient further extends the</span>
+<span class="sd">standard interface as required to support VO.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="DalQuery"><a class="viewcode-back" href="../api_dalquery.html#dalquery.DalQuery">[docs]</a><span class="k">class</span> <span class="nc">DalQuery</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class for processing the query response from a VO Data Access Layer (DAL)</span>
+<span class="sd">    query.  This class may also be used for any VOTable, including tables used</span>
+<span class="sd">    as containers to store instances of some data model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Open a connection context using a file or i/o stream.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+
+<div class="viewcode-block" id="DalQuery.connect"><a class="viewcode-back" href="../api_dalquery.html#dalquery.DalQuery.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Open a connection context using a file or i/o stream.</span>
+
+<span class="sd">	:Args:</span>
+<span class="sd">	    *input*: Either the filename or an i/o stream.</span>
+
+<span class="sd">	:Returns:</span>
+<span class="sd">	    A connection object for the service or other resource.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">return</span> <span class="n">DalQuery</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="DalQuery.cursor"><a class="viewcode-back" href="../api_dalquery.html#dalquery.DalQuery.cursor">[docs]</a>    <span class="k">def</span> <span class="nf">cursor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cursorType</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot; Open a cursor for the given connection.</span>
+
+<span class="sd">	:Args:</span>
+<span class="sd">	    *cursorType*: Either &quot;cursor&quot; (default) or &quot;dictCursor&quot;.  </span>
+
+<span class="sd">	:Returns:</span>
+<span class="sd">	    A cursor object to be used to navigate the query response.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="DalQuery.getRaw"><a class="viewcode-back" href="../api_dalquery.html#dalquery.DalQuery.getRaw">[docs]</a>    <span class="k">def</span> <span class="nf">getRaw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Return the raw query response data stream.</span>
+
+<span class="sd">	:Returns:</span>
+<span class="sd">	    The query response as a raw byte stream (i/o stream).</span>
+
+<span class="sd">	Returns the raw query response as a data stream without any processing.</span>
+<span class="sd">	This can be used to retrieve the VOTable XML in the case of a query </span>
+<span class="sd">	returning a VOTable.  It can also be used to retrieve and dispose of</span>
+<span class="sd">	query responses in formats not otherwise handled, e.g., formatted text,</span>
+<span class="sd">	HTML, and so forth.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="DalQuery.openVotable"><a class="viewcode-back" href="../api_dalquery.html#dalquery.DalQuery.openVotable">[docs]</a>    <span class="k">def</span> <span class="nf">openVotable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Open the query response as an Astropy vo.table object.</span>
+
+<span class="sd">	:Returns:</span>
+<span class="sd">	    Returns an Astropy vo.table object.</span>
+
+<span class="sd">	The query response VOTable is parsed and opened as a vo.table object.</span>
+<span class="sd">	This provides full access to the VOTable semantics and also allows access</span>
+<span class="sd">	to the VOTable content as a NumPy record array.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="DalQuery.openTable"><a class="viewcode-back" href="../api_dalquery.html#dalquery.DalQuery.openTable">[docs]</a>    <span class="k">def</span> <span class="nf">openTable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Open the query response as an AtPy table object.</span>
+
+<span class="sd">	:Returns:</span>
+<span class="sd">	    Returns an AtPy table object.</span>
+
+<span class="sd">	The query response VOTable is parsed and opened as a AtPy (astronomical</span>
+<span class="sd">	tables in Python) object.  This provides a higher level, simpler to use</span>
+<span class="sd">	table abstraction not specific to VOTable.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="DalQuery.close"><a class="viewcode-back" href="../api_dalquery.html#dalquery.DalQuery.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Close the connection and free all resources.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+</div></div>
+<div class="viewcode-block" id="Cursor"><a class="viewcode-back" href="../api_dalquery.html#dalquery.Cursor">[docs]</a><span class="k">class</span> <span class="nc">Cursor</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;A class used to walk through a query response table row by row, accessing the contents of each record (row) of the table.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Create a cursor instance.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">vometadata</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">rowcount</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">arraysize</span> <span class="o">=</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="Cursor.infos"><a class="viewcode-back" href="../api_dalquery.html#dalquery.Cursor.infos">[docs]</a>    <span class="k">def</span> <span class="nf">infos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Return any INFO elements in the VOTable as a dictionary.</span>
+
+<span class="sd">	:Returns:</span>
+<span class="sd">	    A dictionary with each element corresponding to a single INFO,</span>
+<span class="sd">	    representing the INFO as a name:value pair.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="Cursor.fetchone"><a class="viewcode-back" href="../api_dalquery.html#dalquery.Cursor.fetchone">[docs]</a>    <span class="k">def</span> <span class="nf">fetchone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Return the next row of the query response table.</span>
+
+<span class="sd">	:Returns:</span>
+<span class="sd">	    The response is a tuple wherein each element is the value of the</span>
+<span class="sd">	    corresponding table field.  Alternatively, if a DictCursor is used</span>
+<span class="sd">	    a dictionary is returned wherein each element consists of the field</span>
+<span class="sd">	    name and value for the table field.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="Cursor.fetchmany"><a class="viewcode-back" href="../api_dalquery.html#dalquery.Cursor.fetchmany">[docs]</a>    <span class="k">def</span> <span class="nf">fetchmany</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Fetch the next block of rows from the query result.</span>
+
+<span class="sd">	:Args:</span>
+<span class="sd">	    *size*: The number of rows to return (default: cursor.arraysize).</span>
+
+<span class="sd">	:Returns:</span>
+<span class="sd">	    A list of tuples, one per row.  An empty sequence is returned when</span>
+<span class="sd">	    no more rows are available.  If a DictCursor is used then the output</span>
+<span class="sd">	    consists of a list of dictionaries, one per row.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="Cursor.fetchall"><a class="viewcode-back" href="../api_dalquery.html#dalquery.Cursor.fetchall">[docs]</a>    <span class="k">def</span> <span class="nf">fetchall</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Fetch all remaining rows from the result set.</span>
+
+<span class="sd">	:Returns:</span>
+<span class="sd">	    A list of tuples, one per row.  An empty sequence is returned when</span>
+<span class="sd">	    no more rows are available.  If a DictCursor is used then the output</span>
+<span class="sd">	    consists of a list of dictionaries, one per row.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="Cursor.next"><a class="viewcode-back" href="../api_dalquery.html#dalquery.Cursor.next">[docs]</a>    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Advance to the next row.</span>
+
+<span class="sd">	A StopIteration exception is raised when there are no more rows.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="Cursor.nextset"><a class="viewcode-back" href="../api_dalquery.html#dalquery.Cursor.nextset">[docs]</a>    <span class="k">def</span> <span class="nf">nextset</span><span class="p">():</span>
+	<span class="sd">&quot;&quot;&quot;Advance to the next result set.</span>
+
+<span class="sd">	Advance to the next result set in a multi result-set query response.</span>
+<span class="sd">	Any remaining data in the current result set is skipped.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="Cursor.scroll"><a class="viewcode-back" href="../api_dalquery.html#dalquery.Cursor.scroll">[docs]</a>    <span class="k">def</span> <span class="nf">scroll</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Move the row cursor.</span>
+
+<span class="sd">	:Args:</span>
+<span class="sd">	    *value*: The number of rows to skip or the row number to position to.</span>
+
+<span class="sd">	    *mode*: Either &quot;relative&quot; for a relative skip, or &quot;absolute&quot; to position to a row by its absolute index within the result set (zero indexed).</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="Cursor.getfield"><a class="viewcode-back" href="../api_dalquery.html#dalquery.Cursor.getfield">[docs]</a>    <span class="k">def</span> <span class="nf">getfield</span><span class="p">(</span><span class="n">alias</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ucd</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">utype</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Return the value of a field of the current row given its name.</span>
+
+<span class="sd">	:Args:</span>
+<span class="sd">	    *alias*: The alias (shortname) of the field.</span>
+
+<span class="sd">	    *id*: The unique ID of the field.</span>
+
+<span class="sd">	    *name*: The name of the field.</span>
+
+<span class="sd">	    *ucd*: The UCD of the field (may not be unique).</span>
+
+<span class="sd">	    *utype*: The Utype of the field.</span>
+
+<span class="sd">	    *row*: Either the row number or the row data passed as a sequence.</span>
+
+<span class="sd">	:Returns:</span>
+<span class="sd">	    The field value is returned.</span>
+
+<span class="sd">	:Exceptions:</span>
+<span class="sd">	    A FieldNotFound exception is raised if the field name is not recognized.</span>
+
+<span class="sd">	Getfield is used to obtain the value of a table field (or data model attribute)</span>
+<span class="sd">	given either its well-known alias, or VO attribute.  A single positional argument</span>
+<span class="sd">	specifies the alias (shortname) for the field to be returned.  Otherwise one of</span>
+<span class="sd">	the keyword=value parameters should be specified.  Values are returned from the</span>
+<span class="sd">	current row unless a &quot;row&quot; parameter is input.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="Cursor.getdata"><a class="viewcode-back" href="../api_dalquery.html#dalquery.Cursor.getdata">[docs]</a>    <span class="k">def</span> <span class="nf">getdata</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Get the dataset associated with the indicated row.</span>
+
+<span class="sd">	:Args:</span>
+<span class="sd">	    *url*: If omitted the current row is referenced, otherwise the dataset pointed to by the given URL is returned.</span>
+
+<span class="sd">	    *row*: Either the row number or the row data passed as a sequence.  If omitted the current row is referenced.</span>
+
+<span class="sd">	:Returns:</span>
+<span class="sd">	    An i/o stream which may be read to retrieve the referenced dataset.</span>
+
+<span class="sd">	Getdata is used to retrieve the dataset referenced by the indicated row of the</span>
+<span class="sd">	query response.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="Cursor.close"><a class="viewcode-back" href="../api_dalquery.html#dalquery.Cursor.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">():</span>
+	<span class="sd">&quot;&quot;&quot;Close the cursor object and free all resources.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, US Virtual Astronomical Observatory.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+vaosoft 1.0.0 usvao - etc
+vaosoft 1.0.1 usvao - etc
+vaosoft 1.1.0rc3 usvao - etc
+vaosoft 1.1.0 usvao - etc
+ant 1.8.2 apache - lib/ant.jar
+ivy 2.2.0 apache - ivy-2.2.0.jar foo=bar	goob=gurn	first=sec	duck=goose
+maven 3.0.3 apache - lib/maven-core-3.0.3.jar

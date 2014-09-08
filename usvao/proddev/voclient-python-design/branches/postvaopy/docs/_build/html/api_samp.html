@@ -1,0 +1,608 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>samp Module &mdash; VOClient Python API 1.0rc1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0rc1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="VOClient Python API 1.0rc1 documentation" href="index.html" />
+    <link rel="prev" title="tasking Module API" href="api_tasking.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api_tasking.html" title="tasking Module API"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/vao_logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="api_tasking.html"
+                        title="previous chapter">tasking Module API</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/api_samp.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-vaosamp">
+<span id="samp-module"></span><h1>samp Module<a class="headerlink" href="#module-vaosamp" title="Permalink to this headline">¶</a></h1>
+<p>A module for basic SAMP interactions.</p>
+<p>SAMP (Simple Access Messaging Protocol, <a class="reference external" href="http://www.ivoa.net/Documents/SAMP/index.html">http://www.ivoa.net/Documents/SAMP/index.html</a>) is an
+application-level messaging structure. It allows for communication between regsitered client
+applications via a SAMP Hub. Client applications can send messages to other applications to
+pass data references or notifications or action invocations, e.g., load this table or this
+image. Client applications can also listen for messages from other applications to which they
+can respond in an appropriate manner.</p>
+<p>This modules provides basic, low-level access to the SAMP framework. It requires a separate
+SAMP Hub to be available, either as a standalone Hub or one running as part of another
+SAMP-enabled application (TOPCAT, Aladin, etc. provide built-in Hubs).</p>
+<dl class="exception">
+<dt id="vaosamp.SAMPAccessError">
+<em class="property">exception </em><tt class="descclassname">vaosamp.</tt><tt class="descname">SAMPAccessError</tt><a class="reference internal" href="_modules/vaosamp.html#SAMPAccessError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPAccessError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
+<p>A base class for SAMP access failures</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="vaosamp.SAMPConnection">
+<em class="property">class </em><tt class="descclassname">vaosamp.</tt><tt class="descname">SAMPConnection</tt><big>(</big><em>multiple=False</em>, <em>sender=None</em>, <em>to=None</em>, <em>pattern=None</em>, <em>file=None</em>, <em>keepalive=True</em>, <em>proxy=None</em>, <em>timeout=None</em>, <em>session=None</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class for sending and receiving SAMP messages to/from a SAMP Hub</p>
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.access">
+<tt class="descname">access</tt><big>(</big><em>appName</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.access"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.access" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the availability of the specified application.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>appName</em>: the name of the application to be queried</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">A boolean indicating whether the specified application is available</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.bibcode">
+<tt class="descname">bibcode</tt><big>(</big><em>bibcode</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.bibcode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.bibcode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the named bibcode</p>
+<p>This sends a SAMP message of mtype &#8220;bibcode.load&#8221; with the bibcode</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>bibcode</em>: the bibcode to be loaded</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">A URL indicating where the bibcode can be accessed locally</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.exitsession">
+<tt class="descname">exitsession</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.exitsession"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.exitsession" title="Permalink to this definition">¶</a></dt>
+<dd><p>Leave the current session</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body">An integer indicating whether the action was successful.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.getenv">
+<tt class="descname">getenv</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.getenv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.getenv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the value of the specified environment variable</p>
+<p>This sends a SAMP message of mtype &#8220;client.env.get&#8221; with the variable name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>name</em>: the name of the environment variable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">The value of the named variable. This returns None if the value is not set.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.getparam">
+<tt class="descname">getparam</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.getparam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.getparam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the value of the specified parameter</p>
+<p>This sends a SAMP message of mtype &#8220;client.param.get&#8221; with the parameter name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>name</em>: the name of the parameter</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">The value of the named parameter. This returns None if the value is not set.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.handle">
+<tt class="descname">handle</tt><big>(</big><em>mtype</em>, <em>callback=None</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.handle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.handle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for a message of type mtype.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><p class="first"><em>mtype</em>: the type of message to wait for.</p>
+<p><em>callback</em>: a function to call when the appropriate message is received</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last">A message of type mtype</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.joinsession">
+<tt class="descname">joinsession</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.joinsession"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.joinsession" title="Permalink to this definition">¶</a></dt>
+<dd><p>Join the named session</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>name</em>: the name of the session to join</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">An integer indicating whether the action was successful</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.list">
+<tt class="descname">list</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of all registered clients</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body">A list of all registered clients</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.listsession">
+<tt class="descname">listsession</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.listsession"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.listsession" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of all nodes in the current session</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body">A list of all nodes in the current session</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.load">
+<tt class="descname">load</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the specified image/table file</p>
+<p>This sends a SAMP message of mtype dependent on the type of file being loaded,
+i.e., based on its extension, with the URL</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>url</em>: the URL of the image or table to load</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">A URL indicating where the file can be accessed locally</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.loadFITS">
+<tt class="descname">loadFITS</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.loadFITS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.loadFITS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the specified FITS binary table</p>
+<p>This sends a SAMP message of mtype &#8220;table.load.fits&#8221; with the file URL</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>url</em>: the URL of the table to load</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">A URL indicating where the table can be accessed locally</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.loadImage">
+<tt class="descname">loadImage</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.loadImage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.loadImage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the specified image</p>
+<p>This sends a SAMP message of mtype &#8220;image.load.fits&#8221; with the image URL</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>url</em>: the URL of the image to load</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">A URL indicating where the image can be accessed locally</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.loadResource">
+<tt class="descname">loadResource</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.loadResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.loadResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the specified VO Resource</p>
+<p>This sends a SAMP message of mtype &#8220;voresource.loadlist&#8221; with the resource URL</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>url</em>: the URL of the resource to load</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">A URL indicating where the resource can be accessed locally</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.loadSpec">
+<tt class="descname">loadSpec</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.loadSpec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.loadSpec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the specified spectrum</p>
+<p>This sends a SAMP message of mtype &#8220;spectrum.load.*&#8221; with the spectrum URL</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>url</em>: the URL of the spectrum to load</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">A URL indicating where the spectrum can be accessed locally</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.loadVOTable">
+<tt class="descname">loadVOTable</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.loadVOTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.loadVOTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the specified VOTable file</p>
+<p>This sends a SAMP message of mtype &#8220;table.load.votable&#8221; with the VOTable URL</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>url</em>: the URL of the VOTable to load</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">A URL indicating where the VOTable can be accessed locally</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.pointAt">
+<tt class="descname">pointAt</tt><big>(</big><em>ra</em>, <em>dec</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.pointAt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.pointAt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point at the specified coordinates.</p>
+<p>This sends a SAMP message of mtype &#8220;coord.pointAt.sky&#8221; with the specified position</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><p class="first"><em>ra</em>: the Right Ascension coordinate of the location</p>
+<p><em>dec</em>: the Declination coordinate of the location</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last">An integer indicating whether the operation was successful</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.sampexec">
+<tt class="descname">sampexec</tt><big>(</big><em>cmd</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.sampexec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.sampexec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute a client command</p>
+<p>This sends a SAMP message of mtype &#8220;client.cmd.exec&#8221; with the command.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>cmd</em>: the command to execute</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">An integer indicating whether the command was successfully executed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.selectRows">
+<tt class="descname">selectRows</tt><big>(</big><em>tblId</em>, <em>url</em>, <em>row</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.selectRows"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.selectRows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select the specified rows in the named table at the given location</p>
+<p>This sends a SAMP message of mtype &#8220;table.select.rowList&#8221; with the row details</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><p class="first"><em>tblId</em>: the IVOA identifier for the table</p>
+<p><em>url</em>: the URL where the table can be accessed</p>
+<p><em>row</em>: the list of rows to highlight</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last">An integer indicating if the selection was successful</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.send">
+<tt class="descname">send</tt><big>(</big><em>mtype</em>, <em>args</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a message of type mtype with the specified arguments</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><p class="first"><em>mtype</em>: the type of message to send</p>
+<p><em>args</em>: a dictionary specifying the arguments to be included in the message</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last">An integer indicating if the message was successfully sent</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.setenv">
+<tt class="descname">setenv</tt><big>(</big><em>name</em>, <em>value</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.setenv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.setenv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set an environment variable to the specified value</p>
+<p>This sends a SAMP message of mtype &#8220;client.env.set&#8221; with the variable name and value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><p class="first"><em>name</em>: the name of the environment variable</p>
+<p><em>value</em>: the value of the environment variable</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last">An integer indicating if the environment variable was successfully set</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.setparam">
+<tt class="descname">setparam</tt><big>(</big><em>name</em>, <em>value</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.setparam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.setparam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a parameter to the specified value</p>
+<p>This sends a SAMP message of mtype &#8220;client.param.set&#8221; with the parameter name and value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><p class="first"><em>name</em>: the name of the parameter</p>
+<p><em>value</em>: the value of the parameter</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last">An integer indicating whether the parameter was successfully set</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.showRow">
+<tt class="descname">showRow</tt><big>(</big><em>tblId</em>, <em>url</em>, <em>row</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.showRow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.showRow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highlight the specified row in the named table at the given location</p>
+<p>This sends a SAMP message of mtype &#8220;table.highlight.row&#8221; with the row details</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><p class="first"><em>tblID</em>: the IVOA identifier for the table</p>
+<p><em>url</em>: the URL where the table can be accessed</p>
+<p><em>row</em>: the row to highlight</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last">An integer indicating whether the operation was successful</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.snoop">
+<tt class="descname">snoop</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.snoop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.snoop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print all received messages</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPConnection.status">
+<tt class="descname">status</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPConnection.status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPConnection.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the SAMP hub availability</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body">A dictionary giving the boolean availability of the SAMP hub and the session manager</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="vaosamp.SAMPMessage">
+<em class="property">class </em><tt class="descclassname">vaosamp.</tt><tt class="descname">SAMPMessage</tt><big>(</big><em>mtype</em>, <em>**args</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPMessage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPMessage" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class representing a SAMP message.</p>
+<dl class="method">
+<dt id="vaosamp.SAMPMessage.getArgs">
+<tt class="descname">getArgs</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPMessage.getArgs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPMessage.getArgs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the arguments of this message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body">The arguments of this message</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPMessage.getMtype">
+<tt class="descname">getMtype</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPMessage.getMtype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPMessage.getMtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the mtype of this message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body">The mtype of this message</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPMessage.setArgs">
+<tt class="descname">setArgs</tt><big>(</big><em>**args</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPMessage.setArgs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPMessage.setArgs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the arguments of this message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>args</em>: a dictionary giving the arguments of this message</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaosamp.SAMPMessage.setMtype">
+<tt class="descname">setMtype</tt><big>(</big><em>mtype</em><big>)</big><a class="reference internal" href="_modules/vaosamp.html#SAMPMessage.setMtype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPMessage.setMtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the mtype of this message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>mtype</em>: the mtype of this message</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="vaosamp.SAMPServiceError">
+<em class="property">exception </em><tt class="descclassname">vaosamp.</tt><tt class="descname">SAMPServiceError</tt><a class="reference internal" href="_modules/vaosamp.html#SAMPServiceError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaosamp.SAMPServiceError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#vaosamp.SAMPAccessError" title="vaosamp.SAMPAccessError"><tt class="xref py py-class docutils literal"><span class="pre">vaosamp.SAMPAccessError</span></tt></a></p>
+<p>An exception indicating a failure communicating with a SAMP hub</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api_tasking.html" title="tasking Module API"
+             >previous</a> |</li>
+        <li><a href="index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, US Virtual Astronomical Observatory.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

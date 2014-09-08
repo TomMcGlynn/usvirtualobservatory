@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<antlib>
+  <taskdef name="transformText" 
+           classname="usvao.vaosoft.ant.TransformText"/>
+  <taskdef name="transformtext" 
+           classname="usvao.vaosoft.ant.TransformText"/>
+  <typedef name="upper"
+           classname="usvao.vaosoft.ant.TransformText$UpperOp"/>
+  <typedef name="lower"
+           classname="usvao.vaosoft.ant.TransformText$LowerOp"/>
+
+  <taskdef name="listPropertyNames"
+           classname="usvao.vaosoft.ant.ListPropertyNames"/>
+  <taskdef name="listpropertynames"
+           classname="usvao.vaosoft.ant.ListPropertyNames"/>
+  <taskdef name="split"
+           classname="usvao.vaosoft.ant.Split"/>
+  <taskdef name="about2Ivy"
+           classname="usvao.vaosoft.ant.About2Ivy"/>
+  <taskdef name="about2ivy"
+           classname="usvao.vaosoft.ant.About2Ivy"/>
+</antlib>

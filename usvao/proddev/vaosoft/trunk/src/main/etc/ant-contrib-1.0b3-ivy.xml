@@ -1,0 +1,20 @@
+<ivy-module version="2.0">
+  <info organisation="ant-contrib" module="ant-contrib" status="release"
+        revision="1.0b3">
+    <description>
+      The ant task extension package, ant-contrib
+    </description>
+  </info>
+
+  <configurations defaultconf="jar">
+    <conf name="license" />
+    <conf name="jar" extends="license"/>
+  </configurations>
+
+  <publications>
+     <artifact name="LICENSE" type="LICENSE" ext="txt" conf="license" />
+     <artifact name="ant-contrib" type="jar" ext="jar" conf="jar" />
+  </publications>
+
+  <dependencies/>
+</ivy-module>

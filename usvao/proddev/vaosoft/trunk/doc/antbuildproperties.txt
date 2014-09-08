@@ -1,0 +1,183 @@
+This file attempts to document all properties that can be considered
+available for use.
+
+Defined directly in build.xml:
+
+  useIvy:  user settable property that turns on and off use of Ivy for 
+     fetching dependencies.  If false, script assumes all dependencies 
+     are already in their proper, local place.  
+
+Defined in build-layout.xml (defines the layout of the product within 
+its directory):
+
+  basedir:  
+     the top directory within the product distribution or SVN area.  All
+     layout-defined directories are within this base.  
+  build.dir:  a directory would the products resulting from building the
+     product.  (${basedir}/target) 
+  class.dir:  
+     the directory for writing out compiled Java class files
+  conf.dir
+     a directory for configuration files
+  deps.dir:  
+     a scratch area for collecting/building product dependencies
+  dist.dir:  
+     a place for writing out various distributable artifacts, including
+     war files and tar-balls.  
+  env.*
+    properties imported from the shell environment
+  etc.dir
+     a dirrectory to contain various "system" files that are needed
+     to build or run the product.
+  jar.dir:
+     the directory where jar files should be deployed (defaults to
+     ${lib.dir}) 
+  jsrc.dir
+     the root directory for all Java source files 
+  lib.dir:
+     a directory for holding libraries needed by the product.  This can 
+     include jar files, C-libraries, etc.
+  local.jar.path
+     The classpath containing all Java code local to this product.  By
+     default, this is set to a path containing all the jar files found
+     in ${jar.dir}.  
+  src.dir
+     the root directory for all source files (in all languages)
+  tclass.dir: 
+     the directory for writing out compiled Java test class files. 
+  test.dir
+     the root directory for all test source and support files
+  testreport.dir:  
+     the directory for writing out reports from unit test execution
+  tjsrc.dir
+     the root directory for all Java test source files 
+  tmp.dir:
+     a general temporary area used during building.  Anything that is
+     writing here should not be an explicit dependency in the build
+     process.  
+  web_deply
+     the external directory to use to deploy non-war file artifacts to
+     the web (defaults to the value of the WEB_DEPLOY environment
+     variable).
+  web.dir
+     a directory containing files that might be deployed to the Web
+  war_deply
+     the external directory to use to deploy Java servlet war files to
+     the web (defaults to the value of the WEB_DEPLOY environment
+     variable).
+
+Defined in build-vao.xml
+
+  vao.build.layout.file
+    the path to the build-layout.xml file
+  vao.ivy.settings.file
+    the path-less file name to assume for the ivysettings.xml file
+    (default: ivysettings.xml)
+  vao.repos.baseurl
+    the base URL for the software repository where dependencies can 
+    be retrieved.  
+
+  vaosoft.ivy.settings.dir
+    the directory relative to the vaosoft product directory 
+    (i.e. $VAOSOFT_HOME) might be located.
+
+Defined in vaosoft-recipes.xml
+
+  vao.home
+    the root directory for managing the VAO software stack
+  vao.ivy.settings.file
+    the path-less file name to assume for the ivysettings.xml file
+    (default: ivysettings.xml)
+  vao.ivy.settings.path
+    the actual path to use for the ivysettings.xml file
+  vao.ivy.ivy.file
+    the path-less file name to assume for the ivy.xml file that
+    describes a specific product, it's dependencies and its artifacts
+  vao.repos.baseurl
+    the base URL for the software repository where dependencies can 
+    be retrieved.  
+  vao.repos.beta
+    the base URL for the beta software repository
+  vao.repos.prod
+    the base URL for the production software repository
+  vao.repos.use
+    the software repository, either "prod" or "beta" to actually use
+    (default is "prod").
+
+  vaosoft.about.alt.file
+    an alternative path to the current product's about properties file
+    (e.g. one retrieved from the repository)
+  vaosoft.about.file
+    the default path-less file name for the about properties file
+  vaosoft.about.path
+    the full path to the current product's about properties file
+  vaosoft.build.dir
+    a directory where products to be installed into vao.home can be
+    built.  This is intended to be a base directory where each product 
+    is built in its own subdirectory.  (build-vao.xml sets this to 
+    ./target/deps)
+  vaosoft.build.product.dir
+    the directory where the product is unpacked for building and
+    installation into vao.home
+  vaosoft.cache.dir
+    a cache directory for caching dependency artifacts.
+  vaosoft.home
+    the root directory containing the installation of the VAOsoft product
+  vaosoft.ivy.settings.dir
+    the directory on the local system where the Ivy settings file
+    might be located.
+  vaosoft.products.dir
+    the directory within vao.home where products are installed
+
+Defined in about.properties:
+  product.art.*
+    artifact metadata
+  product.art.defaultFile
+    the default file pattern for forming the full name of an artifact
+  product.art.defaultName
+    the default base name for distribution artifact
+  product.art.filenamePattern
+    specific filename patterns for artifacts
+
+  product.build.type
+    the type of build system it uses/requires to build and install it.
+
+  product.dep.for.*
+    dependency mappings 
+  product.dep.product.*
+    organization, name, and version of the product's dependencies
+
+  product.install.evidence.env
+  product.install.evidence.dirfile.*
+  product.install.evidence.stddir.*
+  product.install.evidence.swdir
+
+  product.name
+    the name of the product
+  product.org
+    the organization responsible for creating the distributions
+
+Derived from the about.properties file:
+  product.org
+  product.version
+  product.prodpath
+    the path (relative to a base) to the product artifacts in the 
+    repository
+  product.pkg.base
+    the expected basename for the product's distribution file
+  product.pkg.tgz
+    the expected basename for the product's tar-ball distribution file
+  product.pkg.zip
+    the expected basename for the product's zip distribution file
+  product.pkg.dir
+    the path in the repository for all a products artifacts
+  product.pkgpath.zip
+    the path in the repository to product's zip distribution file
+  product.pkgpath.tgz
+    the path in the repository to product's tar-ball distribution file
+  product.pkgurl.zip
+    the full URL in the repository to product's zip distribution file
+  product.pkgurl.tgz
+    the full URL in the repository to product's tar-ball distribution file
+
+

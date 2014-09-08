@@ -1,0 +1,24 @@
+<ivy-module version="2.0">
+  <info organisation="apache" module="ivy" status="release"
+        revision="2.2.0">
+    <description>
+      The standard apache release of the software lifecycle management software
+    </description>
+  </info>
+  <configurations defaultconf="null">
+    <conf name="license" />
+    <conf name="jar" extends="license"/>
+  </configurations>
+
+  <publications>
+    <artifact name="apache-ivy" type="jar" ext="jar" conf="jar"/>
+    <artifact name="LICENSE" type="LICENSE" ext="txt" conf="license"/>
+<!--
+    <artifact name="apache-ivy" type="bin" ext="zip" conf="distrib-bin-zip"/>
+    <artifact name="apache-ivy" type="about" ext="properties" conf="uberinstall"/>
+  -->
+  </publications>
+
+  <dependencies/>
+
+</ivy-module>

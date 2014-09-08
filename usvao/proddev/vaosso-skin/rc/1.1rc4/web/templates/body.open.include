@@ -1,0 +1,61 @@
+<div id="head" class="verbose">
+<script type="text/javascript" src="/styles/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/loginstatus.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(vaoStatus);
+</script>
+
+<div id="banner">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tr>
+  <td class="banner-logo" align="left" valign="top" width="155" rowspan="3">
+     <a href="http://www.usvao.org"><img src="/images/VAO_logo_200.png" width="150" height="75" /></a>
+  </td>
+  <td align="left" valign="top" rowspan="3">
+    <div class="vao-title">us virtual astronomical observatory</div>
+    <h1>Login Services</h1>
+    <div id="status">
+    <span class="login-label">Your Status:</span>&nbsp;
+    <span id="loginStatus" align="center" > Unknown </span></div>
+    </span></div>
+  </td>
+  <td class="panel-ur" width="10"></td>
+  <td class="vao-nav panel" rowspan="3">
+     <ul>
+       <li><a href="http://www.usvao.org/">About the VAO</a></li>
+       <li><a href="http://www.usvao.org/tools/">Science Tools</a></li>
+       <li><a href="http://www.usvao.org/contact-connect/">Ask for Help</a></li>
+     </ul>
+  </td>
+</tr><tr><td class="panel-edge"></td>
+</tr><tr>
+  <td class="panel-br"></td>
+ </tr>
+</table>
+</div> <!-- div: id=banner -->
+
+<div class="nav-bar">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+  <td class="panel-ur"></td>
+  <td colspan="3"></td>
+  <td class="panel-ul"></td>
+</tr>
+<tr class="buttons">
+  <td>
+	<a href="/">About VAO Logins</a></td>
+  <td>
+	<a href="/register/register.jsp">Create New Login</a></td>
+  <td>
+	<a href="/openid/">Manage Your Account</a></td>
+  <td>
+	<a href="/help/support.html">Support VAO Logins</a></td>
+  <td width="50">
+	<a href="/help/faq.html">FAQ</a></td>
+</tr>
+</table>
+
+</div> <!-- div: class=nav-bar -->
+</div> <!-- div: id=head -->
+     
+

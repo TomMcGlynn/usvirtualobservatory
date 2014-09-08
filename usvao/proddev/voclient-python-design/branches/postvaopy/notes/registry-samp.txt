@@ -1,0 +1,213 @@
+The Registry module:
+
+def connect(url):
+  '''
+  Constructor for creating a connection to a registry at the specified url.
+
+  This returns a RegistryConnection object.
+  '''
+
+
+class RegistryConnection():
+  '''
+  A class to represent a registry connection. 
+  '''
+
+  def cursor():
+  '''
+  Return a new RegistryCursor Object using the connection.
+  '''
+
+
+class RegistryCursor():
+  '''
+  This represents a registry cursor, which is used to manage the context of a fetch operation. 
+  It is modelled on a Python DB cursor; however, no assumptions are made on the response format
+  from the registry - this could be VOTable or it could be a VOResource.
+  '''
+
+  .count
+  '''
+  This read-only attribute specifies the number of records that the last search produced.
+   '''
+
+  def search(keyword..., term..., bandpass = ..., content = ..., type = ...):
+  '''
+  Prepare and execute a registry search of the specified keywords.
+ 
+  A search can be constrained by: 
+    - bandpass: Radio, Millimeter, Infrared (IR), Optical, Ultraviolet (UV),  X-Ray (xray), Gamma-Ray (GR)
+    - content level:
+    - service type: catalog (SCS), image (SIA), spectra (SSA), table (Vizier), ResourceType from Registry record
+  '''
+
+  def resolve(..., id = True, shortName = True, title = True):
+  '''
+  Resolve against the registry.
+
+  This can be constrained to only return the ID, Shortname and Title of the resource. 
+  '''
+
+  def list():
+  '''
+  List the full resource record.
+  '''
+
+  def meta():
+  '''
+  List table metadata.
+  '''
+
+  def fields(fields):
+  '''
+  Get the specified fields given as a list.
+
+  The allowed fields are: Title, ShortName, Identifier, ServiceURL, ReferenceURL, Description,
+  Subject, ResourceType, Type, Creator, Publisher, CoverageSpatial, CoverageTemporal, Waveband,
+  ContentLevel, Version. 
+  '''
+
+  def fetchone():
+  '''
+  Get next resource.
+  '''
+
+  def fetchmany():
+  '''
+  Get multiple resources.
+  ''' 
+
+  def fetchall():
+  '''
+  Get remaining resources.
+  '''
+
+  def scroll():
+  '''
+  Move resource cursor.
+  '''
+
+  def close():
+  '''
+  Free cursor resources.
+  '''
+
+-------
+
+The SAMP module:
+
+def connect(multiple = False, sender = <sender>, to = <to>, pattern = <pattern>, file = <file>, 
+    		     keepalive = True, proxy = <proxy>, timeout = <time>, session = <name>):
+  '''
+  Constructor for creating a connection to a SAMP hub running on the local machine. 
+  At this time, no provision is made for connecting to a remote SAMP hub.
+
+  This returns a SAMPConnection object.
+
+  The connection can be configured with the following parameters:
+   - multiple: handle multiple messages (default: False). The connection will close after a single message.
+   - sender: handle only message from <sender>
+   - to: send to specified application (<to>); otherwise all applications will be notified
+   - pattern: message pattern - allowed values are: sync, async and notify
+   - file: send all commands in the file <file>
+   - keepalive: if set to False, disable the keep_alive feature (default: True).
+   - proxy:  message pattern - allowed values: sync, async and notify
+   - timeout: set the keep_alive timeout if keep_alive is set to True
+   - session: set a name for the session
+  '''
+
+
+def SAMPConnection():
+  '''
+  A class to represent a SAMP connection. 
+  '''
+ 
+  def status():
+  '''
+  Get the SAMP hub availability
+  '''
+
+  def list():
+  '''
+  Get a list of all registered clients
+  '''
+
+  def access(appName):
+  '''
+  Check the availability of the specified application.
+  '''
+
+  def handle(mtype):
+  '''
+  Wait for a message of type mtype.
+  '''
+
+  def send(mtype, args):
+  '''
+  Send a message of type mtype with the specified arguments.
+  '''
+
+  def exec(cmd):
+  '''
+  Execute a client command
+  '''
+
+  def pointAt(ra, dec):
+  '''
+  Point at the specified coordinates
+  '''
+
+  def setenv(name, value):
+  '''
+  Set an environment variable to the specified value
+  '''
+
+  def getenv(name):
+  '''
+  Get the value of the specified environment variable
+  '''
+
+  def setparam(name, value):
+  '''
+  Set a parameter to the specified value
+  '''
+
+  def getparam(name):
+  '''
+  Get the value of the specified parameter
+  '''
+
+  def load(url):
+  '''
+  Load the specified image/table file
+  '''
+
+  def loadImage(url):
+  '''
+  Load the specified image
+  '''
+
+  def loadVOTable(url):
+  '''
+  Load the specified VOTable file
+  '''
+
+  def loadFITS(url):
+  '''
+  Load the specified FITS binary table
+  '''
+
+  def showRow(tblId, url, row):
+  '''
+  Highlight the specified row in the named table at the given location
+  '''
+
+  def selectRows(tblId, url, row):
+  '''
+  Select the specified rows in the named table at the given location
+  '''
+
+  def bibcode(bibcode):
+  '''
+  Load the named bibcode
+  '''

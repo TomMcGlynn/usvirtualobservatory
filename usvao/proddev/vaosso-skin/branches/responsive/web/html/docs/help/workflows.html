@@ -1,0 +1,764 @@
+<html> <head>
+<title>Help: OpenID Features (VAO Login Services)</title>
+<link href="/styles/sso.css" type="text/css" rel="stylesheet" />
+<link href="/images/favicon.ico" type="image/vnd.microsoft.icon" rel="icon"/>
+<style type="text/css">
+html {
+    overflow: -moz-scrollbars-vertical;
+}
+dl.tmfaq dt {
+   font-size: 12pt;
+   font-weight: 700;
+   color: #003366;
+   margin-top: 0.75ex;
+}
+.toc {
+   float: right;
+   width: 200pix;
+   margin-top:  1ex;
+   margin-bottom:  1ex;
+   margin-left:  2em;
+   padding-right:  1em;
+   background-color: #65c0cc;
+   padding-left: 1em;
+   padding-top: 1ex;
+   padding-bottom: 1ex;
+}
+.toc h5 {
+   margin-top: 0pt;
+   margin-bottom: 0pt;
+}
+.toc ul, .toc ul li ul, .toc ul li ul li ul {
+   margin-bottom: 0pt;
+   margin-top: 0pt;
+   list-style: none outside none;
+   margin-left: 0em;
+   padding-left: 0em;
+}
+.toc ul li ul li {
+   padding-left: 1.0em;
+   font-size: 100%;
+}
+.toc ul li {
+   font-size: 85%;
+}
+#shortbanner {
+   color: white;
+   font-weight: bold;
+   background-color: #65c0cc;
+   margin-left: 1em;
+}
+#shortbanner a {
+   color: white;
+   text-decoration: none;
+}
+#shortbanner a:hover {
+   color: #003366; 
+   text-decoration: none;
+}
+</style>
+<script language="javascript" type="text/javascript">
+helpwin = null;
+function popupHelp(url) {
+   if (helpwin == null) {
+      helpwin = window.open(url,"helpwin", "height=500,width=550,scollbars=1");
+   }
+   else {
+      helpwin.location.href = url;
+   }
+}
+</script>
+</head>
+
+
+<body>
+<p id="shortbanner">
+<a href="http://www.usvao.org/"><img align="Absmiddle"
+   src="/images/VAO_logo_50.png"></a> &nbsp;
+<span style="padding-top: 0.25ex">
+<a href="/">About VAO Logins</a></li> &nbsp;
+<a href="http://www.usvao.org/about-vao/">About the VAO</a> &nbsp;
+<a href="glossary.html">Glossary</a> &nbsp;
+<a href="http://www.usvao.org/contact-connect/">Ask for help</a>
+</span>
+</p>
+
+<div class="main-content">
+
+<a name="top"></a>
+<h1>Recommended Workflows for Using VAO Logins</h1>
+
+<div class="toc">
+<h5>Contents:</h5>
+<ul>
+  <li> <a href="#intro">Introduction: The Portal Model and Modes for
+       Logging In</a> </li>
+  <li> <a href="#RecommendedWorkflows">Recommended Workflows</a>
+       <ul>
+         <li> <a href="#LoggingUsersIn">Logging Users In</a> 
+              <ul>
+                <li> <a href="#TheLoginlink">The Login link</a> </li> 
+                <li> <a href="#ForcedLogin">Forced Login</a> </li> 
+              </ul></li>
+         <li> <a href="#sess">Maintaining User Sessions</a> </li> 
+         <li> <a href="#LoggingUsersOut">Logging Users Out</a> </li> 
+         <li> <a href="#DirectingNewUsers">Directing New Users</a>
+              <ul>
+                <li> <a href="#beforevao">Users who do not have a VAO Login</a>
+                <li> <a href="#aftervao">Users who already have a VAO Login</a>
+              </ul> </li>
+         <li> <a href="#RegisteringNewUsers">Registering New Users</a> </li> 
+         <li> <a href="#connectids">Connecting VAO Identities with
+              Internal Identities</a> </li> 
+       </ul> </li>
+</ul>
+</div>
+
+<p>
+This document collects best practices for using the VAO OpenID
+services within a portal.  A demonstration of these practices can be
+seen in our
+<a href="http://vaoportaltest.ncsa.illinois.edu">demonstration portal</a>
+(powered by the
+<a href="http://dev.usvao.org/vao/wiki/Products/vaologin">VAOlogin</a>
+toolkit). 
+</p>
+
+<a name="intro"></a>
+<h2>Introduction: The Portal Model  and Modes for Logging In</h2>
+
+<p>
+The best practices recommended here are based on a general perspective
+of a portal as a collection of related URL-accessible resources.  Some
+of these resources are expected to be publicly accessible (i.e. do not
+requiring logging in) and some will be purely private.  Some resources
+can contain different content depending on whether a user is logged in
+or not.  The "home page" for the portal site is either a purely public
+page or partially so (that is, its look will be different depending on
+whether the user is logged in).  
+</p>
+
+<p>
+The model suggest two modes of logging in users that should be
+supported.  
+</p>
+
+<dl>
+  <dt> <strong>The "Login" link/button (or form)</strong> </dt>
+  <dd> In this mode, your portal provides on publicly accessible pages
+       a "Login" link or button (or, in certain cases, a form or gadget).
+       Clicking on the button will send the user to the login form; once
+       successfully logged in, the user is returned to some appropriate
+       welcome page.  This might either be purely private welcome page, or
+       it could be an updated view of the page from which they clicked on
+       the "Login" button.  <p>
+
+       While this is perhaps the most familiar way for users to
+       "enter" a portal, it is a mode that is important to support
+       when the portal has documents that look different depending
+       whether the user is logged in or not.   
+       </dd>
+
+  <dt> <strong>Forced login</strong> </dt>
+  <dd> In this mode, the user attempts to access a purely private
+       document either by clicking on a link or returning to a
+       previously stored URL.  Before the displaying the private
+       document, the portal will reroute the user to the login page.
+       Upon successful authentication, the user is sent to view the
+       private document.  
+       <p>
+       Usually, it helps with configuring the access control if
+       the purely private (and often the partially private resources
+       as well) share one of a few common base URLs.  Often, this is a
+       natural consequence of the portal framework that is used. 
+       </dd>
+</dl>
+
+<p>
+Typically, a portal will support both modes; however, depending on the
+nature of the portal, the portal developer may choose to support just
+one or the other.  
+</p>
+
+<p>
+What the login process looks like to the user will depend on whether
+you plan to support multiple OpenID providers (or multiple federated
+systems) or just VAO Logins as your sole identity provider.  If you
+wish to support any OpenID provider or selected ones (e.g. Google,
+Facebook), then your "Login" button will have to be either:
+</p>
+
+<ul>
+  <li> a form or gadget that allows the user to choose which provider
+       they wish to use, or </li>
+  <li> an input box (marked with the
+       <a href="http://openid.net/favicon.ico"><img
+          src="http://openid.net/favicon.ico" title="OpenID Icon"/></a>
+       icon) where a user enters their full OpenID identifier URL. </li>
+</ul>
+
+<p>
+You may wish to support multiple OpenID providers if you don't care
+who the user really is--you just want to be able to recognize them
+when they return.  In this scenario, it shouldn't matter if a person
+has multiple logins that they might connect to your portal with as
+long as you are happy to treat those different logins as different
+people.  
+</p>
+
+<p>
+However, in the VO, with archive portals containing proprietary data
+and the need to share data across portals, having a single identity
+per user is critical.  Supporting multiple providers can get
+complicated and will likely be more trouble than it is worth.  
+</p>
+
+<p>
+Thus, for the simplest, most intuitive experience for your users,
+<em>we recommend that you use the VAO OpenID provider as your sole
+OpenID identity provider.</em>  If you already use a different,
+non-OpenID single sign-on framework, you can still support VAO Logins;
+recommended techniques for doing this will be forthcoming.  
+</p>
+
+<blockquote>
+<p>
+<strong>Note:</strong>  We are planning to integrate into the VAO service support for InCommon log-ins (through the <a href="http://www.cilogon.org/">CI-Logon project</a>).  This means users will be able to use the username and password provided by their local institution to connect to VAO portals.  Nevertheless, your portal can still integrate as if VAO was the sole identity provider.  
+</p>
+</blockquote>
+
+<a name="RecommendedWorkflows"></a>
+<h2>Recommended Workflows</h2>
+
+<p>
+The workflows presented illustrate how best to handle common user
+handling issues using VAO OpenID Logins.  When relevent, they assume
+that the VAO is the sole identity provider.  No assumptions are made
+about the portal framework you use or the language you use or the OS
+of the platform it runs on.  Where useful, specific examples are given
+to illustrate a technique; these necessarily assume a particular
+platform. 
+</p>
+
+<p>
+You can see how these workflows work by visiting our
+<a href="http://vaoportaltest.ncsa.illinois.edu">demonstration
+portal</a>.  
+</p>
+
+<a name="LoggingUsersIn"></a>
+<h3>Logging Users In</h3>
+
+<a name="TheLoginlink"></a>
+<h4>The Login link</h4>
+
+<p>
+With this mode of logging in, there will various public pages that you
+will allow a user to log in from.  Such a page need not be dedicated
+to logging in; it could be a small piece of screen real estate that
+includes a login link or button.  We recommend that this area include
+at least the following:
+</p>
+
+<ul>
+  <li> A statement like "We support
+       <a href="http://sso.usvao.org/">VAO Logins</a>", where "VAO
+       Logins" links to the main page at
+       <a href="http://sso.usvao.org/">http://sso.usvao.org/</a>.
+       This allows people to readily find out more about VAO Logins if
+       they do not know what they are. </li>
+  <li> A "Login" link or button that will trigger the login process.
+       The URL you put here depends some on the toolkit you are using, but
+       more general information about this link is discussed below.
+       </li>
+  <li> A "Register" link that assumes that the user does not have a
+       VAO Login yet and therefore directs the browser to the VAO
+       registration page.  See the section on
+       <a href="http://dev.usvao.org/vao/wiki/VAOLogins/RecommendedWorkflows#RegisteringNewUsers">registering
+       users below</a> for details 
+       </li>
+</ul>
+
+<p>
+You might also include in the same general area the following:
+</p>
+
+<ul>
+  <li> the VAO mini-icon:
+       <a href="http://vaoportaltest.ncsa.illinois.edu/images/vao-si.ico"><img
+          src="http://vaoportaltest.ncsa.illinois.edu/images/vao-si.ico"
+          title="VAO icon"/></a>
+       </li>
+  <li> some indication that that the user is logged out (e.g. the
+       words, "Logged Out").  </li>
+</ul>
+
+<p>
+Here's what this looks like in our
+<a href="http://vaoportaltest.ncsa.illinois.edu">demonstration
+portal</a>: 
+</p>
+
+<blockquote>
+<img src="loginpanel.png"/>
+</blockquote>
+
+<p>
+The login link can point to one of two things:
+</p>
+
+<ul>
+  <li> a private document (e.g. a private welcome page).  This is
+       essentially the same as the "Forced Login" mode; see the next
+       section for tips on setting this up.  </li>
+  <li> a CGI script or servlet or other service built using your
+       OpenID toolkit of choice.  Using a script would allow you to return
+       the user to the same page after a successful login.  If you want to
+       require that your users are registered with your portal, then your
+       script might also checked to see if the VAO user is locally
+       registered and, if necessary, direct him to your registration page
+       (see
+       <a href="http://dev.usvao.org/vao/wiki/VAOLogins/RecommendedWorkflows#RegisteringNewUsers">registering
+       users below</a>).  </li>
+</ul>
+
+<p>
+You should consult with the documentation of the OpenID toolkit you
+are using for how to create your login service.  The script will
+require that you set two important inputs:
+</p>
+
+<ul>
+  <li> the VAO OpenID provider identifier:
+       <tt>https://sso.usvao.org/openid/provider_id</tt> </li>
+  <li> a URL in your portal that you want the user to be returned to
+       upon successful authentication.  The user can be returned to the
+       same page that they logged in from or sent to any other document. 
+       </li>
+</ul>
+
+<p>
+If after logging in, the user is returned to a page that includes a
+login area, you might want the contents to change accordingly.  For
+example: 
+</p>
+
+<ul>
+  <li> remove the "Login" and "Register" links </li>
+  <li> add a "Logout" link </li>
+  <li> replace the "Logged Out" statement with one that indicates that
+       the user is logged in, such as "Logged in as <em>username</em>".  
+       <ul>
+         <li> the VAOLogin toolkit includes a service and a bit of
+              javascript that will check the log in status of the user and 
+              display the username and how much time is left in the
+              user's session. </li>
+       </ul></li>
+</ul>
+
+<a name="ForcedLogin"></a>
+<h4>Forced Login</h4>
+
+<p>
+In this mode, the user clicks on the link to a private document which
+forces the user to go through the login process.  To intercept users
+requires a special program that serve private documents through that
+will check the user's log-in status.  Some high-level toolkits (like
+<a href="http://dev.usvao.org/vao/wiki/Products/vaologin">VAOlogin</a>)
+can provide such a program, sometimes requiring only configuration.
+With lower-level OpenID libraries, you may have to implement this
+yourself.  In either case, the important inputs are:
+</p>
+
+<ul>
+  <li> the VAO OpenID provider identifier:
+       <tt>https://sso.usvao.org/openid/provider_id</tt>, </li>
+  <li> either,
+       <ul>
+         <li> an identifier for (or path to) private document being
+              requested, or </li>
+         <li> paths to areas containing private documents. </li>
+       </ul></li>
+</ul>
+
+<p>
+The <tt>mod_auth_openid</tt> plugin for the Apache web server can
+support the "Forced Login" mode just through configuration.  With this
+plugin, you configure paths containing private documents in the
+<tt>httpd.conf</tt> file
+by defining "<tt>&lt;Directory&gt;</tt>" nodes with the following
+directives included: 
+</p>
+
+<pre style="border: 1pt solid black; background-color: #eeeeee;">   AuthType             OpenID
+   require              valid-user
+   AuthOpenIDSingleIdP  https://sso.usvao.org/openid/provider_id
+</pre>
+
+
+<a name="sess"></a>
+<h3>Maintaining User Sessions</h3>
+
+<p>
+You should institute some way to track a user's session within your
+portal system such as setting and tracking your own cookies.  Cookies
+can be set to expire, and by testing the cookie's validity you can
+tell if the user is still logged in.  Once a session has started, you
+should rely on this test control access to private information.  If
+you do not, your system may well route the user to the VAO service
+every time they access a private link, incurring an unnecessary
+network overhead.  The user won't be forced to continually enter their
+password, but they might notice the poor performance.  
+</p>
+
+<p>
+If you don't care too much who the user is, simply setting a cookie is
+sufficient for tracking the user.  However, with most VO and archive
+use cases, the user will have some state or private datasets that
+persist between session; therefore, you will care who they are.  Thus,
+you will need to provide some mechanism for persisting the user's
+identity and associated session identifier on your portal server.
+(Placing the user's identity in the cookie itself is not particularly
+secure as it is possible that the user could manipulate this file.)
+For example, you might have a session table in your portal database.
+Some toolkits like <tt>mod_auth_openid</tt> or
+<a href="http://dev.usvao.org/vao/wiki/Products/vaologin">Products/vaologin</a>
+can do this for you if you don't have a native means in your portal
+system.  
+</p>
+
+<p>
+Note that the user's <a
+href="http://dev.usvao.org/vao/wiki/VAOLogins/Glossary#opidurl">OpenID
+URL</a> can serve as a unique identifier for the user.  As explain in
+our
+<a href="http://dev.usvao.org/vao/wiki/VAOLogins/OpenIDFeatures#RepresentingUsersInternalToYourPortal">OpenID
+Features document</a>, the user's username can be derived from this
+URL.  Alternatively, OpenID attribute exchange can
+<a href="http://dev.usvao.org/vao/wiki/VAOLogins/OpenIDFeatures#availableatts">provide
+the username directly</a>, if that that is desired.  
+</p>
+
+<p>
+Global VAO sessions last by default for 8 hours.  You may set your
+session for less or more than that, if you wish.  If your portal
+session ends before the global VAO session, the portal session will be
+silently renewed the next time the user accesses a private document.
+Similarly, there are no bad side effects of the portal session lasting
+longer than the VAO session, unless you are using a user certificate
+which may go stale prematurely.  If you use certificates, you should
+keep your portal session equal to or shorter than the VAO session.  
+</p>
+
+<p>
+Finally, you might notice on our
+<a href="http://vaoportaltest.ncsa.illinois.edu">demonstration portal
+page</a> (near the VAO glyph) an indication of the users login status;
+it will either say "Logged out" or "Logged in as ...".  This
+accomplished by a lightweight service on the portal (that returns some
+user session information based on the session cookie) and a bit of
+Javascript in the web page (to display the session information).  This
+can be helpful to the user but is not required for integrating with
+VAO Login services.  
+</p>
+
+
+<a name="LoggingUsersOut"></a>
+<h3>Logging Users Out</h3>
+
+<p>
+To log users out of your portal, provide a link with a label like "log
+out" which points to a service which simply destroys the user session
+(e.g. deletes the session cookie).  This service should return the
+user to a publicly accessible page that visually indicates that the
+user is no longer logged in.  (That page would typically feature a
+login link to log back in with.)
+</p>
+
+<p>
+Note ending the user's session in your portal does not end the user's
+global VAO session.  If that global session is still valid, then if
+the user reclicks the "login" link on your portal, they will not be
+prompted to give a password; they will automatically switched to a
+logged in state again.  
+</p>
+
+<a name="DirectingNewUsers"></a>
+<h3>Directing New Users</h3>
+
+<p>
+When a user visits your portal for the first time, you will want to
+establish them as a user of your portal.  You may want them to
+explicitly register with your portal so that you can <em>(a)</em>
+collect some user information from them and/or <em>(b)</em> set up
+some state (or "space") for them on your portal server.  The new user
+may have a VAO login already or they may not.  Either way, you will
+want direct them in the right direction to get them recognized as a
+user.  
+</p>
+
+<p>
+<a href="http://dev.usvao.org/vao/wiki/VAOLogins/RecommendedWorkflows#LoggingUsersIn">Above</a>,
+we recommended including a "Register" link next to your portal's
+"Login" link.  It can be helpful to provide a bit more information for
+new users on your portal's public home page.  That is, in the area
+where you welcome new users and invite them to get a login, we
+recommend that your home page include the following:  
+</p>
+
+<ul>
+  <li> a statement that says "We support
+       <a href="http://sso.usvao.org/">VAO Logins</a>", where "VAO
+       Logins" links to the main page at
+       <a href="http://sso.usvao.org/">http://sso.usvao.org/</a>.
+       This allows people to readily find out more about VAO Logins if
+       they do not know what they are. </li>
+  <li> a link for directing those who <em>do not</em> already have a
+       VAO login (e.g. "If you don't already a VAO account, get one
+       now..."). </li>
+  <li> a link for directing those who <em>do</em> have a VAO login
+       already.  If you require local registration, then this link should
+       point to your local registration page (as described below);
+       otherwise, this link can be your regular "login" link. </li>
+</ul>
+
+<p>
+Here's how we do this in the
+<a href="http://vaoportaltest.ncsa.illinois.edu">demonstration
+portal</a>: 
+</p>
+
+<blockquote>
+<img src="registerexample.png" />
+</blockquote>
+
+<a name="beforevao"></a>
+<h4>Users who do not have a VAO Login</h4>
+
+<p>
+If the user does not have a VAO Login yet, you will want to send them
+to the VAO Login registration page.  The VAO registration page
+supports a special parameter that will return the user to your portal
+once the registration process is complete.  That is, your link
+directing users to the VAO registration page should take this form:
+</p>
+
+<blockquote>
+<tt>https://sso.usvao.org/register?returnURL=</tt><em>[url_back_to_your_portal]</em><tt>&amp;portalName=</tt><em>[title_for_your_portal]</em>
+</blockquote>
+
+<p>
+where <em>[url_back_to_your_portal]</em> is the URL you want users to
+return to and <em>[title_for_your_portal]</em> a human-friendly name
+for your portal.  If you want users to fill out a registration form,
+then the return URL should be the URL to your registration page (be
+sure to read
+<a href="http://dev.usvao.org/vao/wiki/VAOLogins/RecommendedWorkflows#RegisteringNewUsers">Registering
+New Users</a> below); otherwise, it can just be your normal login
+link.  Be sure to URL-encode the parameter values (e.g. replace spaces
+with <tt>+</tt>, question marks with <tt>%3F</tt>, and ampersands with
+<tt>%26</tt>).  For example, the
+<a href="http://vaoportaltest.ncsa.illinois.edu">demonstration portal</a>
+uses the following URL:
+</p>
+
+<pre>
+https://sso.usvao.org/register?returnURL=http://vaoportaltest.ncsa.illinois.edu/cgi-bin/portal/cgi-bin/register&amp;portalName=the+Acme+Archive
+</pre>
+
+<p>
+When the user follows this link, the VAO registration page will
+display a friendly message reminding the user what's going on.  For
+example, registrants coming in via the
+<a href="http://vaoportaltest.ncsa.illinois.edu">demonstration
+portal</a> see this: 
+</p>
+
+
+<blockquote>
+<img src="registerhello.png" />
+</blockquote>
+
+<p>
+Note that this message is a little nicer if your portal name starts
+with "the", if applicable.  
+</p>
+
+
+<a name="aftervao"></a>
+<h4>Users who already have a VAO Login</h4>
+
+<p>
+If the user already has a VAO Login, they can be sent directly to your
+local registration (or to your login page, if you don't need them to
+register).  
+</p>
+
+<a name="RegisteringNewUsers"></a>
+<h3>Registering New Users</h3>
+
+<p>
+If you want to collect some information from your users by making them
+fill in a registration form, then you can usually save them some
+typing by taking advantage of OpenID Attribute Exchange in the
+process.  That is, some of the information that you will probably
+want--like the user's real name, an email address, etc.--is
+information that VAO has already collected (seconds before, in fact,
+if the user just created their VAO login).  Through the OpenID
+protocol, we can send your portal this information (with the user's
+consent).  Then, when you present your registration page, you can
+pre-populate it with this information.  You are not <em>required</em>
+to do this, but it will make your users happier.  
+</p>
+
+<p>
+To accomplish this, you should:
+</p>
+
+<ol>
+  <li> Install your registration page as one of your protected pages
+       within your portal.  This will force the user to login prior to
+       registration.  If they are logged in, you know their identity.  
+       </li>
+  <li> Use OpenID Attribute Exchange to request any of the
+       <a href="http://dev.usvao.org/vao/wiki/VAOLogins/OpenIDFeatures#availableatts">user
+       attributes available from the VAO</a>.  </li>
+  <li> Fill in the appropriate parts of the form with the attributes
+       returned from the VAO through the OpenID login process.  </li>
+</ol>
+
+<p>
+Step 3 above implies using a script (or other dynamic page generation
+scheme like JSP) to present the registration page.  How the attributes
+are made available to your script depends on the library or toolkit
+you use to handle the OpenID login process.  The
+<a href="http://findingscience.com/mod_auth_openid/">mod_auth_openid
+Apache plugin</a>, for example, makes these available as CGI
+parameters; the
+<a href="http://dev.usvao.org/vao/wiki/Products/vaologin">VAOlogin</a>
+can make them available as CGI environment variables.  If you are
+working directly with a language-specific OpenID library, then that
+libraries API will provide access to the values.
+</p>
+
+<p>
+When your registration form gets submitted, your action script would
+typically load the information into a database of some kind.  Be sure
+this information includes an identifier for the user.  This can be the
+<a href="http://dev.usvao.org/vao/wiki/VAOLogins/OpenIDFeatures#VAOsOpenIDIdentifiers">user's
+OpenID URL</a>.  If you prefer something shorter, you can use the
+user's VAO username which is derivable from the URL or can be
+retrieved as the
+<a href="http://dev.usvao.org/vao/wiki/VAOLogins/OpenIDFeatures#availableatts">username
+attribute</a>; see
+<a href="http://dev.usvao.org/vao/wiki/VAOLogins/OpenIDFeatures#RepresentingUsersInternalToYourPortal">this
+discussion of user identifiers</a> for more information.  
+</p>
+
+
+<a name="connectids"></a>
+<h3>Connecting VAO Identities with Internal Identities</h3>
+
+<p>
+As just discussed in the previous section, when you register a new
+user, you record the user's unique identifier (i.e. her OpenID URL,
+her username, or her qualified username).  Henceforth, if the user
+creates any new datasets or state in your portal, you can assign
+ownership by assigning associating them with that identifier.  In some
+cases, such as with a guest-observer archive, you may have datasets
+that belong to the user <em>before</em> the user has visited and
+registered with the sight.  The challenge there is that when the user
+registers, you must determine which datasets in the archive belong to
+the user.  That is, you must some match user's VAO identity with an
+identity that you already have (say, in a proposal database).  This
+challenge is not peculiar to using VAO identities; rather, it is
+peculiar to a use case that is common in astronomy. 
+</p>
+
+<p>
+How you do this can depend on your circumstances and what information
+you already have about the user, but here are some suggestions.  
+</p>
+
+<p>
+First, if you already have an email address for the user, you match
+the user by matching against the one you receive through the
+registration process.  This method has two shortcomings:
+</p>
+
+<ul>
+  <li> The user may have multiple email addresses or otherwise have
+       changed their address since the original one was recorded. 
+       </li>
+  <li> If your registration process allows the user to enter their
+       email address (or update the one received from VAO through OpenID
+       Attribute Exchange), then a malicious user could easily put in
+       someone else's email address to gain access to their data.  
+       </li>
+</ul>
+
+<p>
+There are a few techniques you can use to address these issues.  One
+effective technique is to send the user a special invitation to
+register before hand.  That is, using the email address you already
+have in your database (e.g. proposal database), you send the user a
+message saying that the archive contains data belonging to the user
+and that to access it, the user should register with the the portal.
+Include in this message a secret, one-time token that represents the
+original identity and provide an input in the registration form where
+they can enter it.  
+</p>
+
+<p>
+What if the user doesn't respond to the invitation but rather comes
+unsolitited without a token?  In this case, a similar technique can be
+applied.  If you can match the registering user to an identity in your
+database using their email, then you can send them a token afterward.
+You then provide them with a service where they can enter the token to
+claim their data.  
+</p>
+
+<p>
+If you do not have matching email addresses, you can try matching
+using other information from the registration form, like the user's
+real name.  Of course, this kind of match is fuzzier and ambiguous,
+and so your matches become candidate ones.  You may need to enlist the
+user's help in identifying which datasets (or proposals or projects)
+is his.  To ensure they have identified themselves and/or their data
+correctly, you should send them a secret token.  You must then provide
+a form where this token can be entered.  The can be sent to the
+address that they've entered during registration, but be sure that the
+user must be authenticated to access the form for entering the token.
+Thus, you can match the token (and thus their original identity) with
+their VAO identity.  
+</p>
+
+
+</div>  <!-- end main-content -->
+
+<div class="foot">
+<div class="divider"><hr noshade="noshade" /></div>
+<table class="tiny" border="0" cellspacing="4" cellpadding="0" width="100%"><tr>
+<td valign="top" class="tiny">
+Supported by the <a href="http://www.nsf.gov/">National Science
+Foundation</a> <br/>
+With contributions from the <a href="http://www.ncsa.uiuc.edu">National
+Center for Supercomputing Applications</a> <br/>
+and the <a href="http://www.globus.org">Globus Alliance</a>.<br/>
+The VAO is a member of the <a href="http://www.ivoa.net">International
+Virtual Observatory Alliance</a>
+</td>
+<td valign="top" align="right" class="tiny">
+<!-- hhmts start -->
+Last modified: Wed Jun  5 12:41:45 2013
+<!-- hhmts end -->
+<br>
+<a href="http://dev.usvao.org/vao/wiki/VAOLogins/RecommendedWorkflows">
+Draft version 16</a> on the <a href="http://dev.usvao.org/">VAO Developer
+Wiki</a>. 
+</td>
+</tr></table>
+</div>
+
+</body>
+</html>

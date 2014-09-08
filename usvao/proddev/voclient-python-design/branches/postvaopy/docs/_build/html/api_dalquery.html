@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dalquery Module API &mdash; VOClient Python API 1.0rc1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0rc1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="VOClient Python API 1.0rc1 documentation" href="index.html" />
+    <link rel="next" title="tasking Module API" href="api_tasking.html" />
+    <link rel="prev" title="registry Module API" href="api_registry.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api_tasking.html" title="tasking Module API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="api_registry.html" title="registry Module API"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/vao_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">dalquery Module API</a><ul>
+<li><a class="reference internal" href="#module-dalquery"><tt class="docutils literal"><span class="pre">dalquery</span></tt>: VO Data Access Layer Queries</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="api_registry.html"
+                        title="previous chapter">registry Module API</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api_tasking.html"
+                        title="next chapter">tasking Module API</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/api_dalquery.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="dalquery-module-api">
+<h1>dalquery Module API<a class="headerlink" href="#dalquery-module-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-dalquery">
+<span id="dalquery-vo-data-access-layer-queries"></span><h2><a class="reference internal" href="#module-dalquery" title="dalquery"><tt class="xref py py-mod docutils literal"><span class="pre">dalquery</span></tt></a>: VO Data Access Layer Queries<a class="headerlink" href="#module-dalquery" title="Permalink to this headline">¶</a></h2>
+<p>A module for walking through the query response of VO data access layer
+(DAL) queries and general VOTable-based datasets.</p>
+<p>Most data queries in the VO return a table as a result, usually
+formatted as a VOTable.  Each row of the table describes a single
+physical or virtual dataset which can be retrieved.  For uniformity,
+datasets are described via standard metadata defined by a data model
+specific to the type of data being queried.  The fields of the data
+model are identified most generally by their VOClient alias as defined
+in this interface, or at a lower level by the Utype or UCD of the
+specific standard and version of the standard being queried.  While
+the data model differs depending upon the type of data being queried,
+the form of the query response is the same for all classes of data,
+allowing a common query response interface to be used.</p>
+<p>An exception to this occurs when querying an astronomical catalog or
+other externally defined table.  In this case there is no VO defined
+standard data model.  Usually the field names are used to uniquely
+identify table columns.</p>
+<p>The high level query interface described here walks through the query
+response row by row, much as if we were querying a typical relational
+database.  The interface implements the Python Database API V2.0
+(PY-DBI).  Once a connection is obtained, generic PY-DBI code may be
+used to traverse the query response.  VOClient further extends the
+standard interface as required to support VO.</p>
+<dl class="class">
+<dt id="dalquery.Cursor">
+<em class="property">class </em><tt class="descclassname">dalquery.</tt><tt class="descname">Cursor</tt><a class="reference internal" href="_modules/dalquery.html#Cursor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.Cursor" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class used to walk through a query response table row by row, accessing the contents of each record (row) of the table.</p>
+<dl class="method">
+<dt id="dalquery.Cursor.close">
+<tt class="descname">close</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/dalquery.html#Cursor.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.Cursor.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the cursor object and free all resources.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.Cursor.fetchall">
+<tt class="descname">fetchall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/dalquery.html#Cursor.fetchall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.Cursor.fetchall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch all remaining rows from the result set.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body">A list of tuples, one per row.  An empty sequence is returned when
+no more rows are available.  If a DictCursor is used then the output
+consists of a list of dictionaries, one per row.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.Cursor.fetchmany">
+<tt class="descname">fetchmany</tt><big>(</big><em>size=None</em><big>)</big><a class="reference internal" href="_modules/dalquery.html#Cursor.fetchmany"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.Cursor.fetchmany" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch the next block of rows from the query result.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>size</em>: The number of rows to return (default: cursor.arraysize).</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">A list of tuples, one per row.  An empty sequence is returned when
+no more rows are available.  If a DictCursor is used then the output
+consists of a list of dictionaries, one per row.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.Cursor.fetchone">
+<tt class="descname">fetchone</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/dalquery.html#Cursor.fetchone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.Cursor.fetchone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the next row of the query response table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body">The response is a tuple wherein each element is the value of the
+corresponding table field.  Alternatively, if a DictCursor is used
+a dictionary is returned wherein each element consists of the field
+name and value for the table field.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.Cursor.getdata">
+<tt class="descname">getdata</tt><big>(</big><em>url</em>, <em>row=None</em><big>)</big><a class="reference internal" href="_modules/dalquery.html#Cursor.getdata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.Cursor.getdata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the dataset associated with the indicated row.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><p class="first"><em>url</em>: If omitted the current row is referenced, otherwise the dataset pointed to by the given URL is returned.</p>
+<p><em>row</em>: Either the row number or the row data passed as a sequence.  If omitted the current row is referenced.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last">An i/o stream which may be read to retrieve the referenced dataset.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Getdata is used to retrieve the dataset referenced by the indicated row of the
+query response.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.Cursor.getfield">
+<tt class="descname">getfield</tt><big>(</big><em>alias</em>, <em>id=None</em>, <em>name=None</em>, <em>ucd=None</em>, <em>utype=None</em>, <em>row=None</em><big>)</big><a class="reference internal" href="_modules/dalquery.html#Cursor.getfield"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.Cursor.getfield" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the value of a field of the current row given its name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><p class="first"><em>alias</em>: The alias (shortname) of the field.</p>
+<p><em>id</em>: The unique ID of the field.</p>
+<p><em>name</em>: The name of the field.</p>
+<p><em>ucd</em>: The UCD of the field (may not be unique).</p>
+<p><em>utype</em>: The Utype of the field.</p>
+<p><em>row</em>: Either the row number or the row data passed as a sequence.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first">The field value is returned.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Exceptions :</th><td class="field-body"><p class="first last">A FieldNotFound exception is raised if the field name is not recognized.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Getfield is used to obtain the value of a table field (or data model attribute)
+given either its well-known alias, or VO attribute.  A single positional argument
+specifies the alias (shortname) for the field to be returned.  Otherwise one of
+the keyword=value parameters should be specified.  Values are returned from the
+current row unless a &#8220;row&#8221; parameter is input.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.Cursor.infos">
+<tt class="descname">infos</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/dalquery.html#Cursor.infos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.Cursor.infos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return any INFO elements in the VOTable as a dictionary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body">A dictionary with each element corresponding to a single INFO,
+representing the INFO as a name:value pair.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.Cursor.next">
+<tt class="descname">next</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/dalquery.html#Cursor.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.Cursor.next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Advance to the next row.</p>
+<p>A StopIteration exception is raised when there are no more rows.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.Cursor.nextset">
+<tt class="descname">nextset</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/dalquery.html#Cursor.nextset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.Cursor.nextset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Advance to the next result set.</p>
+<p>Advance to the next result set in a multi result-set query response.
+Any remaining data in the current result set is skipped.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.Cursor.scroll">
+<tt class="descname">scroll</tt><big>(</big><em>value</em>, <em>mode=None</em><big>)</big><a class="reference internal" href="_modules/dalquery.html#Cursor.scroll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.Cursor.scroll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the row cursor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><p class="first"><em>value</em>: The number of rows to skip or the row number to position to.</p>
+<p class="last"><em>mode</em>: Either &#8220;relative&#8221; for a relative skip, or &#8220;absolute&#8221; to position to a row by its absolute index within the result set (zero indexed).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dalquery.DalQuery">
+<em class="property">class </em><tt class="descclassname">dalquery.</tt><tt class="descname">DalQuery</tt><big>(</big><em>input=None</em><big>)</big><a class="reference internal" href="_modules/dalquery.html#DalQuery"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.DalQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class for processing the query response from a VO Data Access Layer (DAL)
+query.  This class may also be used for any VOTable, including tables used
+as containers to store instances of some data model.</p>
+<dl class="method">
+<dt id="dalquery.DalQuery.close">
+<tt class="descname">close</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/dalquery.html#DalQuery.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.DalQuery.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the connection and free all resources.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.DalQuery.connect">
+<tt class="descname">connect</tt><big>(</big><em>input</em><big>)</big><a class="reference internal" href="_modules/dalquery.html#DalQuery.connect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.DalQuery.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open a connection context using a file or i/o stream.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>input</em>: Either the filename or an i/o stream.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">A connection object for the service or other resource.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.DalQuery.cursor">
+<tt class="descname">cursor</tt><big>(</big><em>cursorType=None</em><big>)</big><a class="reference internal" href="_modules/dalquery.html#DalQuery.cursor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.DalQuery.cursor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open a cursor for the given connection.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>cursorType</em>: Either &#8220;cursor&#8221; (default) or &#8220;dictCursor&#8221;.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body">A cursor object to be used to navigate the query response.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.DalQuery.getRaw">
+<tt class="descname">getRaw</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/dalquery.html#DalQuery.getRaw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.DalQuery.getRaw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the raw query response data stream.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body">The query response as a raw byte stream (i/o stream).</td>
+</tr>
+</tbody>
+</table>
+<p>Returns the raw query response as a data stream without any processing.
+This can be used to retrieve the VOTable XML in the case of a query 
+returning a VOTable.  It can also be used to retrieve and dispose of
+query responses in formats not otherwise handled, e.g., formatted text,
+HTML, and so forth.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.DalQuery.openTable">
+<tt class="descname">openTable</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/dalquery.html#DalQuery.openTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.DalQuery.openTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open the query response as an AtPy table object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body">Returns an AtPy table object.</td>
+</tr>
+</tbody>
+</table>
+<p>The query response VOTable is parsed and opened as a AtPy (astronomical
+tables in Python) object.  This provides a higher level, simpler to use
+table abstraction not specific to VOTable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dalquery.DalQuery.openVotable">
+<tt class="descname">openVotable</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/dalquery.html#DalQuery.openVotable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dalquery.DalQuery.openVotable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open the query response as an Astropy vo.table object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body">Returns an Astropy vo.table object.</td>
+</tr>
+</tbody>
+</table>
+<p>The query response VOTable is parsed and opened as a vo.table object.
+This provides full access to the VOTable semantics and also allows access
+to the VOTable content as a NumPy record array.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api_tasking.html" title="tasking Module API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="api_registry.html" title="registry Module API"
+             >previous</a> |</li>
+        <li><a href="index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, US Virtual Astronomical Observatory.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

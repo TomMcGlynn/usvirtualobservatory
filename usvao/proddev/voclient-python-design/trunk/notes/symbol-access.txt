@@ -1,0 +1,76 @@
+This proposal seeks to standardize the existence certain symbol names
+(i.e. modules, functions, and classes) at expected path locations. 
+
+It is not necessary that VAOpy & VOClient have exactly the same
+layout, but we need to set the mimimum that is expected to be
+available.  
+
+There are 2 major components to this proposal:
+
+  A. General module layout
+  B. Add a name resolver module based on Sesame.
+
+In summary, running "import [voclient|vaopy] as vo" will bring in most
+of everything that trivial use needs under the "vo" module.  These
+include the basic search functions and the exception classes.  
+
+A.  Symbol access/module layout
+
+  1.  top level:  when you "import [voclient|vaopy] as vo", the
+      following symbols should be available as "vo.*"
+
+      a. service search functions:  
+           regsearch, imagesearch, spectrumsearch, linesearch
+      b. nameresolver functions (see B):
+           resolve, object2pos, object2sexapos
+      c. DAL service modules:  
+           scs, sia, ssa, sla
+      d. DAL exceptions:  
+           DalAccessError, DalProtocolError, DalServiceError, 
+           DalFormatError, DalQueryError
+      e. Default registry implementation module:  registry
+
+  2.  DAL service modules:  the following symbols should be available 
+      without further imports as "vo.[scs|sia|ssa|sla].*":
+
+      a. the search() function.  "vo.sia.search()" is equivalent to 
+           "vo.imagesearch()"
+      b. the service/query/results/record classes as in 
+           "vo.sia.SIAService" and "vo.ssa.SSAQuery".  This includes
+             *Service, *Query, *Result, *Record
+
+  3.  Registry module:  symbols here are meant to represent the
+         current default implementation (which will change in the
+         future).  "vo.registry" will contain the following symbols:
+
+      a.  vao -- the module containing the VAO registry interface
+             implementation 
+      b.  search() -- equivalent to "vo.regsearch()"
+      c.  the service...record classes:
+             RegistryService, RegistryQuery, RegistryResults, RegistryRecord
+
+B. Nameresolver module.  
+
+There are multiple name resolver services out there, each potentially
+with a different interface, and in the future, we may have support for
+the different ones built in.  For now, we will stick with Sesame, but
+each will have its own module under "vo.nameresolver"
+
+   1.  Symbols under vo.nameresolver:
+
+       a.  sesame -- the Sesame implementation modle
+       b.  required functions:  
+            object2pos(name) -- returns a 2-tuple decimal deg. position
+                                for an object of a given name.  returns
+                                a list of tuples for a list of names.
+            object2sexapos(name) -- returns a sexagesimal formatted pos
+       c.  optional function: (?)
+
+            resolve(name) -- returns an object of data about named object.
+
+           I mainly want to keep to the functionality that is already 
+           available via the C library.  This proposal does not
+           specify the form of the returned object (as I expect it to
+           be different for different nameresolver implementations.  
+
+

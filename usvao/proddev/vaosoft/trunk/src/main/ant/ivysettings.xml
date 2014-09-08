@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ivysettings>
+  <!-- properties -->
+  <property name="useRepos" value="beta"/>
+  <property name="vao.repos.baseurl" value="http://dev.usvao.org/repos"/>
+  <property name="vao.repos.useurl" value="${vao.repos.baseurl}/${useRepos}"/>
+
+  <!-- settings -->
+  <settings defaultResolver="${useRepos}" />
+
+  <include url="${vao.repos.baseurl}/vao/ivysettings.xml" />
+  <include url="${vao.repos.baseurl}/beta/ivysettings.xml" />
+  <include url="${ivy.default.settings.dir}/ivysettings-local.xml"/>
+
+  <resolvers>
+    <chain name="beta" returnFirst="true">
+      <resolver ref="vaobeta"/>
+      <resolver ref="local"/>
+    </chain>
+    <chain name="vao" returnFirst="true">
+      <resolver ref="vaopub"/>
+      <!--
+      <resolver ref="local"/>
+        -->
+    </chain>
+  </resolvers>
+</ivysettings>

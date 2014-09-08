@@ -1,0 +1,23 @@
+<ivy-module version="2.0">
+  <info organisation="apache" module="ant" status="release"
+        revision="1.8.2">
+    <description>
+      The standard apache release of the software lifecycle management software
+    </description>
+  </info>
+  <configurations defaultconf="install">
+    <conf name="license" />
+    <conf name="uberinstall" />
+    <conf name="distrib" extends="distrib-bin-zip"/>
+
+    <conf name="distrib-bin-zip" />
+  </configurations>
+  <publications>
+
+    <artifact name="apache-ant" type="bin" ext="zip" conf="distrib-bin-zip"
+              url="http://mirror.atlanticmetro.net/apache/ant/binaries/apache-ant-1.8.2-bin.zip"/>
+    <artifact name="LICENSE" type="LICENSE" ext="txt" conf="license" />
+    <artifact name="about" type="about" ext="properties" conf="uberinstall" />
+
+  </publications>
+</ivy-module>

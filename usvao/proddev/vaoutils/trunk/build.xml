@@ -1,0 +1,232 @@
+<!-- 
+  -  Copyright (c) 2012, VAO, LLC
+  -  All rights reserved
+  -  Redistribution and use of this file is allowed through the Apache License 
+  -  V2.  See LICENSE.txt for details which should have been distributed with 
+  -  this code.
+  -->
+
+<project xmlns:ivy="antlib:org.apache.ivy.ant" 
+         name="vaoutils" basedir="." default="build">
+  <property file="build.properties"/>
+  <property file="build-default.properties"/>
+
+  <property name="dir.build" value="${basedir}/build" />
+  <property name="dir.home" value="${basedir}" />
+  <property name="dir.build" value="${basedir}/build" />
+  <property name="dir.build.classes" value="${dir.build}/classes" />
+  <property name="dir.build.tclasses" value="${dir.build}/tclasses" />
+  <property name="dir.build.lib" value="${dir.build}/lib" />
+  <property name="dir.build.instrumented" value="${dir.build}/instrumented" />
+  <property name="dir.testreports" value="${dir.build}/test-reports" />
+  <property name="dir.src" value="${basedir}/src/main" />
+  <property name="dir.tsrc" value="${basedir}/src/test" />
+  <property name="dir.etc" value="${basedir}/etc" />
+  <property name="dir.web" value="${basedir}/web" />
+  <property name="dir.doc" value="${basedir}/doc" />
+  <property name="dir.doc.api" value="${dir.doc}/japi" />
+  <property name="dir.lib" value="${basedir}/lib" />
+  <property name="dir.jars" value="${dir.lib}" />
+
+  
+  <property name="pkg.name" value="vaoutils" />
+  <property name="jar.name" value="${pkg.name}.jar" />
+  <property name="jar.path" value="${dir.jars}/${jar.name}" />
+
+  <property name="debug" value="true"/>
+  <property name="optimize" value="off"/>
+  <property name="deprecation" value="true"/>
+
+  <path id="build.classpath.external">
+    <fileset dir="${dir.jars}">
+      <include name="**/*.jar"/>
+      <exclude name="${jar.name}"/>
+    </fileset>
+  </path>
+
+  <path id="build.classpath">
+    <pathelement location="${dir.build.classes}" />
+    <path refid="build.classpath.external" />
+  </path>
+
+  <path id="test.classpath">
+    <pathelement location="${dir.build.instrumented}" />
+    <pathelement location="${dir.build.tclasses}" />
+    <path refid="build.classpath"/>
+  </path>
+
+  <target name="build" depends="jar"/>
+
+  <target name="build-init">
+    <mkdir dir="${dir.build}"/>
+    <mkdir dir="${dir.build.classes}"/>
+    <mkdir dir="${dir.lib}"/>
+  </target>
+
+  <target name="test-init">
+    <mkdir dir="${dir.build}"/>
+    <mkdir dir="${dir.testreports}"/>
+    <mkdir dir="${dir.build.tclasses}"/>
+    <mkdir dir="${dir.build.instrumented}"/>
+  </target>
+
+  <target name="compile" depends="build-init">
+    <javac srcdir="${dir.src}" destdir="${dir.build.classes}"
+           debug="${debug}" optimize="${optimize}" 
+           classpathref="build.classpath" includeantruntime="false"/>
+
+    <copy todir="${dir.build.classes}">
+      <fileset dir="${dir.src}">
+        <include name="**/*.properties"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="compileTests" depends="test-init,compile,coverage-init">
+    <javac srcdir="${dir.tsrc}" destdir="${dir.build.tclasses}" debug="${debug}"
+           deprecation="${deprecation}" classpathref="build.classpath"
+           optimize="off" includeantruntime="true"/>
+    <copy todir="${dir.build.tclasses}/org/usvao/util">
+      <fileset dir="${dir.doc}">
+        <include name="example.properties"/>
+        <include name="database.properties"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="compileAll" depends="compile,compileTests"/>
+
+  <target name="jar" depends="compile">
+    <jar jarfile="${jar.path}" basedir="${dir.build.classes}" />
+  </target>
+
+  <target name="test" depends="compileTests">
+    <echo>test cp: ${toString:test.classpath} </echo>
+    <junit printsummary="yes" includeAntRuntime="yes" fork="yes">
+      <classpath>
+        <path refid="test.classpath"/>
+        <fileset dir="${ant.library.dir}">
+          <include name="*.jar"/>
+        </fileset>
+      </classpath>
+      <classpath refid="cobertura.classpath"/>
+      <sysproperty key="test.classpath" value="${toString:test.classpath}"/>
+      <sysproperty key="dir.tclasses" value="${dir.tclasses}"/>
+      <sysproperty key="dir.tmp" value="${dir.tmp}"/>
+      <sysproperty key="dir.etc" value="${dir.etc}"/>
+      <sysproperty key="dir.tsrc" value="${dir.tsrc}"/>
+      <sysproperty key="net.sourceforge.cobertura.datafile"
+		   file="${dir.build}/cobertura.ser" />
+      <formatter type="xml"/>
+      <batchtest fork="yes" todir="${dir.testreports}">
+          <fileset dir="${dir.tsrc}" includes="**/Test*.java"/>
+      </batchtest>
+    </junit>
+  </target>
+
+  <target name="doc" description="Build the documentation" depends="javadoc">
+  </target>
+
+  <target name="javadoc" depends="build-init"
+          description="Create the Javadoc API documentation">
+    <mkdir dir="${dir.doc.api}"/>
+    <javadoc sourcepath="${dir.src}" destdir="${dir.doc.api}" 
+             packagenames="*">
+      <classpath refid="build.classpath"/>
+      <link href="http://docs.oracle.com/javase/6/docs/api/" />
+      <link href="http://docs.oracle.com/javaee/6/api/" />
+      <link href="http://commons.apache.org/configuration/apidocs/" />
+    </javadoc>
+  </target>
+
+  <target name="try">
+    <echo>test cp: ${toString:test.classpath} </echo>
+  </target>
+
+  <target name="clean">
+    <delete includeemptydirs="true" failonerror="false">
+      <fileset dir="${dir.build}" />
+    </delete>
+  </target>
+
+  <target name="distclean" depends="clean">
+    <delete includeemptydirs="true" failonerror="false">
+      <fileset dir="${dir.lib}" />
+      <fileset dir="${dir.doc.api}" />
+    </delete>
+  </target>
+
+  <taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>
+  <target name="findbugs" depends="jar">
+    <findbugs home="${findbugs.home}"
+              output="xml:withMessages"
+              outputFile="${dir.build}/findbugs.xml" >
+      <auxClasspath>
+        <path refid="build.classpath.external"/>
+      </auxClasspath>
+      <sourcePath path="${dir.src}" />
+      <class location="${jar.path}" />
+    </findbugs>
+  </target>
+
+  <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask"/>
+  <target name="pmd" depends="build-init">
+    <pmd shortFilenames="true">
+      <ruleset>java-unusedcode</ruleset>
+      <ruleset>java-basic</ruleset>
+      <ruleset>java-imports</ruleset>
+      <ruleset>java-clone</ruleset>
+      <formatter type="xml" toFile="${dir.build}/pmd.xml"/>
+      <fileset dir="${dir.src}">
+        <include name="**/*.java"/>
+      </fileset>
+    </pmd>
+  </target>
+
+  <!-- Cobertura code coverage -->
+  <target name="coverage-init" depends="cobertura-init,no-cobertura"/>
+  <target name="no-cobertura" unless="dir.cobertura">
+    <path id="cobertura.classpath"/>
+    <echo>cobertura not in use</echo>
+  </target>
+  <target name="cobertura-init" if="dir.cobertura">
+    <path id="cobertura.classpath">
+      <fileset dir="${dir.cobertura}">
+        <include name="cobertura.jar" />
+        <include name="lib/**/*.jar" />
+      </fileset>
+    </path>
+    <taskdef classpathref="cobertura.classpath" 
+             resource="tasks.properties" />
+    <echo>defining cobertura</echo>
+  </target>
+  <target name="coverage-instrument" depends="test-init,coverage-init,compile">
+    <delete file="${dir.build}/cobertura.ser"/>
+    <delete dir="${dir.build.instrumented}"/>
+
+    <cobertura-instrument todir="${dir.build.instrumented}" 
+                          datafile="${dir.build}/cobertura.ser">
+      <fileset dir="${dir.build.classes}">
+        <include name="**/*.class" />
+      </fileset>
+    </cobertura-instrument>
+  </target>
+  <target name="coverage-report" depends="coverage-instrument,test">
+    <cobertura-report format="xml" srcdir="${dir.src}" destdir="${dir.build}"
+                      datafile="${dir.build}/cobertura.ser"/>
+    <delete dir="${dir.build.instrumented}"/>
+  </target>
+  <target name="coverage-report-html" depends="coverage-report">
+    <cobertura-report format="html" srcdir="${dir.src}" 
+                      destdir="${dir.build}/coverage"
+                      datafile="${dir.build}/cobertura.ser"/>
+    <delete dir="${dir.build.instrumented}"/>
+  </target>
+  <target name="coverage" depends="coverage-report"/>
+  <target name="coverage-html" depends="coverage-report-html"/>
+
+  <target name="deps">
+    <ivy:retrieve conf="build" pattern="${dir.lib}/[artifact]-[revision].[ext]"/>
+  </target>
+
+</project>

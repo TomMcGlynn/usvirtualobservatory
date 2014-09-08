@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant"
+         xmlns:ac="antlib:net.sf.antcontrib"
+         name="vaomacros" default="build">
+
+  <property name="vao.build.layout.file" value="build-layout.xml" />
+  <property name="vao.ivy.settings.file" value="ivysettings.xml" />
+  <property name="vao.ivy.ivy.file" value="ivy.xml" />
+  <property name="vao.about.file" value="about.properties" />
+  <property name="vaosoft.ivy.settings.dir" value="etc" />
+  <property name="vao.repos.-baseurl" value="http://dev.usvao.org/repos"/>
+
+  <import file="${vao.build.layout.file}" as="vao"/>
+
+  <property name="vaosoft.build.dir" value="${deps.dir}" />
+  <import file="uberinstall/vaosoft-recipes.xml" as="vaosoft"/>
+
+  <!--
+    -  use Ivy (if available) to pull down the dependencies as configured 
+    -  in the ivy.xml file.  Set classpaths accordingly.
+    -->
+  <target name="ivyResolve" depends="init,vaosoft.ivyConfig" if="ivyAvail"
+          description="--> retrieve dependencies with ivy">
+    <ivy:cachepath pathid="repos.classpath" conf="build" />
+    <ivy:retrieve conf="run" 
+                  pattern="${deps.dir}/[artifact]-[revision](-[type]).[ext]"/>
+  </target>
+  <target name="nullResolve" depends="init" unless="ivyAvail"
+          description="--> assume dependencies are in lib">
+    <echo>Dependency Resolution disabled; be sure you have dependencies installed in lib.</echo>
+    <echo>useIvy: ${useIvy}</echo>
+    <path id="repos.classpath" />
+  </target>
+  <target name="resolve" depends="ivyResolve,nullResolve"
+          description="resolve dependencies if possible" />
+
+  <target name="setpaths" depends="resolve">
+    <path id="build.classpath">
+      <path refid="local.jar.path"/>
+      <path refid="repos.classpath"/>
+    </path>
+
+    <path id="run.classpath">
+      <path refid="local.jar.path"/>
+    </path>
+
+    <path id="debug.classpath">
+      <pathelement path="${build.dir}/classes" />
+      <path refid="run.classpath"/>
+    </path>
+
+    <path id="test.classpath">
+      <pathelement path="${build.dir}/tclasses" />
+      <pathelement path="${build.dir}/classes" />
+      <path refid="run.classpath"/>
+    </path>
+
+    <path id="build.test.classpath">
+      <pathelement path="${build.dir}/classes" />
+      <path refid="run.classpath"/>
+    </path>
+  </target>
+
+  <!--
+    -  clean intermediate files.  This is a default implementation
+    --> 
+  <target name="clean" depends="cleanOutputDirs"/>
+
+  <!--
+    -  clean, returning directory to its original svn state.  This is 
+    -  a default implementation.
+    -->
+  <target name="distclean" depends="distCleanOutputDirs"/>
+
+  <!--
+    -  clean, returning directory to its original svn state.  This 
+    -  default implementation is equivalent to distclean
+    -->
+  <target name="svnclean" depends="distCleanOutputDirs"/>
+
+  <!--
+    -  Create the product jar file
+    -->
+  <target name="jar" depends="compile,vaosoft.loadAboutData" >
+    <jar destfile="${lib.dir}/${product.name}.jar" 
+         basedir="${classes.dir}" />
+  </target>
+
+  <!--
+    -  Create standard source distribution packages 
+    -->
+  <target name="mkpkg" depends="vaosoft.loadAboutData" >
+    <mkdir dir="${build.dir}/${product.pkg.base}" />
+    <copy todir="${build.dir}/${product.pkg.base}">
+      <fileset dir="${basedir}">
+        <include name="*"/>
+        <exclude name="target"/>
+      </fileset>
+    </copy>
+    <tar destfile="${dist.dir}/${product.pkgpath.tgz}" 
+         basedir="${basedir}" excludes="target" compression="gzip"/>
+    <zip destfile="${dist.dir}/${product.pkgpath.zip}" 
+         basedir="${basedir}" excludes="target"/>
+  </target>
+
+  <!--
+    -  determine the default place to install the current product
+    -->
+  <target name="determineInstallDir" depends="vaosoft.loadAboutData">
+    <available file="${vaosoft.products.dir}" type="dir" property="prefix" 
+               value="${vaosoft.products.dir}/${product.prodpath}" />
+    <ac:if>
+      <os family="windows"/>
+      <ac:then>
+        <path id="_product.prodpath">
+          <pathelement path="${product.prodpath}"/>
+        </path>
+        <pathconvert targetos="windows" property="win.product.prodpath"
+                     refid="_product.prodpath">
+        </pathconvert>
+        <property name="prefix" value="${toString:win.product.prodpath}"/>
+      </ac:then>
+    </ac:if>
+    <property name="prefix" value="/usr/local"/>
+  </target>
+
+
+</project>

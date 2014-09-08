@@ -1,0 +1,276 @@
+DalQuery Module V3
+=====================
+
+
+------- Typical Patterns -------------
+
+    Registry Query
+	# Connect to a registry service (default STScI).
+	registry = vo.RegistryService(url=None)
+
+	# Get a list of SIA resources.
+	results = registry.search(keywords=, bandpass=, type='sia')
+	for service in results:
+	    service.search(<sia-query>)
+
+	# Resolve an IVOID to a resource.
+	record = registry.resolve(ivoid)
+	url = record.accessURL
+
+	# Compose and execute a resource query.
+	query = registry.createQuery()
+	    query.addKeywords(['aa', 'bb'])
+	    query.setWavebandConstraint('xray')
+	    query.setServiceTypeConstraint('sia')
+	results = query.execute()
+
+    DAL Query
+	# Define DAL service context.
+	sia = vo.SIAService(url)
+
+	# Simple SIA query, iterate on result set.
+	results = sia.search(<sia-query-params>)
+	for image in results:
+	    print image.ra, image.dec
+
+	# Edit query; get alternate query response.
+	query = sia.createQuery(<sia-query-params>)
+	query.pos = (ra, dec); query.size = 0.2
+	vot = query.executeVotable()
+
+	# DBI query response interface.
+	results = sia.search(<sia-query-params>)
+	cur = results.cursor()
+	for i in xrange(cur.rowcount):
+	    print "%s: %s %s" % cur.getfield('id'), cur.getfield('ra'), cur.getfield('dec')
+
+
+------- DALService Class (abstract) -------------
+
+	       class DALService ()
+		    # Abstract class to describe a DAL or registry service.
+		    # This is subclassed by each actual service type.
+
+		    __init__ (baseurl, protocol=None, version=None, resmeta=None)
+
+                    # Properties
+		    protocol	= None	# service protocol (scs, sia, ssa, ...)
+		    version	= None	# service version
+                    baseurl     = None  # service base URL
+		    descr       = None
+
+	       [results = search (<query-params>)	# added by subclasses]
+	   query = create_query (<query-params>)	# create a DALQuery instance 
+
+	    -- Notes --
+		DALService
+		    Describes a DAL service and allows a DALQuery object to be created to
+		    query the service.  Subclassed and extended by each typed service class.
+		search
+		    Not part of the abstract class, but is added by actual services
+		create_query
+		    Create a query instance to be used to prepare a query.
+
+
+------- DALQuery Class -------------
+
+		 class DALQuery ()
+		    # Generic class to compose and execute a DAL query.
+		    # The query results can be returned in various forms.
+		    # The query parameters can be saved/restored in pset form.
+
+		    __init__ (baseurl, protocol=None, version=None)
+
+                    # Properties
+		    protocol	= None	# service protocol (scs, sia, ssa, ...)
+		    version	= None	# service version
+		    _baseurl	= None	# service baseurl
+
+		       setparam (name, val)				# set indiv param
+		     unsetparam (name)					# unset indiv param
+	         val = getparam (name)					# get indiv param
+	       dict = getparams ()					# get set params as dict
+	      list = paramnames ()					# get list of set params
+
+		    # These methods are only available if the tasking API is implemented.
+	     [pset = savetopset (name, pkg=None)]			# save params to pset
+		  [loadfrompset (name, pkg=None)]			# restore params from pset
+
+	      results = execute ()					# execute and return result set
+	      str = execute_raw ()					# execute and return raw data
+	  vot = execute_votable ()					# execute and return vo.table
+	    tbl = execute_table ()					# execute and return atpy table
+	      url = getqueryurl ()					# get query URL string
+
+	    -- Notes --
+		Query Constraints
+		    Query constraints are typically added via its service type-specific methods;
+		    however, they can be added generically (including custom parameters) via
+		    the setparam() function.  The various execute() functions will submit the query
+		    and return the results.
+		Pset integration
+		    The query parameters can be saved to or loaded from a named parameter set,
+		    e.g. to provide multiple versions or to gain access to the capabilities of the
+		    generic pset container and any associate utilities.  This is not required for basic
+		    usage of the interface.  The package name ("pkg") is arbitrary but facilitates
+		    organization of saved psets.
+		Execution
+		    Execute() returns a query result set; a DBI cursor may be derived from this if
+		    desired.  execute_raw returns the raw data from the query, e.g., votable XML
+		    (but it could be something else in special cases, depending upon the query).
+		    execute_votable returns an AstroPy vo.table object, and execute_table returns
+		    an AtPy table object (it costs us little to support additional external
+		    table classes since these do not represent an actual external dependence).
+
+
+------- DALResults Class -------------
+
+	       class DALResults ()
+		    # The result set from a query.  This is iterable, with each
+		    # iteration returning one Record object.  A DBI Cursor
+		    # interface can optionally be called up; both view the same
+		    # query response.
+
+		       __init__ (url=None, votable=None, protocol=None, version=None)
+
+                    # Properties
+		    queryurl	= None	# URL corresponding to resultset (for info)
+		    votable	= None	# may be used to init resultset from a VOTable
+		    protocol	= None	# service protocol (scs, sia, ssa, ...)
+		    version	= None	# service version
+                    rowcount    = None  # number of records
+
+		   dict = infos ()	# VOTable INFOs if any; { name: value, text }
+	      list = fieldnames ()	# FIELD or PARAM name (ID or NAME from VOTable)
+	      field = fielddesc (name)	# Returns a FIELD instance with col metadata
+	field = fieldname_byucd (key)	# Find first field name with given UCD
+      field = fieldname_byutype (key)	# Find field name with given UType
+	     record = getrecord (index) # Return a single Record instance (row)
+	 array|list = getcolumn (name)	# Get a column as an array or list
+	         val = getvalue (name, index)	# Get value by field name, row index
+	        cursor = cursor ()	# Return a DBI Cursor
+
+
+	    -- Notes --
+		results
+		    The result set is normally passed in automatically by a query, however
+		    it may be set manually as well from any compliant VOTable file.  Normally
+		    this would be a DAL query result, but other VOTables are likely to work
+		    as well since VOTable is self-describing.
+		fieldnames
+		    A list giving the keys chosen for output of records as a dict.
+		    Both PARAM and FIELD names (in the VOTable sense) are returned by default.
+		fielddesc
+		    Returns a Field metadata instance for a table column.
+		getrecord
+		    Random access to row Record instances by index.
+		getcolumn
+		    Extracts a named column from the result and returns it as a numeric array or
+		    list, depending up on the datatype of the column.  For numeric arrays the
+		    returned array may be a Numpy array if Numpy is available in the runtime.
+		getvalue
+		    Extracts a named field value from a result record and returns it as a scalar,
+		    a numeric array, or a list depending up on the datatype of the column.
+		    For numeric arrays the returned array may be a Numpy array if Numpy is
+		    available in the runtime.
+
+
+
+------- DBI Cursor Class -------------
+
+		   class Cursor ()
+		    # Python DBI cursor interface to a query result set.
+		    # Provides a standard API for traversing the result set.
+
+		    __init__ (results)
+
+                    # Class attributes / properties
+		    description = None	# standard DBI column metadata
+		    rowcount    = None	# number of rows in result set
+
+		       fetchone ()	# fetch one row, increment cursor
+		      fetchmany (size=None)	# fetch multiple rows
+		       fetchall ()	# fetch all remaining rows
+			   next ()	# advance cursor to next row
+			 scroll (value, mode=None)	# scroll cursor
+
+		          close ()
+
+
+------- Field Class -------------
+
+		    class Field (id=None, name=None, param=False, datatype=None,
+			arraysize=arraysize, width=width, precision=precision,
+			unit=None, ucd=None, utype=None, descr=None)
+			# Standard VOTable metadata for a table field.
+
+                    # Class attributes.
+		    param	= param		# False for a FIELD, True for PARAM
+		    id          = id
+		    name        = name
+		    datatype    = datatype
+		    arraysize	= arraysize
+		    width	= width
+		    precision	= precision
+		    unit	= unit
+		    ucd         = ucd
+		    utype       = utype
+		    descr	= description
+
+
+------- Record Class -------------
+
+		   class Record (dict)
+			# One record (row) of the query result set.  This may be
+			# subclassed by each service type to add standard metadata
+			# (attributes or properties) for the object described by
+			# the record, e.g., ra, dec, naxes, naxis, etc.  A Record
+			# instance includes both PARAM and FIELD data.
+
+	      field = fielddesc (name)	# Returns a Field instance with col metadata
+	       url = getdataurl ()	# get access reference URL for dataset
+	      file = getdataset ()	# get file stream for dataset
+		   cachedataset (fname=None)	# save dataset to a file
+	     str = makefilename ()		# suggest a filename for the dataset
+        str = suggest_extension (default=None)	# suggest a file extension for the dataset
+
+
+------- SIA Classes (Typed DAL example) -------------
+
+	   --- class SIAService (DALService)
+		    # Extends DALService to add a SIA query capability.  The default params are
+		    # for SIA V1, but are accepted for the prototype SIAV2 as well.  SIAV2 adds
+		    # additional params.
+
+	    sia = vo.SIAService (url, version=None, resmeta=None)
+	    result = sia.search (pos, size, format='all', intersect="overlap", verbosity=2)
+        query = sia.createQuery (pos=None, size=None, format=None, intersect=None, verbosity=None)
+
+	     --- class SIAQuery (DALQuery)
+		    # Extends DALQuery to add SIA query parameters and properties.
+		    # Inherits execute() and similar methods.
+
+		    # Query properties.
+		    pos         = None	# Tuple: (ra,dec)
+		    ra          = None	# sets pos[0]; dec defaults to zero if not yet set
+		    dec         = None	# sets pos[1]; ra defaults to zero if not yet set
+		    size        = None
+		    format	= None
+		    intersect   = None
+		    verbosity   = None
+
+	   --- class SIAResults (DALResults)
+		    # Inherits result set access; iterable; random access; optional cursor access
+		    # The returned record has additional accessor methods for getting
+		    # at standard SIA response metadata (e.g. ra, dec, naxes, etc.) as properties.
+
+		    # SIA output record properties.
+		    ra		= None
+		    dec		= None
+		    title	= None
+		    dateobs	= None
+		    naxes	= None
+		    naxis	= None
+		    instr	= None
+		    acref	= None
+

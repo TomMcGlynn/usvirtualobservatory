@@ -1,0 +1,5 @@
+MANIFEST
+Build.PL
+lib/VAO/HelloWorld.pm
+lib/VAO.pm
+t/HelloWorld.t

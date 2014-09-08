@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xmlns:vs="antlib:usvao.vaosoft.ant" name="TransformTextTest" 
+         basedir="." default="all">
+
+   <target name="init" description="define tasks">
+<!--
+     <taskdef name="transformText" 
+              classname="usvao.vaosoft.ant.TransformText"/>
+     <typedef name="upper"
+              classname="usvao.vaosoft.ant.TransformText$UpperOp"/>
+     <typedef name="lower"
+              classname="usvao.vaosoft.ant.TransformText$LowerOp"/>
+  -->
+   </target>
+
+   <target name="upper" depends="init">
+     <vs:transformText property="upper.1" in="upper Op">
+       <vs:upper/>
+     </vs:transformText>
+     <vs:transformText property="upper.2" in="YUPPER OP">
+       <vs:upper/>
+     </vs:transformText>
+     <vs:transformText property="upper.3" in="us35.pp*$er O-p">
+       <vs:upper/>
+     </vs:transformText>
+   </target>
+   
+   <target name="lower" depends="init">
+     <vs:transformText property="lower.1" in="uPPER Op">
+       <vs:lower/>
+     </vs:transformText>
+     <vs:transformText property="lower.2" in="YUPPER OP">
+       <vs:lower/>
+     </vs:transformText>
+     <vs:transformText property="lower.3" in="us35.PP*$ER O-p">
+       <vs:lower/>
+     </vs:transformText>
+   </target>
+   
+   <target name="combo" depends="init">
+     <vs:transformText property="lower.1" in="uPPER Op">
+       <vs:upper/>
+       <vs:lower/>
+     </vs:transformText>
+     <vs:transformText property="lower.2" in="YUppER OP">
+       <vs:lower/>
+       <vs:upper/>
+     </vs:transformText>
+     <vs:transformText property="lower.3" in="us35.PP*$ER O-p">
+       <vs:upper/>
+       <vs:lower/>
+     </vs:transformText>
+   </target>
+   
+   <target name="fromprop" depends="init">
+     <property name="text" value="GOOBER" />
+     <vs:transformText property="lower.1" in="${text}">
+       <vs:lower/>
+     </vs:transformText>
+   </target>
+
+   <property name="local.1" value="gurn"/>
+   <target name="localprop" depends="init">
+     <local name="local.1"/>
+     <vs:transformText property="local.1" in="GOOBER">
+       <vs:lower/>
+     </vs:transformText>
+     <property name="local.2" value="${local.1}"/>
+   </target>
+   
+
+
+
+</project>

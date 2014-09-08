@@ -1,0 +1,712 @@
+Introduction to the VOClient Python API
+=======================================
+
+The ``voclient`` Python package provides facilities for client-side
+access to remote data and computation via the VO protocols.  Included
+are both a client-service API for access to VO services as well as a
+"VAO" package of higher level tasks based upon a general, extensible
+package-task mechanism.  Class libraries for VOTable access and
+interprocess communication based upon the VO SAMP protocol (simple
+application messaging) are also provided.
+
+Integration with related Python modules including `NumPy
+<http://numpy.scipy.org/>`_, `astropy
+<http://docs.astropy.org/en/v0.1/io/vo/index.html>`_ (especially for
+VOTable processing), and `atpy <http://atpy.github.com/>`_ (for general
+table manipulation) is also provided.  Other common modules such as
+`iPython <ipython.org>`_, `scipy <www.scipy.org>`_, and `matplotib
+<www.matplotlib.org>`_ do not appear to require any special support.
+Integration with `pandas <pandas.pydata.org>`_ is being considered for a
+later version of VOClient.  This would provide a spreadsheet-like
+capability for tables (mapped into a Pandas *dataframe*), as well as
+statistical analysis capabilities including generic support for time
+series data.
+
+|more| See :ref:`vo-standards` for information on the VO standards used
+in ``voclient``.
+
+Using VOClient in Python
+----------------------------
+
+To use VOClient first load the ``voclient`` Python package::
+   
+   import voclient as vo
+
+``voclient`` is self-contained with no external dependencies.
+Integration with NumPy, the AstroPy ``vo.table`` module [#]_, and AtPy
+is available if these packages are loaded, however they are not required
+for basic usage of ``voclient``. [#]_
+
+Typical usage of VOClient will involve first searching the resource
+registry for data collections or VO services of interest, accessing
+these services to retrieve data (often filtered or subsetted), and then
+performing some local analysis of the data.  The registry search may be
+skipped if one already knows what VO services are to be accessed.  An
+alternative to accessing the VO services directly is to use the ready
+made tasks (program-like functions) from the :ref:`vao-package`, which
+provide some higher level tools for common VO data discovery and
+retrieval use cases.
+
+Resource Discovery Queries
+----------------------------
+
+Before retrieving data via a VO data access service one must first
+identify the data collections of interest and the service or services to
+be queried...  [add overview of registry queries]
+
+.. note::
+
+    This section needs to be fleshed out to provide an overview of the
+    registry query interface and an example of usage.  Ideally a
+    registry query has the same form as a DAL query, returning a VOTable
+    response so that the standard common query processing (python DBI)
+    can be used to process the query response.
+
+
+Data Discovery and Access
+----------------------------
+
+In the VO each major class of astronomical data has its own VO Data
+Access Layer (DAL) interface for data discovery and access.  These
+protocols are all similar, sharing a largely common query interface,
+dataset metadata and query response.  Queries are parameter based and
+usually return a tabular response formatted as a VOTable.  When querying
+for datasets such as images and spectra, each row of the output table
+describes a single data product which can be retrieved.  When querying a
+table such as an astronomical catalog the requested portion of the
+remote table is returned as the query response.
+
+In VOClient each class of data has a separate method to query a remote
+data service for available data.  All services share a common interface
+to access the output query response (QR) table, with the initial query
+delivering an open connection used to navigate the query response.  In
+the next sections we describe the query interface for each class of
+data, followed by a description of the shared interface used to process
+the query response.
+
+.. note::
+
+    Exceptions and warnings are omitted here for now, but will need to
+    be added to the final version of the API.
+
+Cone Search (SCS)
+++++++++++++++++++++++++++++++++++
+
+The VO `Simple Cone Search (SCS)
+<http://www.ivoa.net/Documents/latest/ConeSearch.html>`_ protocol is
+used to query a remote table (typically an astronomical catalog),
+returning all table rows within some circular region or cone on the sky.
+A successful query returns a connection object which may be used to
+navigate the query response table (see :ref:`query-processing`)::
+
+    conn = vo.scs(url, ra=10.0, dec=1.0, sr=0.2)
+
+The cone search protocol defines the following query parameters:
+
+    =========	=============
+    Parameter	Description
+    =========	=============
+    URL		The baseURL of the cone search service.
+    ---------	-------------
+    RA		Right-ascension in the ICRS coordinate system, specifing the center of the region to be searched, given in decimal degrees. [#]_
+    ---------	-------------
+    DEC		Declination of the search region center in the ICRS coordinate system, specified in decimal degrees.
+    ---------	-------------
+    SR		The radius of the search region, given in decimal degrees.
+    ---------	-------------
+    VERB	The "verbosity" of the output table given an a integer with one of the values 1, 2, or 3.  The higher the number the more table columns returned.  The default value of 3 returns all table columns. (optional)
+    =========	=============
+
+A special case is a query with a search radius of zero, which will
+return only table metadata but no data records.  This is useful to
+determine the table columns without having to query for data.
+
+Additional, service-specific parameters may be added to access any
+non-standard features provided by the particular service being queried.
+For example a service might allow output to be returned in formats other
+than the default VOTable, or the service might allow the table to be
+accessed to be specified by name (normally there is one SCS service
+instance per remote table).
+
+The following :ref:`aliases` are defined to identify standard fields of the output table:
+
+    =========    ================     ========================
+    Alias        UCD                  Description
+    =========    ================     ========================
+    id           ID_MAIN              Unique record ID.
+    ---------    ----------------     ------------------------
+    ra           POS_EQ_RA_MAIN       Right-ascension of the source in the ICRS coordinate system.
+    ---------    ----------------     ------------------------
+    dec          POS_EQ_DEC_MAIN      Declination of the source in the ICRS coordinate system.
+    =========    ================     ========================
+
+More detailed information on the cone search protocol can be found in
+the `cone search specification
+<http://www.ivoa.net/Documents/latest/ConeSearch.html>`_.
+
+Image Access (SIA)
+++++++++++++++++++++++++++++++++++
+
+The VO `Simple Image Access (SIA) <http://www.ivoa.net/Documents/SIA>`_
+protocol is used to query a (normally) remote service for images
+matching the specified query parameters.  A successful query returns a
+connection object which may be used to navigate the query response table
+(see :ref:`query-processing`)::
+
+    conn = vo.sia(url, pos=(10.0,1.0), size=0.2, format='all')
+
+A full list of all the SIA parameters is given in `api-sia`.  Some of
+the most commonly used query parameters are the following:
+
+    =========	=============
+    Parameter	Description
+    =========	=============
+    URL		The baseURL of the service.
+    ---------	-------------
+    POS		A tuple giving the right-ascension and declination of the center of the search region in the ICRS coordinate system, specified in decimal degrees (SIA uses a POS parameter to allow more complex coordinate references to be input but we won't go into that here).  Separate RA and DEC parameters may optionally be used in place of POS.  POS may optionally be input as a string formatted as defined by the SIA protocol.
+    ---------	-------------
+    SIZE	The coordinate angular size of the region given in decimal degrees. The region may be specified using either one or two values. If only one value is given it applies to both coordinate axes. If two values are given the first value is the angular width in degrees of the right-ascension axis of the region, and the second value is the angular width in degrees of the declination axis.
+    ---------	-------------
+    FORMAT	A value or comma delimited list of values indicating the image formats the client is interested in, e.g., "fits" or "fits,graphic".  If no format is specified or FORMAT is "all" then all available images are referenced regardless of format.
+    ---------	-------------
+    ...		...
+    =========	=============
+
+The SIA query response is a table describing all the available images
+matching the given query, one per row.  Each record includes an access
+reference URL (*acref*) which may be used to retrieve the image.  The
+referenced image may be *virtual*, meaning that it will be generated on
+the fly if accessed.  An SIA cutout service for example may be able to
+return an image cutout or reprojection exactly covering the rectangular
+region specifed by POS,SIZE.  An "archival" SIA service will find whole
+images which contain or overlap with the specified region.
+
+The following :ref:`aliases` are defined to identify standard fields of the
+SIA query response:
+
+    =========    ===========================     ========================
+    Alias        UCD                             Description
+    =========    ===========================     ========================
+    title        VOX:Image_Title                 A short (one line) description of the image.
+    ---------    ---------------------------     ------------------------
+    instr        INST_ID                         The instrument or instruments.
+    ---------    ---------------------------     ------------------------
+    dateobs      VOX:Image_MJDateObs             MJD of observation mid-point.
+    ---------    ---------------------------     ------------------------
+    ra		 POS_EQ_RA_MAIN		         RA of image center.
+    ---------    ---------------------------     ------------------------
+    dec		 POS_EQ_DEC_MAIN	         DEC of image center.
+    ---------    ---------------------------     ------------------------
+    naxes	 VOX:Image_Naxes	         Number of image axes.
+    ---------    ---------------------------     ------------------------
+    naxis	 VOX:Image_Naxis	         A tuple giving the length of each axis.
+    ---------    ---------------------------     ------------------------
+    acref	 VOX:Image_AccessReference	 URL used to retrieve the image.
+    ---------    ---------------------------     ------------------------
+      ...          ... 				   ...
+    =========    ===========================     ========================
+
+.. note::
+
+    VOClient defines aliases for standard VO metadata both for
+    convenience, to make access simpler, and to enhance information
+    hiding.  SIA1 for example uses "vox:" UCDs to uniquely identify
+    fields of the query response, whereas SIA2 and other second general
+    DAL interfaces such as SSA use Utypes for this purpose.  Utypes can
+    also change between versions of an interface.  The use of an alias
+    combined with interface versioning makes it possible to shield a
+    client application from such details while still rigorously defining
+    interfaces at the level of a versioned protocol.  Aliases also
+    provide a shorthand reference for Utypes, some of which can be quite
+    long.  While aliases are not part of current VO standards there is
+    no issue with using them within a client interface, which is an
+    implementation and not a standard; the client has direct access to
+    the underlying VOTable if finer control is required.
+
+
+
+Spectral Access (SSA)
+++++++++++++++++++++++++++++++++++
+
+.. note::
+
+    To be added; does not affect the interface design significantly
+    since the interface pattern is the same.  On the issue of aliases,
+    note below what we have for SSA aliases, compared to those for SIA1.
+
+Sample data model (Utype) aliases for SSA:
+
+    =========    ==========================================     ========================
+    Alias        Utype                             		Description
+    =========    ==========================================     ========================
+    title        DataID.Title                                   A short (one line) description of the image.
+    ---------    ------------------------------------------     ------------------------
+    instr        DataID.Instrument                              The instrument or instruments.
+    ---------    ------------------------------------------     ------------------------
+    dateobs      Char.TimeAxis.Coverage.Location.Value          MJD of observation mid-point.
+    ---------    ------------------------------------------     ------------------------
+    ra		 Char.SpatialAxis.Coverage.Location.Value       RA of image center.
+    ---------    ------------------------------------------     ------------------------
+    dec		 Char.SpatialAxis.Coverage.Location.Value       DEC of image center.
+    ---------    ------------------------------------------     ------------------------
+    acref	 Access.Reference		                URL used to retrieve the image.
+    ---------    ------------------------------------------     ------------------------
+      ...          ... 				   		   ...
+    =========    ==========================================     ========================
+
+
+Spectral Line List Access (SLAP)
+++++++++++++++++++++++++++++++++++
+
+[To be added].  Summarize the SLAP interface and capabilities, and mention
+any prominent standard line list services such as Splatalog.
+
+
+.. _query-processing:
+
+Common Query Response Processing
+--------------------------------
+
+.. note::
+
+    This will be modified so that the custom queries (SIA etc.) return a
+    cursor object rather than a connection object, to simplify things
+    and be more compliant with the DBI interface.  Other than that it
+    should be much the same.  There does not appear to be any reason
+    that the same interface could not be used to walk through registry
+    queries as well.
+
+The VOClient Connect class implements the Python Database API V2.0
+(`pep-0249 <http://www.python.org/dev/peps/pep-0249/>`_).  Once a
+connection is obtained, either via a DAL query or using the ``connect``
+constructor, generic PY-DBI code may be used to process the table.
+VOClient further extends the standard DBI interface as required to
+support VO.  In this section we will focus on functionality which is
+specific to the VOClient extensions to PY-DBI.  The `PY-DBI 2.0
+specification <http://www.python.org/dev/peps/pep-0249/>`_ should be
+referred to for further details on the API.
+
+All of the data queries defined in the preceding sections return a
+connection object which may be used to process the query response
+table::
+
+               conn = connect (file|iostream)     # Open conn (usually DAL query used instead)
+            cur = conn.cursor ([cursorType])      # Get row cursor
+           file = conn.getRaw ()                  # Get raw QR (e.g. votable XML)
+       vot = conn.openVotable ()                  # Open QR as Astropy vo.table (NumPy record array)
+	 tab = conn.openTable ()                  # Open QR as AtPy table
+                   conn.close ()                  # Close connection
+
+A lower level ``connect`` method is also provided which allows the
+Connect class to be used with any VOTable file or an i/o stream which
+returns compatible data.
+
+Given a ``connect`` object it is possible to retrieve the raw query
+response VOTable XML directly using ``getRaw``.  With this method it is
+possible to retrieve and process query responses other than VOTable,
+e.g., a query response might be returned as CSV, or as pretty-printed
+text to be displayed.
+
+The ``connect`` object may also be used to open the query response as an
+Astropy votable using the ``conn.oepnVotable`` method, or as an AtPy
+abstract table using the ``conn.openTable`` method.  This can also be
+done by first retrieving the VOTable XML, however the convenience
+methods are simpler to use and may be more efficient since a separate
+step to retieve the XML is not required.
+
+Most commonly the ``connect`` object is used to obtain a *cursor*
+instance to be used to walk through the table row by row.  The
+``conn.cursor`` method, if called with no arguments returns a cursor
+with the default type ``Cursor``.  A ``DictCursor`` may optionally be
+returned.  This functions the same as the default cursor, but returns
+data for each row as a Python dictionary rather than a tuple, using the
+field name as the key to identify each field.
+
+Once a connection is opened the following API may be used to walk through
+the query response::
+
+     tuples = cur.description                     # Standard PY-DBI column metadata
+      tuples = cur.vometadata                     # VO column metadata
+         nrows = cur.rowcount
+
+	     dict = cur.infos ()		  # Return a dict of INFO elements
+        tuples = cur.fetchone ()                  # Get next row
+       tuples = cur.fetchmany ()                  # Get multiple rows
+        tuples = cur.fetchall ()                  # Get remaining rows
+		     cur.next ()                  # Advance to next row
+		  cur.nextset ()                  # Skip to next result set
+                   cur.scroll (value [, mode])    # Move row cursor
+                 cur.getfield (<VOname>, [row=])  # Get field by VO name,ucd,utype,...
+           file = cur.getdata (curr|url|[row=])   # Get dataset pointed to by acref
+                    cur.close ()                  # Free cursor resources
+
+Given a cursor object, ``description`` may be used to obtain PY-DBI
+standard metadata for each table field.  The ``vometadata`` attribute
+returns additional VO-specific metadata defining the ID, name, UCD,
+Utype, etc. VOTable metadata for each field.
+
+    ==============  =======================================================
+    VO Attribute    Description
+    ==============  =======================================================
+    id              Unique ID for field
+    --------------  -------------------------------------------------------
+    name            Name of the field (arbitrary)
+    --------------  -------------------------------------------------------
+    alias           Alias (shortname) of the field name in VOClient
+    --------------  -------------------------------------------------------
+    param           True if the field is a PARAM
+    --------------  -------------------------------------------------------
+    datatype        VOTable datatype of field
+    --------------  -------------------------------------------------------
+    arraysize       Array "shape" if field has multiple values
+    --------------  -------------------------------------------------------
+    width           Overall width of formatted value
+    --------------  -------------------------------------------------------
+    precision       Number of digits of precision
+    --------------  -------------------------------------------------------
+    xtype           Extended or external datatype
+    --------------  -------------------------------------------------------
+    unit            Unit of the given value
+    --------------  -------------------------------------------------------
+    ucd             Physical quantity expressed by the field
+    --------------  -------------------------------------------------------
+    utype           "Role" of the field in a data model, defined by the DM
+    --------------  -------------------------------------------------------
+    ref             A reference to another field by its ID
+    ==============  =======================================================
+
+In VO data access a table row will often contain the metadata for an
+instance of a data model, e.g., the description of an image or spectrum.
+The fields of the data model are identified in the query (VOTable)
+response by their Utype, or for some older interfaces by their UCD (the
+field name might seem natural for this purpose but is reserved to the
+data provider to name the field in a way meaningful to the user or
+specific data collection).  The field name aliases used in VOClient
+provide a higher level of abstraction to help isolate the client from
+the details of VO interfaces as they evolve.
+
+In VOTable a PARAM is a special case of a a FIELD (table column) which
+has a constant value over the whole table.  We make no distinction
+between PARAM and FIELD in referencing the row of a table, e.g.,
+``fetchone`` will return both in the same record, however the
+``param`` attribute in the VO metadata for the field will be ``True``
+if the field is represented in the VOTable as a PARAM.
+
+The ``infos`` method will return any INFO elements from the VOTable,
+expressed as a dictionary with each element in the sequence containing
+the name and value attributes of one INFO.
+
+The ``fetchone`` method returns each row of the table as a tuple (or
+dict) of the data values for the row.  ``fetchmany`` and ``fetchall``
+return a block of rows (tuple of tuples) or all remaining rows,
+respectively.  The ``scroll`` method is used to move the row cursor in
+either a relative or absolute sense.  Like ``fetchone``, ``next`` advances
+the row cursor to the next row, but without returning any row data.
+
+To access the table via its VO attributes, either the VO metadata or the
+``getfield`` method may be used.  The VO metadata may be used to
+determine the index of each field in the tuple returned by a method such
+as ``fetchone``.  A simpler method is use to use ``getfield``, which
+allows table fields to be retrieved either by their field name alias or
+by VO keys such as UCD or Utype.  For example,
+
+    url = cur.getfield("acref")
+
+would use the alias mechanism to return the access reference (field name
+alias "acref") for the SIA description of an image pointed to by the
+current cursor row.  The row cursor is initially positioned to row zero.
+"Fetching" a row is not required in order to use ``getfield``; all that
+matters is which row the row cursor is currently pointing to.
+
+The following example performs a cone search query and prints the RA and DEC
+fields of each row returned::
+
+    import voclient as vo
+
+    # Perform the query
+    conn = vo.scs("http://some.survey.com", ra = 123.456, dec = 12.34, sr = 0.1)
+    cur = conn.cursor()
+
+    # Print ra, dec for each row
+    for i in range(cur.rowcount): 
+	print cur.getfield('ra'), cur.getfield('dec') 
+	cur.next()
+
+Note the use of the ``getfield`` method to look up the RA and DEC fields
+of the output table by their aliases.  This is more subtle than it
+appears as the corresponding fields of the actual table being accessed
+are not necessarily named "ra" and "dec" ("dec" in particular is illegal
+as a column name in some DBMSes).  What ``getfield`` is actually doing
+behind the scenes is using the ``vometadata`` for the table to search
+for fields with UCDs ``POS_EQ_RA_MAIN`` and ``POS_EQ_DEC_MAIN`` in the
+output table, knowing that this is how these fields are identified by
+the SCS protocol.
+
+Alternatively we could have used a ``DictCursor`` (to get table rows as
+Python ``dict`` lists) in which case we might have the following
+``print`` statement::
+
+    print row['ra'], row['dec']
+
+While this looks obvious, it won't actually work for arbitrary tables
+for the same reason as noted above: it fails unless the literal table
+field names are "ra" and "dec".  Using a ``DictCursor`` is fine so long
+as the column names of the table are well defined, including matching
+upper and lower case exactly as the field names are expressed in the
+table.
+
+VOTable Manipulation
+--------------------------------
+
+In many cases a client application never needs to deal directly with
+VOTable as it is possible to navigate the query response and directly
+access the fields of a table or the data model contained therein, via
+the higher level DBI interface and ``getfield``.  When direct access to
+a VOTable is required either the Astropy ``vo.table`` class or the
+native VOClient votable class may be used (in addition ``AtPy`` provides
+a higher level table abstraction, not specific to VOTable).
+``vo.table`` is especially well integrated with NumPy, providing direct
+support for the NumPy binary datatypes as well as NumPy record arrays,
+hence might be well suited for accessing datasets formatted as VOTables.
+
+The registry and data queries all provide an option to
+directly access the VOTable which is normally processed internally.
+VOTables may also be retrieved in other ways, e.g., a Spectrum dataset
+may be retrieved by SSA as a VOTable.
+
+
+Tasking Interface
+--------------------------------
+
+.. sidebar:: Motivation (design background)
+
+    VOClient requires a tasking interface in order to support the VAO
+    package, a package of parameter-driven tasks written in C which call the
+    VOClient C core libraries internally.  While it would be simple to
+    merely execute a VAO package task as an external program, integrating
+    such tasks in to a client environment such as Python requires more than
+    just something like "!mytask.e".  To avoid hard-wiring such a package of
+    tasks into each client environment we need a discovery mechanism to find
+    out what tasks are available and what their calling interface is (input
+    parameter set).  To use the tasks programmatically as components within
+    the client language we need to get structured data back from the task,
+    in addition to providing structured input (the input parameter set).
+
+    There is nothing special about the VAO package - the tasks and their
+    interfaces may change, new tasks may be added, or entire new packages of
+    tasks may be added.  Defining a formal tasking interface makes it
+    possible to do all this without changes to the VOClient code or its
+    integration into a client language such as Python, every time a new task
+    or package is added.  Indeed it becomes possible to dynamically add new
+    packages or tasks at runtime.
+
+The *tasking* interface defines a Python interface to manage and execute
+packages of "tasks", using a parameter set to control the execution of
+each task.  A "task is a computational component which can be executed
+as a process by the host operating system (or a related environment such
+as a cluster).  Tasks may be written in any language so long as the
+defined tasking interface is observed.
+
+The "package" refered to here should not be confused with a Python
+package.  A Python package is an element of Python.  A package as
+referred to here is a collection of tasks and their associated metadata,
+defined independently of any client language used to run the tasks.
+Tasks may be run very flexibily, by any environment or framework, or
+directly at the level of the host operating system, e.g., a Unix shell.
+
+Tasking API
++++++++++++++++++++++++++++
+
+Autobinding of Tasks to Python Functions
+****************************************
+
+.. Note::
+
+    Add a summary of the high level tasking interface here (V3 is
+    described separately in a text file).  Binding of tasks to
+    functions, examining packages and their tasks, standard modes of
+    execution, use of the output pset.
+
+Package and Task Management
+***************************
+
+The following functions, part of the ``tasking`` module, are used to
+manage packages and discover what packages and tasks are available
+in the runtime system::
+
+    		   setPkgDirs (dirs)
+	    dirs = getPkgDirs ()
+	      tuple = pkgList ([pattern])
+	     tuple = taskList (pkg, [pattern])
+	      dict = pkgAttrs (pkg)
+	     dict = taskAttrs (pkg, task)
+
+Parameter Set Class (Pset)
+***************************
+
+A parameter set (pset) is a named collection of parameters.  Every task
+has an associated pset, however it is also possible to have a pset which
+is not associated with a task.  The pset for a task is subclassed from
+the base Pset class.  Pset has the following attributes and methods::
+	  
+	           class Pset (name=None, pkg=None, task=None, desc=None)
+		       name = None
+		        pkg = None
+		       task = None
+		description = None
+
+	             loadPset (pkg=None, task=None, saveFile=None)
+	             savePset (saveFile])
+
+	    tuple = paramList (pattern)			# List parameters
+	    params = paramSet (pattern)			# Param names and values
+	     param = addParam (name, type, description, attrs=None)
+	     param = getParam (name)
+
+Parameter Class (Param)
+***************************
+
+A parameter is an instance of the ``Param`` class::
+
+	          class Param (name=None, type=None, encoding=None, desc=None)
+		       name = None
+		       type = None
+		   encoding = None
+	        description = None
+
+	    dict = paramAttrs ()
+	       val = getValue ()			# may be a list
+		     setValue (val)
+
+Task Execution
+***************************
+
+The tasking module defines a ``TaskRuntime`` class, an instance of which
+is used to execute a task::
+	 
+	    class TaskRuntime (name=None, pkg=None, task=None)
+		       name = None
+		        pkg = None
+		       task = None
+
+	       pset = getPset ()
+		      setPset (pset)
+		  setCallback (pattern, func)
+		  executeSync ()
+		 executeAsync ()
+			 wait ()
+
+Every task execution requires an input parameter set to tell the task
+what to do.  Tasks may execute synchronously or asyncronously.  Tasks write
+to an *output parameter set* during execution.  This output pset is available
+to the client at task termination.  The task may also write to output
+parameters *during* task execution.  Each such write is in effect an asynchronous
+message being sent back to the client.  Client application which wish to
+interact with a task during runtime may post parameter callbacks, which
+are called whenever data is written to an output parameter.
+
+.. _vao-package:
+
+VAO Package
++++++++++++++++++++++++++++
+
+The VAO package, included with the VOClient Python module [??], is interfaced
+to Python via the tasking interface...
+
+[List the tasks currently provided by the VAO package.  Documentation
+for the VAO package will be provided as part of the package; some online
+documentation will also be provided as part of the metadata for the
+package (package and task descriptions, parameters for each task,
+etc.).  Here we just introduce the package, and provide an example of
+what a package is like.]
+
+    ===========  =====================================================
+    Task         Description
+    ===========  =====================================================
+    voregistry   VO Resource discovery
+    -----------  -----------------------------------------------------
+    vodata       General query and access to VO data
+    -----------  -----------------------------------------------------
+    vocatalog    Query VO Catalog services
+    -----------  -----------------------------------------------------
+    voimage      Query VO image services
+    -----------  -----------------------------------------------------
+    vospectrum   Query VO spectrum services
+    -----------  -----------------------------------------------------
+    voatlas      Multi-wavelength all-sky images
+    -----------  -----------------------------------------------------
+    voobslog     Query public observation logs
+    -----------  -----------------------------------------------------
+    vosloanspec  SDSS spectra data interface
+    -----------  -----------------------------------------------------
+    votcnv       Convert to/from VOTable format
+    -----------  -----------------------------------------------------
+    votget       Download data access references in a VOTable
+    -----------  -----------------------------------------------------
+    votinfo      Print information about a VOTable
+    -----------  -----------------------------------------------------
+    votpos       Extract positional information from a VOTable
+    -----------  -----------------------------------------------------
+    votselect    Select rows by expression
+    -----------  -----------------------------------------------------
+    votsort      Sort a VOTable by a column value
+    -----------  -----------------------------------------------------
+    votstat      Compute statistics for numeric columns in a VOTable
+    -----------  -----------------------------------------------------
+    votcat       Concatenate VOTable into single multi-resource table
+    -----------  -----------------------------------------------------
+    votjoin      Perform an inner-join between two VOTables
+    -----------  -----------------------------------------------------
+    votsplit     Split a multi-resource VOTable
+    -----------  -----------------------------------------------------
+    vosamp       SAMP utility command (sessions, messages, etc)
+    -----------  -----------------------------------------------------
+    voiminfo     Compute image footprints
+    -----------  -----------------------------------------------------
+    vosesame     Resolve object name to positions
+    -----------  -----------------------------------------------------
+    voskybot     List known moving objects in a field
+    -----------  -----------------------------------------------------
+    voxmatch     Cross-compare local table and VO data
+    -----------  -----------------------------------------------------
+    vosput       Put files to a VOSpace
+    -----------  -----------------------------------------------------
+    vosget       Get files from a VOSpace
+    -----------  -----------------------------------------------------
+    vosmove      Move files/nodes between VOSpaces
+    -----------  -----------------------------------------------------
+    voslist      List files/nodes in a VOSpace
+    -----------  -----------------------------------------------------
+    vosdelete    Delete files/nodes in a VOSpace
+    ===========  =====================================================
+
+
+Application Messaging (SAMP)
+--------------------------------
+
+[Add overview of SAMP interface and usage; see related API for details].
+
+
+.. _vo-standards:
+
+VO Standards Reference
+--------------------------------
+
+List the relevant VO standards here.
+
+.. rubric:: Footnotes
+
+.. [#]	AstroPy contains a "vo" module which may conflict with the usage
+	shown here, but let's leave it this way until we get this resolved.
+
+.. [#]  NumPy may end up being required for the VAO tasks, but is not (yet anyway)
+	required for the registry or DAL queries.
+
+.. [#]  A useful feature might be to allow more flexibility in specifying positions;
+	we can do that here, since this is a user interface even though things are
+	fixed in the lower level protocol.
+
+.. |more| image:: _images/more.png
+	  :align: middle
+	  :alt: more info
+

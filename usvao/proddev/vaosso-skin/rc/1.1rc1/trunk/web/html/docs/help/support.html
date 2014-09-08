@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<html> <head>
+<title>Supporting VAO Single Sign-on Services</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/styles/sso.css" type="text/css" rel="stylesheet" />
+<link href="/images/favicon.ico" type="image/vnd.microsoft.icon" rel="icon"/>
+<style type="text/css">
+dl.tmfaq dt {
+   font-size: 12pt;
+   font-weight: 700;
+   color: #003366;
+   margin-top: 0.75ex;
+}
+div.whatcanido {
+   float: right;
+   width: 230pix;
+   margin-left:  2em;
+   /* background-color: #65c0cc; */
+   padding-left: 1em;
+}
+</style>
+</head>
+
+
+<body>
+
+<div id="head" class="verbose">
+<script type="text/javascript" src="/styles/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/loginstatus.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(vaoStatus);
+</script>
+
+<div id="banner">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tr>
+  <td class="banner-logo" align="left" valign="top" width="155" rowspan="3">
+     <a href="http://www.usvao.org"><img src="/images/VAO_logo_200.png" width="150" height="75" /></a>
+  </td>
+  <td align="left" valign="top" rowspan="3">
+    <div class="vao-title">us virtual astronomical observatory</div>
+    <h1>Supporting VAO Logins</h1>
+    <div id="status">
+    <span class="login-label">Your Status:</span>&nbsp;
+    <span id="loginStatus" align="center" > Unknown </span></div>
+    <!-- DBG
+    <span id="loginStatus" align="center" > Logged in as rplante
+    &nbsp;&nbsp;<a href="/openid?logout=true">Logout</a>
+    <span id="loginStatus" align="center" > Logged out
+    &nbsp;&nbsp;<a href="/openid">Login</a> -->
+    </span></div>
+  </td>
+  <td class="panel-ur" width="10"></td>
+  <td class="vao-nav panel" rowspan="3">
+     <ul>
+       <li><a href="http://www.usvao.org/">About the VAO</a></li>
+       <li><a href="http://www.usvao.org/tools/">Science Tools</a></li>
+       <li><a href="http://www.usvao.org/contact-connect/">Ask for Help</a></li>
+     </ul>
+  </td>
+</tr><tr><td class="panel-edge"></td>
+</tr><tr>
+  <td class="panel-br"></td>
+ </tr>
+</table>
+</div> <!-- div: id=banner -->
+
+<div class="nav-bar">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+  <td class="panel-ur"></td>
+  <td colspan="4"></td>
+  <td class="panel-ul"></td>
+</tr>
+<tr class="buttons">
+  <td>
+	<a href="/">About VAO Logins</a></td>
+  <td>
+	<a href="/register/register.jsp">Create New Login</a></td>
+  <td>
+	<a href="/register/password.jsp">Manage Your Account</a></td>
+  <td>
+	<a href="glossary.html">Glossary</a></td>
+  <td width="50">
+	<a href="/help/faq.html">FAQ</a></td>
+</tr>
+</table>
+
+</div> <!-- div: class=nav-bar -->
+</div> <!-- div: id=head -->
+     
+
+<div class="main-content">
+
+<h1>Accepting VAO Logins in Your Own Portals</h1>
+
+<div class="toc">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td class="panel-ur"></td></tr>
+<tr><td class="panel">
+<strong>Table of Contents</strong>
+<dl style="margin-top: 0pt; margin-bottom: 0pt;">
+  <dt> <a href="#intro">Introduction: OpenID and the User
+       Experience</a> </dt>
+  <dt> <a href="#plugging">Plugging in OpenID Support</a> </dt>
+  <dd> <a href="#withanylibrary">Supporting OpenID with a compliant
+       library</a> </dd>
+  <dd> <a href="#withvaologin">Plug-and-Play with VAOlogin</a> </dd>
+  <dt> <a href="#UsingVAOIdentities">Using VAO Identities: Recommended Workflows</a> </dt>
+  <dt> <a href="#trusted">Becoming a Trusted VAO-compliant Portal</a> </dt>
+</dl>
+<td></tr>
+<tr><td class="panel-br"></td></tr>
+</table>
+</div>
+
+<p>
+A key goal of the VAO Login Service is to enable federation of
+VO-related web portals through common logins.  That is, with one VAO
+login and password, a user can connect to any VAO-compatible portal.
+More than that users are able to share their private data between
+portals.    
+</p>
+
+<p>
+If you run your own portal, you can plug into the VAO federation by
+adding support for VAO Logins.  This will allow VAO users to login to
+your portal using their VAO Login.  This page describes how you can do
+this.   
+</p>
+
+<a name="intro"></a>
+<h2>Introduction: OpenID and the User Experience</h2>
+
+<p>
+VAO Logins uses the open community standard,
+<a href="http://openid.net/">OpenID</a>, to authenticate users.  This
+standard provides a familiar user experience, similar to logging in to
+any typical web portal today.  For example, your portal can have a
+"Login" link (or maybe a Login gadget); when a registered user clicks
+on the link, their browser is forwarded to the VAO login page at
+<a href="http://sso.usvao.org">sso.usvao.org</a> where
+the username and password is entered.  If the password is correct, the
+browser is returned to your portal.  Another way for users to "get in"
+would be to click on the link to a "protected URL" (e.g. a private
+document or an "Edit" button); if the user is not logged in already,
+they will be diverted automatically to the VAO login page.  Upon
+successful authentication, the user is forwarded to protected URL.  
+</p>
+
+<p>
+Because VAO Logins are <em>federated</em>--that is, their usernames
+work at many portals--there are some behaviors that are different from
+that of a portal that handles authentication completely in-house:   
+</p>
+
+<ul>
+  <li>When users logs with a VAO login, they are actually logging into
+  the whole VAO environment that spans across portals with a global
+  user session (lasting by default 8 hours).  This means that if a
+  user that is already logged in visits another portal, he/she will
+  not need to enter their username and password again. </li>
+</ul><ul>
+  <li>A portal can provide a "Logout" link in their portal; however,
+  this normally ends their session with that portal.  If the user
+  returns to the portal later and logs in, she will not be prompted
+  again for a username and password.  (A portal may provide a
+  "Super-Logout" link to allow a user to log out of their global VAO
+  session.) </li>
+</ul>
+
+<p>
+One feature of the OpenID protocol that VAO Logins support is the
+ability for a portal to request some basic personal information about
+authenticated users, such as their full name, email address, home
+institution, and country of origin.  In OpenID parlance, this is known
+as <em>user attribute exchange</em>.  When a portal requests such
+information (as part of user authentication), the user will be asked
+for permission to share this information with your portal.  They can
+choose to do this one time or have this choice remembered for future
+visits.  One special capability of the VAO Login service that is
+different from most OpenID providers is that it lets a portal
+optionally request a short-lived X.509 certificate that represents the
+user; your portal would request this if it needs to access secure
+services outside the portal (e.g. at other archives) to, for example,
+retrieve private data on request by the user. 
+</p>
+
+<p>
+Regardless of whether a user already has a VAO Login when they first
+visit your site, you may wish to "register" him in order to collect
+needed information.  We provide techniques that makes registration
+with both the VAO and your portal smooth.  In particular, you can use
+attribute exchange to prevent having the user retype their information
+at the two sites.  
+</p>
+
+<a name="plugging"></a>
+<h2>Plugging in OpenID Support</h2>
+
+<p>
+Because of its wide use in the internet (including by Google and
+Facebook), there are a number of OpenID software libraries written for
+a variety of software languages.  You may use any compliant library
+that meets your needs.  The subsection below, <a href="#withanylibrary">
+Supporting OpenID with a compliant library</a>, discusses how to make
+use of such a library to support VAO Logins, as well as its special
+features.  
+</p>
+
+<p>
+There are also <a href="http://openid.net/developers/">plugins</a> for
+popular plug-and-play portal platforms (e.g. Drupal, WordPress, etc.).  
+</p>
+
+<p>
+As an aid to quicker, simpler integration, we provide a special
+toolkit called
+<a href="http://dev.usvao.org/vao/wiki/Products/vaologin">
+vaologin</a> that you can use.  For simple portals, it can provide
+config-and-play integration of VAO Logins; in more complicated
+portals, it provides a more convenient library for enabling VAO
+authentication than a typical OpenID library.  The later subsection,
+<a href="#withvaologin">Plug-and-Play with VAOlogin</a>, provides
+information on downloading and using this package.   
+</p>
+
+<a name="withanylibrary"></a>
+<h3>Supporting OpenID with a compliant library</h3>
+
+<p>
+The VAO Login Service is a compliant OpenID Provider; thus, you can
+use any OpenID compliant library to integrate with our Service.  The
+<a href="http://openid.net/">OpenID community website</a> has pointers
+to the many <a href="http://openid.net/developers/libraries/">software
+libraries</a> for all your favorite languages.  Some that we have used
+successfully include: 
+</p>
+
+<ul>
+  <li> <a href="http://openid.net/developers/libraries/#apache2">Apache</a>:
+       <a href="http://findingscience.com/mod_auth_openid/">mod_auth_openid
+       plugin</a> -- this is a fully plug-and-play solution with minimal
+       intrusiveness to your portal framework.  </li>
+  <li><a href="http://openid.net/developers/libraries/#java">Java</a>:  
+       <ul>
+         <li><a href="http://code.google.com/p/openid4java/">openid4java</a>
+              </li>
+         <li><a href="http://static.springsource.org/spring-security/">Spring
+              Security Framework</a> (which uses openid4java
+              underneath for OpenID support) </li>
+       </ul></li>
+  <li> <a href="http://openid.net/developers/libraries/#python">Python</a>:
+       <a href="https://github.com/openid/python-openid">python-openid</a>
+       (also available <a href="http://pypi.python.org/pypi/python-openid/">
+       via pypi</a> and binary packages for various Linux distributions).
+       </li>
+</ul>
+
+<p>
+You should consult the documentation associated with the library for
+instructions and examples.  Next you should consult the following
+documents about using the VAO OpenID Provider service:  
+</p>
+
+<dl>
+  <dt> <a href="OpenIDFeatures.html">
+       Features of the VAO OpenID Provider Service</a></dt>
+  <dd> describes VAO's OpenID identifiers, the available attributes,
+       and how to retrieve user certificates.  </dd>
+
+  <dt> <a href="workflows.html">
+       Recommended Workflows for Using VAO Logins</a></dt>
+  <dd> describes best patterns for registering users, logging them in,
+       logging them out, and connect VAO Identities with your internal
+       identities. </dd>
+</dl>
+
+<a name="withvaologin"></a>
+<h3>Plug-and-Play with VAOlogin</h3>
+
+<p>
+<a href="http://dev.usvao.org/vao/wiki/Products/vaologin">vaologin</a>
+is a package that can help you integrate support for VAO Logins into
+your portal.  It's use is optional, but you may find it helpful for
+these features: 
+</p>
+
+<ul>
+  <li> example uses of some common OpenID libraries and frameworks,
+       including: 
+       <ul>
+         <li> mod_auth_openid</li>
+         <li> Spring Security Framework</li>
+         <li> openid4java</li>
+         <li> python-openid</li>
+       </ul></li>
+  <li> simple programming libraries to take advantage of VAO OpenID
+       features, with language support for: 
+       <ul>
+         <li> Java </li>
+         <li> python </li>
+       </ul></li>
+  <li> configure-and-play support for VAO OpenID for simple portals</li>
+</ul>
+
+<a name="UsingVAOIdentities"></a>
+<h2>Using VAO Identities: Recommended Workflows</h2>
+
+<p>
+While portal developers are free to make use of OpenID features in
+what ever way makes sense for their portal, we have developed some
+"best patterns" for providing the experience and capabilities that are
+important when logging in.  These cover:  
+</p>
+
+<ul>
+  <li> Modes for logging in </li>
+  <li> Logging out </li>
+  <li> Registering new users </li>
+  <li> Maintaining sessions </li>
+  <li> Helping with login problems, including forgotten passwords,
+       forgotten usernames, technical errors, updating personal information 
+       </li>
+</ul>
+
+<p>
+These are spelled out further in the document
+<a href="workflows.html">
+Recommended Workflows for Using VAO Logins</a>.  
+</p>
+
+<p>
+One particular issue that astronomical archives must contend with is
+mapping VAO identities to internal identities.  In particular, you may
+a notion of a user identity that comes from, say, an author on an
+observing proposal, which exists prior or otherwise independently of
+the user obtaining a VAO Login.  In this case, you need a way to
+connect that internal identity based on a proposal to the appropriate
+VAO identity.  This will allow you to give a VAO user access to their
+proprietary data in the archive.  The above document discusses
+techniques you can employ to do this.   
+</p>
+
+<a name="trusted"></a>
+<h2>Becoming a Trusted VAO-compliant Portal</h2>
+
+<p>
+No special permission is necessary for a portal to use the VAO Login
+services.  However, if you register your portal with us and agree to
+the <a href="http://sso.vao.org/privacy-policy.html">terms of use</a>,
+we will list your portal as a so-called <tt>trusted portal</tt>.  This
+enables the following: 
+</p>
+
+<ul>
+  <li> Display of your portal's user-friendly name in the login,
+       registration, and user preferences screens. </li>
+  <li> A statement that your portal is known as a "VAO-compatible"
+       portal on the permission request page; this is to help provide 
+       additional assurance to the user when they are asked to share
+       personal information with your portal.  </li>
+  <li> Access to logging information about users that user our service
+       to log into your portal (still in development). </li>
+</ul>
+
+<p>
+Currently, we are "registering" portals manually, so to become a 
+trusted portal, please drop us an email at
+<a href="mailto:vaosso@ncsa.illinois.edu">vaosso@ncsa.illinois.edu</a>
+with your request after complete the integration of VAO Login support
+into your portal.  
+</p>
+
+
+</div>  <!-- end main-content -->
+
+<div class="foot">
+<hr noshade="noshade" />
+<table width="100%" border="0" cellspacing="0" style="margin:0">
+  <tr>
+  <td align="middle" width="64">
+      <a href="http://www.nsf.gov/"><img align="left" title="NSF" src="/images/nsflogo_64x.gif" width="64" height="64" border="0"></a></td>
+      <td width="80" class="tiny">
+      Supported by the <br><a href="http://www.nsf.gov/">National
+      Science Foundation</a>
+  </td>
+  <td>&nbsp;</td>
+  <td width="120" class="tiny" align="right">
+      With contributions from the
+      <a href="http://www.ncsa.uiuc.edu">National Center for Supercomputing 
+      Applications</a>
+  </td>
+  <td>
+      <img src="/images/ncsalogo-foot.gif" title="NCSA" height="50" />
+  </td>
+  <td class="tiny">and</td>
+  <td>
+      <a href="http://www.globus.org"><img src="/images/globusalliance-foot.gif" title="Globus" border="0"/></a>
+  </td>
+  <td>&nbsp;</td>
+  <td width="90" class="tiny" align="right">
+      Member of the <a href="http://www.ivoa.net">International
+      Virtual Observatory Alliance</a> 
+  </td>
+  <td align="middle" class="tiny" width="80">    
+      <a href="http://www.ivoa.net/"><img height="44" align="right" title="IVOA" src="/images/IVOAlogo.gif" width="80" border="0"></a></td>
+  </tr>
+</table>
+</div>
+
+</body>
+</html>

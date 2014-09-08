@@ -1,0 +1,483 @@
+<html> <head>
+<title>Help: Glossary (VAO Login Services)</title>
+<link href="/styles/sso.css" type="text/css" rel="stylesheet" />
+<link href="/images/favicon.ico" type="image/vnd.microsoft.icon" rel="icon"/>
+<style type="text/css">
+html {
+    overflow: -moz-scrollbars-vertical;
+}
+dl.tmfaq dt {
+   font-size: 12pt;
+   font-weight: 700;
+   color: #003366;
+   margin-top: 0.75ex;
+}
+.toc {
+   float: right;
+   width: 200pix;
+   margin-top:  1ex;
+   margin-bottom:  1ex;
+   margin-left:  2em;
+   padding-right:  1em;
+   background-color: #65c0cc;
+   padding-left: 1em;
+   padding-top: 1ex;
+   padding-bottom: 1ex;
+}
+.toc h5 {
+   margin-top: 0pt;
+   margin-bottom: 0pt;
+}
+.toc ul, .toc ul li ul, .toc ul li ul li ul {
+   margin-bottom: 0pt;
+   margin-top: 0pt;
+   list-style: none outside none;
+   margin-left: 0em;
+   padding-left: 0em;
+}
+.toc ul li {
+   font-size: 85%
+}
+.toc ul li ul li, .toc ul li ul li ul li {
+   padding-left: 1.0em;
+   font-size: 100%
+}
+#shortbanner {
+   color: white;
+   font-weight: bold;
+   background-color: #65c0cc;
+   margin-left: 1em;
+}
+#shortbanner a {
+   color: white;
+   text-decoration: none;
+}
+#shortbanner a:hover {
+   color: #003366; 
+   text-decoration: none;
+}
+.main-content dt {
+   font-weight: bold;
+}
+.main-content dt a {
+   text-decoration: none;
+}
+.main-content dd {
+   margin-bottom: 1.2ex;
+}
+</style>
+</head>
+
+
+<body>
+<p id="shortbanner">
+<a href="http://www.usvao.org/"><img align="Absmiddle"
+   src="/images/VAO_logo_50.png"></a> &nbsp;
+<span style="padding-top: 0.25ex">
+<a href="/">About VAO Logins</a></li> &nbsp;
+<a href="http://www.usvao.org/about-vao/">About the VAO</a> &nbsp;
+<a href="glossary.html">Glossary</a> &nbsp;
+<a href="http://www.usvao.org/contact-connect/">Ask for help</a>
+</span>
+</p>
+
+<div class="main-content">
+
+<a name="Glossary"></a>
+<h1>Glossary of Technical Terms Related to VAO Logins</h1>
+
+<div class="toc">
+<h5>Index:</h5>
+<ul>
+  <li> <a href="#A-E">A-E</a> </li>
+  <li> <a href="#F-J">F-J</a> </li>
+  <li> <a href="#K-O">K-O</a> </li>
+  <li> <a href="#P-U">P-U</a> </li>
+  <li> <a href="#V-Z">V-Z</a> </li>
+</ul>
+</div>
+
+<a name="A-E"></a>
+<h2>A-E</h2>
+
+<dl>
+  <dt> <a name="authentication">authentication</a> </dt> 
+  <dd> the action or process that must be taken to prove that an
+       <a href="#entity">entity</a> (e.g. user) is who they claim to
+       be.  A user often authenticates by providing a password; a web
+       site authenticates itself to web browsers by presenting a
+       certificate.  Authentication involves at least two parties:  an
+       <a href="#entity">entity</a> that claims to have a particular
+       <a href="#identity">identity</a> and an
+       <a href="#entity">entity</a> that needs to prove the identity
+       in order to allow an interaction between them.  The former
+       usually presents <a href="#credential">credentials</a> of some
+       kind, and the latter will apply some test on the credentials to
+       determine if they are authentic.        </dd>
+       
+  <dt> <a name="authorization">authorization</a> </dt> 
+  <dd> the permission (or the granting of permission) to take some
+       action.  Authorization refers to what a user is allowed to do.  It
+       is different from <a href="#authentication">authentication</a> in
+       that it is assumed that a user's <a href="#identity">identity</a>
+       has already be verified independently of establishing what the user
+       is allowed to do.   
+       </dd>
+       
+  <dt> <a name="caa">CA</a> </dt>
+  <dd> short for <a href="#ca">certificate authority</a>
+       </dd>
+       
+  <dt> <a name="cacert">CA certificate</a> </dt>
+  <dd> the self-signed <a href="#certificate">certificate</a> that
+       represents a <a href="#ca">certificate authority (CA)</a> and which
+       is used to sign the <a href="#certificate">certificates</a> it
+       issues.  A CA will distribute its CA cert freely distribute to all
+       <a href="#entity">entities</a> that choose to trust the CA.  These
+       entities can use the CA cert test the authenticiy of the certs it
+       issues.  By using the <a href="#pubkey">public key</a> in the CA
+       cert, the entity can prove that the signature in a issued cert is
+       authentic.  
+       </dd>
+       
+  <dt> <a name="cert">cert</a> </dt>
+  <dd>a shorter synonym for <a href="#certificate">certificate</a>
+       </dd>
+       
+  <dt> <a name="certificate">certificate</a> </dt>
+  <dd> a particular type of <a href="#credential">credential</a>,
+       usually an <a href="#x509">X.509 certificate</a>, that represents an
+       <a href="#identity">identity</a> and which can be encoded and
+       delivered via a file.   
+       </dd>
+       
+  <dt> <a name="ca">certificate authority (CA)</a> </dt>
+  <dd> a type of <a href="#idp">identity provider</a> that issues
+       certificate.  A CA represents the root of the model of trust in
+       network security:  trust in particular CAs are assumed.  A CA,
+       through its <span class="wikianchor" id="cacert">CA
+       certificate</span>, can prove the authenticity of the certificates
+       it issues. 
+       </dd>
+       
+  <dt> <a name="cid">Claimed Identifier</a> </dt>
+  <dd> in the <a href="#openid">OpenID</a> standard, an
+       <a href="#opid">OpenID Identifier</a> URL that represents the
+       <a href="#identity">identity</a> of a user that is chosen and
+       controlled by the user.  The <a href="#openid">OpenID</a> protocol
+       provides a mechanism for discovering the <a href="#opep">OP
+       end-point URL</a> and the corresponding <a href="#oplocal">OP-Local
+       Identifier</a> for the user.  This allows the user to use a Claimed
+       Identifier to log into an OpenID-supporting portal.  
+       </dd>
+       
+  <dt> <a name="credential">credential</a> </dt>
+  <dd> a general term for a set of data that proves that an entity
+       (e.g. a user, a service, or some other agent) has a particular
+       <a href="#identity">identity</a>--that is, they are who/what
+       they claim to be.  It can be in the form of a username and
+       password, a <a href="#certificate">certificate</a>, or some
+       other document that can be or has been verified to be authentic.  
+       </dd>
+       
+  <dt> <a name="eec">end-entity certificate</a> </dt>
+  <dd> a type of <a href="#x509">X.509 certificate</a> that has been
+       signed directly by root <a href="#ca">Certificate Authority
+       (CA)</a>.  This is as opposed to a <a href="#proxycert">proxy
+       certificate</a> which has been signed by an intermediary.  An
+       end-entity certificate is often long-lived--i.e. it is valid for,
+       say, a few years; consequently when with its private key, it must be
+       stored securely.   
+       </dd>
+       
+  <dt> <a name="entity">entity</a> </dt>
+  <dd> an actor or agent--like a user or a service--that can interact
+       with other actors.   
+       </dd>
+</dl>
+
+<a name="F-J"></a>
+<h2>F-J</h2>
+
+<dl>
+  <dt> <a name="federated">federated authentication (federated logins)</a> </dt>
+  <dd> a common mechanism for <a href="#authn">authentication</a> that
+       a group of <a href="#portal">portals</a> agree to support for
+       logging in users.  Within the federation, all portals support a
+       common set of user <a href="#identity">identities</a>.  This means
+       that a user can use the same identifier/username and password at any
+       of the cooperating portals. 
+       </dd>
+       
+  <dt> <a name="identity">identity</a> </dt>
+  <dd> in general, an attribute of an <a href="#entity">entity</a>
+       that allows it to be uniquely identified.  Often, an identity is
+       represented a unique name or label such as a username or URI.   
+       </dd>
+       
+  <dt> <a name="idp">identity provider</a> </dt>
+  <dd> an organization that assigns <a href="#identity">identities</a>
+       to users and provides services to authenticate the identities of the
+       users.  These services could include a login service or a
+       certificate issuing service.   
+       </dd>
+       
+  <dt> <a name="idpa">IDP</a> </dt>
+  <dd> short for <a href="#idp">identity provider</a> 
+       </dd>
+</dl>
+
+<a name="K-O"></a>
+<h2>K-O</h2>
+
+<dl>
+  <dt> <a name="oauth">OAuth</a> </dt>
+  <dd> an <a href="http://oauth.net/">open community standard
+       protocol</a> for delegating permission to access a network
+       resource to another <a href="#entity">entity</a> on the
+       network.  In other words, it is a standard mechanism that
+       enables a user to allow one web site (or tool or other agent)
+       to access her private data on another site.  In the protocol,
+       the web site containing the private data will, after
+       authenticating the user, create a secret token that is
+       delivered to the <a href="#entity">entity</a> needing access.
+       That entity can then present the token to the web site as proof
+       that it has permission from the user to access the private
+       data.  The tokens are usually short-lived (i.e. valid for a
+       limited time) and can be made valid for access only to specific
+       resources, as opposed to all the assets belonging to the user.
+       OAuth, being about <a href="#authr">authorization</a>, is
+       independent from <a href="#authentication">authentication</a>.
+       The required authentication step in the OAuth protocol can be
+       done via one almost any technique, including
+       <a href="#openid">OpenID</a>. 
+       </dd>
+       
+  <dt> <a name="opa">OP</a> </dt>
+  <dd> an <a href="#op">OpenID Provider</a> 
+       </dd>
+       
+  <dt> <a name="opep">OP end-point URL</a> </dt>
+  <dd> the base URL used to access an <a href="#op">OP</a>'s
+       <a href="#openid">OpenID</a> <a href="#authn">authentication</a>
+       service.   
+       </dd>
+       
+  <dt> <a name="opida">OP Identifier</a> </dt>
+  <dd> stands for <a href="#opid">OpenID Provider Identifier</a> 
+       </dd>
+       
+  <dt> <a name="oplocal">OP-Local Identifier</a> </dt>
+  <dd>in the <a href="#openid">OpenID</a> standard, the URL that is assigned to a user as his/her <a href="#identity">identity</a> by the <a href="#op">OpenID provider</a>.  For the VAO OpenID services, this URL has the form <tt>http://sso.usvao.org/openid/id/</tt><em>username</em>.  
+       </dd>
+       
+  <dt> <a name="openid">OpenID</a> </dt>
+  <dd> an <a href="http://openid.net/">open community standard
+       protocol</a> for <a href="#federated">federated</a>,
+       <a href="#sso">single sign-on</a> authentication.  By being
+       <em>federated</em>, a group of <a href="#portal">portals</a>
+       agree to support a single set of
+       <a href="#identity">identities</a> and a common way to
+       authenticate users; this means that a user can use the same
+       identifier/username and password at any of the cooperating
+       portals.  <em>Single sign-on</em> means that once the user logs
+       into one portal in the federation and starts a session, the
+       user does not need to re-type a password to connect to another
+       portal in the federation.  
+       </dd>
+       
+  <dt> <a name="opidurl">OpenID identifier</a> </dt>
+  <dd> a URL that represents the <a href="#identity">identity</a> of a
+       user that can be used to log into a <a href="#portal">portal</a>
+       that supports <a href="#openid">OpenID</a>.  
+       </dd>
+       
+  <dt> <a name="op">OpenID provider</a> </dt>
+  <dd> an <a href="#idp">identity provider</a> that supports an
+       OpenID-compliant authentication service.  An OP provides the web
+       site where an OpenID user enters their password.  
+       </dd>
+       
+  <dt> <a name="opid">OpenID Provider Identifier</a> </dt>
+  <dd> an <a href="#opidurl">OpenID identifier</a> that represents an
+       <a href="#op">OpenID provider</a> itself.  The
+       <a href="#openid">OpenID</a> standard dictates that when a user
+       (or agent acting on the user's behalf) attempts to authenticate
+       with the OP Identifier (as opposed her personal identifier),
+       the OP should present an interface that lets the user choose
+       which <a href="#identity">identity</a> to authenticate as.  In
+       the VAO federation, when a portal uses the  VAO's OP
+       Identifier, the user will be presented a form where they can
+       enter their user name rather than their whole
+       <a href="#opidurl">OpenID identifier</a>.
+       </dd>
+</dl>
+
+<a name="P-U"></a>
+<h2>P-U</h2>
+
+<dl>
+  <dt> <a name="portal">portal</a> </dt>
+  <dd> a collection of related documents and services available
+       through a web site and accessed with a browser.  In the context of
+       VAO Logins, a portal is specifically such a collection that requires
+       logging in (i.e. <a href="#authn">authenticating</a>) in order to
+       access it.  Logging in is the action that allows a user to "enter" a
+       portal.  In OpenID-speak, a portal is an <a href="#rp">relying party
+       (RP)</a>.  
+       </dd>
+       
+  <dt> <a name="prikey">private key</a> </dt>
+  <dd> as part of <a href="#pki">public-private key
+       authentication</a>, it is the token that is used to decrypt a 
+       message.  The <a href="#entity">entity</a> that claims to have some
+       identity holds the private key and uses it to decrypt a "challenge"
+       message by others wishing to authenticate their identity.  Since
+       successful decryption proves possession of the private key, it is
+       the key to the identity; thus, it must be stored securely or others
+       could steal the private key and assume the entity's identity.  
+       </dd>
+       
+  <dt> <a name="pubkey">public key</a> </dt>
+  <dd> as part of <a href="#pki">public-private key
+       authentication</a>, it is the token that is used to encrypt a
+       message.  The <a href="#entity">entity</a> that wishes to prove
+       another's <a href="#identity">identity</a> is given a public key
+       that it will use to encrypt a message. It will send that message to
+       the entity claiming the identity as a challenge: the entity that can
+       decrypt it proves that they have the associated private key.  Public
+       keys are intended to passed around freely; however, as part of a
+       <a href="#certificate">certificate</a>, the key is signed by a
+       <a href="support.html#trustedentity">trusted entity</a> (e.g. a
+       <a href="#ca">CA</a>).  The signature essentially indicates
+       that the holder of the private key has the
+       <a href="#identity">identity</a> described in the certificate. 
+       </dd>
+       
+  <dt> <a name="pki">public-private key authentication</a> </dt>
+  <dd> the authentication mechanism at the core of
+       <a href="#x509">X.509 certificate</a> authentication.  It uses
+       a type of encryption that involves two keys: a "public" one for
+       encrypting and and a "private" one for decrypting. In the
+       authentication process the <a href="#entity">entity</a>
+       claiming an <a href="#identity">identity</a> presents a
+       certificate that contains the public key.  The "challenging"
+       <a href="#entity">entity</a> wishing to prove the identity
+       encrypts a message using the public key and gives it back to
+       the claiming entity.  The claiming entity has the private key
+       and uses it to decrypt the message and send back the result.
+       By demonstrating decryption, the claiming entity proves they
+       have the private key.   
+       </dd>
+       
+  <dt> <a name="proxycert">proxy certificate</a> </dt>
+  <dd> a type of <a href="#x509">X.509 certificate</a> that is that is
+       a temporary stand-in for a long-term certificate.  A proxy
+       certificate has been signed using an intermediate rather than by a
+       <a href="#ca">root CA</a> (as with an <a href="#eec">end-entity
+       certificate</a>).  A proxy is usually presented as the end of a
+       chain of certificates in which each has been used to sign the
+       certificate after it; at the other end of the chain is a certificate
+       signed by a trusted <a href="#entity">entity</a> (e.g. a
+       <a href="#ca">root CA</a>).  
+       <p>
+       A proxy certificate is created for actual service interactions
+       to be safer than an <a href="#eec">end-entity certificate</a>
+       because it is shorter-lived--i.e. valid for, say, only a few hours.  
+       </p>
+       </dd>
+       
+  <dt> <a name="rpa">RP</a> </dt>
+  <dd> a <a href="#rp">relying party</a> 
+       </dd>
+       
+  <dt> <a name="rp">relying party</a> </dt>
+  <dd> a portal or other software <a href="#entity">entity</a> that
+       wishes to authenticate users through an <a href="#op">OpenID
+       identity provider</a> to allow them to access protected resources.  
+       </dd>
+       
+  <dt> <a name="ssla">SSL</a> </dt>
+  <dd> stands for <a href="#ssl">Secure Socket Layer</a>.
+       </dd>
+       
+  <dt> <a name="ssl">Secure Socket Layer</a> </dt>
+  <dd> essentially a synonym for <a href="#tls">Transport-Layer
+       Security</a>.  SSL is the standard encryption protocol used between
+       web sites and web browsers.  Essentially, after a successful
+       <a href="#tls">TLS</a> "handshake" that establishes the secure
+       connection, the subsequent HTTP messages are encrypted before being
+       sent.  
+       </dd>
+       
+  <dt> <a name="ssoa">SSO</a> </dt>
+  <dd> stands for <a href="#sso">single sign-on</a> 
+       </dd>
+       
+  <dt> <a name="sso">single sign-on</a> </dt>
+  <dd> refers to a feature of federated authentication such that when
+       a user logs into one portal in the federation and starts a session,
+       the user will not have to re-type his password when logging into
+       another federated portal.  Similarly, if the portal accesses another
+       protected resource on the user's behalf, the user will not need to
+       re-type her password to authenticate.  
+       </dd>
+       
+  <dt> <a name="tlsa">TLS</a> </dt>
+  <dd> stands for <a href="#tls">Transport-Layer Security</a>
+       </dd>
+       
+  <dt> <a name="tls">Transport-Layer Security</a> </dt>
+  <dd> a standard protocol for encrypting messages sent in socket
+       communication.  In TLS, the identity of one or both of the two
+       parties through a special "handshake" where <a href="#x509">X.509
+       certificates</a> are exchanged and validated; upon successful
+       validation, all subsequent messages are encrypted to prevent spying
+       or corruption by other parties.  
+       </dd>
+</dl>
+
+<a name="V-Z"></a>
+<h2>V-Z</h2>
+
+<dl>
+  <dt> <a name="x509">X.509 certificate</a> </dt>
+  <dd> a type of <a href="#certificate">certificate</a> that takes a
+       standardized form.  It is the most common form of certificate in use
+       in the internet.  Information in such a cert includes an identifier
+       for the <a href="#entity">entity</a> it represents, the identifier
+       for the issuer (the <a href="#entity">entity</a> that assigned and
+       validated the represented entity), a date and time until which the
+       certificate is valid, and a <a href="#pubkey">public key</a> used to
+       create challenges to prove the presenting entity has the stated
+       identity.  
+       </dd>
+</dl>
+</div>  <!-- end main-content -->
+
+<div class="foot">
+<div class="divider"><hr noshade="noshade" /></div>
+<table class="tiny" border="0" cellspacing="4" cellpadding="0" width="100%"><tr>
+<td valign="top" class="tiny">
+Supported by the <a href="http://www.nsf.gov/">National Science
+Foundation</a> <br/>
+With contributions from the <a href="http://www.ncsa.uiuc.edu">National
+Center for Supercomputing Applications</a> <br/>
+and the <a href="http://www.globus.org">Globus Alliance</a>.<br/>
+The VAO is a member of the <a href="http://www.ivoa.net">International
+Virtual Observatory Alliance</a>
+</td>
+<td valign="top" align="right" class="tiny">
+<!-- hhmts start -->
+Last modified: Tue Jun  4 10:41:05 2013
+<!-- hhmts end -->
+<br>
+<a href="http://dev.usvao.org/vao/wiki/VAOLogins/Glossary">
+Draft version 9</a> on the <a href="http://dev.usvao.org/">VAO Developer
+Wiki</a>. 
+</td>
+</tr></table>
+</div>
+
+</body>
+</html>

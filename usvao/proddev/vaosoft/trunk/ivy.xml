@@ -1,0 +1,119 @@
+<ivy-module version="2.0">
+  <info organisation="usvao" module="vaosoft" status="release"
+        revision="0.0">
+    <description>
+      The VAO software development environment
+    </description>
+  </info>
+  <configurations defaultconf="null">
+    <!-- standard configurations -->
+    <conf name="null" description="a get-nothing context"/>
+    <conf name="jardeps"
+          description="the jar dependencies needed for jar-only runtime use of this product"
+          extends="antcontrib-jar,ivy-jar,commonscli-jar,commonsio-jar"/>
+    <conf name="installdeps"
+          description="the products that need to be installed somewhere in order to fully use this product in runtime"
+          extends="ant-uberinstall,maven-uberinstall"/>
+    <conf name="jar"
+          description="the artifacts needed for jar-only runtime use of this product"
+          extends="ownjars,installdeps,jardeps"/>
+    <conf name="install" 
+          description="the prerequisites for installing this package"
+          extends="installdeps,jardeps,pkglicenses"/>
+    <conf name="package" 
+          description="dependencies needed for creating standard distributable bundles from SVN"
+          extends="ant-distrib,jardeps,pkglicenses"/>
+    <conf name="build" 
+          description="dependencies needed to build this product from SVN"
+          extends="ant-uberinstall,jardeps,pkglicenses"/>
+    <conf name="test"
+          description="dependencies needed to test this product"
+          extends="build"/>
+    <conf name="run" 
+          description="dependencies needed for using this package"
+          extends="installdeps,jardeps" />
+    <conf name="pkglicenses" description="licenses for packaged dependencies"
+          extends="ant-license,antcontrib-license,ivy-license,commonscli-license,commonsio-license"/>
+    <conf name="license" description="licenses for packaged dependencies"
+          extends="pkglicenses"/> <!-- own license added in pubs below -->
+
+    <conf name="uberinstall" 
+          description="this resolves to an about.properties file for this product, which uberinstall will use to check for an existing installation before actually installing"/>
+    
+          
+    <!-- dependency configurations specific to this product -->
+    <conf name="maven-uberinstall" 
+          description="dependencies needed for supporting maven"/>
+    <conf name="ant-distrib" 
+          description="the ant distribution tarball needed for distributions"/>
+    <conf name="ant-uberinstall" 
+          description="the ant bootstrap prerequisite"/>
+    <conf name="ant-license" 
+          description="the ant license"/>
+    <conf name="ivy-jar" 
+          description="the ivy bootstrap prerequisite"/>
+    <conf name="ivy-license" 
+          description="the Ivy license"/>
+    <conf name="antcontrib-jar" 
+          description="the ivy bootstrap prerequisite"/>
+    <conf name="antcontrib-license" 
+          description="the Ant-contrib license"/>
+    <conf name="commonscli-jar" 
+          description="the commons-cli runtime prerequisite"/>
+    <conf name="commonscli-license" 
+          description="the commons-cli license"/>
+    <conf name="commonsio-jar" 
+          description="the commons-io runtime prerequisite"/>
+    <conf name="commonsio-license" 
+          description="the commons-io license"/>
+
+    <!-- artifact configuration  -->
+    <conf name="distrib" 
+          description="the recommended distribution bundle to install from"
+          extends="distrib-bin-zip"/>
+    <conf name="distrib-bin-zip" />
+    <conf name="distrib-bin-tgz" />
+    <conf name="distrib-src-zip" />
+    <conf name="distrib-src-tgz" />
+    <conf name="ownjars" />
+
+  </configurations>
+
+  <publications>
+     <!-- standard published artifacts -->
+     <artifact name="usvao-vaosoft" type="LICENSE" ext="txt" conf="license" />
+     <artifact name="usvao-vaosoft" type="about" ext="properties" 
+               conf="uberinstall" />
+     <artifact name="usvao-vaosoft" type="ivy" ext="xml" 
+               conf="uberinstall" />
+     <artifact name="usvao-vaosoft" type="src" ext="tar.gz"
+               conf="distrib-src-tgz"/>
+     <artifact name="usvao-vaosoft" type="src" ext="zip"
+               conf="distrib-src-zip"/>
+
+     <!-- product-specific published artifacts -->
+     <artifact name="usvao-vaosoft" type="bin" ext="tar.gz"
+               conf="distrib-bin-tgz"/>
+     <artifact name="usvao-vaosoft" type="bin" ext="zip"
+               conf="distrib-bin-zip"/>
+     <artifact name="usvao-vaosoft" type="jar" ext="jar"
+               conf="ownjars"/>
+  </publications>
+
+  <dependencies>
+    <dependency name="maven" org="apache" rev="3.0.+" 
+                conf="maven-uberinstall->uberinstall"/>
+    <dependency name="ant" org="apache" rev="1.8.2" conf="ant-distrib->distrib" />
+    <dependency name="ant" org="apache" rev="1.8.2" conf="ant-uberinstall->uberinstall" />
+    <dependency name="ant" org="apache" rev="1.8.2" conf="ant-license->license" />
+    <dependency name="ivy" org="apache" rev="2.2.0" conf="ivy-jar->jar" />
+    <dependency name="ivy" org="apache" rev="2.2.0" conf="ivy-license->license" />
+    <dependency name="ant-contrib" org="ant-contrib" rev="1.0b3" conf="antcontrib-jar->jar" />
+    <dependency name="ant-contrib" org="ant-contrib" rev="1.0b3" conf="antcontrib-license->license" />
+    <dependency name="commons-cli" org="commons" rev="1.2" conf="commonscli-jar->jar" />
+    <dependency name="commons-io" org="commons" rev="2.0.+" conf="commonsio-jar->jar" />
+<!--
+    <dependency name="commons-cli" org="commons" rev="1.2" conf="commonscli-license->license" />
+  -->
+  </dependencies>
+</ivy-module>

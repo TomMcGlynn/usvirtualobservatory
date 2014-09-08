@@ -1,0 +1,502 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>vaopackage &mdash; VOClient Python API 1.0rc1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0rc1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="VOClient Python API 1.0rc1 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/vao_logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for vaopackage</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The VAO Package and Tasking Interfaces.</span>
+
+<span class="sd">The tasking interface defines the python-side classes needed to manage and</span>
+<span class="sd">execute host processes that implement the &quot;VAO Package&quot; binary interface.</span>
+<span class="sd">These classes load the package (i.e. execute the binary as a connected</span>
+<span class="sd">processes and interogate it for a list of available tasks).  The VOTask</span>
+<span class="sd">interface is used to set the input parameters, execute the task and process</span>
+<span class="sd">the result parameter set (PSet).</span>
+
+<span class="sd">The VOPSet interface manages a collection of VOParam parameter objects:</span>
+<span class="sd">input parameters will typically define options for the host task (e.g.</span>
+<span class="sd">input file, processing options, etc), while output parameters may contain</span>
+<span class="sd">arbitrary objects returned by the task (e.g. a FITS file or VOTable) or</span>
+<span class="sd">strings which make up the stdout/stderr streams of the task.  A VOParam has</span>
+<span class="sd">attributes needed to describe the type of parameter, by selecting</span>
+<span class="sd">parameters of the same name from a PSet (e.g. &#39;msgs&#39;) an application can</span>
+<span class="sd">process multiple output objects as needed.</span>
+
+<span class="sd">A &#39;task&#39; is a computational component which can be executed as a process by</span>
+<span class="sd">the host operating system (or a related environment such as a cluster).</span>
+<span class="sd">Tasks may be written in any language so long as the defined tasking</span>
+<span class="sd">interface is observed.  The &#39;package&#39; refered to here should not be</span>
+<span class="sd">confused with a Python package.  A Python package is an element of Python,</span>
+<span class="sd">a &#39;package&#39; as referred to here is a collection of tasks and their</span>
+<span class="sd">associated metadata.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="c"># Module Globals and Functions</span>
+
+
+<div class="viewcode-block" id="setPkgDirs"><a class="viewcode-back" href="../api_tasking.html#vaopackage.setPkgDirs">[docs]</a><span class="k">def</span> <span class="nf">setPkgDirs</span> <span class="p">(</span><span class="n">dirs</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39; Set the VO package search path as an absolute list of directories.</span>
+<span class="sd">		@param dirs		list of directory to use as search path</span>
+
+<span class="sd">		Returns:	Nothing</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="n">vopkg_path</span> <span class="o">=</span> <span class="n">dirs</span>
+        </div>
+<div class="viewcode-block" id="addPkgDir"><a class="viewcode-back" href="../api_tasking.html#vaopackage.addPkgDir">[docs]</a><span class="k">def</span> <span class="nf">addPkgDir</span> <span class="p">(</span><span class="nb">dir</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;	Append the given directory to the package search path.</span>
+<span class="sd">		@param dir		the directory to add to the search path</span>
+
+<span class="sd">		Returns:	Nothing</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="n">vopkg_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="getPkgDirs"><a class="viewcode-back" href="../api_tasking.html#vaopackage.getPkgDirs">[docs]</a><span class="k">def</span> <span class="nf">getPkgDirs</span> <span class="p">():</span>
+	<span class="sd">&#39;&#39;&#39; Get the VO package search path as a list of directories.</span>
+
+<span class="sd">		Returns:	Nothing</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="k">return</span> <span class="p">(</span><span class="n">vopkg_path</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="pkgList"><a class="viewcode-back" href="../api_tasking.html#vaopackage.pkgList">[docs]</a><span class="k">def</span> <span class="nf">pkgList</span> <span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;	Get the list of available packages.</span>
+<span class="sd">		@param pattern		the package name pattern to match</span>
+
+<span class="sd">		Returns:	A list of tuples containing the package/task names is</span>
+<span class="sd">					constructed from all valid packages in the search path.</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="scan"><a class="viewcode-back" href="../api_tasking.html#vaopackage.scan">[docs]</a><span class="k">def</span> <span class="nf">scan</span> <span class="p">():</span>
+	<span class="sd">&#39;&#39;&#39;	Force a re-scan of the package search path for available package</span>
+<span class="sd">		files.   Each directory in the path is searched for a &quot;.vop&quot; file</span>
+<span class="sd">		indicating a VO package executable, this file is then interrogated</span>
+<span class="sd">		for a list of tasks.  This allows new package files to be installed</span>
+<span class="sd">		(or removed) as the module is running.</span>
+
+<span class="sd">		Returns:	Nothing</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="loadPackage"><a class="viewcode-back" href="../api_tasking.html#vaopackage.loadPackage">[docs]</a><span class="k">def</span> <span class="nf">loadPackage</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;	Load the package.  Effectively all this does is create a VOPackage</span>
+<span class="sd">		object from the metadata for the named package, this requires</span>
+<span class="sd">		that we start the package binary to get the metadata information.</span>
+<span class="sd">		If a &#39;file&#39; parameter is specified we open that file regardless of</span>
+<span class="sd">		the name, allowing any VOPackage file to be used dynamically.</span>
+
+<span class="sd">		When a package is loaded, bindings for each of the tasks are generated</span>
+<span class="sd">		automatically in order to allow direct access to the task.  As an</span>
+<span class="sd">		example:</span>
+
+<span class="sd">			&gt;&gt;&gt; vop = loadPackage (&quot;vo-cli&quot;)	# from search path</span>
+<span class="sd">			&gt;&gt;&gt; results = vop.voregistry (searchTerm=&quot;quasar&quot;)</span>
+<span class="sd">			&gt;&gt;&gt; printResultPset (results)		# user-defined function</span>
+
+<span class="sd">		When developing a package or when an app needs to explicitly include</span>
+<span class="sd">		a new package, it may be accessed directly as:</span>
+
+<span class="sd">			&gt;&gt;&gt; vop = loadPackage (&quot;vo-cli&quot;,file=&quot;/path/devpkg.e&quot;)	</span>
+
+<span class="sd">		@param name		the package name</span>
+<span class="sd">		@param file		the package binary file to execute</span>
+
+<span class="sd">		Returns:	The loaded VOPackage object</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="taskList"><a class="viewcode-back" href="../api_tasking.html#vaopackage.taskList">[docs]</a><span class="k">def</span> <span class="nf">taskList</span> <span class="p">(</span><span class="n">pkg</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;	List the tasks available in a package.</span>
+<span class="sd">		@param pkg		the package name</span>
+<span class="sd">		@param pattern	the task pattern name to match</span>
+
+<span class="sd">		Returns:	A list of tasks available in the package who&#39;s name</span>
+<span class="sd">					matches the &#39;pattern&#39; string.</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="pkgAttrs"><a class="viewcode-back" href="../api_tasking.html#vaopackage.pkgAttrs">[docs]</a><span class="k">def</span> <span class="nf">pkgAttrs</span> <span class="p">(</span><span class="n">pkg</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39; Get the attributes for the named package, i.e. create a dictionary</span>
+<span class="sd">		of package metadata.</span>
+<span class="sd">		@param pkg		the package name</span>
+
+<span class="sd">		Returns:	A dictionary of the package attributes.</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="taskAttrs"><a class="viewcode-back" href="../api_tasking.html#vaopackage.taskAttrs">[docs]</a><span class="k">def</span> <span class="nf">taskAttrs</span> <span class="p">(</span><span class="n">pkg</span><span class="p">,</span> <span class="n">task</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39; Get the attributes for the named task in the package, i.e. create </span>
+<span class="sd">		a dictionary of task metadata.</span>
+<span class="sd">		@param pkg		the package name</span>
+<span class="sd">		@param task		the task name</span>
+
+<span class="sd">		 Returns:	A dictionary of the task attributes.</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="VOPackageError"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOPackageError">[docs]</a><span class="k">class</span> <span class="nc">VOPackageError</span> <span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;  A base class for VO Package errors.  Use of this exception is TBD.</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="VOPackage"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOPackage">[docs]</a><span class="k">class</span> <span class="nc">VOPackage</span><span class="p">:</span>
+	<span class="sd">&#39;&#39;&#39;  A class defining a VOPackage object.  A VOPackage is a collection</span>
+<span class="sd">	     of tasks as well as metadata about the package itself.  The</span>
+<span class="sd">	     functional part of the package is implemented in a binary file </span>
+<span class="sd">	     executing as a connected process, task discovery and execution are</span>
+<span class="sd">	     implemented as commands sent to the package binary, results are</span>
+<span class="sd">	     returned over the IPC channel as a stream of parameter objects.</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+
+    <span class="c"># Class attributes</span>
+	<span class="n">name</span>	<span class="o">=</span> <span class="bp">None</span>				<span class="c"># package name</span>
+	<span class="n">descr</span>	<span class="o">=</span> <span class="bp">None</span>				<span class="c"># description string</span>
+	<span class="n">author</span>	<span class="o">=</span> <span class="bp">None</span>				<span class="c"># package author</span>
+	<span class="n">contact</span>	<span class="o">=</span> <span class="bp">None</span>				<span class="c"># contact email address</span>
+	<span class="n">iconUrl</span>	<span class="o">=</span> <span class="bp">None</span>				<span class="c"># URL to package icon</span>
+	<span class="n">version</span>	<span class="o">=</span> <span class="bp">None</span>				<span class="c"># package version string</span>
+	<span class="nb">dir</span>     <span class="o">=</span> <span class="bp">None</span>				<span class="c"># the directory containing the package</span>
+	<span class="n">binfile</span> <span class="o">=</span> <span class="bp">None</span>				<span class="c"># the name of the package binary</span>
+
+	<span class="k">def</span> <span class="nf">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dirs</span><span class="p">):</span>
+		<span class="k">pass</span>
+
+	<span class="k">def</span> <span class="nf">__iter__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dirs</span><span class="p">):</span>	<span class="c"># get next task in the package</span>
+		<span class="k">pass</span>
+
+<div class="viewcode-block" id="VOPackage.taskList"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOPackage.taskList">[docs]</a>	<span class="k">def</span> <span class="nf">taskList</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Get the list of tasks in the package which match a pattern string.</span>
+<span class="sd">			If no pattern is specified, all tasks are returned.</span>
+<span class="sd">			@param pattern	the parameter name to match</span>
+
+<span class="sd">			Returns:	A list of available tasks who&#39;s name matches</span>
+<span class="sd">						the pattern string.</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOPackage.pkgAttrs"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOPackage.pkgAttrs">[docs]</a>	<span class="k">def</span> <span class="nf">pkgAttrs</span> <span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Get the attributes for the VO Package as a dictionary string.</span>
+
+<span class="sd">			Returns:	A dictionary of the package attributes</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+
+</div></div>
+<div class="viewcode-block" id="VOTaskError"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOTaskError">[docs]</a><span class="k">class</span> <span class="nc">VOTaskError</span> <span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;  A base class for Task execution errors.</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOTaskParameterError"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOTaskParameterError">[docs]</a><span class="k">class</span> <span class="nc">VOTaskParameterError</span> <span class="p">(</span><span class="n">VOTaskError</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;  an exception indicating an error in the task calling parameters</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOTaskExecutionError"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOTaskExecutionError">[docs]</a><span class="k">class</span> <span class="nc">VOTaskExecutionError</span> <span class="p">(</span><span class="n">VOTaskError</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;  an exception indicating an error when executing the task</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="VOTask"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOTask">[docs]</a><span class="k">class</span> <span class="nc">VOTask</span><span class="p">:</span>
+	<span class="sd">&#39;&#39;&#39;  A class defining a VO Task object.</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+
+	<span class="n">name</span>		<span class="o">=</span> <span class="bp">None</span>			<span class="c"># task name</span>
+	<span class="n">pkg</span>			<span class="o">=</span> <span class="bp">None</span>			<span class="c"># parent package name</span>
+	<span class="n">descr</span>		<span class="o">=</span> <span class="bp">None</span>			<span class="c"># task description string</span>
+	<span class="n">params</span>		<span class="o">=</span> <span class="bp">None</span>			<span class="c"># task input parameter set</span>
+
+	<span class="n">status</span>		<span class="o">=</span> <span class="bp">None</span>			<span class="c"># task execution return status (OK or ERROR)</span>
+	<span class="n">msg</span>			<span class="o">=</span> <span class="bp">None</span>			<span class="c"># task execution return error message</span>
+	
+
+	<span class="k">def</span> <span class="nf">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">pkg</span><span class="p">,</span> <span class="n">descr</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; create the VOTask instance</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+
+<div class="viewcode-block" id="VOTask.taskAttrs"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOTask.taskAttrs">[docs]</a>	<span class="k">def</span> <span class="nf">taskAttrs</span> <span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Get the attributes of the task as a dictionary.</span>
+
+<span class="sd">			Returns:	A dictionary of the task attributes</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOTask.setParams"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOTask.setParams">[docs]</a>	<span class="k">def</span> <span class="nf">setParams</span> <span class="p">(</span><span class="n">pset</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Set the task parameter pset.  Parameters in the pset argument</span>
+<span class="sd">			will be used set the values for the task parameter pset, i.e.</span>
+<span class="sd">			the argument pset can be just a subset of the task parameters,</span>
+<span class="sd">			we&#39;ll match the names and set the values for only those params.</span>
+<span class="sd">			If the argument pset contains a parameter not already in the </span>
+<span class="sd">		    task input pset, it will be added as a new parameter.</span>
+<span class="sd">			@param pset		parameter set to load</span>
+
+<span class="sd">			Returns:	A dictionary of the task attributes</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOTask.getParams"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOTask.getParams">[docs]</a>	<span class="k">def</span> <span class="nf">getParams</span> <span class="p">():</span>
+		<span class="sd">&#39;&#39;&#39; Set the task parameter pset.</span>
+
+<span class="sd">			Returns:	The task parameter pset.</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOTask.setCallback"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOTask.setCallback">[docs]</a>	<span class="k">def</span> <span class="nf">setCallback</span> <span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Set a callback function to be run whenever a parameter name</span>
+<span class="sd">			that matches the pattern is encountered.  Pattern applies only</span>
+<span class="sd">			to the output parameter set.</span>
+<span class="sd">			@param pattern	the parameter name to match</span>
+<span class="sd">			@param func		the function to be called when parameter encountered</span>
+
+<span class="sd">			Returns:	nothing</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOTask.executeSync"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOTask.executeSync">[docs]</a>	<span class="k">def</span> <span class="nf">executeSync</span> <span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Execute the task as a synchronous process.</span>
+<span class="sd">			@throws VOTaskParameterError	thrown when parameters are invalid</span>
+<span class="sd">			@throws VOTaskExecutionError	thrown when there is an error is</span>
+<span class="sd">											executing a task, e.g. a segfault.</span>
+
+<span class="sd">			Returns:	The result pset.</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOTask.executeASync"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOTask.executeASync">[docs]</a>	<span class="k">def</span> <span class="nf">executeASync</span> <span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Execute the task as a asynchronous process.</span>
+
+<span class="sd">			Returns:	Nothing</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOTask.wait"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOTask.wait">[docs]</a>	<span class="k">def</span> <span class="nf">wait</span> <span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Wait for the exit of an asynchronous execution</span>
+<span class="sd">			@throws VOTaskParameterError	thrown when parameters are invalid</span>
+<span class="sd">			@throws VOTaskExecutionError	thrown when there is an error is</span>
+<span class="sd">											executing a task, e.g. a segfault.</span>
+
+<span class="sd">			Returns:	The result pset.</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOTask.status"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOTask.status">[docs]</a>	<span class="k">def</span> <span class="nf">status</span> <span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Get the status of an executing asynchronous task.</span>
+
+<span class="sd">			Returns:	Task exec status (&#39;Pending&#39;,&#39;Running&#39;,&#39;Done&#39;,&#39;Error&#39;)</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+
+</div></div>
+<div class="viewcode-block" id="VOPset"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOPset">[docs]</a><span class="k">class</span> <span class="nc">VOPset</span><span class="p">:</span>
+	<span class="sd">&#39;&#39;&#39;  A class defining a PSet object.</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+
+	<span class="n">name</span>		<span class="o">=</span> <span class="bp">None</span>				<span class="c"># pset name</span>
+	<span class="n">pkg</span>			<span class="o">=</span> <span class="bp">None</span>				<span class="c"># package name</span>
+	<span class="n">task</span>		<span class="o">=</span> <span class="bp">None</span>				<span class="c"># task name associated with pset</span>
+	<span class="n">description</span> <span class="o">=</span> <span class="bp">None</span>				<span class="c"># pset description name</span>
+
+	<span class="k">def</span> <span class="nf">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">descr</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; create the VOPset instance</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+
+<div class="viewcode-block" id="VOPset.loadPset"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOPset.loadPset">[docs]</a>	<span class="k">def</span> <span class="nf">loadPset</span> <span class="p">(</span><span class="n">pkg</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">saveFile</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Load the pset from the named task in the package.  If &#39;saveFile&#39;</span>
+<span class="sd">			is specified the pset is restored from that file.</span>
+<span class="sd">			@param pkg		package name</span>
+<span class="sd">			@param task		task name</span>
+<span class="sd">			@param saveFile	name of the saved parameter file to load</span>
+
+<span class="sd">			Returns:	The loaded PSet</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+			 </div>
+<div class="viewcode-block" id="VOPset.savePset"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOPset.savePset">[docs]</a>	<span class="k">def</span> <span class="nf">savePset</span> <span class="p">(</span><span class="n">saveFile</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Save the PSet to the named file.  Serialization of the PSet is</span>
+<span class="sd">			TBD, probably some sort of simple XML schema.</span>
+<span class="sd">			@param saveFile		name of the saved parameter file</span>
+
+<span class="sd">			Returns:	Nothing</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOPset.paramSet"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOPset.paramSet">[docs]</a>	<span class="k">def</span> <span class="nf">paramSet</span> <span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>	
+		<span class="sd">&#39;&#39;&#39; Create pset from params who&#39;s name matches the &#39;pattern&#39; string.</span>
+<span class="sd">			If no pattern is specified, all parameters are returned.</span>
+<span class="sd">			@param pattern		parameter pattern name to match</span>
+
+<span class="sd">			Returns:	The constructed PSet</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOPset.paramList"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOPset.paramList">[docs]</a>	<span class="k">def</span> <span class="nf">paramList</span> <span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Get list of params who&#39;s name matches the &#39;pattern&#39; string.  If</span>
+<span class="sd">			no pattern is specified, all parameters are returned.</span>
+<span class="sd">			@param pattern		parameter pattern name to match</span>
+
+<span class="sd">			Returns:	Nothing</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOPset.addParam"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOPset.addParam">[docs]</a>	<span class="k">def</span> <span class="nf">addParam</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Add a new parameter with the specified attributes to the pset.</span>
+<span class="sd">			@param name		name of the parameter to add</span>
+<span class="sd">			@param type		parameter type value</span>
+<span class="sd">			@param descr	parameter description string</span>
+<span class="sd">			@param encoding	parameter encoding</span>
+
+<span class="sd">			Returns:	The created parameter</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOPset.delParam"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOPset.delParam">[docs]</a>	<span class="k">def</span> <span class="nf">delParam</span> <span class="p">(</span><span class="n">name</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Delete the named parameter from the pset.</span>
+<span class="sd">			@param name		name of the parameter to delete</span>
+
+<span class="sd">			Returns:	Nothing</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="VOPset.getParam"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOPset.getParam">[docs]</a>	<span class="k">def</span> <span class="nf">getParam</span> <span class="p">(</span><span class="n">name</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Get the parameter with the given name.</span>
+<span class="sd">			@param name		name of the parameter to retrieve</span>
+
+<span class="sd">			Returns:	Requested parameter</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+
+</div></div>
+<div class="viewcode-block" id="VOParam"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOParam">[docs]</a><span class="k">class</span> <span class="nc">VOParam</span><span class="p">:</span>
+	<span class="sd">&#39;&#39;&#39;  A class defining a Parameter object.</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+
+	<span class="n">name</span>	 <span class="o">=</span> <span class="bp">None</span>				<span class="c"># parameter name</span>
+	<span class="nb">type</span>	 <span class="o">=</span> <span class="bp">None</span>				<span class="c"># parameter type (string/int/real/bool/blob)</span>
+	<span class="n">desc</span>	 <span class="o">=</span> <span class="bp">None</span>				<span class="c"># parameter description string</span>
+	<span class="n">encoding</span> <span class="o">=</span> <span class="bp">None</span>				<span class="c"># encoding of param (i.e.  mime type)</span>
+				
+
+	<span class="k">def</span> <span class="nf">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">descr</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; create the VOParam instance</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+
+<div class="viewcode-block" id="VOParam.paramAttrs"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOParam.paramAttrs">[docs]</a>	<span class="k">def</span> <span class="nf">paramAttrs</span> <span class="p">():</span>
+		<span class="sd">&#39;&#39;&#39; Get the parameter attributes.</span>
+
+<span class="sd">			Returns:	A dictionary of parameter attrbutes</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+				  </div>
+<div class="viewcode-block" id="VOParam.getValue"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOParam.getValue">[docs]</a>	<span class="k">def</span> <span class="nf">getValue</span> <span class="p">():</span>
+		<span class="sd">&#39;&#39;&#39; Get the value of the parameter (may be a list)</span>
+
+<span class="sd">			Returns:	The parameter&#39;s value</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+				  </div>
+<div class="viewcode-block" id="VOParam.setValue"><a class="viewcode-back" href="../api_tasking.html#vaopackage.VOParam.setValue">[docs]</a>	<span class="k">def</span> <span class="nf">setValue</span> <span class="p">(</span><span class="n">val</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39; Set the value of a parameter.</span>
+<span class="sd">			@param val		the value of the paramter (arbitrary type)</span>
+
+<span class="sd">			Returns:	Nothing</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">pass</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, US Virtual Astronomical Observatory.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

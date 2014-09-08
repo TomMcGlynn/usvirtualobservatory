@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant"
+         name="vaosoft" default="explain" basedir=".">
+
+  <property environment="env"/>
+  <property name="vaosoft.home" value="${env.VAOSOFT_HOME}" /> 
+  
+  <import file="vaosoft-recipes.xml" as="vaosoft"/>
+
+  <target name="explain" depends=""/>
+
+  <target name="try" depends="vaosoft.loadAboutData">
+    <echo>VAOSOFT_HOME=${env.VAOSOFT_HOME}</echo>
+    <echo>ant.file=${ant.file}</echo>
+    <echo>basedir=${basedir}</echo>
+    <echo>vaosoft.build.product.dir=${vaosoft.build.product.dir}</echo>
+    <echo>vaosoft.about.file=${vaosoft.about.file}</echo>
+    <echo>about.name=${vaosoft.about.name}  </echo>
+  </target>
+
+</project>
+

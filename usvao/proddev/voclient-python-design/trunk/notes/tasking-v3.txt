@@ -1,0 +1,136 @@
+VOClient C Tasking API
+
+
+    Client Interface:
+    =================
+    
+    Package/Task Management
+    -----------------------
+  
+                     vo_setPkgDir (path)	         # Set package dir
+              path = vo_getPkgDir ()	     	         # Get package dir
+  
+                 pkg = vo_pkgList (pattern)    	         # Get available packages
+		  len = vo_pkgLen (pkg)
+		 pkg = vo_pkgNext (pkg)
+		 str = vo_pkgAttr (pkg, attr)
+ 
+               task = vo_taskList (pkgName)              # Get tasks in package
+		 len = vo_taskLen (task)
+		str = vo_taskNext (task)
+	       task = vo_taskAttr (task, attr)
+  
+                  xml = vo_pkgXML (pattern)    	         # XML serializations (opt)
+                 xml = vo_taskXML (pkgName)
+                xml = vo_paramXML (pkgName, taskName)
+ 
+    Parameter Handling
+    ------------------
+
+               pset = vo_psetOpen (pkgName, taskName)    # Open existing pset
+
+             pset = vo_psetCreate (pkgName, taskName, xml|null)    # Create new pset
+	         pp = vo_addParam (pset, name, type, description)
+	 status = vo_paramSetAttr (pp, attr, sval)	 # Set misc attributes
+
+          str = vo_GetStringParam (pset, pname)          # Get param values
+	   ival = vo_GetBoolParam (pset, pname)
+	    ival = vo_GetIntParam (pset, pname)
+	   dval = vo_GetRealParam (pset, pname)
+	   void = vo_GetBlobParam (pset, pname, &size)
+
+	        vo_SetStringParam (pset, pname, sval)    # Set param values
+		  vo_SetBoolParam (pset, pname, sval)
+		   vo_SetIntParam (pset, pname, ival)
+		  vo_SetRealParam (pset, pname, dval)
+		  vo_SetBlobParam (pset, pname, ptr, size)
+
+		pp = vo_paramList (pset, pattern)        # Get params in pset
+		len = vo_paramLen (pp)
+		pp = vo_paramNext (pp)
+	       str = vo_paramAttr (pp, attr)
+                     vo_paramInfo (pp, name, type, encoding, description)
+
+       status = vo_psetCheckError (pset, msg)	         # Check for error, eg unknown param
+		     vo_psetClose (pset)
+  
+    Task Execution	
+    --------------
+  
+                 tp = vo_taskInit (pkgName, taskName)    # Initialize a task
+
+	       pset = vo_taskPset (tp)			 # Get input param pset
+		   vo_taskSetPset (tp, pset)		 # Set input param pset
+      status = vo_taskSetCallback (tp, pattern, &func)   # Set param callback
+        pset = vo_taskExecuteSync (tp)                   # Execute sync; get output pset
+     status = vo_taskExecuteAsync (tp)      	         # Execute async
+               pset = vo_taskWait (tp)      	         # Wait for task; get output pset
+       status = vo_taskCheckError (tp, msg)	         # Check for any error
+
+                     vo_taskClose (tp)      	         # Free task resources
+
+
+V3 Notes
+========
+    - Probably a client env will have a single fixed package dir, but set/getPkgDir allows
+      this to be managed by the client.
+    - While the client is not required to deal with XML to use the interface, packages are
+      still required to output it in order for the tasking code to input metadata.
+    - Since we have gone to a unified parameter scheme for input/output, this version
+      takes it the final step and provides a full up standalone pset class.
+    - Psets are no longer required to be tied to a single task.  In the case of a "pset task"
+      "taskName" is actually the pset name, and the pset is not bound to a class.
+    - Basic routines are added to create new psets, or to add a param to an existing pset.
+      Note that since the tasking layer reads XML from a package to get metadata, the
+      psetCreate routine complements this by using this XML to create a pset.  However the
+      client also has access to the XML to save/restore psets, or to get more complete
+      metadata than the standard API provides access to.
+    - The get/set param routines now work for any pset, e.g. both input/output psets.
+    - A param is also an object, and can be accessed via the "pp" methods.
+    - A psetCheckError method routine is added to check for errors, e.g. after a sequence
+      of getParams, to avoid having to check each time.
+    - Task execution is simplified since the parameter handling is factored out.
+    - A taskPset routine is added to get the input pset to set params.  This is initialized
+      if it does not already exist.
+    - The task input pset can be set or replaced with taskSetPset, e.g., if multiple
+      instances of the same task are to be run, possibly with minor changes to the pset,
+      and we don't want to have to reset all the params.
+    - The callback routine now takes a pattern to specify what the callback is attached to.
+      This can be a single param, or a param with a specific attribute such as type or
+      encoding.
+    - As before, tasks can be run sync or async.  Any write to an output param during 
+      execution is an event, and can be delivered to a client callback.  An output pset
+      is also always accumulated during execution, and may be accessed by the client at
+      any time, including during execution.
+    - taskClose frees the output pset resulting from execution of the task.
+
+
+V2 Notes
+========
+
+    - Added set/get methods for the package directory to be searched for 
+      packages.  This allows a client to point to different dirs depending
+      on which package is being 'loaded'.
+    - The pkgList() takes a 'pattern' param to select only files matching a
+      specific pattern (e.g. "*.e" or "*.pkg") from the working directory.
+      Only files matching the pattern (or all files if NULL) will be queried
+      for metadata.  This also allows for a directory to contain single-task
+      binaries and not require a single binary for all tasks in a package.
+    - Made pkg/task/param listings optionally XML, these are manageable by
+      many languages but not always 'natural'.  The use of iterators allows
+      a client to traverse the metadata and request attributes w/out depending
+      on an XML parser.
+    - Added 'pname' to the setParam() methods to set specific params.
+    - Added status/msg returns from sync execution
+    - Input and output parameters share the same data structure and interface
+      methods work on either.  This means a 'blob' can now be an input param, 
+      e.g. an in-memory object (e.g. a target list or TAP ADQL string) from a
+      client can be posted over IPC to the task.  Note however this may not be
+      implemented for current tasks.
+    - Parameter callbacks can be set for specific parameter types
+    - Parameter iterators allow a 'type' or 'encoding' option to find the
+      next param of the same typ/enc.  This allows a client to skip through
+      output params to find e.g. only FITS objects or only the stdout text
+      strings and means the callback can be tied to a parameter type easily.
+
+

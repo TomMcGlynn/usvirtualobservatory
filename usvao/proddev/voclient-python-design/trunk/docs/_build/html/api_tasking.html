@@ -1,0 +1,603 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tasking Module API &mdash; VOClient Python API 1.0rc1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0rc1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="VOClient Python API 1.0rc1 documentation" href="index.html" />
+    <link rel="next" title="samp Module" href="api_samp.html" />
+    <link rel="prev" title="dalquery Module API" href="api_dalquery.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api_samp.html" title="samp Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="api_dalquery.html" title="dalquery Module API"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/vao_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">tasking Module API</a><ul>
+<li><a class="reference internal" href="#module-vaopackage"><tt class="docutils literal"><span class="pre">vaopackage</span></tt>: Application Packages and Tasks</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="api_dalquery.html"
+                        title="previous chapter">dalquery Module API</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api_samp.html"
+                        title="next chapter">samp Module</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/api_tasking.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tasking-module-api">
+<h1>tasking Module API<a class="headerlink" href="#tasking-module-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-vaopackage">
+<span id="vaopackage-application-packages-and-tasks"></span><h2><a class="reference internal" href="#module-vaopackage" title="vaopackage"><tt class="xref py py-mod docutils literal"><span class="pre">vaopackage</span></tt></a>: Application Packages and Tasks<a class="headerlink" href="#module-vaopackage" title="Permalink to this headline">¶</a></h2>
+<p>The VAO Package and Tasking Interfaces.</p>
+<p>The tasking interface defines the python-side classes needed to manage and
+execute host processes that implement the &#8220;VAO Package&#8221; binary interface.
+These classes load the package (i.e. execute the binary as a connected
+processes and interogate it for a list of available tasks).  The VOTask
+interface is used to set the input parameters, execute the task and process
+the result parameter set (PSet).</p>
+<p>The VOPSet interface manages a collection of VOParam parameter objects:
+input parameters will typically define options for the host task (e.g.
+input file, processing options, etc), while output parameters may contain
+arbitrary objects returned by the task (e.g. a FITS file or VOTable) or
+strings which make up the stdout/stderr streams of the task.  A VOParam has
+attributes needed to describe the type of parameter, by selecting
+parameters of the same name from a PSet (e.g. &#8216;msgs&#8217;) an application can
+process multiple output objects as needed.</p>
+<p>A &#8216;task&#8217; is a computational component which can be executed as a process by
+the host operating system (or a related environment such as a cluster).
+Tasks may be written in any language so long as the defined tasking
+interface is observed.  The &#8216;package&#8217; refered to here should not be
+confused with a Python package.  A Python package is an element of Python,
+a &#8216;package&#8217; as referred to here is a collection of tasks and their
+associated metadata.</p>
+<dl class="class">
+<dt id="vaopackage.VOPackage">
+<em class="property">class </em><tt class="descclassname">vaopackage.</tt><tt class="descname">VOPackage</tt><big>(</big><em>dirs</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOPackage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOPackage" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class defining a VOPackage object.  A VOPackage is a collection
+of tasks as well as metadata about the package itself.  The
+functional part of the package is implemented in a binary file 
+executing as a connected process, task discovery and execution are
+implemented as commands sent to the package binary, results are
+returned over the IPC channel as a stream of parameter objects.</p>
+<dl class="attribute">
+<dt id="vaopackage.VOPackage.author">
+<tt class="descname">author</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOPackage.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOPackage.binfile">
+<tt class="descname">binfile</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOPackage.binfile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOPackage.contact">
+<tt class="descname">contact</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOPackage.contact" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOPackage.descr">
+<tt class="descname">descr</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOPackage.descr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOPackage.dir">
+<tt class="descname">dir</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOPackage.dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOPackage.iconUrl">
+<tt class="descname">iconUrl</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOPackage.iconUrl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOPackage.name">
+<tt class="descname">name</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOPackage.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOPackage.pkgAttrs">
+<tt class="descname">pkgAttrs</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOPackage.pkgAttrs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOPackage.pkgAttrs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the attributes for the VO Package as a dictionary string.</p>
+<p>Returns:        A dictionary of the package attributes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOPackage.taskList">
+<tt class="descname">taskList</tt><big>(</big><em>pattern=None</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOPackage.taskList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOPackage.taskList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of tasks in the package which match a pattern string.
+If no pattern is specified, all tasks are returned.
+&#64;param pattern  the parameter name to match</p>
+<dl class="docutils">
+<dt>Returns:        A list of available tasks who&#8217;s name matches</dt>
+<dd>the pattern string.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOPackage.version">
+<tt class="descname">version</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOPackage.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="vaopackage.VOPackageError">
+<em class="property">exception </em><tt class="descclassname">vaopackage.</tt><tt class="descname">VOPackageError</tt><a class="reference internal" href="_modules/vaopackage.html#VOPackageError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOPackageError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
+<p>A base class for VO Package errors.  Use of this exception is TBD.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="vaopackage.VOParam">
+<em class="property">class </em><tt class="descclassname">vaopackage.</tt><tt class="descname">VOParam</tt><big>(</big><em>name</em>, <em>type</em>, <em>descr</em>, <em>encoding</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOParam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOParam" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class defining a Parameter object.</p>
+<dl class="attribute">
+<dt id="vaopackage.VOParam.desc">
+<tt class="descname">desc</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOParam.desc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOParam.encoding">
+<tt class="descname">encoding</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOParam.encoding" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOParam.getValue">
+<tt class="descname">getValue</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOParam.getValue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOParam.getValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the value of the parameter (may be a list)</p>
+<p>Returns:        The parameter&#8217;s value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOParam.name">
+<tt class="descname">name</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOParam.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOParam.paramAttrs">
+<tt class="descname">paramAttrs</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOParam.paramAttrs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOParam.paramAttrs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the parameter attributes.</p>
+<p>Returns:        A dictionary of parameter attrbutes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOParam.setValue">
+<tt class="descname">setValue</tt><big>(</big><em>val</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOParam.setValue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOParam.setValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the value of a parameter.
+&#64;param val              the value of the paramter (arbitrary type)</p>
+<p>Returns:        Nothing</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOParam.type">
+<tt class="descname">type</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOParam.type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="vaopackage.VOPset">
+<em class="property">class </em><tt class="descclassname">vaopackage.</tt><tt class="descname">VOPset</tt><big>(</big><em>name</em>, <em>type</em>, <em>descr</em>, <em>encoding</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOPset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOPset" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class defining a PSet object.</p>
+<dl class="method">
+<dt id="vaopackage.VOPset.addParam">
+<tt class="descname">addParam</tt><big>(</big><em>name</em>, <em>type</em>, <em>description</em>, <em>encoding=None</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOPset.addParam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOPset.addParam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new parameter with the specified attributes to the pset.
+&#64;param name             name of the parameter to add
+&#64;param type             parameter type value
+&#64;param descr    parameter description string
+&#64;param encoding parameter encoding</p>
+<p>Returns:        The created parameter</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOPset.delParam">
+<tt class="descname">delParam</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOPset.delParam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOPset.delParam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete the named parameter from the pset.
+&#64;param name             name of the parameter to delete</p>
+<p>Returns:        Nothing</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOPset.description">
+<tt class="descname">description</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOPset.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOPset.getParam">
+<tt class="descname">getParam</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOPset.getParam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOPset.getParam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the parameter with the given name.
+&#64;param name             name of the parameter to retrieve</p>
+<p>Returns:        Requested parameter</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOPset.loadPset">
+<tt class="descname">loadPset</tt><big>(</big><em>pkg=None</em>, <em>task=None</em>, <em>saveFile=None</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOPset.loadPset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOPset.loadPset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the pset from the named task in the package.  If &#8216;saveFile&#8217;
+is specified the pset is restored from that file.
+&#64;param pkg              package name
+&#64;param task             task name
+&#64;param saveFile name of the saved parameter file to load</p>
+<p>Returns:        The loaded PSet</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOPset.name">
+<tt class="descname">name</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOPset.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOPset.paramList">
+<tt class="descname">paramList</tt><big>(</big><em>pattern=None</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOPset.paramList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOPset.paramList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list of params who&#8217;s name matches the &#8216;pattern&#8217; string.  If
+no pattern is specified, all parameters are returned.
+&#64;param pattern          parameter pattern name to match</p>
+<p>Returns:        Nothing</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOPset.paramSet">
+<tt class="descname">paramSet</tt><big>(</big><em>pattern=None</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOPset.paramSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOPset.paramSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create pset from params who&#8217;s name matches the &#8216;pattern&#8217; string.
+If no pattern is specified, all parameters are returned.
+&#64;param pattern          parameter pattern name to match</p>
+<p>Returns:        The constructed PSet</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOPset.pkg">
+<tt class="descname">pkg</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOPset.pkg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOPset.savePset">
+<tt class="descname">savePset</tt><big>(</big><em>saveFile</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOPset.savePset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOPset.savePset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the PSet to the named file.  Serialization of the PSet is
+TBD, probably some sort of simple XML schema.
+&#64;param saveFile         name of the saved parameter file</p>
+<p>Returns:        Nothing</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOPset.task">
+<tt class="descname">task</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOPset.task" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="vaopackage.VOTask">
+<em class="property">class </em><tt class="descclassname">vaopackage.</tt><tt class="descname">VOTask</tt><big>(</big><em>name</em>, <em>pkg</em>, <em>descr</em>, <em>params</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOTask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class defining a VO Task object.</p>
+<dl class="attribute">
+<dt id="vaopackage.VOTask.descr">
+<tt class="descname">descr</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOTask.descr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOTask.executeASync">
+<tt class="descname">executeASync</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOTask.executeASync"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOTask.executeASync" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute the task as a asynchronous process.</p>
+<p>Returns:        Nothing</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOTask.executeSync">
+<tt class="descname">executeSync</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOTask.executeSync"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOTask.executeSync" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute the task as a synchronous process.
+&#64;throws VOTaskParameterError    thrown when parameters are invalid
+&#64;throws VOTaskExecutionError    thrown when there is an error is</p>
+<blockquote>
+<div>executing a task, e.g. a segfault.</div></blockquote>
+<p>Returns:        The result pset.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOTask.getParams">
+<tt class="descname">getParams</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOTask.getParams"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOTask.getParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the task parameter pset.</p>
+<p>Returns:        The task parameter pset.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOTask.msg">
+<tt class="descname">msg</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOTask.msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOTask.name">
+<tt class="descname">name</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOTask.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOTask.params">
+<tt class="descname">params</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOTask.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vaopackage.VOTask.pkg">
+<tt class="descname">pkg</tt><em class="property"> = None</em><a class="headerlink" href="#vaopackage.VOTask.pkg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOTask.setCallback">
+<tt class="descname">setCallback</tt><big>(</big><em>pattern</em>, <em>func</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOTask.setCallback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOTask.setCallback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a callback function to be run whenever a parameter name
+that matches the pattern is encountered.  Pattern applies only
+to the output parameter set.
+&#64;param pattern  the parameter name to match
+&#64;param func             the function to be called when parameter encountered</p>
+<p>Returns:        nothing</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOTask.setParams">
+<tt class="descname">setParams</tt><big>(</big><em>pset</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOTask.setParams"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOTask.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the task parameter pset.  Parameters in the pset argument
+will be used set the values for the task parameter pset, i.e.</p>
+<blockquote>
+<div>the argument pset can be just a subset of the task parameters,
+we&#8217;ll match the names and set the values for only those params.
+If the argument pset contains a parameter not already in the</div></blockquote>
+<dl class="docutils">
+<dt>task input pset, it will be added as a new parameter.</dt>
+<dd><p class="first">&#64;param pset             parameter set to load</p>
+<p class="last">Returns:        A dictionary of the task attributes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOTask.status">
+<tt class="descname">status</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOTask.status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOTask.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the status of an executing asynchronous task.</p>
+<p>Returns:        Task exec status (&#8216;Pending&#8217;,&#8217;Running&#8217;,&#8217;Done&#8217;,&#8217;Error&#8217;)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOTask.taskAttrs">
+<tt class="descname">taskAttrs</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOTask.taskAttrs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOTask.taskAttrs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the attributes of the task as a dictionary.</p>
+<p>Returns:        A dictionary of the task attributes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaopackage.VOTask.wait">
+<tt class="descname">wait</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaopackage.html#VOTask.wait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOTask.wait" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for the exit of an asynchronous execution
+&#64;throws VOTaskParameterError    thrown when parameters are invalid
+&#64;throws VOTaskExecutionError    thrown when there is an error is</p>
+<blockquote>
+<div>executing a task, e.g. a segfault.</div></blockquote>
+<p>Returns:        The result pset.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="vaopackage.VOTaskError">
+<em class="property">exception </em><tt class="descclassname">vaopackage.</tt><tt class="descname">VOTaskError</tt><a class="reference internal" href="_modules/vaopackage.html#VOTaskError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOTaskError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
+<p>A base class for Task execution errors.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="vaopackage.VOTaskExecutionError">
+<em class="property">exception </em><tt class="descclassname">vaopackage.</tt><tt class="descname">VOTaskExecutionError</tt><a class="reference internal" href="_modules/vaopackage.html#VOTaskExecutionError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOTaskExecutionError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#vaopackage.VOTaskError" title="vaopackage.VOTaskError"><tt class="xref py py-class docutils literal"><span class="pre">vaopackage.VOTaskError</span></tt></a></p>
+<p>an exception indicating an error when executing the task</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="vaopackage.VOTaskParameterError">
+<em class="property">exception </em><tt class="descclassname">vaopackage.</tt><tt class="descname">VOTaskParameterError</tt><a class="reference internal" href="_modules/vaopackage.html#VOTaskParameterError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.VOTaskParameterError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#vaopackage.VOTaskError" title="vaopackage.VOTaskError"><tt class="xref py py-class docutils literal"><span class="pre">vaopackage.VOTaskError</span></tt></a></p>
+<p>an exception indicating an error in the task calling parameters</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vaopackage.addPkgDir">
+<tt class="descclassname">vaopackage.</tt><tt class="descname">addPkgDir</tt><big>(</big><em>dir</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#addPkgDir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.addPkgDir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append the given directory to the package search path.
+&#64;param dir              the directory to add to the search path</p>
+<p>Returns:        Nothing</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vaopackage.getPkgDirs">
+<tt class="descclassname">vaopackage.</tt><tt class="descname">getPkgDirs</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaopackage.html#getPkgDirs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.getPkgDirs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the VO package search path as a list of directories.</p>
+<p>Returns:        Nothing</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vaopackage.loadPackage">
+<tt class="descclassname">vaopackage.</tt><tt class="descname">loadPackage</tt><big>(</big><em>name</em>, <em>file=None</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#loadPackage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.loadPackage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the package.  Effectively all this does is create a VOPackage
+object from the metadata for the named package, this requires
+that we start the package binary to get the metadata information.
+If a &#8216;file&#8217; parameter is specified we open that file regardless of
+the name, allowing any VOPackage file to be used dynamically.</p>
+<p>When a package is loaded, bindings for each of the tasks are generated
+automatically in order to allow direct access to the task.  As an
+example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">vop</span> <span class="o">=</span> <span class="n">loadPackage</span> <span class="p">(</span><span class="s">&quot;vo-cli&quot;</span><span class="p">)</span>        <span class="c"># from search path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">vop</span><span class="o">.</span><span class="n">voregistry</span> <span class="p">(</span><span class="n">searchTerm</span><span class="o">=</span><span class="s">&quot;quasar&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">printResultPset</span> <span class="p">(</span><span class="n">results</span><span class="p">)</span>           <span class="c"># user-defined function</span>
+</pre></div>
+</div>
+<p>When developing a package or when an app needs to explicitly include
+a new package, it may be accessed directly as:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">vop</span> <span class="o">=</span> <span class="n">loadPackage</span> <span class="p">(</span><span class="s">&quot;vo-cli&quot;</span><span class="p">,</span><span class="nb">file</span><span class="o">=</span><span class="s">&quot;/path/devpkg.e&quot;</span><span class="p">)</span>  
+</pre></div>
+</div>
+<p>&#64;param name             the package name
+&#64;param file             the package binary file to execute</p>
+<p>Returns:        The loaded VOPackage object</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vaopackage.pkgAttrs">
+<tt class="descclassname">vaopackage.</tt><tt class="descname">pkgAttrs</tt><big>(</big><em>pkg</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#pkgAttrs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.pkgAttrs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the attributes for the named package, i.e. create a dictionary
+of package metadata.
+&#64;param pkg              the package name</p>
+<p>Returns:        A dictionary of the package attributes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vaopackage.pkgList">
+<tt class="descclassname">vaopackage.</tt><tt class="descname">pkgList</tt><big>(</big><em>pattern=None</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#pkgList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.pkgList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of available packages.
+&#64;param pattern          the package name pattern to match</p>
+<dl class="docutils">
+<dt>Returns:        A list of tuples containing the package/task names is</dt>
+<dd>constructed from all valid packages in the search path.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="vaopackage.scan">
+<tt class="descclassname">vaopackage.</tt><tt class="descname">scan</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaopackage.html#scan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.scan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Force a re-scan of the package search path for available package
+files.   Each directory in the path is searched for a &#8221;.vop&#8221; file
+indicating a VO package executable, this file is then interrogated
+for a list of tasks.  This allows new package files to be installed
+(or removed) as the module is running.</p>
+<p>Returns:        Nothing</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vaopackage.setPkgDirs">
+<tt class="descclassname">vaopackage.</tt><tt class="descname">setPkgDirs</tt><big>(</big><em>dirs</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#setPkgDirs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.setPkgDirs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the VO package search path as an absolute list of directories.
+&#64;param dirs             list of directory to use as search path</p>
+<p>Returns:        Nothing</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vaopackage.taskAttrs">
+<tt class="descclassname">vaopackage.</tt><tt class="descname">taskAttrs</tt><big>(</big><em>pkg</em>, <em>task</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#taskAttrs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.taskAttrs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the attributes for the named task in the package, i.e. create 
+a dictionary of task metadata.
+&#64;param pkg              the package name
+&#64;param task             the task name</p>
+<blockquote>
+<div>Returns:       A dictionary of the task attributes.</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="vaopackage.taskList">
+<tt class="descclassname">vaopackage.</tt><tt class="descname">taskList</tt><big>(</big><em>pkg</em>, <em>pattern=None</em><big>)</big><a class="reference internal" href="_modules/vaopackage.html#taskList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaopackage.taskList" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the tasks available in a package.
+&#64;param pkg              the package name
+&#64;param pattern  the task pattern name to match</p>
+<dl class="docutils">
+<dt>Returns:        A list of tasks available in the package who&#8217;s name</dt>
+<dd>matches the &#8216;pattern&#8217; string.</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api_samp.html" title="samp Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="api_dalquery.html" title="dalquery Module API"
+             >previous</a> |</li>
+        <li><a href="index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, US Virtual Astronomical Observatory.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

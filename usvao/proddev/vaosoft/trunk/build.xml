@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant"
+         xmlns:ac="antlib:net.sf.antcontrib"
+         name="vaosoft" default="dist" basedir=".">
+
+    <property name="useIvy" value="true" />
+
+    <property environment="env"/>
+    <property name="env.VAOSOFT_HOME" value="${basedir}" />
+    <import file="src/main/ant/build-vao.xml" as="vao"/>
+
+    <target name="init" depends="vao.initOutputDirs">
+      <mkdir dir="${etc.dir}"/>
+    </target>
+
+    <target name="makeSettingsFile">
+      <copy file="src/main/ant/ivysettings.xml" todir="."/>
+    </target>
+
+    <target name="fetchPkgDeps" depends="init,makeSettingsFile,vaosoft.ivyConfig">
+      <ivy:retrieve conf="ant-dep" 
+                  pattern="${etc.dir}/[artifact]-[revision]-[type].[ext]"/>
+      <ivy:retrieve conf="ivy-dep" 
+                  pattern="${etc.dir}/[artifact]-[revision].[ext]"/>
+      <ivy:retrieve conf="ant-contrib-dep" 
+                  pattern="${etc.dir}/[artifact]-[revision].[ext]"/>
+    </target>
+
+    <target name="fetch" depends="makeSettingsFile,vao.resolve"/>
+
+    <target name="compile" depends="init,setpaths">
+      <javac srcdir="${jsrc.dir}" destdir="${classes.dir}" 
+             includeAntRuntime="true" debug="true">
+        <classpath>
+          <pathelement location="${classes.dir}" />
+          <path refid="build.classpath"/>
+        </classpath>
+      </javac>
+      <copy file="${jsrc.dir}/usvao/vaosoft/ant/antlib.xml" 
+            todir="${classes.dir}/usvao/vaosoft/ant"/>
+      <copy file="${jsrc.dir}/usvao/vaosoft/default-about.properties" 
+            todir="${classes.dir}/usvao/vaosoft"/>
+      <copy file="${src.dir}/main/xsl/About2Ivy.xsl"
+            todir="${classes.dir}/usvao/vaosoft"/>
+    </target>
+
+    <target name="tcompile" depends="compile,vao.initTestDirs">
+      <javac srcdir="${tjsrc.dir}" destdir="${tclasses.dir}" 
+             includeAntRuntime="true" debug="true">
+        <classpath>
+          <pathelement location="${tclasses.dir}" />
+          <pathelement location="${classes.dir}" />
+          <path refid="build.classpath"/>
+        </classpath>
+      </javac>
+      <copy todir="${tclasses.dir}">
+        <fileset dir="${tjsrc.dir}">
+          <include name="**/*-build.xml"/>
+        </fileset>
+      </copy>
+      <copy file="${tjsrc.dir}/usvao/vaosoft/test-about.properties" 
+            todir="${tclasses.dir}/usvao/vaosoft"/>
+      <copy file="${tjsrc.dir}/usvao/vaosoft/proddb/store/productdb.txt"
+            tofile="${etc.dir}/test-productdb.txt"/>
+    </target>
+
+    <target name="jar" depends="vao.jar"/>
+
+    <target name="dist" depends="fetchPkgDeps,jar">
+      <mkdir dir="${bin.dir}" />
+      <copy file="${src.dir}/main/scripts/newstack.sh" todir="${basedir}" />
+      <copy todir="${etc.dir}" >
+        <fileset dir="${src.dir}/main/scripts" >
+          <include name="setup.*"/>
+        </fileset>
+      </copy>
+      <copy todir="${lib.dir}/ant">
+        <fileset dir="${src.dir}/main/ant" />
+      </copy>
+    </target>
+
+    <target name="docs" depends="init" />
+
+    <target name="build" depends="compile" >
+      <copy file="${src.dir}/main/xsl/extractAboutFilenames.xsl" 
+            todir="${etc.dir}"/>
+      <copy file="${src.dir}/main/xsl/distribFilenames.xsl" 
+            todir="${etc.dir}"/>
+    </target>
+
+    <target name="atest" depends="tcompile,vao.initTestDirs">
+      <junit printsummary="yes" includeAntRuntime="yes">
+        <classpath>
+          <path refid="test.classpath"/>
+          <fileset dir="${ant.library.dir}">
+            <include name="*.jar"/>
+          </fileset>
+        </classpath>
+        <sysproperty key="test.classpath" value="${toString:test.classpath}"/>
+        <sysproperty key="tclasses.dir" value="${tclasses.dir}"/>
+        <sysproperty key="tmp.dir" value="${tmp.dir}"/>
+        <sysproperty key="etc.dir" value="${etc.dir}"/>
+        <sysproperty key="tjsrc.dir" value="${tjsrc.dir}"/>
+        <formatter type="plain" usefile="false"/>
+        <test fork="yes" name="usvao.vaosoft.proddb.store.FlatTextFileStorageTest"/>
+      </junit>
+    </target>
+
+
+    <target name="test" depends="tcompile,vao.initTestDirs">
+      <junit printsummary="yes" includeAntRuntime="yes">
+        <classpath>
+          <path refid="test.classpath"/>
+          <fileset dir="${ant.library.dir}">
+            <include name="*.jar"/>
+          </fileset>
+        </classpath>
+        <sysproperty key="test.classpath" value="${toString:test.classpath}"/>
+        <sysproperty key="tclasses.dir" value="${tclasses.dir}"/>
+        <sysproperty key="tmp.dir" value="${tmp.dir}"/>
+        <sysproperty key="etc.dir" value="${etc.dir}"/>
+        <sysproperty key="tjsrc.dir" value="${tjsrc.dir}"/>
+        <formatter type="xml"/>
+        <batchtest fork="yes" todir="${testreport.dir}">
+            <fileset dir="${tjsrc.dir}" includes="**/*Test.java"/>
+        </batchtest>
+      </junit>
+    </target>
+
+    <target name="install" depends="build,vao.determineInstallDir">
+      <copy file="newstack.sh" todir="${etc.dir}"/>
+      <mkdir dir="${prefix}"/>
+      <copy todir="${prefix}">
+        <dirset dir="bin"/>
+        <dirset dir="lib"/>
+        <dirset dir="doc"/>
+        <fileset dir="${etc.dir}">
+          <exclude name="*.tar.gz" />
+          <exclude name="*.zip" />
+          <exclude name="*.jar" />
+        </fileset>
+      </copy>
+    </target>
+
+    <target name="clean" depends="vao.clean"/>
+    <target name="distclean" depends="vao.distclean"/>
+
+    <target name="svnclean" depends="vao.distclean">
+      <delete includeemptydirs="true" failonerror="false">
+        <fileset dir="${etc.dir}" />
+      </delete>
+    </target>
+
+    <target name="srcpkg" depends="dist,clean,vao.mkpkg"/>
+
+    <target name="try" depends="vaosoft.loadAboutData,determineInstallDir,ivyFile">
+      <!-- this is for testing out task implementation techniques
+      <echo>VAOSOFT_HOME=${env.VAOSOFT_HOME}</echo>
+      <echo>vaosoft.home=${vaosoft.home}</echo>
+      <echo>product.pkgpath.zip=${product.pkgpath.zip}</echo>
+      <echo>prefix=${prefix}</echo>
+      <echo>build.product.dir=${vaosoft.build.product.dir}</echo>
+      <echo>aboutFile=${vaosoft.about.path}</echo>
+      <echo>alt aboutFile=${vaosoft.about.alt.file}</echo>
+      <echo>ivyFile=${vaosoft.ivy.ivy.path}</echo>
+      <echo>dep.dir=${vaosoft.ivy.ivy.path}</echo>
+
+      <ac:antcallback target="vaosoft.resolveForConf" return="product.deps.ordered.about">
+        <param name="_conf" value="install" />
+      </ac:antcallback>
+      <echo>abouts=${product.deps.ordered.about}</echo>  -->
+
+      <antcall target="vaosoft.ensureInstalled" inheritAll="false">
+        <param name="vaosoft.build.dir" value="${vaosoft.build.dir}" />
+        <param name="vaosoft.about.path" value="/home/rplante/.ivy2/cache/apache/maven/abouts/about-3.0.3.properties"/>
+      </antcall>
+    </target>
+
+</project>

@@ -1,0 +1,974 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction to the VOClient Python API &mdash; VOClient Python API 1.0rc1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0rc1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="VOClient Python API 1.0rc1 documentation" href="index.html" />
+    <link rel="next" title="registry Module API" href="api_registry.html" />
+    <link rel="prev" title="VOClient Python API Documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api_registry.html" title="registry Module API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="VOClient Python API Documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/vao_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introduction to the VOClient Python API</a><ul>
+<li><a class="reference internal" href="#using-voclient-in-python">Using VOClient in Python</a></li>
+<li><a class="reference internal" href="#resource-discovery-queries">Resource Discovery Queries</a></li>
+<li><a class="reference internal" href="#data-discovery-and-access">Data Discovery and Access</a><ul>
+<li><a class="reference internal" href="#cone-search-scs">Cone Search (SCS)</a></li>
+<li><a class="reference internal" href="#image-access-sia">Image Access (SIA)</a></li>
+<li><a class="reference internal" href="#spectral-access-ssa">Spectral Access (SSA)</a></li>
+<li><a class="reference internal" href="#spectral-line-list-access-slap">Spectral Line List Access (SLAP)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#common-query-response-processing">Common Query Response Processing</a></li>
+<li><a class="reference internal" href="#votable-manipulation">VOTable Manipulation</a></li>
+<li><a class="reference internal" href="#tasking-interface">Tasking Interface</a><ul>
+<li><a class="reference internal" href="#tasking-api">Tasking API</a><ul>
+<li><a class="reference internal" href="#autobinding-of-tasks-to-python-functions">Autobinding of Tasks to Python Functions</a></li>
+<li><a class="reference internal" href="#package-and-task-management">Package and Task Management</a></li>
+<li><a class="reference internal" href="#parameter-set-class-pset">Parameter Set Class (Pset)</a></li>
+<li><a class="reference internal" href="#parameter-class-param">Parameter Class (Param)</a></li>
+<li><a class="reference internal" href="#task-execution">Task Execution</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vao-package">VAO Package</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#application-messaging-samp">Application Messaging (SAMP)</a></li>
+<li><a class="reference internal" href="#vo-standards-reference">VO Standards Reference</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">VOClient Python API Documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api_registry.html"
+                        title="next chapter">registry Module API</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/intro.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="introduction-to-the-voclient-python-api">
+<h1>Introduction to the VOClient Python API<a class="headerlink" href="#introduction-to-the-voclient-python-api" title="Permalink to this headline">¶</a></h1>
+<p>The <tt class="docutils literal"><span class="pre">voclient</span></tt> Python package provides facilities for client-side
+access to remote data and computation via the VO protocols.  Included
+are both a client-service API for access to VO services as well as a
+&#8220;VAO&#8221; package of higher level tasks based upon a general, extensible
+package-task mechanism.  Class libraries for VOTable access and
+interprocess communication based upon the VO SAMP protocol (simple
+application messaging) are also provided.</p>
+<p>Integration with related Python modules including <a class="reference external" href="http://numpy.scipy.org/">NumPy</a>, <a class="reference external" href="http://docs.astropy.org/en/v0.1/io/vo/index.html">astropy</a> (especially for
+VOTable processing), and <a class="reference external" href="http://atpy.github.com/">atpy</a> (for general
+table manipulation) is also provided.  Other common modules such as
+<a class="reference external" href="ipython.org">iPython</a>, <a class="reference external" href="www.scipy.org">scipy</a>, and <a class="reference external" href="www.matplotlib.org">matplotib</a> do not appear to require any special support.
+Integration with <a class="reference external" href="pandas.pydata.org">pandas</a> is being considered for a
+later version of VOClient.  This would provide a spreadsheet-like
+capability for tables (mapped into a Pandas <em>dataframe</em>), as well as
+statistical analysis capabilities including generic support for time
+series data.</p>
+<p><img alt="more info" class="align-middle" src="_images/more.png" /> See <a class="reference internal" href="#vo-standards"><em>VO Standards Reference</em></a> for information on the VO standards used
+in <tt class="docutils literal"><span class="pre">voclient</span></tt>.</p>
+<div class="section" id="using-voclient-in-python">
+<h2>Using VOClient in Python<a class="headerlink" href="#using-voclient-in-python" title="Permalink to this headline">¶</a></h2>
+<p>To use VOClient first load the <tt class="docutils literal"><span class="pre">voclient</span></tt> Python package:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">voclient</span> <span class="kn">as</span> <span class="nn">vo</span>
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">voclient</span></tt> is self-contained with no external dependencies.
+Integration with NumPy, the AstroPy <tt class="docutils literal"><span class="pre">vo.table</span></tt> module <a class="footnote-reference" href="#id5" id="id1">[1]</a>, and AtPy
+is available if these packages are loaded, however they are not required
+for basic usage of <tt class="docutils literal"><span class="pre">voclient</span></tt>. <a class="footnote-reference" href="#id6" id="id2">[2]</a></p>
+<p>Typical usage of VOClient will involve first searching the resource
+registry for data collections or VO services of interest, accessing
+these services to retrieve data (often filtered or subsetted), and then
+performing some local analysis of the data.  The registry search may be
+skipped if one already knows what VO services are to be accessed.  An
+alternative to accessing the VO services directly is to use the ready
+made tasks (program-like functions) from the <a class="reference internal" href="#vao-package"><em>VAO Package</em></a>, which
+provide some higher level tools for common VO data discovery and
+retrieval use cases.</p>
+</div>
+<div class="section" id="resource-discovery-queries">
+<h2>Resource Discovery Queries<a class="headerlink" href="#resource-discovery-queries" title="Permalink to this headline">¶</a></h2>
+<p>Before retrieving data via a VO data access service one must first
+identify the data collections of interest and the service or services to
+be queried...  [add overview of registry queries]</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This section needs to be fleshed out to provide an overview of the
+registry query interface and an example of usage.  Ideally a
+registry query has the same form as a DAL query, returning a VOTable
+response so that the standard common query processing (python DBI)
+can be used to process the query response.</p>
+</div>
+</div>
+<div class="section" id="data-discovery-and-access">
+<h2>Data Discovery and Access<a class="headerlink" href="#data-discovery-and-access" title="Permalink to this headline">¶</a></h2>
+<p>In the VO each major class of astronomical data has its own VO Data
+Access Layer (DAL) interface for data discovery and access.  These
+protocols are all similar, sharing a largely common query interface,
+dataset metadata and query response.  Queries are parameter based and
+usually return a tabular response formatted as a VOTable.  When querying
+for datasets such as images and spectra, each row of the output table
+describes a single data product which can be retrieved.  When querying a
+table such as an astronomical catalog the requested portion of the
+remote table is returned as the query response.</p>
+<p>In VOClient each class of data has a separate method to query a remote
+data service for available data.  All services share a common interface
+to access the output query response (QR) table, with the initial query
+delivering an open connection used to navigate the query response.  In
+the next sections we describe the query interface for each class of
+data, followed by a description of the shared interface used to process
+the query response.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Exceptions and warnings are omitted here for now, but will need to
+be added to the final version of the API.</p>
+</div>
+<div class="section" id="cone-search-scs">
+<h3>Cone Search (SCS)<a class="headerlink" href="#cone-search-scs" title="Permalink to this headline">¶</a></h3>
+<p>The VO <a class="reference external" href="http://www.ivoa.net/Documents/latest/ConeSearch.html">Simple Cone Search (SCS)</a> protocol is
+used to query a remote table (typically an astronomical catalog),
+returning all table rows within some circular region or cone on the sky.
+A successful query returns a connection object which may be used to
+navigate the query response table (see <a class="reference internal" href="#query-processing"><em>Common Query Response Processing</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">conn</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">scs</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">ra</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The cone search protocol defines the following query parameters:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="96%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>URL</td>
+<td>The baseURL of the cone search service.</td>
+</tr>
+<tr class="row-odd"><td>RA</td>
+<td>Right-ascension in the ICRS coordinate system, specifing the center of the region to be searched, given in decimal degrees. <a class="footnote-reference" href="#id7" id="id3">[3]</a></td>
+</tr>
+<tr class="row-even"><td>DEC</td>
+<td>Declination of the search region center in the ICRS coordinate system, specified in decimal degrees.</td>
+</tr>
+<tr class="row-odd"><td>SR</td>
+<td>The radius of the search region, given in decimal degrees.</td>
+</tr>
+<tr class="row-even"><td>VERB</td>
+<td>The &#8220;verbosity&#8221; of the output table given an a integer with one of the values 1, 2, or 3.  The higher the number the more table columns returned.  The default value of 3 returns all table columns. (optional)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>A special case is a query with a search radius of zero, which will
+return only table metadata but no data records.  This is useful to
+determine the table columns without having to query for data.</p>
+<p>Additional, service-specific parameters may be added to access any
+non-standard features provided by the particular service being queried.
+For example a service might allow output to be returned in formats other
+than the default VOTable, or the service might allow the table to be
+accessed to be specified by name (normally there is one SCS service
+instance per remote table).</p>
+<p>The following <em class="xref std std-ref">aliases</em> are defined to identify standard fields of the output table:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="19%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Alias</th>
+<th class="head">UCD</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>id</td>
+<td>ID_MAIN</td>
+<td>Unique record ID.</td>
+</tr>
+<tr class="row-odd"><td>ra</td>
+<td>POS_EQ_RA_MAIN</td>
+<td>Right-ascension of the source in the ICRS coordinate system.</td>
+</tr>
+<tr class="row-even"><td>dec</td>
+<td>POS_EQ_DEC_MAIN</td>
+<td>Declination of the source in the ICRS coordinate system.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>More detailed information on the cone search protocol can be found in
+the <a class="reference external" href="http://www.ivoa.net/Documents/latest/ConeSearch.html">cone search specification</a>.</p>
+</div>
+<div class="section" id="image-access-sia">
+<h3>Image Access (SIA)<a class="headerlink" href="#image-access-sia" title="Permalink to this headline">¶</a></h3>
+<p>The VO <a class="reference external" href="http://www.ivoa.net/Documents/SIA">Simple Image Access (SIA)</a>
+protocol is used to query a (normally) remote service for images
+matching the specified query parameters.  A successful query returns a
+connection object which may be used to navigate the query response table
+(see <a class="reference internal" href="#query-processing"><em>Common Query Response Processing</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">conn</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">sia</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">&#39;all&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A full list of all the SIA parameters is given in <cite>api-sia</cite>.  Some of
+the most commonly used query parameters are the following:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="2%" />
+<col width="98%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>URL</td>
+<td>The baseURL of the service.</td>
+</tr>
+<tr class="row-odd"><td>POS</td>
+<td>A tuple giving the right-ascension and declination of the center of the search region in the ICRS coordinate system, specified in decimal degrees (SIA uses a POS parameter to allow more complex coordinate references to be input but we won&#8217;t go into that here).  Separate RA and DEC parameters may optionally be used in place of POS.  POS may optionally be input as a string formatted as defined by the SIA protocol.</td>
+</tr>
+<tr class="row-even"><td>SIZE</td>
+<td>The coordinate angular size of the region given in decimal degrees. The region may be specified using either one or two values. If only one value is given it applies to both coordinate axes. If two values are given the first value is the angular width in degrees of the right-ascension axis of the region, and the second value is the angular width in degrees of the declination axis.</td>
+</tr>
+<tr class="row-odd"><td>FORMAT</td>
+<td>A value or comma delimited list of values indicating the image formats the client is interested in, e.g., &#8220;fits&#8221; or &#8220;fits,graphic&#8221;.  If no format is specified or FORMAT is &#8220;all&#8221; then all available images are referenced regardless of format.</td>
+</tr>
+<tr class="row-even"><td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>The SIA query response is a table describing all the available images
+matching the given query, one per row.  Each record includes an access
+reference URL (<em>acref</em>) which may be used to retrieve the image.  The
+referenced image may be <em>virtual</em>, meaning that it will be generated on
+the fly if accessed.  An SIA cutout service for example may be able to
+return an image cutout or reprojection exactly covering the rectangular
+region specifed by POS,SIZE.  An &#8220;archival&#8221; SIA service will find whole
+images which contain or overlap with the specified region.</p>
+<p>The following <em class="xref std std-ref">aliases</em> are defined to identify standard fields of the
+SIA query response:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="34%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Alias</th>
+<th class="head">UCD</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>title</td>
+<td>VOX:Image_Title</td>
+<td>A short (one line) description of the image.</td>
+</tr>
+<tr class="row-odd"><td>instr</td>
+<td>INST_ID</td>
+<td>The instrument or instruments.</td>
+</tr>
+<tr class="row-even"><td>dateobs</td>
+<td>VOX:Image_MJDateObs</td>
+<td>MJD of observation mid-point.</td>
+</tr>
+<tr class="row-odd"><td>ra</td>
+<td>POS_EQ_RA_MAIN</td>
+<td>RA of image center.</td>
+</tr>
+<tr class="row-even"><td>dec</td>
+<td>POS_EQ_DEC_MAIN</td>
+<td>DEC of image center.</td>
+</tr>
+<tr class="row-odd"><td>naxes</td>
+<td>VOX:Image_Naxes</td>
+<td>Number of image axes.</td>
+</tr>
+<tr class="row-even"><td>naxis</td>
+<td>VOX:Image_Naxis</td>
+<td>A tuple giving the length of each axis.</td>
+</tr>
+<tr class="row-odd"><td>acref</td>
+<td>VOX:Image_AccessReference</td>
+<td>URL used to retrieve the image.</td>
+</tr>
+<tr class="row-even"><td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">VOClient defines aliases for standard VO metadata both for
+convenience, to make access simpler, and to enhance information
+hiding.  SIA1 for example uses &#8220;vox:&#8221; UCDs to uniquely identify
+fields of the query response, whereas SIA2 and other second general
+DAL interfaces such as SSA use Utypes for this purpose.  Utypes can
+also change between versions of an interface.  The use of an alias
+combined with interface versioning makes it possible to shield a
+client application from such details while still rigorously defining
+interfaces at the level of a versioned protocol.  Aliases also
+provide a shorthand reference for Utypes, some of which can be quite
+long.  While aliases are not part of current VO standards there is
+no issue with using them within a client interface, which is an
+implementation and not a standard; the client has direct access to
+the underlying VOTable if finer control is required.</p>
+</div>
+</div>
+<div class="section" id="spectral-access-ssa">
+<h3>Spectral Access (SSA)<a class="headerlink" href="#spectral-access-ssa" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To be added; does not affect the interface design significantly
+since the interface pattern is the same.  On the issue of aliases,
+note below what we have for SSA aliases, compared to those for SIA1.</p>
+</div>
+<p>Sample data model (Utype) aliases for SSA:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="44%" />
+<col width="46%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Alias</th>
+<th class="head">Utype</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>title</td>
+<td>DataID.Title</td>
+<td>A short (one line) description of the image.</td>
+</tr>
+<tr class="row-odd"><td>instr</td>
+<td>DataID.Instrument</td>
+<td>The instrument or instruments.</td>
+</tr>
+<tr class="row-even"><td>dateobs</td>
+<td>Char.TimeAxis.Coverage.Location.Value</td>
+<td>MJD of observation mid-point.</td>
+</tr>
+<tr class="row-odd"><td>ra</td>
+<td>Char.SpatialAxis.Coverage.Location.Value</td>
+<td>RA of image center.</td>
+</tr>
+<tr class="row-even"><td>dec</td>
+<td>Char.SpatialAxis.Coverage.Location.Value</td>
+<td>DEC of image center.</td>
+</tr>
+<tr class="row-odd"><td>acref</td>
+<td>Access.Reference</td>
+<td>URL used to retrieve the image.</td>
+</tr>
+<tr class="row-even"><td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="spectral-line-list-access-slap">
+<h3>Spectral Line List Access (SLAP)<a class="headerlink" href="#spectral-line-list-access-slap" title="Permalink to this headline">¶</a></h3>
+<p>[To be added].  Summarize the SLAP interface and capabilities, and mention
+any prominent standard line list services such as Splatalog.</p>
+</div>
+</div>
+<div class="section" id="common-query-response-processing">
+<span id="query-processing"></span><h2>Common Query Response Processing<a class="headerlink" href="#common-query-response-processing" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This will be modified so that the custom queries (SIA etc.) return a
+cursor object rather than a connection object, to simplify things
+and be more compliant with the DBI interface.  Other than that it
+should be much the same.  There does not appear to be any reason
+that the same interface could not be used to walk through registry
+queries as well.</p>
+</div>
+<p>The VOClient Connect class implements the Python Database API V2.0
+(<a class="reference external" href="http://www.python.org/dev/peps/pep-0249/">pep-0249</a>).  Once a
+connection is obtained, either via a DAL query or using the <tt class="docutils literal"><span class="pre">connect</span></tt>
+constructor, generic PY-DBI code may be used to process the table.
+VOClient further extends the standard DBI interface as required to
+support VO.  In this section we will focus on functionality which is
+specific to the VOClient extensions to PY-DBI.  The <a class="reference external" href="http://www.python.org/dev/peps/pep-0249/">PY-DBI 2.0
+specification</a> should be
+referred to for further details on the API.</p>
+<p>All of the data queries defined in the preceding sections return a
+connection object which may be used to process the query response
+table:</p>
+<div class="highlight-python"><pre>        conn = connect (file|iostream)     # Open conn (usually DAL query used instead)
+     cur = conn.cursor ([cursorType])      # Get row cursor
+    file = conn.getRaw ()                  # Get raw QR (e.g. votable XML)
+vot = conn.openVotable ()                  # Open QR as Astropy vo.table (NumPy record array)
+  tab = conn.openTable ()                  # Open QR as AtPy table
+            conn.close ()                  # Close connection</pre>
+</div>
+<p>A lower level <tt class="docutils literal"><span class="pre">connect</span></tt> method is also provided which allows the
+Connect class to be used with any VOTable file or an i/o stream which
+returns compatible data.</p>
+<p>Given a <tt class="docutils literal"><span class="pre">connect</span></tt> object it is possible to retrieve the raw query
+response VOTable XML directly using <tt class="docutils literal"><span class="pre">getRaw</span></tt>.  With this method it is
+possible to retrieve and process query responses other than VOTable,
+e.g., a query response might be returned as CSV, or as pretty-printed
+text to be displayed.</p>
+<p>The <tt class="docutils literal"><span class="pre">connect</span></tt> object may also be used to open the query response as an
+Astropy votable using the <tt class="docutils literal"><span class="pre">conn.oepnVotable</span></tt> method, or as an AtPy
+abstract table using the <tt class="docutils literal"><span class="pre">conn.openTable</span></tt> method.  This can also be
+done by first retrieving the VOTable XML, however the convenience
+methods are simpler to use and may be more efficient since a separate
+step to retieve the XML is not required.</p>
+<p>Most commonly the <tt class="docutils literal"><span class="pre">connect</span></tt> object is used to obtain a <em>cursor</em>
+instance to be used to walk through the table row by row.  The
+<tt class="docutils literal"><span class="pre">conn.cursor</span></tt> method, if called with no arguments returns a cursor
+with the default type <tt class="docutils literal"><span class="pre">Cursor</span></tt>.  A <tt class="docutils literal"><span class="pre">DictCursor</span></tt> may optionally be
+returned.  This functions the same as the default cursor, but returns
+data for each row as a Python dictionary rather than a tuple, using the
+field name as the key to identify each field.</p>
+<p>Once a connection is opened the following API may be used to walk through
+the query response:</p>
+<div class="highlight-python"><pre>tuples = cur.description                     # Standard PY-DBI column metadata
+ tuples = cur.vometadata                     # VO column metadata
+    nrows = cur.rowcount
+
+        dict = cur.infos ()                  # Return a dict of INFO elements
+   tuples = cur.fetchone ()                  # Get next row
+  tuples = cur.fetchmany ()                  # Get multiple rows
+   tuples = cur.fetchall ()                  # Get remaining rows
+                cur.next ()                  # Advance to next row
+             cur.nextset ()                  # Skip to next result set
+              cur.scroll (value [, mode])    # Move row cursor
+            cur.getfield (&lt;VOname&gt;, [row=])  # Get field by VO name,ucd,utype,...
+      file = cur.getdata (curr|url|[row=])   # Get dataset pointed to by acref
+               cur.close ()                  # Free cursor resources</pre>
+</div>
+<p>Given a cursor object, <tt class="docutils literal"><span class="pre">description</span></tt> may be used to obtain PY-DBI
+standard metadata for each table field.  The <tt class="docutils literal"><span class="pre">vometadata</span></tt> attribute
+returns additional VO-specific metadata defining the ID, name, UCD,
+Utype, etc. VOTable metadata for each field.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">VO Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>id</td>
+<td>Unique ID for field</td>
+</tr>
+<tr class="row-odd"><td>name</td>
+<td>Name of the field (arbitrary)</td>
+</tr>
+<tr class="row-even"><td>alias</td>
+<td>Alias (shortname) of the field name in VOClient</td>
+</tr>
+<tr class="row-odd"><td>param</td>
+<td>True if the field is a PARAM</td>
+</tr>
+<tr class="row-even"><td>datatype</td>
+<td>VOTable datatype of field</td>
+</tr>
+<tr class="row-odd"><td>arraysize</td>
+<td>Array &#8220;shape&#8221; if field has multiple values</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>Overall width of formatted value</td>
+</tr>
+<tr class="row-odd"><td>precision</td>
+<td>Number of digits of precision</td>
+</tr>
+<tr class="row-even"><td>xtype</td>
+<td>Extended or external datatype</td>
+</tr>
+<tr class="row-odd"><td>unit</td>
+<td>Unit of the given value</td>
+</tr>
+<tr class="row-even"><td>ucd</td>
+<td>Physical quantity expressed by the field</td>
+</tr>
+<tr class="row-odd"><td>utype</td>
+<td>&#8220;Role&#8221; of the field in a data model, defined by the DM</td>
+</tr>
+<tr class="row-even"><td>ref</td>
+<td>A reference to another field by its ID</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>In VO data access a table row will often contain the metadata for an
+instance of a data model, e.g., the description of an image or spectrum.
+The fields of the data model are identified in the query (VOTable)
+response by their Utype, or for some older interfaces by their UCD (the
+field name might seem natural for this purpose but is reserved to the
+data provider to name the field in a way meaningful to the user or
+specific data collection).  The field name aliases used in VOClient
+provide a higher level of abstraction to help isolate the client from
+the details of VO interfaces as they evolve.</p>
+<p>In VOTable a PARAM is a special case of a a FIELD (table column) which
+has a constant value over the whole table.  We make no distinction
+between PARAM and FIELD in referencing the row of a table, e.g.,
+<tt class="docutils literal"><span class="pre">fetchone</span></tt> will return both in the same record, however the
+<tt class="docutils literal"><span class="pre">param</span></tt> attribute in the VO metadata for the field will be <tt class="docutils literal"><span class="pre">True</span></tt>
+if the field is represented in the VOTable as a PARAM.</p>
+<p>The <tt class="docutils literal"><span class="pre">infos</span></tt> method will return any INFO elements from the VOTable,
+expressed as a dictionary with each element in the sequence containing
+the name and value attributes of one INFO.</p>
+<p>The <tt class="docutils literal"><span class="pre">fetchone</span></tt> method returns each row of the table as a tuple (or
+dict) of the data values for the row.  <tt class="docutils literal"><span class="pre">fetchmany</span></tt> and <tt class="docutils literal"><span class="pre">fetchall</span></tt>
+return a block of rows (tuple of tuples) or all remaining rows,
+respectively.  The <tt class="docutils literal"><span class="pre">scroll</span></tt> method is used to move the row cursor in
+either a relative or absolute sense.  Like <tt class="docutils literal"><span class="pre">fetchone</span></tt>, <tt class="docutils literal"><span class="pre">next</span></tt> advances
+the row cursor to the next row, but without returning any row data.</p>
+<p>To access the table via its VO attributes, either the VO metadata or the
+<tt class="docutils literal"><span class="pre">getfield</span></tt> method may be used.  The VO metadata may be used to
+determine the index of each field in the tuple returned by a method such
+as <tt class="docutils literal"><span class="pre">fetchone</span></tt>.  A simpler method is use to use <tt class="docutils literal"><span class="pre">getfield</span></tt>, which
+allows table fields to be retrieved either by their field name alias or
+by VO keys such as UCD or Utype.  For example,</p>
+<blockquote>
+<div>url = cur.getfield(&#8220;acref&#8221;)</div></blockquote>
+<p>would use the alias mechanism to return the access reference (field name
+alias &#8220;acref&#8221;) for the SIA description of an image pointed to by the
+current cursor row.  The row cursor is initially positioned to row zero.
+&#8220;Fetching&#8221; a row is not required in order to use <tt class="docutils literal"><span class="pre">getfield</span></tt>; all that
+matters is which row the row cursor is currently pointing to.</p>
+<p>The following example performs a cone search query and prints the RA and DEC
+fields of each row returned:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">voclient</span> <span class="kn">as</span> <span class="nn">vo</span>
+
+<span class="c"># Perform the query</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">scs</span><span class="p">(</span><span class="s">&quot;http://some.survey.com&quot;</span><span class="p">,</span> <span class="n">ra</span> <span class="o">=</span> <span class="mf">123.456</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="mf">12.34</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="c"># Print ra, dec for each row</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cur</span><span class="o">.</span><span class="n">rowcount</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">cur</span><span class="o">.</span><span class="n">getfield</span><span class="p">(</span><span class="s">&#39;ra&#39;</span><span class="p">),</span> <span class="n">cur</span><span class="o">.</span><span class="n">getfield</span><span class="p">(</span><span class="s">&#39;dec&#39;</span><span class="p">)</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Note the use of the <tt class="docutils literal"><span class="pre">getfield</span></tt> method to look up the RA and DEC fields
+of the output table by their aliases.  This is more subtle than it
+appears as the corresponding fields of the actual table being accessed
+are not necessarily named &#8220;ra&#8221; and &#8220;dec&#8221; (&#8220;dec&#8221; in particular is illegal
+as a column name in some DBMSes).  What <tt class="docutils literal"><span class="pre">getfield</span></tt> is actually doing
+behind the scenes is using the <tt class="docutils literal"><span class="pre">vometadata</span></tt> for the table to search
+for fields with UCDs <tt class="docutils literal"><span class="pre">POS_EQ_RA_MAIN</span></tt> and <tt class="docutils literal"><span class="pre">POS_EQ_DEC_MAIN</span></tt> in the
+output table, knowing that this is how these fields are identified by
+the SCS protocol.</p>
+<p>Alternatively we could have used a <tt class="docutils literal"><span class="pre">DictCursor</span></tt> (to get table rows as
+Python <tt class="docutils literal"><span class="pre">dict</span></tt> lists) in which case we might have the following
+<tt class="docutils literal"><span class="pre">print</span></tt> statement:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">row</span><span class="p">[</span><span class="s">&#39;ra&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s">&#39;dec&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>While this looks obvious, it won&#8217;t actually work for arbitrary tables
+for the same reason as noted above: it fails unless the literal table
+field names are &#8220;ra&#8221; and &#8220;dec&#8221;.  Using a <tt class="docutils literal"><span class="pre">DictCursor</span></tt> is fine so long
+as the column names of the table are well defined, including matching
+upper and lower case exactly as the field names are expressed in the
+table.</p>
+</div>
+<div class="section" id="votable-manipulation">
+<h2>VOTable Manipulation<a class="headerlink" href="#votable-manipulation" title="Permalink to this headline">¶</a></h2>
+<p>In many cases a client application never needs to deal directly with
+VOTable as it is possible to navigate the query response and directly
+access the fields of a table or the data model contained therein, via
+the higher level DBI interface and <tt class="docutils literal"><span class="pre">getfield</span></tt>.  When direct access to
+a VOTable is required either the Astropy <tt class="docutils literal"><span class="pre">vo.table</span></tt> class or the
+native VOClient votable class may be used (in addition <tt class="docutils literal"><span class="pre">AtPy</span></tt> provides
+a higher level table abstraction, not specific to VOTable).
+<tt class="docutils literal"><span class="pre">vo.table</span></tt> is especially well integrated with NumPy, providing direct
+support for the NumPy binary datatypes as well as NumPy record arrays,
+hence might be well suited for accessing datasets formatted as VOTables.</p>
+<p>The registry and data queries all provide an option to
+directly access the VOTable which is normally processed internally.
+VOTables may also be retrieved in other ways, e.g., a Spectrum dataset
+may be retrieved by SSA as a VOTable.</p>
+</div>
+<div class="section" id="tasking-interface">
+<h2>Tasking Interface<a class="headerlink" href="#tasking-interface" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Motivation (design background)</p>
+<p>VOClient requires a tasking interface in order to support the VAO
+package, a package of parameter-driven tasks written in C which call the
+VOClient C core libraries internally.  While it would be simple to
+merely execute a VAO package task as an external program, integrating
+such tasks in to a client environment such as Python requires more than
+just something like &#8221;!mytask.e&#8221;.  To avoid hard-wiring such a package of
+tasks into each client environment we need a discovery mechanism to find
+out what tasks are available and what their calling interface is (input
+parameter set).  To use the tasks programmatically as components within
+the client language we need to get structured data back from the task,
+in addition to providing structured input (the input parameter set).</p>
+<p class="last">There is nothing special about the VAO package - the tasks and their
+interfaces may change, new tasks may be added, or entire new packages of
+tasks may be added.  Defining a formal tasking interface makes it
+possible to do all this without changes to the VOClient code or its
+integration into a client language such as Python, every time a new task
+or package is added.  Indeed it becomes possible to dynamically add new
+packages or tasks at runtime.</p>
+</div>
+<p>The <em>tasking</em> interface defines a Python interface to manage and execute
+packages of &#8220;tasks&#8221;, using a parameter set to control the execution of
+each task.  A &#8220;task is a computational component which can be executed
+as a process by the host operating system (or a related environment such
+as a cluster).  Tasks may be written in any language so long as the
+defined tasking interface is observed.</p>
+<p>The &#8220;package&#8221; refered to here should not be confused with a Python
+package.  A Python package is an element of Python.  A package as
+referred to here is a collection of tasks and their associated metadata,
+defined independently of any client language used to run the tasks.
+Tasks may be run very flexibily, by any environment or framework, or
+directly at the level of the host operating system, e.g., a Unix shell.</p>
+<div class="section" id="tasking-api">
+<h3>Tasking API<a class="headerlink" href="#tasking-api" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="autobinding-of-tasks-to-python-functions">
+<h4>Autobinding of Tasks to Python Functions<a class="headerlink" href="#autobinding-of-tasks-to-python-functions" title="Permalink to this headline">¶</a></h4>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Add a summary of the high level tasking interface here (V3 is
+described separately in a text file).  Binding of tasks to
+functions, examining packages and their tasks, standard modes of
+execution, use of the output pset.</p>
+</div>
+</div>
+<div class="section" id="package-and-task-management">
+<h4>Package and Task Management<a class="headerlink" href="#package-and-task-management" title="Permalink to this headline">¶</a></h4>
+<p>The following functions, part of the <tt class="docutils literal"><span class="pre">tasking</span></tt> module, are used to
+manage packages and discover what packages and tasks are available
+in the runtime system:</p>
+<div class="highlight-python"><pre>       setPkgDirs (dirs)
+dirs = getPkgDirs ()
+  tuple = pkgList ([pattern])
+ tuple = taskList (pkg, [pattern])
+  dict = pkgAttrs (pkg)
+ dict = taskAttrs (pkg, task)</pre>
+</div>
+</div>
+<div class="section" id="parameter-set-class-pset">
+<h4>Parameter Set Class (Pset)<a class="headerlink" href="#parameter-set-class-pset" title="Permalink to this headline">¶</a></h4>
+<p>A parameter set (pset) is a named collection of parameters.  Every task
+has an associated pset, however it is also possible to have a pset which
+is not associated with a task.  The pset for a task is subclassed from
+the base Pset class.  Pset has the following attributes and methods:</p>
+<div class="highlight-python"><pre>       class Pset (name=None, pkg=None, task=None, desc=None)
+           name = None
+            pkg = None
+           task = None
+    description = None
+
+         loadPset (pkg=None, task=None, saveFile=None)
+         savePset (saveFile])
+
+tuple = paramList (pattern)                 # List parameters
+params = paramSet (pattern)                 # Param names and values
+ param = addParam (name, type, description, attrs=None)
+ param = getParam (name)</pre>
+</div>
+</div>
+<div class="section" id="parameter-class-param">
+<h4>Parameter Class (Param)<a class="headerlink" href="#parameter-class-param" title="Permalink to this headline">¶</a></h4>
+<p>A parameter is an instance of the <tt class="docutils literal"><span class="pre">Param</span></tt> class:</p>
+<div class="highlight-python"><pre>      class Param (name=None, type=None, encoding=None, desc=None)
+           name = None
+           type = None
+       encoding = None
+    description = None
+
+dict = paramAttrs ()
+   val = getValue ()                        # may be a list
+         setValue (val)</pre>
+</div>
+</div>
+<div class="section" id="task-execution">
+<h4>Task Execution<a class="headerlink" href="#task-execution" title="Permalink to this headline">¶</a></h4>
+<p>The tasking module defines a <tt class="docutils literal"><span class="pre">TaskRuntime</span></tt> class, an instance of which
+is used to execute a task:</p>
+<div class="highlight-python"><pre>class TaskRuntime (name=None, pkg=None, task=None)
+           name = None
+            pkg = None
+           task = None
+
+   pset = getPset ()
+          setPset (pset)
+      setCallback (pattern, func)
+      executeSync ()
+     executeAsync ()
+             wait ()</pre>
+</div>
+<p>Every task execution requires an input parameter set to tell the task
+what to do.  Tasks may execute synchronously or asyncronously.  Tasks write
+to an <em>output parameter set</em> during execution.  This output pset is available
+to the client at task termination.  The task may also write to output
+parameters <em>during</em> task execution.  Each such write is in effect an asynchronous
+message being sent back to the client.  Client application which wish to
+interact with a task during runtime may post parameter callbacks, which
+are called whenever data is written to an output parameter.</p>
+</div>
+</div>
+<div class="section" id="vao-package">
+<span id="id4"></span><h3>VAO Package<a class="headerlink" href="#vao-package" title="Permalink to this headline">¶</a></h3>
+<p>The VAO package, included with the VOClient Python module [??], is interfaced
+to Python via the tasking interface...</p>
+<p>[List the tasks currently provided by the VAO package.  Documentation
+for the VAO package will be provided as part of the package; some online
+documentation will also be provided as part of the metadata for the
+package (package and task descriptions, parameters for each task,
+etc.).  Here we just introduce the package, and provide an example of
+what a package is like.]</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Task</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>voregistry</td>
+<td>VO Resource discovery</td>
+</tr>
+<tr class="row-odd"><td>vodata</td>
+<td>General query and access to VO data</td>
+</tr>
+<tr class="row-even"><td>vocatalog</td>
+<td>Query VO Catalog services</td>
+</tr>
+<tr class="row-odd"><td>voimage</td>
+<td>Query VO image services</td>
+</tr>
+<tr class="row-even"><td>vospectrum</td>
+<td>Query VO spectrum services</td>
+</tr>
+<tr class="row-odd"><td>voatlas</td>
+<td>Multi-wavelength all-sky images</td>
+</tr>
+<tr class="row-even"><td>voobslog</td>
+<td>Query public observation logs</td>
+</tr>
+<tr class="row-odd"><td>vosloanspec</td>
+<td>SDSS spectra data interface</td>
+</tr>
+<tr class="row-even"><td>votcnv</td>
+<td>Convert to/from VOTable format</td>
+</tr>
+<tr class="row-odd"><td>votget</td>
+<td>Download data access references in a VOTable</td>
+</tr>
+<tr class="row-even"><td>votinfo</td>
+<td>Print information about a VOTable</td>
+</tr>
+<tr class="row-odd"><td>votpos</td>
+<td>Extract positional information from a VOTable</td>
+</tr>
+<tr class="row-even"><td>votselect</td>
+<td>Select rows by expression</td>
+</tr>
+<tr class="row-odd"><td>votsort</td>
+<td>Sort a VOTable by a column value</td>
+</tr>
+<tr class="row-even"><td>votstat</td>
+<td>Compute statistics for numeric columns in a VOTable</td>
+</tr>
+<tr class="row-odd"><td>votcat</td>
+<td>Concatenate VOTable into single multi-resource table</td>
+</tr>
+<tr class="row-even"><td>votjoin</td>
+<td>Perform an inner-join between two VOTables</td>
+</tr>
+<tr class="row-odd"><td>votsplit</td>
+<td>Split a multi-resource VOTable</td>
+</tr>
+<tr class="row-even"><td>vosamp</td>
+<td>SAMP utility command (sessions, messages, etc)</td>
+</tr>
+<tr class="row-odd"><td>voiminfo</td>
+<td>Compute image footprints</td>
+</tr>
+<tr class="row-even"><td>vosesame</td>
+<td>Resolve object name to positions</td>
+</tr>
+<tr class="row-odd"><td>voskybot</td>
+<td>List known moving objects in a field</td>
+</tr>
+<tr class="row-even"><td>voxmatch</td>
+<td>Cross-compare local table and VO data</td>
+</tr>
+<tr class="row-odd"><td>vosput</td>
+<td>Put files to a VOSpace</td>
+</tr>
+<tr class="row-even"><td>vosget</td>
+<td>Get files from a VOSpace</td>
+</tr>
+<tr class="row-odd"><td>vosmove</td>
+<td>Move files/nodes between VOSpaces</td>
+</tr>
+<tr class="row-even"><td>voslist</td>
+<td>List files/nodes in a VOSpace</td>
+</tr>
+<tr class="row-odd"><td>vosdelete</td>
+<td>Delete files/nodes in a VOSpace</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="application-messaging-samp">
+<h2>Application Messaging (SAMP)<a class="headerlink" href="#application-messaging-samp" title="Permalink to this headline">¶</a></h2>
+<p>[Add overview of SAMP interface and usage; see related API for details].</p>
+</div>
+<div class="section" id="vo-standards-reference">
+<span id="vo-standards"></span><h2>VO Standards Reference<a class="headerlink" href="#vo-standards-reference" title="Permalink to this headline">¶</a></h2>
+<p>List the relevant VO standards here.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>AstroPy contains a &#8220;vo&#8221; module which may conflict with the usage
+shown here, but let&#8217;s leave it this way until we get this resolved.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>NumPy may end up being required for the VAO tasks, but is not (yet anyway)
+required for the registry or DAL queries.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>A useful feature might be to allow more flexibility in specifying positions;
+we can do that here, since this is a user interface even though things are
+fixed in the lower level protocol.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api_registry.html" title="registry Module API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="VOClient Python API Documentation"
+             >previous</a> |</li>
+        <li><a href="index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, US Virtual Astronomical Observatory.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

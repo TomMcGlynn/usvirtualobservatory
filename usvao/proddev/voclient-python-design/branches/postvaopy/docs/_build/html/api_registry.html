@@ -1,0 +1,566 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>registry Module API &mdash; VOClient Python API 1.0rc1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0rc1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="VOClient Python API 1.0rc1 documentation" href="index.html" />
+    <link rel="next" title="dalquery Module API" href="api_dalquery.html" />
+    <link rel="prev" title="Introduction to the VOClient Python API" href="intro.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api_dalquery.html" title="dalquery Module API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction to the VOClient Python API"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/vao_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">registry Module API</a><ul>
+<li><a class="reference internal" href="#module-vaoregistry"><tt class="docutils literal"><span class="pre">vaoregistry</span></tt>: VO Registry Queries</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="intro.html"
+                        title="previous chapter">Introduction to the VOClient Python API</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api_dalquery.html"
+                        title="next chapter">dalquery Module API</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/api_registry.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="registry-module-api">
+<h1>registry Module API<a class="headerlink" href="#registry-module-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-vaoregistry">
+<span id="vaoregistry-vo-registry-queries"></span><h2><a class="reference internal" href="#module-vaoregistry" title="vaoregistry"><tt class="xref py py-mod docutils literal"><span class="pre">vaoregistry</span></tt></a>: VO Registry Queries<a class="headerlink" href="#module-vaoregistry" title="Permalink to this headline">¶</a></h2>
+<p>A module for basic VO Registry interactions.</p>
+<p>A VO registry is a database of VO resources&#8211;data collections and
+services&#8211;that are available for VO applications.  Typically, it is 
+aware of the resources from all over the world.  A registry can find 
+relevent data collections and services through search
+queries&#8211;typically, subject-based.  The registry responds with a list
+of records describing matching resources.  With a record in hand, the 
+application can use the information in the record to access the 
+resource directly.  Most often, the resource is a data service that
+can be queried for individual datasets of interest.</p>
+<p>This module provides basic, low-level access to the VAO Registry at 
+STScI using (proprietary) VOTable-based services.  In most cases,
+the Registry task, with its higher-level features (e.g. result caching
+and resource aliases), can be a more convenient interface.  The more  
+basic interface provided here allows developers to code their own 
+interaction models.</p>
+<dl class="exception">
+<dt id="vaoregistry.RegistryAccessError">
+<em class="property">exception </em><tt class="descclassname">vaoregistry.</tt><tt class="descname">RegistryAccessError</tt><a class="reference internal" href="_modules/vaoregistry.html#RegistryAccessError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryAccessError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
+<p>A base class for registry access failures</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="vaoregistry.RegistryCursor">
+<em class="property">class </em><tt class="descclassname">vaoregistry.</tt><tt class="descname">RegistryCursor</tt><a class="reference internal" href="_modules/vaoregistry.html#RegistryCursor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryCursor" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class for iterating through the result of a registry query</p>
+<dl class="method">
+<dt id="vaoregistry.RegistryCursor.fetch">
+<tt class="descname">fetch</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryCursor.fetch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryCursor.fetch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the next available resource record as a SimpleResource
+object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryCursor.getRecordCount">
+<tt class="descname">getRecordCount</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryCursor.getRecordCount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryCursor.getRecordCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of records left to access by this result cursor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryCursor.next">
+<tt class="descname">next</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryCursor.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryCursor.next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the next available resource record as a SimpleResource
+object.  This is equivalent to fetch.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="vaoregistry.RegistryQuery">
+<em class="property">class </em><tt class="descclassname">vaoregistry.</tt><tt class="descname">RegistryQuery</tt><big>(</big><em>registry</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>A representation of a registry query that can be built up over
+successive method calls and then executed.  An instance is normally
+obtained via a call to RegistrySearch.createQuery()</p>
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.addKeywords">
+<tt class="descname">addKeywords</tt><big>(</big><em>keywords</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.addKeywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.addKeywords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add keywords that should be added to this query.  Keywords 
+are searched against key fields in the registry record.  A
+keyword can in fact be a phrase&#8211;a sequence of words; in this
+case the sequence of words must appear verbatim in the record
+for that record to be matched.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><dl class="first last docutils">
+<dt><em>keywords</em>:  either a single keyword phrase (as a string) </dt>
+<dd><p class="first last">or a list of keyword phrases to add to the 
+query.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.addPredicate">
+<tt class="descname">addPredicate</tt><big>(</big><em>pred</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.addPredicate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.addPredicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an SQL search predicate to the query.  This predicate should
+be of form supported by STScI VOTable search services.  This 
+predicate will be AND-ed with all other constraints (including
+previously added predicates); that is, this constraint must be
+satisfied in addition to the other constraints to match a 
+particular resource record.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.clearPredicates">
+<tt class="descname">clearPredicates</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.clearPredicates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.clearPredicates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all previously added predicates.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.clearServiceTypeConstraint">
+<tt class="descname">clearServiceTypeConstraint</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.clearServiceTypeConstraint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.clearServiceTypeConstraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove any currently set service type constraint.  The query
+then will not be restricted to a particular type of service.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.clearWavebandConstraint">
+<tt class="descname">clearWavebandConstraint</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.clearWavebandConstraint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.clearWavebandConstraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove any currently set waveband constraint.  The query
+then will not be restricted to a particular type of service.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.execute">
+<tt class="descname">execute</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.execute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Submit the query and return the results as a RegistryResults
+instance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws :</th><td class="field-body"><dl class="first docutils">
+<dt><em>RegistryServiceError</em>:     For errors connecting to or communicating</dt>
+<dd><p class="first last">with the service.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws :</th><td class="field-body"><dl class="first last docutils">
+<dt><em>RegistryQueryError</em>:       If the service responds with an error,</dt>
+<dd><p class="first last">including a query syntax error.  A syntax
+error should only occur if the query
+query contains non-sensical predicates.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.executeRaw">
+<tt class="descname">executeRaw</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.executeRaw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.executeRaw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Submit the query and return the raw VOTable XML as a string</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.getKeywordCount">
+<tt class="descname">getKeywordCount</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.getKeywordCount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.getKeywordCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of currently set keyword constraints</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.getKeywords">
+<tt class="descname">getKeywords</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.getKeywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.getKeywords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the current set of keyword constraints</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.getPredicates">
+<tt class="descname">getPredicates</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.getPredicates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.getPredicates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return (a copy of) the list of predicate constraints that will 
+be applied to the query.  These will be AND-ed with all other 
+constraints (including previously added predicates); that is, 
+this constraint must be satisfied in addition to the other 
+constraints to match a particular resource record.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.getQueryURL">
+<tt class="descname">getQueryURL</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.getQueryURL"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.getQueryURL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the GET URL that will submit the query and return the 
+results as a VOTable</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.orKeywords">
+<tt class="descname">orKeywords</tt><big>(</big><em>ored</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.orKeywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.orKeywords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set whether keywords are OR-ed or AND-ed together.  When
+the keywords are OR-ed, returned records will match at 
+least one of the keywords.  When they are AND-ed, the 
+records will match all of the keywords provided.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><dl class="first last docutils">
+<dt><em>ored</em>:   true, if the keywords should be OR-ed; false,</dt>
+<dd><p class="first last">if they should be AND-ed.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.removeKeywords">
+<tt class="descname">removeKeywords</tt><big>(</big><em>keywords</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.removeKeywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.removeKeywords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the given keyword or keywords from the query.  A
+keyword can in fact be a phrase&#8211;a sequence of words; in this
+case, the phrase will be remove.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><dl class="first last docutils">
+<dt><em>keywords</em>:  either a single keyword phrase (as a string) </dt>
+<dd><p class="first last">or a list of keyword phrases to remove from
+the query.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.removePredicate">
+<tt class="descname">removePredicate</tt><big>(</big><em>pred</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.removePredicate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.removePredicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the give predicate from the current set of predicate
+constraints.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.setServiceTypeConstraint">
+<tt class="descname">setServiceTypeConstraint</tt><big>(</big><em>serviceType</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.setServiceTypeConstraint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.setServiceTypeConstraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restrict the results to contain services of the given type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><dl class="first last docutils">
+<dt><em>serviceType</em>:   the desired type of service, one of </dt>
+<dd><p class="first last">&#8220;catalog&#8221;, &#8220;table&#8221;, &#8220;image&#8221;, or 
+&#8220;spectra&#8221;.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.setWavebandConstraint">
+<tt class="descname">setWavebandConstraint</tt><big>(</big><em>band</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.setWavebandConstraint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.setWavebandConstraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restrict the results to contain resources provides data 
+covering a given waveband</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryQuery.willOrKeywords">
+<tt class="descname">willOrKeywords</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryQuery.willOrKeywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQuery.willOrKeywords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set true if the keywords will be OR-ed or AND-ed together
+in the query.  True is returned if the keywords will be 
+OR-ed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="vaoregistry.RegistryQueryError">
+<em class="property">exception </em><tt class="descclassname">vaoregistry.</tt><tt class="descname">RegistryQueryError</tt><a class="reference internal" href="_modules/vaoregistry.html#RegistryQueryError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryQueryError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#vaoregistry.RegistryAccessError" title="vaoregistry.RegistryAccessError"><tt class="xref py py-class docutils literal"><span class="pre">vaoregistry.RegistryAccessError</span></tt></a></p>
+<p>An exception indicating an error by the registry in processing a
+query, including query-syntax errors.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="vaoregistry.RegistryResults">
+<em class="property">class </em><tt class="descclassname">vaoregistry.</tt><tt class="descname">RegistryResults</tt><a class="reference internal" href="_modules/vaoregistry.html#RegistryResults"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>An iterable set of results from a registry query.  Each record is
+returned as SimpleResource instance</p>
+<dl class="method">
+<dt id="vaoregistry.RegistryResults.attributeNames">
+<tt class="descname">attributeNames</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryResults.attributeNames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryResults.attributeNames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the names of the available record attributes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryResults.getAttribute">
+<tt class="descname">getAttribute</tt><big>(</big><em>name</em>, <em>index</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryResults.getAttribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryResults.getAttribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the value of an attribute from a particular record in 
+the results</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><p class="first"><em>name</em>:   the name of the attribute</p>
+<p class="last"><em>index</em>:  the zero-based index of the record</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryResults.getRecord">
+<tt class="descname">getRecord</tt><big>(</big><em>index</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryResults.getRecord"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryResults.getRecord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all the attributes of a record with the given index
+as SimpleResource instance</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><em>index</em>:  the zero-based index of the record</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryResults.getRecordCount">
+<tt class="descname">getRecordCount</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryResults.getRecordCount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryResults.getRecordCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the total number of records returned in this result</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistryResults.meta">
+<tt class="descname">meta</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistryResults.meta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryResults.meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>List table metadata.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="vaoregistry.RegistrySearch">
+<em class="property">class </em><tt class="descclassname">vaoregistry.</tt><tt class="descname">RegistrySearch</tt><big>(</big><em>url</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistrySearch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistrySearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class for submitting searches to the VAO registry.</p>
+<dl class="attribute">
+<dt id="vaoregistry.RegistrySearch.STScIRegistryURL">
+<tt class="descname">STScIRegistryURL</tt><em class="property"> = ''</em><a class="headerlink" href="#vaoregistry.RegistrySearch.STScIRegistryURL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="vaoregistry.RegistrySearch.connect">
+<em class="property">static </em><tt class="descname">connect</tt><big>(</big><em>url=None</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistrySearch.connect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistrySearch.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect to an STScI registry at the given URL</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><dl class="first last docutils">
+<dt><em>url</em>:   The base URL of the STScI registry.  If None, </dt>
+<dd><p class="first last">the standard endpoint will be used.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistrySearch.createQuery">
+<tt class="descname">createQuery</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistrySearch.createQuery"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistrySearch.createQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a RegistryQuery object that can be refined or saved
+before submitting.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistrySearch.resolve">
+<tt class="descname">resolve</tt><big>(</big><em>ivoid</em>, <em>asVOResource=False</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistrySearch.resolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistrySearch.resolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolve the identifier against the registry, returning a
+resource record.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Args :</th><td class="field-body"><p class="first"><em>ivoid</em>:          the IVOA Identifier of the resource</p>
+<dl class="last docutils">
+<dt><em>asVOResource</em>:   if True, return the VOResource-formated </dt>
+<dd><p class="first last">XML record; otherwise, a SimpleResource
+instance is returned.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vaoregistry.RegistrySearch.search">
+<tt class="descname">search</tt><big>(</big><em>keywords=None</em>, <em>serviceType=None</em>, <em>bandpass=None</em>, <em>contentLevel=None</em>, <em>sqlpred=None</em><big>)</big><a class="reference internal" href="_modules/vaoregistry.html#RegistrySearch.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistrySearch.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare and execute a registry search of the specified
+keywords.</p>
+<p>A search can be constrained by::
+- bandpass: Radio, Millimeter, Infrared (IR), Optical,</p>
+<blockquote>
+<div>Ultraviolet (UV),  X-Ray (xray), Gamma-Ray (GR)</div></blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt>service type: catalog (SCS), image (SIA), spectra (SSA), </dt>
+<dd><p class="first last">table (Vizier), ResourceType from Registry record</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">content level: ...</p>
+</li>
+</ul>
+<p>The result will be a RegistryResults instance pointing to the
+first matching in the query results</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="vaoregistry.RegistryServiceError">
+<em class="property">exception </em><tt class="descclassname">vaoregistry.</tt><tt class="descname">RegistryServiceError</tt><a class="reference internal" href="_modules/vaoregistry.html#RegistryServiceError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.RegistryServiceError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#vaoregistry.RegistryAccessError" title="vaoregistry.RegistryAccessError"><tt class="xref py py-class docutils literal"><span class="pre">vaoregistry.RegistryAccessError</span></tt></a></p>
+<p>An exception indicating a failure communicating with a registry 
+service.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="vaoregistry.SimpleResource">
+<em class="property">class </em><tt class="descclassname">vaoregistry.</tt><tt class="descname">SimpleResource</tt><a class="reference internal" href="_modules/vaoregistry.html#SimpleResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vaoregistry.SimpleResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt></p>
+<p>A container for the resource attributes returned by a registry query.
+A SimpleResource is a dictionary, so in general, all attributes can 
+be accessed by name via the [] operator, and the attribute names can 
+by returned via the keys() function.  For convenience, it also stores 
+key values as public python attributes; these include:</p>
+<div class="highlight-python"><pre>title         the title of the resource
+shortName     the resource's short name
+ivoid         the IVOA identifier for the resource
+accessURL     when the resource is a service, the service's access 
+                URL.</pre>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api_dalquery.html" title="dalquery Module API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction to the VOClient Python API"
+             >previous</a> |</li>
+        <li><a href="index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, US Virtual Astronomical Observatory.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

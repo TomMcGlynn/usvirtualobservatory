@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xmlns:vs="antlib:usvao.vaosoft.ant" name="ListPropertyNames" 
+         basedir="." default="all">
+
+   <target name="init" description="define tasks">
+   </target>
+
+   <target name="basic" depends="init">
+     <vs:split prefix="goober" names="pre,pay,post" in="I am Sam I am" />
+   </target>
+
+   <target name="truncate" depends="init">
+     <vs:split prefix="gurn" names="pre,pay,post" in="I am Sam I am" 
+               truncate="yes"/>
+   </target>
+
+   <target name="delim" depends="init">
+     <vs:split prefix="gomer" names="pre,pay,post" in="I am:Sam:I am" 
+               delim=":"/>
+   </target>
+
+   <target name="short" depends="init">
+     <vs:split prefix="gurn" names="pre,pay,post" in="I am" 
+               truncate="yes"/>
+   </target>
+
+</project>

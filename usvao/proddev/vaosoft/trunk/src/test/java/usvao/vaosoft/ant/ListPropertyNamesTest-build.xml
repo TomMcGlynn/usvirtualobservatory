@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xmlns:vs="antlib:usvao.vaosoft.ant" name="ListPropertyNames" 
+         basedir="." default="all">
+
+   <target name="init" description="define tasks">
+   </target>
+
+   <target name="basic" depends="init">
+     <property name="goober.1" value="a"/>
+     <property name="goober.2" value="a"/>
+     <property name="goober.ham" value="a"/>
+     <property name="goobermeister.1" value="a"/>
+     <vs:listPropertyNames property="list.1" prefix="goober."/>
+     <vs:listPropertyNames property="list.empty" prefix="hank."/>
+   </target>
+
+   <target name="delim" depends="init">
+     <property name="goober.1" value="a"/>
+     <property name="goober.2" value="a"/>
+     <property name="goober.ham" value="a"/>
+     <property name="goobermeister.1" value="a"/>
+     <vs:listPropertyNames property="list.1" prefix="goober." delim=":"/>
+   </target>
+
+</project>

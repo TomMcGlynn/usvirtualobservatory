@@ -1,0 +1,477 @@
+<html> <head>
+<title>Help: OpenID Features (VAO Login Services)</title>
+<link href="/styles/sso.css" type="text/css" rel="stylesheet" />
+<link href="/images/favicon.ico" type="image/vnd.microsoft.icon" rel="icon"/>
+<style type="text/css">
+html {
+    overflow: -moz-scrollbars-vertical;
+}
+dl.tmfaq dt {
+   font-size: 12pt;
+   font-weight: 700;
+   color: #003366;
+   margin-top: 0.75ex;
+}
+.toc {
+   float: right;
+   width: 200pix;
+   margin-top:  1ex;
+   margin-bottom:  1ex;
+   margin-left:  2em;
+   padding-right:  1em;
+   background-color: #65c0cc;
+   padding-left: 1em;
+   padding-top: 1ex;
+   padding-bottom: 1ex;
+}
+.toc h5 {
+   margin-top: 0pt;
+   margin-bottom: 0pt;
+}
+.toc ul, .toc ul li ul, .toc ul li ul li ul {
+   margin-bottom: 0pt;
+   margin-top: 0pt;
+   list-style: none outside none;
+   margin-left: 0em;
+   padding-left: 0em;
+}
+.toc ul li {
+   font-size: 85%
+}
+.toc ul li ul li, .toc ul li ul li ul li {
+   padding-left: 1.0em;
+   font-size: 100%
+}
+#shortbanner {
+   color: white;
+   font-weight: bold;
+   background-color: #65c0cc;
+   margin-left: 1em;
+}
+#shortbanner a {
+   color: white;
+   text-decoration: none;
+}
+#shortbanner a:hover {
+   color: #003366; 
+   text-decoration: none;
+}
+</style>
+<script language="javascript" type="text/javascript">
+helpwin = null;
+function popupHelp(url) {
+   if (helpwin == null) {
+      helpwin = window.open(url,"helpwin", "height=500,width=550,scollbars=1");
+   }
+   else {
+      helpwin.location.href = url;
+   }
+}
+</script>
+</head>
+
+
+<body>
+<p id="shortbanner">
+<a href="http://www.usvao.org/"><img align="Absmiddle"
+   src="/images/VAO_logo_50.png"></a> &nbsp;
+<span style="padding-top: 0.25ex">
+<a href="/">About VAO Logins</a></li> &nbsp;
+<a href="http://www.usvao.org/about-vao/">About the VAO</a> &nbsp;
+<a href="glossary.html">Glossary</a> &nbsp;
+<a href="http://www.usvao.org/contact-connect/">Ask for help</a>
+</span>
+</p>
+
+<div class="main-content">
+
+<a name="FeaturesoftheVAOOpenIDProviderService"></a>
+<h1>Features of the VAO OpenID Provider Service</h1>
+
+<div class="toc">
+<h5>Contents:</h5>
+<ul>
+  <li> <a href="#aboutids">About VAO Identifiers</a>
+       <ul>
+         <li> <a href="#VAOsOpenIDIdentifiers">VAO's OpenID
+              Identifiers</a> </li> 
+         <li> <a href="#provid">The VAO Provider Identifier and VAO
+              Usernames</a> </li> 
+       </ul> </li>
+  <li> <a href="#availableatts">Available User Attributes</a>
+       <ul>
+         <li> <a href="#perm2share">Obtaining User's Permission to Share</a>
+       </ul></li>
+  <li> <a href="#certs">How to Retrieve User Certificates For Use</a> </li>
+</ul>
+</div>
+
+<p>
+This document describes the VAO-specific characteristics of our VAO
+OpenID Provider Service.  
+</p>
+
+<h2 id="aboutids">About VAO Identifiers</h2>
+<h3 id="VAOsOpenIDIdentifiers">VAO's OpenID Identifiers</h3>
+
+<p>
+An OpenID Provider assigns an identifier to each of its registered
+users that takes the form of a URI.  VAO OpenID Identifiers take the
+following form:  
+</p>
+<blockquote>
+<tt>https://sso.usvao.org/openid/id/<tt><i>username</i>
+</tt></tt></blockquote>
+
+<p>
+where <em>username</em> the login username that the user chose when
+registering for a VAO login.  Identifiers with the same form except
+with an "<tt>http</tt>" scheme will work identically.  
+</p>
+
+<p>
+A user may use their OpenID Identifier URL with any portal that
+accepts arbitrary OpenIDs.  Such portals are often recognized by a
+login box that features the OpenID logo
+(<a style="padding:0;border:none" href="http://openid.net/favicon.ico"><img
+    src="http://openid.net/favicon.ico" alt="http://openid.net/favicon.ico"
+    title="http://openid.net/favicon.ico" /></a>).
+If a user or portal provides a full VAO OpenID, she will be presented
+with a form that just asks for the password corresponding to that ID.
+As we note below, however, providing such a login box is <em>not</em>
+recommended for VO-related portals that use the VAO Login Service as
+its sole OpenID provider.   
+</p>
+
+<a name="provid"></a>
+<h3>The VAO Provider Identifier and VAO Usernames</h3>
+
+<p>
+Any of the following URLs can be used as the Provider ID for the VAO
+OpenID Provider: 
+</p>
+
+<pre>    https://sso.usvao.org/openid/provider_id
+    https://sso.usvao.org/openid/id/provider_id
+</pre>
+
+<p>
+In accordance with the OpenID standard, providing the Provider ID as
+the OpenID URL instructs the provider to let the user choose their
+identity interactively at the provider web site.  With the VAO,
+providing a one of our Provider IDs will produce a login form that
+takes both a username and a password.  
+</p>
+
+<p>
+Because a username is easier for a user to remember and type (and
+represents a more typical way of logging into a portal), <em>we
+recommend that portals log users in using the VAO Provider ID.</em>
+This is most appropriate for portals that are VO-related and which use
+VAO as their sole OpenID provider.  Consequently, users need not
+understand anything about OpenID (or that it is being used) in order
+to log in.   
+</p>
+
+<a name="Example"></a>
+<h4>Example</h4>
+
+<p>
+If your portal supports OpenID using the <tt>mod_auth_openid</tt>
+Apache plugin, then you could represent a "Login" button in a web page
+as so: 
+</p>
+<pre class="wiki">&lt;form action="/login.cgi" method="GET"&gt;
+  &lt;input type="hidden" name="openid_identifier" value="https://sso.usvao.org/openid/provider_id"/&gt;
+  &lt;input type="hidden" name="openid.ns.ext1" value="http://openid.net/srv/ax/1.0" /&gt;
+  &lt;input type="hidden" name="openid.ext1.mode" value="fetch_request" /&gt;
+  &lt;input type="hidden" name="openid.ext1.type.username" value="http://sso.usvao.org/schema/username" /&gt;
+  &lt;input type="hidden" name="openid.ext1.required" value="username" /&gt;
+  &lt;input type="submit" value="Log in with your VAO Username" /&gt;
+&lt;/form&gt;
+</pre>
+
+<p>
+When the user clicks on the button, he will be shown a login form at
+the VAO site (<a href="http://sso.usvao.org/">sso.usvao.org</a>) that
+requests a username and password.  Upon successful authentication, the
+user is returned to the portal web site where the <tt>login.cgi</tt>
+script is executed; this script will receive a form parameter called
+"openid.ext1.type.username" in which the value is the username that
+user has logged in with.  
+</p>
+
+<p>
+(A simpler but perhaps less illustrative way to accomplish the same
+thing would be through the <tt>mod_auth_openid</tt> configuration
+directives, <tt>AuthOpenIDSingleIdP</tt>, set to the VAO Provider ID,
+<tt>AuthOpenIDAXRequire</tt>, set to "username
+http://sso.usvao.org/schema/username .*", and
+<tt>AuthOpenIDAXUsername</tt>, set to "username".  Consult the
+<a href="http://findingscience.com/mod_auth_openid/">mod_auth_openid
+documentation</a> for details.) 
+</p>
+
+<a name="RepresentingUsersInternalToYourPortal"></a>
+<h4>Representing Users Internal To Your Portal</h4>
+
+<p>
+If your portal keeps any kind of the state for your users across login
+sessions (e.g. what private data belongs to the user), then you will
+need some way to identify the owner of that state.  The user's OpenID
+URL is a good, though verbose, identifier that is globally unique.
+Perhaps a more convenient alternative (for its terseness) would be the
+user's username; however, note that in the future, there may well be
+multiple OpenID providers within the global VO community.  For this
+reason, we suggest that you use an internal identifier of the form
+<em>username</em><tt>@usvao</tt> when the user has authenticated with
+the VAO OpenID service.  This will allow you to use a different
+qualifier (the part after the <tt>@</tt> sign) when using a different
+VO OpenID provider.  
+</p>
+
+<p>
+We note that the Google OpenID Provider uses email addresses as the
+user's "username".  We do not recommend that you use the email as a
+long-term internal identifier (unless you are supporting the Google
+OpenID provider, too).  With many typical VO users relying on their
+local academic institutions for their email, the email address is not
+necessarily a long-term attribute of the user:  that is, their address
+may change when they move to a new institution.  However, where ever
+they move, they can always use the same VAO username.   
+</p>
+
+<a name="availableatts"></a>
+<h2>Available User Attributes</h2>
+
+<p>
+The VAO OpenID Provider supports the OpenID Extension standard for
+User Attribute Exchange.  This means that your portal can request
+information about the user when they log in.  Note that the VAO OpenID
+Provider service uses attribute exchange as part of the mechanism for
+delivering a certificate representing the user (see below for
+details).   
+</p>
+
+<p>
+The following table describes the attributes that are available
+through the standard Attribute Exchange mechanism.  For most of the
+attributes, there are multiple URI that are interpreted as synonyms;
+any one of the URIs can be used to retrieve its attribute.  
+</p>
+
+<p id="availableattstable">
+<strong>Table 1: Available User Attributes</strong>
+</p>
+
+<table border="1" cellspacing="0">
+  <tr>
+    <th style="background-color: #f7f7f7;">Attribute</th>
+    <th style="background-color: #f7f7f7;">Accepted URIs for this Attribute</th>
+    <th style="background-color: #f7f7f7;">Attribute description </th>
+  </tr>
+  <tr>
+    <td valign="top">username</td>
+    <td width="50%" valign="top">http://sso.usvao.org/schema/username <br/>
+http://openid.net/namePerson/friendly <br />
+http://schema.openid.net/namePerson/friendly <br />
+http://axschema.org/namePerson/friendly
+    </td><td valign="top">
+The username that the user entered into the log into the VAO login page
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">name</td>
+    <td valign="top">
+http://sso.usvao.org/schema/name <br />
+http://sso.usvao.org/schema/namePerson <br />
+http://openid.net/namePerson <br />
+http://schema.openid.net/namePerson <br />
+http://axschema.org/namePerson
+    </td><td valign="top">
+The full name of the user
+    </td>
+  </tr><tr>
+    <td valign="top">last name</td>
+    <td valign="top">
+http://sso.usvao.org/schema/namePerson/last 
+    </td><td valign="top">
+The last or family name of the user
+    </td>
+  </tr><tr>
+    <td valign="top">first name</td>
+    <td valign="top">
+http://sso.usvao.org/schema/namePerson/first 
+    </td><td valign="top">
+The user's first name plus any addition middle names or initials
+    </td>
+  </tr><tr>
+    <td valign="top">email</td>
+    <td valign="top">
+http://sso.usvao.org/schema/email <br />
+http://schema.openid.net/contact/email  <br />
+http://openid.net/schema/contact/email <br />
+http://axschema.org/contact/email
+    </td><td valign="top">
+The user's email address
+    </td>
+  </tr><tr>
+    <td valign="top">phone number</td>
+    <td valign="top">
+http://sso.usvao.org/schema/phone <br />
+http://axschema.org/contact/phone/default <br />
+http://axschema.org/contact/phone/business
+    </td><td valign="top">
+The user's telephone number. This should include any country and city codes
+    </td>
+  </tr><tr>
+    <td valign="top">institution</td>
+    <td valign="top">
+http://sso.usvao.org/schema/institution
+    </td><td valign="top">
+The user's professional home institution (e.g. university, observatory, or lab)
+    </td>
+  </tr><tr>
+    <td valign="top">country</td>
+    <td valign="top">
+http://sso.usvao.org/schema/country 
+    </td><td valign="top">
+The user's current country of residence (e.g. USA, Canada, etc.)
+    </td>
+  </tr><tr>
+    <td valign="top">credential</td>
+    <td valign="top">
+http://sso.usvao.org/schema/credential/ 
+http://sso.usvao.org/schema/credential/x509
+    </td><td valign="top">
+A temporary URL that points to a retrievable X.509 certificate that represents the user's identity
+    </td>
+  </tr>
+</table>
+
+<a name="perm2share""></a>
+<h3>Obtaining User's Permission to Share</h3>
+
+<p>
+When the portal's user authentication request includes a request for
+attributes, then after a successful authentication, the user will be
+presented with a page that asks for permission to share the requested
+information.  One exception to this rule is applies to the username:
+if the username attribute is the only attribute being requested,
+permission is <em>not</em> requested of the user.  That is, <em>the
+username will be automatically shared without permission.</em> 
+</p>
+
+<p>
+For those attributes that the portal's request indicate are not
+required, the user will be able to individually choose which to share.
+This choice is not given for attributes marked in the request as
+required; instead, the user must choose whether to share all required
+attributes or to cancel the login.  If the user chooses to cancel the
+login, the user will be returned to the portal, but the
+<tt>openid.mode</tt> parameter will be set to "cancel" (see
+<a href="http://openid.net/specs/openid-authentication-2_0.html#negative_assertions">
+section 10.2.2</a> of the
+<a href="http://openid.net/specs/openid-authentication-2_0.html">OpenID
+spec.</a>).  
+</p>
+
+<p>
+The permission page will also allow the user an option to have the VAO
+service remember her choices to share the requested attributes.  When
+the user chooses this option, then permission will not be requested
+for those options that were approved when the user logs in again in
+the future.  In other words, if a portal always requests the same
+attributes when ever the user logs in, then the user only needs to
+give permission the first time.  Since the permissions are remembered
+by the VAO service on a per-attribute basis, requesting a new
+attribute will trigger a request for permission.  The
+<a href="https://sso.usvao.org/">VAO Login site itself
+(sso.usvao.org)</a> allows users to change these choices later. 
+</p>
+
+<a name="certs"></a>
+<h2>How to Retrieve User Certificates For Use</h2>
+
+<p>
+Use of X.509 certificates is <em>not required</em>; however, a
+certificate may be retrieved to allow the portal to connect to secured
+services outside the portal in a VO-compliant way.  For example,
+suppose another archive provides a secured SIA service that will list
+a user's proprietary images.  Your portal can query that service and
+display the image locations within your own sky display.  To connect
+to such a service you will need a certificate that represents the
+user.  
+</p>
+
+<p>
+To retrieve a certificate, your portal should request the "credential"
+attribute using one the associated URIs (see
+<a href="#availableattstable">Table 1 above</a>).  The value will be a
+URL that will return an X.509 certificate in PEM format which will
+include its private key.  For security purposes, the URL will contain
+a randomized token, and the portal must retrieve the certificate
+within five (5) minutes before it is deleted from the VAO server.
+Although it is an
+<a href="glossary.html#eec"
+   onclick="popupHelp('/help/glossary.html#eec'); return false">end-entity
+certficate</a> (that is, not a proxy), it is short-lived: it is valid
+only for 8 hours from the time of the attribute request.  
+</p>
+
+<p>
+We note that as with any attribute request, the VAO OpenID Service
+will ask the user permission to create a certificate for use by the
+portal.  If the portal is not
+<a href="support.html#trusted">recognized by the VAO as
+a trusted portal</a>, the user will be discouraged from granting
+permission.  
+</p>
+
+<p>
+Once the certificate has been retrieved, the portal may keep it in
+memory, or it may choose to cache the certificate to disk.  (Caching
+to disk may be necessary if you want your user sessions to remain
+active across unexpected restarts of your portal service.)  If you
+cache the certificate to disk, be sure to properly protect access to
+the file by unauthorized users either on or outside of the portal
+server machine.  Since the certificate contains a private key, any
+agent that gains access to the file can assume the user's identity
+within the VO.  
+</p>
+
+<p>
+For details on how to programmatically access a secure service using a
+certificate, consult our
+<a href="http://dev.usvao.org/vao/wiki/VAOLogins">developers page</a>.  
+</p>
+</div>
+
+  <!-- end main-content -->
+
+<div class="foot">
+<div class="divider"><hr noshade="noshade" /></div>
+<table class="tiny" border="0" cellspacing="4" cellpadding="0" width="100%"><tr>
+<td valign="top" class="tiny">
+Supported by the <a href="http://www.nsf.gov/">National Science
+Foundation</a> <br/>
+With contributions from the <a href="http://www.ncsa.uiuc.edu">National
+Center for Supercomputing Applications</a> <br/>
+and the <a href="http://www.globus.org">Globus Alliance</a>.<br/>
+The VAO is a member of the <a href="http://www.ivoa.net">International
+Virtual Observatory Alliance</a>
+</td>
+<td valign="top" align="right" class="tiny">
+<!-- hhmts start -->
+Last modified: Tue Jun  4 10:54:18 2013
+<!-- hhmts end -->
+<br>
+<a href="http://dev.usvao.org/vao/wiki/VAOLogins/OpenIDFeatures">
+Draft version 8</a> on the <a href="http://dev.usvao.org/">VAO Developer
+Wiki</a>. 
+</td>
+</tr></table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant"
+         name="vaosoft:newstack" default="explain" basedir=".">
+
+  <property environment="env"/>
+  <property name="vao.home" value="${env.VAO_HOME}"/>
+  <property name="vao.ant.home" value="${env.ANT_HOME}"/>
+  <condition property="vao.java.home" value="${env.JAVA_HOME}">
+    <isset property="env.JAVA_HOME" />
+  </condition>
+
+  <property name="vao.products" value="${vao.home}/products"/>
+  <property name="vao.bin" value="${vao.home}/bin"/>
+
+  <condition property="vaosoft.home" value="${env.VAOSOFT_HOME}" 
+             else="${user.dir}">
+    <isset property="env.VAOSOFT_HOME" />
+  </condition>
+  <condition property="newstack.setups.src.dir"
+             value="${vaosoft.home}/etc" else="${vaosoft.home}/etc">
+    <isset property="vaosoft.home" />
+  </condition>
+
+  <filterset id="filt.setenv">
+    <filter token="VAO_HOME" value="${vao.home}" />
+    <filter token="ANT_HOME" value="${vao.ant.home}" />
+  </filterset>
+
+  <target name="def-setenv-javahome-true" if="vao.java.home">
+    <property name="setenv.csh.javahome" 
+              value="setenv JAVAHOME ${vao.java.home}" />
+    <property name="setenv.sh.javahome" 
+              value="export JAVAHOME=${vao.java.home}" />
+    <property name="setenv.wincmd.javahome" 
+              value="set JAVAHOME=${vao.java.home}" />
+  </target>
+  <target name="def-setenv-javahome-false" unless="vao.java.home">
+    <property name="setenv.csh.javahome" value="" />
+    <property name="setenv.sh.javahome"  value="" />
+    <property name="setenv.wincmd.javahome"  value="" />
+  </target>
+  <target name="def-setenv-javahome" 
+          depends="def-setenv-javahome-true,def-setenv-javahome-false" />
+
+  <target name="install-setup" depends="def-setenv-javahome">
+    <copy filtering="true" todir="${vao.home}" 
+          file="${newstack.setups.src.dir}/setup.csh">
+      <filterset refid="filt.setenv" />
+      <filterset>
+        <filter token="SET_JAVA_HOME" value="${setenv.csh.javahome}" />
+      </filterset>
+    </copy>
+    <copy filtering="true" todir="${vao.home}" 
+          file="${newstack.setups.src.dir}/setup.sh">
+      <filterset refid="filt.setenv" />
+      <filterset>
+        <filter token="SET_JAVA_HOME" value="${setenv.sh.javahome}" />
+      </filterset>
+    </copy>
+    <copy filtering="true" todir="${vao.home}" 
+          file="${newstack.setups.src.dir}/setup.cmd">
+      <filterset refid="filt.setenv" />
+      <filterset>
+        <filter token="SET_JAVA_HOME" value="${setenv.wincmd.javahome}" />
+      </filterset>
+    </copy>
+  </target>
+
+  <target name="install" depends="install-setup" >
+    <ant antfile="build.xml" target="install" inheritAll="false"
+         dir="${user.dir}"/>
+  </target>
+
+  <target name="explain">
+    <echo>Stack root directory (VAO_HOME): ${vao.home}</echo>
+    <echo>JAVA_HOME: ${vao.java.home}</echo>
+    <echo>ANT_HOME: ${vao.ant.home}</echo>
+  </target>
+</project>

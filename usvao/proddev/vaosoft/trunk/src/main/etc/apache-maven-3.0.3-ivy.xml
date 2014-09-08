@@ -1,0 +1,23 @@
+<ivy-module version="2.0">
+  <info organisation="apache" module="maven" status="release"
+        revision="3.0.3">
+    <description>
+      Software lifecycle management system
+    </description>
+  </info>
+  <configurations defaultconf="install">
+    <conf name="license" />
+    <conf name="uberinstall" />
+    <conf name="distrib" extends="distrib-bin-zip"/>
+
+    <conf name="distrib-bin-zip" />
+  </configurations>
+  <publications>
+
+    <artifact name="apache-maven" type="bin" ext="zip" conf="distrib-bin-zip"
+              url="http://www.apache.org/dyn/closer.cgi/maven/binaries/apache-maven-3.0.3-bin.zip"/>
+    <artifact name="LICENSE" type="LICENSE" ext="txt" conf="license" />
+    <artifact name="about" type="about" ext="properties" conf="uberinstall" />
+
+  </publications>
+</ivy-module>

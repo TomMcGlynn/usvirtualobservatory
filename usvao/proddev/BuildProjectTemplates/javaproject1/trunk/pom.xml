@@ -1,0 +1,173 @@
+<?xml version="1.0"?><project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.vao</groupId>
+  <artifactId>javaproject1</artifactId>
+  <name>Test java project1</name>
+  <version>1.00</version>
+  <description>This package provides a 'hello world' class for testing out java projects for the VAO.</description>
+  <packaging>jar</packaging>
+
+  <scm>
+     <connection>scm:svn:svn+ssh://thomas@localhost/var/svn/repos/javaproject1/trunk</connection>
+     <developerConnection>scm:svn+ssh://svn:thomas@localhost/var/svn/repos/javaproject1/trunk</developerConnection>
+  </scm>
+
+  <reporting>
+    <plugins>
+<!--
+       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>2.6</version>
+          <configuration> <configLocation>checkstyle.xml</configLocation> </configuration>
+       </plugin>
+-->
+      <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-jxr-plugin</artifactId>
+           <!--version>2.2</version-->
+       </plugin> 
+       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <configuration>
+             <debug>true</debug> 
+             <linkXref>true</linkXref>
+             <sourceEncoding>ISO-8859-1</sourceEncoding>
+          </configuration>
+       </plugin>
+
+       <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.4</version>
+          <configuration>
+             <formats>
+               <format>html</format>
+               <format>xml</format>
+             </formats>
+             <check>
+                <branchRate>85</branchRate>
+                <lineRate>85</lineRate>
+                <haltOnFailure>false</haltOnFailure>
+                <totalBranchRate>85</totalBranchRate>
+                <totalLineRate>85</totalLineRate>
+                <packageLineRate>85</packageLineRate>
+                <packageBranchRate>85</packageBranchRate>
+                <regexes>
+                  <regex>
+                     <pattern>net.vao.*</pattern> 
+                     <lineRate>80</lineRate>
+                  </regex>
+                  <regex>
+                    <pattern>com.example.boringcode.*</pattern>
+                    <branchRate>40</branchRate>
+                    <lineRate>30</lineRate>
+                  </regex>
+                </regexes>
+              </check>
+          </configuration>
+       </plugin>
+       <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>findbugs-maven-plugin</artifactId>
+          <version>2.3</version>
+          <configuration>
+             <threshold>Normal</threshold>
+             <effort>Default</effort>
+          </configuration>
+       </plugin>
+    </plugins>
+  </reporting>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+
+<!--
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+           <descriptor>src/main/assembly/dist.xml</descriptor>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <outputDirectory>${basedir}/target/classes</outputDirectory>
+          <resources>
+            <resource>
+              <directory>${basedir}/src/test/resources</directory>
+              <includes><include>*</include></includes>
+            </resource>
+          </resources>
+        </configuration>
+      </plugin>
+  -->
+      
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <overview>${basedir}/src/main/java/overview.html</overview>
+        </configuration>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+  <repositories>
+
+    <repository>
+        <id>vao-deploy-repository</id>
+        <name>vaotest2.tuc.noao.edu-releases</name>
+        <url>http://vaotest2.tuc.noao.edu:8080/artifactory/repo</url>
+    </repository>
+    
+    <repository>
+      <id>ibiblio-repository</id>
+      <name>IBIBLIO Maven Repository</name>
+      <url>http://www.ibiblio.org/maven2</url>
+    </repository>
+
+  </repositories>
+
+  <dependencies>
+ 
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.13</version>
+      <!--scope>provided</scope-->
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.0</version>
+      <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
+
+  <distributionManagement>
+    <repository>
+       <id>vao-deploy-repository</id>
+       <name>vaotest2.tuc.noao.edu-releases</name>
+       <url>http://vaotest2.tuc.noao.edu:8080/artifactory/libs-snapshot-local</url>
+    </repository>
+  </distributionManagement>
+
+</project>

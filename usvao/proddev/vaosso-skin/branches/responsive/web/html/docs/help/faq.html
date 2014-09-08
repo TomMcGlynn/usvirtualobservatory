@@ -1,0 +1,578 @@
+<html> <head>
+<title>FAQ about VAO Login Services</title>
+<link href="/styles/sso.css" type="text/css" rel="stylesheet" />
+<link href="/images/favicon.ico" type="image/vnd.microsoft.icon" rel="icon"/>
+<style type="text/css">
+dl.tmfaq dt {
+   font-size: 12pt;
+   font-weight: 700;
+   color: #003366;
+   margin-top: 0.75ex;
+}
+div.whatcanido {
+   float: right;
+   width: 230pix;
+   margin-left:  2em;
+   background-color: #65c0cc;
+   padding-left: 1em;
+}
+</style>
+</head>
+
+
+<body>
+<script type="text/javascript" src="/styles/jquery.min.js"></script>
+<table width="100%" id="nav-head" border="0" cellpadding="0" cellspacing="0">
+ <tr>
+  <td id="nav-ul"></td>
+  <td></td>
+  <td id="nav-ur"></td>
+ </tr><tr>
+  <td id="nav-menu">
+<ul>
+  <li><a href="/">About VAO Logins</a></li>
+  <li><a href="/register/">Get a VAO Login</a></li>
+  <li><a href="/openid/">Profile and Preferences</a></li>
+  <li><a href="/help/support.html">Support VAO Logins</a></li>
+</ul>
+  </td>
+  <td id="nav-logo" align="center" valign="top">
+     <a href="http://www.usvao.org"><img src="/images/VAOwords_200.png" width="180" height="100" /></a>
+  </td>
+  <td id="nav-menu">
+<ul>
+  <li><a href="http://www.usvao.org/">VAO Home</a></li>
+  <li><a href="http://www.usvao.org/tools/">Science Tools</a></li>
+  <li><a href="http://www.usvao.org/about-vao/">About the VAO</a></li>
+  <li><a href="http://www.usvao.org/news/">VAO News</a></li>
+  <li><a href="http://www.usvao.org/contact-connect/">Contact and Connect</a></li>
+</ul>
+  </td>
+ </tr><tr>
+  <td id="nav-bl"></td>
+  <td align="center">
+     <span style="color: green;">
+     <span id="loginStatus"></span>
+<script type="text/javascript">
+function makeStatusHTML(status) {
+    var htmlt = "";
+    if (status.state == "in") {
+        htmlt += status.username;
+        htmlt += " &nbsp;&nbsp;Time left: ";
+        htmlt += status.dispLeft;
+        htmlt += ' &nbsp;&nbsp;<a href="/openid/?logout=true">Logout</a> ';
+    }
+    else if (status.state == "expired") {
+        htmlt += "Expired session as ";
+        htmlt += status.username;
+        htmlt += '&nbsp;&nbsp;<a href="/openid/">Login</a>';
+    }
+    else {
+        htmlt += 'Logged out &nbsp;&nbsp;<a href=\"/openid/\">Login</a>&nbsp;&nbsp;<a href="/register/">Register</a>';
+    }
+    return htmlt;
+}
+
+function displayStatus(status) {
+    jQuery("#loginStatus")[0].innerHTML = makeStatusHTML(status);
+}
+
+jQuery(document).ready(function() {
+    jQuery.getJSON("/openid/loginStatus", displayStatus);
+})
+</script></span>
+  </td>
+  <td id="nav-br"></td>
+ </tr>
+</table>
+     
+<div class="main-content">
+
+<h1>Frequently Asked Questions about VAO Login Services</h1>
+
+<dl>
+  <dt> A. General Questions about VAO Logons
+  <dd> <a href="#whatisit">A.1. What is a VAO Logon?  What is an "identity"?</a> </dd>
+  <dd> <a href="#why">A.2. Why create a VAO Logon?</a> </dd>
+  <dd> <a href="#howget">A.3. How do I get a VAO Logon?</a> </dd>
+  <dd> <a href="#diff">A.4. How is this different from (or similar to)
+       other federated login systems?</a> </dd>
+  <dd> <a href="#whatoid">A.5.  What is OpenID?  Do you support it?</a> </dd>
+  <dd> <a href="#nonvointerop">A.6. Can I use my OpenID with non-VO
+       portals and web sites?</a> </dd>
+  <dd> <a href="#nonvoid">A.7. Can I use my <em>XXX</em>
+       (e.g. Google) OpenID to log into VO portals?</a> </dd>
+  <dd> <a href="#whatoauth">A.8.  What is OAuth?  Do you support
+       it?</a> </dd>
+  <dd> <a href="#whatx509">A.9.  What's an X.509 certificate?  Do I
+       need one?</a>
+  <dd> <a href="#privacypolicy">A.10. Do you have a privacy policy?
+       Terms and Conditions Agreement?</a>
+       
+  <p>
+  <dt> B. Using and Managing your VAO Logon </dt>
+  <dd> <a href="#howuse">B.1. How do I use my VAO Logon to login
+       somewhere?</a> </dd>
+  <dd> <a href="#confirm">B.2. Why am I asked to confirm that I want
+       to log in to a portal?</a> </dd>
+  <dd> <a href="#whyshare">B.3. Why do you share some of my personal
+       information? </a> </dd>
+  <dd> <a href="#move">B.4. What if I move to a new home institution
+       or change my email address?</a>
+  <dd> <a href="#openidid">B.5. You say VAO Logons uses OpenID.
+       What's my OpenID URL?  How do I use my VAO OpenID to log into
+       non-VAO sites?  </a> </dd>
+  <dd> <a href="#passwd">B.6. I forgot my password! What can I do?</a> </dd>
+  <dd> <a href="#username">B.7. I forgot my username! What can I do?</a> </dd>
+  <dd> <a href="#multiple">B.8. Can I have more than one login?</a> </dd>
+  <dd> <a href="#shareid">B.9. Do you support group accounts?  Can I
+       share a login?</a> </dd>
+  <dd> <a href="#phish">B.10. Should I be worried about phishing through a copy-cat site?</a> </dd>
+  <dd> <a href="#ssl">B.11. What is meant by "verified by Internet2/InCommon" refer to?</a> </dd>
+
+  <p>
+  <dt> C. For Portal Developers/Maintainers: Supporting VAO Logons </dt>
+  <dd> <a href="#support">C.1. I run a web site.  How do I support VAO
+       Logons?</a>
+  <dd> <a href="#integrate">C.2.  My web site already uses 
+       federated/single sign-on logins, and it's not OpenID.  Can I also
+       support VAO Logons? </a>
+  <dd> <a href="#certs">C.3.  Must my site support X.509
+       certificates in order to support VAO Logins?</a>
+  <dd> <a href="#glossary">C.4. All this jargon--is there a
+       glossary somewhere? </a>
+</dl>
+
+<a name="A"></a>
+<h2>A. General Questions about VAO Logons</h2>
+
+<dl class="tmfaq">
+  <dt> <a name="whatisit">A.1.</a>  What is a VAO Logon?   What is an
+       "identity"?</dt> 
+  <dd> <p> Also called your <em>VAO Identity</em>, it is a user name and
+       password that you can use to log into web portals in the
+       VO. </p>
+       <p>
+       Your identity also includes all your profile information such
+       as your full name, institution, email address, etc.  The VAO
+       Login Portal provides you with tools for managing your identity.  
+       </p></dd>
+       
+  <dt> <a name="why">A.2. </a>Why create a VAO Logon? </dt>
+  <dd> <p>
+       Because your VAO logon is supported at a number of VO portals,
+       you will now have fewer usernames and passwords to keep track of.  
+       </p>
+       <p>
+       Your VAO login name gives you added power while working in the VO
+       through its <em>single sign-on</em> capabilities--once
+       you're logged into the VAO, you can move freely between portals
+       without retyping you password.  More importantly, portals and
+       services can pass private data back and forth securely with
+       each other on your behalf.
+       </p> </dd>
+
+  <dt> <a name="howget">A.3.</a> How do I get a VAO Logon? </dt>
+  <dd> <p> You can create your logon by
+       <a href="/register/">filling out the VAO registration
+       form.</a>  We'll then send you a quick email confirmation which
+       you must respond to so that we know you are contactable and not
+       a robot.  Once that is done, you'll set your username and
+       password, and you're done. </p></dd>
+
+  <dt> <a name="diff">A.4.</a> How is this different from (or similar to)
+       other federated login systems?</dd>
+  <dd> <p>
+       The VAO Login Services uses the <a href="http://openid.net">OpenID</a>,
+       a community standard for <a href="#why">federated, single
+       sign-on authentication</a>.  This same standard is supported by
+       widely across the web (including Google and Facebook).  In this
+       way, VAO Logins are similar to the Google and Facebook OpenID
+       Login services.  
+       </p>
+       <p>
+       The most important way the VAO Login Services is different from
+       other OpenID services is it provides special support for
+       interoperability between VO services using X.509 certificates
+       (in accordance with standards by the
+       <a href="http://www.ivoa.net">International Virtual Observatory
+       Alliance, or IVOA</a>).  
+       </p>
+
+  <dt> <a name="whatoid">A.5.</a> What is OpenID?  Do you support it?</a>
+  <dd> <p><a href="http://openid.net">OpenID</a> is a community standard
+       for federated, single sign-on authentication through the web.
+       Yes, we support it (but more on that below).
+       </p><p>
+       Widely supported across the web, OpenID allows a user to log
+       into many web sites with a single username and password.  When one
+       logs into a OpenID-compatible site (i.e. a portal), the user's
+       browser is sent to the <em>OpenID provider's</em> web site to
+       enter a password.  Thus, a user's password is never shared with the 
+       portal.  The <a href="/">VAO Login Services</a> serve as an
+       OpenID provider.
+       </p>
+       <p>
+       OpenID also supports a secure way to share user information
+       (like full name and email address)
+       between the provider and the portal in a way that respects the
+       user's privacy.  In particular, before the VAO service will
+       share any information with a portal, it asks for the user's
+       permission.  
+       </p>
+       <p>
+       The VAO Login Services complies with the standard for OpenID
+       providers; however, typical use may appear a little different
+       from other providers.  
+       An OpenID identity is usually given in the form of a URL.
+       While the VAO Login Services supports this form, VAO users
+       typically do not see or enter this URL to login; instead, they
+       use a short, more traditional username.  
+       </p>
+
+  <dt> <a name="nonvointerop">A.6.</a> Can I use my OpenID with non-VO
+       portals and web sites? 
+  <dd> <p>Often, yes, but it depends on the web site.  That is, many sites
+       will accept a login from any OpenID provider.  In this case,
+       the user typically enters their OpenID URL instead of a
+       username.  (See <a href="#openidid">B.5</a> for information
+       about your VAO OpenID URL.)  However, some web site
+       administrators may choose to only accept logins from certain
+       OpenID providers. </p></dd>
+
+  <dt> <a name="nonvoid">A.7.</a> Can I use my <em>XXX</em>
+       (e.g. Google) OpenID to log into VO portals? </dt>
+  <dd> <p>In principle, yes, but typically no; it depends on the particular
+       VO portal.  To take advantage of some of the VO portal
+       interoperability features, the user needs to log in using a VAO
+       login.  However, an administrator for a VAO-compatible portal
+       may choose to accept OpenIDs from any OpenID provider; in this
+       case, a Google OpenID can be used.  Check the portal's
+       documentation for details.  
+       </p> </dd>
+
+  <dt> <a name="whatoauth">A.8.</a> What is OAuth?  Do you support it?</dt>
+  <dd> <p><a href="http://www.oauth.net/">OAuth</a> is another
+       commmunity standard for security on the web.  It is
+       complementary to OpenID in that it enables
+       <em>authorization</em>--that is, permissions--across portals
+       and services on the web.  That is, it provides a mechanism for
+       giving one portal permission to access something that belongs
+       to a user on another portal.  Permission is granted to one portal
+       in the form of a secure token that can be presented to the
+       second portal.  </p>
+       <p> Currently, the VAO Login Services does not directly issue
+       or use OAuth tokens at this time; although, we plan to add use
+       soon.  Note, however, that there are VAO-compatible portals
+       that do issue and use OAuth tokens with VAO Logins providing
+       the authentication required.  
+       </p>
+
+  <dt> <a name="whatx509">A.9.</a> What's an X.509 certificate?  Do I
+       need one? </dt>
+  <dd> <p>An X.509 certificate is a standard file that securely represent
+       your <a href="#whatisit">identity</a> in a electronically
+       verifiable way.  You do <em>not</em> need one to use VAO Login
+       Services.  </p><p>
+       An <a href="http://en.wikipedia.org/wiki/X.509">X.509</a>
+       certificate is an example of a so-called
+       <a href="http://en.wikipedia.org/wiki/Public_key_certificate">
+       public key certificate</a>.  It provides a way for one program
+       to prove the identity of its user without the user having to
+       type in a password. </p><p>
+       The VAO Login Services and compatible portals <em>may</em> use
+       X.509 certificates behind the scenes if necessary to enable
+       interoperability between services across the VO.  For example, 
+       a portal may allow you to access all of your proprietary data
+       in the VO through a single tool (e.g. a vizualizer); to obtain
+       access, the portal will use an X.509 certificate representing
+       your identity to access secure data access services on your
+       behalf.  In this application, you do not need to handle the
+       certificates yourself. </p><p>
+       Some desktop or grid-based tools require that you
+       install an X.509 certificate onto your local computer, into the
+       tool, or into your web browser.  If you need a certificate for
+       this purpose, you can obtain one through our
+       <a href="/openid/cred">Certificate Download Page</a>.  Most VAO
+       users, however, will not need this.  </p></dd>
+
+  <dt> <a name="privacypolicy">A.10.</a> Do you have a privacy policy?
+       Terms and Conditions Agreement?</a> </dt>
+  <dd> <p>Yes.  You can view the VOA Login Services' privacy policy and
+       the conditions for use <a href="/privacy-policy.html">here</a>.
+       </p></dd>
+
+</dl>
+
+<a name="B"></a>
+<h2>B. Using and Managing your VAO Logon</h2>
+
+<dl class="tmfaq">
+  <dt> <a name="howuse">B.1.</a> How do I use my VAO Logon to login
+       somewhere? </dt>
+  <dd> <p>Typically, a VAO-compatible portal will indicate that they
+       support VAO Logins, say, on their home page and provide a
+       "Login" link.  If you are not already logged in the VAO, then
+       clicking on this link will send you to the login page at
+       <a href="http://sso.usvao.org/openid/">sso.usvao.org</a>.  Here
+       you can enter your username and password.  If you do this
+       successfully, you may then be asked to confirm that it is okay
+       to share certain information with the portal (if they've asked
+       for any).  You are next returned back to the portal website,
+       logged in and ready to go.
+       If you are already logged into the VAO when you click the
+       "Login" link, it is not necessary to 
+       enter your username and password; you will just enter the
+       portal directly.  </p>
+
+  <dt> <a name="confirm">B.2.</a> Why am I asked to confirm that I want
+       to log in to a portal? </dt>
+  <dd> <p> Sometimes the portal will want information about you before
+       it allows you to use it.  Usually, this information helps with
+       registering you with that site: it can fill in a registration
+       form with this information so that you don't have to type it in
+       again.  Nevertheless, we will not share your information unless
+       you give us permission to do so.  The confirmation page
+       requests that permission.
+       </p><p>
+       Some portals have registered with us as being VAO-compatible
+       and have agreed to our <a href="/privacy-policy.html">privacy
+       policy</a>.  If we notice that you are logging in from a
+       recognized portal, we'll tell you on the confirmation page; you
+       can feel more confidant about sharing your information from
+       these portals.  If we don't recognize the portal, you should
+       pay closer attention who the portal represents and what its
+       purpose is when deciding to share your information.  This is
+       especially true if the portal is asking for a secure
+       certificate.  
+       </p><p>
+       When you give your confirmation, you will have the choice to
+       allow VAO Login Service to remember you choices via a check
+       box.  If you check this box, you will not see the confirmation
+       page the next time you visit the site.  You can change these
+       choices later via the <a href="/openid/prefs">preferences
+       page</a>.  </p> </dd>
+
+  <dt> <a name="whyshare">B.3.</a> Why do you share some of my personal
+       information? </dt>
+  <dd>  <p> Often, users are required to <em>register</em> with a
+       portal before they can use it.  As part of registration, users
+       must provide information about themselves.  When he VAO Login
+       Service can provide any of this registration data to the portal
+       upon request, it can save the user having to type it in again.  
+       </p> </dd>
+
+  <dt> <a name="move">B.4.</a> What if I move to a new home institution
+       or change my email address? </dt>
+  <dd> <p>You can change your person profile information, which includes
+       the name of your home institution, your telephone number, your
+       home country, and your  email address, using our
+       <a href="/openid/prof">Profile Editing Page</a>.  By
+       updating your information when you move, the new data can make
+       its way out to all the VO portals you visit the next time you
+       visit them.  </p></dd>
+
+  <dt> <a name="openidid">B.5.</a> You say VAO Logons uses OpenID.
+       What's my OpenID URL?  How do I use my VAO OpenID to log into
+       non-VAO sites?  </dt>
+  <dd> <p>An OpenID identity is represented as a URL.  Normally, VAO
+       users don't make use of this URL directly; instead, they log in
+       using a traditional username (which is shorter and easier to
+       remember than a URL.  However, if you want to log into a
+       non-VAO site using OpenID, you would use the URL-form of your
+       VAO identity.  </p><p>
+       A VAO user's OpenID URL has the following form:
+       <blockquote>
+       <code>http://sso.usvao.org/openid/id/</code><em>username</em>
+       </blockquote>
+       where <em>username</em> is the username you usually log in
+       with.  You can use this URL to log into a non-VAO-compatible
+       portal if supports logins from any OpenID provider.  Simply
+       enter this URL where prompted for an OpenID. </p><p>
+       Note if you control your own web-site, the OpenID standard
+       allows you to define you own OpenID URL.  Consult the
+       <a href="http://www.openid.net/specs/openid-authentication-2_0.html">OpenID
+       standard</a> for details. </p>
+
+  <dt> <a name="passwd">B.6.</a> I forgot my username! What can I do?</dt>
+  <dd> <p>Visit our <a href="/register/password.jsp">Password
+       Management Page</a> to reset your password.  As part of the
+       process, we'll send you a secret token by email that you will
+       use to reset your password. </p></dd>
+
+  <dt> <a name="username">B.7.</a> I forgot my username! What can I
+       do?</dt>
+  <dd> <p><p>Visit our <a href="/register/password.jsp">Password
+       Management Page</a> to request an email that will remind you of
+       your username (or <a href="#multiple">usernames</a>).
+       </p></dd>
+
+  <dt> <a name="multiple">B.8.</a> Can I have more than one login?</dt>
+  <dd> <p>We discourage users from having more than one login.  This
+       makes interoperability between archives and portals harder.  
+       </p><p>
+       Nevertheless, it's not uncommon for a user to unknowingly
+       register with the VAO multiple times.  (For example, a user may
+       have forgotten having registered before.)  The
+       <a href="/register/password.jsp#remind">Username Reminder
+       Tool</a> on the
+       <a href="/register/password.jsp">Password Management Page</a>
+       allows you to find all of the usernames associated with any of
+       your email addresses.  If you wish to disable any usernames
+       you do not use, do not hesitate to contact us at
+       <strong><em>vaosso at ncsa.illinoi.edu</em></strong>.  </p></dd>
+
+  <dt> <a name="shareid">B.9.</a> Do you support group accounts?  Can I
+       share a login? </dt>
+  <dd> <p> VAO Logins does not support group accounts, and sharing a
+       VAO login among multiple users is <em>strongly
+       discouraged.</em>  You should not share your password with
+       another user.  
+       </p><p>
+       VO-compatible archives should instead support authorization
+       groups in which distinct users can be added as members and have
+       access to common collections of data.  VAO Login Services
+       itself does not currently support authorization groups, but we
+       may in the future to support data sharing across the VO.
+       </p></dd>
+
+  <dt> <a name="phish">B.10.</a>  Should I be worried about phishing
+       through a copy-cat site? </dt>
+  <dd> <p>
+       Yes, but there is an easy way to avoid it.  The VAO Login page,
+       <a href="https://sso.usvao.org/openid/">https://sso.usvao.org/openid/</a>,
+       uses SSL to ensure a secure, encrypted login process.  SSL
+       requires that sites verify they are who they say they are with
+       a site certificate that can be check by your browser.  If this
+       site verification is successful, your browser will indicate
+       this by URL location bar; here's what Firefox looks like:
+       </p>
+       <img src="sslverified.png">
+       <p>
+       Firefox shows a lock icon to indicate that the site is
+       verified.  Hovering over the lock with your mouse will show the
+       name of the certificate authority ("Internet2") used to verify
+       the site (see also <a href="#ssl">Question B.11</a>).  
+       </p>
+       <p>
+       <strong><em>Look for this lock icon</em></strong> and
+       <strong><em>confirm that the location is
+       sso.usvao.org</em></strong> to ensure that you are using the
+       genuine VAO site to login.
+       </p> </dd>
+
+  <dt> <a name="ssl">B.11</a>  What is meant by "verified by
+       Internet2/InCommon" refer to? 
+  <dd> The VAO Login page,
+       <a href="https://sso.usvao.org/openid/">https://sso.usvao.org/openid/</a>,
+       uses SSL to ensure a secure, encrypted login process and to
+       prevent phishing attacks (see <a href="#phish">Question
+       B.10</a>).  This requires us to provide to browsers a
+       certificate that certifies that we are who we say we are.  
+       Our site certificate has been issued by the
+       <a href="http://www.incommon.org/cert/">Internet2
+       InCommon Certificate Authority</a> (used by many US
+       universities) which is recognized by all major browsers
+       automatically.  We note this fact on our login page via the
+       statement:
+
+       <blockquote>
+       This page is served from <b>sso.usvao.org</b>, 
+       <a href="/help/faq.html#phish">verified by Internet2/InCommon</a>
+       </blockquote>
+
+       <p>
+       This statement lets users know that they can confirm that they
+       are using a legitimate login service by looking at their
+       browser's URL location bar.  See <a href="#phish">Question
+       B.10</a> for more details.
+       </p>
+       
+</dl>
+
+<a name="C"></a>
+<h2>C. For Portal Developers/Maintainers: Supporting VAO Logons</h2>
+
+<dl class="tmfaq">
+  <dt> <a name="support">C.1.</a> I run a web site.  How do I support VAO
+       Logons? </dt>
+  <dd> <p>Consult our <a href="support.html">documentation for portal
+       developers</a> for details.  The VAO Login Services
+       <a href="#whatoid">uses OpenID</a> as the mechanism for logging
+       into a portal.  Since the VAO service is fully
+       OpenID-compliant, you can use any OpenID library to support VAO
+       logins; our <a href="support.html">support documentation</a>
+       can advise on VAO-specific features (such as what user
+       attributes we can provide).  Note, though, that the VAO also
+       provides a customized toolkit called
+       <a href="http://dev.usvao.org/vao/wiki/Products/vaologin">VAOLogin</a>
+       which is designed to make it easier to integrate support for
+       VAO Logins.  </p> </dd>
+
+  <dt> <a name="integrate">C.2.</a> My web site already uses 
+       federated/single sign-on logins, and it's not OpenID.  Can I also
+       support VAO Logons?
+  <dd> <p>Yes.  Soon, we will publish through our <a href="support.html">
+       portal developers' support page</a> recommended ways to augment
+       your portal to support VAO Logins.  This will allow you to use
+       your own single sign-on system while still support
+       interoperability with other VO portals.  </dd>
+
+  <dt> <a name="certs">C.3.</a> Must my site support X.509
+       certificates in order to support VAO Logins?</dt>
+  <dd> <p>No.  Use of X.509 certificates are optional.  </p><p>
+       You only need to support certificates if you want your portal
+       to be able to access secured VO services at another VO site.
+       The <a href="support.html">portal developers' support page</a>
+       describes how to obtain a temporary certificate representing a
+       user as part of a VAO user session.  The
+       <a href="http://dev.usvao.org/vao/wiki/Products/vaologin">VAOLogin
+       toolkit</a> can handle this transparently.  
+       </p> </dd>
+
+  <dt> <a name="glossary">C.4.</a> All this jargon--is there a
+       glossary somewhere? </dt>
+  <dd> <p>Try <a href="http://dev.usvao.org/vao/wiki/VAOLogins/Glossary">
+       this</a>.  </p>
+</dl>
+
+
+</div>  <!-- end main-content -->
+
+<div class="foot">
+<div class="divider"><hr noshade="noshade" /></div>
+<table width="100%" border="0" cellspacing="0" style="margin:0">
+  <tr>
+  <td align="middle" width="64">
+      <a href="http://www.nsf.gov/"><img align="left" title="NSF" src="/images/nsflogo_64x.gif" width="64" height="64" border="0"></a></td>
+      <td width="80" class="tiny">
+      Supported by the <br><a href="http://www.nsf.gov/">National
+      Science Foundation</a>
+  </td>
+  <td>&nbsp;</td>
+  <td width="120" class="tiny" align="right">
+      With contributions from the
+      <a href="http://www.ncsa.uiuc.edu">National Center for Supercomputing 
+      Applications</a>
+  </td>
+  <td>
+      <img src="/images/ncsalogo-foot.gif" title="NCSA" height="50" />
+  </td>
+  <td class="tiny">and</td>
+  <td>
+      <a href="http://www.globus.org"><img src="/images/globusalliance-foot.gif" title="Globus" border="0"/></a>
+  </td>
+  <td>&nbsp;</td>
+  <td width="90" class="tiny" align="right">
+      Member of the <a href="http://www.ivoa.net">International
+      Virtual Observatory Alliance</a> 
+  </td>
+  <td align="middle" class="tiny" width="80">    
+      <a href="http://www.ivoa.net/"><img height="44" align="right" title="IVOA" src="/images/IVOAlogo.gif" width="80" border="0"></a></td>
+  </tr>
+</table>
+</div>
+
+<!--extraScripts-->
+</body>
+</html>

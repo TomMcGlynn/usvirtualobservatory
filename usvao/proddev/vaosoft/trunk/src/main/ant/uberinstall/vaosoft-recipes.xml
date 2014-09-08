@@ -1,0 +1,582 @@
+<?xml version="1.0"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant"
+         xmlns:vs="antlib:usvao.vaosoft.ant"
+         xmlns:ac="antlib:net.sf.antcontrib"
+         name="vaosoft.recipes" default="explain" basedir=".">
+
+  <property environment="env"/>
+  <property name="vaosoft.home" value="${env.VAOSOFT_HOME}" />
+  <property name="vao.home" value="${env.VAO_HOME}" />
+
+  <property name="vaosoft.products.dir" value="${vao.home}/products" />
+  <property name="vaosoft.cache.dir" value="${vao.home}/cache" />
+
+  <!-- location where dependencies are built -->
+  <property name="vaosoft.build.dir" value="${vao.home}/build" />
+  <property name="vaosoft.build.lock" 
+            value="${vaosoft.build.dir}/INSTALLING.lock" />
+
+  <property name="vaosoft.etc.extractAbout.style"
+            value="${vaosoft.home}/etc/extractAboutFilenames.xsl" />
+  <property name="vaosoft.etc.distribreport.style"
+            value="${vaosoft.home}/etc/distribFilenames.xsl" />
+
+  <property name="useIvy" value="true"/>
+  <property name="vao.ivy.settings.file" value="ivysettings.xml" />
+  <property name="vao.ivy.ivy.file" value="ivy.xml" />
+  <property name="vao.uberbuild.file" value="uberbuild.xml" />
+  <property name="vao.about.file" value="about.properties" />
+  <property name="vaosoft.ivy.settings.dir" value="etc" />
+  <property name="vao.repos.-baseurl" value="http://dev.usvao.org/repos"/>
+  <property name="vao.repos.prod" value="${vao.repos.baseurl}/vao" />
+  <property name="vao.repos.beta" value="${vao.repos.baseurl}/beta" />
+  <property name="vao.repos.use" value="vao" />
+  <property name="vao.repos.baseurl" 
+            value="${vao.repos.-baseurl}/${vao.repos.use}" />
+
+  <!--
+    - define default values for key properties used by these recipes
+    -->
+  <target name="initprops">
+  </target>
+
+  <!--
+    -  determine the name of the "about" file describing this product
+    -  that we will use.  
+    -->
+  <target name="aboutFile" depends="initprops" unless="vaosoft.about.path">
+    <ac:for param="aboutfile">
+      <path>
+        <pathelement location="${basedir}/${vao.about.file}" />
+        <pathelement location="${vaosoft.build.dir}/${vao.about.file}" />
+        <!-- if one didn't come with the product distrib file, 
+             we can use the one we obtained by another means 
+             (i.e. the repository). -->
+        <pathelement location="${vaosoft.about.alt.file}" />
+      </path>
+      <sequential>
+        <available property="vaosoft.about.path" 
+                   file="@{aboutfile}" value="@{aboutfile}" />
+      </sequential>
+    </ac:for>
+  </target>
+
+  
+
+  <!-- load the about properties -->
+  <target name="loadAboutData" depends="aboutFile" >
+    <fail unless="vaosoft.about.path">No About file found</fail>
+    <property file="${vaosoft.about.path}" prefix="product" />
+
+    <!-- some derived defaults -->
+    <property name="product.org" value="usvao"/>
+    <property name="product.version" value="unknwn"/>
+    <property name="product.prodpath" 
+              value="${product.org}/${product.name}/${product.version}" />
+    <property name="product.pkg.base" 
+              value="${product.name}-${product.version}" />
+    <property name="product.pkg.src.tgz" 
+              value="${product.pkg.base}.tar.gz" />
+    <property name="product.pkg.src.zip" 
+              value="${product.pkg.base}.zip" />
+    <property name="product.pkg.bin.tgz" 
+              value="${product.pkg.base}-bin.tar.gz" />
+    <property name="product.pkg.bin.zip" 
+              value="${product.pkg.base}-bin.zip" />
+
+    <!-- 
+      -->
+    
+
+    <property name="product.pkg.dir" 
+              value="${product.prodpath}/pkgs" />
+    <property name="product.pkgpath.zip" 
+              value="${product.pkg.dir}/${product.pkg.zip}" />
+    <property name="product.pkgpath.tgz" 
+              value="${product.pkg.dir}/${product.pkg.tgz}" />
+    <property name="product.pkgurl.zip" 
+              value="${vao.repos.baseurl}/${product.pkgpath.zip}" />
+    <property name="product.pkgurl.tgz" 
+              value="${vao.repos.baseurl}/${product.pkgpath.tgz}" />
+  </target>
+
+  <!--
+    -  determine the name of the ivy file we will use for this
+    -  product.  If an appropriate existing file can't be found,
+    -  one will be generated from the about.properties file.
+    -->
+  <target name="ivyFile" depends="aboutFile" unless="vaosoft.ivy.ivy.path">
+    <ac:for param="ivyfile">
+      <path>
+        <pathelement location="${basedir}/${vao.about.file}" />
+        <pathelement location="${vaosoft.build.dir}/${vao.ivy.ivy.file}" />
+        <!-- if one didn't come with the product distrib file, 
+             we can use the one we obtained by another means 
+             (i.e. the repository). -->
+        <pathelement location="${vaosoft.ivy.ivy.alt.file}" />
+      </path>
+      <sequential>
+        <available property="vaosoft.ivy.ivy.path" 
+                   file="@{ivyfile}" value="@{ivyfile}" />
+      </sequential>
+    </ac:for>
+
+    <condition property="_a2iver" value="${product.ver}" else="">
+      <isset property="product.ver"/>
+    </condition>
+    <ac:if>
+      <not>
+        <isset property="vaosoft.ivy.ivy.path" />
+      </not>
+
+      <ac:then>
+        <antcall target="about2ivy">
+          <param name="_aboutfile" value="${vaosoft.about.path}" />
+          <param name="_ivyfile" 
+                 value="${vaosoft.build.dir}/${vao.ivy.ivy.file}" />
+          <param name="_version" value="${a2iver}" />
+        </antcall>
+        <property name="vaosoft.ivy.ivy.path" 
+                  value="${vaosoft.build.dir}/${vao.ivy.ivy.file}" />
+      </ac:then>
+    </ac:if>
+  </target>
+
+  <!-- determine if already installed -->
+  <target name="isInstalled" depends="loadAboutData" >
+    <property name="product.version" value="trunk"/>
+    <local name="upprod"/>
+    <vs:transformText property="upprod" in="${product.name}">
+      <vs:upper/>
+    </vs:transformText>
+    <property name="product.build.install.evidence.env" 
+              value="${upprod}_HOME" /> 
+    <property name="product.build.install.evidence.vaosw" 
+              value="${vaosoft.products.dir}/${product.name}/${product.version}" /> 
+    <local name="prodhome" />
+    <ac:if>
+      <and>
+        <isset property="product.build.install.evidence.env"/>
+        <isset property="env.${product.build.install.evidence.env}"/>
+      </and>
+      <ac:then>
+        <ac:propertycopy property="prodhome"
+                       from="env.${product.build.install.evidence.env}" />
+      </ac:then>
+    </ac:if>
+
+    <!-- check as $[name]_HOME  -->
+    <available property="vaosoft.installed" file="${prodhome}" type="dir"
+               value="${prodhome}"/>
+    <!-- check under $VAO_HOME/sw  -->
+    <available property="vaosoft.installed" type="dir" 
+               value="${product.build.install.evidence.vaosw}"
+               file="${product.build.install.evidence.vaosw}"/>
+    <!-- check as specified home directory  -->
+    <available property="vaosoft.installed" type="dir" 
+               value="${product.build.install.evidence.swdir}"
+               file="${product.build.install.evidence.swdir}"/>
+
+    <!-- check standard locations -->
+    <ac:if>
+      <not><isset property="vaosoft.installed"/></not>
+      <ac:then>
+        <local name="_filelist"/>
+        <vs:listPropertyNames property="_filelist" 
+                     prefix="product.build.install.evidence.stddirfile." />
+        <ac:if>
+          <isset property="_filelist"/>
+          <ac:then>
+            <ac:for list="${_filelist}" param="prop">
+              <sequential>
+                <local name="_prodfile"/>
+                <ac:propertycopy property="_prodfile" from="@{prop}"/>
+                <available property="vaosoft.installed" type="file" value=""
+                           file="${_prodfile}"/>
+              </sequential>
+            </ac:for>
+          </ac:then>
+        </ac:if>
+      </ac:then>
+    </ac:if>
+
+    <!-- check special locations -->
+    <ac:if>
+      <not><isset property="vaosoft.installed"/></not>
+      <ac:then>
+        <local name="_filelist"/>
+        <vs:listPropertyNames property="_filelist" 
+                     prefix="product.build.install.evidence.dirfile." />
+        <ac:if>
+          <isset property="_filelist"/>
+          <ac:then>
+            <echo>${_filelist}</echo>
+            <ac:for list="${_filelist}" param="prop">
+              <sequential>
+                <local name="_prodfile"/>
+                <local name="_prodfile.dir"/>
+                <local name="_prodfile.file"/>
+                <local name="_prodfile.path"/>
+                <ac:propertycopy property="_prodfile" from="@{prop}"/>
+                <vs:split prefix="_prodfile" names="dir,file" in="${_prodfile}" />
+                <property name="_prodfile.path" 
+                          value="${_prodfile.dir}/${_prodfile.file}"/>
+                <available property="vaosoft.installed" type="file" 
+                           value="${_prodfile.dir}" file="${_prodfile.path}"/>
+              </sequential>
+            </ac:for>
+          </ac:then>
+        </ac:if>
+      </ac:then>
+    </ac:if>
+  </target>
+  
+  <!--
+    -  Set boolean ivyAvail property that indicates whether we can use
+    -  Ivy.  To return true, the ivyAvail property must be set to true,
+    -  and Ivy must be installed into Ant
+    -->
+  <target name="ivyCheck" depends="initprops">
+    <!--
+      -  Assume Ivy is available if it isn't turned off and the jar
+      -  file is installed either in lib or in our ant installation.
+      -->
+    <condition property="ivyAvail">
+      <and>
+        <istrue value="${useIvy}" />
+        <available classname="org.apache.ivy.Main" >
+          <classpath>
+            <!-- <path refid="local.jar.path" /> -->
+            <fileset dir="${ant.library.dir}" />
+          </classpath>
+        </available>
+      </and>
+    </condition>
+  </target>
+
+  <!--
+    -  Look for and set the ivy configuration file (ivysettings.xml)
+    -->
+  <target name="-ivyConfigFile" depends="initprops">
+    <!-- in the current directory -->
+    <available property="vao.ivy.settings.path" file="${vao.ivy.settings.file}" 
+               value="${vao.ivy.settings.file}"/>
+
+    <!-- in the vaosoft installation directory (configured) -->
+    <available property="vao.ivy.settings.path" 
+               file="${vaosoft.home}/${vaosoft.ivy.settings.dir}/${vao.ivy.settings.file}" 
+               value="${vaosoft.home}/${vaosoft.ivy.settings.dir}/${vao.ivy.settings.file}" />
+
+    <!-- in the vaosoft installation directory (via environment) -->
+    <condition property="vao.ivy.settings.path" 
+               value="${VAOSOFT_HOME}/${vaosoft.ivy.settings.dir}/${vao.ivy.settings.file}">
+      <and>
+        <isset property="env.VAOSOFT_HOME" />
+        <available file="${env.VAOSOFT_HOME}/${vaosoft.ivy.settings.dir}/${vao.ivy.settings.file}" />
+      </and>
+    </condition>
+
+    <!-- in the VAO_HOME directory -->
+    <condition property="vao.ivy.settings.path" 
+               value="${env.VAO_HOME}/ivy-settings.xml">
+      <and>
+        <isset property="env.VAO_HOME" />
+        <available file="${env.VAO_HOME}/ivy-settings.xml" />
+      </and>
+    </condition>
+
+    <!-- 
+    <echo>Ivy Settings File: ${vao.ivy.settings.path}</echo>
+      -->
+  </target>
+
+  <!--
+    -  Configure Ivy by loading an settings file.  The settings file
+    -  is either a local file (in the vao.ivy.settings.path property)
+    -  or from a URL (${vao.repos.baseurl}/ivysettings.xml).
+    -->
+  <target name="-ivyConfigFromFile" depends="-ivyConfigFile" 
+          if="vao.ivy.settings.path">
+    <ivy:configure file="${vao.ivy.settings.path}" />
+  </target>
+  <target name="-ivyConfigFromURL" depends="-ivyConfigFile" 
+          unless="vao.ivy.settings.path">
+    <echo>Fetching Ivy configuration (ivysettings.xml) from repository</echo>
+    <ivy:configure url="${vao.repos.baseurl}/${vao.ivy.settings.file}" />
+  </target>
+  <target name="-ivyConfig-ifAvail" 
+          depends="-ivyConfigFromFile,-ivyConfigFromURL"
+          if="ivyAvail" />
+  <target name="ivyConfig" if="ivyAvail" depends="ivyCheck">
+    <antcall target="-ivyConfigFromFile" />
+    <antcall target="-ivyConfigFromURL" />
+  </target>
+          
+  <!--
+    -  Create an ivy.xml file from an about.properties.  This must be called
+    -  via an <antcall> task, setting the following parameters:
+    -  @param _aboutfile    the input about.properties file
+    -  @param _ivyfile      the output ivy.xml file
+    -  @param _version      the version to give to the release
+    -->
+  <target name="about2ivy">
+    <!-- <echo>converting ${_aboutfile} to ${_ivyfile}</echo> -->
+    <vs:about2ivy aboutFile="${_aboutfile}" ivyFile="${_ivyfile}"
+                  version="${_version}" />
+  </target>
+
+  <!--
+    -  ensure dependencies needed for a given ivy configuration is 
+    -  in the local repository
+    -  @param _conf     the Ivy configuration to resolve dependencies.
+    -  @param _ivyfile  the ivy file to use to determine the dependencies.
+    -                     If undefined or empty, it will default to the
+    -                     default ivy.xml
+    -  @param _depsdir  the directory where we will cache the artifact report
+    -                     and extract about file info
+    -->
+  <target name="resolveForConf"  depends="ivyConfig">
+    <property name="_depsdir" value="${deps.dir}" /> 
+    <property name="_ivyfile" value="${basedir}/ivy.xml" /> 
+    <fail unless="${ivyAvail}">Ivy dependency retrieval disabled; check useIvy property.</fail>
+
+    <!-- resolve all dependencies for the requested configuration -->
+    <ivy:resolve conf="${_conf}" file="${_ivyfile}" />
+
+    <!-- create the artifact report and extract an ordered list of about
+         files.  -->
+    <mkdir dir="${_depsdir}/${_conf}" />
+    <ivy:artifactreport tofile="${_depsdir}/${_conf}/artifactreport.xml"
+                        conf="${_conf}"
+                        pattern="${_depsdir}/[conf]/[module]-[revision](-[type]).[ext]" />
+    <xslt in="${_depsdir}/${_conf}/artifactreport.xml" 
+          out="${_depsdir}/${_conf}/builddeps.properties" 
+          style="${vaosoft.etc.extractAbout.style}" />
+    <ac:antcallback target="-loadNamedProp" return="product.deps.ordered.about">
+      <param name="_file" value="${_depsdir}/${_conf}/builddeps.properties" />
+      <param name="_propname" value="product.deps.ordered.about" />
+    </ac:antcallback>
+  </target>
+
+  <target name="-loadNamedProp">
+    <property name="_file" value="${deps.dir}/builddeps.properties" />
+    <property name="_propname" value="orderedAbouts" />
+
+    <property file="${_file}" prefix="_depAboutFiles" />
+    <property name="${_propname}" 
+              value="${_depAboutFiles.build.dep.ordered.about}" />
+  </target>
+
+  <!--
+    -  copy jar file dependencies (and their license files) into the 
+    -  lib directory.
+    -->
+  <target name="retrieveJars" depends="resolveForConf">
+    <property name="_todir" value="${libs.dir}" />
+    <property name="_ivyfile" value="${basedir}/ivy.xml" />
+    <property name="_conf" />
+
+    <ivy:retrieve file="${_ivyfile}" conf="${_conf}" type="jar" 
+                  overwriteMode="never" 
+                  pattern="${_todir}/[module]-[revision].[ext]" />
+    <ivy:retrieve file="${_ivyfile}" conf="${_conf}" type="LICENSE" 
+                  overwriteMode="never" 
+                  pattern="${_todir}/[module]-[revision]-[type].[ext]" />
+  </target>
+  
+
+
+  <!-- 
+    -  Download the buildable distribution file from the repository
+    -->
+  <target name="fetchpkg" depends="loadAboutData" unless="product.distrib.path">
+    <fail unless="vaosoft.build.product.dir">No product build dir defined</fail> 
+    <echo>preferred: ${product.build.distrib.path.preferred}</echo>
+    <ac:if>
+      <and>
+        <isset property="product.build.distrib.path.preferred"/>
+        <length string="${product.build.distrib.path.preferred}" trim="true"
+                when="greater" length="0" />
+      </and>
+      <ac:then>
+        <!-- a specific file is specifed as the distribution bundle to fetch -->
+        <basename property="product.distrib.file" 
+                  file="${product.build.distrib.path.preferred}" />
+        <get src="${vao.repos.baseurl}/${product.prodpath}/${product.build.distrib.path.preferred}" 
+             dest="${vaosoft.build.product.dir}/${product.distrib.file}" 
+             usetimestamp="true"/>
+        <property name="product.distrib.path" 
+                value="${vaosoft.build.product.dir}/${product.distrib.file}" />
+      </ac:then>
+      <ac:else>
+        <!-- use ivy to pull over the recommended distribution bundle  -->
+        <ivy:retrieve conf="distrib" inline="true" 
+                      organisation="${product.org}" 
+                      module="${product.name}" revision="${product.version}" 
+       pattern="${vaosoft.build.product.dir}/[module]-[revision]-[type].[ext]"/>
+        <!-- save name of destination file -->
+        <ivy:artifactproperty name="product.distrib.path" conf="distrib" 
+                              overwrite="true"
+         value="${vaosoft.build.product.dir}/[module]-[revision]-[type].[ext]"/>
+        <basename property="product.distrib.file" 
+                  file="${product.distrib.path}" />
+
+        <!-- get the path of the version in the cache and then deleted it
+             (to minimize space wasted on tar/zip files) -->
+        <ivy:cachefileset setid="product.distrib.cache.fileid" inline="true" 
+                       organisation="${product.org}" 
+                       module="${product.name}" revision="${product.version}" />
+        <delete verbose="true">
+          <fileset refid="product.distrib.cache.fileid"/>
+        </delete>
+      </ac:else>
+    </ac:if>
+  </target>
+
+  <!-- unpack -->
+  <target name="unpackpkg" depends="fetchpkg" unless="product.distrib.dir">
+    <ac:if>
+      <matches string="${product.distrib.path}" pattern="\.zip$" />
+      <ac:then>
+        <!-- unzip the package -->
+        <unzip src="${product.distrib.path}" dest="${vaosoft.build.procuct.dir}"
+               failOnEmptyArchive="true"/>
+      </ac:then>
+      <ac:else>
+        <ac:if>
+          <or>
+            <matches string="${product.distrib.path}" pattern="\.tar.gz$" />
+            <matches string="${product.distrib.path}" pattern="\.tgz$" />
+          </or>
+          <ac:then>
+            <untar src="${product.distrib.path}" dest="${vaosoft.build.procuct.dir}"
+                   compression="gzip" failOnEmptyArchive="true"/>
+          </ac:then>
+          <ac:else>
+            <ac:if>
+              <matches string="${product.distrib.path}" pattern="\.tar$" />
+              <ac:then>
+                <untar src="${product.distrib.path}" dest="${vaosoft.build.procuct.dir}"
+                       failOnEmptyArchive="true"/>
+              </ac:then>
+              <ac:else>
+                <fail>Don't know how to unpack ${product.distrib.path}</fail>
+              </ac:else>
+            </ac:if>
+          </ac:else>
+        </ac:if>
+      </ac:else>
+               
+    </ac:if>
+
+    <!-- now figure out the root directory of what got unpacked.  -->
+    <path id="vaosoft.build.distrib.root.path" dir="">
+      <dirset dir="${vaosoft.build.product.dir}" 
+              includes="*${product.version}*"/>
+    </path>
+    <property name="product.distrib.dir" 
+              value="${toString:vaosoft.build.distrib.root.path}" />
+
+    <!-- fetch an uberbuild file
+    <available property="vaosoft.build.uberbuild.path" 
+               value="${product.distrib.dir}/${vao.uberbuild.file}" />
+    <ac:if>
+      <not>
+        <isset property="vaosoft.build.uberbuild.path" />
+      </not>
+      <ac:then>
+        <ivy:retrieve haltonfailure="false" conf="distrib" 
+      </ac:then>
+    </ac:if> -->
+  </target>
+
+
+  <!-- build -->
+  <target name="buildpkg" depends="unpackpkg" unless="product.distrib.dir">
+    <!-- figure out native 
+
+  </target>
+
+  <!--
+    -  determine if a version of a product with a given version
+    -  constraint is installed.  The given product will typically be
+    -  one listed as a dependency in another product's about file.  
+    -  The version constraint comes from there as well.  
+    -  @param -prodname    the name of the product
+    -  @param -version     the version constraint of the product; if 
+    -                         not set, any version is acceptable.
+    -  @return -installed
+    -->
+  <target name="productInstalled" >
+    <vs:InstalledVersion product="${-prodname}" version="${-version}"
+                         property="${-installed}"/>
+  </target>
+
+  <!-- 
+    -  ensure a product matching needed version constraints is installed
+    -  into the vaostack.  
+    -  @param -prodname    the name of the product
+    -  @param -org         the product's organization name
+    -  @param -version     the version constraint of the product; if 
+    -                         not set, any version is acceptable.
+    -  @return -installed
+    -->
+  <target name="ensureInstalled">
+    <ac:var name="-installed" unset="true"/>
+
+    <!-- check to see if a matching version is installed -->
+    <antcallback target="productInstalled" return="-installed"/>
+
+    <!-- if -installed not set, download an about file with an 
+         acceptable version -->
+    <ac:if>
+      <not>
+        <isset property="-installed" />
+      </not>
+      <ac:then>
+        <!-- download the about file -->
+        <mkdir dir="${vaosoft.build.dir}/distrib" />
+        <ivy:retrieve conf="uberinstall" inline="true" keep="true"
+                      organisation="${-org}" type="about" 
+                      module="${-product}" revision="${-version}" 
+             pattern="${vaosoft.build.dir}/[module]-[revision]/[module]-[revision]-[type].[ext]" />
+        <ivy:artifactproperty name="-product-version" conf="distrib" 
+                              value="[revision]" overwrite="true"/>
+        <ivy:artifactproperty name="-build-dir" conf="distrib" overwrite="true"
+             value="${vaosoft.build.dir}/[module]-[revision]" />
+        <ivy:artifactproperty name="-about-file" conf="distrib" overwrite="true"
+         value="${vaosoft.build.product.dir}/[module]-[revision]-[type].[ext]"/>
+
+        <!-- Now build the package -->
+        <antcall target="installProductFromAbout" inheritAll="false">
+          <param name="vaosoft.about.path" value="${-about-file}" />
+          <param name="vaosoft.build.product.dir" value="${-build-dir}"/>
+        </antcall>
+        <property name="-installed" value="-product-version" />
+        <delete file="-about-file" />
+      </ac:then>
+    </ac:if>
+  </target>
+
+  <!-- 
+    -  install a product into the stack described by a given about file.
+    -  Intended for execution via <antcall inheritAll="true">, this target 
+    -  assumes no properties other than the ones set below.  
+    -  @param vaosoft.about.path         the path to the about file on local 
+    -                                       disk
+    -  @param vaosoft.build.product.dir  the directory where to download and 
+    -                                       unpack the distribution file
+    -->
+  <target name="installProductFromAbout" depends="fetchpkg">
+    
+  </target>
+
+  <!-- retrieve and build -->
+  
+
+  
+  <target name="explain" depends="initprops">
+    <echo>VAOSOFT_HOME=${env.VAOSOFT_HOME}</echo>
+  </target>
+</project>
+

@@ -1,0 +1,465 @@
+<html> <head>
+<title>Privacy Policy for VAO Single Sign-on Services</title>
+<link href="styles/sso.css" type="text/css" rel="stylesheet" />
+<link href="images/favicon.ico" type="image/vnd.microsoft.icon" rel="icon"/>
+<style type="text/css">
+dl.tmfaq dt {
+   font-size: 12pt;
+   font-weight: 700;
+   color: #003366;
+   margin-top: 0.75ex;
+}
+div.whatcanido {
+   float: right;
+   width: 230pix;
+   margin-left:  2em;
+   background-color: #65c0cc;
+   padding-left: 1em;
+}
+</style>
+</head>
+
+
+<body>
+<script type="text/javascript" src="/styles/jquery.min.js"></script>
+<table width="100%" id="nav-head" border="0" cellpadding="0" cellspacing="0">
+ <tr>
+  <td id="nav-ul"></td>
+  <td></td>
+  <td id="nav-ur"></td>
+ </tr><tr>
+  <td id="nav-menu">
+<ul>
+  <li><a href="/">About VAO Logins</a></li>
+  <li><a href="/register/">Get a VAO Login</a></li>
+  <li><a href="/openid/">Profile and Preferences</a></li>
+  <li><a href="/help/support.html">Support VAO Logins</a></li>
+  <li><a href="/help/faq.html">FAQ</a></li>
+</ul>
+  </td>
+  <td id="nav-logo" align="center" valign="top">
+     <a href="http://www.usvao.org"><img src="/images/VAOwords_200.png" width="180" height="100" /></a>
+  </td>
+  <td id="nav-menu">
+<ul>
+  <li><a href="http://www.usvao.org/">VAO Home</a></li>
+  <li><a href="http://www.usvao.org/tools/">Science Tools</a></li>
+  <li><a href="http://www.usvao.org/about-vao/">About the VAO</a></li>
+  <li><a href="http://www.usvao.org/news/">VAO News</a></li>
+  <li><a href="http://www.usvao.org/contact-connect/">Contact and Connect</a></li>
+</ul>
+  </td>
+ </tr><tr>
+  <td id="nav-bl"></td>
+  <td align="center">
+     <span style="color: green;">
+     <span id="loginStatus"></span>
+<script type="text/javascript">
+function makeStatusHTML(status) {
+    var htmlt = "";
+    if (status.state == "in") {
+        htmlt += status.username;
+        htmlt += " &nbsp;&nbsp;Time left: ";
+        htmlt += status.dispLeft;
+        htmlt += ' &nbsp;&nbsp;<a href="/openid/?logout=true">Logout</a> ';
+    }
+    else if (status.state == "expired") {
+        htmlt += "Expired session as ";
+        htmlt += status.username;
+        htmlt += '&nbsp;&nbsp;<a href="/openid/">Login</a>';
+    }
+    else {
+        htmlt += 'Logged out &nbsp;&nbsp;<a href=\"/openid/\">Login</a>&nbsp;&nbsp;<a href="/register/">Register</a>';
+    }
+    return htmlt;
+}
+
+function displayStatus(status) {
+    jQuery("#loginStatus")[0].innerHTML = makeStatusHTML(status);
+}
+
+jQuery(document).ready(function() {
+    jQuery.getJSON("/openid/loginStatus", displayStatus);
+})
+</script></span>
+  </td>
+  <td id="nav-br"></td>
+ </tr>
+</table>
+     
+<div class="main-content">
+
+<h1>VAO Security and Privacy Policies </h1>
+
+<p>
+The VAO Login Services are provided to make it easier for scientists,
+educators, and students to access and share proprietary data
+throughout the Virtual Observatory environment.  It allows for the
+establishment of a platform for research that spans across archives
+and web sites that are managed by different institutions.  
+</p>
+
+<p>
+This document describes the VAO Login Services terms of use, security
+policies, and privacy policies.  These apply to both sites that
+support VAO Logins and users that establish VAO identities to use
+those sites. 
+</p>
+
+<p>
+In summary, the key points from this document to keep in mind:
+<ul>
+  <li> Use of the VAO Login services are for legitimate scientific 
+       and educational purposes.  </li>
+  <li> The VAO may block users or web sites from using the VAO Login
+       services that violate our terms of use.  </li>
+  <li> To support a federated identity, the VAO services <em>will</em> share
+       your registration data with third parties but only after securing
+       explicit, "opt-in" permission from you. </li>
+  <li> We employ best practices for protecting your information,
+       password, and other data from unauthorized access; however, we
+       recognize that in the IT world there is no absolute guarantee
+       of security.  Consequently, this protection is provided on
+       a best effort basis. </li> 
+</ul>
+You should take these points into consideration when entrusting data
+into this system.  
+</p>
+
+<h3>Table of Contents</h3>
+
+<dl>
+  <dd> <a href="#parties">User Data and Responsible Parties</a> </dd>
+  <dd> <a href="#caveat">Caveat Emptor</a> </dd>
+  <dd> <a href="#restrict">Restrictions on Use</a> </dd>
+  <dd> <a href="#privacy">Controlling Access to Your Information and
+       Data</a> 
+</dl>
+
+<a name="parties"></a>
+<h2>User Data and Responsible Parties</h2>
+
+<h3>Data Held on VAO-managed Systems</h3>
+
+<p>
+An aim of the VAO Login services is to provide secure, federated
+identities across separately administered web sites and services.
+When a user participates in the VAO Login framework, some data and
+personal information are held by VAO-administered sites, and some by
+partner sites which are not under VAO control.  Users should
+familiarize themselves with the policies of both VAO and non-VAO sites
+that they visit.
+</p>
+
+<p>
+The VAO Login Services collects and maintains (or may do so in future)
+the following information about users: </p>
+<ul>
+  <li> personal information requested at registration time (when a
+       user creates their VAO identity).  This information is shared 
+       with collaborating web sites upon permission by the user
+       (though the <a href="http://www.openid.net">OpenID</a>
+       protocol).  </li> 
+  <li> group membership information established by users explicitly
+       for sharing data with other users. </li>
+  <li> other affiliation information that helps verify the true
+       identity of the user and collected with the explicit
+       cooperation of the user.
+  <li> logs of accesses to its services by users to help users
+       troubleshoot problems and to assess the effectiveness of our
+       services. </li>
+</ul>
+
+<p>
+The VAO project provides other services and tools that allow user to
+save data associated with their VAO identity; we refer to such data
+items as <em>user data products.</em>.  The user can later retrieve
+their user data products and/or share them securely with other users
+or web sites with the help of VAO Login services. 
+</p>
+
+<h3>Data Held on Third-party Systems</h3>
+
+<p>
+A non-VAO web site, which we refer to as a <em>third-party portal</em>,
+can leverage VAO Login services to authenticate users that visit the
+site; this is done through the
+<a href="http://www.openid.net/">OpenID</a> protocol.  Such a site can
+then store data products associated with the user's VAO identity.  A
+third-party portal may wish to collect user information as part of a
+registration process.  (Some of this may be collected by requesting it
+from the VAO via the OpenID protocol, requiring the user's permission,
+or by asking the user for it directly.)  The portal may also collect
+logging information recording accesses to the site by the user.
+</p>
+
+<p>
+While the VAO is not responsible for the handling of data and
+information held by third-party sites, all sites that use VAO logins
+are subject to the terms of use spelled out in this document.  The VAO
+maintains records of sites that have explicitly agreed to these terms
+and are thereby "known" to the VAO; however, sites may make use of the
+open VAO login services without prior notification.  Sites that
+violate the terms of use may be blocked from using VAO services.  
+</p>
+
+<h3>User Responsibilities</h3>
+
+<p>
+A user with a VAO login account (i.e. a <em>VAO identity</em>) and who
+uses services protected by VAO authentication may create or download
+data products in the normal course of using those services.  The VAO
+is not responsible for products stored on the user's own sytems.  User data
+products stored on portal web sites should not be considered safe from
+loss due to system failure or human error <em>unless the site
+explicitly documents such otherwise</em>; users are responsible for
+backing up their own data to protect against loss.  
+</p>
+
+<p>
+The VAO framework for federated identities is optimized for one login
+account per user.  Multiple accounts for a single user are discouraged
+but not disallowed.  Group accounts in which a single password is
+shared amoung multiple users are highly discouraged.  
+</p>
+
+<p>
+The VAO asks users that when they create a VAO identity that they
+accept the following responsibilites:
+</p>
+<ul>
+  <li> abide by the terms described in the "Restrictions on Use"
+       below, </li>
+  <li> take reasonable measures to protect their password from
+       discovery by others and not to share their password with
+       others, </li>
+  <li> practice good "Netizenship" and conduct themselves
+       professionally and courteously while logged into VAO and
+       VAO-compatible portal.  </li>
+</ul>
+
+<a name="caveat"></a>
+<h2>Caveat Emptor</h2>
+
+<p>
+The VAO Login services available via the site at
+<a href="https://sso.usvao.org/">https://sso.usvao.org/</a> are
+provided by the VAO project for research and educational purposes only.
+They should not be used to support commercial or other monetary
+transactions.  While we strive to ensure a high degree of security,
+data integrity, and user support, these services are provided "as-is"
+and on a best-effort basis, without any implied guarantees.  Users are
+advised against using these services for purposes in which data loss or a
+unauthorized disclosure would result in significant monetary loss or
+physical damage.  The VAO, LLC shall not be held liable for loss or
+unauthorized disclosure of user data or information.  
+</p>
+
+<a name="restrict"></a>
+<h2>Restrictions of Use</h2>
+
+<p>
+The VAO login and data services must <em>not</em> be used for any of the 
+follow purposes:
+</p>
+<ul>
+  <li> to directly support commercial or other monetary transactions, </li>
+  <li> to support activities of any kind in violation of U.S. law,
+       including the unlawful distribution of copyrighted or illicit
+       materials, </li>
+  <li> to attempt to circumvent the authentication and authorization
+       mechanisms of any VAO portal or service or of any
+       VAO-compatible portal or service,
+  <li> to promote a hostile environment for other users, and </li>
+  <li> to support uses other than those that advance scientific
+       research or education unless otherwise approved by the VAO
+       project.  </li>
+</ul>
+
+<p>
+When an application wishes to charge a user for a service (e.g. a
+conference registration fee), any collection of personal financial
+information, including credit card numbers, must be done outside the
+security realm protected by VAO Login services.  Sites supporting VAO
+Login services must not use VAO Login services to authenticate users
+to authorize access to any such financial information.  The VAO,
+LLC accepts no responsibility loss or disclosure of financial
+information.  
+</p>
+<p>
+Web sites supporting VAO Logins must not attempt to capture or
+cache a user's password in either encrypted or unencrypted form
+without express permission to do so by VAO Login Services
+administrators; user authentication must be handled only by approved
+VAO services operated by the VAO and approved VAO partners.  Web sites
+must not serve web pages made to look like VAO web pages without
+express permission. 
+</p>
+
+<p>
+The VAO reserves the right to block any user or web site that violate
+these restrictions from using VAO services.  
+</p>
+
+<a name="privacy"></a>
+<h2>Controlling Access to Your Information and Data</h2>
+
+<h3>Sharing Registration Information with Permission</h3>
+
+<p>
+When you, as a user, register to create a VAO identity, you provide the
+VAO with some personal information including an email address, country
+of residence, etc.  When you authenticate with a web site (i.e. log
+into it) using a VAO login name, the web site may request access to
+any of this information.  VAO Login services <strong>will share this
+registration information only after you provide explicit permission to
+do so.</strong>.  This is done by presenting a page that lists the
+information being requested and asks for your permission to share it.
+You can choose to have the VAO remember this decision so you are not
+asked again.  The VAO Login services allow you later to change this
+decision at any time later. (See your
+<a href="/openid/prefs">the privacy prefences page for details</a>.)
+</p>
+
+<p>
+To help advise users when sharing information, the VAO keeps records
+of known collaborating web sites who agreed explicitly to abide by the
+VAO's terms of use; VAO services will note when such a web site is so
+recognized.  
+</p>
+
+<h3>Sharing Data Products Across Sites</h3>
+
+<p>
+As a result of the VAO's system of federated identities, a user can
+have data associated with their VAO identity at many different VAO and
+third-party portals.  The VAO Login services can enable one portal to
+access a user's products at another portal on the user's behalf.  To
+accomplish this, a portal can request an X.509 certificate, a digital
+data item that represents the user's identity.  The VAO will provide
+the portal with the certificate only after receiving permission from
+the user.  (The user can have the VAO Login services remember this
+choice to provide certificates to the portal without further
+permission.)  Other portals may choose to accept an X.509 certificate
+as authentication of the user; thus, the portal holding the
+certificate can present the certificate to services at other portals
+and access the user's data.  
+</p>
+
+<p>
+Access via X.509 certificates issued by the VAO Login services have
+two important limitations: 
+</p>
+<ul>
+  <li> The certificates are valid for a limited time.  This time may
+       by set by the user.  The maximum validity time is limited by
+       VAO policy. </li>
+  <li> Depending on the policy of the portal accepting the certificate
+       as authentication, the certificate <em>may</em> enable access
+       to <em>all</em> data products belonging to the user.  The
+       certificate does not specify internally any limitation on what
+       data can be accessed or what other specific authorizations
+       should be granted.  </li>
+</ul>
+
+<p>
+The VAO Login services may in the future provide mechanisms that
+restrict access to data and services on a finer grain level than
+described above.  
+</p>
+
+<p>
+To help advise users on when to allow a web site to access their data
+on other sites via an X.509 certificates, the VAO maintains records of
+"known" collaborating portals who have explicitly agreed to the VAO
+policies and terms of service.  Users will be informed when a known
+portal is requesting an X.509 certificate.  The portal should document
+their services that access user data products on other sites to inform
+the user what data will be access and how it will be used.  Portals
+should should not access or cache data for purposes other than those
+documented for the user. 
+</p>
+
+<h3>Other Information Sharing</h3>
+
+<p>
+The VAO will not share personal information including email addresses
+with third parties for any reason outside of the process described
+above.  The VAO will not use users' personal information for
+distributing email for any purposes other than the maintenance of
+users' identities.  The VAO does not condone the use of user email
+addresses by third parties that have retrieved them through the
+legitimate means described above for purposes other that the
+administration of participating portals.  Abuse of user trust and the
+intent of the VAO Login federation with regard to email address use
+(such as to deliver spam) will be considered grounds for discontinuing
+support for a third-party portal.  
+</p>
+
+<p>
+The VAO will not share any information revealing patterns of use that
+is traceable to an individual user with third parties with the
+following exception:  administrators of known web sites supporting VAO
+logins that have agreed to the terms of use may request through a
+secure service access to information logging access (and access
+attempts) to their own web sites through the VAO Login services.  This
+is provided to aid in their assisting their users with login
+troubles.  Web site administrators will not have access to logging
+information related to other web sites.  
+</p>
+
+<p>
+The VAO collects logging information to compile aggregate statistics
+to understand the true usage of VAO services.  While some user
+tracking may be done internally to identify related operations, this
+is done without regard to the specific identity of the users.  Aggregate
+statistics that do not identify individual identities may be published
+publically.  
+</p>
+
+<p>
+The VAO strives with best effort to protect each user's personal information,
+password, and records of usage from access by unauthorized parties.
+As part of this effort, we apply best practices recognized by industry
+and IT security community.  
+</p>
+
+</div>  <!-- end main-content -->
+
+<div class="foot">
+<div class="divider"><hr noshade="noshade" /></div>
+<table width="100%" border="0" cellspacing="0" style="margin:0">
+  <tr>
+  <td align="middle" width="64">
+      <a href="http://www.nsf.gov/"><img align="left" title="NSF" src="images/nsflogo_64x.gif" width="64" height="64" border="0"></a></td>
+      <td width="80" class="tiny">
+      Supported by the <br><a href="http://www.nsf.gov/">National
+      Science Foundation</a>
+  </td>
+  <td>&nbsp;</td>
+  <td width="120" class="tiny" align="right">
+      With contributions from the
+      <a href="http://www.ncsa.uiuc.edu">National Center for Supercomputing 
+      Applications</a>
+  </td>
+  <td>
+      <img src="images/ncsalogo-foot.gif" title="NCSA" height="50" />
+  </td>
+  <td class="tiny">and</td>
+  <td>
+      <a href="http://www.globus.org"><img src="images/globusalliance-foot.gif" title="Globus" border="0"/></a>
+  </td>
+  <td>&nbsp;</td>
+  <td width="90" class="tiny" align="right">
+      Member of the <a href="http://www.ivoa.net">International
+      Virtual Observatory Alliance</a> 
+  </td>
+  <td align="middle" class="tiny" width="80">    
+      <a href="http://www.ivoa.net/"><img height="44" align="right" title="IVOA" src="images/IVOAlogo.gif" width="80" border="0"></a></td>
+  </tr>
+</table>
+</div>
+
+<!--extraScripts-->
+</body>
+</html>

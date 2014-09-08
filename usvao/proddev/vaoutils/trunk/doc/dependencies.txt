@@ -1,0 +1,20 @@
+Dependencies (a historical tally)
+
+commons-configuration:
+  Web site:      http://commons.apache.org/configuration/
+  License:       Apache 2
+  Version:       1.9
+  Introduced by: StdConfiguration
+
+commons-lang:
+  Web site:      http://commons.apache.org/lang/
+  License:       Apache 2
+  Version:       2.6
+  Introduced by: commons-configuration
+
+commons-logging:
+  Web site:      http://commons.apache.org/logging/
+  License:       Apache 2
+  Version:       1.1.1
+  Introduced by: commons-configuration
+

@@ -1,0 +1,534 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>vaosamp &mdash; VOClient Python API 1.0rc1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0rc1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="VOClient Python API 1.0rc1 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/vao_logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for vaosamp</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A module for basic SAMP interactions.</span>
+
+<span class="sd">SAMP (Simple Access Messaging Protocol, http://www.ivoa.net/Documents/SAMP/index.html) is an</span>
+<span class="sd">application-level messaging structure. It allows for communication between regsitered client</span>
+<span class="sd">applications via a SAMP Hub. Client applications can send messages to other applications to</span>
+<span class="sd">pass data references or notifications or action invocations, e.g., load this table or this</span>
+<span class="sd">image. Client applications can also listen for messages from other applications to which they</span>
+<span class="sd">can respond in an appropriate manner.</span>
+
+<span class="sd">This modules provides basic, low-level access to the SAMP framework. It requires a separate</span>
+<span class="sd">SAMP Hub to be available, either as a standalone Hub or one running as part of another</span>
+<span class="sd">SAMP-enabled application (TOPCAT, Aladin, etc. provide built-in Hubs).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SAMPConnection"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection">[docs]</a><span class="k">class</span> <span class="nc">SAMPConnection</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class for sending and receiving SAMP messages to/from a SAMP Hub </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multiple</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">sender</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">to</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">pattern</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="nb">file</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">keepalive</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">proxy</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">timeout</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">session</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creating a connection to a SAMP Hub running on the local machine. </span>
+
+<span class="sd">        At this time, no provision is made for connecting to a remote SAMP hub.</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *multiple*: handle multiple messages (default: False). The connection will</span>
+<span class="sd">            close after a single message.</span>
+
+<span class="sd">            *sender*: handle only messages from &lt;sender&gt;</span>
+
+<span class="sd">            *to*: send to specified application (&lt;to&gt;); otherwise all applications will be notified</span>
+
+<span class="sd">            *pattern*: message pattern - allowed values are: sync, async and notify</span>
+
+<span class="sd">            *file*: send all commands in the file &lt;file&gt;</span>
+
+<span class="sd">            *keepalive*: if set to False, disable the keep_alive feature (default: True).</span>
+
+<span class="sd">            *proxy*:  the proxy IP address to use</span>
+
+<span class="sd">            *timeout*: set the keep_alive timeout if keep_alive is set to True</span>
+
+<span class="sd">            *session*: set a name for the session</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+
+	<span class="bp">self</span><span class="o">.</span><span class="n">multiple</span> <span class="o">=</span> <span class="n">multiple</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">sender</span> <span class="o">=</span> <span class="n">sender</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">to</span> <span class="o">=</span> <span class="n">to</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">pattern</span> <span class="o">=</span> <span class="n">pattern</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">file</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">keepalive</span> <span class="o">=</span> <span class="n">keepalive</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">proxy</span> <span class="o">=</span> <span class="n">proxy</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+	<span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">session</span>
+	<span class="k">pass</span>
+
+<div class="viewcode-block" id="SAMPConnection.snoop"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.snoop">[docs]</a>    <span class="k">def</span> <span class="nf">snoop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Print all received messages</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.listsession"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.listsession">[docs]</a>    <span class="k">def</span> <span class="nf">listsession</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a list of all nodes in the current session</span>
+<span class="sd">        </span>
+<span class="sd">        :Returns:</span>
+<span class="sd">            A list of all nodes in the current session</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.exitsession"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.exitsession">[docs]</a>    <span class="k">def</span> <span class="nf">exitsession</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Leave the current session</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            An integer indicating whether the action was successful.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.joinsession"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.joinsession">[docs]</a>    <span class="k">def</span> <span class="nf">joinsession</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Join the named session</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *name*: the name of the session to join</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            An integer indicating whether the action was successful</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.status"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.status">[docs]</a>    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the SAMP hub availability</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            A dictionary giving the boolean availability of the SAMP hub and the session manager</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.list"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.list">[docs]</a>    <span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a list of all registered clients</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            A list of all registered clients</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.access"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.access">[docs]</a>    <span class="k">def</span> <span class="nf">access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">appName</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check the availability of the specified application.</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *appName*: the name of the application to be queried</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            A boolean indicating whether the specified application is available</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.handle"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.handle">[docs]</a>    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mtype</span><span class="p">,</span> <span class="n">callback</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wait for a message of type mtype.</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *mtype*: the type of message to wait for.</span>
+
+<span class="sd">            *callback*: a function to call when the appropriate message is received</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            A message of type mtype</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.send"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.send">[docs]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mtype</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Send a message of type mtype with the specified arguments</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *mtype*: the type of message to send</span>
+<span class="sd">            </span>
+<span class="sd">            *args*: a dictionary specifying the arguments to be included in the message</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            An integer indicating if the message was successfully sent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.sampexec"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.sampexec">[docs]</a>    <span class="k">def</span> <span class="nf">sampexec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Execute a client command</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;client.cmd.exec&quot; with the command.</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *cmd*: the command to execute</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            An integer indicating whether the command was successfully executed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.pointAt"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.pointAt">[docs]</a>    <span class="k">def</span> <span class="nf">pointAt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Point at the specified coordinates.</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;coord.pointAt.sky&quot; with the specified position</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *ra*: the Right Ascension coordinate of the location</span>
+<span class="sd">            </span>
+<span class="sd">            *dec*: the Declination coordinate of the location</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            An integer indicating whether the operation was successful</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.setenv"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.setenv">[docs]</a>    <span class="k">def</span> <span class="nf">setenv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set an environment variable to the specified value</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;client.env.set&quot; with the variable name and value</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *name*: the name of the environment variable </span>
+<span class="sd">            </span>
+<span class="sd">            *value*: the value of the environment variable</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            An integer indicating if the environment variable was successfully set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.getenv"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.getenv">[docs]</a>    <span class="k">def</span> <span class="nf">getenv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the value of the specified environment variable</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;client.env.get&quot; with the variable name</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *name*: the name of the environment variable </span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            The value of the named variable. This returns None if the value is not set.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.setparam"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.setparam">[docs]</a>    <span class="k">def</span> <span class="nf">setparam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set a parameter to the specified value</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;client.param.set&quot; with the parameter name and value</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *name*: the name of the parameter</span>
+
+<span class="sd">            *value*: the value of the parameter</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            An integer indicating whether the parameter was successfully set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.getparam"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.getparam">[docs]</a>    <span class="k">def</span> <span class="nf">getparam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the value of the specified parameter</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;client.param.get&quot; with the parameter name</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *name*: the name of the parameter</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            The value of the named parameter. This returns None if the value is not set.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.load"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load the specified image/table file</span>
+
+<span class="sd">        This sends a SAMP message of mtype dependent on the type of file being loaded,</span>
+<span class="sd">        i.e., based on its extension, with the URL</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *url*: the URL of the image or table to load</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            A URL indicating where the file can be accessed locally</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.loadImage"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.loadImage">[docs]</a>    <span class="k">def</span> <span class="nf">loadImage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load the specified image</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;image.load.fits&quot; with the image URL</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *url*: the URL of the image to load</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            A URL indicating where the image can be accessed locally</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.loadVOTable"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.loadVOTable">[docs]</a>    <span class="k">def</span> <span class="nf">loadVOTable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load the specified VOTable file</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;table.load.votable&quot; with the VOTable URL</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *url*: the URL of the VOTable to load</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            A URL indicating where the VOTable can be accessed locally</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.loadFITS"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.loadFITS">[docs]</a>    <span class="k">def</span> <span class="nf">loadFITS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load the specified FITS binary table</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;table.load.fits&quot; with the file URL</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *url*: the URL of the table to load</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            A URL indicating where the table can be accessed locally</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.loadSpec"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.loadSpec">[docs]</a>    <span class="k">def</span> <span class="nf">loadSpec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load the specified spectrum</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;spectrum.load.*&quot; with the spectrum URL</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *url*: the URL of the spectrum to load</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            A URL indicating where the spectrum can be accessed locally</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.loadResource"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.loadResource">[docs]</a>    <span class="k">def</span> <span class="nf">loadResource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load the specified VO Resource</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;voresource.loadlist&quot; with the resource URL</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *url*: the URL of the resource to load</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            A URL indicating where the resource can be accessed locally</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.showRow"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.showRow">[docs]</a>    <span class="k">def</span> <span class="nf">showRow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tblId</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">row</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Highlight the specified row in the named table at the given location</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;table.highlight.row&quot; with the row details</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *tblID*: the IVOA identifier for the table</span>
+
+<span class="sd">            *url*: the URL where the table can be accessed</span>
+
+<span class="sd">            *row*: the row to highlight</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            An integer indicating whether the operation was successful</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.selectRows"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.selectRows">[docs]</a>    <span class="k">def</span> <span class="nf">selectRows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tblId</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">row</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Select the specified rows in the named table at the given location</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;table.select.rowList&quot; with the row details</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *tblId*: the IVOA identifier for the table</span>
+
+<span class="sd">            *url*: the URL where the table can be accessed</span>
+
+<span class="sd">            *row*: the list of rows to highlight</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            An integer indicating if the selection was successful</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPConnection.bibcode"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPConnection.bibcode">[docs]</a>    <span class="k">def</span> <span class="nf">bibcode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bibcode</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load the named bibcode</span>
+
+<span class="sd">        This sends a SAMP message of mtype &quot;bibcode.load&quot; with the bibcode</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *bibcode*: the bibcode to be loaded</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            A URL indicating where the bibcode can be accessed locally</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="SAMPAccessError"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPAccessError">[docs]</a><span class="k">class</span> <span class="nc">SAMPAccessError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A base class for SAMP access failures</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="SAMPServiceError"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPServiceError">[docs]</a><span class="k">class</span> <span class="nc">SAMPServiceError</span><span class="p">(</span><span class="n">SAMPAccessError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An exception indicating a failure communicating with a SAMP hub</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="SAMPMessage"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPMessage">[docs]</a><span class="k">class</span> <span class="nc">SAMPMessage</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class representing a SAMP message.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mtype</span><span class="p">,</span> <span class="o">**</span><span class="n">args</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mtype</span> <span class="o">=</span> <span class="n">mtype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+
+<div class="viewcode-block" id="SAMPMessage.setMtype"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPMessage.setMtype">[docs]</a>    <span class="k">def</span> <span class="nf">setMtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mtype</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the mtype of this message</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *mtype*: the mtype of this message</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mtype</span> <span class="o">=</span> <span class="n">mtype</span>
+</div>
+<div class="viewcode-block" id="SAMPMessage.getMtype"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPMessage.getMtype">[docs]</a>    <span class="k">def</span> <span class="nf">getMtype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the mtype of this message</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            The mtype of this message </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mtype</span>
+      </div>
+<div class="viewcode-block" id="SAMPMessage.setArgs"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPMessage.setArgs">[docs]</a>    <span class="k">def</span> <span class="nf">setArgs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the arguments of this message</span>
+
+<span class="sd">        :Args:</span>
+<span class="sd">            *args*: a dictionary giving the arguments of this message</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+</div>
+<div class="viewcode-block" id="SAMPMessage.getArgs"><a class="viewcode-back" href="../api_samp.html#vaosamp.SAMPMessage.getArgs">[docs]</a>    <span class="k">def</span> <span class="nf">getArgs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the arguments of this message</span>
+
+<span class="sd">        :Returns:</span>
+<span class="sd">            The arguments of this message</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">VOClient Python API 1.0rc1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, US Virtual Astronomical Observatory.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xmlns:vs="antlib:usvao.vaosoft.ant" 
+         name="About2Ivy" basedir="." default="all">
+
+  <target name="basic" depends="">
+    <vs:about2ivy aboutFile="${aboutfile}" ivyFile="${ivyfile}" />
+  </target>
+
+  <target name="withVersion" depends="">
+    <vs:about2ivy aboutFile="${aboutfile}" ivyFile="${ivyfile}" version="4.0"/>
+  </target>
+
+  <target name="withEmptyVersion1" depends="">
+    <vs:about2ivy aboutFile="${aboutfile}" ivyFile="${ivyfile}" version=" "/>
+  </target>
+  <target name="withEmptyVersion2" depends="">
+    <vs:about2ivy aboutFile="${aboutfile}" ivyFile="${ivyfile}" version=""/>
+  </target>
+
+  <target name="withEmptyAboutFile1" depends="">
+    <vs:about2ivy ivyFile="${ivyfile}" />
+  </target>
+  <target name="withEmptyAboutFile2" depends="">
+    <vs:about2ivy aboutFile=" " ivyFile="${ivyfile}" />
+  </target>
+  <target name="withEmptyAboutFile3" depends="">
+    <vs:about2ivy aboutFile="" ivyFile="${ivyfile}" />
+  </target>
+
+  <target name="withEmptyIvyFile1" depends="">
+    <vs:about2ivy aboutFile="${aboutfile}" />
+  </target>
+  <target name="withEmptyIvyFile2" depends="">
+    <vs:about2ivy ivyFile=" " aboutFile="${aboutfile}" />
+  </target>
+  <target name="withEmptyIvyFile3" depends="">
+    <vs:about2ivy ivyFile="" aboutFile="${aboutfile}" />
+  </target>
+
+</project>
