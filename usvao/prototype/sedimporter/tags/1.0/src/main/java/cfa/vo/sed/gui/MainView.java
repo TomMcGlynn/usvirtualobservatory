@@ -1,0 +1,859 @@
+/**
+ * Copyright (C) Smithsonian Astrophysical Observatory
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/*
+ * SedImporterMainView.java
+ *
+ * Created on May 6, 2011, 3:53:29 PM
+ */
+
+package cfa.vo.sed.gui;
+
+import cfa.vo.interop.SAMPConnectionListener;
+import cfa.vo.sed.filters.NativeFileFormat;
+import cfa.vo.sed.importer.OSXAdapter;
+import cfa.vo.sed.importer.SedImporterApp;
+import cfa.vo.sedlib.Sed;
+import cfa.vo.sedlib.common.SedException;
+import cfa.vo.sedlib.common.ValidationError;
+import cfa.vo.sedlib.common.ValidationErrorEnum;
+import cfa.vo.sedlib.io.SedFormat;
+import cfa.vo.utils.NarrowOptionPane;
+import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
+import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
+import org.astrogrid.samp.Message;
+import org.astrogrid.samp.client.AbstractMessageHandler;
+import org.astrogrid.samp.client.HubConnection;
+import org.jdesktop.application.Action;
+
+/**
+ *
+ * @author olaurino
+ */
+public class MainView extends JFrame {
+
+    private Map<String, NewSedFrame> sedMap = new HashMap();
+
+
+    private About aboutBox = new About(MainView.getInstance(), false);
+
+    private PluginManager pluginManager = new PluginManager();
+
+    /** Creates new form SedImporterMainView */
+    public MainView() {
+        initComponents();
+
+        desktopPane.setDesktopManager(new BoundDesktopManager(desktopPane));
+        desktopPane.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+        desktopPane.add(pluginManager);
+
+        if(SedImporterApp.isSampEnabled()) {
+            SedImporterApp.addConnectionListener(new SampStatusListener());
+            SedImporterApp.addMessageHandler(new TableHandler());
+        }
+        
+        sampIcon.setVisible(SedImporterApp.isSampEnabled());
+
+        this.setLocationRelativeTo(null);
+//        this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        this.setSize(1000, 700);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int confirm = JOptionPane.showOptionDialog(MainView.this,
+
+                        "Do you really want to close " + getTitle() + "?",
+
+                        "Close Confirmation",
+
+                        JOptionPane.YES_NO_OPTION,
+
+                        JOptionPane.QUESTION_MESSAGE,
+
+                        null, null, null);
+
+                if (confirm == 0) {
+
+                System.exit(0);
+
+              }
+            }
+        });
+        if (SedImporterApp.MAC_OS_X) {
+            try {
+                // Generate and register the OSXAdapter, passing it a hash of all the methods we wish to
+                // use as delegates for various com.apple.eawt.ApplicationListener methods
+                OSXAdapter.setQuitHandler(this, getClass().getDeclaredMethod("quit", (Class[])null));
+                OSXAdapter.setAboutHandler(this, getClass().getDeclaredMethod("about", (Class[])null));
+//                OSXAdapter.setPreferencesHandler(this, getClass().getDeclaredMethod("preferences", (Class[])null));
+//                OSXAdapter.setFileHandler(this, getClass().getDeclaredMethod("loadImageFile", new Class[] { String.class }));
+            } catch (Exception e) {
+                System.err.println("Error while loading the OSXAdapter:");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
+
+        desktopPane = new javax.swing.JDesktopPane();
+        sampIcon = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        exitMenuItem = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sed Importer");
+
+        desktopPane.setBackground(new java.awt.Color(0, 102, 102));
+        desktopPane.setForeground(new java.awt.Color(255, 255, 255));
+        desktopPane.setAutoscrolls(true);
+        desktopPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        desktopPane.setName("sedDesktop"); // NOI18N
+        desktopPane.setPreferredSize(new java.awt.Dimension(1024, 768));
+        desktopPane.setSize(new java.awt.Dimension(1036, 693));
+
+        sampIcon.setForeground(new java.awt.Color(255, 255, 255));
+        sampIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sampIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connect_no.png")));
+        sampIcon.setText("SAMP status: disconnected");
+        sampIcon.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        sampIcon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        sampIcon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        sampIcon.setBounds(50, 490, 210, 120);
+        desktopPane.add(sampIcon, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iris_button_small.png")));
+        jLabel4.setText("Launch Iris");
+        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                launchIris(evt);
+            }
+        });
+        jLabel4.setBounds(280, 250, 210, 180);
+        desktopPane.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jScrollPane1.setBorder(null);
+
+        jTextArea1.setBackground(new java.awt.Color(0, 102, 102));
+        jTextArea1.setColumns(20);
+        jTextArea1.setEditable(false);
+        jTextArea1.setForeground(new java.awt.Color(204, 204, 204));
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("To Start, click on the \"Load SED\" button and start adding \"segments\" to the new SED.\n\nA segment is a photometric point, a spectrum or an entire SED itself (i.e. any combination of photometric points and spectra).\n\nYou can add SED's from the NED SED Service.\n\nYou can also import SED segments from your local disk or a remote URL so that Iris (or other VO tools) can handle your data.\n\nSince your files might not be standard SED's, you must provide some required information that will allow the segment to be used by VO tools.\n\nIf you use other VO tools, like Topcat or Aladin, you can use SAMP to \"beam\" a table from these applications to the SedImporter and import them into a standard SED.\n\nAfter saving an SED file (either the entire SED you are building or a subset of the segments you imported), you can have IRIS load it by \"broadcasting\" it. \n");
+        jTextArea1.setWrapStyleWord(true);
+        jTextArea1.setBorder(null);
+        jTextArea1.setCaretColor(new java.awt.Color(204, 204, 204));
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jScrollPane1.setBounds(600, 30, 360, 410);
+        desktopPane.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel1.setText("For more information, click here or on the Help icons.");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showIrisHelp(evt);
+            }
+        });
+        jLabel1.setBounds(600, 460, 360, 16);
+        desktopPane.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help_contextual.png")));
+        jLabel5.setText("Importer Online Help");
+        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showImporterHelp(evt);
+            }
+        });
+        jLabel5.setBounds(40, 40, 210, 180);
+        desktopPane.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scratch.png")));
+        jLabel7.setText("Load SED");
+        jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newFromScratch(evt);
+            }
+        });
+        jLabel7.setBounds(40, 250, 210, 180);
+        desktopPane.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help_contextual.png")));
+        jLabel6.setText("Iris Online Help");
+        jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showIrisHelp(evt);
+            }
+        });
+        jLabel6.setBounds(280, 40, 210, 180);
+        desktopPane.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vao.png")));
+        jLabel2.setBounds(610, 490, 330, 150);
+        desktopPane.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jToolBar1.setRollover(true);
+
+        fileMenu.setText("File");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scratch_tiny.png")));
+        jMenuItem1.setText("Load SED data from local disk or remote archives");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fromScratch(evt);
+            }
+        });
+        fileMenu.add(jMenuItem1);
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/settings_tiny.png")));
+        jMenuItem2.setText("Load SED from a Setup file");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fromConfiguration(evt);
+            }
+        });
+        fileMenu.add(jMenuItem2);
+        fileMenu.add(jSeparator1);
+
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/plugin.png")));
+        jMenuItem7.setText("Plugins...");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem7);
+        fileMenu.add(jSeparator2);
+
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance().getContext().getActionMap(MainView.class, this);
+        exitMenuItem.setAction(actionMap.get("exit")); // NOI18N
+        exitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/process_stop.png")));
+        fileMenu.add(exitMenuItem);
+
+        jMenuBar1.add(fileMenu);
+
+        jMenu3.setText("Iris");
+
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iris_button_tiny.png")));
+        jMenuItem6.setText("Launch Iris");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu1.setText("Interop");
+
+        jCheckBoxMenuItem1.setText("Run Hub Automatically");
+        jCheckBoxMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redo.png")));
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${sampAutoHub}"), jCheckBoxMenuItem1, org.jdesktop.beansbinding.BeanProperty.create("selected"));
+        bindingGroup.addBinding(binding);
+
+        jMenu1.add(jCheckBoxMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Help");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAbout(evt);
+            }
+        });
+
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help_contextual_tiny.png")));
+        jMenuItem3.setText("SedImporter Online Help");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help_contextual_tiny.png")));
+        jMenuItem4.setText("Iris Online Help");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iris_button_tiny.png")));
+        jMenuItem5.setText("About SedImporter");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAbout(evt);
+            }
+        });
+        jMenu2.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(desktopPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, desktopPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
+        );
+
+        bindingGroup.bind();
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void fromScratch(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fromScratch
+        SedNameDialog dialog = new SedNameDialog(this, true);
+        dialog.setVisible(true);
+        String name = dialog.getSedName();
+        if(sedMap.containsKey(name)) {
+            NarrowOptionPane.showMessageDialog(MainView.getInstance(),
+                            "There is already a Sed named " +name+ ". Please change the name.",
+                            "Name clash",
+                            NarrowOptionPane.ERROR_MESSAGE);
+            fromScratch(evt);
+        } else {
+            if(!name.isEmpty()) {
+                addNewSedFrame(name);
+            }
+        }
+    }//GEN-LAST:event_fromScratch
+
+    private void fromConfiguration(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fromConfiguration
+        LoadSetupDialog dia = new LoadSetupDialog(this);
+        dia.setVisible(true);
+        if( dia.getFrame() !=null) {
+            final NewSedFrame frame = dia.getFrame();
+            sedMap.put(frame.getTitle(), frame);
+            frame.addInternalFrameListener(new InternalFrameAdapter() {
+
+                @Override
+                public void internalFrameClosing(InternalFrameEvent e) {
+                    int confirm = NarrowOptionPane.showOptionDialog(MainView.this,
+                        "Do you really want to close " + frame.getSedID() + "?",
+                        "Close Confirmation",
+                        NarrowOptionPane.YES_NO_OPTION,
+                        NarrowOptionPane.QUESTION_MESSAGE,
+                        null, null, null);
+                    if (confirm == 0) {
+                        removeNewSedFrame(frame.getTitle());
+                    }
+
+                }
+
+            });
+        }
+    }//GEN-LAST:event_fromConfiguration
+
+    private void newFromScratch(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newFromScratch
+        fromScratch(null);
+    }//GEN-LAST:event_newFromScratch
+
+    private void showLink(URL url) {
+        try {
+            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+            desktop.browse(url.toURI());
+        } catch (Exception ex) {
+            try {
+                HelpBrowser browser = new HelpBrowser(url);
+                desktopPane.add(browser);
+                browser.show();
+            } catch (Exception ex2) {
+                JEditorPane jta = new JEditorPane();
+                jta.setBackground(NarrowOptionPane.getRootFrame().getBackground());
+                jta.setContentType("text/html");
+                jta.setText("<html><body>SedImporter couldn't open your default browser. You can use this link directly: <br/>"
+                                        + url+"</body></html>");
+                jta.setEditable(false);
+
+                NarrowOptionPane.showMessageDialog(null,
+                    jta,
+                    "Desktop communication error",
+                    JOptionPane.ERROR_MESSAGE
+                );
+            }
+        }
+    }
+
+    private void showIrisHelp(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showIrisHelp
+        try {
+            showLink(new URL("http://cxc.harvard.edu/iris/index.html"));
+
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+//        try {
+//            try {
+//                java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+//                if( !java.awt.Desktop.isDesktopSupported() || !desktop.isSupported( java.awt.Desktop.Action.BROWSE ) ) {
+//                    HelpBrowser browser = new HelpBrowser(new URL("http://cxc.cfa.harvard.edu/csc/temp/sed"));
+//                    desktopPane.add(browser);
+//                    browser.show();
+//                } else {
+//                    desktop.browse(new URI("http://cxc.cfa.harvard.edu/csc/temp/sed"));
+//                }
+//            } catch (Exception ex) {
+//                Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } catch (Exception ex) {
+//            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+
+    }//GEN-LAST:event_showIrisHelp
+
+    private void showImporterHelp(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showImporterHelp
+        try {
+            showLink(new URL("http://cxc.harvard.edu/iris/threads/importer/"));
+
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_showImporterHelp
+
+    private void launchIris(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_launchIris
+        try {
+            String dir = System.getenv("IRIS_DIR");
+            new ProcessBuilder("./Iris").directory(new File(dir)).start();
+        } catch (Exception ex) {
+            NarrowOptionPane.showMessageDialog(MainView.this,
+
+                        "Error while trying to launch Iris. Please retry invoking Iris directly from the command line."
+                        + "Error message: "+ex.getMessage(),
+
+                        "Error",
+
+                        JOptionPane.ERROR_MESSAGE
+
+                        );
+        }
+    }//GEN-LAST:event_launchIris
+
+    private void showAbout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAbout
+        aboutBox.setLocation((int)desktopPane.getWidth()/2-125, (int)desktopPane.getHeight()/2-110);
+        aboutBox.setVisible(true);
+    }//GEN-LAST:event_showAbout
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        launchIris(null);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        showImporterHelp(null);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        showIrisHelp(null);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        pluginManager.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    public static MainView getInstance() {
+        return MainViewHolder.INSTANCE;
+    }
+
+    public static LoadSegmentDialog getLoadSegmentDialog() {
+        return MainViewHolder.LOADSEGMENTDIALOG;
+    }
+
+    public JDesktopPane getDesktopPane() {
+        return getInstance().desktopPane;
+    }
+
+    /**
+    * @param args the command line arguments
+    */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                getInstance().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel sampIcon;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
+    // End of variables declaration//GEN-END:variables
+
+    private static class MainViewHolder {
+        private static final MainView INSTANCE = new MainView();
+        private static final LoadSegmentDialog LOADSEGMENTDIALOG = new LoadSegmentDialog(MainView.getInstance(), true);
+    }
+
+    private static final JFileChooser fileChooser = new JFileChooser();
+
+    /**
+     * Get the value of fileChooser
+     *
+     * @return the value of fileChooser
+     */
+    public static JFileChooser getFileChooser() {
+        return fileChooser;
+    }
+
+    public boolean quit() {
+        int confirm = NarrowOptionPane.showOptionDialog(MainView.getInstance(),
+
+                        "Do you really want to close " + getTitle() + "?",
+
+                        "Close Confirmation",
+
+                        JOptionPane.YES_NO_OPTION,
+
+                        JOptionPane.QUESTION_MESSAGE,
+
+                        null, null, null);
+        return (confirm == NarrowOptionPane.YES_OPTION);
+    }
+
+    public void about() {
+        showAbout(null);
+    }
+
+    private boolean sampConnected = false;
+
+    /**
+     * Get the value of sampConnected
+     *
+     * @return the value of sampConnected
+     */
+    public boolean isSampConnected() {
+        return sampConnected;
+    }
+
+    private static final Icon sampNo = new ImageIcon(MainView.class.getResource("/connect_no.png"));
+    private static final Icon sampYes = new ImageIcon(MainView.class.getResource("/connect_established.png"));
+
+    /**
+     * Set the value of sampConnected
+     *
+     * @param sampConnected new value of sampConnected
+     */
+    public void setSampConnected(boolean sampConnected) {
+        if(sampConnected!=this.sampConnected) {
+            this.sampConnected = sampConnected;
+            sampIcon.setIcon(sampConnected ? sampYes : sampNo);
+            sampIcon.setText( sampConnected ? "SAMP status: connected" : "SAMP status: disconnected" );
+            sampIcon.setForeground(sampConnected? new Color(0, 200, 0) : Color.WHITE);
+        }
+    }
+
+    private boolean sampAutoHub = true;
+    public static final String PROP_SAMPAUTOHUB = "sampAutoHub";
+
+    /**
+     * Get the value of sampAutoHub
+     *
+     * @return the value of sampAutoHub
+     */
+    public boolean isSampAutoHub() {
+        return sampAutoHub;
+    }
+
+    /**
+     * Set the value of sampAutoHub
+     *
+     * @param sampAutoHub new value of sampAutoHub
+     */
+    public void setSampAutoHub(boolean sampAutoHub) {
+        boolean oldSampAutoHub = this.sampAutoHub;
+        this.sampAutoHub = sampAutoHub;
+        SedImporterApp.setAutoRunHub(sampAutoHub);
+        firePropertyChange(PROP_SAMPAUTOHUB, oldSampAutoHub, sampAutoHub);
+    }
+
+    private NewSedFrame addNewSedFrame(final String name) {
+        final NewSedFrame frame = new NewSedFrame(name);
+        desktopPane.add(frame);
+
+        sedMap.put(name, frame);
+        frame.setVisible(true);
+        frame.addInternalFrameListener(new InternalFrameAdapter() {
+
+            @Override
+            public void internalFrameClosing(InternalFrameEvent e) {
+                int confirm = NarrowOptionPane.showOptionDialog(MainView.this,
+                    "Do you really want to close " + frame.getSedID() + "?",
+                    "Close Confirmation",
+                    NarrowOptionPane.YES_NO_OPTION,
+                    NarrowOptionPane.QUESTION_MESSAGE,
+                    null, null, null);
+                if (confirm == 0) {
+                    removeNewSedFrame(name);
+                }
+                
+            }
+
+        });
+        return frame;
+
+    }
+
+    private void removeNewSedFrame(String name) {
+        NewSedFrame frame = sedMap.get(name);
+        SedWrapper sw = frame.getSedWrapper();
+        sw.clean();
+        sedMap.remove(name);
+        frame.dispose();
+    }
+
+    private class SampStatusListener implements SAMPConnectionListener {
+
+        @Override
+        public void run(boolean status) {
+            setSampConnected(status);
+        }
+
+    }
+
+    public class TableHandler extends AbstractMessageHandler {
+
+        public TableHandler() {
+            super(new String[]{"table.load.votable",
+                                "table.load.fits",
+                                "spectrum.load.ssa-generic",
+                                });
+        }
+
+        @Override
+        public Map processCall(HubConnection hc, String string, Message msg) {
+            try {
+                URL url = new URL((String) msg.getParam("url"));
+                File f = File.createTempFile("sedImporter", null);
+                f.deleteOnExit();
+
+                ReadableByteChannel rbc = Channels.newChannel(url.openStream());
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.getChannel().transferFrom(rbc, 0, 1 << 24);//FIXME Check that this call doesn't have side effects.
+
+                Sed sed = Sed.read(new FileInputStream(f), SedFormat.VOT);
+
+                List<ValidationError> validErrors = new ArrayList();
+                boolean valid = sed.validate(validErrors);
+
+                for(ValidationError error : validErrors) {
+                    if(error.getError().equals(ValidationErrorEnum.MISSING_DATA_FLUXAXIS_VALUE))
+                        throw new SedException();
+                    if(error.getError().equals(ValidationErrorEnum.MISSING_DATA_SPECTRALAXIS_VALUE))
+                        throw new SedException();
+                }
+
+                List<NewSedFrame> acceptingFrames = new ArrayList();
+
+                if(sedMap.isEmpty()) {
+                    String name = (String) msg.getParam("name");
+                    if(name.length()>16)
+                        name = name.substring(0, 9);
+                    if(name.isEmpty())
+                        name = "SAMPTable";
+
+                    acceptingFrames.add(addNewSedFrame(name));
+
+                } else {
+                    for(Entry<String, NewSedFrame> entry : sedMap.entrySet())
+                        if(entry.getValue().isAcceptingSAMP())
+                            acceptingFrames.add(entry.getValue());
+                }
+                
+                for(int i=0; i<sed.getNumberOfSegments(); i++) {//even though it is only one table, so one segment
+
+                    if(!valid) {
+                        throw new SedException();
+                    }
+
+                    for(NewSedFrame frame : acceptingFrames) {
+                        frame.addSegment(new SegmentWrapper(sed.getSegment(i), null));
+                    }
+
+                }
+
+            } catch (SedException ex) {//FIXME Refactor to avoid repetitions
+                try {
+
+                    List<NewSedFrame> acceptingFrames = new ArrayList();
+
+                    if(sedMap.isEmpty()) {
+                        String name = (String) msg.getParam("name");
+                        if(name.length()>16)
+                            name = name.substring(0, 9);
+                        if(name.isEmpty())
+                            name = "SAMPTable";
+                        acceptingFrames.add(addNewSedFrame(name));
+                    } else {
+                        for(Entry<String, NewSedFrame> entry : sedMap.entrySet())
+                            if(entry.getValue().isAcceptingSAMP())
+                                acceptingFrames.add(entry.getValue());
+                    }
+                    
+                    SetupFrame sf = NewSedFrame.addSegment(new URL((String) msg.getParam("url")), NativeFileFormat.VOTABLE, acceptingFrames);
+                    desktopPane.add(sf);
+                    sf.setVisible(true);
+                    
+                } catch (Exception ex1) {
+                    NarrowOptionPane.showMessageDialog(MainView.getInstance(),
+                            ex.getMessage(),
+                            "Import Error",
+                            NarrowOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception ex) {
+                NarrowOptionPane.showMessageDialog(MainView.getInstance(),
+                            ex.getMessage(),
+                            "Import Error",
+                            NarrowOptionPane.ERROR_MESSAGE);
+            }
+            return null;
+        }
+
+
+    }
+
+    @Action
+    public void exit() {
+        if (quit())
+            SedImporterApp.exitApp();
+    }
+
+}

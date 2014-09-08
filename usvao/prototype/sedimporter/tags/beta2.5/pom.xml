@@ -1,0 +1,470 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cfa.vo</groupId>
+  <artifactId>SedImporter</artifactId>
+  <packaging>jar</packaging>
+  <version>beta2.5</version>
+  <name>SedImporter</name>
+  <description>
+        With the SED Importer you can fetch SED data from the NED SED service.
+        
+        Also, if you have SED data files which are not written in one of the Iris supported file formats,
+        you can use the Iris SED Importer tool to convert your data to a format which complies with the
+        IVOA standard for import into Iris. You can build SEDs in the tool as well, as it can load individual
+        SED data segments from various places and save them together as an aggregate SED file,
+        serialized in FITS or VOTable format. The resultant SED file is compliant with the Spectrum V1.03 model,
+        and can be loaded into Iris for analysis.
+
+  </description>
+
+    <licenses>
+      <license>
+        <name>Apache 2</name>
+        <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        <distribution>repo</distribution>
+        <comments>A business-friendly OSS license</comments>
+      </license>
+    </licenses>
+
+    <organization>
+        <name>Virtual Astronomical Observatory</name>
+        <url>http://www.usvao.org</url>
+    </organization>
+
+    <developers>
+        <developer>
+      <name>Janet DePonte Evans</name>
+      <email>janet@cfa.harvard.edu</email>
+      <organization>Harvard-Smithsonian Center For Astrophysics</organization>
+      <organizationUrl>http://www.cfa.harvard.edu</organizationUrl>
+      <roles>
+        <role>project manager</role>
+      </roles>
+    </developer>
+        <developer>
+      <name>Mark Cresitello-Dittmar</name>
+      <email>mcd@cfa.harvard.edu</email>
+      <organization>Harvard-Smithsonian Center For Astrophysics</organization>
+      <organizationUrl>http://www.cfa.harvard.edu</organizationUrl>
+      <roles>
+        <role>group lead</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Omar Laurino</name>
+      <email>olaurino@cfa.harvard.edu</email>
+      <organization>Harvard-Smithsonian Center For Astrophysics</organization>
+      <organizationUrl>http://www.cfa.harvard.edu</organizationUrl>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <contributors>
+      <contributor>
+        <name>Raffaele D'Abrusco</name>
+        <organization>Harvard-Smithsonian Center for Astrophysics</organization>
+      </contributor>
+      <contributor>
+          <name>Brian Thomas</name>
+          <organization>NOAO</organization>
+      </contributor>
+      <contributor>
+          <name>Randy Thompson</name>
+          <organization>STScI</organization>
+      </contributor>
+  </contributors>
+
+  <issueManagement>
+      <system>JIRA</system>
+      <url>http://help.usvao.org:8080</url>
+  </issueManagement>
+
+  <ciManagement>
+      <system>Jenkins</system>
+      <url>http://vaotest1.tuc.noao.edu:8080/job/sed-lib/</url>
+  </ciManagement>
+
+
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <reporting>
+    <plugins>
+<!--      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changelog-plugin</artifactId>
+        <version>2.2</version>
+      </plugin> -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.7</version>
+      </plugin>
+      <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-jxr-plugin</artifactId>
+           <!--version>2.2</version-->
+       </plugin>
+       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <configuration>
+             <debug>true</debug>
+             <linkXref>true</linkXref>
+             <targetJdk>1.6</targetJdk>
+             <sourceEncoding>ISO-8859-1</sourceEncoding>
+          </configuration>
+       </plugin>
+
+       <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.5.1</version>
+          <configuration>
+              <instrumentation>
+            <ignores>
+<!--              <ignore>cfa.vo.utils.*</ignore>-->
+            </ignores>
+            <excludes>
+              <exclude>cfa/vo/utils/Sesame*.class</exclude>
+<!--              <exclude>*Sesame*</exclude>-->
+            </excludes>
+          </instrumentation>
+             <formats>
+               <format>html</format>
+               <format>xml</format>
+             </formats>
+             <check>
+                <branchRate>85</branchRate>
+                <lineRate>85</lineRate>
+                <haltOnFailure>false</haltOnFailure>
+                <totalBranchRate>85</totalBranchRate>
+                <totalLineRate>85</totalLineRate>
+                <packageLineRate>85</packageLineRate>
+                <packageBranchRate>85</packageBranchRate>
+                <regexes>
+                  <regex>
+                     <pattern>net.vao.*</pattern>
+                     <lineRate>80</lineRate>
+                  </regex>
+                  <regex>
+                    <pattern>com.example.boringcode.*</pattern>
+                    <branchRate>40</branchRate>
+                    <lineRate>30</lineRate>
+                  </regex>
+                </regexes>
+              </check>
+          </configuration>
+       </plugin>
+       <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>findbugs-maven-plugin</artifactId>
+          <version>2.3</version>
+          <configuration>
+             <threshold>Normal</threshold>
+             <effort>Default</effort>
+          </configuration>
+       </plugin>
+
+       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>javancss-maven-plugin</artifactId>
+<!--        <version>2.0-beta-2</version>-->
+      </plugin>
+
+    </plugins>
+  </reporting>
+
+
+    <build>
+<!--        <resources>
+            <resource>
+                <targetPath>META-INF</targetPath>
+                <directory>src</directory>
+                <includes/>
+            </resource>
+          <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+          </resource>
+        </resources>-->
+        <plugins>
+            <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+        <archive>
+          <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+            <mainClass>cfa.vo.sed.importer.SedImporterApp</mainClass>
+            <packageName>cfa.vo.sed.importer</packageName>
+          </manifest>
+        </archive>
+          </configuration>
+      </plugin>
+
+        <plugin>
+            <groupId>com.mycila.maven-license-plugin</groupId>
+            <artifactId>maven-license-plugin</artifactId>
+            <configuration>
+                <header>src/etc/header.txt</header>
+            </configuration>
+        </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+<!--        <version>2.0.2</version>-->
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+<!--      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2.1</version>
+        <configuration>
+          <descriptors>
+            <descriptor>src/main/tar.xml</descriptor>
+          </descriptors>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>  this is used for inheritance merges 
+            <phase>package</phase>  bind to the packaging phase 
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>-->
+      <plugin>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <phase>install</phase>
+                                    <goals>
+                                        <goal>copy-dependencies</goal>
+                                    </goals>
+                                    <configuration>
+                                        <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                    </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>1.10</version>
+                <executions></executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.xml</groupId>
+                        <artifactId>webservices-api</artifactId>
+                        <version>1.4</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <sourceDestDir>${project.build.directory}/generated-sources/jaxws-wsimport</sourceDestDir>
+                    <xnocompile>true</xnocompile>
+                    <verbose>true</verbose>
+                    <extension>true</extension>
+                    <catalog>${basedir}/src/jax-ws-catalog.xml</catalog>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+
+    <repository>
+        <id>vao-deploy-repository</id>
+        <name>vaotest2.tuc.noao.edu-releases</name>
+        <url>http://vaotest2.tuc.noao.edu:8080/artifactory/repo</url>
+    </repository>
+        <repository>
+            <url>http://download.java.net/maven/2/</url>
+            <id>beans-binding</id>
+            <layout>default</layout>
+            <name>Repository for library Library[beans-binding]</name>
+        </repository>
+        <repository>
+            <url>http://download.java.net/maven/2</url>
+            <id>metro</id>
+            <layout>default</layout>
+            <name>Repository for library[metro]</name>
+        </repository>
+    </repositories>
+
+    <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.swinglabs</groupId>
+      <artifactId>swing-worker</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.swinglabs</groupId>
+      <artifactId>swing-layout</artifactId>
+      <version>1.0.3</version>
+    </dependency>
+    <dependency>
+      <groupId>stil</groupId>
+      <artifactId>stil</artifactId>
+      <version>3.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>jsky</groupId>
+      <artifactId>jsky</artifactId>
+      <version>3.0</version>
+    </dependency>
+
+        <dependency>
+            <groupId>net.java.dev.appframework</groupId>
+            <artifactId>appframework</artifactId>
+            <version>1.03</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jdesktop</groupId>
+            <artifactId>beansbinding</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ini4j</groupId>
+            <artifactId>ini4j</artifactId>
+            <version>0.5.2-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+        <groupId>cfa.vao.sed</groupId>
+        <artifactId>sedlib</artifactId>
+        <version>beta2-0.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>AbsoluteLayout</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.4.5-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jaxrpc-api</groupId>
+            <artifactId>jaxrpc-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jaxrpc-spi</groupId>
+            <artifactId>jaxrpc-spi</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jaxrpc-impl</groupId>
+            <artifactId>jaxrpc-impl</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>FastInfoset</groupId>
+            <artifactId>FastInfoset</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>saaj-api</groupId>
+            <artifactId>saaj-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>saaj-impl</groupId>
+            <artifactId>saaj-impl</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jaxrpc-impl</groupId>
+            <artifactId>jaxrpc-impl</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+          <groupId>org.uispec4j</groupId>
+          <artifactId>uispec4j</artifactId>
+          <version>2.4</version>
+          <classifier>jdk16</classifier>
+          <type>jar</type>
+          <scope>compile</scope>
+      </dependency>
+        <dependency>
+            <groupId>abbot</groupId>
+            <artifactId>abbot</artifactId>
+            <version>0.13.0</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>jsamp</groupId>
+            <artifactId>jsamp</artifactId>
+            <version>1.2</version>
+        </dependency>
+    </dependencies>
+
+  <distributionManagement>
+        <repository>
+            <id>vao-deploy-repository</id>
+            <name>vaotest2.tuc.noao.edu-releases</name>
+            <url>http://vaotest2.tuc.noao.edu:8080/artifactory/libs-snapshot-local</url>
+        </repository>
+  </distributionManagement>
+  
+</project>
