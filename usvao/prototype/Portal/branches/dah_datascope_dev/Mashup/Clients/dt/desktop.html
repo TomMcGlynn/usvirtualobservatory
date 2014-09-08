@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MAST Portal</title>
+    
+    <!-- Start timing this load. -->
+    <script type="text/javascript">
+        window.STSCI_startTime = new Date().getTime();
+    </script>
+    
+    <!-- Initialize Google Analytics -->
+    <script type="text/javascript" src="../Shared/InitializeAnalytics.js"></script>
+    
+   <!-- The JavaScript for the SAMP. -->
+    <script type="text/javascript" src="../Shared/samp.js"></script>    
+    <script type="text/javascript" src="../Shared/flXHR.js"></script>
+    
+    <!-- Initialize ExtJS and our local libraries. -->
+    <script type="text/javascript" src="../Shared/InitializeJavaScript.js"></script>
+
+    <!-- Needed for Album View -->
+     <link rel="stylesheet" type="text/css" href="data-view.css" />
+    
+    <!-- The JavaScript for the AstroView. -->
+    <!-- <script type="text/javascript" src="http://vao.stsci.edu/portal/Three/r49/build/Three.js"></script>  -->
+	<script type="text/javascript" src="../AstroView/Three/build/Three.js"></script>
+	<script type="text/javascript" src="../AstroView/AstroView.js"></script>
+    <script type="text/javascript" src="../swfobject/swfobject.js"></script>
+     
+    <!-- Initialize this application. -->
+    <link rel="stylesheet" type="text/css" href="./PortalCustomStyles.css" />
+    
+    <!-- Start this application. -->
+    <script type="text/javascript">
+        Ext.onReady(function() {Ext.create('Mast.Bootstrap', {mainDiv: 'portalDiv'});}, this);
+    </script>
+    <!-- Desktop-specific stuff -->
+    <link rel="stylesheet" type="text/css" href="css/desktop.css" />
+</head>
+
+<body>
+
+    <div id="portalDiv"></div></a>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+{
+    "name": "VaoPositionSearch.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Exports",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpd"
+    },
+    "xdsVersion": "1.2.2",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen13400",
+            "type": "form",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "border": 0,
+                "height": 27,
+                "itemId": "vaoSearchPositionPanel",
+                "margin": null,
+                "width": 540,
+                "layout": "hbox",
+                "bodyPadding": null,
+                "bodyStyle": "'padding:5px 5px 0'",
+                "title": null,
+                "designer|userClassName": "VaoPositionSearchPanel",
+                "container|align": null,
+                "container|defaultMargins": "{\"top\":0, \"right\":0, \"bottom\":0, \"left\":5}"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen2359",
+                    "type": "triggerfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "searchBox",
+                        "width": 290,
+                        "fieldLabel": null,
+                        "msgTarget": "side",
+                        "emptyText": "Enter object name or RA and Dec",
+                        "triggerCls": "x-form-clear-trigger",
+                        "designer|userClassName": "MyTextField"
+                    }
+                },
+                {
+                    "id": "ExtBox1-ext-gen2933",
+                    "type": "textfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": null,
+                        "itemId": "radiusBox",
+                        "padding": null,
+                        "style": null,
+                        "width": 110,
+                        "value": "1",
+                        "fieldLabel": "&nbsp;&nbsp;&nbsp;Radius",
+                        "labelWidth": 50,
+                        "msgTarget": "side",
+                        "allowBlank": false,
+                        "regex": null,
+                        "regexText": null,
+                        "validator": null,
+                        "designer|userClassName": "MyTextField1"
+                    }
+                },
+                {
+                    "id": "ExtBox1-ext-gen4199",
+                    "type": "combobox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "unitsBox",
+                        "width": 66,
+                        "value": "arcmin",
+                        "fieldLabel": null,
+                        "hideTrigger": null,
+                        "displayField": "displayField",
+                        "forceSelection": true,
+                        "queryMode": "local",
+                        "store": "RadiusUnits",
+                        "valueField": "valueField",
+                        "designer|userClassName": "MyComboBox"
+                    }
+                },
+                {
+                    "id": "ExtBox1-ext-gen7591",
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 23,
+                        "itemId": "searchButton",
+                        "margin": null,
+                        "maxWidth": 50,
+                        "padding": null,
+                        "width": null,
+                        "text": "Search",
+                        "designer|userClassName": "MyButton",
+                        "layout|flex": 1,
+                        "layout|margins": null
+                    }
+                }
+            ]
+        }
+    ],
+    "stores": [
+        {
+            "id": "ExtBox1-ext-gen5216",
+            "type": "arraystore",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "storeId": "RadiusUnits",
+                "data": null,
+                "designer|userClassName": "RadiusUnits"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen5220",
+                    "type": "ajaxproxy",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "Ajax Proxy"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen5226",
+                            "type": "arrayreader",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "Array Reader"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "framework": "ext40"
+}

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Data Discovery</title>
+		
+    <!-- Initialize Google Analytics -->
+    <script type="text/javascript" src="../Shared/InitializeAnalytics.js"></script>
+    
+    <!-- Initialize ExtJS and our local libraries. -->
+    <script type="text/javascript" src="../Shared/InitializeJavaScript.js"></script>
+
+    <!-- The JavaScript for the app. -->
+    <script type="text/javascript" src="DemoApp.js"></script>
+    <script type="text/javascript" src="../Portal/Portal.js"></script>
+    
+    <!-- The JavaScript for the SAMP. -->
+    <script type="text/javascript" src="../Shared/samp.js"></script>    
+    <script type="text/javascript" src="../Shared/flXHR.js"></script>
+    
+    
+
+    <!-- The JavaScript for the AstroView. -->
+    <script type="text/javascript" src="../pagebus/pagebus.js" language="JavaScript1.2"></script>
+    <script type="text/javascript" src="../pagebus/pagebusAstroView.js" language="JavaScript1.2"></script>
+    <script type="text/javascript" src="../swfobject/swfobject.js"></script>
+    
+    <!-- Start this application. -->
+    <script type="text/javascript">
+        Ext.onReady(DemoApp.Portal.createAndRun, DemoApp.Portal, {mainDiv: 'demo-div'});
+    </script>
+    
+    <!-- Test data view style sheet -->
+     <link rel="stylesheet" type="text/css" href="data-view.css" />
+
+</head>
+<body>
+</body>
+</html>

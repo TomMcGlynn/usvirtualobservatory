@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Healpix</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #111111;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+
+        <script src="Json.js"></script>
+        <script src="Constants.js"></script>	
+		<script src="HealpixIndex.js"></script>	
+		
+		<!-- <script src="Healpix.js"></script>	-->
+
+		<script>
+		
+			/*
+		    // Test for all levels
+		    for (var level = 0; level < 10; level++)
+		    {
+                //
+		        // nside = (2**level)**2 === (2**(level*2))
+		        //
+		        //var nside = Math.pow(2.0, level*2.0);
+		    	var hp = new HEALPIX.HealpixIndex(null,level);
+		    	
+		    	//var hp = new HEALPIX.HealpixLevel(level);
+		    	console.log ("level = " + hp.level + " nside = " + hp.nside + " npix = " + hp.npix);
+		    }
+		    */
+		    
+		    var hp = new HEALPIX.HealpixIndex(null,7);
+		    console.log ("level = " + hp.level + " nside = " + hp.nside + " npix = " + hp.npix);
+		    
+		    var step=1;    // returns 4 points.
+		    //var step=2;  // returns 6 points.
+		    //var step=3;  // returns 8 points.
+		    
+		    for (var pix=0; pix<12; pix++)
+		    {
+		        //var ring = hp.nest2ring(pix);
+		    	//console.log("nest: " + nest + " ring: " + ring);
+		    	
+		    	var corners = hp.corners_nest(pix, step);
+		    	console.log("pix: " + pix + "\n" + JSON.toJson(corners));
+		    }
+
+		</script>
+
+	</body>
+</html>
