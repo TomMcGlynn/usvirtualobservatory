@@ -1,0 +1,10 @@
+Test getting file information (tbl_fileinfo()) on a IPAC ASCII file.
+  Call to tbl_fileinfo succeeded on input/SingleFile.tbl.
+  --- File Information for input/SingleFile.tbl ---
+      table index :             0
+      number of columns:        6
+      number of keyvals:       99
+      number of rows:           0
+      file index   :            0
+      file type    :            3 (IPAC ASCII)
+

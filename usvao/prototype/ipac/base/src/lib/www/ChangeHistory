@@ -1,0 +1,64 @@
+Version   Date       Description of Change
+
+6.0      12 Oct 05   Kept null keywords in POST multipart, deleted
+                     zero length files that were created when these
+                     occured, and added "@filename" handling for
+                     command-line input.
+
+5.1      02 May 05   Added keyword_count() info routine.
+
+5.0      01 Mar 05   Added "@file" config file processing option
+
+4.1      24 Feb 05   Added keyword_value_stripped() function
+                     (removes leading and trailing blanks)
+
+4.0      02 Feb 05   Moved all cookie stuff from this library to 
+		     password library.
+
+3.2      31 Aug 04   Fixed bug in handling single-line file uploads.
+		     Added keyword_workdir() function.
+		     Changed name of temp upload files to include
+		     "original" file name.
+
+3.1       1 Jul 04   Added 64-bit file addressing compiler flag
+
+2.4      22 Jun 04   Fixed bug in textarea handling
+
+2.3      10 Jun 04   Added debug I/O cache to avoid Apache problem
+		     with 8K system buffer limit.
+
+2.2      21 May 04   Added cookie parsing for ID/PW/WS
+
+2.1       5 May 04   Added special "REQUEST_METHOD=NONE" to support
+		     using CGI programs as background tasks (must
+		     be set via putenv() in parent program)
+
+2.0      11 Feb 04   Changed file upload to support binary files
+
+1.4      22 Sep 03   Added keyword_instance() routine
+
+1.3.2     2 Aug 02   General cleanup to try and fix a bug that caused
+		     www/apache/browser (?) to hang sometimes when
+		     dealing with large upload tables.  Appears to be
+		     fixed but the cause is still not completely
+		     clear.
+
+1.3.1    20 May 02   Bug fix.  A debugging line was going to stdout
+		     rather than keydebug.
+
+1.3      10 Apr 02   Added encodeOffsetURL() function to handle
+		     encoding of parts of a string in place (i.e. 
+		     things in the form http://xxx.xxx/yyy?abc=def
+		     where we only want to encode the stuff after
+		     the question mark).
+
+1.2      08 Oct 01   Fixed bug in url_encode which truncated
+		     hex-expanded characters
+
+1.1      13 Jul 01   Added url_encode() function to aid
+		     in creating proper link strings
+		     for web pages.
+
+1.0       8 Mar 00   Initial Release
+
+

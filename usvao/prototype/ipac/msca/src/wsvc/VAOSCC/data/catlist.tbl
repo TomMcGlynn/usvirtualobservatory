@@ -1,0 +1,6 @@
+|  id       |     file                                                            |  nrec       | ncol |     size    |
+ IRAS_PSC     /stage/vao-data/data/IRSA/catalogs/chunk_index/irsa/psc/index.ci           245889      81     145858755 
+ SDSS_DR7     /stage/vao-data/data/SDSS/DR7/chunk_index/sdss/dr7/index.ci             453846233      95  558684717759 
+ TWOMASS_PSC  /stage/vao-data/data/IRSA/catalogs/chunk_index/irsa/fp_psc/index.ci     470992970     127  594864126361 
+ USNO_B1      /stage/vao-data/data/IRSA/catalogs/chunk_index/irsa/usno_b1/index.ci   1045175762      56  538265519689 
+ WISE_prelim  /stage/vao-data/data/IRSA/catalogs/chunk_index/irsa/WISE/index.ci       257310278     277  573287308308 

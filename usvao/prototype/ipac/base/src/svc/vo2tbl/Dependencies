@@ -1,0 +1,9 @@
+base product group :
+--------------------
+lib/xmlinfo
+
+env product group :
+-------------------
+expat
+scew
+

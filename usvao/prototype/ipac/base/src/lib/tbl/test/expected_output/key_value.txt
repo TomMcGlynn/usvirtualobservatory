@@ -1,0 +1,11 @@
+Test getting key values by name (tbl_keyval()) on a IPAC ASCII file.
+  Call to tbl_keyval on file input/SingleFile.tbl retrieved PERIOD key:
+      PERIOD = [1.4324757], index = [29]
+  Call to tbl_keyval on file input/SingleFile.tbl retrieved MAXIMUM_DATE_UNITS key:
+      MAXIMUM_DATE_UNITS = [days], index = [22]
+  Call to tbl_keyval on file input/SingleFile.tbl retrieved BASE_DATE key:
+      BASE_DATE = [2450000], index = [35]
+  Call to tbl_keyval on file input/SingleFile.tbl retrieved OBSERVATORY_SITE key:
+      OBSERVATORY_SITE = [Fred Lawrence Whipple Observatory (FLWO)], index = [76]
+  Call to tbl_keyinfo on file input/SingleFile.tbl could not retrieve key FOO:
+

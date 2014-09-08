@@ -1,0 +1,16 @@
+Test reading more keywords than the nominal limit on a IPAC ASCII file.
+  The nominal limit on the number of keywords is 100.
+  input/ManyKeys.tbl has 110 keywords.
+  The additional keys are:
+      NOTE1 = [Note 1]
+      NOTE2 = [Note 2]
+      NOTE3 = [Note 3]
+      NOTE4 = [Note 4]
+      NOTE5 = [Note 5]
+      NOTE6 = [Note 6]
+      NOTE7 = [Note 7]
+      NOTE8 = [Note 8]
+      NOTE9 = [Note 9]
+      NOTE10 = [Note 10]
+      NOTE11 = [Note 11]
+

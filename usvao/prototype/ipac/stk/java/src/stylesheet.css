@@ -1,0 +1,112 @@
+/* Javadoc style sheet */
+
+/* Define colors, fonts and other style attributes here to override the defaults */
+
+/* Page background color */
+body { background-color: #FFFFFF; color:#000000 }
+
+/* Headings */
+h1 { font-size: 145% }
+.docs h3 { padding-left: 1em; }
+.docs h4 { padding-left: 3em; }
+
+a { color: #0022BB; text-decoration: none; }
+a:visited { color: #666670; }
+a:hover { text-decoration: underline; }
+
+.docs dl { width: 70%; text-align: justify; }
+.docs dt { font-style: normal; font-weight: bold; margin-left: 1em; }
+
+.docs p {
+    width: 80%;
+    text-align: justify;
+    margin-left: 1em;
+}
+
+.docs td p { width: 100%; margin: 0 0 1em 0; }
+
+/* Table colors */
+.TableHeadingColor     { background: #DDDDDD; color:#000000 } /* Light gray */
+.TableSubHeadingColor  { background: #DDDDDD; color:#000000 } /* Light gray */
+.TableRowColor         { background: #FFFFFF; color:#000000 } /* White */
+
+/* Font used in left-hand frame lists */
+.FrameTitleFont   { font-size: 100%; font-family: Helvetica, Arial, sans-serif; color:#000000 }
+.FrameHeadingFont { font-size:  90%; font-family: Helvetica, Arial, sans-serif; color:#000000 }
+.FrameItemFont    { font-size:  90%; font-family: Helvetica, Arial, sans-serif; color:#000000 }
+
+/* Navigation bar fonts and colors */
+.NavBarCell1    { background-color:#EEEEEE; color:#000000} /* Light gray */
+.NavBarCell1 a  { color: black; }
+.NavBarCell1Rev { background-color:#555555; color:#FFFFFF} /* Dark Gray */
+.NavBarFont1    { font-family: Arial, Helvetica, sans-serif; color:#000000;color:#000000;}
+.NavBarFont1Rev { font-family: Arial, Helvetica, sans-serif; color:#FFFFFF;color:#FFFFFF;}
+
+.NavBarCell2    { font-family: Arial, Helvetica, sans-serif; background-color:#FFFFFF; color:#000000}
+.NavBarCell3    { font-family: Arial, Helvetica, sans-serif; background-color:#FFFFFF; color:#000000}
+
+.info {
+    margin: 1em;
+    padding: 0;
+    width: 80%;
+    border-width: 1px;
+    border-style: outset;
+    border-color: gray;
+    border-collapse: collapse;
+}
+
+.info th, .info td {
+    padding: 0.5em;
+    border-width: 1px;
+    border-style: inset;
+}
+
+.info th {
+    border-color: black;
+}
+
+.info td {
+    border-color: gray;
+    text-align: justify;
+}
+
+.info td.first {
+    font-style: italic;
+    font-size: 90%;
+    text-align: left;
+}
+
+.info td.first a {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.nav {
+    display: block;
+    float: right;
+    margin: 1em;
+    padding: 0;
+    font-size: medium;
+    font-weight: normal;
+}
+
+.nav a, .nav a:link, .nav a:visited {
+    color: blue;
+    text-decoration: underline;
+}
+
+.nav a:hover, .nav a:active, .nav a:focus {
+    color: black;
+}
+
+.kv {
+    font-style: italic;
+    white-space: nowrap;
+    color: #007700;
+}
+
+ul.discuss {
+    width: 70%;
+    text-align: justify;
+}
+
+ul.discuss li { padding: 1em; }

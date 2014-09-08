@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+
+<title>IPAC Table Reformat and Validation Service</title>
+
+<!--#include virtual="/include/header.html"-->
+
+<div class="webpage">
+    <h1>Table Reformat and Validation Service</h1>
+
+    <form method="post" aCtion="/cgi-bin/TblCheck/nph-tblCheck" enctype="multipart/form-data" target="tbldata">
+    <div style="border:1px solid #ccc; padding:10px; margin: 0 auto 0 auto;">
+        <center>
+        <p/>
+        <input type="file" name="table" value="" size="50" maxlength="120" />
+        <p/>
+	<input type="checkbox" name="coords" /> &nbsp;Apply name resolution/coordinate transformation.<p/>
+        <input type="submit" value="Upload" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="reset"  value="Reset" />
+        </center>
+    </div>
+    </form>
+
+    <p>Upload your table file here, and this service will attempt to reformat and validate it to ensure compliance with specific formatting rules, and identify potential errors. If the validation is successful, download the reformatted table as an ASCII or VOtable file.  You may then upload it to the desired IPAC or VO service.
+    </p>
+    <p>If you check the name resolution/coordinate transformation box, the service will try to resolve source names using NED and SIMBAD, and to identify coordinate columns. 
+    </p>
+    <p>For more information, see:
+       <a href="/docs/table_upload_help.html">Using Tables With IPAC Services</a>
+    </p>
+</div>
+
+<!--#include virtual="/include/footer.html"-->

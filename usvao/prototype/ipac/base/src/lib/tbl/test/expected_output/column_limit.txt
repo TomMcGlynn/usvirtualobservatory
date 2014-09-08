@@ -1,0 +1,7 @@
+Test reading more columns than the nominal limit on a IPAC ASCII file.
+  The nominal limit on the number of columns is 800.
+  input/ManyColumns.tbl has 802 columns.
+  The additional columns are:
+      column800 = [val800]
+      column801 = [val801]
+

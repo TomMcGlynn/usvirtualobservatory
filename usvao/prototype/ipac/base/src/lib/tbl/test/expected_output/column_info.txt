@@ -1,0 +1,73 @@
+Test getting column information (tbl_colinfo()) on a IPAC ASCII file.
+  Call tbl_colinfo on input/SingleFile.tbl.
+  --- Column Information: [HJD] ---
+     Data Type =  [  char]
+     Unit =       [    days]
+     Null =       [    ]
+     Scale =      [        ]
+     Offset =     [        ]
+     Display =    [      ]
+     Byte Width =   17
+     End Col =      16
+
+  --- Column Information: [Date_WRT_Transit_Midpoint] ---
+     Data Type =  [double]
+     Unit =       [    days]
+     Null =       [    ]
+     Scale =      [        ]
+     Offset =     [        ]
+     Display =    [      ]
+     Byte Width =   28
+     End Col =      44
+
+  --- Column Information: [Phase] ---
+     Data Type =  [double]
+     Unit =       [    days]
+     Null =       [    ]
+     Scale =      [        ]
+     Offset =     [        ]
+     Display =    [      ]
+     Byte Width =   13
+     End Col =      57
+
+  --- Column Information: [Relative_Flux] ---
+     Data Type =  [double]
+     Unit =       [     mag]
+     Null =       [    ]
+     Scale =      [        ]
+     Offset =     [        ]
+     Display =    [      ]
+     Byte Width =   16
+     End Col =      73
+
+  --- Column Information: [Relative_Flux_Uncertainty] ---
+     Data Type =  [double]
+     Unit =       [     mag]
+     Null =       [    ]
+     Scale =      [        ]
+     Offset =     [        ]
+     Display =    [      ]
+     Byte Width =   28
+     End Col =     101
+
+  --- Column Information: [Accepted] ---
+     Data Type =  [   int]
+     Unit =       [        ]
+     Null =       [    ]
+     Scale =      [        ]
+     Offset =     [        ]
+     Display =    [      ]
+     Byte Width =   11
+     End Col =     112
+
+  --- Column Information: [] ---
+     Data Type =  [      ]
+     Unit =       [        ]
+     Null =       [    ]
+     Scale =      [        ]
+     Offset =     [        ]
+     Display =    [      ]
+     Byte Width =    0
+     End Col =       0
+
+

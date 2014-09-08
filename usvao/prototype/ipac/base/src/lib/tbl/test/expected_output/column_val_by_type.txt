@@ -1,0 +1,21 @@
+Test getting column values by type (tbl_colval) on a IPAC ASCII file.
+  Call tbl_colval on input/SingleFile.tbl.
+  Get value for HJD, of type character, as type character:
+    Value is 2453464.50073.
+  Get value for HJD, of type character, as type double:
+    Value is 2.45346e+06.
+  Get value for HJD, of type character, as type integer:
+    Retrieval of value as stated type failed with this status: [-10].
+  Get value for Phase, of type double, as type character:
+    Value is -0.0809228.
+  Get value for Phase, of type double, as type double:
+    Value is -0.0809228.
+  Get value for Phase, of type double, as type integer:
+    Retrieval of value as stated type failed with this status: [-10].
+  Get value for Accepted, of type integer, as type character:
+    Value is 1.
+  Get value for Accepted, of type integer, as type double:
+    Value is 1.
+  Get value for Accepted, of type integer, as type integer:
+    Value is 1.
+

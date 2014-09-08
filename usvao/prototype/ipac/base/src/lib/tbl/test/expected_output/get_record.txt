@@ -1,0 +1,5 @@
+Test getting a record (tbl_getrec()) on a IPAC ASCII file.
+  Call to tbl_getrec on file input/SingleFile.tbl retrieved the following:
+  --- Record for input/SingleFile.tbl ---
+      [  2453464.50073                  -0.1159200   -0.0809228      1.00174308                       0.002          1  ]
+

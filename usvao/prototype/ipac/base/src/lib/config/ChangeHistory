@@ -1,0 +1,15 @@
+Version   Date       Description of Change
+
+2.5      13 May 05   Fixed logic for ordering check of ISIS_CONFIG
+		     command argument, environment variable, and default
+2.4      30 Aug 04   Fixed bug in debugging output
+2.3      01 Jul 04   Added 64-bit file addressing compiler flag 
+2.2      01 Oct 03   Fixed bug if config file not there or there
+		     was a problem reading it
+2.1      15 Apr 03   Added code to allow combinations of spaces and 
+		     tabs as whitespace.
+2.0       1 Mar 03   Updated to provide functionality for expanding
+		     strings (usually file names) with values from the
+		     configuration file.
+
+1.0      25 Aug 00   Initial Release

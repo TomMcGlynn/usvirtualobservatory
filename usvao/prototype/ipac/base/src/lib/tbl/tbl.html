@@ -1,0 +1,359 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN//2.0">
+<html>
+<head>
+<title>Table Handling Library</title>
+</head>
+
+<body>
+<hr><p>
+
+<center>
+<h2>            Table Handling Library
+</h2>
+</center>
+<p>
+
+<center><a name=toc><b>Table of Contents</b></a>
+<table border=1 cellpadding=2 width=75%><tr><td>
+<center><table><tr><td>
+<ul>
+   <item><a href=#description>   General Description</a><br>
+   <item><a href=#format>        Table Formatting</a><br>
+   <item><a href=#control>       Library Routines</a><br>
+   <item><a href=#example>       Usage Example</a><br>
+   <item><a href=#errors>        Error Codes</a><br>
+</ul>
+</td></table></center>
+</td></table></center>
+
+
+<a name=description><h2>General Description</h2></a><p>
+
+This library is designed to provide a simple but robust interface for
+accessing tabular data files.  Supported formats include IPAC variable
+and fixed-length ASCII tables and FITS ASCII and binary table.
+For FITS, the library is layered on top of the CFITSIO library,
+though it is not required that users have a general knowledge about
+the structure and usage of FITS files to use our code.<p>
+
+Our library allows the user to read the above file formats without
+requiring any knowledge of the file format; the file type is
+determined at run time and file information (input file name, table
+type, number of keywords, number of rows, and number of columns) is
+stored in a structure.  The number of rows will only be set if it can
+be determined at file open time (<i>i.e.</i> from the file header or based on
+file size).  Likewise, the library also provides structures containing
+column information (column name, data type, null value, scaling
+factor, offset of the data, column width, and sugested display
+format), again available at file open time.<p>
+
+All the supported file types allow for arbitrary keyword=value pairs
+to be embedded in the file header and the library provides functionality
+to query this information.<p>
+
+<hr><p>
+
+<a name=format><h2>IPAC Table Formatting</h2></a><p>
+
+IPAC tables are pure ASCII files with data arranged in newline-delimited
+rows of fixed-width columns and described by a set of header lines.  
+The header is in two parts: a set of arbitrary keyword=value lines 
+followed by a set of column description lines.<p>
+
+The keyword lines have the form <p>
+
+<pre>
+\keyword = value
+</pre><p>
+
+where <tt>keyword</tt> can be any 
+		
+The library is somewhat forgiving of formatting irregularities
+but basically wants to see a file where the records are newline delimited
+and where the first record is a header delimiting and naming the columns.<p>
+
+The header must use the vertical bar ("<tt>|</tt>") character to mark the
+column boundaries and the corresponding positions in subsequent
+records should be blank.  A typical file of this sort could look like
+the following:<p>
+
+
+<pre>
+|     ra   |    dec   |   sao   |      v   |    sptype        |
+    2.09708   29.09056     73765    2.06000   B8IVpMnHg          
+    2.29458   59.14972     21133    2.27000   F2III-IV           
+    6.57083  -42.30611    215093    2.39000   K0III              
+   10.12708   56.53722     21609    2.23000   K0IIIa             
+   10.89750  -17.98667    147420    2.04000   G9.5IIICH-1        
+</pre><p>
+
+
+Dashes can be used in place of the spaces in the header:<p>
+
+
+<pre>
+|-----ra---|----dec---|---sao---|------v---|----sptype--------|
+</pre><p>
+
+
+and omitting the first vertical bar is forgiven.<p>
+
+
+Lines beginning with the backslash ("<tt>\</tt>") character and lines
+after the header beginning with the vertical bar ("<tt>|</tt>")
+character are skipped.  This allows for comments, keywords, and
+additional "header" information.  For example,<p>
+
+
+<pre>
+\catalog = sao
+\date = "Wed Sep 20 09:48:36 1995"
+\
+|-----ra---|----dec---|---sao---|------v---|----sptype--------| 
+|    real  |   real   |   int   |    real  |     char         | 
+|          |          |         |          |                  | 
+    2.09708   29.09056     73765    2.06000   B8IVpMnHg          
+    2.29458   59.14972     21133    2.27000   F2III-IV           
+    6.57083  -42.30611    215093    2.39000   K0III              
+\ and so on
+   10.12708   56.53722     21609    2.23000   K0IIIa             
+   10.89750  -17.98667    147420    2.04000   G9.5IIICH-1        
+</pre><p>
+
+
+would be interpreted exactly the same as the original example.<p>
+
+Tables with no header line (i.e. no "<tt>|</tt>" characters) have the
+first line parsed for column positional information.  This is prone to
+all sorts of problems if the first record doesn't realistically
+represent the format of the table as a whole and should be avoided.
+Column names in this case are set to "<tt>field0</tt>",
+"<tt>field1</tt>", etc., as are any empty column names for files that
+have a formatted header.<p>
+
+
+<hr><p>
+
+
+
+<a name=control><h2>Library Routines</h2></a><p>
+
+The calls in the <tt><b>tbl</b></tt> library are as follows:<p>
+
+<pre>
+   int   ifile = tbl_open   (fname, &ncol)
+   int   stat  = tbl_close  (ifile)
+   int   stat  = tbl_rewind (ifile)
+   int   icol  = tbl_column (ifile, name)
+   int   stat  = tbl_colinfo(ifile, icol, &name, &width, &endcol)
+   int   stat  = tbl_read   (ifile)
+   char *value = tbl_colval (ifile, icol)
+   char *msg   = tbl_error  ()
+   int   stat  = tbl_atof   (value, &xvalue)
+</pre><p>
+
+and are described in detail in the subsections that follow.<p>
+
+<center>
+<table border=1 cellpadding=10 width=90%>
+<tr><td>
+
+<pre>
+int ifile = tbl_open(fname, &ncol)
+
+char *fname;
+int   ncol;
+</pre>
+
+Open the table file pointed to by fname, parse the header, and
+return a pointer to be used in referring to the table.
+
+
+</td>
+<tr><td>
+
+
+<pre>
+int stat = tbl_close(ifile)
+
+int   ifile;
+</pre>
+
+Close the table file and recycle the memory associated with it.
+
+
+</td>
+<tr><td>
+
+
+
+<pre>
+int stat = tbl_rewind(ifile)
+
+int   ifile;
+</pre>
+
+Go back to the top of the file (i.e. just before reading the first record).
+
+
+
+</td>
+<tr><td>
+
+
+<pre>
+int icol = tbl_column(ifile, name)
+
+int   ifile;
+char *name;
+</pre>
+
+Find the column which has the given name.
+
+
+</td>
+<tr><td>
+
+
+<pre>
+int stat = tbl_colinfo(ifile, icol, &name, &width, &endcol)
+
+int   ifile, icol;
+char *name;
+int   width, endcol;
+</pre>
+
+Get information about a specific column by number (<tt>icol</tt> <
+<tt>ncol</tt>). This information includes the column name, its
+width, and the column it ends on.
+
+
+</td>
+<tr><td>
+
+
+<pre>
+int stat = tbl_read(ifile)
+
+int   ifile;
+</pre>
+
+Read the next data record.
+
+
+</td>
+<tr><td>
+
+
+<pre>
+char *value = tbl_colval(ifile, icol)
+
+int   ifile, icol;
+</pre>
+
+Extract a column value (by column number) from the current record for 
+this file.
+
+
+</td>
+<tr><td>
+
+
+<pre>
+char *msg = tbl_error()
+</pre>
+
+Returns the last error message generated.
+
+
+</td>
+<tr><td>
+
+
+<pre>
+int stat = tbl_atof(value, &xvalue)
+
+char   *value;
+double  xvalue;
+</pre>
+
+Tries to convert a string (<tt>value</tt>) to a double (<tt>xvalue</tt>).  
+The status will be non-zero if this fails.
+</td>
+</table>
+</center>
+
+
+<hr><p>
+
+<a name=example><h2>Usage Example</h2></a><p>
+
+The following program takes two arguments:  the file name and the
+column name to read.<p>
+
+<a name=test1><tt><b>test1.c</b></tt></a>
+<pre>
+      #include &ltstdio.h&gt
+
+      main(argc, argv)
+      int argc;
+      char **argv;
+      {
+	 int     itable, icol, ncol;
+	 char   *value;
+	 double  xval;
+
+	 itable = tbl_open(argv[1], &ncol);
+	 icol = tbl_column(itable, argv[2]);
+
+	 while(tbl_read(itable) == 0)
+	 {
+	    value = tbl_colval(itable, icol);
+
+	    tbl_atof(value, &xval);
+
+	    printf("%s (%-g)\n", value, xval);
+	 }
+
+	 tbl_close(itable);
+      }
+</pre><p>
+
+<hr><p>
+
+<a name=errors><h2>Error Codes</h2></a><p>
+
+Whenever the return above (e.g. "stat") is less than zero, it 
+represents an error condition.  This can have the values<p>
+
+
+<pre>
+   TBL_NOMEM  :  A malloc() somewhere in the processing 
+		 couldn't get enough memory.  Time to abort.
+
+   TBL_NOFILE :  The file name given cannot be opened.
+
+   TBL_EOF    :  Read hit the end-of-file.
+
+   TBL_RDERR  :  Read error.
+
+   TBL_ERROR  :  Everything else; see the tbl_error() 
+		 message.
+</pre>
+
+
+
+<hr>
+
+<address>
+<table>
+<tr><td><b>Author:</b>       <td> John Good                              </tr>
+<tr><td><b>Address:</b>      <td> <a href="mailto:jcg@ipac.caltech.edu">
+                                                  jcg@ipac.caltech.edu </a>
+									 </tr>
+<tr><td><b>Last update:</b>  <td> 01-Mar-97                              </tr>
+</table>
+</address>
+
+</body>
+</html>

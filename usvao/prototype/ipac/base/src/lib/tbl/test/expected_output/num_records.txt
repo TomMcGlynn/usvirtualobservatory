@@ -1,0 +1,3 @@
+Test getting number of records (tbl_numcheck()) on a IPAC ASCII file.
+  Call to tbl_numcheck on file input/SingleFile.tbl reports 488 rows.
+

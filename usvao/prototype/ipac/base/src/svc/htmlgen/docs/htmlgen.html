@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title>API: tbl library</title>
+  <!--#include virtual="/include/header_api_docs.html"-->
+
+
+This template illustrates all the capabilities of the "htmlgen" service.
+All substitution rules are based on variations on a &#92;param&#92; pattern matching.
+The most basic capability is just a string substitution of the value associated with the
+param name on the htmlgen command line: example1.<p/>
+
+The htmlgen command line starts off with two parameters defining the location
+of the template, e.g. this file <a href="http://dodo.ipac.caltech.edu:9135/workspace/beekley_9135/test.template.html">test.template</a>, and the output, which is usually HTML (see <a href="http://dodo.ipac.caltech.edu:9135/workspace/beekley_9135/test_tbl.html">test.tbl</a>).  This is followed
+by parameter/value pairs.  If the number of parameters is going to be 
+large, the parameter/values can be written into a file and passed to the program
+with a param/value pair that looks like "@parms param.txt".  All the pairs in
+this file are added to the param/value list as if they had been put on the 
+command line.<p/>
+
+Default values are also supported:  &#92;parm3:like this&#92; -> like this<p/>
+
+You can also use config variables such as etss_corot_exo_v1_3 or /workspace/beekley_9135
+where the value is retrieved from the ISIS.conf configuration file.<p.>
+
+If the parameter name starts with an ampersand (&#92;&amp;parm2&#92;), the value is
+URL-encoded: e%2Bample2.<p/>
+
+If the parameter name starts with a pound sign (&#92;#servheader.html&#92;) as at the top
+of this template, the text of the associated file is inserted into the output.
+The '#' indicates that the file is to be found in the standard include directory
+(set up for Apache and pointed to by the ISIS.conf HTML_INCLUDES variable).<p/>
+
+Similarly, any file (full path) can be included using &#92;@incfile&#92;:
+
+<p/>
+This is the text from file "include1.html".
+<p/>
+
+
+<p/>
+
+There are also a few functions that can be applied to the named parameter:<p/>
+
+sign1 = 1 &lt; X<br>
+sign3 = -1 &gt; Z<p>
+
+The htmlgen processing has special rules for handling tables.  Here a table file
+is translated into an HTML table, but what the code actually does is loop over 
+the table records and output one copy of the pattern between the &#92;%tblfile&#92; 
+and the &#92;%%&#92;, or the &#92;%alt&#92; default if it exists.  Inside this block, the
+&#92;param&#92; values refer to table column names rather than command-line parameters,
+though the latter can also be accessed using a &#92;p.param&#92; construct, as can
+ISIS.conf variables through &#92;c.param&#92;.<p/>
+
+Functions can be used here also.<p/>
+
+<table class="docs">
+<tr>
+<td>RA</td>
+   <td>URL</td>
+   <td>FNU 12</td>
+   <td>RA versus FNU 12</td>
+   <td>FNU 25</td>
+   <td>Dec</td>
+   <td>Lim</td>
+   <td>Composite</td>
+</tr>
+
+<tr>
+   <td>7.6072</td>
+   <td>fj%3F34556_%2B%25%23%24%21%40+ekj5</td>
+   <td>5.592e-01dodo.ipac.caltech.edu</td>
+   <td>7.6072 / 5.592e-01</td>
+   <td>2.500e-01Jansky</td>
+   <td>40.3675</td>
+   <td>0</td>
+   <td> 7.6072&plusmn;40.3675</td>
+</tr>
+
+<tr>
+   <td>8.3649</td>
+   <td>fj934556_%2B%25%23%24%21%40+ekj5</td>
+   <td>2.500e-01dodo.ipac.caltech.edu</td>
+   <td>8.3649 / 2.500e-01</td>
+   <td>2.500e-01Jansky</td>
+   <td>40.0906</td>
+   <td>1</td>
+   <td>&lt;8.3649&plusmn;40.0906</td>
+</tr>
+
+<tr>
+   <td>9.2359</td>
+   <td>fj934%3F56_%2B%25%23%24%21%40+ekj5</td>
+   <td>8.414e-01dodo.ipac.caltech.edu</td>
+   <td>9.2359 / 8.414e-01</td>
+   <td>2.633e-01Jansky</td>
+   <td>39.1058</td>
+   <td>-1</td>
+   <td>&gt;9.2359&plusmn;39.1058</td>
+</tr>
+
+<tr>
+   <td>8.7591</td>
+   <td>fj93455%3F_%2B%25%23%24%21%40+ekj5</td>
+   <td>3.473e-01dodo.ipac.caltech.edu</td>
+   <td>8.7591 / 3.473e-01</td>
+   <td>2.500e-01Jansky</td>
+   <td>39.1634</td>
+   <td>1</td>
+   <td>&lt;8.7591&plusmn;39.1634</td>
+</tr>
+
+<tr>
+   <td>9.9069</td>
+   <td>fj934556%3F%2B%25%23%24%21%40+ekj5</td>
+   <td>9.543e+00dodo.ipac.caltech.edu</td>
+   <td>9.9069 / 9.543e+00</td>
+   <td>4.202e+00Jansky</td>
+   <td>38.2234</td>
+   <td>0</td>
+   <td> 9.9069&plusmn;38.2234</td>
+</tr>
+
+<tr>
+   <td>9.0266</td>
+   <td>fj934556_%3F%25%23%24%21%40+ekj5</td>
+   <td>2.545e+00dodo.ipac.caltech.edu</td>
+   <td>9.0266 / 2.545e+00</td>
+   <td>6.594e-01Jansky</td>
+   <td>38.2518</td>
+   <td>-1</td>
+   <td>&gt;9.0266&plusmn;38.2518</td>
+</tr>
+
+<tr>
+   <td>9.7905</td>
+   <td>fj934556_%2B%25%23%24%21%40+ekj5</td>
+   <td>2.500e-01dodo.ipac.caltech.edu</td>
+   <td>9.7905 / 2.500e-01</td>
+   <td>2.500e-01Jansky</td>
+   <td>40.6196</td>
+   <td>0</td>
+   <td> 9.7905&plusmn;40.6196</td>
+</tr>
+
+<tr>
+   <td>9.8324</td>
+   <td>fj934+56_%2B%25%23%24%21%40+ekj5</td>
+   <td>2.500e-01dodo.ipac.caltech.edu</td>
+   <td>9.8324 / 2.500e-01</td>
+   <td>2.500e-01Jansky</td>
+   <td>40.3673</td>
+   <td>0</td>
+   <td> 9.8324&plusmn;40.3673</td>
+</tr>
+
+<tr>
+   <td>9.9146</td>
+   <td>fj934556_%2B%25%23%3F%21%40+ekj5</td>
+   <td>4.179e-01dodo.ipac.caltech.edu</td>
+   <td>9.9146 / 4.179e-01</td>
+   <td>2.500e-01Jansky</td>
+   <td>40.4892</td>
+   <td>1</td>
+   <td>&lt;9.9146&plusmn;40.4892</td>
+</tr>
+
+<tr>
+   <td>9.9311</td>
+   <td>fj934+++_%2B%25%23%24%21%40+ekj5</td>
+   <td>2.500e-01dodo.ipac.caltech.edu</td>
+   <td>9.9311 / 2.500e-01</td>
+   <td>3.270e-01Jansky</td>
+   <td>40.3458</td>
+   <td>0</td>
+   <td> 9.9311&plusmn;40.3458</td>
+</tr>
+
+<tr>
+   <td>9.9939</td>
+   <td>fj934556_%2B%25%23%24%21%40+ekj5</td>
+   <td>2.500e-01dodo.ipac.caltech.edu</td>
+   <td>9.9939 / 2.500e-01</td>
+   <td>6.269e-01Jansky</td>
+   <td>40.6705</td>
+   <td>0</td>
+   <td> 9.9939&plusmn;40.6705</td>
+</tr>
+
+<tr>
+   <td>11.6444</td>
+   <td>fj934556_%2B%25%23%24%21%40+ekj5</td>
+   <td>4.626e-01dodo.ipac.caltech.edu</td>
+   <td>11.6444 / 4.626e-01</td>
+   <td>2.500e-01Jansky</td>
+   <td>39.6160</td>
+   <td>0</td>
+   <td> 11.6444&plusmn;39.6160</td>
+</tr>
+
+<tr>
+   <td>11.8317</td>
+   <td>fj934556_%2B%25%23%24%21%40+ekj5</td>
+   <td>6.626e-01dodo.ipac.caltech.edu</td>
+   <td>11.8317 / 6.626e-01</td>
+   <td>1.522e-01Jansky</td>
+   <td>39.0283</td>
+   <td>-1</td>
+   <td>&gt;11.8317&plusmn;39.0283</td>
+</tr>
+
+<tr>
+   <td>10.8741</td>
+   <td>fj934+56_%2B%25%23%24%21%40+ekj5</td>
+   <td>4.135e-01dodo.ipac.caltech.edu</td>
+   <td>10.8741 / 4.135e-01</td>
+   <td>1.056e+00Jansky</td>
+   <td>39.1973</td>
+   <td>0</td>
+   <td> 10.8741&plusmn;39.1973</td>
+</tr>
+
+<tr>
+   <td>10.3554</td>
+   <td>fj934556_+%25%23+%21++ekj5</td>
+   <td>2.500e-01dodo.ipac.caltech.edu</td>
+   <td>10.3554 / 2.500e-01</td>
+   <td>3.294e-01Jansky</td>
+   <td>41.2052</td>
+   <td>1</td>
+   <td>&lt;10.3554&plusmn;41.2052</td>
+</tr>
+
+</table>
+<!--#include virtual="/include/footer_api_docs.html">

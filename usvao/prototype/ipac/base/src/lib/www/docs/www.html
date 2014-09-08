@@ -1,0 +1,132 @@
+<hr><p>
+
+<center>
+<h2>            WWW CGI Parameter Handling Library
+</h2>
+</center>
+<p>
+
+<center><a name=toc><b>Table of Contents</b></a>
+<table border=1 cellpadding=2 width=75%>
+    <tr><td>
+        <center><table><tr><td>
+            <ul>
+                <li><a href=#description>   General Description</a></li>
+                <li><a href=#control>       Library Routines</a></li>
+                <li><a href=#example>       Usage Example</a></li>
+            </ul>
+        </td></tr></table></center>
+    </td></tr>
+</table>
+</center>
+
+<a name=description><h2>General Description</h2></a>
+
+<p>
+All the information a CGI program sees (beyond a few environment variables)
+comes from a single line of text sent to <tt><b>stdin</b></tt>.  This string
+must be parsed (and some of the characters converted from an ASCII hex format
+to real text) into a set of <tt><b>keyword = value</b></tt> pairs.
+
+<p>
+These routines streamline this process and give the user the ability to ask
+for the values of keywords by name or index.
+
+<p><hr><p>
+
+<a name=control><h2>Library Routines</h2></a>
+
+<p>
+The calls in the <tt><b>www</b></tt> library are as follows:
+
+<p>
+<pre>
+   int   count = keyword_init     ( );
+   int   truth = keyword_exists   ( char *keyword );
+   char *value = keyword_value    ( char *keyword );
+   char *value = keyword_instance ( char *keyword, int count );
+   int   truth = keyword_info     ( int index, char **keyword, 
+                                    char **value, char **fname );
+                 keyword_debug    ( FILE *stream );
+</pre>
+
+<p>
+<ul>
+<li><tt><b>keyword_init()</b></tt> reads one line from <tt><b>stdin</b></tt>
+parses it, and sets up an internal structure to hold the results.  This 
+routine must be run once at the beginning of the CGI program. Returns the
+parameter count or -1 if there are none.</li>
+
+<li><tt><b>keyword_exists()</b></tt> checks the keyword structure to see if
+a particular keyword exists. <tt>truth</tt> is 1 for true and 0 for false.</li>
+
+<li><tt><b>keyword_value()</b></tt> returns the value of a particular keyword
+(char *NULL if it doesn't exist).</li>
+
+<li><tt><b>keyword_instance()</b></tt> returns the value of the nth instance
+(starting with 1) of a particular keyword (char *NULL if it doesn't exist).</li>
+
+<li><tt><b>keyword_info()</b></tt> reads input from upload, returns all
+the keyword information for a given index value (up to the count
+returned by keyword_init()).  The input is usually keyword/value pairs
+but can also be an uploaded file.  In this latter case, fname is not
+null but points to a file in /tmp (which will be removed when
+keyword_close() is called) and value is the file name given by the
+user.</li>
+
+<li><tt><b>keyword_debug()</b></tt> turns on library debugging.  Make sure
+to turn it back off or redirect it to a file for real operational use.</li>
+
+</ul>
+
+<hr>
+
+<a name=example><h2>Usage Example</h2></a>
+
+<p>
+The following is a code snippet from a program using the www 
+library routines.
+
+<p>
+<a name=test1><tt><b>test1.c</b></tt></a>
+
+<pre>
+   char   *name, *val, *fname;
+   int     i, nkey;
+
+   nkey = keyword_init();
+
+   printf("You submitted the following name/value pairs:\n");
+
+   for(i = 0; i &lt nkey; ++i)
+   {
+      keyword_info(i, &name, &val, &fname);
+      printf("%s = %s\n",name, val);
+
+      if(fname != (char *)NULL)
+         printf("--&gt; in file %s\n", fname);
+   }
+
+   keyword_close();
+
+</pre>
+
+<p><hr>
+
+<address>
+<table>
+<tr>
+    <td><b>Author:</b></td>
+    <td> John Good </td>
+</tr>
+<tr>
+    <td><b>Address:</b></td>  
+    <td><a href="mailto:jcg@ipac.caltech.edu">jcg@ipac.caltech.edu</a></td>
+</tr>
+<tr>
+    <td><b>Last update:</b></td>
+    <td>18-Jul-2005</td>
+</tr>
+</table>
+</address>
+

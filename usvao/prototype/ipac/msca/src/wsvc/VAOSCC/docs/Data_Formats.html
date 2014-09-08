@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/vao_page.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>US VAO</title>
+<!-- InstanceEndEditable -->
+<meta name="robots" content="index, follow" />
+<meta name="revisit-after" content="21 days" />
+<meta name="author" content="" />
+<meta name="copyright" content="" />
+<meta name="rating" content="Global" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="Description" content="" />
+<meta name="Keywords" content="" />
+<meta name="abstract" content="" />
+
+<link type="text/css" rel="stylesheet" href="/applications/VAOSCC/css/layout.css" title="default" media="all" />
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body id="about">
+
+<div id="main-wrapper">
+ 
+<div id="logo"><a href="http://www.usvao.org" title="Home"><img src="/applications/VAOSCC/images/VAO_logo_100.png" width="100" height="50" alt="vao logo" /></a></div>
+
+  <div id="nav-wrapper">
+    <div id="navigation"><ul><li><a href="http://www.usvao.org/" title="home" id="home-link">Home</a></li><li><a href="http://www.usvao.org/science-tools-services/" title="Science Tools" id="about-link">Science Tools</a></li><li><a href="http://www.usvao.org/about-vao/" title="about us" id="about-link">About the VAO</a></li><li><a href="http://www.usvao.org/news/" title="news" id="about-link">VAO News</a></li>
+
+  <li><a href="http://www.usvao.org/contact-connect/" title="contact us" id="contact-link" >Contact &amp; Connect</a></li><li></li></ul></div>
+    <div id="nav-right"></div>
+</div>
+<div class="clear">
+  <div class="clear"></div>
+</div>
+<div id="content-area"><br />
+<div id="content-top"></div>
+<div id="content-main"><!-- InstanceBeginEditable name="Body" -->
+
+
+  <table border="0" cellspacing="0" cellpadding="5">
+    <tr>
+      <td><a href="/applications/VAOSCC"><img src="images/vao_crossCompare_icon.png" alt="compare" width="91" align="texttop" /></a></td>
+      <td>
+        <h3>Catalog Cross-comparison Tool Help</h3>
+     <a href="Cross_Compare.html">User Guide</a>  | <a href="Example_Tables.html">Example Tables</a> | <a href="Data_Formats.html">Data Formats</a> | <a href="Program_Interface.html">Program Interface </a>| <a href="Demo.html">Demo </a>
+    </td></tr>
+  </table>
+
+
+  <h2 title="products">Data Products and Formats</h2>
+
+<table width="650"><tr><td>
+
+<p> Standard table formats  this service can use are documented at the<a href="http://irsa.ipac.caltech.edu/docs/table_upload_help.html"> NASA/IPAC Infrared Science Archive</a>.</p>
+
+<p>The Cross-Comparison service  accepts input in ASCII, FITS and VOTable formats. Tables may be up to 1 million records in size. 
+The service uploads the catalog to the server and validates it for consistency of format and content.</p>
+<p>Four types of ASCII table formats are accepted:</p>
+<ul>
+		<li>IPAC ASCII Column-Aligned</li>
+		<li>Comma-Separated Values (CSV) or Comma-Delimited</li>
+		<li>Tab-Delimited</li>
+		<li>A Simple List of Objects (such as astronomical source names)</li>
+
+</ul>
+
+<p>Each format and its respective requirements are detailed below.</p>
+
+<p><a name="TIPAC"></a><b>1. IPAC ASCII Column-Aligned Format</b>  (Download <a href="http://irsa.ipac.caltech.edu/docs/tblexamples/IPAC_ASCII_one_header.tbl">example</a>.)</p>
+
+<p>The IPAC ASCII Column-Aligned Format, also known as IPAC Table Format, requires the following structure:</p>
+<ul>
+		<li>Rows starting with a vertical line ( | ) are table header lines and define the table column layout and metadata. The first of these (the only one required) must contain the names of each column (e.g., ra, dec, flux).</li>
+		<li>The columns in the header row are separated by a vertical line ( | ) to show the boundaries of each column. There is also a vertical line at the beginning and end of the header row.</li>
+		<li>There must be at least one row of data in the row directly following the header row, and the data should align with the column names</li>
+		<li>The number of cells containing data is equal to or less than the number of columns</li>
+		<li>The data columns are lined up because they are column-aligned, which also makes the data more readable.</li>
+		<li>Data must fit within the boundaries of each column and not extend beyond the vertical header lines.</li>
+</ul>
+<p><b><i>Example of a basic IPAC ASCII Column-Aligned Format file:</i></b></p>
+<pre>
+|  object     |                ra            |         dec         |
+     M56                  289.147941100             30.184500500
+     ic4710               277.158208330             66.982277780
+     hoix                  49.383333330             69.045833330
+     tol89                210.339833330            -33.063777780
+     ngc              4552188.915863750             12.556341390
+     M82                  148.969687500             69.679383330
+     mrk33                158.132833330             54.401027780
+     ngc1097               41.579375000            -30.274888890
+     arp                22179.874583330            -19.297222220
+     M 65                 169.733166670             13.092222220
+</pre>
+
+
+<br />
+<p><b><a name="TCOMMA"></a>2. Comma-Separated Values (CSV) or Comma-Delimited Format</b> (Download <a href="http://irsa.ipac.caltech.edu/docs/tblexamples/csv_table_example.tbl">example</a>.)</p>
+
+<p>This is a format commonly exported from Microsoft Excel as a .csv file. In this format, each data cell is separated by a comma.</p>
+
+<p>Requirements for CSV tables include:</p>
+
+<ul class="spaced_list">
+	<li>The first line must contain the names of each column.</li>
+		<li>If data within a cell includes a comma, the data must be enclosed within quotation marks (e.g., "M56,148").</li>
+		<li>The columns in the header row are separated by commas ( , ).</li>
+		<li>The data provided in the table are separated by commas ( , ).</li>
+		<li>The number of cells containing data is equal to or less than the number of columns.</li>
+		<li>Blank lines will be treated as blank data records, so omit them if possible.</li>
+
+</ul>
+
+<p><b><i>Example of Comma-Separated Values (CSV) Format (also known as Comma Delimited):</i></b></p>
+
+<pre>object,ra,dec
+M56,289.147941100,30.184500500
+ic4710,277.158208330,-66.982277780
+hoix,149.383333330,69.045833330
+tol89,210.339833330,-33.063777780
+ngc 4552,188.915863750,12.556341390
+M82,148.969687500,69.679383330
+mrk33,158.132833330,54.401027780
+ngc1097,41.579375000,-30.274888890
+arp 22,179.874583330,-19.297222220
+M 65,169.733166670,13.092222220 </pre>
+<br />
+<p><b><a name="TTAB"></a>3. Tab-Delimited Format</b> (Download <a href="http://irsa.ipac.caltech.edu/docs/tblexamples/tab_delimited_table_example.tbl">example</a>.)</p>
+
+<p>This is a format commonly exported from Microsoft Excel as a .txt file by selecting Tab-Delimited when saving the file. In this format, each data cell is separated by a tab character.</p>
+
+<p>Requirements for tab-delimited tables are virtually identical to those for comma-separated and include:</p>
+<ul class="spaced_list">
+		<li>The first line must contain the names of each column.</li>
+		<li>The columns in the header row are separated by tabs.</li>
+		<li>The data provided in the table are separated by tabs.</li>
+		<li>The number of cells containing data is equal to or less than the number of columns.</li>
+		<li>Blank lines will be treated as blank data records, so omit them if possible.</li>
+</ul>
+<p><b><i>Example of Tab-Delimited Format:</i></b></p>
+
+<pre>object	ra	dec
+M56	289.147941100	30.184500500
+ic4710	277.158208330	-66.982277780
+hoix	149.383333330	69.045833330
+tol89	210.339833330	-33.063777780
+ngc 4552	188.915863750	12.556341390
+M82	148.969687500	69.679383330
+mrk33	158.132833330	54.401027780
+ngc1097	41.579375000	-30.274888890
+arp 22	179.874583330	-19.297222220
+M 65	169.733166670	13.092222220 </pre>
+
+<p>In the above example, the columns are lined up using tab characters between each cell. Note the columns may not line up exactly, even if tabs are applied consistently (as in row #5). 
+Do not add additional tabs in order to make the data align correctly; this will only create ambiguity with the data, and the table upload will fail.</p>
+<br />
+<p><b><a name="TLIST"></a>4. Simple List of Object Names / Coordinates with No Header</b> (Download <a href="http://irsa.ipac.caltech.edu/docs/tblexamples/list_of_obj_names.tbl">example</a>.)</p>
+
+<p>Requirements for this format are minimal:</p>
+<ul>
+		<li>Each line has one item.</li>
+		<li>The entire line is treated as an object name or coordinate string.</li>
+</ul>
+
+<p><b><i>Example:</i></b></p>
+
+<pre>M56
+ic4710
+hoix
+3 23 45.6 -12 34 56.78
+ngc 4552
+M82
+3h 22m 15.6s -13d 52m 11.17s
+ngc1097
+331.2 -6.94 ga
+M 65</pre>
+
+<br />
+<h2><a name="TCOOR"></a>Coordinate Formats and Systems</h2>
+<p>Coordinates can be entered as decimal degrees or sexagesimal; in Galactic, Equatorial or Ecliptic 
+(with/or without Equinox); as multiple columns or a single column coordinate string; or (if a single string) as an object name to be resolved via astronomical name resolvers.</p>
+
+<p>The first step in the analysis is to identify the best column(s) to use as coordinates. If any of the column pairs in the table below are given, they will be interpreted as shown in the Result column.
+In all examples, input column names are not case-sensitive. We recommend using the nomenclature usedin the table.</p>
+
+<table border="1" cellpadding="4">
+
+       <tr><td><b>Right Ascension</b></td><td><b>Declination</b></td><td><b>Result</b></td></tr>
+       <tr><td>ra</td><td>dec</td><td>Equatorial *</td></tr>
+        <tr><td>cra</td><td>cdec</td><td>Equatorial *</td></tr>
+        <tr><td>ra2000</td><td>dec2000</td><td>Equatorial J2000</td></tr>
+
+        <tr><td>ra2000</td><td>de2000</td><td>Equatorial J2000</td></tr>
+       <tr><td>_raj2000</td><td>_dej2000</td><td>Equatorial J2000</td></tr>
+        <tr><td>raj2000</td><td>dej2000</td><td>Equatorial J2000</td></tr>
+        <tr><td>raj2000</td><td>decj2000</td><td>Equatorial J2000</td></tr>
+
+        <tr><td>ra1950</td><td>dec1950</td><td>Equatorial B1950</td></tr>
+        <tr><td>ra1950</td><td>de1950</td><td>Equatorial B1950</td></tr>
+        <tr><td>rab1950</td><td> deb1950</td><td>Equatorial B1950</td></tr>
+        <tr><td>rab1950</td><td>decb1950</td><td>Equatorial B1950</td></tr>
+
+        <tr><td>elon</td><td> elat</td><td> Ecliptic J2000</td></tr>
+        <tr><td>elon2000</td><td>elat2000</td><td>Ecliptic J2000</td></tr>
+        <tr><td>elon1950</td><td>elat1950</td><td>Ecliptic B1950</td></tr>
+
+         <tr><td>glon</td><td>glat</td><td>Galactic</td></tr>
+        <tr><td>l</td><td>b</td><td>Galactic</td></tr>
+        <tr><td>lon</td><td>lat **</td></tr>
+        <tr><td>starlon</td><td>starlat **</td></tr>
+
+</table>
+
+<p>* The first two examples default to J2000, unless an Equinox column is included.</p>
+
+<p>* * The last two default to Equatorial J2000 unless extra Equinox ("equinox" or "epoch") and Coordinate-system ("coord sys" or "sys" or "csys") columns are explicitly given.</p>
+
+<p>If a complete set of coordinate columns is not found, the service checks the table for possible columns that may plausibly contain coordinate strings or object names, such as  "object," "source," 
+"objname," "objstr," "locstr," "location," "star," "galaxy," or "name."</p>
+
+<p>The next step is to parse the coordinates or look up the object by name. Again, the processing allows for a fairly wide variety of inputs. Object name lookup includes checking with 
+NED, SIMBAD, and other, more specialized, lists.</p>
+
+<p>Coordinates can be decimal degrees or sexagesimal in various forms:</p>
+
+<table border="1" cellpadding="4">
+  <tr><td><b>Longitude</b></td><td><b>Latitude</b></td></tr>
+  <tr><td>3h23m45.6s</td><td>-37d15m41s</td></tr>
+  <tr><td>3 23 45.6</td><td>-37 15 41</td></tr>
+  <tr><td>3h 23m 45.6s</td><td>-37d 15m 41s</td></tr>
+
+   <tr><td>3 23' 45.6"</td><td>-37 15' 41"</td></tr>
+   <tr><td>50d 56m 24s</td><td>-37d 15m 41s</td></tr>
+   <tr><td>50.94000</td><td>-37.2614</td></tr>
+</table>
+
+<br />
+
+<a name="TBP"></a><h2>Best Practices for Successful Table Upload</h2>
+<p>Here are some general best practices for all tables:</p>
+<ul class="spaced_list">
+
+		<li><b>Columns should not contain "non-printable" ASCII characters.</b> Examples of printable characters are "a" and "?."  Non-printable characters are sometimes inserted by 
+		text editing programs, and include symbols like ESCAPE  ( ^[ ), FORMFEED ( ^L ) and DELETE.  TAB characters are special in several ways and need to be treated differently in different contexts, as described below.</li>
+<br />
+		<li><b>Be very careful when using tabs. </b> A tab ( ^I ) is a single character used in most editors to define a display action ("jump to the next tab stop").  In aligned data, such as those in an IPAC ASCII 
+		Column-Aligned format, tabs can make the data look aligned (in your text editor) when in fact the characters don't line up and are therefore illegal.  In tab-delimited tables, a single tab character is the 
+		separator between columns, and in this context any extra tabs will inflate the column count.  It is best to remove all tabs from formats other than tab-delimited and to make sure there are no extra 
+		(non-column-separator) tabs present.</li>
+<br />
+		<li><b>Don't mix delimiters</b> , such as using vertical bars ( | ) between column names and tabs between data line values, or using a mixture of tabs and commas ( , ).</li>
+<br />
+		<li><b>Use an ASCII text editing program</b>, such as Notepad in Windows or TextEdit on Apple computers, which prevents extraneous (and problematic) characters from being inserted.  
+		Unix/Linux users should be aware that the vi program generally shows all odd characters as control codes except for tab, which it will often quietly insert to "save space" at the beginning of 
+		lines with multiple blanks.</li>
+<br />
+		<li><b>Save the file name with the .tbl extension,</b> if possible.</li>
+<br />
+		<li><b> Do not provide comment text (or anything else) at the top of the table unless you are using IPAC ASCII Column-Aligned Format.</b> </li>
+<br />
+		<li><b> The number of cells containing data must not exceed the number of column names.</b>  However, the number of cells can be fewer than the columns of data (the line will be padded with trailing blank cells).</li>
+
+</ul>
+<br />
+
+</li>
+</ul>
+
+<br />
+
+
+
+
+
+<!-- InstanceEndEditable --><br />
+
+</div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.twitter.com/usvao"><img src="/applications/VAOSCC/images/twitter.png" width="15" height="15" alt="twitter" /></a> <a href="http://www.facebook.com/pages/US-VAO/111119192247587"><img src="/applications/VAOSCC/images/facebook-icon.png" width="15" height="15" alt="fb" /></a><a href="http://feeds.feedburner.com/usvao/HxKx"> <img src="/applications/VAOSCC/images/rsslogo.png" width="15" height="15" alt="rss" /></a
+  ></div>
+</div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.usvao.org/ack.html" class="tiny">Acknowledging VAO</a></div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;">&copy;<strong> 2013 VAO, LLC</strong></div>
+
+</div>
+</body>
+<!-- InstanceEnd --></html>

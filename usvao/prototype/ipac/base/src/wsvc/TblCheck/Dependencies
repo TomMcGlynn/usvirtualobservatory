@@ -1,0 +1,31 @@
+NOTE: CM_BASE_APP_DIR must be defined as the destination of web files.
+CM_BASE_APP_DIR should be identicial to CM_X_DIR, where CM_X_DIR is the
+root of the depot running the main webserver.
+
+base product group :
+--------------------
+libsvc.a
+libpassword.a
+libconfig.a
+libirsatbl.a
+libcoord.a
+liblookup.a
+
+tps product group :
+-------------------
+libnedcli.a
+libsimcli.a
+
+sys product group :
+-------------------
+-lsocket
+-lnsl
+-lm
+
+ISIS configuration variables :
+------------------------------
+ISIS_WORKURL
+ISIS_WORKDIR
+HTTP_URL
+HTTP_PORT
+

@@ -1,0 +1,8 @@
+Version   Date       Description of Change
+
+1.4      01 Mar 04   Updated Makefile due to library path change
+1.3      22 Sep 03   Changed "UCD" to "ucd"
+1.2      17 Sep 03   Updated UCD tags for ra and dec
+1.1       7 Nov 02   Added UCD support       
+1.0      19 Apr 02   Initial Release         
+

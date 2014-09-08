@@ -1,0 +1,125 @@
+#! /usr/bin/env python
+# encoding: utf-8
+import os
+import os.path
+
+MAJOR = '1'
+MINOR = '0'
+REVISION = '0'
+
+VERSION='.'.join([MAJOR, MINOR, REVISION])
+APPNAME='stk'
+srcdir = '.'
+blddir = 'build'
+
+
+def set_options(opt):
+    opt.tool_options('compiler_cxx')
+
+def configure(conf):
+    conf.check_tool('compiler_cxx')
+    conf.env['CXXFLAGS'] = ['-Wall',
+                            '-Wextra',
+                            '-O3',
+                            '-DNDEBUG',
+                            '-fvisibility-inlines-hidden'
+                            ]
+    if 'CM_ENV_DIR' not in os.environ:
+        raise Configure.ConfigurationError('CM_ENV_DIR environment variable is not set')
+
+    conf.env.CM_ENV_DIR = os.path.abspath(os.environ['CM_ENV_DIR'])
+    conf.env.CPPPATH = [os.path.join(conf.env.CM_ENV_DIR, 'boost', 'include'),
+                        os.path.join(conf.env.CM_ENV_DIR, 'misc', 'include'),
+                        os.path.join(conf.env.CM_ENV_DIR, 'misc', 'include', 'eigen2'),
+                        ]
+    conf.env.LIBPATH = [os.path.join(conf.env.CM_ENV_DIR, 'boost', 'lib'),
+                        os.path.join(conf.env.CM_ENV_DIR, 'misc', 'lib'),
+                        ]
+    # The Solaris linker uses -R instead of -rpath
+    if conf.env['DEST_OS'] == 'sunos':
+        conf.env['RPATH_ST'] = '-Wl,-R,%s'
+
+    conf.check_cxx(fragment='int main() { static_assert(sizeof(int) > 0); return 0; }',
+                   define_name='HAVE_STATIC_ASSERT',
+                   msg='Checking for C++0X static_assert',
+                   )
+    conf.check_cxx(fragment='int x = 0; int main() { __builtin_prefetch(&x, 1, 1); x = 0; return 0; }',
+                   define_name='HAVE_BUILTIN_PREFETCH',
+                   msg='Checking for __builtin_prefetch',
+                   )
+
+    conf.check_cxx(header_name='stdint.h')
+    conf.check_cxx(header_name='inttypes.h')
+    conf.check_cxx(header_name='zlib.h')
+    conf.check_cxx(header_name='Eigen/Core', mandatory=True)
+
+    conf.check_cxx(lib='z', uselib_store='Z')
+    conf.check_cxx(lib='boost_system', uselib_store='BOOST_SYSTEM',
+                   mandatory=True)
+    conf.check_cxx(lib='boost_filesystem', uselib_store='BOOST_FILESYSTEM',
+                   uselib='BOOST_SYSTEM', mandatory=True)
+    conf.check_cxx(lib='boost_regex', uselib_store='BOOST_REGEX',
+                   mandatory=True)
+    conf.check_cxx(lib='boost_program_options',
+                   uselib_store='BOOST_PROGRAM_OPTIONS', mandatory=True)
+
+    conf.write_config_header('include/ipac/stk/config.h')
+    conf.env['PREFIX'] = os.path.abspath(os.path.pardir)
+
+def build(bld):
+    uselib_stk = 'BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX'
+    rpath = [os.path.join(bld.env.CM_ENV_DIR, 'boost', 'lib'),
+             os.path.join(bld.env.CM_ENV_DIR, 'misc', 'lib'),
+             os.path.join(bld.env.PREFIX, 'lib'),
+            ]
+    if 'LIB_Z' in bld.env:
+        uselib_stk += ' Z'
+    # build libstk shared library
+    bld.new_task_gen(
+        features='cxx cshlib',
+        source=bld.path.ant_glob('src/stk/**/*.cpp'),
+        includes=['include'],
+        libpath=[os.path.join(bld.env.PREFIX, 'lib')],
+        target='stk',
+        uselib=uselib_stk,
+        rpath=rpath,
+        vnum=VERSION,
+    )
+    # build assoc executable
+    bld.new_task_gen(
+        features='cxx cprogram',
+        source=bld.path.ant_glob('src/apps/assoc.cpp'),
+        includes=['include'],
+        libpath=[os.path.join(bld.env.PREFIX, 'lib')],
+        target='assoc',
+        uselib_local='stk',
+        uselib='BOOST_PROGRAM_OPTIONS',
+        rpath=rpath
+    )
+    # build ci_info executable
+    bld.new_task_gen(
+        features='cxx cprogram',
+        source=bld.path.ant_glob('src/apps/ci_info.cpp'),
+        includes=['include'],
+        libpath=[os.path.join(bld.env.PREFIX, 'lib')],
+        target='ci_info',
+        uselib_local='stk',
+        uselib='BOOST_PROGRAM_OPTIONS',
+        rpath=rpath
+    )
+    # install files
+    bld.install_files('${PREFIX}', bld.path.ant_glob('include/**/*.h'),
+                      relative_trick=True)
+    bld.install_files('${PREFIX}', bld.path.ant_glob('include/**/*.inl'),
+                      relative_trick=True)
+    libstk = '.'.join(['libstk.so', MAJOR, MINOR, REVISION])
+    libstk_nv = os.path.join('${PREFIX}', 'lib', 'libstk.so')
+    bld.install_as(os.path.join('${PREFIX}', 'lib', libstk), 'libstk.so')
+    bld.symlink_as('.'.join([libstk_nv, MAJOR, MINOR]), libstk)
+    bld.symlink_as('.'.join([libstk_nv, MAJOR]), libstk)
+    bld.symlink_as(libstk_nv, libstk)
+    bld.install_as(os.path.join('${PREFIX}', 'bin', 'assoc'),
+                   'assoc', chmod=0755)
+    bld.install_as(os.path.join('${PREFIX}', 'bin', 'ci_info'),
+                   'ci_info', chmod=0755)
+

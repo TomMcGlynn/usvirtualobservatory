@@ -1,0 +1,15 @@
+Test opening more files than the nominal file number limit on a mixture of the various suported file types.
+  The nominal limit on the number of files is 10.
+    Successfully opened file number 1, input/ManyTables1.tbl.
+    Successfully opened file number 2, input/ManyTables2.tbl.
+    Successfully opened file number 3, input/ManyTables3.tbl.
+    Successfully opened file number 4, input/ManyTables1_bin.FITS.
+    Successfully opened file number 5, input/ManyTables2_bin.FITS.
+    Successfully opened file number 6, input/ManyTables3_bin.FITS.
+    Successfully opened file number 7, input/ManyTables1_ascii.FITS.
+    Successfully opened file number 8, input/ManyTables2_ascii.FITS.
+    Successfully opened file number 9, input/ManyTables3_ascii.FITS.
+    Successfully opened file number 10, input/ManyTables4.tbl.
+    Failed to open file number 11, input/ManyTables5.tbl.
+ Opened 10 files concurrently.
+

@@ -1,0 +1,10 @@
+Test getting column type (tbl_type()) on a IPAC ASCII file.
+  Call tbl_type on input/SingleFile.tbl.
+  Type for column 0 = [character]
+  Type for column 1 = [double]
+  Type for column 2 = [double]
+  Type for column 3 = [double]
+  Type for column 4 = [double]
+  Type for column 5 = [integer]
+  Type for column 6 = [unknown]
+

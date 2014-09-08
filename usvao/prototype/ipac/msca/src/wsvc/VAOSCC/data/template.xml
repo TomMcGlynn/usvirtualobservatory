@@ -1,0 +1,62 @@
+<results>
+
+   <msg>
+      \msg\
+   </msg>
+
+   <baseURL>
+      http://\hostname\\baseurl\
+   </baseURL>
+
+   <data1>
+      <table> \data1\ </table>
+      <nrec> \nrec1\ </nrec>
+      <ncol> \ncol1\ </ncol>
+      <cntrcol> \cntr1\ </cntrcol>
+      <racol> \ra1\ </racol>
+      <deccol> \dec1\ </deccol>
+      <matchedrows> \matchedrows\ </matchedrows>
+   </data1>
+
+   <data2>
+      <table> \data2\ </table>
+      <nrec> \nrec2\ </nrec>
+      <ncol> \ncol2\ </ncol>
+      <cntrcol> \cntr2\ </cntrcol>
+      <racol> \ra2\ </racol>
+      <deccol> \dec2\ </deccol>
+   </data2>
+
+   <match>
+
+      <distances>
+	 <max> \maxdist\ </max>
+	 <maxmatch> \maxmatchdist\ </maxmatch>
+	 <minmatch> \minmatchdist\ </minmatch>
+	 <avgmatch> \avgmatchdist\ </avgmatch>
+      </distances>
+
+      <matches>
+	 <file> matches.tbl </file>
+	 <count> \nummatches\ </count>
+      </matches>
+
+      <badInput>
+	 <file> bad.tbl </file>
+	 <count> \badrows\ </count>
+      </badInput>
+
+      <unmatchedInput>
+	 <file> unmatched.tbl </file>
+	 <count> \unmatchedrows\ </count>
+      </unmatchedInput>
+
+      <time>
+	 <start> \starttime\ </start>
+	 <end> \endtime\ </end>
+	 <elapsed> \elapsetime\  </elapsed>
+      </time>
+
+   </match>
+
+</results>

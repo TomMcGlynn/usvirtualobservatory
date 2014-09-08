@@ -1,0 +1,35 @@
+#! /usr/bin/env bash
+
+# Driver script for chunk merging map/reduce job
+bin=`dirname "$0"`
+bin=`cd "$bin"; pwd`
+
+if [ "${HADOOP_HOME}" = "" ]; then
+  echo "Error: HADOOP_HOME environment variable is not set."
+  exit 1
+fi
+
+# look for stk jar file
+if [ -d "${bin}/../java/build" ]; then
+    SEARCH_DIR="${bin}/../java/build" 
+elif [ -d "${bin}/../lib" ]; then
+    SEARCH_DIR="${bin}/../lib" 
+else
+    echo "Error: cannot locate directory containing stk jar file"
+    exit 1
+fi
+
+IFS=
+for f in ${SEARCH_DIR}/stk-*.jar; do
+    STK_JAR="$f"
+done
+unset IFS
+
+if [ "$STK_JAR" = "" ]; then
+    echo "Error: failed to locate stk jar file"
+    exit 1
+fi
+
+# Launch job
+"${HADOOP_HOME}"/bin/hadoop jar "$STK_JAR" ipac.stk.mapreduce.job.MergeChunks "$@"
+

@@ -1,0 +1,9 @@
+Test getting column index by name (tbl_column()) on an IPAC ASCII file.
+  Call to tbl_column on file input/SingleFile.tbl reported column Phase has index [2]:
+  Call to tbl_column on file input/SingleFile.tbl reported column Date_WRT_Transit_Midpoint has index [1]:
+  Call to tbl_column on file input/SingleFile.tbl reported column HJD has index [0]:
+  Call to tbl_column on file input/SingleFile.tbl reported column Relative_Flux has index [3]:
+  Call to tbl_column on file input/SingleFile.tbl reported column Accepted has index [5]:
+  Call to tbl_column on file input/SingleFile.tbl could not find column Abraxas.
+  Call to tbl_column on file input/SingleFile.tbl reported column Relative_Flux_Uncertainty has index [4]:
+

@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- InstanceBegin template="/Templates/vao_page.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>US VAO</title>
+<!-- InstanceEndEditable -->
+<meta name="robots" content="index, follow" />
+<meta name="revisit-after" content="21 days" />
+<meta name="author" content="" />
+<meta name="copyright" content="" />
+<meta name="rating" content="Global" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="Description" content="" />
+<meta name="Keywords" content="" />
+<meta name="abstract" content="" />
+<link type="text/css" rel="stylesheet" href="/applications/VAOSCC/css/layout.css" title="default" media="all" />
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body id="about">
+<div id="main-wrapper">
+  <div id="logo"><a href="http://www.usvao.org" title="Home"><img src="/applications/VAOSCC/images/VAO_logo_100.png" width="100" height="50" alt="vao logo" /></a></div>
+  <div id="nav-wrapper">
+    <div id="navigation">
+      <ul>
+        <li><a href="http://www.usvao.org/" title="home" id="home-link">Home</a></li>
+        <li><a href="http://www.usvao.org/science-tools-services/" title="Science Tools" id="about-link">Science Tools</a></li>
+        <li><a href="http://www.usvao.org/about-vao/" title="about us" id="about-link">About the VAO</a></li>
+        <li><a href="http://www.usvao.org/news/" title="news" id="about-link">VAO News</a></li>
+        <li><a href="http://www.usvao.org/contact-connect/" title="contact us" id="contact-link" >Contact &amp; Connect</a></li>
+        <li></li>
+      </ul>
+    </div>
+    <div id="nav-right"></div>
+  </div>
+  <div class="clear">
+    <div class="clear"></div>
+  </div>
+  <div id="content-area"><br />
+    <div id="content-top"></div>
+    <div id="content-main"><!-- InstanceBeginEditable name="Body" -->
+      <h2>VAO Cross-Comparison Tool Demo: Finding Brown Dwarfs</h2>
+      <table width="650" border="0" cellspacing="15">
+        <tr>
+          <td><a href="/applications/VAOSCC"><img src="images/vao_crossCompare_icon.png" alt="compare" width="123" height="94" align="texttop" /></a></td>
+          <td><h3 title="Overview">Overview</h3>
+            <p>This service performs fast positional cross-matches between an input table of sources and common astronomical source catalogs.  
+              The example used here is to cross-compare a table of sources extracted from the WISE preliminary data release catalog with the SDSS DR9 database, in an effort to identify new brown/dwarf candidates. </p>
+            <p>The service does not return cross-identifications, but rather <em>cross-identification candidates</em>. That is, it returns a table of all SDSS DR9 sources within a user-specified radius of each WISE source. See the <a href="Cross_Compare.html" target="_blank">User Guide</a> for details. </p></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><a href="Whats_New.html">What's New</a> | <a href="Cross_Compare.html">User Guide</a> | <a href="Example_Tables.html">Example Tables</a> | <a href="Data_Formats.html">Data Formats</a> | <a href="Program_Interface.html">Program Interface </a> | <a href="#Demo">Demo </a></td>
+        </tr>
+      </table>
+      <h3>Usage</h3>
+      <p>There are two ways of using the service: either through a simple web form, which will be used for this demonstration, or through a program interface that replicates all the functionality of the web form.</p>
+      <p>The service runs under the Firefox, Chrome and Safari browsers. We recommend avoiding Internet Explorer.</p>
+      <h3> <a name="Demo">Demo</a></h3>
+      </tr>
+      <p>1. Bring up the <a href="http://vao-web.ipac.caltech.edu/applications/VAOSCC/" target="_blank">VAOSCC</a> service. Click  the launch button next to <strong>Cross-Comparison Tool</strong>.</p>
+      <p>2. Upload the input table, which you can find and download to your desktop at: <a href="http://vao-web.ipac.caltech.edu/data/VAO/wise_subset.tbl" target="_blank">http://vao-web.ipac.caltech.edu/data/VAO/wise_subset.tbl</a>. This sample input file contains 33,901 sources in a box 2&deg; on a side centered at 15h 30m, +24&deg;. The data were downloaded from the <a href="http://irsa.ipac.caltech.edu/index.html" target="_blank">WISE Preliminary Data Release Catalog</a> at <a href="http://irsa.ipac.caltech.edu/index.html" target="_blank">IRSA</a> using the <a href="http://irsa.ipac.caltech.edu/applications/Gator/" target="_blank">Gator</a> query engine. </p>
+      <ul>
+        <li>The table is in column-delimited IPAC table format, but the service accepts input in many common table formats, such as CSV, tab-delimited, VOTable, and FITS tables.</li>
+        <li>The service will accept uploaded tables of up to  1 million records in size, and you can cross-match it with catalogs containing  records of more than 1 billion records. </li>
+        <li>The service uploads the catalog to the server  and validates it for consistency of format and content. </li>
+      </ul>
+      <p>3. 	Highlight the input table, <code>wise_prelim.wise_prelim_p3as_psd3011.tbl</code>, under User Tables.</p>
+      <p>3. Highlight the SDSS DR 9 catalog in the list of <strong>On-line catalogs</strong>.</p>
+      <p>5. Select a "match-radius" of 10 arcsec. This large radius has been chosen because the  WISE and SDSS surveys are separated by more than 10 years, and many brown  dwarfs have appreciable proper motions.      </p>
+      <p>6. Click <strong>Compare</strong>. The service reports that it is processing.</p>
+      <p>7. When done,  the service returns three tables:</p>
+      <ul>
+        <li>a. <strong>Matches.tbl</strong>: a table of all the SDSS sources within 10 arcsecs of each WISE source. The service conjoins the SDSS DR9 records with the WISE records so that no information in the two catalogs is lost.</li>
+        <li>b. <strong>Unmatched.tbl</strong>: records of WISE sources that have no SDSS DR 9 counterparts within the 10 arcsec match radius.</li>
+        <li>c. <strong>Bad.tbl</strong>: records of WISE sources that cound not be processed.</li>
+      </ul>
+      <p><strong>Note:</strong> This example processes in a few seconds. For large tables, typical times are:</p>
+      <ul>
+        <li>a.	600,000 records: 500 s</li>
+        <li>b.	1,000,000 records: 825 s</li>
+      </ul>
+      <p>8. Download the matches table. Select <strong>Aligned ASCII</strong> from the <strong>Download Format </strong>menu, then click the <strong>matches.tbl </strong>link to save the table to your  local disk. </p>
+      <p>9. You can also see the job has been summarized in the History section at the bottom of the web  page. This information will be stored  for four days and then deleted from the server. As long as you have Web browser cookies enabled, you will be able to access these  results again during that time. No one  else will be able to see these records unless they have access to your Web  browser.</p>
+<p>Analysis and filtering of the file to identify  candidate brown dwarfs is the astronomer&rsquo;s responsibility, but the VO provides  tools to help with this. The next video demonstrates one of them.</p>
+      </ol>
+
+      <td><h3> Analyzing the Cross-Match Table with TOPCAT</h3></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><p>The VO provides tools to aid in the analysis of tabular data. One of the most powerful is the Tool for OPerations on Catalogues And Tables (TOPCAT), a desktop application available for free download. This demonstration shows how you may begin visualizing and filtering the cross-match output file with TOPCAT.</p>
+          <p>1. If you do not have TOPCAT installed, you may download it from <a href="http://www.star.bris.ac.uk/~mbt/topcat/" target="_blank">http://www.star.bris.ac.uk/~mbt/topcat/</a>. Installation instructions are at <a href="http://www.star.bris.ac.uk/~mbt/topcat/#install">http://www.star.bris.ac.uk/~mbt/topcat/#install</a>. For this demo, download the <code>topcat-full.jar</code> file and install it on your desktop. (There  are other options for downloading.) </h2>
+<p>2. Launch TOPCAT by double-clicking on the <code>topcat-full.jar</code> file.</p>
+<p>3. You can easily download the output table matches.tbl on to your desktop and the load it into TOPCAT by the File -> Load option in TOPCAT, but in this demo, we will input the table directly into TOPCAT through the 
+Simple Access Messaging Protocol (SAMP).  When TOPCAT launches, it automatically launches a SAMP "hub" that enables communication between it and the cross-match service (this hub is invisible to the end-user).  (Other applications may not launch a SAMP hub, and you may have to activate one  yourself.  The simplest way is to activate the JAVA Webstart JSAMP hub at <a href="http://astrojs.github.com/sampjs/hub/webhub.jnlp" target="_blank"> http://astrojs.github.com/sampjs/hub/webhub.jnlp</a>. Installation instructions are here: <a href="http://astrojs.github.com/sampjs/" target="_blank">http://astrojs.github.com/sampjs/</a>.)
+</p>
+          <p>4. Click the <strong>Register</strong> button in the bottom-left corner of your browser to register the cross-match service with SAMP hub. </p>
+          <p>5. On the cross-match output page, click the <strong>Broadcast</strong> button next to the <code>matches.tbl</code> file to send the file into TOPCAT.</p>
+          
+          <p>6. Visualize the structure and contents of the output file.  Click <strong>Display Table Cell Data</strong> (the <img src="images/step6_demo_displaytblcell.png" /> button at the top of the menu)  and note the following:</p>
+          <ul>
+            <li>The records from the user table are prepended with "user_"</li>
+            <li>Dist = radial distance of SDSS source from WISE source</li>
+            <li>Pang = Position angle of SDSS source from WISE source (degrees, E of N)</li>
+            <li>Nm = number of matches for each user input source.</li>
+          </ul>
+          <p>7. Visualize a color-color plot derived from the output table. Click <strong>Scatter Plot</strong> (the <img src="images/step7_demo_scatterplot.png" /> button)  to bring up the plot window. By default, TOPCAT will display the RA and Declination of sources in the WISE table. </p>
+          <ul>
+            <li> Under X axis, type <strong>user_w1mpro &#8211 user_w2mpro</strong></li>
+            <li> Under Y axis, type <strong>SDSS_DR9_i &#8211 SDSS_DR9_z</strong></li>
+          </ul>
+          <p>The plot window now shows a color-color diagram of  WISE [3.4 &micro;m] &#8211 [4.6 &micro;m] and SDSS i-z.</p>
+          <p>8. Brown dwarfs have colors of [3.4 &micro;m] &#8211 [4.6 &micro;m] &gt;0.4 and i-z &gt;2.  Visualize this region of color-color space by adjusting the range of the axes. Click <strong>axes</strong>, got <strong>Range</strong> and enter:
+          <ul>
+          <li>X minimum = 0.3</li>
+          <li>X maximum = 2</li>
+          <li>Y minimum = 2</li>
+          <li>Y maximum = 10</li>
+          </ul>
+          <p>Constrain the plots further using the X subrange and Y subrange sliders.</p>
+      </tr>
+      </table>
+      <table width="650">
+        <tr>
+          <td></td>
+        </tr>
+      </table>
+      <!-- InstanceEndEditable --><br />
+    </div>
+    <div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.twitter.com/usvao"><img src="/applications/VAOSCC/images/twitter.png" width="15" height="15" alt="twitter" /></a> <a href="http://www.facebook.com/pages/US-VAO/111119192247587"><img src="/applications/VAOSCC/images/facebook-icon.png" width="15" height="15" alt="fb" /></a><a href="http://feeds.feedburner.com/usvao/HxKx"> <img src="/applications/VAOSCC/images/rsslogo.png" width="15" height="15" alt="rss" /></a
+  ></div>
+  </div>
+  <div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.usvao.org/ack.html" class="tiny">Acknowledging VAO</a></div>
+  <div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;">&copy;<strong> 2013 VAO, LLC</strong></div>
+</div>
+</body>
+<!-- InstanceEnd -->
+</html>

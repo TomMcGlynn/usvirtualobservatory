@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/vao_page.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>US VAO</title>
+<!-- InstanceEndEditable -->
+<meta name="robots" content="index, follow" />
+<meta name="revisit-after" content="21 days" />
+<meta name="author" content="" />
+<meta name="copyright" content="" />
+<meta name="rating" content="Global" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="Description" content="" />
+<meta name="Keywords" content="" />
+<meta name="abstract" content="" />
+
+<link type="text/css" rel="stylesheet" href="/applications/VAOSCC/css/layout.css" title="default" media="all" />
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body id="about">
+
+<div id="main-wrapper">
+ 
+<div id="logo"><a href="http://www.usvao.org" title="Home"><img src="/applications/VAOSCC/images/VAO_logo_100.png" width="100" height="50" alt="vao logo" /></a></div>
+
+  <div id="nav-wrapper">
+    <div id="navigation"><ul><li><a href="http://www.usvao.org/" title="home" id="home-link">Home</a></li><li><a href="http://www.usvao.org/science-tools-services/" title="Science Tools" id="about-link">Science Tools</a></li><li><a href="http://www.usvao.org/about-vao/" title="about us" id="about-link">About the VAO</a></li><li><a href="http://www.usvao.org/news/" title="news" id="about-link">VAO News</a></li>
+
+  <li><a href="http://www.usvao.org/contact-connect/" title="contact us" id="contact-link" >Contact &amp; Connect</a></li><li></li></ul></div>
+    <div id="nav-right"></div>
+</div>
+<div class="clear">
+  <div class="clear"></div>
+</div>
+<div id="content-area"><br />
+<div id="content-top"></div>
+<div id="content-main"><!-- InstanceBeginEditable name="Body" -->
+  <h2>VAO Cross-Comparison Tool: What's New?</h2>
+
+ 
+  
+  <table width="650" border="0" cellspacing="15">
+    <tr>
+      <td><a href="/applications/VAOSCC"><img src="images/vao_crossCompare_icon.png" alt="compare" width="123" height="94" align="texttop" /></a></td>
+      <td>
+    <h3 title="Overview">Overview</h3>
+	<p>This service performs fast positional cross-matches between an input table of sources and common astronomical source catalogs.  
+	The example used here is to cross-compare a table of sources extracted from the WISE preliminary data release catalog with the SDSS DR9 database, in an effort to identify new brown/dwarf candidates. 
+	The service does not return cross-identifications, but rather <em>cross-identification candidates</em>. That is, it returns a table of all SDSS DR9 sources within a user-specified radius of each WISE source. 
+	See the <a href="Cross_Compare.html" target="_blank">User Guide</a> for details. 
+</p>
+
+      </td>
+    </tr><tr><td>&nbsp;</td><td>
+    <a href="Whats_New.html">What's New</a> | <a href="Cross_Compare.html">User Guide</a>  | <a href="Example_Tables.html">Example Tables</a> | <a href="Data_Formats.html">Data Formats</a> | <a href="Program_Interface.html">Program Interface </a> | <a href="#Demo">Demo </a>
+
+    </td></tr>
+  </table>
+    
+    <table width="700" border="0"><tr><td>
+    <h3> <a name="Whats_New">Whats New</a></h3>
+	
+    <p><b>15 Apr 2013</b>  This release includes one new catalog: SDSS DR9 (1233343212 records).  This is a superset of and replaces SDSS DR7.</p>
+   
+    <p><b>30 Nov 2012</b>  This release includes new catalogs, pointers to catalog documentation, and beta release support for SAMP message passing.
+
+    A minor bug was fixed which prevented some data downloaded through the VAO Data Discovery tool to be ingested properly.</p>
+
+    <p>In addition to the catalogs in the first release (IRAS, SDSS DR7, 2MASS, USNO B1, and WISE) we have added DENISD3, UCAC, Tycho2
+    and PPMXL.  Work is continuing to expand this list to at least all large catalogs.</p>
+
+    The Cross-Comparison service is not a source for any of the catalogs it has indexed but users still need access to catalog 
+    documentation in order to interpret their results.  Rather that replicate this documentation, we provide links to primary or
+    other on-line catalog descriptions.
+
+    <p>The Simple Application Messaging Protocol (SAMP) is used to allow client tools and server applications through AJAX interfaces
+    to send messages to each other.  These messages most often point to data.  For the Cross-Comparison service this is used in 
+    two places.  First, another service (such as Topcat or the VAO Data Discovery Tool) can broadcast a message pointing to a table
+    which the Cross-Commparison service then retrieves and presents in the list of uploaded files.  The user can then compare this
+    data to any of the indexed catalogs.  Second, any of the results tables (matches, unmatched sources) can be broadcast by the
+    Cross-Comparison service and picked up by other tools like Aladin or Topcat.</p>
+
+    <p>See the <a href="Cross_Compare.html">User Guide</a> for more information on these topics.</p>
+    </td></tr></table>
+	
+</tr>
+  </table>
+
+
+
+
+<table width="650"><tr><td>
+
+
+
+</td></tr></table>
+
+<!-- InstanceEndEditable --><br />
+</div>
+
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.twitter.com/usvao"><img src="/applications/VAOSCC/images/twitter.png" width="15" height="15" alt="twitter" /></a> <a href="http://www.facebook.com/pages/US-VAO/111119192247587"><img src="/applications/VAOSCC/images/facebook-icon.png" width="15" height="15" alt="fb" /></a><a href="http://feeds.feedburner.com/usvao/HxKx"> <img src="/applications/VAOSCC/images/rsslogo.png" width="15" height="15" alt="rss" /></a
+  ></div>
+</div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.usvao.org/ack.html" class="tiny">Acknowledging VAO</a></div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;">&copy;<strong> 2013 VAO, LLC</strong></div>
+
+</div>
+</body>
+<!-- InstanceEnd --></html>

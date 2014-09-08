@@ -1,0 +1,866 @@
+<html>
+   <head>
+      <title>VAO Cross-Comparison Tool</title>
+      <link rel="STYLESHEET" type="text/css" href="/js/DHTMLX/codebase/dhtmlx.css">
+      <link rel="STYLESHEET" type="text/css" href="css/fileuploader.css">
+      <link rel="STYLESHEET" type="text/css" href="css/results.css">
+
+      <script type="text/javascript" src="js/jquery.js"></script>
+      <script type="text/javascript" src="js/fileuploader.js"></script>
+      <script type="text/javascript" src="/js/DHTMLX/codebase/dhtmlx.js"></script>
+      <script type="text/javascript" src="/js/DHTMLX/dhtmlxLayout/codebase/patterns/dhtmlxlayout_pattern4e.js"></script>
+
+      <script>
+	 var version = "<strong><i>Version 1.1 </i> &nbsp;&nbsp;&nbsp; &copy; 2012 VAO, LLC</strong>";
+
+         var myLayout, mySubLayout1, mySubLayout2, mySubLayout3, mySubLayout4;
+	 var myBanner, myMain, myTables;
+	 var myInstructions, myCatSub, myUserData;
+	 var myCatalogs, mySubmission, myResults, myUserTable, myUploadBtn;
+	 var myWindowWidth, myWindowHeight;
+
+	 var userGrid, archiveGrid, historyGrid;
+
+         function doOnLoad()
+         {
+	    var me = this;
+
+	    var timeOut;
+
+
+            /* Get the window dimensions */
+
+            var e = window, a = 'inner';
+
+            if ( !( 'innerWidth' in window ) )
+            {
+               a = 'client';
+               e = document.documentElement || document.body;
+            }
+
+            myWindowWidth  = e[a+'Width'];
+            myWindowHeight = e[a+'Height'];
+
+
+	    var bannerHeight      = 100;
+	    var uploadHeight      =  55;
+	    var tableHeight       = 225;
+	    var historyHeight     = 150;
+
+	    var instructionWidth  = 300;
+
+
+	    /* LAYOUT */
+
+            myLayout = new dhtmlXLayoutObject(document.body, "4E");
+
+            myLayout.setAutoSize("a;b;c;d", "b");
+
+	    dhtmlxEvent(window, "resize", function()
+	    {
+	       window.clearTimeout(timeOut);
+
+	       timeOut = window.setTimeout(function(){myLayout.setSizes();}, 100);
+	    });
+
+
+
+	    /* SUB-LAYOUTS */
+
+	    // The first original cell will be the banner
+            //
+	    // Break the second into two horizontally 
+	    // (i.e. into instructions / comparison)
+            //
+	    // Break the third into two horizontally 
+	    // (i.e. into user data / on-line catalogs)
+            //
+	    // The fourth will be the history
+	    //
+	    // Finally, break the user data cell in two
+	    // vertically (upload button vs. upload list)
+	    // and the on-line catalog cell in two vertically,
+	    // the top one going to the submission info
+	    // (which sounds out of place here but makes it
+	    // more visible and aligned with the upload button).
+
+	    myBanner  = myLayout.cells("a");
+	    myMain    = myLayout.cells("b");
+	    myTables  = myLayout.cells("c");
+	    myHistory = myLayout.cells("d");
+
+	     myBanner.setHeight(bannerHeight);
+	     myTables.setHeight(tableHeight);
+	    myHistory.setHeight(historyHeight);
+
+	    mySubLayout1 = new dhtmlXLayoutObject(myMain, "2U");
+
+            mySubLayout1.setAutoSize("b", "a;b");
+
+	    myInstructions = mySubLayout1.cells("a");
+	    myResults      = mySubLayout1.cells("b");
+
+	    mySubLayout2 = new dhtmlXLayoutObject(myTables, "2U");
+
+            mySubLayout2.setAutoSize("a;b", "a;b");
+
+	    myUserData     = mySubLayout2.cells("a");
+	    myCatSub       = mySubLayout2.cells("b");
+
+	    mySubLayout3 = new dhtmlXLayoutObject(myUserData, "2E");
+
+	    mySubLayout3.setAutoSize("a;b", "b");
+
+	    myUploadBtn    = mySubLayout3.cells("a");
+	    myUserTable    = mySubLayout3.cells("b");
+
+	    mySubLayout4 = new dhtmlXLayoutObject(myCatSub, "2E");
+
+	    mySubLayout4.setAutoSize("a;b", "b");
+
+	    mySubmission   = mySubLayout4.cells("a");
+	    myCatalogs     = mySubLayout4.cells("b");
+
+
+	    /* BANNER */
+
+	    myBanner.attachURL("header.html");
+
+	    myBanner.fixSize(false,false);
+
+            myBanner.hideHeader();
+
+
+
+	    /* INSTRUCTIONS */
+
+            myInstructions.hideHeader();
+
+	    myInstructions.setWidth(instructionWidth);
+
+            myInstructions.attachURL("instructions.html");
+
+
+
+	    /* COMPARISON RESULTS */
+
+            myResults.hideHeader();
+
+            myResults.attachObject("compareResults");
+
+	    document.getElementById("compareResults").parentNode.style.overflow = "auto";
+
+
+
+	    /* UPLOAD BUTTON */
+
+	    myUploadBtn.hideHeader();
+
+	    myUploadBtn.setHeight(uploadHeight);
+
+	    myUploadBtn.attachObject("uploadFile");
+
+	    document.getElementById("uploadFile").parentNode.style.overflow = "auto";
+
+	    myUploadBtn.fixSize(false,true);
+
+
+
+	    /* USER DATA */
+
+            myUserTable.setText("User Tables");
+
+            userGrid = myUserTable.attachGrid();
+
+            userGrid.init();
+
+	    getUserTableList();
+
+
+
+	    /* COMPARE SUBMISSION */
+
+            mySubmission.hideHeader();
+
+	    mySubmission.setHeight(uploadHeight);
+
+            mySubmission.fixSize(false,true);
+
+            mySubmission.attachObject("submitCompare");
+
+
+
+	    /* ON-LINE CATALOGS */
+
+            myCatalogs.setText("On-line Catalogs");
+
+            archiveGrid = myCatalogs.attachGrid();
+
+            archiveGrid.init();
+
+	    getArchiveTableList();
+
+
+
+	    /* HISTORY */
+
+            myHistory.setText("History <input type='button' value='Restore Details' onclick='showHistoryDetails();'>");
+
+            historyGrid = myHistory.attachGrid();
+
+            historyGrid.init();
+
+	    getHistory();
+
+	    myLayout.setSizes();
+
+	    versionLabel = myHistory.attachStatusBar();
+
+	    versionLabel.setText(version);
+
+
+
+	    /* FILE UPLOADER */
+
+	    var uploader = new qq.FileUploader({
+	       element: document.getElementById("uploadFile"),
+	       action: "/cgi-bin/VAOSCC/nph-vaosccUpload",
+	       onComplete: function(id, fileName, json) {
+			      getUserTableList();
+			   }
+	    });
+         }
+
+
+
+	 function getUserTableList()
+	 {
+	    var xmlhttp;
+
+	    var uTblURL;
+
+	    uTblURL = "/cgi-bin/VAOSCC/nph-vaosccDir?format=DHTMLX";
+
+	    try {
+	       xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	    }
+	    catch (e)
+	    {
+	       try {
+		  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	       }
+	       catch (E) {
+		  xmlhttp = false;
+	       }
+	    }
+
+	    if (!xmlhttp && typeof XMLHttpRequest!='undefined')
+	    {
+	       try {
+		  xmlhttp = new XMLHttpRequest();
+	       }
+	       catch (e) {
+		  xmlhttp=false;
+	       }
+	    }
+
+	    if (!xmlhttp && window.createRequest)
+	    {
+	       try {
+		  xmlhttp = window.createRequest();
+	       }
+	       catch (e) {
+		  xmlhttp=false;
+	       }
+	    }
+
+	    xmlhttp.open("GET", uTblURL);
+
+	    xmlhttp.send(null);
+
+	    xmlhttp.onreadystatechange = function()
+	    {
+	       if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		  userGrid.parse(xmlhttp.responseXML);
+
+	       else if(xmlhttp.status != 200)
+		  alert("Remote service error.");
+	    }
+	 }
+
+
+	 function getArchiveTableList()
+	 {
+	    var xmlhttp;
+
+	    var arTblURL;
+
+	    arTblURL = "/cgi-bin/VAOSCC/nph-vaosccArchiveList?format=DHTMLX";
+
+	    try {
+	       xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	    }
+	    catch (e)
+	    {
+	       try {
+		  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	       }
+	       catch (E) {
+		  xmlhttp = false;
+	       }
+	    }
+
+	    if (!xmlhttp && typeof XMLHttpRequest!='undefined')
+	    {
+	       try {
+		  xmlhttp = new XMLHttpRequest();
+	       }
+	       catch (e) {
+		  xmlhttp=false;
+	       }
+	    }
+
+	    if (!xmlhttp && window.createRequest)
+	    {
+	       try {
+		  xmlhttp = window.createRequest();
+	       }
+	       catch (e) {
+		  xmlhttp=false;
+	       }
+	    }
+
+	    xmlhttp.open("GET", arTblURL);
+
+	    xmlhttp.send(null);
+
+	    xmlhttp.onreadystatechange = function()
+	    {
+	       if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		  archiveGrid.parse(xmlhttp.responseXML);
+
+	       else if(xmlhttp.status != 200)
+		  alert("Remote service error.");
+	    }
+	 }
+
+
+	 function getHistory()
+	 {
+	    var xmlhttp;
+
+	    var uHistURL;
+
+	    uHistURL = "/cgi-bin/VAOSCC/nph-vaosccHistory?format=DHTMLX";
+
+	    try {
+	       xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	    }
+	    catch (e)
+	    {
+	       try {
+		  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	       }
+	       catch (E) {
+		  xmlhttp = false;
+	       }
+	    }
+
+	    if (!xmlhttp && typeof XMLHttpRequest!='undefined')
+	    {
+	       try {
+		  xmlhttp = new XMLHttpRequest();
+	       }
+	       catch (e) {
+		  xmlhttp=false;
+	       }
+	    }
+
+	    if (!xmlhttp && window.createRequest)
+	    {
+	       try {
+		  xmlhttp = window.createRequest();
+	       }
+	       catch (e) {
+		  xmlhttp=false;
+	       }
+	    }
+
+	    xmlhttp.open("GET", uHistURL);
+
+	    xmlhttp.send(null);
+
+	    xmlhttp.onreadystatechange = function()
+	    {
+	       if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		  historyGrid.parse(xmlhttp.responseXML);
+
+	       else if(xmlhttp.status != 200)
+		  alert("Remote service error.");
+	    }
+	 }
+
+
+	 function runCrossCompare()
+	 {
+	    var xmlhttp;
+
+	    var resultURL;
+
+	    resultURL = "/cgi-bin/VAOSCC/nph-vaoscc?format=HTML";
+
+	    userid = userGrid.getSelectedRowId();
+
+	    catid = archiveGrid.getSelectedRowId();
+
+	    maxDist = document.getElementById("maxDist").value;
+
+	    if(userid == null || catid == null || maxDist == null || maxDist == "")
+	       alert("You must select two tables and give a comparison distance.");
+
+	    else
+	    {
+	       table = userGrid.cellById(userid, 1).getValue();
+
+	       catalog = archiveGrid.cellById(catid, 0).getValue();
+
+	       resultURL = resultURL + "&data1=" + table +"&data2=" + catalog + "&maxdist=" + maxDist;
+
+	       try {
+		  xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	       }
+	       catch (e)
+	       {
+		  try {
+		     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		  catch (E) {
+		     xmlhttp = false;
+		  }
+	       }
+
+	       if (!xmlhttp && typeof XMLHttpRequest!='undefined')
+	       {
+		  try {
+		     xmlhttp = new XMLHttpRequest();
+		  }
+		  catch (e) {
+		     xmlhttp=false;
+		  }
+	       }
+
+	       if (!xmlhttp && window.createRequest)
+	       {
+		  try {
+		     xmlhttp = window.createRequest();
+		  }
+		  catch (e) {
+		     xmlhttp=false;
+		  }
+	       }
+
+	       xmlhttp.open("GET", resultURL);
+
+	       grayOut(true, {'opacity':'20'});
+	       grayOutMessage(true);
+
+	       xmlhttp.send(null);
+
+	       xmlhttp.onreadystatechange = function()
+	       {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		     myResults.innerHTML = xmlhttp.response;
+
+		  else if(xmlhttp.status != 200)
+		     alert("Remote service error.");
+
+		  getHistory();
+
+		  myLayout.setSizes();
+
+		  grayOut(false);
+		  grayOutMessage(false);
+	       }
+	    }
+	 }
+
+
+	 function deleteUserTable(id)
+	 {
+	    var xmlhttp;
+	    var deleteURL;
+
+	    table = userGrid.cellById(id, 1).getValue();
+
+	    var confirmDelete = confirm ("Delete file " + table + "?")
+
+	    if(confirmDelete)
+	    {
+	       deleteURL = "/cgi-bin/VAOSCC/nph-vaosccDeleteTable?format=TEXT&table=" + table;
+
+	       try {
+		  xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	       }
+	       catch (e)
+	       {
+		  try {
+		     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		  catch (E) {
+		     xmlhttp = false;
+		  }
+	       }
+
+	       if (!xmlhttp && typeof XMLHttpRequest!='undefined')
+	       {
+		  try {
+		     xmlhttp = new XMLHttpRequest();
+		  }
+		  catch (e) {
+		     xmlhttp=false;
+		  }
+	       }
+
+	       if (!xmlhttp && window.createRequest)
+	       {
+		  try {
+		     xmlhttp = window.createRequest();
+		  }
+		  catch (e) {
+		     xmlhttp=false;
+		  }
+	       }
+
+	       xmlhttp.open("GET", deleteURL);
+
+	       xmlhttp.send(null);
+
+	       xmlhttp.onreadystatechange = function()
+	       {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		  {
+		     if(xmlhttp.response != "OK")
+			alert('"' +xmlhttp.response + '"');
+		     
+		     getUserTableList();
+		  }
+		  else if(xmlhttp.status != 200)
+		     alert("Remote service error.");
+	       }
+	    }
+	    else
+	       getUserTableList();
+	 }
+
+
+	 function deleteHistoryItem(id)
+	 {
+	    var xmlhttp;
+	    var deleteURL;
+
+	    var confirmDelete = confirm ("Delete history item?")
+
+	    if(confirmDelete)
+	    {
+	       deleteURL = "/cgi-bin/VAOSCC/nph-vaosccDeleteHistory?format=TEXT&histEntry=" + id;
+
+	       try {
+		  xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	       }
+	       catch (e)
+	       {
+		  try {
+		     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		  catch (E) {
+		     xmlhttp = false;
+		  }
+	       }
+
+	       if (!xmlhttp && typeof XMLHttpRequest!='undefined')
+	       {
+		  try {
+		     xmlhttp = new XMLHttpRequest();
+		  }
+		  catch (e) {
+		     xmlhttp=false;
+		  }
+	       }
+
+	       if (!xmlhttp && window.createRequest)
+	       {
+		  try {
+		     xmlhttp = window.createRequest();
+		  }
+		  catch (e) {
+		     xmlhttp=false;
+		  }
+	       }
+
+	       xmlhttp.open("GET", deleteURL);
+
+	       xmlhttp.send(null);
+
+	       xmlhttp.onreadystatechange = function()
+	       {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		  {
+		     if(xmlhttp.response != "OK")
+			alert('"' +xmlhttp.response + '"');
+		     
+		     getHistory();
+		  }
+		  else if(xmlhttp.status != 200)
+		     alert("Remote service error.");
+	       }
+	    }
+	    else
+	       getHistory();
+	 }
+
+
+	 function showHistoryDetails()
+	 {
+	    var xmlhttp;
+
+	    var resultURL;
+
+	    histid = historyGrid.getSelectedRowId();
+
+	    if(histid == null)
+	       alert("You must select an item first.");
+
+	    else
+	    {
+	       histid = histid - 1;
+
+	       resultURL = "/cgi-bin/VAOSCC/nph-vaosccRestoreHistory?histEntry=" + histid;
+
+	       try {
+		  xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	       }
+	       catch (e)
+	       {
+		  try {
+		     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		  catch (E) {
+		     xmlhttp = false;
+		  }
+	       }
+
+	       if (!xmlhttp && typeof XMLHttpRequest!='undefined')
+	       {
+		  try {
+		     xmlhttp = new XMLHttpRequest();
+		  }
+		  catch (e) {
+		     xmlhttp=false;
+		  }
+	       }
+
+	       if (!xmlhttp && window.createRequest)
+	       {
+		  try {
+		     xmlhttp = window.createRequest();
+		  }
+		  catch (e) {
+		     xmlhttp=false;
+		  }
+	       }
+
+	       xmlhttp.open("GET", resultURL);
+
+	       xmlhttp.send(null);
+
+	       xmlhttp.onreadystatechange = function()
+	       {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		     myResults.innerHTML = xmlhttp.response;
+
+		  else if(xmlhttp.status != 200)
+		     alert("Remote service error.");
+
+		  myLayout.setSizes();
+	       }
+	    }
+	 }
+
+
+
+	 function downloadFile(file)
+	 {
+	    downloadFormat = document.getElementById("downloadFormat").value;
+
+	    window.open("/cgi-bin/VAOSCC/nph-vaosccDownload?file=" + file + "&format=" + escape(downloadFormat));
+	 }
+
+
+	 function grayOut(vis, options) 
+	 {
+	    // Pass true to gray out screen, false to ungray.  Options are optional.  
+	    // This is a JSON object with the following (optional) properties:
+	    //
+	    //    opacity:0-100         // Lower number = less grayout higher = more of a blackout 
+	    //    zindex: #             // HTML elements with a higher zindex appear on top of the gray out
+	    //    bgcolor: (#xxxxxx)    // Standard RGB Hex color code
+	    //
+	    // e.g.,  grayOut(true, {'zindex':'50', 'bgcolor':'#0000FF', 'opacity':'70'});
+	    //
+	    // Because 'options' is JSON, opacity/zindex/bgcolor are all optional and can appear
+	    // in any order.  Pass only the properties you need to set.
+
+	    var options = options || {}; 
+	    var zindex  = options.zindex || 50;
+	    var opacity = options.opacity || 70;
+	    var opaque  = (opacity / 100);
+	    var bgcolor = options.bgcolor || '#000000';
+
+	    var dark = document.getElementById('darkenScreenObject');
+
+	    if(!dark) 
+	    {
+	       // The dark layer doesn't exist, it's never been created.  So we'll
+	       // create it here and apply some basic styles.
+
+	       var tbody = document.getElementsByTagName("body")[0];
+
+	       var tnode = document.createElement('div');
+
+	       tnode.style.position ='absolute';             // Position absolutely
+	       tnode.style.top      ='0px';                  // In the top
+	       tnode.style.left     ='0px';                  // Left corner of the page
+	       tnode.style.overflow ='hidden';               // Try to avoid making scroll bars            
+	       tnode.style.display  ='none';                 // Start out Hidden
+	       tnode.id             ='darkenScreenObject';   // Name it so we can find it later
+
+	       tbody.appendChild(tnode);                     // Add it to the web page
+
+	       dark = document.getElementById('darkenScreenObject');  // Get the object.
+	    }
+
+	    if(vis) 
+	    {
+	       // Calculate the page width and height 
+
+	       if( document.body && ( document.body.scrollWidth || document.body.scrollHeight ) ) 
+	       {
+		  var pageWidth  = document.body.scrollWidth+'px';
+		  var pageHeight = document.body.scrollHeight+'px';
+	       }
+	       else if( document.body.offsetWidth ) 
+	       {
+		  var pageWidth  = document.body.offsetWidth+'px';
+		  var pageHeight = document.body.offsetHeight+'px';
+	       } 
+	       else 
+	       {
+		  var pageWidth  = '100%';
+		  var pageHeight = '100%';
+	       }   
+
+
+	       // Set the shader to cover the entire page and make it visible.
+
+	       dark.style.opacity         = opaque;                      
+	       dark.style.MozOpacity      = opaque;                   
+	       dark.style.filter          = 'alpha(opacity='+opacity+')'; 
+	       dark.style.zIndex          = zindex;        
+	       dark.style.backgroundColor = bgcolor;  
+	       dark.style.width           = pageWidth;
+	       dark.style.height          = pageHeight;
+	       dark.style.display         = 'block';				 
+	    }
+
+	    else 
+	       dark.style.display='none';
+	 }
+
+
+	 function grayOutMessage(vis) 
+	 {
+	    var msg = document.getElementById('messageScreenObject');
+
+	    if(!msg) 
+	    {
+	       var tbody = document.getElementsByTagName("body")[0];
+
+	       var tnode = document.createElement('div');
+
+	       tnode.style.width           = '230px';
+	       tnode.style.height          = '40px';
+	       tnode.style.position        = 'absolute';
+	       tnode.style.top             = '50%';
+	       tnode.style.left            = '50%';
+	       tnode.style.zIndex          = '100';
+	       tnode.style.margin          = '-50px 0 0 -100px';
+	       tnode.style.backgroundColor = '#ffffff';  
+	       tnode.style.display         = 'none';
+	       tnode.innerHTML             = '<img src="images/waitTimer.gif"/> &nbsp; Processing. Please wait ... ';
+	       tnode.id                    = 'messageScreenObject';
+
+	       tbody.appendChild(tnode);
+
+	       msg = document.getElementById('messageScreenObject');
+	    }
+
+	    if(vis) 
+	       msg.style.display = 'block';				 
+	    else 
+	       msg.style.display = 'none';
+	 }
+
+      </script>
+
+   </head>
+   <body onload="doOnLoad()">
+   <div id="uploadFile" style="background-color: #ffbbbb; height:100"></div>
+   <div id="submitCompare" style="background-color: #c7d6dd; font-size:80%;">
+      <center>
+      <table cellpadding="3" cellspacing="5">
+      <tr>
+	 <td>&nbsp;</td><td>&nbsp;</td><td><b> Max Match Distance:</b></td> <td bgcolor="#ffbbbb"><input id="maxDist" name="maxdist" size="6" value="3" /> arcsec</td>
+	 <td><input value="Compare" type="submit" onclick="runCrossCompare();"></td>
+      </tr>
+      </table><p/>&nbsp;<p/>
+      </center>
+   </div>
+
+   <div id="compareResults" style="background-color: #c7d6dd; overflow:auto;">
+
+   <center>
+     <table height="1024" cellpadding="20"><tr><td valign="top">
+
+     <p><img src="images/VAO_logo_100.png" align="left"><b>Welcome to the VAO Catalog Cross-Comparison Tool</b></p>
+
+     <p>The analysis and interpretation of multi-wavelength data in
+     astronomy, especially from surveys, relies on the comparisons
+     of source properties from different bandpasses, instruments
+     and telescopes. The first step in such analysis is to perform
+     a spatial cross-match between source tables. Such tables may
+     be on-line catalog or may be user-supplied data in the form of
+     table files.</p>
+
+     <p>The sections below are where you organize your data.
+     You can upload tables to be compared (they will persist for
+     about four days), select on-line catalogs to compare against,
+     and access past comparison results.<p/>
+
+     <p>Select a table from your uploaded list and an on-line catalog
+     to compare against.  Set the cross-comparison distance and
+     press "Compare".  The results will be shown here and be added
+     to the history at the bottom of the page.  Previous runs can
+     be restored.</p>
+
+     <p>Both the uploaded tables and results are your files,
+     so facilities have been added to let you delete them to
+     avoid clutter.  Results and uploaded tables will expire in
+     a few days.</p>
+
+     </tr></td></table>
+   </center>
+
+   </div>
+
+</body>
+</html>

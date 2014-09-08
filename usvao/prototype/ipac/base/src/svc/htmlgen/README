@@ -1,0 +1,61 @@
+
+
+HTML Generator
+--------------
+
+This service is pointed at an HTML template file and given a set
+of parameters with values, then creates an output HTML file (in
+the location specified) where the parameters in the template have
+been updated with the values.
+
+There are facilities for including external files verbatim (e.g.
+standard headers and footers) and for formatting ASCII tables
+into HTML.  The text below the line is an example template.
+
+--------------------------------------------------------------------
+</html>
+
+This is am example of the templating for a table file. The normal
+parameter handling stuff still works: \parm1\ and \parm2\ but now you
+can include a table file reference.
+
+<table>
+<tr>
+   <td>RA</td>
+   <td>FNU 12</td>
+   <td>RA versus FNU 12</td>
+   <td>FNU 25</td>
+   <td>Dec</td>
+</tr>
+\%tblfile\
+<tr>
+   <td>\ra\</td>
+   <td>\fnu_12\</td>
+   <td>\ra\ / \fnu_12\</td>
+   <td>\fnu_25\</td>
+   <td>\dec\</td>
+</tr>
+\%%\
+</table>
+
+The table header is up to the user.  The table records start getting
+processed when a "%ref" is found.  For each record in the table, the
+following block of text is replicated, with the references replaced by
+the corresponding table column record value.  The block defining a
+record template ends with a "%%" reference.
+
+This can be run with, <i>.e.g.</i>:
+
+<pre>
+#!/bin/sh
+
+htmlgen             \\ 
+   test.template    \\
+   tbl.html         \\
+   parm1   example1 \\
+   parm2   example2 \\
+   tblfile test.tbl 
+</pre>
+
+
+</html>

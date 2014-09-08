@@ -1,0 +1,14 @@
+Test getting key information (tbl_keyinfo()) on a IPAC ASCII file.
+  Call to tbl_keyinfo on file input/SingleFile.tbl retrieved key number 0:
+      STAR_ID = [OGLE-TR-113]
+  Call to tbl_keyinfo on file input/SingleFile.tbl retrieved key number 5:
+      DATA_CATEGORY_DEFINED = [Category of Time-Series Data]
+  Call to tbl_keyinfo on file input/SingleFile.tbl retrieved key number 67:
+      REFERENCES = [Gillon et al. 2006 (Astronomy and Astrophysics, Volume 459, Issue 1, November III 2006, pp.249-255)]
+  Call to tbl_keyinfo on file input/SingleFile.tbl retrieved key number 40:
+      TRANSIT_MIDPOINT_UNCERTAINTY = [0.00082]
+  Call to tbl_keyinfo on file input/SingleFile.tbl retrieved key number 112:
+       = []
+  Call to tbl_keyinfo on file input/SingleFile.tbl retrieved key number 98:
+      COLUMN_ACCEPTED = [1 if value was used by NStED in computing statistics; 0 otherwise]
+

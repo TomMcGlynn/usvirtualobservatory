@@ -1,0 +1,15 @@
+tbl lib Change History
+
+Version               Date            Description of Change
+
+tbl lib Change History
+
+Version         Date    Description of Change
+
+1.4            011505   Add one subroutine tbl_getrec for A1 
+
+1.3            071204   Modify the makefile for 64 bit issue
+
+1.2            022704   relink with fitio.h which move to /irsa/tools/lib
+			from /irsa/isis/lib
+

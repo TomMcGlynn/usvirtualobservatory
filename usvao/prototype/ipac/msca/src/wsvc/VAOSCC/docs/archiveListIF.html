@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/vao_page.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>US VAO</title>
+<!-- InstanceEndEditable -->
+<meta name="robots" content="index, follow" />
+<meta name="revisit-after" content="21 days" />
+<meta name="author" content="" />
+<meta name="copyright" content="" />
+<meta name="rating" content="Global" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="Description" content="" />
+<meta name="Keywords" content="" />
+<meta name="abstract" content="" />
+
+<link type="text/css" rel="stylesheet" href="http://www.usvao.org/css/layout.css" title="default" media="all" />
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body id="about">
+
+<div id="main-wrapper">
+ 
+<div id="logo"><a href="http://www.usvao.org" title="Home"><img src="http://www.usvao.org/images/VAO_logo_100.png" width="100" height="50" alt="vao logo" /></a></div>
+
+  <div id="nav-wrapper">
+    <div id="navigation"><ul><li><a href="http://www.usvao.org/" title="home" id="home-link">Home</a></li><li><a href="http://www.usvao.org/tools/" title="Science Tools" id="about-link">Science Tools</a></li><li><a href="http://www.usvao.org/about.html" title="about us" id="about-link">About the VAO</a></li><li><a href="http://www.usvao.org/news.cfm" title="news" id="about-link">VAO News</a></li>
+
+  <li><a href="http://www.usvao.org/contact.php" title="contact us" id="contact-link" >Contact &amp; Connect</a></li><li></li></ul></div>
+    <div id="nav-right"></div>
+</div>
+<div class="clear">
+  <div class="clear"></div>
+</div>
+<div id="content-area"><br />
+<div id="content-top"></div>
+<div id="content-main"><!-- InstanceBeginEditable name="Body" -->
+  <table border="0" cellspacing="0" cellpadding="5">
+    <tr>
+      <td><a href="/applications/VAOSCC"><img src="images/vao_crossCompare_icon.png" alt="compare" width="91" align="texttop" /></a></td>
+      <td>
+        <h3>Catalog Cross-comparison Tool Help</h3>
+     <a href="Cross_Compare.html">User Guide</a>  | <a href="Example_Tables.html">Example Tables</a> | <a href="Data_Formats.html">Data Formats</a> | <a href="Program_Interface.html">Program Interface </a>| <a href="Demo.html">Demo </a> <br />
+     Program Interface: <a href="uploadIF.html">Upload a Table</a> | <a href="compareIF.html">Cross-compare</a> | <a href="downloadIF.html">Data Retrieval</a> | <a href="listingIF.html">Listing Tables</a> | Listing Catalogs
+    </td></tr>
+  </table>
+
+  <h2 title="table upload">HTTP Interface:  Listing Available Catalogs</h2>
+
+<table width="650"><tr><td>
+
+<p>There is a very simple interface to aid in getting a list of archived catalogs.
+The base URL for the listing service is:</p>
+
+<pre>
+	   http://vao-web.ipac.caltech.edu/cgi-bin/VAOSCC/nph-vaosccArchiveList
+</pre>
+
+<p>The return structure from the listing service is simple XML (currently no schema):</p>
+
+<pre>
+      &lt;results&gt;
+
+	 &lt;catalog&gt;
+	    &lt;name&gt; IRAS_PSC &lt;/name&gt;
+	    &lt;nrec&gt; 245889 &lt;/nrec&gt;
+	    &lt;ncol&gt; 81 &lt;/ncol&gt;
+	    &lt;size&gt; 145858755 &lt;/size&gt;
+
+	 &lt;/catalog&gt;
+
+	 &lt;catalog&gt;
+	    &lt;name&gt; SDSS_DR7 &lt;/name&gt;
+	    &lt;nrec&gt; 453846233 &lt;/nrec&gt;
+	    &lt;ncol&gt; 95 &lt;/ncol&gt;
+
+	    &lt;size&gt; 558684717759 &lt;/size&gt;
+	 &lt;/catalog&gt;
+
+	 &lt;catalog&gt;
+	    &lt;name&gt; TWOMASS_PSC &lt;/name&gt;
+	    &lt;nrec&gt; 470992970 &lt;/nrec&gt;
+
+	    &lt;ncol&gt; 127 &lt;/ncol&gt;
+	    &lt;size&gt; 594864126361 &lt;/size&gt;
+	 &lt;/catalog&gt;
+
+	 &lt;catalog&gt;
+	    &lt;name&gt; USNO_B1 &lt;/name&gt;
+
+	    &lt;nrec&gt; 1045175762 &lt;/nrec&gt;
+	    &lt;ncol&gt; 56 &lt;/ncol&gt;
+	    &lt;size&gt; 538265519689 &lt;/size&gt;
+	 &lt;/catalog&gt;
+
+      &lt;/results&gt;
+
+</pre>
+
+<p>See also: <a href="uploadIF.html">Upload</a> | <a href="listingIF.html">Listing</a> | Archive | <a href="compareIF.html">Compare</a> | <a href="downloadIF.html">Download</a></p>
+
+</td></tr></table>
+
+<!-- InstanceEndEditable --><br />
+</div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.twitter.com/usvao"><img src="http://www.usvao.org/images/twitter.png" width="15" height="15" alt="twitter" /></a> <a href="http://www.facebook.com/pages/US-VAO/111119192247587"><img src="http://www.usvao.org/images/facebook-icon.png" width="15" height="15" alt="fb" /></a><a href="http://feeds.feedburner.com/usvao/HxKx"> <img src="http://www.usvao.org/images/rsslogo.png" width="15" height="15" alt="rss" /></a
+  ></div>
+</div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.usvao.org/ack.html" class="tiny">Acknowledging VAO</a></div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;">&copy;<strong> 2011 VAO, LLC</strong></div>
+
+</div>
+</body>
+<!-- InstanceEnd --></html>

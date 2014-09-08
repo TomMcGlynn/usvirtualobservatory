@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/vao_page.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>US VAO</title>
+<!-- InstanceEndEditable -->
+<meta name="robots" content="index, follow" />
+<meta name="revisit-after" content="21 days" />
+<meta name="author" content="" />
+<meta name="copyright" content="" />
+<meta name="rating" content="Global" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="Description" content="" />
+<meta name="Keywords" content="" />
+<meta name="abstract" content="" />
+
+<link type="text/css" rel="stylesheet" href="http://www.usvao.org/css/layout.css" title="default" media="all" />
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body id="about">
+
+<div id="main-wrapper">
+ 
+<div id="logo"><a href="http://www.usvao.org" title="Home"><img src="http://www.usvao.org/images/VAO_logo_100.png" width="100" height="50" alt="vao logo" /></a></div>
+
+  <div id="nav-wrapper">
+    <div id="navigation"><ul><li><a href="http://www.usvao.org/" title="home" id="home-link">Home</a></li><li><a href="http://www.usvao.org/tools/" title="Science Tools" id="about-link">Science Tools</a></li><li><a href="http://www.usvao.org/about.html" title="about us" id="about-link">About the VAO</a></li><li><a href="http://www.usvao.org/news.cfm" title="news" id="about-link">VAO News</a></li>
+
+  <li><a href="http://www.usvao.org/contact.php" title="contact us" id="contact-link" >Contact &amp; Connect</a></li><li></li></ul></div>
+    <div id="nav-right"></div>
+</div>
+<div class="clear">
+  <div class="clear"></div>
+</div>
+<div id="content-area"><br />
+<div id="content-top"></div>
+<div id="content-main"><!-- InstanceBeginEditable name="Body" -->
+  <table border="0" cellspacing="0" cellpadding="5">
+    <tr>
+      <td><a href="/applications/VAOSCC"><img src="images/vao_crossCompare_icon.png" alt="compare" width="91" align="texttop" /></a></td>
+      <td>
+        <h3>Catalog Cross-comparison Tool Help</h3>
+     <a href="Cross_Compare.html">User Guide</a>  | <a href="Example_Tables.html">Example Tables</a> | <a href="Data_Formats.html">Data Formats</a> | <a href="Program_Interface.html">Program Interface </a>| <a href="Demo.html">Demo </a>
+    </td></tr>
+  </table>
+
+  <h2 title="low-level interface">Low-Level (HTTP) Interface</h2>
+
+<table width="650"><tr><td>
+
+<p>Many users are best served by direct programmatic access to the cross-comparison functionality.
+In fact, this project's own GUI needs nothing else. Here we describe in detail how that interface works 
+and how to use it.</p>
+
+<table width="500"><tr><td>
+
+Interacting with the cross-comparison service is actually a three-step process:</p>
+
+<ul>
+   <li> <a href="uploadIF.html"><b>Upload a table.</b></a>
+        This includes vetting the data: format conversion if necessessary and
+        deciding whether the table has enough information to determine source coordinates.
+	The upload is usually the longest single step in the whole cross-comparison process,
+	though if the service has to determine coordinates via object names in the records,
+	this can be very lengthy.</li>
+
+   <li> The <a href="compareIF.html"><b>Cross-comparison</b></a> itself.</li>
+
+   <li> <a href="downloadIF.html"><b>Data retrieval.</b></a>
+        The cross-comparison return is just a summary of the processing
+        with links to results. The actual data retrieval includes translation of the data to
+	the desired output format.
+</ul>
+
+</td></tr></table>
+
+<p>Each has a simple HTTP GET/POST interface with an XML return
+structure (except data retrieval, which just returns the data).
+There are also interfaces to retrieve an XML <a href="listingIF.html">
+listing</a> of the tables the user currently has in the upload space
+and an XML <a href="archiveListIF.html"> summary </a> of the archived
+catalogs that can be compared against. This space is temporary
+(files older than four days get deleted) but it allows the user
+to reuse uploaded tables for multiple comparisons.  The same rules
+apply to result data.</p>
+
+<p>Click the links above for more details.</p>
+
+</td></tr></table>
+
+<!-- InstanceEndEditable --><br />
+</div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.twitter.com/usvao"><img src="http://www.usvao.org/images/twitter.png" width="15" height="15" alt="twitter" /></a> <a href="http://www.facebook.com/pages/US-VAO/111119192247587"><img src="http://www.usvao.org/images/facebook-icon.png" width="15" height="15" alt="fb" /></a><a href="http://feeds.feedburner.com/usvao/HxKx"> <img src="http://www.usvao.org/images/rsslogo.png" width="15" height="15" alt="rss" /></a
+  ></div>
+</div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.usvao.org/ack.html" class="tiny">Acknowledging VAO</a></div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;">&copy;<strong> 2012 VAO, LLC</strong></div>
+
+</div>
+</body>
+<!-- InstanceEnd --></html>

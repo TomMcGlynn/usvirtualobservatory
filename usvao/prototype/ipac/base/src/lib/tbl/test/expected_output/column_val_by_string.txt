@@ -1,0 +1,10 @@
+Test getting column values as strings (tbl_colstr) on a IPAC ASCII file.
+  Call tbl_colstr on input/SingleFile.tbl.
+    Call to tbl_colstr on file input/SingleFile.tbl[0:0] returned this value: [2453464.50073]
+    Call to tbl_colstr on file input/SingleFile.tbl[1:1] returned this value: [-0.1153000]
+    Call to tbl_colstr on file input/SingleFile.tbl[2:2] returned this value: [-0.0800502]
+    Call to tbl_colstr on file input/SingleFile.tbl[3:3] returned this value: [1.00262558]
+    Call to tbl_colstr on file input/SingleFile.tbl[4:4] returned this value: [0.002]
+    Call to tbl_colstr on file input/SingleFile.tbl[5:5] returned this value: [1]
+    Call to tbl_colstr on file input/SingleFile.tbl[6:6] failed with this status: [-1]
+

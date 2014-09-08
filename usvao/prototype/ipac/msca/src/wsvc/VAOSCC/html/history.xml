@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rows>
+   <head>
+      <column width="50" type="ro" align="right"> Delete </column>
+      <column width="*" type="ro" align="left"> User Table </column>
+      <column width="*" type="ro" align="left"> Catalog </column>
+      <column width="75" type="ro" align="right"> Max&lt;br/&gt;Dist&lt;br/&gt;(arcsec) </column>
+      <column width="75" type="ro" align="right"> Max&lt;br/&gt;Match&lt;br/&gt;Dist </column>
+      <column width="75" type="ro" align="right"> Min&lt;br/&gt;Match&lt;br/&gt;Dist </column>
+      <column width="75" type="ro" align="right"> Avg&lt;br/&gt;Match&lt;br/&gt;Dist </column>
+      <column width="75" type="ro" align="right"> Input&lt;br/&gt;Rows&lt;br/&gt;Matched </column>
+      <column width="75" type="ro" align="right"> #Matches </column>
+      <column width="75" type="ro" align="right"> #Bad&lt;br/&gt;Records </column>
+      <column width="75" type="ro" align="right"> #Unmatched&lt;br/&gt;Records </column>
+      <column width="75" type="ro" align="right"> Time </column>
+   </head>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+
+   <row>
+      <cell> &lt;input type="checkbox"&gt; </cell>
+      <cell> jcg.tbl </cell>
+      <cell> USNO_B1 </cell>
+      <cell> 10.0 </cell>
+      <cell> 9.8258 </cell>
+      <cell> 1.9018 </cell>
+      <cell> 5.8638 </cell>
+      <cell> 2 </cell>
+      <cell> 2 </cell>
+      <cell> 0 </cell>
+      <cell> 7 </cell>
+      <cell> 0.97 sec  </cell>
+   </row>
+</rows>

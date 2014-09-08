@@ -1,0 +1,55 @@
+<div id="compareResults" style="background-color: #c7d6dd; font-size:75%; overflow:auto;">
+
+<table id="resultTbl" cellpadding="10" width="100%" height="450" bgcolor="#c7d6dd"><tr><td valign="top">
+<center>
+<table cellpadding="3">
+<tr>
+   <td style="font-size: 90%;"><b>Compared</b></td><td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;"><font color="#700000">\data1\</font></td> <td style="font-size: 90%;">(\nrec1\ sources)</td>
+</tr>
+<tr>
+   <td style="font-size: 90%;"><b>With Catalog</b></td><td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;"><font color="#700000">\data2\</font></td> <td style="font-size: 90%;">(\nrec2\ sources)</td>
+</tr>
+<tr>
+   <td style="font-size: 90%;"><b>Using</b></td><td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">Max Match Distance</td> <td style="font-size: 90%;"><font color="#700000">\maxdist\ arcsec</font></td>
+</tr>
+<tr>
+   <td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">&nbsp;</td>
+</tr>
+<tr>
+   <td style="font-size: 90%;"><b>Results:</b></td><td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">Input Records Matched</td> <td style="font-size: 90%;">\matchedrows\</td>
+</tr>
+<tr>
+   <td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">Max Distance Found</td> <td style="font-size: 90%;">\maxmatchdist\</td>
+</tr>
+<tr>
+   <td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">Min Distance Found</td> <td style="font-size: 90%;">\minmatchdist\</td>
+</tr>
+<tr>
+   <td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">Average Distance Found</td> <td style="font-size: 90%;">\avgmatchdist\</td>
+</tr>
+<tr>
+   <td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">Matches File</td> <td style="font-size: 90%;"><a href="javascript: void(0);" onclick="downloadFile('\baseurl\/matches.tbl');">matches.tbl</a> (\nummatches\ record)</td>
+</tr>
+<tr>
+   <td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">Unmatched Input</td> <td style="font-size: 90%;"><a href="javascript: void(0);" onclick="downloadFile('\baseurl\/unmatched.tbl');">unmatched.tbl</a> (\unmatchedrows\ sources)</td>
+</tr>
+<tr>
+   <td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">Bad Input</td> <td style="font-size: 90%;"><a href="javascript: void(0);" onclick="downloadFile('\baseurl\/bad.tbl');">bad.tbl</a> (\badrows\ sources)</td>
+</tr>
+<tr>
+   <td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">&nbsp;</td><td style="font-size: 90%;">Processing Time</td> <td style="font-size: 90%;">\elapsetime\ sec</td>
+</tr>
+</table><p/>
+
+<b>Download Format:&nbsp;&nbsp;&nbsp;</b> 
+<select id="downloadFormat">
+<option>Aligned ASCII</option>
+<option selected="yes">CSV</option>
+<option>Tab-delimited</option>
+<option>Bar-delimited</option>
+<option>VOTable</option>
+</select>
+</center>
+</td></tr></table>
+
+</div>

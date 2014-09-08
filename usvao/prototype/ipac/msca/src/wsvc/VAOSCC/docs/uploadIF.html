@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/vao_page.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>US VAO</title>
+<!-- InstanceEndEditable -->
+<meta name="robots" content="index, follow" />
+<meta name="revisit-after" content="21 days" />
+<meta name="author" content="" />
+<meta name="copyright" content="" />
+<meta name="rating" content="Global" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="Description" content="" />
+<meta name="Keywords" content="" />
+<meta name="abstract" content="" />
+
+<link type="text/css" rel="stylesheet" href="http://www.usvao.org/css/layout.css" title="default" media="all" />
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body id="about">
+
+<div id="main-wrapper">
+ 
+<div id="logo"><a href="http://www.usvao.org" title="Home"><img src="http://www.usvao.org/images/VAO_logo_100.png" width="100" height="50" alt="vao logo" /></a></div>
+
+  <div id="nav-wrapper">
+    <div id="navigation"><ul><li><a href="http://www.usvao.org/" title="home" id="home-link">Home</a></li><li><a href="http://www.usvao.org/tools/" title="Science Tools" id="about-link">Science Tools</a></li><li><a href="http://www.usvao.org/about.html" title="about us" id="about-link">About the VAO</a></li><li><a href="http://www.usvao.org/news.cfm" title="news" id="about-link">VAO News</a></li>
+
+  <li><a href="http://www.usvao.org/contact.php" title="contact us" id="contact-link" >Contact &amp; Connect</a></li><li></li></ul></div>
+    <div id="nav-right"></div>
+</div>
+<div class="clear">
+  <div class="clear"></div>
+</div>
+<div id="content-area"><br />
+<div id="content-top"></div>
+<div id="content-main"><!-- InstanceBeginEditable name="Body" -->
+  <table border="0" cellspacing="0" cellpadding="5">
+    <tr>
+      <td><a href="/applications/VAOSCC"><img src="images/vao_crossCompare_icon.png" alt="compare" width="91" align="texttop" /></a></td>
+      <td>
+        <h3>Catalog Cross-comparison Tool Help</h3>
+     <a href="Cross_Compare.html">User Guide</a>  | <a href="Example_Tables.html">Example Tables</a> | <a href="Data_Formats.html">Data Formats</a> | <a href="Program_Interface.html">Program Interface </a>| <a href="Demo.html">Demo </a> <br />
+     Program Interface: Upload a Table | <a href="compareIF.html">Cross-compare</a> | <a href="downloadIF.html">Data Retrieval</a> | <a href="listingIF.html">Listing Tables</a> | <a href="archiveListIF.html">Listing Catalogs</a>
+    </td></tr>
+  </table>
+
+  <h2 title="table upload">HTTP Interface: Table Upload</h2>
+
+<table width="650"><tr><td>
+
+<p>Most of the cross-comparison service interaction can be done with any HTTP GET/POST protocol.  However,
+since the table upload involves bulk data only POST (multipart encoding) will work.  Most scripting languages 
+support this directly and there are tools and libraries (like cURL/libcurl) that can also be used.  Of course 
+browser forms can always be used as well.<p/>
+
+<p>The base URL for the upload service is:</p>
+
+<pre>
+	   http://vao-web.ipac.caltech.edu/cgi-bin/VAOSCC/nph-vaosccUpload
+</pre>
+
+<p>and in fact it only has one parameter: "<tt>table</tt>". The contents of this parameter should be
+the table data itself.  If you mimic what a browser does in creating a multipart MIME message and include
+a Content-Disposition directive with a file name, that name will be returned, shown in the listing service
+and consumed by the cross-comparison service.</p>
+
+<p>Several of the cross-comparison services return 'workspace' information.  Most of them can do this through
+explicit "<tt>workspace</tt>" parameters and this the user to point one service to the location of data from
+another (<i>e.g.</i>, the cross-comparison service at uploaded files or the download service at cross-comparison
+results).  For flexibility, they can also work off cookie values containing the same information.</p>
+
+<p>The upload service is a little more complicated. In order to add new files to the same space as previous 
+uploads, it has to know where that space is before processing the HTTP parameter input stream.  The only 
+simple way to do this is via the cookie mechanism, so that is the only one implemented here.  The 
+upload requires more complicated interaction than the others (because of the POST), the same tools 
+should be able to handle cookie management as well.  A single pass through the system will work anyway:
+the upload without a cookie creates a workspace and subsequent steps can work by passing the workspace
+as a parameter.  You just won't be able to come back and add more files to the same space.</p>
+
+<p>The return structure from the upload service is simple XML (currently no schema):</p>
+
+<pre>
+	 &lt;results&gt;
+	    &lt;status&gt; OK &lt;/status&gt;
+	    &lt;workspace&gt; TMP_8qsgPp_9657/Upload &lt;/workspace&gt;
+	    &lt;table&gt; abell.tbl &lt;/table&gt;
+	    &lt;nrec&gt; 2712 &lt;/nrec&gt;
+	    &lt;ncol&gt; 24 &lt;/ncol&gt;
+	    &lt;time&gt;
+	       &lt;upload&gt; 2.059 &lt;/upload&gt;
+	       &lt;analysis&gt; 0.535 &lt;/analysis&gt;
+	    &lt;/time&gt;
+	 &lt;/results&gt;
+
+
+</pre>
+
+<p>The "workspace" is where the service keeps uploaded files.  You can't see into it with
+a browser (and in fact it is more of a database with random string  file names)
+ but this value needs to be passed on to the cross-comparison service. [Note:  this
+same information is passed in a browser cookie so if all your interaction is via
+a browser this part can be left behind the scenes.]</p>
+
+<p>The "table" should be the name as you uploaded it.  If you abbreviate the MIME structure
+(<i>e.g.</i>, a missing Content-Dispostion) some odd name will be made up but is still 
+valid with the cross-comparison.</p>
+
+<p>The "nrec" and "ncol" values are just for information (you should know this about your
+own table anyway).</p>
+
+<p>Also for information are the "upload" and table "analysis" (vetting/reformatting) times.
+Big tables will take a long time.  However, if the analysis time seems inordinately long,
+it probably means the system had to assign coordinates based on some object name column.
+You should check and see if coordinates are actually there and just can't be identified
+due to odd column naming ("ra" and "dec" are usually the best to include, especially if
+the are in decimal degree form).</p>
+
+Note that uploading a second file with the same "name" to be overwritten.  In fact, the
+first uploaded file will actually be deleted to save space.</p>
+
+<p>See also: Upload | <a href="listingIF.html">Listing</a> | <a href="archiveListIF.html">Archive</a> | <a href="compareIF.html">Compare</a> | <a href="downloadIF.html">Download</a></p>
+
+</td></tr></table>
+
+<!-- InstanceEndEditable --><br />
+</div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.twitter.com/usvao"><img src="http://www.usvao.org/images/twitter.png" width="15" height="15" alt="twitter" /></a> <a href="http://www.facebook.com/pages/US-VAO/111119192247587"><img src="http://www.usvao.org/images/facebook-icon.png" width="15" height="15" alt="fb" /></a><a href="http://feeds.feedburner.com/usvao/HxKx"> <img src="http://www.usvao.org/images/rsslogo.png" width="15" height="15" alt="rss" /></a
+  ></div>
+</div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.usvao.org/ack.html" class="tiny">Acknowledging VAO</a></div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;">&copy;<strong> 2011 VAO, LLC</strong></div>
+
+</div>
+</body>
+<!-- InstanceEnd --></html>

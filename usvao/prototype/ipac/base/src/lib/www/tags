@@ -1,0 +1,61 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+HTML_FOOTER	www.c	22;"	d	file:
+HTML_HEADER	www.c	21;"	d	file:
+KeyLibHasBeenInitialized	www.c	/^int   KeyLibHasBeenInitialized = 0;$/;"	v
+MAXGET	www.c	18;"	d	file:
+MAXIN	www.c	20;"	d	file:
+MAXSTR	www.c	19;"	d	file:
+MAX_ENTRIES	www.c	17;"	d	file:
+METHOD_GET	www.c	46;"	d	file:
+METHOD_MULTI	www.c	47;"	d	file:
+METHOD_POST	www.c	45;"	d	file:
+METHOD_UNKNOWN	www.c	44;"	d	file:
+create_tmpfile	www.c	/^int create_tmpfile(char const *str)$/;"	f
+debugFile	www.c	/^char  debugFile[1024];$/;"	v
+encodeOffsetURL	www.c	/^void encodeOffsetURL(char *out, int start)$/;"	f
+entries	www.c	/^static entry entries[MAX_ENTRIES];$/;"	v	file:
+entry	www.c	/^}  entry;$/;"	t	typeref:struct:__anon1	file:
+flag	www.c	/^int   flag, showChars = 0;$/;"	v
+fmakeword	www.c	/^char *fmakeword(FILE *f, char stop, int *cl) $/;"	f
+fname	www.c	/^   char *fname;$/;"	m	struct:__anon1	file:
+hexchars	www.c	/^static unsigned char hexchars[] = "0123456789ABCDEF";$/;"	v	file:
+initHTTP	www.c	/^int initHTTP(FILE *fout, char const *cookiestr)$/;"	f
+is_blank	www.c	/^int is_blank(char const *s)$/;"	f
+isfile	www.c	/^   int   isfile;$/;"	m	struct:__anon1	file:
+keyStdout	www.c	/^int   keyStdout;$/;"	v
+keydebug	www.c	/^FILE *keydebug = (FILE *)NULL;$/;"	v
+keylib_initialized	www.c	/^int keylib_initialized(void)$/;"	f
+keyword_close	www.c	/^void keyword_close()$/;"	f
+keyword_count	www.c	/^int keyword_count()$/;"	f
+keyword_debug	www.c	/^void keyword_debug(FILE *dbg)$/;"	f
+keyword_exists	www.c	/^int keyword_exists(char const * key)$/;"	f
+keyword_filename	www.c	/^char *keyword_filename(char const *key)$/;"	f
+keyword_info	www.c	/^int keyword_info(int index, char **keyname, char **keyval, char **fname)$/;"	f
+keyword_init	www.c	/^int keyword_init(int argc, char **argv) $/;"	f
+keyword_instance	www.c	/^char *keyword_instance(char const *key, int count)$/;"	f
+keyword_safe_system	www.c	/^int keyword_safe_system(char const *str)$/;"	f
+keyword_stripped	www.c	/^static char  keyword_stripped[MAXSTR];$/;"	v	file:
+keyword_type	www.c	/^static int   keyword_type;$/;"	v	file:
+keyword_value	www.c	/^char *keyword_value(char const *key)$/;"	f
+keyword_value_stripped	www.c	/^char *keyword_value_stripped(char const *key)$/;"	f
+keyword_workdir	www.c	/^void keyword_workdir(char *workdir)$/;"	f
+makeword	www.c	/^char *makeword(char *line, char stop) $/;"	f
+name	www.c	/^   char *name;$/;"	m	struct:__anon1	file:
+nentry	www.c	/^static int   nentry;$/;"	v	file:
+pcontent	www.c	/^static FILE *pcontent;$/;"	v	file:
+plustospace	www.c	/^void plustospace(char *str) $/;"	f
+printDebug	www.c	/^int printDebug()$/;"	f
+showChars	www.c	/^int   flag, showChars = 0;$/;"	v
+tmpdir	www.c	/^char  tmpdir[1024] = "\/tmp";$/;"	v
+unescape_url	www.c	/^void unescape_url(char *url) $/;"	f
+url_decode	www.c	/^char *url_decode(char const *s)$/;"	f
+url_encode	www.c	/^char *url_encode(char const *s)$/;"	f
+val	www.c	/^   char *val;$/;"	m	struct:__anon1	file:
+wwwFooter	www.c	/^int wwwFooter(FILE *fout, char const *footer)$/;"	f
+wwwHeader	www.c	/^int wwwHeader(FILE *fout, char const *header, char const *title)$/;"	f
+x2c	www.c	/^char x2c(char const *what) $/;"	f

@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+
+<project name="stk" default="compile">
+
+  <!-- Load environment variables and default/user properties -->
+  <property environment="env"/>
+  <property file="${user.home}/build.properties" />
+  <property file="${basedir}/build.properties" />
+
+  <property name="Name" value="Spatial Toolkit"/>
+  <property name="name" value="stk"/>
+  <property name="version" value="1.0"/>
+  <property name="final.name" value="${name}-${version}"/>
+  <property name="year" value="2009"/>
+
+  <property name="src.dir" value="${basedir}/src"/>
+
+  <!-- build directories -->
+  <property name="build.dir" value="${basedir}/build"/>
+  <property name="build.classes" value="${build.dir}/classes"/>
+  <property name="build.src" value="${build.dir}/src"/>
+  <property name="build.javadoc" value="${build.dir}/docs/api"/>
+  <property name="build.encoding" value="ISO-8859-1"/>
+
+  <!-- build directories for testing -->
+  <property name="test.src.dir" value="${basedir}/test"/>
+  <property name="test.build.dir" value="${build.dir}/test"/>
+  <property name="test.build.classes" value="${test.build.dir}/classes"/>
+  <property name="test.build.javadoc" value="${test.build.dir}/docs/api"/>
+
+  <!-- properties used for testing -->
+  <property name="test.classpath.id" value="test.classpath"/>
+  <property name="test.threadcount" value="1"/>
+  <property name="test.timeout" value="3600000"/> <!-- 1 hour test timeout (in ms) -->
+  <property name="test.testng.output.dir" value="${test.build.dir}/testng"/>
+  <property name="test.jdwp.port" value="11000"/> <!-- port for debugger connections -->
+  <property name="test.jdwp.suspend" value="n"/> <!-- suspend VM before main class loads? y|n -->
+
+  <!-- install directories -->
+  <property name="install.dir" value="${basedir}/../lib"/>
+
+  <!-- Compiler options -->
+  <property name="javac.debug" value="on"/>
+  <property name="javac.optimize" value="on"/>
+  <property name="javac.deprecation" value="off"/>
+  <property name="javac.version" value="1.6"/>
+  <property name="javac.args" value=""/>
+  <property name="javac.args.warnings" value="-Xlint:unchecked"/>
+
+  <!-- Javadoc options -->
+  <property name="javadoc.link.java"
+            value="http://java.sun.com/javase/6/docs/api/"/>
+  <property name="javadoc.link.hadoop"
+            value="http://hadoop.apache.org/core/docs/r0.20.1/api/"/>
+  <property name="javadoc.packages" value="ipac.*"/>
+
+  <!-- Properties related to third party dependencies/tools -->
+  <property name="hadoop.home" value="${env.HADOOP_HOME}"/>
+
+  <property name="checkstyle.home" value="${env.CHECKSTYLE_HOME}"/>
+  <property name="checkstyle.out.dir" value="${test.build.dir}/checkstyle"/>
+
+  <property name="findbugs.home" value="${env.FINDBUGS_HOME}"/>
+  <property name="findbugs.out.dir" value="${test.build.dir}/findbugs"/>
+  <property name="findbugs.report.htmlfile" value="${findbugs.out.dir}/stk-findbugs-report.html"/>
+  <property name="findbugs.report.xmlfile" value="${findbugs.out.dir}/stk-findbugs-report.xml"/>
+
+  <property name="testng.home" value="${env.TESTNG_HOME}"/>
+
+  <!-- the normal classpath -->
+  <path id="classpath">
+    <pathelement location="${build.classes}"/>
+    <fileset dir="${hadoop.home}">
+      <include name="hadoop-*-core.jar" />
+      <include name="lib/commons-cli-*.jar" />
+    </fileset>
+  </path>
+
+  <!-- the TestNG classpath -->
+  <path id="testng.classpath">
+    <fileset dir="${testng.home}">
+      <include name="testng*jdk15.jar" />
+    </fileset>
+  </path>
+
+  <!-- the unit test classpath -->
+  <path id="test.classpath">
+    <pathelement location="${test.build.classes}" />
+    <pathelement location="${build.dir}"/>
+    <path refid="classpath"/>
+    <path refid="testng.classpath"/>
+  </path>
+
+  <!-- ====================================================== -->
+  <!-- Initialization for all targets                         -->
+  <!-- ====================================================== -->
+  <target name="init">
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.classes}"/>
+    <mkdir dir="${build.src}"/>
+    <mkdir dir="${test.build.dir}"/>
+    <mkdir dir="${test.build.classes}"/>
+  </target>
+
+  <!-- ====================================================== -->
+  <!-- Compile Java classes                                   -->
+  <!-- ====================================================== -->
+  <target name="compile" depends="init" description="Compile core code">
+    <javac encoding="${build.encoding}"
+           srcdir="${src.dir};${build.src}"
+           includes="ipac/**/*.java"
+           destdir="${build.classes}"
+           debug="${javac.debug}"
+           optimize="${javac.optimize}"
+           target="${javac.version}"
+           source="${javac.version}"
+           deprecation="${javac.deprecation}">
+      <compilerarg line="${javac.args} ${javac.args.warnings}"/>
+      <classpath refid="classpath"/>
+    </javac>
+    <copy todir="${build.classes}">
+      <fileset dir="${src.dir}"
+               includes="**/*.properties"/>
+    </copy>
+  </target>
+
+  <!-- ====================================================== -->
+  <!-- Make stk jar                                           -->
+  <!-- ====================================================== -->
+  <target name="jar" depends="compile" description="Make stk.jar">
+    <jar jarfile="${build.dir}/${final.name}.jar" basedir="${build.classes}">
+      <manifest>
+        <section name="ipac">
+          <attribute name="Implementation-Title" value="${Name}"/>
+          <attribute name="Implementation-Version" value="${version}"/>
+          <attribute name="Implementation-Vendor" value="IPAC"/>
+        </section>
+      </manifest>
+    </jar>
+  </target>
+
+  <!-- ====================================================== -->
+  <!-- Compile test code                                      -->
+  <!-- ====================================================== -->
+  <target name="compile-test" depends="compile" description="Compile unit tests">
+    <javac encoding="${build.encoding}"
+           srcdir="${test.src.dir}"
+           includes="ipac/stk/**/*.java"
+           destdir="${test.build.classes}"
+           debug="${javac.debug}"
+           optimize="${javac.optimize}"
+           target="${javac.version}"
+           source="${javac.version}"
+           deprecation="${javac.deprecation}">
+      <compilerarg line="${javac.args} ${javac.args.warnings}" />
+      <classpath refid="test.classpath"/>
+    </javac>
+  </target>
+
+  <!-- ====================================================== -->
+  <!-- Make stk test jar                                    -->
+  <!-- ====================================================== -->
+  <target name="jar-test" depends="compile-test" description="Make stk-test.jar">
+    <jar jarfile="${build.dir}/${final.name}-test.jar"
+         basedir="${test.build.classes}" />
+  </target>
+
+  <!-- ====================================================== -->
+  <!-- Run unit tests                                         -->
+  <!-- ====================================================== -->
+  <target name="test" depends="jar-test" description="Run unit tests">
+    <taskdef resource="testngtasks"
+             classpathref="testng.classpath"/>
+    <mkdir dir="${test.testng.output.dir}"/>
+    <testng outputdir="${test.testng.output.dir}"
+            sourcedir="${test.src.dir}"
+            timeout="${test.timeout}"
+            parallel="tests"
+            threadcount="${test.threadcount}"
+            failureProperty="tests.failed">
+      <classpath refid="${test.classpath.id}"/>
+      <xmlfileset dir="${test.src.dir}" includes="testng.xml"/>
+      <jvmarg value="-Xms512M"/>
+      <jvmarg value="-Xmx1024M"/>
+      <!-- Allow jdb to attach to the unit test JVM -->
+      <jvmarg value="-agentlib:jdwp=transport=dt_socket,server=y,address=${test.jdwp.port},suspend=${test.jdwp.suspend}"/>
+    </testng>
+    <fail if="tests.failed">Tests failed!</fail>
+  </target>
+
+  <!-- ====================================================== -->
+  <!-- Third-party tool targets                               -->
+  <!-- ====================================================== -->
+  <target name="checkstyle"
+          depends="check-for-checkstyle"
+          if="checkstyle.present"
+          description="Run checkstyle on code (if available)">
+    <taskdef resource="checkstyletask.properties">
+      <classpath>
+        <fileset dir="${checkstyle.home}">
+          <include name="checkstyle-all-*.jar"/>
+        </fileset>
+      </classpath>
+    </taskdef>
+    <mkdir dir="${checkstyle.out.dir}"/>
+    <checkstyle config="${test.src.dir}/checkstyle.xml"
+                failOnViolation="false">
+      <fileset dir="${src.dir}" includes="**/*.java"/>
+      <formatter type="xml" toFile="${checkstyle.out.dir}/checkstyle-errors.xml"/>
+    </checkstyle>
+    <xslt style="${test.src.dir}/checkstyle-noframes-sorted.xsl"
+          in="${checkstyle.out.dir}/checkstyle-errors.xml"
+          out="${checkstyle.out.dir}/checkstyle-errors.html"/>
+  </target>
+
+  <target name="check-for-checkstyle">
+    <available property="checkstyle.present" resource="checkstyletask.properties">
+      <classpath>
+        <fileset dir="${checkstyle.home}">
+          <include name="checkstyle-all-*.jar"/>
+        </fileset>
+      </classpath>
+    </available>
+  </target>
+
+  <target name="findbugs"
+          depends="check-for-findbugs, jar"
+          if="findbugs.present"
+          description="Run findbugs on code (if available)">
+    <taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
+             classpath="${findbugs.home}/lib/findbugs-ant.jar"/>
+    <mkdir dir="${findbugs.out.dir}"/>
+    <findbugs home="${findbugs.home}"
+              output="xml:withMessages"
+              outputFile="${findbugs.report.xmlfile}"
+              effort="max"
+              jvmargs="-Xmx512M">
+      <auxClasspath>
+        <fileset dir="${hadoop.home}">
+          <include name="hadoop-*-core.jar"/>
+        </fileset>
+        <fileset dir="${hadoop.home}/lib">
+          <include name="*.jar"/>
+        </fileset>
+      </auxClasspath>
+      <sourcePath path="${src.dir}"/>
+      <class location="${build.dir}/${final.name}.jar"/>
+    </findbugs>
+    <xslt style="${findbugs.home}/src/xsl/default.xsl"
+          in="${findbugs.report.xmlfile}"
+          out="${findbugs.report.htmlfile}"/>
+  </target>
+
+  <target name="check-for-findbugs">
+    <available property="findbugs.present" file="${findbugs.home}/lib/findbugs.jar"/>
+  </target>
+
+  <!-- ====================================================== -->
+  <!-- Documentation                                          -->
+  <!-- ====================================================== -->
+  <target name="javadoc" description="Generate javadoc">
+    <mkdir dir="${build.javadoc}"/>
+    <javadoc overview="${src.dir}/overview.html"
+             stylesheetfile="${src.dir}/stylesheet.css"
+             packagenames="ipac.*"
+             destdir="${build.javadoc}"
+             author="true"
+             version="true"
+             use="true"
+             windowtitle="${Name} ${version} API"
+             doctitle="${Name} ${version} API"
+             bottom="Copyright &amp;copy; ${year} IPAC/Caltech">
+      <packageset dir="${src.dir}"/>
+      <link href="${javadoc.link.java}"/>
+      <link href="${javadoc.link.hadoop}"/>
+      <classpath>
+        <path refid="classpath" />
+        <pathelement path="${java.class.path}"/>
+      </classpath>
+    </javadoc>
+  </target>
+
+  <!-- ====================================================== -->
+  <!-- Install                                                -->
+  <!-- ====================================================== -->
+  <target name="install" depends="jar" description="Install stk.jar">
+    <copy file="${build.dir}/${final.name}.jar" todir="${install.dir}" />
+  </target>
+
+  <!-- ====================================================== -->
+  <!-- Clean                                                  -->
+  <!-- ====================================================== -->
+  <target name="clean"
+          description="Clean up - deletes the build files and directories">
+    <delete dir="${build.dir}"/>
+  </target>
+
+</project>

@@ -1,0 +1,43 @@
+
+General Layout of Code
+
+The end web services for the VAO Scalable Cross-Comparison and Time Series 
+are embedded in a complete software environment.  Only parts of that system
+apply to these two services but it was felt that maintaining the general
+structure of the IPAC source code organization was best in the long run,
+especially since many support libraries are used by both.
+
+In general, the 'base' subdirectory contains commonly reused components,
+both the form of libraries and command-line utilities.  This branch also
+contains one utility that is employed both as a command-line tool and
+directly as a web service (CGI program) [base/src/wsvc/TblCheck]
+
+
+Some self-contained packages warrant their own branch.  These include
+the "stk" package here (the low level utilities for indexing tables and
+performing fast cross-comparisons) plus others like the Montage image
+mosaicking toolkit.
+
+Finally, the end user service (the CGI programs nph-vaoscc and nph-
+vaotimeseries) reside in the 'msca/src/wsvc' directory.
+
+Also *not* included are the Apache framework into which the web services
+are deployed and system/off-the-shelf libraries, etc.
+
+---
+
+The components in 'base/src', 'montage', and 'msca/src' can
+generally be build as is.  Each of these directories contains a
+top-level Makefile. 'base' the first two contain 'bin' directories for
+support tools.  In order to run the web services, both 'base/bin' and
+'montage/bin' need to be in the PATH Apache (or your web server) sees.
+The 'msca' tree installs into local 'applications' and 'cgi-bin' 
+directory trees.  In a real installation the first should be made 
+URL-accessible and the second part of the executable service path
+for the web server.  More than likely, this will require some 
+adjustment to match local configuration.
+
+The 'stk' build is more complicated.  This package uses a combination
+of JAVA (Ant) and C++ (WAF) code.  Running 'ant' in 'stk/java' and 
+'make' (which just runs WAF) in 'stk/c++' will come close but most
+likely will need tweaks for local configuration.

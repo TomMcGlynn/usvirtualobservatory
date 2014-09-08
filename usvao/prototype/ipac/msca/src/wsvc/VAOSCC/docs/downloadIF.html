@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/vao_page.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>US VAO</title>
+<!-- InstanceEndEditable -->
+<meta name="robots" content="index, follow" />
+<meta name="revisit-after" content="21 days" />
+<meta name="author" content="" />
+<meta name="copyright" content="" />
+<meta name="rating" content="Global" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="Description" content="" />
+<meta name="Keywords" content="" />
+<meta name="abstract" content="" />
+
+<link type="text/css" rel="stylesheet" href="/applications/VAOSCC/css/layout.css" title="default" media="all" />
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body id="about">
+
+<div id="main-wrapper">
+ 
+<div id="logo"><a href="http://www.usvao.org" title="Home"><img src="/applications/VAOSCC/images/VAO_logo_100.png" width="100" height="50" alt="vao logo" /></a></div>
+
+  <div id="nav-wrapper">
+    <div id="navigation"><ul><li><a href="http://www.usvao.org/" title="home" id="home-link">Home</a></li><li><a href="http://www.usvao.org/science-tools-services/" title="Science Tools" id="about-link">Science Tools</a></li><li><a href="http://www.usvao.org/about-vao/" title="about us" id="about-link">About the VAO</a></li><li><a href="http://www.usvao.org/news/" title="news" id="about-link">VAO News</a></li>
+
+  <li><a href="http://www.usvao.org/contact-connect/" title="contact us" id="contact-link" >Contact &amp; Connect</a></li><li></li></ul></div>
+    <div id="nav-right"></div>
+</div>
+<div class="clear">
+  <div class="clear"></div>
+</div>
+<div id="content-area"><br />
+<div id="content-top"></div>
+<div id="content-main"><!-- InstanceBeginEditable name="Body" -->
+  <table border="0" cellspacing="0" cellpadding="5">
+    <tr>
+      <td><a href="/applications/VAOSCC"><img src="images/vao_crossCompare_icon.png" alt="compare" width="91" align="texttop" /></a></td>
+      <td>
+        <h3>Catalog Cross-comparison Tool Help</h3>
+     <a href="Whats_New.html">What's New</a> | <a href="Cross_Compare.html">User Guide</a>  | <a href="Example_Tables.html">Example Tables</a> | <a href="Data_Formats.html">Data Formats</a> | <a href="Program_Interface.html">Program Interface </a>| <a href="Demo.html">Demo </a> <br />
+     Program Interface: <a href="uploadIF.html">Upload a Table</a> | <a href="compareIF.html">Cross-compare</a> | Data Retrieval | <a href="listingIF.html">Listing Tables</a> | <a href="archiveListIF.html">Listing Catalogs</a>
+    </td></tr>
+  </table>
+
+  <h2 title="table download">HTTP Interface: Data Retrieval (Table Download) </h2>
+
+<table width="650"><tr><td>
+
+<p>This service is used to retrieve result tables.  The base URL for the retrieval service is:</p>
+
+<pre>
+	   http://vao-web.ipac.caltech.edu/cgi-bin/VAOSCC/nph-vaosccDownload
+</pre>
+
+<p>and there are two parameters:</p>
+
+<ul>
+   <li><b>file</b>.&nbsp;&nbsp;  The desired result file.  See the return from the 
+       <a href="compareIF.html">cross-comparison</a> service for a list of available
+       files.
+
+   <li><b>format</b>.&nbsp;&nbsp;  The desired return format, which can be VOTable, IPAC/ASCII, 
+       FITS, CSV, TAB or BAR.  The last three are comma-, tab-, and vertical-bar-delimited ASCII.
+</ul>
+
+
+<p>The return is the data itself as an HTTP message (with header including proper MIME type).</p>
+
+<p>See also: <a href="uploadIF.html">Upload</a> | <a href="listingIF.html">Listing</a> | <a href="archiveListIF.html">Archive</a> | <a href="compareIF.html">Compare</a> | Download</p>
+
+</td></tr></table>
+
+<!-- InstanceEndEditable --><br />
+</div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.twitter.com/usvao"><img src="/applications/VAOSCC/images/twitter.png" width="15" height="15" alt="twitter" /></a> <a href="http://www.facebook.com/pages/US-VAO/111119192247587"><img src="/applications/VAOSCC/images/facebook-icon.png" width="15" height="15" alt="fb" /></a><a href="http://feeds.feedburner.com/usvao/HxKx"> <img src="/applications/VAOSCC/images/rsslogo.png" width="15" height="15" alt="rss" /></a
+  ></div>
+</div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;"><a href="http://www.usvao.org/ack.html" class="tiny">Acknowledging VAO</a></div>
+<div style="width:100%;text-align:right;float:left;padding-top:5px;padding-right:5px;">&copy;<strong> 2011 VAO, LLC</strong></div>
+
+</div>
+</body>
+<!-- InstanceEnd --></html>

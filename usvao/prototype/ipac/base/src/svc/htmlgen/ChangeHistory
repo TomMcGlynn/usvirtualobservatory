@@ -1,0 +1,9 @@
+Version   Date       Description of Change
+
+2.1      29 Mar 05   Added URL-encoding for simple substitution
+2.0      18 Mar 05   Added table file insert templating
+1.2      28 Oct 02   Added "include file" processing user    
+		     supplied HTML fragments         
+1.1      22 Oct 02   Added "include file" processing for     
+		     header and footer information
+1.0      13 Jul 01   Initial Release
