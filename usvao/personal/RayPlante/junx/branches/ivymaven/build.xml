@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant"
+         name="junx build file" default="build" basedir=".">
+
+    <property name="useIvy" value="true" />
+
+    <import file="build-vao.xml" as="vao"/>
+
+    <!--
+      -  Initialize the project
+      -->
+    <target name="init" depends="vao.initOutputDirs,vao.ivyCheck" />
+
+    <target name="initTests" depends="vao.initTestDirs" />
+
+    <target name="resolve" depends="vao.resolve">
+      <!--
+        -  This will:
+        -  1.  fetch any dependencies needed (if useIvy=true and ivy is 
+        -      available)
+        -  2.  set the various classpaths:
+        -      build.classpath - needed for building but not for running; 
+        -        by default, includes all jar files in ./lib and any jars 
+        -        required from the local artifact repository.
+        -      run.classpath - needed only at runtime; by default, includes
+        -        all jar files in ./lib, including junx.jar
+        -      debug.classpath - useful for debugging; by default, includes
+        -        target/classes and the contents of run.classpath
+        -      test.classpath - useful for running tests; by default, includes
+        -        target/tclasses, target/classes, and the contents of 
+        -        run.classpath
+        -->
+    </target>
+
+    <target name="compile" depends="init,resolve">
+        <echo>building source</echo>
+        <javac destdir="${classes.dir}" debug="true" 
+               classpathref="build.classpath"
+               includeAntRuntime="false" srcdir="${jsrc.dir}">
+        </javac>
+    </target>
+
+    <target name="compileTests" depends="initTests,compile">
+        <echo>building tests</echo>
+        <javac destdir="${tclasses.dir}" debug="true" 
+               includeAntRuntime="true" srcdir="${tjsrc.dir}"
+               classpathref="build.test.classpath" />
+    </target>
+
+    <target name="test" depends="compileTests">
+        <junit printsummary="yes"  includeAntRuntime="true" haltonfailure="yes">
+          <classpath refid="test.classpath" />
+
+          <formatter type="plain" />
+
+          <batchtest todir="${testreport.dir}">
+            <fileset dir="${tclasses.dir}">
+              <include name="**/*Test.class" />
+              <exclude name="**/AllTests.class" />
+            </fileset>
+          </batchtest>
+        </junit>
+    </target>
+
+    <target name="jar" depends="compile">
+        <jar destfile="${lib.dir}/junx.jar" basedir="${classes.dir}" />
+    </target>
+
+    <target name="doc" depends="init">
+        <javadoc packagenames="*" destdir="${doc.dir}/japi" 
+                 sourcepath="${jsrc.dir}" />
+    </target>
+
+    <target name="build" depends="jar,doc" />
+
+    <target name="clean" description="--> clean up uneeded intermediates">
+      <delete includeemptydirs="true" failonerror="false">
+        <fileset dir="classes" />
+      </delete>
+    </target>
+
+    <target name="distclean" depends="clean"
+            description="--> restore to distribution state">
+      <delete includeemptydirs="true" failonerror="false">
+        <fileset dir="doc/japi" />
+        <fileset dir="lib" />
+      </delete>
+    </target>
+
+
+</project>

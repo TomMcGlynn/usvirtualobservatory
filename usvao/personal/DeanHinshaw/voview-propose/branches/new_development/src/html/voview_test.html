@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+Example of how to use the VOView package to display a VOTABLE in the default layout.
+In this example the input table is specified in the simplest way possible, by providing
+a URL directly as an argument when creating the voview object.
+Note the JavaScript packages that must be included, sarissa.js, tablednd.js, dragtable.js and 
+voview_pkg.js .
+ -->
+ <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta content="text/html; charset=iso-8859-1" http-equiv="content-type"/>
+		<link rel="stylesheet" type="text/css" href="voview.css"/>
+		<script type="text/javascript" src="@JS_PATH@sarissa.js"></script>
+		<script type="text/javascript" src="@JS_PATH@tablednd.js"></script>
+		<script type="text/javascript" src="@JS_PATH@dragtable.js"></script>
+		<script type="text/javascript" src="@JS_PATH@voview_pkg.js"></script>
+		<script type="text/javascript">
+			/**
+	      	  Make a new VOView object.  The URL of the input table is 
+	      	  specified, as well as the widgetID, which is used below to indicate where 
+	      	  in the page the VOView display will be placed.
+	    	**/
+	    	myVoview =  new voview({input: {url: "example_input.xml"}, widgetID: "voviewTab"});
+	    	
+        </script>
+        <title>voview test page</title>
+	</head>
+	<body>
+		<span class="bbox" onclick="return myVoview.start();">Go</span>
+		<!-- 
+		  Specifying the widget ID (in this example voviewTab) as one of the classes for 
+		  the div element indicates that this is where the VOView display should be placed.
+		 -->
+		<div class="voviewTab">
+			Table should appear here.
+		</div>		
+	</body>
+</html>

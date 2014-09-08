@@ -1,0 +1,110 @@
+<project name="VOView" default="install" basedir=".">
+	<description> Virtual Observatory Viewer </description>
+        
+	<property name="INSTALL"  value="/www/htdocs" />
+
+	<property name="proj"     value="view" />
+	<property name="URLBASE"  value="/vo/${proj}" />
+	<property name="XSL"      value="${URLBASE}/xsl" />
+	<property name="JS"       value="${URLBASE}/js" />
+	<property name="CSS"      value="${URLBASE}/css" />
+	<property name="IMG"      value="${URLBASE}/images" />
+
+	<property name="html"     value="./src/html" />
+	<property name="cgi"      value="./src/cgi" />
+	<property name="css"      value="./src/css" />
+	<property name="xsl"      value="./src/xsl" />
+	<property name="img"      value="./src/images" />
+	<property name="java"     value="./src/java" />
+	<property name="js"       value="./src/javascript" />
+	<property name="mjs"      value="../mods/javascript" />
+	<property name="fjs"      value="../foreign/javascript" />
+	<property name="docsdest" value="${INSTALL}${URLBASE}" />
+	<property name="jsdest"   value="${docsdest}/js/" />
+	<property name="cssdest"  value="${docsdest}/css/" />
+	<property name="xsldest"  value="${docsdest}/xsl/" />
+	<property name="imgdest"  value="${docsdest}/images/" />
+	
+	<target name="clean"> </target>
+	
+	<target name="install" depends="copy"> </target>
+
+	<target name="copy">
+		<echo message="Copying data:"                      />
+		<echo message="  Documents to ${docsdest}"       />
+		<echo message="  JavaScript to ${jsdest}"        />
+		<echo message="  CSS files to ${cssdest}"        />
+		<echo message="  XSL files to ${xsldest}"        />
+		
+		<echo message="Clearing out old directories" />
+		<delete failonerror="false" dir="${jsdest}"  />
+		<delete failonerror="false" dir="${cssdest}" />
+		<delete failonerror="false" dir="${xsldest}" />
+		<delete failonerror="false" dir="${docsdest}"/>
+	
+		<echo message="Copying HTML from ${html} to ${docsdest}" />
+		<copy todir="${docsdest}" includeEmptyDirs='false' >
+			<fileset dir="${html}" >
+				<exclude name="**/versions/*" />
+			</fileset>
+			<filterset>
+				<filter token="CSS" value="${CSS}"/>
+				<filter token="XSL" value="${XSL}"/>
+				<filter token="JS"  value="${JS}"/>
+			</filterset>
+		</copy>
+
+		<echo message="Copying CGI from ${cgi} to ${docsdest}" />
+		<copy todir="${docsdest}" includeEmptyDirs='false' >
+			<fileset dir="${cgi}" >
+				<exclude name="**/versions/*" />
+			</fileset>
+			<filterset>
+				<filter token="IMG" value="${IMG}"/>
+				<filter token="CSS" value="${CSS}"/>
+				<filter token="XSL" value="${XSL}"/>
+				<filter token="JS"  value="${JS}"/>
+			</filterset>
+		</copy>
+		<chmod dir="${docsdest}" includes="*pl" perm="ugo+x" />
+	
+		<echo message="Copying all JavaScript to ${jsdest}" />
+		<copy todir="${jsdest}">
+			<fileset includes="**/*.js" dir="${js}"   />
+			<fileset includes="**/*.js" dir="${fjs}"   />
+			<fileset includes="**/*.js" dir="${mjs}"   />
+			<filterset>
+				<filter token="IMG" value="${IMG}"/>
+				<filter token="XSL" value="${XSL}"/>
+			</filterset>
+		</copy>
+	
+		<echo message="Copying CSS from ${css} to ${cssdest}" />
+		<copy todir="${cssdest}">
+			<fileset includes="**/*.css" dir="${css}"  />
+			<filterset>
+				<filter token="IMG" value="${IMG}"/>
+			</filterset>
+		</copy>
+	
+		<echo message="Copying XSL from ${xsl} to ${xsldest}" />
+		<copy todir="${xsldest}">
+			<fileset includes="**/*.xsl" dir="${xsl}"  />
+		</copy>
+	
+		<echo message="Copying images from ${img} to ${imgdest}" />
+		<copy todir="${imgdest}">
+			<fileset includes="**/*" dir="${img}"  />
+		</copy>
+	
+		<chmod dir="${docsdest}" includes="**" type="both" perm="g+w" />
+		<echo message="Install complete" />
+	</target>
+	
+	<target name="release" depends="clean,install"> </target>
+	
+	<target name="test" >
+		<echo message="Testing has not been implemented yet." />
+	</target>
+
+</project>

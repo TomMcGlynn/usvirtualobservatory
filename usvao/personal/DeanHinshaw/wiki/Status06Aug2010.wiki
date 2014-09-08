@@ -1,0 +1,9 @@
+#summary Project Status as of 6 August 2010
+
+= First Release of Filtering Code =
+
+I now have a working version of the filter class for VOView, which I have committed to the repository and made into a package that can be installed on a Web server.  The package can be downloaded from the project's [http://code.google.com/p/voview/downloads/list download page].  The README file that is included in the package can be browsed [http://voview.googlecode.com/svn/voview-propose/trunk/README here].  The package contains an example html page that uses the filtering code.  I have installed the [http://heasarc.gsfc.nasa.gov/vo/develop/view/filter_test.html example page] on the HEASARC website so people can have a look and play with it.
+
+One of the key functionalities of the filter class, the ability to select rows based on their column values, has not yet been tested and is not used in the example page.  The code for this has been written, and testing and debugging it is my next task. 
+ 
+                           -- Dean

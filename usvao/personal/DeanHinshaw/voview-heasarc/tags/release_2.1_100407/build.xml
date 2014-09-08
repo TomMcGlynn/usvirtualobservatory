@@ -1,0 +1,99 @@
+<project name="VOView" default="install" basedir=".">
+<description> Virtual Observatory Viewer </description>
+
+<property environment="env"/>
+<condition property="proj_root" value="${env.PROJ_ROOT}" else="/www/htdocs">
+	<available file="${env.PROJ_ROOT}"/>
+</condition>
+
+<echo>proj_root is ${proj_root}</echo>
+<property name="INSTALL" value="${proj_root}" />
+<property name="RUNTIME" value="${proj_root}" />
+<property name="proj"     value="view" />
+<property name="proj_version"     value="2.1" />
+
+<available file="${proj_root}/vo/net_nvo/heasarc.properties" property="properties.present"/>
+<fail message="Cannot find ${proj_root}/vo/net_nvo/heasarc.properties which 
+is required to build this project.  You may need to install the net_nvo utility project."
+   unless="properties.present"/>
+
+<property file="${proj_root}/vo/net_nvo/heasarc.properties"/>
+
+<filter token="IMG_PATH" value="${IMG_PATH}"/>
+<filter token="URL_PATH" value="${URL_PATH}"/>
+<filter token="CSS_PATH" value="${CSS_PATH}"/>
+<filter token="XSL_PATH" value="${XSL_PATH}"/>
+<filter token="JS_PATH"  value="${JS_PATH}"/>
+<filter token="CGI_PATH" value="${CGI_PATH}"/>
+<filter token="VIM"  value="${VIM}"/>
+<filter token="Inventory"  value="${Inventory}"/>
+<filter token="SimpleQuery"  value="${SimpleQuery}"/>
+
+<target name="clean"> </target>
+
+<target name="install" depends="copy"> 
+	<tstamp />
+	<touch file="${docsdest}/.${DSTAMP}_${TSTAMP}_v${proj_version}" />
+</target>
+
+<target name="copy">
+   <echo message="Copying data:"                      />
+   <echo message="  Documents to ${docsdest}"       />
+   <echo message="  JavaScript to ${jsdest}"        />
+   <echo message="  CSS files to ${cssdest}"        />
+   <echo message="  XSL files to ${xsldest}"        />
+
+   <echo message="Clearing out old directories" />
+   <delete failonerror="false" dir="${jsdest}"  />
+   <delete failonerror="false" dir="${cssdest}" />
+   <delete failonerror="false" dir="${xsldest}" />
+   <delete failonerror="false" dir="${docsdest}"/>
+
+   <echo message="Copying HTML from ${html} to ${docsdest}" />
+   <copy todir="${docsdest}" includeEmptyDirs='false' filtering='true'>
+      <fileset dir="${html}" >
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+
+   <echo message="Copying CGI from ${cgi} to ${cgidest}" />
+   <copy todir="${cgidest}" includeEmptyDirs='false' filtering="true">
+      <fileset dir="${cgi}" >
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+   <chmod dir="${cgidest}" includes="*pl" perm="ugo+x" />
+
+   <echo message="Copying all JavaScript to ${jsdest}" />
+   <copy todir="${jsdest}" filtering="true">
+      <fileset includes="**/*.js" dir="${js}"   />
+      <fileset includes="**/*.js" dir="${nvolib}/js"   />
+   </copy>
+
+   <echo message="Copying CSS from ${css} to ${cssdest}" />
+   <copy todir="${cssdest}" filtering="true">
+      <fileset includes="**/*.css" dir="${css}"  />
+      <fileset includes="**/*.css" dir="${nvolib}/css"  />
+   </copy>
+
+   <echo message="Copying XSL from ${xsl} to ${xsldest}" />
+   <copy todir="${xsldest}" >
+      <fileset includes="**/*.xsl" dir="${xsl}"  />
+   </copy>
+
+   <echo message="Copying images from ${img} to ${imgdest}" />
+   <copy todir="${imgdest}">
+      <fileset includes="**/*" dir="${img}"  />
+   </copy>
+
+   <chmod dir="${docsdest}" includes="**" type="both" perm="g+w" />
+   <echo message="Install complete" />
+</target>
+
+<target name="release" depends="clean,install"> </target>
+
+<target name="test" >
+   <echo message="Testing has not been implemented yet." />
+</target>
+
+</project>

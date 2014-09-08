@@ -1,0 +1,25 @@
+ VOView Filter Package
+ Version 1.0
+ 15 September 2010
+
+This distribution installs on a Web server the files needed to use the VOView
+filter class to do simple sorting and filtering of a VOTABLE.  Once that 
+distribution is unpacked, the build.xml file should be edited to reflect your
+server installation.  In particular, the project_root property should be
+modified to point to the top of your server's file directory structure.  If
+you wish to access VOTABLEs using URLs not local to the server, you will need
+to configure a proxy server.  An example proxy server, proxy.pl, is included in
+the distribution.  It is installed at the location specified by the property
+dest_cgi.  You will also need to set the value of the filter token PROXY_URL.
+
+Once the build.xml file is properly configured for your system, run 
+"ant install" in the directory of the build file to install the distribution.
+Example webpages showing how to use this distribution is installed at
+/vo/develop/view/filter_test*.html by default.  These use an example input file,
+example_input.xml, located in the same directory.
+
+A test suite for this software, based on JUnit and selenium, is available under 
+src/java/net/ivo/voview/tests .  There is currently no build target for these tests.
+
+For more information about this project, go to http://code.google.com/p/voview/ .
+

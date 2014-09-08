@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+	<title>VOTable Viewer</title>
+	<link rel="stylesheet" type="text/css" href="@CSS_PATH@voview.css"/>
+	<script type="text/javascript" src="@JS_PATH@cookie.js"></script>
+	<script type="text/javascript" src="@JS_PATH@sarissa.js"></script>
+	<script type="text/javascript" src="@JS_PATH@statemanager.js"></script>
+	<script type="text/javascript" src="@JS_PATH@query.js"></script>
+	<script type="text/javascript" src="@JS_PATH@filter.js"></script>
+	<script type="text/javascript" src="@JS_PATH@fsm.js"></script>
+	<script type="text/javascript" src="@JS_PATH@tablednd.js"></script>
+	<script type="text/javascript" src="@JS_PATH@voview.js"></script>
+	<!--  script type="text/javascript" src="@JS_PATH@jquery.js"></script -->
+
+	<script type="text/javascript">
+		test_format = function(cell){
+			cell.innerHTML = cell.innerHTML + "_blah";
+		};
+	
+		window.onload = function() {
+			var output = document.getElementById("output");
+			rd = voview({
+				output: output,
+				form: "searchForm",
+				searchparam: "query_string",
+				xsltdir: "@XSL_PATH@"
+            //, updateCallback: vo_ready
+			});
+
+//			rd.displayPrefixColumn(true);
+			rd.displaySelectColumn(true);
+			rd.columnFormat(2, "<a onclick=\"return nw(this.href, this.target)\" href=\"http://simbad.u-strasbg.fr/sim-id.pl?protcol=html&Ident=@@&Frame3=G\" title=\"Link to Simbad details\">@@</a>");
+//			rd.columnFormat("unique_id", test_format);
+//			rd.columnFormat(/DEC/i, test_format);
+			//			$('#examples').hide();
+		};
+	</script>
+</head>
+<body>
+
+<h1>VOTable Viewer</h1>
+
+<div id='examples' class="Examples">
+
+<a href="http:/vo/rassfsc.xml" onclick="return insertTerm(this);">
+Test file
+</a><br />
+
+</div>
+<!-- p onclick="$('#examples').slideToggle('slow')" >click to Toggle Examples</p -->
+
+<form method="get" name="searchForm" onsubmit="return rd.setView();" action="">
+	<input name="query_string" id="sterm" size="100" maxlength="500" value="" type="text"/>
+	<br/>
+	<input type="submit" class="submit" name=".submit" value="Search" />
+	<input type="reset" class="reset" name=".reset" value="Reset" onclick="return rd.clearState();" />
+	<div class="searchnote compact">
+		Requires Firefox, Safari, or compatible browser
+	</div>
+</form>
+
+<div id="output">
+Table should appear here.
+</div>
+
+</body></html>

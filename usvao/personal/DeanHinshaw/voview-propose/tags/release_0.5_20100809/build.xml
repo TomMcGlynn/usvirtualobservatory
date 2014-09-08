@@ -1,0 +1,64 @@
+<!--
+This build file constructs JavaScript packages for using the VOView classes, 
+and installs them and other needed files on a Web server.  This includes a 
+Perl script for running a proxy, which is needed for VOTABLE files that are 
+not local to the server.  If you will only be accessing tables local to the 
+server, you can set the PROXY_URL filter token value to "".
+-->
+<project name="VOView" default="package" basedir=".">
+<description> Virtual Observatory Viewer </description>
+	
+	<property name="proj_root" value="/www.prod/htdocs" />
+	<!-- property name="proj_root" value="C:\Documents and Settings\dhinshaw\workspace\voview-propose\WebContent"/ -->
+	<property name="proj_version" value="0.5" />
+	
+	<property name="jsdir" value="./src/javascript" />
+	<property name="xsldir" value="./src/xsl" />
+	<property name="htmldir" value="./src/html" />
+	<property name="cgidir" value="./src/cgi" />
+	
+	<property name="dest_root" value="${proj_root}/vo/develop/view" />
+	<property name="dest_html" value="${dest_root}" />
+	<property name="dest_xsl" value="${dest_root}/xsl" />
+	<property name="dest_js" value="${dest_root}/js" />
+	<property name="dest_cgi" value="${proj_root}/cgi-bin/vo/util" />
+
+	<filter token="XSL_PATH" value="xsl/"/>
+	<filter token="JS_PATH" value="js/"/>
+	<filter token="PROXY_URL" value="/cgi-bin/vo/util/proxy.pl"/>
+	<!-- filter token="PROXY_URL" value=""/ -->
+
+	<target name="package">
+		<delete file="${jsdir}/filter_pkg.js"/>
+		<copy file="${jsdir}/voview.js" tofile="${jsdir}/filter_pkg.js" filtering="true"/>
+		<concat destfile="${jsdir}/filter_pkg.js" append="true">
+			<filelist dir="${jsdir}" files="filter.js"/>
+		</concat>
+		<replace file="${jsdir}/filter_pkg.js" token="TheVoviewPackageName" value="voviewFilter"/>
+	</target>
+	
+	<target name="install" depends="package">
+		<copy todir="${dest_js}" filtering="true">
+			<fileset dir="${jsdir}">
+				<include name="mylib-min.js"/>
+				<include name="sarissa.js"/>
+				<include name="filter_pkg.js"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${dest_xsl}" filtering="true">
+			<fileset dir="${xsldir}" includes="*"/>			
+		</copy>
+
+		<copy todir="${dest_cgi}" filtering="true">
+			<fileset dir="${cgidir}" includes="*"/>			
+		</copy>
+
+		<copy todir="${dest_html}" filtering="true">
+			<fileset dir="${htmldir}" includes="*"/>			
+		</copy>
+		
+		<tstamp />
+		<touch file="${proj_root}/.${DSTAMP}_${TSTAMP}_v${proj_version}" />
+	</target>
+</project>

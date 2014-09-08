@@ -1,0 +1,80 @@
+<project name="VOView" default="install" basedir=".">
+<description> Virtual Observatory Viewer </description>
+
+<property name="proj"     value="view" />
+<property file="../../net_ivoa/trunk/heasarc.properties"/>
+
+<filter token="IMG_PATH" value="${IMG_PATH}"/>
+<filter token="URL_PATH" value="${URL_PATH}"/>
+<filter token="CSS_PATH" value="${CSS_PATH}"/>
+<filter token="XSL_PATH" value="${XSL_PATH}"/>
+<filter token="JS_PATH"  value="${JS_PATH}"/>
+<filter token="VIM"  value="${VIM}"/>
+<filter token="Inventory"  value="${Inventory}"/>
+<filter token="SimpleQuery"  value="${SimpleQuery}"/>
+
+<target name="clean"> </target>
+
+<target name="install" depends="copy"> </target>
+
+<target name="copy">
+   <echo message="Copying data:"                      />
+   <echo message="  Documents to ${docsdest}"       />
+   <echo message="  JavaScript to ${jsdest}"        />
+   <echo message="  CSS files to ${cssdest}"        />
+   <echo message="  XSL files to ${xsldest}"        />
+
+   <echo message="Clearing out old directories" />
+   <delete failonerror="false" dir="${jsdest}"  />
+   <delete failonerror="false" dir="${cssdest}" />
+   <delete failonerror="false" dir="${xsldest}" />
+   <delete failonerror="false" dir="${docsdest}"/>
+
+   <echo message="Copying HTML from ${html} to ${docsdest}" />
+   <copy todir="${docsdest}" includeEmptyDirs='false' filtering='true'>
+      <fileset dir="${html}" >
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+
+   <echo message="Copying CGI from ${cgi} to ${docsdest}" />
+   <copy todir="${docsdest}" includeEmptyDirs='false' filtering="true">
+      <fileset dir="${cgi}" >
+         <exclude name="**/versions/*" />
+      </fileset>
+   </copy>
+   <chmod dir="${docsdest}" includes="*pl" perm="ugo+x" />
+
+   <echo message="Copying all JavaScript to ${jsdest}" />
+   <copy todir="${jsdest}" filtering="true">
+      <fileset includes="**/*.js" dir="${js}"   />
+      <fileset includes="**/*.js" dir="${fjs}"   />
+      <fileset includes="**/*.js" dir="${mjs}"   />
+   </copy>
+
+   <echo message="Copying CSS from ${css} to ${cssdest}" />
+   <copy todir="${cssdest}" filtering="true">
+      <fileset includes="**/*.css" dir="${css}"  />
+   </copy>
+
+   <echo message="Copying XSL from ${xsl} to ${xsldest}" />
+   <copy todir="${xsldest}" >
+      <fileset includes="**/*.xsl" dir="${xsl}"  />
+   </copy>
+
+   <echo message="Copying images from ${img} to ${imgdest}" />
+   <copy todir="${imgdest}">
+      <fileset includes="**/*" dir="${img}"  />
+   </copy>
+
+   <chmod dir="${docsdest}" includes="**" type="both" perm="g+w" />
+   <echo message="Install complete" />
+</target>
+
+<target name="release" depends="clean,install"> </target>
+
+<target name="test" >
+   <echo message="Testing has not been implemented yet." />
+</target>
+
+</project>

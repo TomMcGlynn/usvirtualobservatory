@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<!DOCTYPE VOTABLE SYSTEM "http://us-vo.org/xml/VOTable.dtd">
+<VOTABLE version="1.0">
+  <DEFINITIONS>
+    <COOSYS system="eq_FK5" equinox="2000"/>
+  </DEFINITIONS>
+    
+  <RESOURCE ID="T9001">
+     <DESCRIPTION>
+       HEASARC Browse data service
+       Please send inquiries to mailto:request@athena.gsfc.nasa.gov
+    </DESCRIPTION>
+    <PARAM ID="default_search_radius" ucd="OBS_ANG-SIZE" value="0.0166666666666667"/>
+    <TABLE>
+      <DESCRIPTION> ROSAT All-Sky Survey: Faint Sources </DESCRIPTION>
+      
+      <FIELD name="unique_id" datatype="char" arraysize="*" ucd="ID_MAIN">
+        <DESCRIPTION> Integer key </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="name" datatype="char" arraysize="*">
+        <DESCRIPTION> Source Name </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="ra" datatype="double" unit="degree" ucd="POS_EQ_RA_MAIN">
+        <DESCRIPTION> Right Ascension </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="dec" datatype="double" unit="degree" ucd="POS_EQ_DEC_MAIN">
+        <DESCRIPTION> Declination </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="count_rate" datatype="double" unit="ct/s">
+        <DESCRIPTION> Source Count Rate (cts/s) </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="count_rate_error" datatype="double" unit="ct/s">
+        <DESCRIPTION> Source Count Rate Error (cts/s) </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="hardness_ratio_1" datatype="double">
+        <DESCRIPTION> Hardness Ratio 1 </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="hardness_ratio_1_error" datatype="double">
+        <DESCRIPTION> Hardness Ratio 1 Error </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="background_count_rate" datatype="double" unit="ct/s/arcmin^2">
+        <DESCRIPTION> Background Count Rate (cts/s/arcmin^2) </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="bii" datatype="double" unit="degree">
+        <DESCRIPTION> Galactic Latitude </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="date_included" datatype="int" unit="mjd">
+        <DESCRIPTION> Date When Source Was Included </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="date_modified" datatype="int" unit="mjd">
+        <DESCRIPTION> Date When Source Properties Were Changed </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="detect_likelihood" datatype="int">
+        <DESCRIPTION> Likelihood of Detection Algorithm </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="detect_reliability" datatype="int">
+        <DESCRIPTION> Reliability of Source Detection, range=0..99, 99=most reliable </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="end_time" datatype="double" unit="mjd">
+        <DESCRIPTION> End Time of Observation </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="exposure" datatype="int" unit="s">
+        <DESCRIPTION> Exposure (seconds) </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="extent_likelihood" datatype="int">
+        <DESCRIPTION> Likelihood of Source Extent </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="extraction_radius" datatype="int" unit="arcsec">
+        <DESCRIPTION> Extraction Radius (arcsec) </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="hardness_ratio_2" datatype="double">
+        <DESCRIPTION> Hardness Ratio 2 </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="hardness_ratio_2_error" datatype="double">
+        <DESCRIPTION> Hardness Ratio 2 Error </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="high_detect_range" datatype="char" arraysize="*">
+        <DESCRIPTION> PHA Range with Highest Detection Likelihood </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="lii" datatype="double" unit="degree">
+        <DESCRIPTION> Galactic Longitude </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="new_data_flag" datatype="char" arraysize="*">
+        <DESCRIPTION> New Data Flags (riv.) </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="number_ids" datatype="int">
+        <DESCRIPTION> Number of Identification Candidates in the Correlation Catalog </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="positional_error" datatype="int" unit="arcsec">
+        <DESCRIPTION> Total Positional Error (arcsec) </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="priority_flags" datatype="char" arraysize="*">
+        <DESCRIPTION> Priority Detection Flags (M-broad, L-broad, M-hard, L-hard, M-soft, L-soft) </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="proximity_flag" datatype="char" arraysize="*">
+        <DESCRIPTION> Number of Nearby RASS Detections at Three Ranges of Distances </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="sass_field_id" datatype="char" arraysize="*">
+        <DESCRIPTION> SASS Field ID Number (MASOL Number) </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="sass_source_number" datatype="char" arraysize="*">
+        <DESCRIPTION> SASS Source Number </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="screening_flag" datatype="char" arraysize="*">
+        <DESCRIPTION> Screening Flags (npedm) </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="source_extent" datatype="int" unit="arcsec">
+        <DESCRIPTION> Source Extent (arcsec) </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="time" datatype="double" unit="mjd">
+        <DESCRIPTION> Start Time of Observation </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="vignetting_factor" datatype="double">
+        <DESCRIPTION> Vignetting Factor </DESCRIPTION>
+      </FIELD>
+      
+      <FIELD name="Search_Offset" datatype="double" unit="'">
+        <DESCRIPTION> Offset of target/observation from query center </DESCRIPTION>
+      </FIELD>
+	
+	
+      <DATA>
+        <TABLEDATA>
+<TR><TD>55818</TD><TD>1RXS J124833.7+095530</TD><TD>192.14043</TD><TD>9.92514</TD><TD>2.882e-02</TD><TD>9.359e-03</TD><TD>-0.86</TD><TD>0.16</TD><TD>1.551e-03</TD><TD>72.78351991</TD><TD>51682</TD><TD/><TD>13</TD><TD>95</TD><TD>48246.79</TD><TD>603</TD><TD>0</TD><TD>300</TD><TD>1.00</TD><TD>1.83</TD><TD>A</TD><TD>300.53827574</TD><TD>....</TD><TD>0</TD><TD>17</TD><TD>110011</TD><TD>001</TD><TD>33015035</TD><TD>0118</TD><TD>F....</TD><TD>0</TD><TD>48083.57</TD><TD>0.74</TD><TD>554.259</TD></TR>
+<TR><TD>55522</TD><TD>1RXS J124739.1+093423</TD><TD>191.91292</TD><TD>9.57306</TD><TD>2.340e-02</TD><TD>9.335e-03</TD><TD>0.42</TD><TD>0.37</TD><TD>2.007e-03</TD><TD>72.42207401</TD><TD>51682</TD><TD/><TD>9</TD><TD>80</TD><TD>48246.79</TD><TD>596</TD><TD>0</TD><TD>300</TD><TD>0.36</TD><TD>0.34</TD><TD>b</TD><TD>299.83992456</TD><TD>....</TD><TD>0</TD><TD>17</TD><TD>011110</TD><TD>000</TD><TD>33015035</TD><TD>0131</TD><TD>F....</TD><TD>0</TD><TD>48083.57</TD><TD>0.72</TD><TD>529.216</TD></TR>
+<TR><TD>53767</TD><TD>1RXS J124429.5+071859</TD><TD>191.12291</TD><TD>7.31639</TD><TD>2.401e-02</TD><TD>8.305e-03</TD><TD>0.10</TD><TD>0.35</TD><TD>1.883e-03</TD><TD>70.11971602</TD><TD>51682</TD><TD/><TD>14</TD><TD>96</TD><TD>48246.79</TD><TD>589</TD><TD>0</TD><TD>300</TD><TD>-0.42</TD><TD>0.40</TD><TD>b</TD><TD>297.86093341</TD><TD>....</TD><TD>0</TD><TD>13</TD><TD>111011</TD><TD>000</TD><TD>33016034</TD><TD>0065</TD><TD>F....</TD><TD>0</TD><TD>48083.57</TD><TD>0.76</TD><TD>390.637</TD></TR>
+<TR><TD>55793</TD><TD>1RXS J124916.2+095402</TD><TD>192.31750</TD><TD>9.90069</TD><TD>1.521e-02</TD><TD>6.802e-03</TD><TD>-0.80</TD><TD>0.33</TD><TD>1.566e-03</TD><TD>72.7648521</TD><TD>51682</TD><TD/><TD>8</TD><TD>73</TD><TD>48246.79</TD><TD>589</TD><TD>0</TD><TD>300</TD><TD>-1.00</TD><TD>1.39</TD><TD>A</TD><TD>301.12968969</TD><TD>....</TD><TD>0</TD><TD>21</TD><TD>100010</TD><TD>001</TD><TD>33015035</TD><TD>0120</TD><TD>F....</TD><TD>0</TD><TD>48083.57</TD><TD>0.79</TD><TD>558.621</TD></TR>
+<TR><TD>54159</TD><TD>1RXS J124430.9+074957</TD><TD>191.12875</TD><TD>7.83250</TD><TD>2.089e-02</TD><TD>8.827e-03</TD><TD>-0.60</TD><TD>0.23</TD><TD>2.035e-03</TD><TD>70.63462847</TD><TD>51682</TD><TD/><TD>8</TD><TD>73</TD><TD>48246.79</TD><TD>587</TD><TD>0</TD><TD>300</TD><TD>0.60</TD><TD>0.98</TD><TD>b</TD><TD>297.75488188</TD><TD>....</TD><TD>0</TD><TD>20</TD><TD>100011</TD><TD>002</TD><TD>33016034</TD><TD>0046</TD><TD>F....</TD><TD>0</TD><TD>48083.57</TD><TD>0.73</TD><TD>416.210</TD></TR>
+<TR><TD>54783</TD><TD>1RXS J124639.1+083742</TD><TD>191.66292</TD><TD>8.62833</TD><TD>2.178e-02</TD><TD>8.634e-03</TD><TD>-0.57</TD><TD>0.27</TD><TD>1.577e-03</TD><TD>71.46546284</TD><TD>51682</TD><TD/><TD>8</TD><TD>73</TD><TD>48246.79</TD><TD>584</TD><TD>0</TD><TD>300</TD><TD>0.47</TD><TD>0.61</TD><TD>A</TD><TD>299.20793424</TD><TD>....</TD><TD>0</TD><TD>26</TD><TD>111011</TD><TD>000</TD><TD>33015035</TD><TD>0153</TD><TD>F....</TD><TD>0</TD><TD>48083.57</TD><TD>0.78</TD><TD>473.535</TD></TR>
+<TR><TD>51641</TD><TD>1RXS J123933.9+044308</TD><TD>189.89125</TD><TD>4.71889</TD><TD>2.668e-02</TD><TD>9.764e-03</TD><TD>0.06</TD><TD>0.37</TD><TD>1.583e-03</TD><TD>67.41246483</TD><TD>51682</TD><TD/><TD>10</TD><TD>86</TD><TD>48246.79</TD><TD>555</TD><TD>0</TD><TD>300</TD><TD>-0.52</TD><TD>0.39</TD><TD>b</TD><TD>295.21033838</TD><TD>....</TD><TD>0</TD><TD>20</TD><TD>111110</TD><TD>000</TD><TD>33016034</TD><TD>0147</TD><TD>F....</TD><TD>0</TD><TD>48083.57</TD><TD>0.76</TD><TD>223.828</TD></TR>
+<TR><TD>56143</TD><TD>1RXS J125113.4+102311</TD><TD>192.80583</TD><TD>10.38639</TD><TD>2.009e-02</TD><TD>8.630e-03</TD><TD>-1.00</TD><TD>0.25</TD><TD>1.660e-03</TD><TD>73.2580624</TD><TD>51682</TD><TD/><TD>8</TD><TD>73</TD><TD>48246.79</TD><TD>547</TD><TD>0</TD><TD>300</TD><TD>1.00</TD><TD>4.00</TD><TD>A</TD><TD>302.7487213</TD><TD>....</TD><TD>0</TD><TD>24</TD><TD>000010</TD><TD>000</TD><TD>33015035</TD><TD>0107</TD><TD>F....</TD><TD>0</TD><TD>48083.57</TD><TD>0.74</TD><TD>598.814</TD></TR>
+<TR><TD>53144</TD><TD>1RXS J124350.6+063140</TD><TD>190.96083</TD><TD>6.52792</TD><TD>3.070e-02</TD><TD>9.182e-03</TD><TD>-0.24</TD><TD>0.28</TD><TD>1.960e-03</TD><TD>69.32076301</TD><TD>51682</TD><TD/><TD>21</TD><TD>99</TD><TD>48246.79</TD><TD>544</TD><TD>0</TD><TD>300</TD><TD>0.32</TD><TD>0.42</TD><TD>b</TD><TD>297.58344398</TD><TD>....</TD><TD>0</TD><TD>10</TD><TD>110111</TD><TD>000</TD><TD>33016034</TD><TD>0096</TD><TD>F....</TD><TD>0</TD><TD>48083.57</TD><TD>0.78</TD><TD>347.349</TD></TR>
+<TR><TD>52876</TD><TD>1RXS J124236.8+061138</TD><TD>190.65334</TD><TD>6.19389</TD><TD>1.603e-02</TD><TD>7.014e-03</TD><TD>-1.00</TD><TD>0.37</TD><TD>1.522e-03</TD><TD>68.96072483</TD><TD>51682</TD><TD/><TD>8</TD><TD>73</TD><TD>48246.79</TD><TD>539</TD><TD>0</TD><TD>300</TD><TD>0.00</TD><TD>0.00</TD><TD>A</TD><TD>296.812567</TD><TD>....</TD><TD>0</TD><TD>17</TD><TD>100000</TD><TD>000</TD><TD>33016034</TD><TD>0105</TD><TD>F....</TD><TD>0</TD><TD>48083.77</TD><TD>0.77</TD><TD>320.224</TD></TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>

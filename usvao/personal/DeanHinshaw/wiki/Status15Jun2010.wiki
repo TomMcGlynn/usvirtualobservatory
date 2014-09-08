@@ -1,0 +1,13 @@
+#summary Project Status as of 15 June 2010
+
+= Design Page =
+
+There is now a [http://code.google.com/p/voview/wiki/DesignIntro wiki page] describing the design documents for the proposed VOView redesign.
+
+= filter Class =
+
+I have begun coding of the filter class for the new design.  Everything is of course still in progress, but what I have done so far can be found in the repository under [http://code.google.com/p/voview/source/browse/#svn/voview-propose/trunk/src voview-propose/trunk/src].  I have written XSLT code for doing the filtering, and also the Javascript class for writing into the XSLT the column filtering expressions that are input from the interface.  
+
+The filter class is where I will be continuing to concentrate my work in the near-term future. 
+ 
+                           -- Dean

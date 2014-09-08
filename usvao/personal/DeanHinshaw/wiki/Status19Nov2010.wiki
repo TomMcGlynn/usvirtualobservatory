@@ -1,0 +1,8 @@
+#summary  Project Status as of 19 November 2010
+#labels Featured
+
+= Progress Reports on US VAO site =
+
+The US VAO development effort is now well underway, and the VOView project falls under its purview.  As such, I am required to produce biweekly reports of my progress on VOView on a form available on the VAO developer wiki.  This information is publicly available, so I am going to start posting links to it here whenever it is updated.  I have just finished an update, and it can be found [http://dev.usvao.org/vao/wiki/Projects2010/VOViewLibProgress here].
+
+                             -- Dean

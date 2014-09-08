@@ -1,0 +1,13 @@
+
+Add a nice menu bar with popover modal menus?
+
+Will jQuery ajax call read "foreign" URLs instead of proxy.pl?
+
+Include Flot
+
+Separate Sorting from Updating 'output' so can export sort'd votable
+	sorting in voview.xsl produces html
+	would have to create new xsl for sorting export
+
+Opera has a problem using the whole proxy thing
+

@@ -1,0 +1,38 @@
+REQUIREMENTS
+
+1) Installation requires that net_nvo be installed in the same directory 
+(proj_root).  net_nvo can be obtained from the NVO repository.
+
+2) VOView fetches VOTables by means of HTTP requests.  For this reason, VOView 
+must be run under a web server, such as Apache.  VOView will not work properly
+if run using a browser's internal file server.  Technically, you can install
+VOView without a web server, but you cannot use VOView without a web server.
+
+INSTALLATION
+
+The default values of this build.xml are
+
+	ant -Dproj_root=/www/htdocs -Ddest=/vo/view install
+
+so the empty commmand
+
+	ant
+
+will do the same.
+
+The files will be installed relative to 
+
+	${proj_root}${dest}
+
+For example,
+
+		proj_root=/www/htdocs
+		dest=/vo/view
+
+	will install in
+
+		/www/htdocs/vo/view
+
+	and will respond to the server
+
+	http://my.server.com/vo/view/

@@ -1,0 +1,18 @@
+#summary Project Status as of 26 May 2010
+#labels Featured
+
+= Introduction =
+
+This is the first status report of what I hope will be frequent updates of what is going on with the VOView code development project.  As this is the first status report, there is also some introductory material in here.
+
+First of all, I would like to say that we want this to be a very open project.  By that I guess I mean two things.  First, everything about this project is open to discussion.  We have set up a Google discussion group for VOView, and anything you want to discuss about the project can be talked about there.  Second, the hope is that any decisions made concerning the project's direction will be based on consensus.  Ultimately someone may have to make a final decision, and that someone will probably be me, but hopefully that will be a rare occurrence.
+
+= Repository =
+
+I will by default be giving commit access to the repository to everyone who asks be involved in the project.  Currently there are two directories in the repository.  The first one is called voview-heasarc.  It contains the most recent implementation of VOView that we are using at the HEASARC, which is the one used for displaying data tables in Datascope.  For those who have used the code in the in NVO repository, this is that distribution but with a couple of changes.  First, the NVO package was dependent on another NVO package that had to be installed before VOView.  I have modified this distribution so it is no longer dependent on any other packages.  Second, there is now documentation for the API, available as in-line comments and also as HTML in the directory `src/html/jsdoc` .  I have tagged this version as 3.0 and it can be found in the repository at https://voview.googlecode.com/svn/voview-heasarc/tags/release_3.0_100526 .
+
+The second directory in the repository is voview-propose.  This directory contains documentation for the new proposed design and interface for VOView.  I intend to write a separate wiki page explaining the proposal area and how it is laid out.  This is where I would like to focus the initial discussion for the project.  The idea is that if we can all agree on an API/interface, then implementation will go a lot smoother, and people can even work on different implementations if that is what they want to.
+
+My next goal, besides adding people to the project, is to write the wiki page on the proposed interface.  I hope to do that in the next couple of days. 
+ 
+                           -- Dean

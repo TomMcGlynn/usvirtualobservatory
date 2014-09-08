@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head>
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+	<title>VOTable Viewer</title>
+	<link rel="stylesheet" type="text/css" href="@CSS@/voview.css"/>
+	<script type="text/javascript" src="@JS@/cookie.js"></script>
+	<script type="text/javascript" src="@JS@/sarissa.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+// Work around Firefox bug that breaks filtering on reloaded pages
+// Execute this early: Save hash part of URL in a cookie and reload blank page
+// Don't do this in Safari to avoid triggering a different bug there (grr...)
+if (! Sarissa._SARISSA_IS_SAFARI) {
+	var originalState = window.location.href.split('#');
+	if (originalState.length > 1) {
+		var baseLocation = originalState[0];
+		originalState = originalState.slice(1).join("#");
+		// Save desired state in a cookie
+		// We're using a default date so that coookie gets deleted when browser exits
+		// (but it should get erased right away after the page loads)
+		createCookie("voviewReloadState", originalState);
+		window.location.href = baseLocation;
+	}
+}
+//]]>
+</script>
+	<script type="text/javascript" src="@JS@/statemanager.js"></script>
+	<script type="text/javascript" src="@JS@/query.js"></script>
+	<script type="text/javascript" src="@JS@/filter.js"></script>
+	<script type="text/javascript" src="@JS@/fsm.js"></script>
+	<script type="text/javascript" src="@JS@/tablednd.js"></script>
+	<script type="text/javascript" src="@JS@/voview.js"></script>
+	<script type="text/javascript" src="@JS@/jquery.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+// define global variables (called on load)
+// this initialization needs to be executed after the page elements are defined
+window.onload = function() {
+	StateManager = EXANIMO.managers.StateManager;
+	var output = document.getElementById("output");
+	rd = new readdata({
+			output: output,
+			form: "searchForm",
+			searchparam: "query_string",
+			xsltdir: "@XSL@/"
+//, updateCallback: vo_ready
+		});
+	StateManager.onstaterevisit = rd.restoreState;
+	StateManager.initialize();
+	originalState = readCookie("voviewReloadState");
+	if (originalState) {
+		// restore the original state using the cookie value
+		eraseCookie("voviewReloadState");
+		rd.restoreState({id: originalState});
+	}
+	$('#examples').hide();
+};
+//]]>
+</script>
+</head>
+<body>
+
+<h1>VOTable Viewer</h1>
+
+<div id='examples' class="Examples">
+<a href="/cgi-bin/acsSIAP.cgi?pos=210.802,54.348&amp;size=0.1&amp;zoom=0.125&amp;format=jpeg" onclick="return insertTerm(this);">
+acsSIAP request
+</a><br />
+
+<a href="/masthla/HLA/catalogs/DAOcs.aspx?RA=180.4&amp;DEC=-19.0&amp;SR=0.01" onclick="return insertTerm(this);">
+Catalog request
+</a> (65 sources)<br />
+
+<a href="/masthla/HLA/catalogs/DAOcs.aspx?RA=210.802&amp;DEC=54.348&amp;SR=0.01" onclick="return insertTerm(this);">
+Catalog request v2
+</a> (1700 sources)<br />
+
+<a href="/masthla/HLA/catalogs/DAOcs.aspx?RA=210.802&amp;DEC=54.348&amp;SR=0.1" onclick="return insertTerm(this);">
+Catalog request v3
+</a> (74400 sources! 28 MByte VOTable!)<br />
+
+<a href="/masthla/HLA/Footprints/FPCone/fpcone.aspx?RA=210.802&amp;DEC=54.348&amp;SR=0.1" onclick="return insertTerm(this);">
+Footprint cone-search request
+</a><br />
+
+<a href="/masthla/HLA/Footprints/FPCone/fpcone.aspx?RA=210.802&amp;DEC=54.348&amp;SR=0.1&amp;level=2" onclick="return insertTerm(this);">
+Level=2 footprint cone-search request
+</a><br />
+
+<a href="/masthla/HLA/Footprints/FPCone/fpcone.aspx?RA=219.901&amp;DEC=-60.836&amp;SR=0.1" onclick="return insertTerm(this);">
+Alpha Cen footprint cone-search request
+</a><br />
+
+<a href="/masthla/HLA/Footprints/FPCone/fpcone.aspx?RA=219.901&amp;DEC=-60.836&amp;SR=0.1&amp;level=2" onclick="return insertTerm(this);">
+Level=2 Alpha Cen footprint cone-search request
+</a><br />
+
+<a href="/cgi-bin/voproxy?nedwww.ipac.caltech.edu/cgi-bin/nph-objsearch&amp;objname=m101&amp;extend=no&amp;out_csys=Equatorial&amp;out_equinox=J2000.0&amp;obj_sort=RA+or+Longitude&amp;of=xml_posn&amp;zv_breaker=30000.0&amp;list_limit=5&amp;img_stamp=YES" onclick="return insertTerm(this);">
+NED name resolver request
+</a><br />
+
+<a href="/masthla/HLA/catalogs/IMGcat.aspx?IMAGE=HST_10188_10_ACS_WFC_F814W" onclick="return insertTerm(this);">
+Image database request by name
+</a><br />
+
+<a href="/masthla/HLA/catalogs/IMGcat.aspx?IMAGE=HST_9289_52_ACS_HRC_F625W" onclick="return insertTerm(this);">
+HRC image database request by name
+</a><p />
+
+<a href="/gretchen.xml" onclick="return insertTerm(this);">
+Sample registry VOTable from Gretchen
+</a><p />
+
+<a href="/cgi-bin/jsonproxy?masthla.stsci.edu/HLA/Footprints/FPCone/fpcone.aspx&amp;RA=210.802&amp;DEC=54.348&amp;SR=0.25" onclick="return insertTerm(this);">
+Bad request (non-XML returned)
+</a><br />
+
+<a href="/cgi-bin/errorproxy?masthla.stsci.edu/HLA/Footprints/FPCone/fpcone.aspx&amp;RA=210.802&amp;DEC=54.348&amp;SR=0.25" onclick="return insertTerm(this);">
+Another bad request (non-existent script)
+</a><br />
+
+<a href="http://masthla.stsci.edu/HLA/Footprints/FPCone/fpcone.aspx?RA=210.802&amp;DEC=54.348&amp;SR=0.25" onclick="return insertTerm(this);">
+Another bad request (attempt to access data from external host)
+</a><p />
+
+<a href="http://heasarcdev.gsfc.nasa.gov/jake/rassfsc.xml" onclick="return insertTerm(this);">
+Heasarcdev test
+</a><br />
+
+</div>
+<p onclick="$('#examples').slideToggle('slow')" >click to Toggle Examples</p>
+
+<form method="get" name="searchForm" onsubmit="return rd.setView();" action="">
+	<input name="query_string" id="sterm" size="100" maxlength="500" value="" type="text"/>
+	<br/>
+	<input type="submit" class="submit" name=".submit" value="Search" />
+	<input type="reset" class="reset" name=".reset" value="Reset" onclick="return rd.clearState();" />
+	<div class="searchnote compact">
+		Requires Firefox, Safari, or compatible browser
+	</div>
+</form>
+
+<div id="output">
+Table should appear here.
+</div>
+
+</body></html>

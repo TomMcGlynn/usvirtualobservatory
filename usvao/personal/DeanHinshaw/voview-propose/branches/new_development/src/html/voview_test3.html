@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+Example of how to use the VOView package to display a VOTABLE.  This example shows how 
+various elements of the VOView display can be laid out at different locations within the 
+HTML page. A form is used to input the URL for the table, as well as the column for initial
+sorting.  Note the JavaScript packages that must be included, sarissa.js, tablednd.js, dragtable.js 
+and voview_pkg.js .
+ -->
+ <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta content="text/html; charset=iso-8859-1" http-equiv="content-type"/>
+		<link rel="stylesheet" type="text/css" href="voview.css"/>
+		<script type="text/javascript" src="@JS_PATH@sarissa.js"></script>
+		<script type="text/javascript" src="@JS_PATH@tablednd.js"></script>
+		<script type="text/javascript" src="@JS_PATH@dragtable.js"></script>
+		<script type="text/javascript" src="@JS_PATH@voview_pkg.js"></script>
+		<script type="text/javascript">//<![CDATA[
+	        /**
+	          Make a new VOView object.  The form containing the input information is 
+	          specified, as well as the widgetID, which is used below to indicate where 
+	          in the page the VOView display will be placed.
+	        **/
+			myVoview =  new voview({input: {form: "searchForm"}, widgetID: "voviewTab"});
+        //]]></script>
+        <title>voview test page</title>
+	</head>
+	<body>
+		<!-- 
+		  The form containing the input information for VOView.  Submitting the form results
+		  in the execution of the start() method for the VOView object.  The values from the 
+		  form elements are obtained based on the element name.  Thus query_string must be 
+		  specified as the name of the element from which to get the input table URL.  Similarly 
+		  for sort_column and sort_order.
+		 -->
+		<form method="get" name="searchForm" onsubmit="return myVoview.start()" action="">
+		<table>
+			<tr>
+    			<td>Url:</td>
+    			<td><input name="query_string" id="sterm" size="100" maxlength="500" value="example_input.xml" type="text"/></td>
+  		  	</tr>
+  		  	<tr>
+  		  		<td>Sort Column:</td>
+  		  		<td><input name="sort_column" id="sortcol" size="25" maxlength="50" value="hardness_ratio_1" type="text"/></td>
+  		  	</tr>
+  		  	<tr>
+  		  		<td>Sort Order:</td>
+  		  		<td>
+  		  			<select name="sort_order" id="sortdir" >
+						<option value="ascending">ascending</option>
+						<option value="descending">descending</option>
+					</select>
+				</td>
+  		  	</tr>
+  		  	<tr>
+  		  		<td><input type="submit" class="submit" name=".submit" value="Process" /></td>
+  		  	</tr>
+		</table>
+		</form>
+		<!-- 
+		   The location for each of the VOView display elements is indicated by listing as
+		   on of the classes the widgetID followed by a suffix indicating an element.
+		 -->
+		<div class="voviewTab.title"></div>
+		<div class="voviewTab.paging.top"></div>
+		<div class="voviewTab.columnArranging"></div>
+		<div class="voviewTab.table"></div>
+		<div class="voviewTab.paging.bottom"></div>
+		<!-- h3>Debug output:</h3>
+		<pre id="debug_output">
+			debug output appears here.
+		</pre -->
+		
+	</body>
+</html>

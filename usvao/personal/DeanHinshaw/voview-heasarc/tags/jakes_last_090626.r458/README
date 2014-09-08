@@ -1,0 +1,28 @@
+
+The default values of this build.xml are
+
+	ant -DINSTALL=/www/htdocs -DURLBASE=/vo/view install
+
+so the empty commmand
+
+	ant
+
+will do the same.
+
+The files will be installed relative to 
+
+	${INSTALL}${URLBASE}
+
+For example,
+
+		INSTALL=/www/htdocs
+		URLBASE=/vo/view
+
+	will install in
+
+		/www/htdocs/vo/view
+
+	and will respond to the server
+
+	http://my.server.com/vo/view/
+

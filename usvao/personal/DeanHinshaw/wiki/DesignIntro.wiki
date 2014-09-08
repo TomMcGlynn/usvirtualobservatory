@@ -1,0 +1,17 @@
+#summary Description of and pointers to design documents.
+#labels Phase-Design,Featured
+
+= VOView design documents =
+
+There are several documents which are available in order to understand the proposed redesign of VOView.  The most critical of these is the document [http://code.google.com/p/voview/source/browse/voview-propose/trunk/docs/voview_propose.js voview_proposed.js].  This defines in detail the Javascript API that will be used for the external interfaces to users of the package, as well as some of the more important internal interfaces between objects within VOView.  However, I do not recommend that you look at this document.  Instead, HTML documentation has been generated using Jsdoc in a format similar to Javadoc.  This describes the API in a format that is much easier to understand.  The link to the top page for the API documentation is [http://voview.googlecode.com/svn/voview-propose/trunk/docs/jsdoc/index.html here].
+
+In order to get an overview of the design and see how the various objects are related to each other, I constructed at UML class diagram for the proposed VOView design.  A [http://voview.googlecode.com/svn/voview-propose/trunk/model/voview_proposed.pdf picture] of this diagram is available in PDF.  Also of interest are a requirements [http://voview.googlecode.com/svn/voview-propose/trunk/docs/requirements.docx document] written by Tom !McGlynn, and the [http://voview.googlecode.com/svn/voview-propose/trunk/docs/VOView_talk.pptx slides] for my (Dean's) talk I gave at the IVOA interop in Victoria, where I go into a little more detail about the role of the filter and renderer objects.
+
+Note that the Javascript API is the definitive design document.  All the other documents were used as tools to help write the API.  It is the API document that will be referred to when implementing the design.
+
+== Summary of Design Documents ==
+
+ * [http://voview.googlecode.com/svn/voview-propose/trunk/docs/jsdoc/index.html Javascript API]
+ * [http://voview.googlecode.com/svn/voview-propose/trunk/model/voview_proposed.pdf UML Class Diagram]
+ * [http://voview.googlecode.com/svn/voview-propose/trunk/docs/requirements.docx Requirements Document]
+ * [http://voview.googlecode.com/svn/voview-propose/trunk/docs/VOView_talk.pptx IVOA Victoria Interop Talk]

@@ -1,0 +1,20 @@
+#summary Project Status as of 1 July 2010
+
+= VOView Project Status As of 1 July 2010 =
+
+== Schedule ==
+
+A schedule has been produced for the VOView development project.  It is available at
+[http://voview.googlecode.com/svn/voview-propose/trunk/docs/Project%20Schedule%20VOView.xlsx Project Schedule VOView.xlsx].  I will attempt to keep it updated as the project progresses.
+
+== filter Class ==
+
+I have completed the initial coding of the first version of the filter class.  I am now in the debugging/testing phase.  The code is available in the repository, but I am just starting to debug the code, so it is not working at all yet.
+
+== Interface Updates ==
+
+As a result of coding the filter class, I have found it necessary to rework the VOView interface somewhat.  Most significantly, I have modified the filter class interface to make it more event driven.  So the class now uses a callback function, defined by the user, which is called when the filtering process is complete.  The changes to the interface are available in the repository, and an overview of the interface is available at [http://code.google.com/p/voview/wiki/DesignIntro DesignIntro].
+
+As always, any comments or discussion on pretty much anything having to do with this project are welcome. 
+ 
+                           -- Dean

@@ -1,0 +1,3 @@
+AddHandler cgi-script .pl
+Options +ExecCGI
+DirectoryIndex index.pl

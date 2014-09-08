@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>VO Viewer External Feed Test</title>
+</head>
+<body>
+
+<center>
+<form id='viewForm' name='viewForm' action='@CGI_PATH@index.pl' method='post' enctype='multipart/form-data' >
+<table>
+<tr><td align='right'>URL</td><td><input size='100' name='url' id='url' value="" /></td></tr>
+<tr><td align='right'>File</td><td><input size='90'  name='file' id='file' type='file' /></td></tr>
+<tr><td align='right'>Text</td><td><textarea rows='30' cols='100' id='stream' name='stream' ></textarea></td></tr>
+<tr><td colspan='2' align='center'><input id='submit' type='submit' name='.submit' value='Load VOTable' />
+<input type='reset' name='.reset' /></td></tr>
+</table>
+</form>
+</center>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+#summary Overview of what VOView does and proposed development goals.
+#labels Phase-Requirements
+== Introduction ==
+
+VOView is a utility for viewing large data tables within a Web browser. It is optimized for handling tables ranging in size from 1000 to 100,000 rows.  It does this by using XSLT to reformat a table in XML format into the HTML format requested by the user. 
+
+== Implementations and Functionality ==
+
+At least five implementations of VOView are currently extant and in use in the astronomical community:
+
+  * [http://heasarc.gsfc.nasa.gov/vo/sview SView]: This is meant to be a "plain" interface to VOView, in that it is not being used as a display tool for another application.  It also does not have any application-specific enhancements.  It accepts as input a URL pointing to a VO table.  It supports row paging, column selection and column arranging.  It also supports sorting of rows by column and filtering of rows based on column values.
+
+  * [http://heasarc.gsfc.nasa.gov/vo/squery/form.sh Simple Query]: Simple Query uses VOView to display the results from searching a single VO resource for entries that correspond to a region in the sky. The viewer functionality is essentially identical to the base functionality available in SView.
+
+  * [http://hla.stsci.edu/hlaview.html Hubble Legacy Archive]: The HLA uses the VOView to display inventory lists of its holdings.  In addition to the functionality available in SView, it allows for rows to be selected by clicking on them.  Buttons are then provided for displaying the selected rows. It also has a "shopping cart" capability, whereby the data files corresponding to each row can be grouped together, and then aggregated and downloaded together.
+
+  * [http://nvo.stsci.edu/vor10/index.aspx NVO Directory]: The NVO Directory service uses VOView to display the list of registered services returned as a result of a directory search.  It has all the basic functionality available in SView.  It also has a facility for displaying a limited part of a long text entry in a cell, along with a "more" button for displaying the rest of the text.  Each row has a check box at the beginning of the row for selecting the row, and the results (selected and/or filtered) can be exported to a file in various formats.
+  
+  * [http://archive.eso.org/archive/hst/search ST-ECF Hubble Science Archive]: The Hubble Science Archive uses VOView to display the results of searches of their holdings.  The results can be browsed and selected for download. This version has buttons for quickly displaying a column that is currently hidden.  It also has dynamic previews and provenance information, and (page-wise) select-all.
+
+== Development Goals ==
+
+Current (proposed) development goals of VOView at the NVO:
+  * Transforming of VOView into a more modular form, so that it can be distributed to the user community and easily integrated into user applications. Included in this should be standardized methods and facilities for adding application-specific functionality to VOView, such as generic Javascript filters for the xslt transformations.
+
+  * Rationalize the current functionality of VOView.  This has two parts:
+      * Determine which of the VOView features described above should be included as part of the core functionality in the VOView package.
+      * Classify all table transformations into two categories: those which need to operate on the entire table (e.g. sorting) and those which can operate only on the currently displayed page (e.g. limiting of text in a cell). This is important because transformations on the entire table must be performed using XSLT in order to maintain efficiency, whereas page only operations can be performed using Javascript, which provides a richer functionality than XSLT.
+      A table attempting to make these classifications is included at the bottom of this document.
+
+  * Of special interest at the HEASARC is integrating VOView into displaying the tabular results of Datascope.
+
+== Feature Table ==
+
+|| *Feature* || *Core Functionality?* || *Needs entire table?* ||
+||Row paging||yes||yes||
+||Column selection||yes||?||
+||Column arranging||yes||?||
+||Sorting by column values||yes||yes||
+||Filtering by column values||yes||yes||
+||Row selection||yes||no||
+||Shopping cart||?||no||
+||Limit of text in cell||yes||yes||
