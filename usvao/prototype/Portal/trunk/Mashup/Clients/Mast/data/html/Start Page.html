@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <!-- <link rel="stylesheet" type="text/css" href="http://vao.stsci.edu/portal/extjs/extjs-4.1.0/resources/css/ext-all.css"/>-->
+    
+    
+    <head>
+        <style type="text/css">
+<!-- body {
+    background-image: url("../images/mastwatermark_small.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right bottom;
+    font-family:"Arial";
+} //-->
+    </style>
+        <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+        <title>Start Page</title>
+        <script type="text/javascript">
+            var p = (window.opener && window.opener.top) || window.top;
+            if (p && (p != window)) {
+                if (p.Mvp && !window.Mvp) {
+                    p.Mvp.util.Util.adoptContext(p, window);
+                    Ext.log('Context adopted!');
+                }
+            }
+            if (!Mvp || !Mvp.injectSearchText) {
+                // There is nowhere to inject search text, so just make the function a no-op.
+                Mvp = {
+                    injectSearchText: function () { }
+                };
+            }
+        </script>
+    </head>
+    
+    <body>
+        <table width="75%">
+            <tr>
+                <td><br /></td>
+            </tr>
+            <tr><td>
+                    
+<h2>Welcome to the MAST Portal</h2>
+                    
+<h3>This website allows you to search various collections of astronomical datasets by integrating resources in MAST and the Virtual Observatory (VO) in one place. <br /></h3>
+
+                    <br />
+                    To begin, select the collection you wish to search using the drop down menu at the top of the page, 
+                    then enter search terms in the search box at the top right.
+                    Searches can be done by object name or position on the sky with an optional search radius (default=0.2 deg).  
+                    Here are some sample search parameters:
+                    <br />
+                    <ul>
+                        <li style="list-style: disc;">Objects from standard catalogs such as Messier and NGC will be resolved: <strong>M101 r=10s</strong>, <strong>NGC45</strong></li>
+                        <li style="list-style: disc;">Common names often work: <strong>Antennae</strong>, <strong>Eta Carinae r=1d</strong></li>
+                        <li style="list-style: disc;">Positions in RA/Dec (decimal degrees): <strong>9.0 -43.0 r=0.2d</strong>, <strong>0 45 r=30m</strong></li>
+                        <li style="list-style: disc;">Sexagesimal coordinates delimited with spaces: <strong>14 03 12.6 54 20 56.7</strong></li>
+                        <li style="list-style: disc;">Galactic coordinates of the form g[lon][+/-lat] with no spaces: <strong>g102.0373+59.7711</strong></li>
+                        <li style="list-style: disc;">The optional search radius can be specified without units, or with "d" for degrees, "m" for arc minutes, or "s" for arc seconds: <strong>r=0.3, r=0.3d, r=6m, r=20s</strong></li>
+                        <li style="list-style: disc;"><a href="MastHelp.html#Search">More options</a></li>
+
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Browser Compatibility:</strong> Javascript must be enabled to run
+                    this tool, which works best with recent versions of Firefox, Chrome and
+                    Safari. The tool may not be compatible with all versions of Internet Explorer.
+                    <br />&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td><h3>Using the MAST Portal</h3></td>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li><a target="_blank" href="MastHelp.html#Search">Example Queries</a></li>
+                        <li><a target="_blank" href="MastHelp.html">User's Guide</a></li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </body>
+
+</html>

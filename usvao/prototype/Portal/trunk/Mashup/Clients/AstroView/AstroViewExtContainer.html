@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>AstroViewExtContainer</title>
+    <script src="../Shared/InitializeJavaScript.js"></script>
+	<script type="text/javascript" src="../AstroView/Three/build/Three.js"></script>
+	<script type="text/javascript" src="../AstroView/AstroView.js">
+	<script src="../swfobject/swfobject.js"></script>
+    
+	<style>
+		.astroview .x-container {background:red}
+	</style>
+	
+    <!-- Start this application. -->
+    <script type="text/javascript">
+	    Ext.require('Mvpc.view.AstroViewContainer');
+	  
+		Ext.onReady(function() {
+		    loadAstroView();  
+		});
+		
+		function loadAstroView()
+		{
+			var avc = Ext.create('Mvpc.view.AstroViewContainer', { rendertype: 'flash' });
+			var win = Ext.widget('window', {
+				title: "AstroView",
+				layout: 'fit',
+				width: 1200,
+				height: 600,
+				x: 20,
+				y: 20,
+				resizable: true,
+				items:[avc]
+			});
+			win.show();
+		};
+
+	</script>
+
+</head>
+
+</html>

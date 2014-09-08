@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Start Page</title>
+  <script>
+    var p = (window.opener && window.opener.top) || window.top;
+    if (p && (p != window)) {
+      if (p.Mvp && !window.Mvp) {
+        p.Mvp.util.Util.adoptContext(p, window);
+        Ext.log('Context adopted!');
+      }
+    }
+    if (!Mvp || !Mvp.injectSearchText) {
+      // There is nowhere to inject search text, so just make the function a no-op.
+      Mvp = {injectSearchText: function () {}};      
+    }
+  </script>
+</head>
+<body>
+This is a sample start page for the VAO Portal.<br>
+<br>
+And these are some sample searches:<br>
+<br>
+<a href="javascript: void(0)"
+ onclick="Mvp.injectSearchText(this)">M101</a>
+&nbsp;Objects from standard catalogs such as Messier and NGC will be resolved<br>
+<a href="javascript: void(0)"
+ onclick="Mvp.injectSearchText(this)">Antennae</a>
+&nbsp;	Common names often work <br>
+<a href="javascript: void(0)"
+ onclick="Mvp.injectSearchText(this)">14 03 12.6 54 20 56.7</a>
+&nbsp;Sexagesimal coordinates delimited with spaces<br>
+<a href="javascript: void(0)"
+ onclick="Mvp.injectSearchText(this)">g102.0373+59.7711</a>
+&nbsp;Galactic coordinates of the form g[lon][+/-lat] with no spaces<br>
+</body>
+</html>

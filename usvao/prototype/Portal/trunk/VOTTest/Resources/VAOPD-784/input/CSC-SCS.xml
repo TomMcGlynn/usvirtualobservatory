@@ -1,0 +1,3670 @@
+<?xml version="1.0"?>
+<VOTABLE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ivoa.net/xml/VOTable/v1.2" xmlns:stc="http://www.ivoa.net/xml/STC/v1.30" version="1.2" xsi:SchemaLocation="http://www.ivoa.net/xml/VOTable/v1.2">
+  <RESOURCE name="CSC">
+    <TABLE name="RA:210.80227,DEC:54.34895,SR:0.01,VERB:3,TIME:2013/04/23_11:10:52">
+      <DESCRIPTION>
+Chandra Source Catalog VO Cone Search Service
+</DESCRIPTION>
+      <GROUP utype="stc:AstroCoordSystem" ID="ICRS">
+        <DESCRIPTION>ICRS Coordinate System</DESCRIPTION>
+        <GROUP utype="stc:AstroCoordSystem.TimeFrame">
+          <PARAM name="TimeScale" datatype="char" arraysize="*" utype="stc:AstroCoordSystem.TimeFrame.TimeScale" value="TT"/>
+          <PARAM name="TimeRefPosition" datatype="char" arraysize="*" utype="stc:AstroCoordSystem.TimeFrame.ReferencePosition" value="TOPOCENTER"/>
+        </GROUP>
+        <GROUP utype="stc:AstroCoordSystem.SpaceFrame">
+          <PARAM name="SpaceRefFrame" datatype="char" arraysize="*" utype="stc:AstroCoordSystem.SpaceFrame.SpaceRefFrame" value="ICRS"/>
+          <PARAM name="SpaceRefPosition" datatype="char" arraysize="*" utype="stc:AstroCoordSystem.SpaceFrame.ReferencePosition" value="TOPOCENTER"/>
+        </GROUP>
+        <GROUP utype="stc:AstroCoordSystem.SpectralFrame">
+          <PARAM name="SpectralRefPosition" datatype="char" arraysize="*" utype="stc:AstroCoordSystem.SpectralFrame.ReferencePosition" value="TOPOCENTER"/>
+        </GROUP>
+      </GROUP>
+      <GROUP utype="stc:AstroCoordSystem" ID="GAL">
+        <DESCRIPTION>Galactic Coordinate System</DESCRIPTION>
+        <GROUP utype="stc:AstroCoordSystem.TimeFrame">
+          <PARAM name="TimeScale" datatype="char" arraysize="*" utype="stc:AstroCoordSystem.TimeFrame.TimeScale" value="TT"/>
+          <PARAM name="TimeRefPosition" datatype="char" arraysize="*" utype="stc:AstroCoordSystem.TimeFrame.ReferencePosition" value="TOPOCENTER"/>
+        </GROUP>
+        <GROUP utype="stc:AstroCoordSystem.SpaceFrame">
+          <PARAM name="SpaceRefFrame" datatype="char" arraysize="*" utype="stc:AstroCoordSystem.SpaceFrame.SpaceRefFrame" value="GALACTIC"/>
+          <PARAM name="SpaceRefPosition" datatype="char" arraysize="*" utype="stc:AstroCoordSystem.SpaceFrame.ReferencePosition" value="TOPOCENTER"/>
+        </GROUP>
+        <GROUP utype="stc:AstroCoordSystem.SpectralFrame">
+          <PARAM name="SpectralRefPosition" datatype="char" arraysize="*" utype="stc:AstroCoordSystem.SpectralFrame.ReferencePosition" value="TOPOCENTER"/>
+        </GROUP>
+      </GROUP>
+      <GROUP ID="ICRScoords" utype="stc:AstroCoords">
+        <DESCRIPTION>ICRS coordinates</DESCRIPTION>
+        <PARAM datatype="char" arraysize="*" ucd="pos.frame" name="cooframe" utype="stc:AstroCoords.coord_system_id" value="ICRS"/>
+        <FIELDref ref="col13"/>
+        <FIELDref ref="col14"/>
+        <FIELDref ref="col15"/>
+        <FIELDref ref="col16"/>
+        <FIELDref ref="col27"/>
+        <FIELDref ref="col35"/>
+        <FIELDref ref="col36"/>
+        <FIELDref ref="col37"/>
+        <FIELDref ref="col66"/>
+        <FIELDref ref="col67"/>
+        <FIELDref ref="col68"/>
+      </GROUP>
+      <GROUP ID="GALcoords" utype="stc:AstroCoords">
+        <DESCRIPTION>Galactic coordinates</DESCRIPTION>
+        <PARAM datatype="char" arraysize="*" ucd="pos.frame" name="cooframe" utype="stc:AstroCoords.coord_system_id" value="GAL"/>
+        <FIELDref ref="col64"/>
+        <FIELDref ref="col65"/>
+      </GROUP>
+      <GROUP ID="ICRSCatBroad" utype="stc:CatalogEntryLocation">
+        <DESCRIPTION>ACIS broad band ICRS coordinates</DESCRIPTION>
+        <GROUP ID="ICRScoordsB" utype="stc:AstroCoords">
+          <PARAM datatype="char" arraysize="*" ucd="pos.frame" name="cooframe" utype="stc:AstroCoords.coord_system_id" value="ICRS"/>
+          <FIELDref ref="col80"/>
+          <FIELDref ref="col81"/>
+          <FIELDref ref="col90"/>
+          <FIELDref ref="col91"/>
+          <FIELDref ref="col112"/>
+          <FIELDref ref="col113"/>
+        </GROUP>
+        <GROUP ID="BBand" utype="stc:AstroCoordArea">
+          <GROUP utype="stc:AstroCoordArea.SpectralInterval">
+            <DESCRIPTION>There are no UCDs defined for these parameters</DESCRIPTION>
+            <PARAM name="SpectralLoLimit" datatype="double" ucd="" utype="stc:AstroCoordArea.SpectralInterval.LoLimit" value="0.5" unit="keV"/>
+            <PARAM name="SpectralHiLimit" datatype="double" ucd="" utype="stc:AstroCoordArea.SpectralInterval.HiLimit" value="7.0" unit="keV"/>
+          </GROUP>
+        </GROUP>
+      </GROUP>
+      <GROUP ID="ICRSCatWide" utype="stc:CatalogEntryLocation">
+        <DESCRIPTION>HRC wide band ICRS coordinates</DESCRIPTION>
+        <GROUP ID="ICRScoordsW" utype="stc:AstroCoords">
+          <PARAM datatype="char" arraysize="*" ucd="pos.frame" name="cooframe" utype="stc:AstroCoords.coord_system_id" value="ICRS"/>
+          <FIELDref ref="col248"/>
+          <FIELDref ref="col249"/>
+          <FIELDref ref="col250"/>
+          <FIELDref ref="col251"/>
+          <FIELDref ref="col282"/>
+          <FIELDref ref="col283"/>
+        </GROUP>
+        <GROUP ID="WBand" utype="stc:AstroCoordArea">
+          <GROUP utype="stc:AstroCoordArea.SpectralInterval">
+            <DESCRIPTION>There are no UCDs defined for these parameters</DESCRIPTION>
+            <PARAM name="SpectralLoLimit" datatype="double" ucd="" utype="stc:AstroCoordArea.SpectralInterval.LoLimit" value="0.1" unit="keV"/>
+            <PARAM name="SpectralHiLimit" datatype="double" ucd="" utype="stc:AstroCoordArea.SpectralInterval.HiLimit" value="10.0" unit="keV"/>
+          </GROUP>
+        </GROUP>
+      </GROUP>
+      <GROUP ID="ICRSCatUltrasoft" utype="stc:CatalogEntryLocation">
+        <DESCRIPTION>ACIS ultrasoft band ICRS coordinates</DESCRIPTION>
+        <GROUP ID="ICRScoordsU" utype="stc:AstroCoords">
+          <PARAM datatype="char" arraysize="*" ucd="pos.frame" name="cooframe" utype="stc:AstroCoords.coord_system_id" value="ICRS"/>
+          <FIELDref ref="col85"/>
+          <FIELDref ref="col89"/>
+          <FIELDref ref="col95"/>
+          <FIELDref ref="col99"/>
+          <FIELDref ref="col117"/>
+          <FIELDref ref="col121"/>
+        </GROUP>
+        <GROUP ID="UBand" utype="stc:AstroCoordArea">
+          <GROUP utype="stc:AstroCoordArea.SpectralInterval">
+            <DESCRIPTION>There are no UCDs defined for these parameters</DESCRIPTION>
+            <PARAM name="SpectralLoLimit" datatype="double" ucd="" utype="stc:AstroCoordArea.SpectralInterval.LoLimit" value="0.2" unit="keV"/>
+            <PARAM name="SpectralHiLimit" datatype="double" ucd="" utype="stc:AstroCoordArea.SpectralInterval.HiLimit" value="0.5" unit="keV"/>
+          </GROUP>
+        </GROUP>
+      </GROUP>
+      <GROUP ID="ICRSCatSoft" utype="stc:CatalogEntryLocation">
+        <DESCRIPTION>ACIS soft band ICRS coordinates</DESCRIPTION>
+        <GROUP ID="ICRScoordsS" utype="stc:AstroCoords">
+          <PARAM datatype="char" arraysize="*" ucd="pos.frame" name="cooframe" utype="stc:AstroCoords.coord_system_id" value="ICRS"/>
+          <FIELDref ref="col84"/>
+          <FIELDref ref="col88"/>
+          <FIELDref ref="col94"/>
+          <FIELDref ref="col98"/>
+          <FIELDref ref="col116"/>
+          <FIELDref ref="col120"/>
+        </GROUP>
+        <GROUP ID="SBand" utype="stc:AstroCoordArea">
+          <GROUP utype="stc:AstroCoordArea.SpectralInterval">
+            <DESCRIPTION>There are no UCDs defined for these parameters</DESCRIPTION>
+            <PARAM name="SpectralLoLimit" datatype="double" ucd="" utype="stc:AstroCoordArea.SpectralInterval.LoLimit" value="0.5" unit="keV"/>
+            <PARAM name="SpectralHiLimit" datatype="double" ucd="" utype="stc:AstroCoordArea.SpectralInterval.HiLimit" value="1.2" unit="keV"/>
+          </GROUP>
+        </GROUP>
+      </GROUP>
+      <GROUP ID="ICRSCatMedium" utype="stc:CatalogEntryLocation">
+        <DESCRIPTION>ACIS medium band ICRS coordinates</DESCRIPTION>
+        <GROUP ID="ICRScoordsM" utype="stc:AstroCoords">
+          <PARAM datatype="char" arraysize="*" ucd="pos.frame" name="cooframe" utype="stc:AstroCoords.coord_system_id" value="ICRS"/>
+          <FIELDref ref="col83"/>
+          <FIELDref ref="col87"/>
+          <FIELDref ref="col93"/>
+          <FIELDref ref="col97"/>
+          <FIELDref ref="col115"/>
+          <FIELDref ref="col119"/>
+        </GROUP>
+        <GROUP ID="MBand" utype="stc:AstroCoordArea">
+          <GROUP utype="stc:AstroCoordArea.SpectralInterval">
+            <DESCRIPTION>There are no UCDs defined for these parameters</DESCRIPTION>
+            <PARAM name="SpectralLoLimit" datatype="double" ucd="" utype="stc:AstroCoordArea.SpectralInterval.LoLimit" value="1.2" unit="keV"/>
+            <PARAM name="SpectralHiLimit" datatype="double" ucd="" utype="stc:AstroCoordArea.SpectralInterval.HiLimit" value="2.0" unit="keV"/>
+          </GROUP>
+        </GROUP>
+      </GROUP>
+      <GROUP ID="ICRSCatHard" utype="stc:CatalogEntryLocation">
+        <DESCRIPTION>ACIS hard band ICRS coordinates</DESCRIPTION>
+        <GROUP ID="ICRScoordsH" utype="stc:AstroCoords">
+          <PARAM datatype="char" arraysize="*" ucd="pos.frame" name="cooframe" utype="stc:AstroCoords.coord_system_id" value="ICRS"/>
+          <FIELDref ref="col82"/>
+          <FIELDref ref="col86"/>
+          <FIELDref ref="col92"/>
+          <FIELDref ref="col96"/>
+          <FIELDref ref="col114"/>
+          <FIELDref ref="col118"/>
+        </GROUP>
+        <GROUP ID="HBand" utype="stc:AstroCoordArea">
+          <GROUP utype="stc:AstroCoordArea.SpectralInterval">
+            <DESCRIPTION>There are no UCDs defined for these parameters</DESCRIPTION>
+            <PARAM name="SpectralLoLimit" datatype="double" ucd="" utype="stc:AstroCoordArea.SpectralInterval.LoLimit" value="2.0" unit="keV"/>
+            <PARAM name="SpectralHiLimit" datatype="double" ucd="" utype="stc:AstroCoordArea.SpectralInterval.HiLimit" value="7.0" unit="keV"/>
+          </GROUP>
+        </GROUP>
+      </GROUP>
+      <FIELD ID="col0" datatype="int" name="msid" ucd="meta.id" width="7">
+        <DESCRIPTION>Master Source identifier</DESCRIPTION>
+        <VALUES null="-2147483648"/>
+      </FIELD>
+      <FIELD ID="col1" arraysize="*" datatype="char" name="name" ucd="meta.id;meta.main" width="20">
+        <DESCRIPTION>Source name in the format 'CXO Jhhmmss.s +/- ddmmss'</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col2" datatype="short" name="var_inter_index_b" ucd="src.var.index;em.X-ray" width="6">
+        <DESCRIPTION>Inter-observation variability index in the range [0, 10]; indicates whether the source region photon flux is constant between observations; ACIS broad energy band</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col3" datatype="short" name="var_inter_index_h" ucd="src.var.index;em.X-ray.medium" width="6">
+        <DESCRIPTION>Inter-observation variability index in the range [0, 10]; indicates whether the source region photon flux is constant between observations; ACIS hard energy band</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col4" datatype="short" name="var_inter_index_m" ucd="src.var.index;em.X-ray.medium" width="6">
+        <DESCRIPTION>Inter-observation variability index in the range [0, 10]; indicates whether the source region photon flux is constant between observations; ACIS medium energy band</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col5" datatype="short" name="var_inter_index_s" ucd="src.var.index;em.X-ray.soft" width="6">
+        <DESCRIPTION>Inter-observation variability index in the range [0, 10]; indicates whether the source region photon flux is constant between observations; ACIS soft energy band</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col6" datatype="short" name="var_inter_index_u" ucd="src.var.index;em.X-ray.soft" width="6">
+        <DESCRIPTION>Inter-observation variability index in the range [0, 10]; indicates whether the source region photon flux is constant between observations; ACIS ultrasoft energy band</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col7" datatype="short" name="var_intra_index_b" ucd="src.var.index;em.X-ray" width="6">
+        <DESCRIPTION>Intra-observation Gregory-Loredo variability index in the range [0, 10] (highest value across all observations); ACIS broad energy band</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col8" datatype="short" name="var_intra_index_h" ucd="src.var.index;em.X-ray.medium" width="6">
+        <DESCRIPTION>Intra-observation Gregory-Loredo variability index in the range [0, 10] (highest value across all observations); ACIS hard energy band</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col9" datatype="short" name="var_intra_index_m" ucd="src.var.index;em.X-ray.medium" width="6">
+        <DESCRIPTION>Intra-observation Gregory-Loredo variability index in the range [0, 10] (highest value across all observations); ACIS medium energy band</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col10" datatype="short" name="var_intra_index_s" ucd="src.var.index;em.X-ray.soft" width="6">
+        <DESCRIPTION>Intra-observation Gregory-Loredo variability index in the range [0, 10] (highest value across all observations); ACIS soft energy band</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col11" datatype="short" name="var_intra_index_u" ucd="src.var.index;em.X-ray.soft" width="6">
+        <DESCRIPTION>Intra-observation Gregory-Loredo variability index in the range [0, 10] (highest value across all observations); ACIS ultrasoft energy band</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col12" datatype="double" name="alpha" precision="F2" ucd="spect.index;stat.fit.param;meta.modelled;em.X-ray" width="9">
+        <DESCRIPTION>Photon index (alpha, defined as F_E ~ 1/E^alpha) of the best power-law model spectral fit to the source region aperture PI spectrum</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col13" datatype="double" name="dec" precision="F5" ref="ICRScoords" ucd="pos.eq.dec;meta.main" utype="stc:AstroCoords.Position2D.Value2.C2" width="9">
+        <DESCRIPTION>Source position, ICRS declination</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col14" datatype="double" name="err_ellipse_ang" precision="F1" ref="ICRScoords" ucd="pos.posAng;pos.errorEllipse" unit="deg" utype="stc:AstroCoords.Position2D.Error2.PosAng" width="5">
+        <DESCRIPTION>Position angle of the major axis of the 95% confidence level error ellipse</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col15" datatype="double" name="err_ellipse_r0" precision="F2" ref="ICRScoords" ucd="phys.angSize.smaj;pos.errorEllipse" unit="arcsec" utype="stc:AstroCoords.Position2D.Error2.C1" width="7">
+        <DESCRIPTION>Major radius of the 95% confidence level error ellipse</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col16" datatype="double" name="err_ellipse_r1" precision="F2" ref="ICRScoords" ucd="phys.angSize.smin;pos.errorEllipse" unit="arcsec" utype="stc:AstroCoords.Position2D.Error2.C2" width="7">
+        <DESCRIPTION>Minor radius of the 95% confidence level error ellipse</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col17" datatype="double" name="flux_aper90_b" precision="E3" ucd="phot.flux;src.net;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col18" datatype="double" name="flux_aper90_h" precision="E3" ucd="phot.flux;src.net;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col19" datatype="double" name="flux_aper90_m" precision="E3" ucd="phot.flux;src.net;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col20" datatype="double" name="flux_aper90_s" precision="E3" ucd="phot.flux;src.net;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col21" datatype="double" name="flux_aper90_u" precision="E3" ucd="phot.flux;src.net;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col22" datatype="double" name="flux_powlaw" precision="E3" ucd="phot.flux;stat.fit.param;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Net integrated 0.5-10 keV energy flux of the best power-law model spectral fit to the source region aperture PI spectrum</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col23" datatype="double" name="hard_hm" precision="F4" ucd="phot.color;em.X-ray" width="9">
+        <DESCRIPTION>Spectral hardness ratio measured between ACIS energy bands 'h' and 'm'; hard_hm = (flux_aper_h - flux_aper_m)/flux_aper_b</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col24" datatype="double" name="hard_hs" precision="F4" ucd="phot.color;em.X-ray" width="9">
+        <DESCRIPTION>Spectral hardness ratio measured between ACIS energy bands 'h' and 's'; hard_hs = (flux_aper_h - flux_aper_s)/flux_aper_b</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col25" datatype="double" name="hard_ms" precision="F4" ucd="phot.color;em.X-ray" width="9">
+        <DESCRIPTION>Spectral hardness ratio measured between ACIS energy bands 'm' and 's'; hard_ms = (flux_aper_m - flux_aper_s)/flux_aper_b</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col26" datatype="double" name="nh_powlaw" precision="G4" ucd="phys.columnDensity;stat.fit.param;meta.modelled" unit="10^20/cm^2" width="9">
+        <DESCRIPTION>Total neutral Hydrogen column density, N_H, of the best power-law model spectral fitt to the source region aperture PI spectrum</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col27" datatype="double" name="ra" precision="F5" ref="ICRScoords" ucd="pos.eq.ra;meta.main" utype="stc:AstroCoords.Position2D.Value2.C1" width="9">
+        <DESCRIPTION>Source position, ICRS right ascension</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col28" datatype="double" name="significance" precision="F2" ucd="stat.snr" width="7">
+        <DESCRIPTION>Highest source flux significance across all observations</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col29" datatype="short" name="acis_hetg_num" ucd="meta.number" width="6">
+        <DESCRIPTION>Total number of ACIS/HETG observations contributing to the Master Sources Table record of the source</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col30" datatype="short" name="acis_letg_num" width="6">
+        <DESCRIPTION>Total number of ACIS/LETG observations contributing to the Master Sources Table record of the source</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col31" datatype="short" name="acis_num" ucd="meta.number" width="6">
+        <DESCRIPTION>Total number of ACIS imaging observations contributing to the Master Sources Table record of the source</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col32" datatype="short" name="hrc_hetg_num" ucd="meta.number" width="6">
+        <DESCRIPTION>Total number of HRC/HETG observations contributing to the Master Sources Table record of the source</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col33" datatype="short" name="hrc_letg_num" ucd="meta.number" width="6">
+        <DESCRIPTION>Total number of HRC/LETG observations contributing to the Master Sources Table record of the source</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col34" datatype="short" name="hrc_num" ucd="meta.number" width="6">
+        <DESCRIPTION>Total number of HRC imaging observations contributing to the Master Sources Table record of the source</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col35" datatype="double" name="acis_hetg_time" precision="F1" ref="ICRScoords" unit="s" utype="stc:AstroCoords.Time.Size" width="9">
+        <DESCRIPTION>Total ACIS/HETG observation exposure time (seconds of good time) for all ACIS/HETG observations contributing to the Master Sources Table record of the source</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col36" datatype="double" name="acis_letg_time" precision="F1" ref="ICRScoords" ucd="time.duration;obs.exposure" unit="s" utype="stc:AstroCoords.Time.Size" width="9">
+        <DESCRIPTION>Total ACIS/LETG observation exposure time (seconds of good time) for all ACIS/LETG observations contributing to the Master Sources Table record of the source</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col37" datatype="double" name="acis_time" precision="F1" ref="ICRScoords" ucd="time.duration;obs.exposure" unit="s" utype="stc:AstroCoords.Time.Size" width="9">
+        <DESCRIPTION>Total ACIS imaging exposure time (seconds of good time) for all ACIS imaging observations contributing to the Master Sources Table record of the source</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col38" datatype="double" name="flux_aper_b" precision="E3" ucd="phot.flux;src.net;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col39" datatype="double" name="flux_aper_h" precision="E3" ucd="phot.flux;src.net;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col40" datatype="double" name="flux_aper_m" precision="E3" ucd="phot.flux;src.net;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col41" datatype="double" name="flux_aper_s" precision="E3" ucd="phot.flux;src.net;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col42" datatype="double" name="flux_aper_u" precision="E3" ucd="phot.flux;src.net;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col43" datatype="double" name="flux_bb" precision="E6" ucd="phot.flux;stat.fit.param;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Net integrated 0.5-10 keV energy flux of the best black-body model spectral fit to the source region aperture PI spectrum</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col44" datatype="double" name="flux_bb_aper90_b" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col45" datatype="double" name="flux_bb_aper90_h" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col46" datatype="double" name="flux_bb_aper90_m" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col47" datatype="double" name="flux_bb_aper90_s" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col48" datatype="double" name="flux_bb_aper90_u" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col49" datatype="double" name="flux_bb_aper_b" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col50" datatype="double" name="flux_bb_aper_h" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col51" datatype="double" name="flux_bb_aper_m" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col52" datatype="double" name="flux_bb_aper_s" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col53" datatype="double" name="flux_bb_aper_u" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col54" datatype="double" name="flux_powlaw_aper90_b" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col55" datatype="double" name="flux_powlaw_aper90_h" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col56" datatype="double" name="flux_powlaw_aper90_m" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col57" datatype="double" name="flux_powlaw_aper90_s" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col58" datatype="double" name="flux_powlaw_aper90_u" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col59" datatype="double" name="flux_powlaw_aper_b" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col60" datatype="double" name="flux_powlaw_aper_h" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col61" datatype="double" name="flux_powlaw_aper_m" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col62" datatype="double" name="flux_powlaw_aper_s" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col63" datatype="double" name="flux_powlaw_aper_u" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col64" datatype="double" name="gal_b" precision="F5" ref="GALcoords" ucd="pos.galactic.lat" unit="deg" utype="stc:AstroCoords.Position2D.Value2.C2" width="9">
+        <DESCRIPTION>Source position, Galactic latitude</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col65" datatype="double" name="gal_l" precision="F5" ref="GALcoords" ucd="pos.galactic.lon" unit="deg" utype="stc:AstroCoords.Position2D.Value2.C1" width="9">
+        <DESCRIPTION>Source position, Galactic longitude</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col66" datatype="double" name="hrc_hetg_time" precision="F1" ref="ICRScoords" ucd="time.duration;obs.exposure" unit="s" utype="stc:AstroCoords.Time.Size" width="9">
+        <DESCRIPTION>Total HRC/HETG observation exposure time (seconds of good time) for all HRC/HETG observations contributing to the Master Sources Table record of the source</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col67" datatype="double" name="hrc_letg_time" precision="F1" ref="ICRScoords" ucd="time.duration;obs.exposure" unit="s" utype="stc:AstroCoords.Time.Size" width="9">
+        <DESCRIPTION>Total HRC/LETG observation exposure time (seconds of good time) for all HRC/LETG observations contributing to the Master Sources Table record of the source</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col68" datatype="double" name="hrc_time" precision="F1" ref="ICRScoords" ucd="time.duration;obs.exposure" unit="s" utype="stc:AstroCoords.Time.Size" width="9">
+        <DESCRIPTION>Total HRC imaging exposure time (seconds of good time) for all HRC imaging observations contributing to the Master Sources Table record of the source</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col69" datatype="double" name="kp_intra_prob_b" precision="F3" ucd="stat.probability;src.var;em.X-ray" width="9">
+        <DESCRIPTION>Intra-observation Kuiper's test variability probability (highest value across all observations); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col70" datatype="double" name="kp_intra_prob_h" precision="F3" ucd="stat.probability;src.var;em.X-ray.medium" width="9">
+        <DESCRIPTION>Intra-observation Kuiper's test variability probability (highest value across all observations); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col71" datatype="double" name="kp_intra_prob_m" precision="F3" ucd="stat.probability;src.var;em.X-ray.medium" width="9">
+        <DESCRIPTION>Intra-observation Kuiper's test variability probability (highest value across all observations); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col72" datatype="double" name="kp_intra_prob_s" precision="F3" ucd="stat.probability;src.var;em.X-ray.soft" width="9">
+        <DESCRIPTION>Intra-observation Kuiper's test variability probability (highest value across all observations); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col73" datatype="double" name="kp_intra_prob_u" precision="F3" ucd="stat.probability;src.var;em.X-ray.soft" width="9">
+        <DESCRIPTION>Intra-observation Kuiper's test variability probability (highest value across all observations); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col74" datatype="double" name="ks_intra_prob_b" precision="F3" ucd="stat.probability;src.var;em.X-ray" width="9">
+        <DESCRIPTION>Intra-observation Kolmogorov-Smirnov variability probability (highest value across all observations); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col75" datatype="double" name="ks_intra_prob_h" precision="F3" ucd="stat.probability;src.var;em.X-ray.medium" width="9">
+        <DESCRIPTION>Intra-observation Kolmogorov-Smirnov variability probability (highest value across all observations); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col76" datatype="double" name="ks_intra_prob_m" precision="F3" ucd="stat.probability;src.var;em.X-ray.medium" width="9">
+        <DESCRIPTION>Intra-observation Kolmogorov-Smirnov variability probability (highest value across all observations); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col77" datatype="double" name="ks_intra_prob_s" precision="F3" ucd="stat.probability;src.var;em.X-ray.soft" width="9">
+        <DESCRIPTION>Intra-observation Kolmogorov-Smirnov variability probability (highest value across all observations); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col78" datatype="double" name="ks_intra_prob_u" precision="F3" ucd="stat.probability;src.var;em.X-ray.soft" width="9">
+        <DESCRIPTION>Intra-observation Kolmogorov-Smirnov variability probability (highest value across all observations); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col79" datatype="double" name="kt" precision="G4" ucd="phys.temperature;stat.fit.param;meta.modelled;em.X-ray" unit="keV" width="9">
+        <DESCRIPTION>Temperature (kT) of the best black-body model spectral fit to the source region aperture PI spectrum</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col80" datatype="double" name="major_axis_b" precision="F3" ref="ICRScoordsB" ucd="phys.angSize.smajAxis;em.X-ray" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C1" width="9">
+        <DESCRIPTION>1 sigma radius along the major axis of the ellipse defining the deconvolved source extent; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col81" datatype="double" name="major_axis_err_b" precision="F3" ref="ICRScoordsB" ucd="stat.error;phys.angSize.smajAxis;em.X-ray" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C1.error" width="9">
+        <DESCRIPTION>Estimated error on the deconvolved source extent major axis; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col82" datatype="double" name="major_axis_err_h" precision="F3" ref="ICRScoordsH" ucd="stat.error;phys.angSize.smajAxis;em.X-ray.medium" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C1.error" width="9">
+        <DESCRIPTION>Estimated error on the deconvolved source extent major axis; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col83" datatype="double" name="major_axis_err_m" precision="F3" ref="ICRScoordsM" ucd="stat.error;phys.angSize.smajAxis;em.X-ray.medium" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C1.error" width="9">
+        <DESCRIPTION>Estimated error on the deconvolved source extent major axis; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col84" datatype="double" name="major_axis_err_s" precision="F3" ref="ICRScoordsS" ucd="stat.error;phys.angSize.smajAxis;em.X-ray.soft" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C1.error" width="9">
+        <DESCRIPTION>Estimated error on the deconvolved source extent major axis; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col85" datatype="double" name="major_axis_err_u" precision="F3" ref="ICRScoordsU" ucd="stat.error;phys.angSize.smajAxis;em.X-ray.soft" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C1.error" width="9">
+        <DESCRIPTION>Estimated error on the deconvolved source extent major axis; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col86" datatype="double" name="major_axis_h" precision="F3" ref="ICRScoordsH" ucd="phys.angSize.smajAxis;em.X-ray.medium" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C1" width="9">
+        <DESCRIPTION>1 sigma radius along the major axis of the ellipse defining the deconvolved source extent; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col87" datatype="double" name="major_axis_m" precision="F3" ref="ICRScoordsM" ucd="phys.angSize.smajAxis;em.X-ray.medium" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C1" width="9">
+        <DESCRIPTION>1 sigma radius along the major axis of the ellipse defining the deconvolved source extent; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col88" datatype="double" name="major_axis_s" precision="F3" ref="ICRScoordsS" ucd="phys.angSize.smajAxis;em.X-ray.soft" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C1" width="9">
+        <DESCRIPTION>1 sigma radius along the major axis of the ellipse defining the deconvolved source extent; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col89" datatype="double" name="major_axis_u" precision="F3" ref="ICRScoordsU" ucd="phys.angSize.smajAxis;em.X-ray.soft" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C1" width="9">
+        <DESCRIPTION>1 sigma radius along the major axis of the ellipse defining the deconvolved source extent; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col90" datatype="double" name="minor_axis_b" precision="F3" ref="ICRScoordsB" ucd="phys.angSize.sminAxis;em.X-ray" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C2" width="9">
+        <DESCRIPTION>1 sigma radius along the minor axis of the ellipse defining the deconvolved source extent; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col91" datatype="double" name="minor_axis_err_b" precision="F3" ref="ICRScoordsB" ucd="stat.error;phys.angSize.sminAxis;em.X-ray" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C2.error" width="9">
+        <DESCRIPTION>Estimated error on the deconvolved source extent minor axis; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col92" datatype="double" name="minor_axis_err_h" precision="F3" ref="ICRScoordsH" ucd="stat.error;phys.angSize.sminAxis;em.X-ray.medium" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C2.error" width="9">
+        <DESCRIPTION>Estimated error on the deconvolved source extent minor axis; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col93" datatype="double" name="minor_axis_err_m" precision="F3" ref="ICRScoordsM" ucd="stat.error;phys.angSize.sminAxis;em.X-ray.medium" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C2.error" width="9">
+        <DESCRIPTION>Estimated error on the deconvolved source extent minor axis; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col94" datatype="double" name="minor_axis_err_s" precision="F3" ref="ICRScoordsS" ucd="stat.error;phys.angSize.sminAxis;em.X-ray.soft" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C2.error" width="9">
+        <DESCRIPTION>Estimated error on the deconvolved source extent minor axis; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col95" datatype="double" name="minor_axis_err_u" precision="F3" ref="ICRScoordsU" ucd="stat.error;phys.angSize.sminAxis;em.X-ray.soft" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C2.error" width="9">
+        <DESCRIPTION>Estimated error on the deconvolved source extent minor axis; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col96" datatype="double" name="minor_axis_h" precision="F3" ref="ICRScoordsH" ucd="phys.angSize.sminAxis;em.X-ray.medium" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C2" width="9">
+        <DESCRIPTION>1 sigma radius along the minor axis of the ellipse defining the deconvolved source extent; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col97" datatype="double" name="minor_axis_m" precision="F3" ref="ICRScoordsM" ucd="phys.angSize.sminAxis;em.X-ray.medium" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C2" width="9">
+        <DESCRIPTION>1 sigma radius along the minor axis of the ellipse defining the deconvolved source extent; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col98" datatype="double" name="minor_axis_s" precision="F3" ref="ICRScoordsS" ucd="phys.angSize.sminAxis;em.X-ray.soft" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C2" width="9">
+        <DESCRIPTION>1 sigma radius along the minor axis of the ellipse defining the deconvolved source extent; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col99" datatype="double" name="minor_axis_u" precision="F3" ref="ICRScoordsU" ucd="phys.angSize.sminAxis;em.X-ray.soft" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C2" width="9">
+        <DESCRIPTION>1 sigma radius along the minor axis of the ellipse defining the deconvolved source extent; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col100" datatype="double" name="nh_bb" precision="G4" ucd="phys.columnDensity;stat.fit.param;meta.modelled" unit="10^20/cm^2" width="9">
+        <DESCRIPTION>Total neutral Hydrogen column density, N_H, of the best black-body model spectral fit to the source region aperture PI spectrum</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col101" datatype="double" name="nh_gal" precision="G4" ucd="phys.absorption.gal;phys.columnDensity" unit="10^20/cm^2" width="9">
+        <DESCRIPTION>Galactic neutral Hydrogen column density, N_H(Gal) in the direction of the source determined from Dickey &amp; Lockman (Dickey, J. M., &amp; Lockman, F. J. 1990, ARA&amp;A, 28, 215)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col102" datatype="double" name="photflux_aper90_b" precision="E3" ucd="phot.flux;src.net;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col103" datatype="double" name="photflux_aper90_h" precision="E3" ucd="phot.flux;src.net;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col104" datatype="double" name="photflux_aper90_m" precision="E3" ucd="phot.flux;src.net;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col105" datatype="double" name="photflux_aper90_s" precision="E3" ucd="phot.flux;src.net;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col106" datatype="double" name="photflux_aper90_u" precision="E3" ucd="phot.flux;src.net;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col107" datatype="double" name="photflux_aper_b" precision="E3" ucd="phot.flux;src.net;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col108" datatype="double" name="photflux_aper_h" precision="E3" ucd="phot.flux;src.net;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col109" datatype="double" name="photflux_aper_m" precision="E3" ucd="phot.flux;src.net;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col110" datatype="double" name="photflux_aper_s" precision="E3" ucd="phot.flux;src.net;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col111" datatype="double" name="photflux_aper_u" precision="E3" ucd="phot.flux;src.net;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col112" datatype="double" name="pos_angle_b" precision="F1" ref="ICRScoordsB" ucd="pos.posAng;em.X-ray" unit="deg" utype="stc:AstroCoords.Position2D.Size2.PosAng" width="5">
+        <DESCRIPTION>Position angle of the major axis of the ellipse defining the deconvolved source extent; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col113" datatype="double" name="pos_angle_err_b" precision="F1" ref="ICRScoordsB" ucd="stat.error;pos.posAng;em.X-ray" unit="deg" utype="stc:AstroCoords.Position2D.Size2.PosAng.error" width="5">
+        <DESCRIPTION>Estimated error on the deconvolved source extent position angle; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col114" datatype="double" name="pos_angle_err_h" precision="F1" ref="ICRScoordsH" ucd="stat.error;pos.posAng;em.X-ray.medium" unit="deg" utype="stc:AstroCoords.Position2D.Size2.PosAng.error" width="5">
+        <DESCRIPTION>Estimated error on the deconvolved source extent position angle; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col115" datatype="double" name="pos_angle_err_m" precision="F1" ref="ICRScoordsM" ucd="stat.error;pos.posAng;em.X-ray.medium" unit="deg" utype="stc:AstroCoords.Position2D.Size2.PosAng.error" width="5">
+        <DESCRIPTION>Estimated error on the deconvolved source extent position angle; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col116" datatype="double" name="pos_angle_err_s" precision="F1" ref="ICRScoordsS" ucd="stat.error;pos.posAng;em.X-ray.soft" unit="deg" utype="stc:AstroCoords.Position2D.Size2.PosAng.error" width="5">
+        <DESCRIPTION>Estimated error on the deconvolved source extent position angle; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col117" datatype="double" name="pos_angle_err_u" precision="F1" ref="ICRScoordsU" ucd="stat.error;pos.posAng;em.X-ray.soft" unit="deg" utype="stc:AstroCoords.Position2D.Size2.PosAng.error" width="5">
+        <DESCRIPTION>Estimated error on the deconvolved source extent position angle; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col118" datatype="double" name="pos_angle_h" precision="F1" ref="ICRScoordsH" ucd="pos.posAng;em.X-ray.medium" unit="deg" utype="stc:AstroCoords.Position2D.Size2.PosAng" width="5">
+        <DESCRIPTION>Position angle of the major axis of the ellipse defining the deconvolved source extent; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col119" datatype="double" name="pos_angle_m" precision="F1" ref="ICRScoordsM" ucd="pos.posAng;em.X-ray.medium" unit="deg" utype="stc:AstroCoords.Position2D.Size2.PosAng" width="5">
+        <DESCRIPTION>Position angle of the major axis of the ellipse defining the deconvolved source extent; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col120" datatype="double" name="pos_angle_s" precision="F1" ref="ICRScoordsS" ucd="pos.posAng;em.X-ray.soft" unit="deg" utype="stc:AstroCoords.Position2D.Size2.PosAng" width="5">
+        <DESCRIPTION>Position angle of the major axis of the ellipse defining the deconvolved source extent; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col121" datatype="double" name="pos_angle_u" precision="F1" ref="ICRScoordsU" ucd="pos.posAng;em.X-ray.soft" unit="deg" utype="stc:AstroCoords.Position2D.Size2.PosAng" width="5">
+        <DESCRIPTION>Position angle of the major axis of the ellipse defining the deconvolved source extent; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col122" datatype="double" name="var_inter_prob_b" precision="F3" ucd="stat.probability;src.var;em.X-ray" width="9">
+        <DESCRIPTION>Inter-observation variability probability, calculated from the chi^2 distribution of the photon fluxes of the individual observations; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col123" datatype="double" name="var_inter_prob_h" precision="F3" ucd="stat.probability;src.var;em.X-ray.medium" width="9">
+        <DESCRIPTION>Inter-observation variability probability, calculated from the chi^2 distribution of the photon fluxes of the individual observations; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col124" datatype="double" name="var_inter_prob_m" precision="F3" ucd="stat.probability;src.var;em.X-ray.medium" width="9">
+        <DESCRIPTION>Inter-observation variability probability, calculated from the chi^2 distribution of the photon fluxes of the individual observations; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col125" datatype="double" name="var_inter_prob_s" precision="F3" ucd="stat.probability;src.var;em.X-ray.soft" width="9">
+        <DESCRIPTION>Inter-observation variability probability, calculated from the chi^2 distribution of the photon fluxes of the individual observations; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col126" datatype="double" name="var_inter_prob_u" precision="F3" ucd="stat.probability;src.var;em.X-ray.soft" width="9">
+        <DESCRIPTION>Inter-observation variability probability, calculated from the chi^2 distribution of the photon fluxes of the individual observations; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col127" datatype="double" name="var_inter_sigma_b" precision="G4" ucd="arith.rate;phot.flux;stat.stdev;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Inter-observation flux variability standard deviation; the spread of the individual observation photon fluxes about the error weighted mean; ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col128" datatype="double" name="var_inter_sigma_h" precision="G4" ucd="arith.rate;phot.flux;stat.stdev;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Inter-observation flux variability standard deviation; the spread of the individual observation photon fluxes about the error weighted mean; ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col129" datatype="double" name="var_inter_sigma_m" precision="G4" ucd="arith.rate;phot.flux;stat.stdev;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Inter-observation flux variability standard deviation; the spread of the individual observation photon fluxes about the error weighted mean; ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col130" datatype="double" name="var_inter_sigma_s" precision="G4" ucd="arith.rate;phot.flux;stat.stdev;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Inter-observation flux variability standard deviation; the spread of the individual observation photon fluxes about the error weighted mean; ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col131" datatype="double" name="var_inter_sigma_u" precision="G4" ucd="arith.rate;phot.flux;stat.stdev;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Inter-observation flux variability standard deviation; the spread of the individual observation photon fluxes about the error weighted mean; ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col132" datatype="double" name="var_intra_prob_b" precision="F3" ucd="stat.probability;src.var;em.X-ray" width="9">
+        <DESCRIPTION>Intra-observation Gregory-Loredo variability probability (highest value across all observations); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col133" datatype="double" name="var_intra_prob_h" precision="F3" ucd="stat.probability;src.var;em.X-ray.medium" width="9">
+        <DESCRIPTION>Intra-observation Gregory-Loredo variability probability (highest value across all observations); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col134" datatype="double" name="var_intra_prob_m" precision="F3" ucd="stat.probability;src.var;em.X-ray.medium" width="9">
+        <DESCRIPTION>Intra-observation Gregory-Loredo variability probability (highest value across all observations); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col135" datatype="double" name="var_intra_prob_s" precision="F3" ucd="stat.probability;src.var;em.X-ray.soft" width="9">
+        <DESCRIPTION>Intra-observation Gregory-Loredo variability probability (highest value across all observations); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col136" datatype="double" name="var_intra_prob_u" precision="F3" ucd="stat.probability;src.var;em.X-ray.soft" width="9">
+        <DESCRIPTION>Intra-observation Gregory-Loredo variability probability (highest value across all observations); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col137" datatype="double" name="var_intra_sigma_b" precision="G4" ucd="arith.rate;phot.count;stat.stdev;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Intra-observation flux variability standard deviation, calculated from an optimally-binned light curve (highest value across all observations); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col138" datatype="double" name="var_intra_sigma_h" precision="G4" ucd="arith.rate;phot.count;stat.stdev;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Intra-observation flux variability standard deviation, calculated from an optimally-binned light curve (highest value across all observations); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col139" datatype="double" name="var_intra_sigma_m" precision="G4" ucd="arith.rate;phot.count;stat.stdev;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Intra-observation flux variability standard deviation, calculated from an optimally-binned light curve (highest value across all observations); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col140" datatype="double" name="var_intra_sigma_s" precision="G4" ucd="arith.rate;phot.count;stat.stdev;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Intra-observation flux variability standard deviation, calculated from an optimally-binned light curve (highest value across all observations); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col141" datatype="double" name="var_intra_sigma_u" precision="G4" ucd="arith.rate;phot.count;stat.stdev;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Intra-observation flux variability standard deviation, calculated from an optimally-binned light curve (highest value across all observations); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col142" datatype="boolean" name="conf_flag" ucd="meta.code" width="5">
+        <DESCRIPTION>Source regions overlap (source is confused)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col143" datatype="boolean" name="extent_flag" ucd="meta.code;phys.angSize" width="5">
+        <DESCRIPTION>Deconvolved source extent is inconsistent with a point source at the 90% confidence level</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col144" datatype="boolean" name="man_inc_flag" ucd="meta.code.qual" width="5">
+        <DESCRIPTION>Source was manually included in the catalog via human review</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col145" datatype="boolean" name="man_match_flag" ucd="meta.code.qual" width="5">
+        <DESCRIPTION>Cross-observation source matching was performed manually via human review</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col146" datatype="boolean" name="man_reg_flag" ucd="meta.code.qual" width="5">
+        <DESCRIPTION>Source region parameters (location, dimensions) were manually adjusted via human review</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col147" datatype="boolean" name="pileup_flag" ucd="meta.code" width="5">
+        <DESCRIPTION>ACIS pile-up fraction exceeds ~ 10% in all observations; source properties may be affected</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col148" datatype="boolean" name="sat_src_flag" ucd="meta.code.qual;instr.saturation" width="5">
+        <DESCRIPTION>Source is saturated in all observations; source properties are unreliable</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col149" datatype="boolean" name="streak_src_flag" ucd="meta.code.qual" width="5">
+        <DESCRIPTION>Source is detected on an ACIS readout streak in all observations; source properties may be affected</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col150" datatype="boolean" name="var_flag" ucd="meta.code;src.var" width="5">
+        <DESCRIPTION>Source displays flux variability within an observation or between observations</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col151" datatype="boolean" name="var_inter_hard_flag" ucd="meta.code;src.var" width="5">
+        <DESCRIPTION>Source hardness ratios are statistically inconsistent across multiple observations</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col152" datatype="short" name="var_inter_index_w" ucd="src.var.index;em.X-ray" width="6">
+        <DESCRIPTION>Inter-observation variability index in the range [0, 10]; indicates whether the source region photon flux is constant between observations; HRC wide energy band</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col153" datatype="short" name="var_intra_index_w" ucd="src.var.index;em.X-ray" width="6">
+        <DESCRIPTION>Intra-observation Gregory-Loredo variability index in the range [0, 10] (highest value across all observations); HRC wide energy band</DESCRIPTION>
+        <VALUES null="-32768"/>
+      </FIELD>
+      <FIELD ID="col154" datatype="double" name="alpha_hilim" precision="F2" ucd="stat.error;spect.index;stat.fit.param;stat.max;meta.modelled;em.X-ray" width="9">
+        <DESCRIPTION>Photon index (alpha, defined as F_E ~ 1/E^alpha) of the best power-law model spectral fit to the source region aperture PI spectrum (68% upper confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col155" datatype="double" name="alpha_lolim" precision="F2" ucd="stat.error;spect.index;stat.fit.param;stat.min;meta.modelled;em.X-ray" width="9">
+        <DESCRIPTION>Photon index (alpha, defined as F_E ~ 1/E^alpha) of the best power-law model spectral fit to the source region aperture PI spectrum (68% lower confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col156" datatype="double" name="flux_aper90_hilim_b" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col157" datatype="double" name="flux_aper90_hilim_h" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col158" datatype="double" name="flux_aper90_hilim_m" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col159" datatype="double" name="flux_aper90_hilim_s" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col160" datatype="double" name="flux_aper90_hilim_u" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col161" datatype="double" name="flux_aper90_hilim_w" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events (68% upper confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col162" datatype="double" name="flux_aper90_lolim_b" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col163" datatype="double" name="flux_aper90_lolim_h" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col164" datatype="double" name="flux_aper90_lolim_m" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col165" datatype="double" name="flux_aper90_lolim_s" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col166" datatype="double" name="flux_aper90_lolim_u" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col167" datatype="double" name="flux_aper90_lolim_w" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events (68% lower confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col168" datatype="double" name="flux_aper90_w" precision="E3" ucd="phot.flux;src.net;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated by counting X-ray events; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col169" datatype="double" name="flux_aper_hilim_b" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col170" datatype="double" name="flux_aper_hilim_h" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col171" datatype="double" name="flux_aper_hilim_m" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col172" datatype="double" name="flux_aper_hilim_s" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col173" datatype="double" name="flux_aper_hilim_u" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col174" datatype="double" name="flux_aper_hilim_w" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events (68% upper confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col175" datatype="double" name="flux_aper_lolim_b" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col176" datatype="double" name="flux_aper_lolim_h" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col177" datatype="double" name="flux_aper_lolim_m" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col178" datatype="double" name="flux_aper_lolim_s" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col179" datatype="double" name="flux_aper_lolim_u" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col180" datatype="double" name="flux_aper_lolim_w" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events (68% lower confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col181" datatype="double" name="flux_aper_w" precision="E3" ucd="phot.flux;src.net;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated by counting X-ray events; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col182" datatype="double" name="flux_bb_aper90_hilim_b" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% upper confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col183" datatype="double" name="flux_bb_aper90_hilim_h" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% upper confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col184" datatype="double" name="flux_bb_aper90_hilim_m" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% upper confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col185" datatype="double" name="flux_bb_aper90_hilim_s" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% upper confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col186" datatype="double" name="flux_bb_aper90_hilim_u" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% upper confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col187" datatype="double" name="flux_bb_aper90_hilim_w" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% upper confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col188" datatype="double" name="flux_bb_aper90_lolim_b" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% lower confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col189" datatype="double" name="flux_bb_aper90_lolim_h" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% lower confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col190" datatype="double" name="flux_bb_aper90_lolim_m" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% lower confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col191" datatype="double" name="flux_bb_aper90_lolim_s" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% lower confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col192" datatype="double" name="flux_bb_aper90_lolim_u" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% lower confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col193" datatype="double" name="flux_bb_aper90_lolim_w" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% lower confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col194" datatype="double" name="flux_bb_aper90_w" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col195" datatype="double" name="flux_bb_aper_hilim_b" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% upper confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col196" datatype="double" name="flux_bb_aper_hilim_h" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% upper confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col197" datatype="double" name="flux_bb_aper_hilim_m" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% upper confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col198" datatype="double" name="flux_bb_aper_hilim_s" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% upper confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col199" datatype="double" name="flux_bb_aper_hilim_u" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% upper confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col200" datatype="double" name="flux_bb_aper_hilim_w" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% upper confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col201" datatype="double" name="flux_bb_aper_lolim_b" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% lower confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col202" datatype="double" name="flux_bb_aper_lolim_h" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% lower confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col203" datatype="double" name="flux_bb_aper_lolim_m" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% lower confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col204" datatype="double" name="flux_bb_aper_lolim_s" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% lower confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col205" datatype="double" name="flux_bb_aper_lolim_u" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% lower confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col206" datatype="double" name="flux_bb_aper_lolim_w" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model (68% lower confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col207" datatype="double" name="flux_bb_aper_w" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed kt = 1.0 keV black-body spectral model; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col208" datatype="double" name="flux_bb_hilim" precision="E6" ucd="stat.error;phot.flux;stat.fit.param;stat.max;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Net integrated 0.5-10 keV energy flux of the best black-body model spectral fit to the source region aperture PI spectrum (68% upper confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col209" datatype="double" name="flux_bb_lolim" precision="E6" ucd="stat.error;phot.flux;stat.fit.param;stat.min;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Net integrated 0.5-10 keV energy flux of the best black-body model spectral fit to the source region aperture PI spectrum (68% lower confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col210" datatype="double" name="flux_powlaw_aper90_hilim_b" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% upper confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col211" datatype="double" name="flux_powlaw_aper90_hilim_h" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% upper confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col212" datatype="double" name="flux_powlaw_aper90_hilim_m" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% upper confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col213" datatype="double" name="flux_powlaw_aper90_hilim_s" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% upper confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col214" datatype="double" name="flux_powlaw_aper90_hilim_u" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% upper confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col215" datatype="double" name="flux_powlaw_aper90_hilim_w" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% upper confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col216" datatype="double" name="flux_powlaw_aper90_lolim_b" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% lower confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col217" datatype="double" name="flux_powlaw_aper90_lolim_h" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% lower confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col218" datatype="double" name="flux_powlaw_aper90_lolim_m" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% lower confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col219" datatype="double" name="flux_powlaw_aper90_lolim_s" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% lower confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col220" datatype="double" name="flux_powlaw_aper90_lolim_u" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% lower confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col221" datatype="double" name="flux_powlaw_aper90_lolim_w" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% lower confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col222" datatype="double" name="flux_powlaw_aper90_w" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the PSF 90% ECF aperture, calculated from an absorbed E^-1.7 power-law spectral model; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col223" datatype="double" name="flux_powlaw_aper_hilim_b" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% upper confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col224" datatype="double" name="flux_powlaw_aper_hilim_h" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% upper confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col225" datatype="double" name="flux_powlaw_aper_hilim_m" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% upper confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col226" datatype="double" name="flux_powlaw_aper_hilim_s" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% upper confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col227" datatype="double" name="flux_powlaw_aper_hilim_u" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% upper confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col228" datatype="double" name="flux_powlaw_aper_hilim_w" precision="E3" ucd="stat.error;phot.flux;stat.max;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% upper confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col229" datatype="double" name="flux_powlaw_aper_lolim_b" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% lower confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col230" datatype="double" name="flux_powlaw_aper_lolim_h" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% lower confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col231" datatype="double" name="flux_powlaw_aper_lolim_m" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.medium" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% lower confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col232" datatype="double" name="flux_powlaw_aper_lolim_s" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% lower confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col233" datatype="double" name="flux_powlaw_aper_lolim_u" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray.soft" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% lower confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col234" datatype="double" name="flux_powlaw_aper_lolim_w" precision="E3" ucd="stat.error;phot.flux;stat.min;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model (68% lower confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col235" datatype="double" name="flux_powlaw_aper_w" precision="E3" ucd="phot.flux;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net energy flux inferred from the source region aperture, calculated from an absorbed E^-1.7 power-law spectral model; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col236" datatype="double" name="flux_powlaw_hilim" precision="E3" ucd="stat.error;phot.flux;stat.fit.param;stat.max;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Net integrated 0.5-10 keV energy flux of the best power-law model spectral fit to the source region aperture PI spectrum (68% upper confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col237" datatype="double" name="flux_powlaw_lolim" precision="E3" ucd="stat.error;phot.flux;stat.fit.param;stat.min;meta.modelled;em.X-ray" unit="erg/s*cm^2" width="9">
+        <DESCRIPTION>Net integrated 0.5-10 keV energy flux of the best power-law model spectral fit to the source region aperture PI spectrum (68% lower confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col238" datatype="double" name="hard_hm_hilim" precision="F4" ucd="stat.error;phot.color;stat.max;em.X-ray" width="9">
+        <DESCRIPTION>Spectral hardness ratio measured between ACIS energy bands 'h' and 'm'; hard_hm = (flux_aper_h - flux_aper_m)/flux_aper_b (68% upper confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col239" datatype="double" name="hard_hm_lolim" precision="F4" ucd="stat.error;phot.color;stat.min;em.X-ray" width="9">
+        <DESCRIPTION>Spectral hardness ratio measured between ACIS energy bands 'h' and 'm'; hard_hm = (flux_aper_h - flux_aper_m)/flux_aper_b (68% lower confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col240" datatype="double" name="hard_hs_hilim" precision="F4" ucd="stat.error;phot.color;stat.max;em.X-ray" width="9">
+        <DESCRIPTION>Spectral hardness ratio measured between ACIS energy bands 'h' and 's'; hard_hs = (flux_aper_h - flux_aper_s)/flux_aper_b (68% upper confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col241" datatype="double" name="hard_hs_lolim" precision="F4" ucd="stat.error;phot.color;stat.min;em.X-ray" width="9">
+        <DESCRIPTION>Spectral hardness ratio measured between ACIS energy bands 'h' and 's'; hard_hs = (flux_aper_h - flux_aper_s)/flux_aper_b (68% lower confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col242" datatype="double" name="hard_ms_hilim" precision="F4" ucd="stat.error;phot.color;stat.max;em.X-ray" width="9">
+        <DESCRIPTION>Spectral hardness ratio measured between ACIS energy bands 'm' and 's'; hard_ms = (flux_aper_m - flux_aper_s)/flux_aper_b (68% upper confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col243" datatype="double" name="hard_ms_lolim" precision="F4" ucd="stat.error;phot.color;stat.min;em.X-ray" width="9">
+        <DESCRIPTION>Spectral hardness ratio measured between ACIS energy bands 'm' and 's'; hard_ms = (flux_aper_m - flux_aper_s)/flux_aper_b (68% lower confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col244" datatype="double" name="kp_intra_prob_w" precision="F3" ucd="stat.probability;src.var;em.X-ray" width="9">
+        <DESCRIPTION>Intra-observation Kuiper's test variability probability (highest value across all observations); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col245" datatype="double" name="ks_intra_prob_w" precision="F3" ucd="stat.probability;src.var;em.X-ray" width="9">
+        <DESCRIPTION>Intra-observation Kolmogorov-Smirnov variability probability (highest value across all observations); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col246" datatype="double" name="kt_hilim" precision="G4" ucd="stat.error;phys.temperature;stat.fit.param;stat.max;meta.modelled;em.X-ray" unit="keV" width="9">
+        <DESCRIPTION>Temperature (kT) of the best black-body model spectral fit to the source region aperture PI spectrum (68% upper confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col247" datatype="double" name="kt_lolim" precision="G4" ucd="stat.error;phys.temperature;stat.fit.param;stat.min;meta.modelled;em.X-ray" unit="keV" width="9">
+        <DESCRIPTION>Temperature (kT) of the best black-body model spectral fit to the source region aperture PI spectrum (68% lower confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col248" datatype="double" name="major_axis_err_w" precision="F3" ref="ICRScoordsW" ucd="stat.error;phys.angSize.smajAxis;em.X-ray" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C1.error" width="9">
+        <DESCRIPTION>Estimated error on the deconvolved source extent major axis; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col249" datatype="double" name="major_axis_w" precision="F3" ref="ICRScoordsW" ucd="phys.angSize.smajAxis;em.X-ray" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C1" width="9">
+        <DESCRIPTION>1 sigma radius along the major axis of the ellipse defining the deconvolved source extent; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col250" datatype="double" name="minor_axis_err_w" precision="F3" ref="ICRScoordsW" ucd="stat.error;phys.angSize.sminAxis;em.X-ray" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C2.error" width="9">
+        <DESCRIPTION>Estimated error on the deconvolved source extent minor axis; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col251" datatype="double" name="minor_axis_w" precision="F3" ref="ICRScoordsW" ucd="phys.angSize.sminAxis;em.X-ray" unit="arcsec" utype="stc:AstroCoords.Position2D.Size2.C2" width="9">
+        <DESCRIPTION>1 sigma radius along the minor axis of the ellipse defining the deconvolved source extent; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col252" datatype="double" name="nh_bb_hilim" precision="G4" ucd="stat.error;phys.columnDensity;stat.fit.param;stat.max;meta.modelled" unit="10^20/cm^2" width="9">
+        <DESCRIPTION>Total neutral Hydrogen column density, N_H, of the best black-body model spectral fit to the source region aperture PI spectrum (68% upper confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col253" datatype="double" name="nh_bb_lolim" precision="G4" ucd="stat.error;phys.columnDensity;stat.fit.param;stat.min;meta.modelled" unit="10^20/cm^2" width="9">
+        <DESCRIPTION>Total neutral Hydrogen column density, N_H, of the best black-body model spectral fit to the source region aperture PI spectrum (68% lower confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col254" datatype="double" name="nh_powlaw_hilim" precision="G4" ucd="stat.error;phys.columnDensity;stat.fit.param;stat.max;meta.modelled" unit="10^20/cm^2" width="9">
+        <DESCRIPTION>Total neutral Hydrogen column density, N_H, of the best power-law model spectral fitt to the source region aperture PI spectrum (68% upper confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col255" datatype="double" name="nh_powlaw_lolim" precision="G4" ucd="stat.error;phys.columnDensity;stat.fit.param;stat.min;meta.modelled" unit="10^20/cm^2" width="9">
+        <DESCRIPTION>Total neutral Hydrogen column density, N_H, of the best power-law model spectral fitt to the source region aperture PI spectrum (68% lower confidence limit)</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col256" datatype="double" name="photflux_aper90_hilim_b" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col257" datatype="double" name="photflux_aper90_hilim_h" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col258" datatype="double" name="photflux_aper90_hilim_m" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col259" datatype="double" name="photflux_aper90_hilim_s" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col260" datatype="double" name="photflux_aper90_hilim_u" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col261" datatype="double" name="photflux_aper90_hilim_w" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events (68% upper confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col262" datatype="double" name="photflux_aper90_lolim_b" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col263" datatype="double" name="photflux_aper90_lolim_h" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col264" datatype="double" name="photflux_aper90_lolim_m" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col265" datatype="double" name="photflux_aper90_lolim_s" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col266" datatype="double" name="photflux_aper90_lolim_u" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col267" datatype="double" name="photflux_aper90_lolim_w" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events (68% lower confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col268" datatype="double" name="photflux_aper90_w" precision="E3" ucd="phot.flux;src.net;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the Point Spread Function 90% Enclosed Counts Fraction aperture, calculated by counting X-ray events; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col269" datatype="double" name="photflux_aper_hilim_b" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col270" datatype="double" name="photflux_aper_hilim_h" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col271" datatype="double" name="photflux_aper_hilim_m" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col272" datatype="double" name="photflux_aper_hilim_s" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col273" datatype="double" name="photflux_aper_hilim_u" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events (68% upper confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col274" datatype="double" name="photflux_aper_hilim_w" precision="E3" ucd="stat.error;phot.flux;src.net;stat.max;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events (68% upper confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col275" datatype="double" name="photflux_aper_lolim_b" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS broad energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col276" datatype="double" name="photflux_aper_lolim_h" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS hard energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col277" datatype="double" name="photflux_aper_lolim_m" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.medium" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS medium energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col278" datatype="double" name="photflux_aper_lolim_s" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS soft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col279" datatype="double" name="photflux_aper_lolim_u" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray.soft" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events (68% lower confidence limit); ACIS ultrasoft energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col280" datatype="double" name="photflux_aper_lolim_w" precision="E3" ucd="stat.error;phot.flux;src.net;stat.min;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events (68% lower confidence limit); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col281" datatype="double" name="photflux_aper_w" precision="E3" ucd="phot.flux;src.net;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Aperture-corrected net photon flux inferred from the source region aperture, calculated by counting X-ray events; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col282" datatype="double" name="pos_angle_err_w" precision="F1" ref="ICRScoordsW" ucd="stat.error;pos.posAng;em.X-ray" unit="deg" utype="stc:AstroCoords.Position2D.Size2.PosAng.error" width="5">
+        <DESCRIPTION>Estimated error on the deconvolved source extent position angle; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col283" datatype="double" name="pos_angle_w" precision="F1" ref="ICRScoordsW" ucd="pos.posAng;em.X-ray" unit="deg" utype="stc:AstroCoords.Position2D.Size2.PosAng" width="5">
+        <DESCRIPTION>Position angle of the major axis of the ellipse defining the deconvolved source extent; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col284" datatype="double" name="var_inter_prob_w" precision="F3" ucd="stat.probability;src.var;em.X-ray" width="9">
+        <DESCRIPTION>Inter-observation variability probability, calculated from the chi^2 distribution of the photon fluxes of the individual observations; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col285" datatype="double" name="var_inter_sigma_w" precision="G4" ucd="arith.rate;phot.flux;stat.stdev;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Inter-observation flux variability standard deviation; the spread of the individual observation photon fluxes about the error weighted mean; HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col286" datatype="double" name="var_intra_prob_w" precision="F3" ucd="stat.probability;src.var;em.X-ray" width="9">
+        <DESCRIPTION>Intra-observation Gregory-Loredo variability probability (highest value across all observations); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="col287" datatype="double" name="var_intra_sigma_w" precision="G4" ucd="arith.rate;phot.count;stat.stdev;em.X-ray" unit="photons/s*cm^2" width="9">
+        <DESCRIPTION>Intra-observation flux variability standard deviation, calculated from an optimally-binned light curve (highest value across all observations); HRC wide energy band</DESCRIPTION>
+      </FIELD>
+      <DATA>
+        <TABLEDATA>
+          <TR>
+            <TD>103959</TD>
+            <TD>CXO J140309.4+542052</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>3</TD>
+            <TD>0</TD>
+            <TD>1</TD>
+            <TD>0</TD>
+            <TD>1</TD>
+            <TD>3</TD>
+            <TD>1</TD>
+            <TD/>
+            <TD>54.34795334975962</TD>
+            <TD>3.0517578125E-5</TD>
+            <TD>0.476515</TD>
+            <TD>0.476515</TD>
+            <TD>1.456E-15</TD>
+            <TD>5.241E-16</TD>
+            <TD>3.618E-16</TD>
+            <TD>1.533E-16</TD>
+            <TD>8.562E-17</TD>
+            <TD/>
+            <TD>0.104813</TD>
+            <TD>0.0601774</TD>
+            <TD>-0.0446357</TD>
+            <TD/>
+            <TD>210.789249855527</TD>
+            <TD>4.20291</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>3</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>240431.0</TD>
+            <TD>1.54242E-15</TD>
+            <TD>6.6745E-16</TD>
+            <TD>3.66615E-16</TD>
+            <TD>1.58402E-16</TD>
+            <TD>1.05002E-16</TD>
+            <TD/>
+            <TD>1.9595E-15</TD>
+            <TD>9.05188E-16</TD>
+            <TD>2.40812E-16</TD>
+            <TD>1.96359E-16</TD>
+            <TD>3.76594E-17</TD>
+            <TD>1.89046E-15</TD>
+            <TD>9.55734E-16</TD>
+            <TD>6.63059E-16</TD>
+            <TD>2.00252E-16</TD>
+            <TD>1.47229E-16</TD>
+            <TD>1.18844E-15</TD>
+            <TD>9.53789E-16</TD>
+            <TD>2.30285E-16</TD>
+            <TD>2.03015E-16</TD>
+            <TD>5.61467E-17</TD>
+            <TD>1.14657E-15</TD>
+            <TD>1.00705E-15</TD>
+            <TD>6.38308E-16</TD>
+            <TD>2.07041E-16</TD>
+            <TD>2.86438E-16</TD>
+            <TD>59.776263</TD>
+            <TD>102.048927</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.789188</TD>
+            <TD>0.868023</TD>
+            <TD>0.766067</TD>
+            <TD>0.93094</TD>
+            <TD>0.0250091</TD>
+            <TD>0.623798</TD>
+            <TD>0.489569</TD>
+            <TD>0.756447</TD>
+            <TD>0.861751</TD>
+            <TD>0.298203</TD>
+            <TD/>
+            <TD>0.074794</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.236127</TD>
+            <TD>0.267282</TD>
+            <TD>0.125657</TD>
+            <TD>0.44244</TD>
+            <TD>0.074794</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.236127</TD>
+            <TD>0.267282</TD>
+            <TD>0.125657</TD>
+            <TD>0.44244</TD>
+            <TD/>
+            <TD>1.15</TD>
+            <TD>5.158E-7</TD>
+            <TD>1.065E-7</TD>
+            <TD>1.397E-7</TD>
+            <TD>1.085E-7</TD>
+            <TD>9.603E-8</TD>
+            <TD>5.39528E-7</TD>
+            <TD>1.2935E-7</TD>
+            <TD>1.41453E-7</TD>
+            <TD>1.10721E-7</TD>
+            <TD>1.19682E-7</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.00453369</TD>
+            <TD>0.165642</TD>
+            <TD>0.377102</TD>
+            <TD>0.559651</TD>
+            <TD>0.141262</TD>
+            <TD>2.2156E-8</TD>
+            <TD>5.76653E-8</TD>
+            <TD>9.91422E-8</TD>
+            <TD>7.6646E-8</TD>
+            <TD>2.92888E-7</TD>
+            <TD>0.570986</TD>
+            <TD>0.5</TD>
+            <TD>0.623959</TD>
+            <TD>0.522871</TD>
+            <TD>0.505213</TD>
+            <TD>5.6934E-5</TD>
+            <TD>5.82533E-6</TD>
+            <TD>1.07341E-5</TD>
+            <TD>9.52715E-6</TD>
+            <TD>4.9732E-6</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>T</TD>
+            <TD>T</TD>
+            <TD>-32768</TD>
+            <TD>-32768</TD>
+            <TD/>
+            <TD/>
+            <TD>1.699E-15</TD>
+            <TD>7.577E-16</TD>
+            <TD>4.509E-16</TD>
+            <TD>1.975E-16</TD>
+            <TD>1.374E-16</TD>
+            <TD/>
+            <TD>1.215E-15</TD>
+            <TD>3.213E-16</TD>
+            <TD>2.846E-16</TD>
+            <TD>1.09E-16</TD>
+            <TD>3.363E-17</TD>
+            <TD/>
+            <TD/>
+            <TD>1.79583E-15</TD>
+            <TD>9.20286E-16</TD>
+            <TD>4.5714E-16</TD>
+            <TD>2.04681E-16</TD>
+            <TD>1.63821E-16</TD>
+            <TD/>
+            <TD>1.29155E-15</TD>
+            <TD>4.54348E-16</TD>
+            <TD>2.86982E-16</TD>
+            <TD>1.12528E-16</TD>
+            <TD>4.64472E-17</TD>
+            <TD/>
+            <TD/>
+            <TD>2.40814E-15</TD>
+            <TD>1.3692E-15</TD>
+            <TD>3.55735E-16</TD>
+            <TD>2.79523E-16</TD>
+            <TD>8.18913E-17</TD>
+            <TD/>
+            <TD>1.50736E-15</TD>
+            <TD>5.37021E-16</TD>
+            <TD>1.52315E-16</TD>
+            <TD>1.30149E-16</TD>
+            <TD>9.79895E-18</TD>
+            <TD/>
+            <TD/>
+            <TD>2.33474E-15</TD>
+            <TD>1.42818E-15</TD>
+            <TD>8.62098E-16</TD>
+            <TD>2.84066E-16</TD>
+            <TD>2.83389E-16</TD>
+            <TD/>
+            <TD>1.44638E-15</TD>
+            <TD>5.8293E-16</TD>
+            <TD>4.59929E-16</TD>
+            <TD>1.32263E-16</TD>
+            <TD>5.21438E-17</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>1.46054E-15</TD>
+            <TD>1.44271E-15</TD>
+            <TD>3.40184E-16</TD>
+            <TD>2.88998E-16</TD>
+            <TD>1.22092E-16</TD>
+            <TD/>
+            <TD>9.14214E-16</TD>
+            <TD>5.65855E-16</TD>
+            <TD>1.45656E-16</TD>
+            <TD>1.3456E-16</TD>
+            <TD>1.46093E-17</TD>
+            <TD/>
+            <TD/>
+            <TD>1.41602E-15</TD>
+            <TD>1.50486E-15</TD>
+            <TD>8.29918E-16</TD>
+            <TD>2.93695E-16</TD>
+            <TD>5.5134E-16</TD>
+            <TD/>
+            <TD>8.77231E-16</TD>
+            <TD>6.14228E-16</TD>
+            <TD>4.42761E-16</TD>
+            <TD>1.36747E-16</TD>
+            <TD>1.01447E-16</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.264285</TD>
+            <TD>-0.0594678</TD>
+            <TD>0.216358</TD>
+            <TD>-0.0964876</TD>
+            <TD>0.104346</TD>
+            <TD>-0.192989</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>5.985E-7</TD>
+            <TD>1.49E-7</TD>
+            <TD>1.74E-7</TD>
+            <TD>1.404E-7</TD>
+            <TD>1.622E-7</TD>
+            <TD/>
+            <TD>4.34E-7</TD>
+            <TD>6.998E-8</TD>
+            <TD>1.097E-7</TD>
+            <TD>7.675E-8</TD>
+            <TD>2.998E-8</TD>
+            <TD/>
+            <TD/>
+            <TD>6.25099E-7</TD>
+            <TD>1.75642E-7</TD>
+            <TD>1.76587E-7</TD>
+            <TD>1.43895E-7</TD>
+            <TD>1.98154E-7</TD>
+            <TD/>
+            <TD>4.53092E-7</TD>
+            <TD>9.01603E-8</TD>
+            <TD>1.10857E-7</TD>
+            <TD>7.77634E-8</TD>
+            <TD>4.05315E-8</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+          </TR>
+          <TR>
+            <TD>182069</TD>
+            <TD>CXO J140309.7+542114</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>6</TD>
+            <TD>5</TD>
+            <TD>3</TD>
+            <TD>2</TD>
+            <TD>3</TD>
+            <TD/>
+            <TD>54.35413161</TD>
+            <TD>90.0</TD>
+            <TD>0.21939</TD>
+            <TD>0.21937</TD>
+            <TD>3.41333E-15</TD>
+            <TD>1.597E-15</TD>
+            <TD>6.49578E-16</TD>
+            <TD>4.0494E-16</TD>
+            <TD>1.19361E-16</TD>
+            <TD/>
+            <TD>0.0581546</TD>
+            <TD>0.156911</TD>
+            <TD>0.0987568</TD>
+            <TD/>
+            <TD>210.79068191</TD>
+            <TD>7.04167</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>13</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>738974.0</TD>
+            <TD>3.3773E-15</TD>
+            <TD>1.60869E-15</TD>
+            <TD>6.65174E-16</TD>
+            <TD>3.98669E-16</TD>
+            <TD>1.0254E-16</TD>
+            <TD/>
+            <TD>4.63292E-15</TD>
+            <TD>2.68266E-15</TD>
+            <TD>8.0446E-16</TD>
+            <TD>3.31047E-16</TD>
+            <TD>1.12951E-16</TD>
+            <TD>4.95513E-15</TD>
+            <TD>2.66989E-15</TD>
+            <TD>8.35299E-16</TD>
+            <TD>3.42449E-16</TD>
+            <TD>1.2851E-16</TD>
+            <TD>2.80893E-15</TD>
+            <TD>2.82767E-15</TD>
+            <TD>7.69196E-16</TD>
+            <TD>3.43725E-16</TD>
+            <TD>1.68652E-16</TD>
+            <TD>3.00429E-15</TD>
+            <TD>2.81421E-15</TD>
+            <TD>7.98683E-16</TD>
+            <TD>3.55564E-16</TD>
+            <TD>1.91885E-16</TD>
+            <TD>59.770626</TD>
+            <TD>102.054215</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.941152</TD>
+            <TD>0.993324</TD>
+            <TD>0.799638</TD>
+            <TD>0.910735</TD>
+            <TD>0.999572</TD>
+            <TD>0.98646</TD>
+            <TD>0.995664</TD>
+            <TD>0.742838</TD>
+            <TD>0.943015</TD>
+            <TD>0.891796</TD>
+            <TD/>
+            <TD>0.0416968</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0189988</TD>
+            <TD>0.221053</TD>
+            <TD>0.263405</TD>
+            <TD>0.013862</TD>
+            <TD>0.0416968</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0189988</TD>
+            <TD>0.221053</TD>
+            <TD>0.263405</TD>
+            <TD>0.013862</TD>
+            <TD/>
+            <TD>1.15</TD>
+            <TD>1.16489E-6</TD>
+            <TD>3.1732E-7</TD>
+            <TD>2.56534E-7</TD>
+            <TD>2.88731E-7</TD>
+            <TD>1.98921E-7</TD>
+            <TD>1.1682E-6</TD>
+            <TD>3.17864E-7</TD>
+            <TD>2.62471E-7</TD>
+            <TD>2.83861E-7</TD>
+            <TD>1.91451E-7</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0023065</TD>
+            <TD>7.98827E-5</TD>
+            <TD>0.038368</TD>
+            <TD>5.99363E-6</TD>
+            <TD>1.52165E-5</TD>
+            <TD>2.73769E-7</TD>
+            <TD>8.23608E-8</TD>
+            <TD>1.37516E-7</TD>
+            <TD>6.56477E-8</TD>
+            <TD>2.55289E-7</TD>
+            <TD>0.923752</TD>
+            <TD>0.879088</TD>
+            <TD>0.649385</TD>
+            <TD>0.669243</TD>
+            <TD>0.523019</TD>
+            <TD>2.1252E-4</TD>
+            <TD>86557.4</TD>
+            <TD>12066.0</TD>
+            <TD>26524.4</TD>
+            <TD>11031.3</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>T</TD>
+            <TD>T</TD>
+            <TD>-32768</TD>
+            <TD>-32768</TD>
+            <TD/>
+            <TD/>
+            <TD>3.62021E-15</TD>
+            <TD>1.78647E-15</TD>
+            <TD>7.12309E-16</TD>
+            <TD>4.46443E-16</TD>
+            <TD>1.58272E-16</TD>
+            <TD/>
+            <TD>3.20853E-15</TD>
+            <TD>1.40944E-15</TD>
+            <TD>5.87474E-16</TD>
+            <TD>3.63851E-16</TD>
+            <TD>8.01176E-17</TD>
+            <TD/>
+            <TD/>
+            <TD>3.58386E-15</TD>
+            <TD>1.80012E-15</TD>
+            <TD>7.27956E-16</TD>
+            <TD>4.39325E-16</TD>
+            <TD>1.40181E-16</TD>
+            <TD/>
+            <TD>3.17281E-15</TD>
+            <TD>1.41918E-15</TD>
+            <TD>6.03019E-16</TD>
+            <TD>3.5842E-16</TD>
+            <TD>6.47573E-17</TD>
+            <TD/>
+            <TD/>
+            <TD>5.31518E-15</TD>
+            <TD>3.40979E-15</TD>
+            <TD>9.99695E-16</TD>
+            <TD>4.3362E-16</TD>
+            <TD>1.7633E-16</TD>
+            <TD/>
+            <TD>3.95748E-15</TD>
+            <TD>2.05531E-15</TD>
+            <TD>6.35016E-16</TD>
+            <TD>2.44966E-16</TD>
+            <TD>6.63259E-17</TD>
+            <TD/>
+            <TD/>
+            <TD>5.65727E-15</TD>
+            <TD>3.39582E-15</TD>
+            <TD>1.02776E-15</TD>
+            <TD>4.44897E-16</TD>
+            <TD>1.9614E-16</TD>
+            <TD/>
+            <TD>4.26003E-15</TD>
+            <TD>2.04421E-15</TD>
+            <TD>6.6395E-16</TD>
+            <TD>2.53819E-16</TD>
+            <TD>7.51174E-17</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>3.22259E-15</TD>
+            <TD>3.5941E-15</TD>
+            <TD>9.55873E-16</TD>
+            <TD>4.50226E-16</TD>
+            <TD>2.63287E-16</TD>
+            <TD/>
+            <TD>2.39942E-15</TD>
+            <TD>2.1664E-15</TD>
+            <TD>6.0718E-16</TD>
+            <TD>2.54348E-16</TD>
+            <TD>9.90346E-17</TD>
+            <TD/>
+            <TD/>
+            <TD>3.43E-15</TD>
+            <TD>3.57937E-15</TD>
+            <TD>9.82704E-16</TD>
+            <TD>4.61936E-16</TD>
+            <TD>2.92866E-16</TD>
+            <TD/>
+            <TD>2.58285E-15</TD>
+            <TD>2.1547E-15</TD>
+            <TD>6.34845E-16</TD>
+            <TD>2.6354E-16</TD>
+            <TD>1.12162E-16</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.16609</TD>
+            <TD>-0.051911</TD>
+            <TD>0.259595</TD>
+            <TD>0.0531057</TD>
+            <TD>0.195395</TD>
+            <TD>-0.00228893</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>1.23391E-6</TD>
+            <TD>3.53245E-7</TD>
+            <TD>2.81224E-7</TD>
+            <TD>3.18325E-7</TD>
+            <TD>2.63366E-7</TD>
+            <TD/>
+            <TD>1.09656E-6</TD>
+            <TD>2.81755E-7</TD>
+            <TD>2.32091E-7</TD>
+            <TD>2.59433E-7</TD>
+            <TD>1.33959E-7</TD>
+            <TD/>
+            <TD/>
+            <TD>1.23763E-6</TD>
+            <TD>3.54142E-7</TD>
+            <TD>2.87228E-7</TD>
+            <TD>3.13096E-7</TD>
+            <TD>2.6347E-7</TD>
+            <TD/>
+            <TD>1.09946E-6</TD>
+            <TD>2.81949E-7</TD>
+            <TD>2.37961E-7</TD>
+            <TD>2.54918E-7</TD>
+            <TD>1.20154E-7</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+          </TR>
+          <TR>
+            <TD>103920</TD>
+            <TD>CXO J140310.7+542126</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>1</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>1</TD>
+            <TD>0</TD>
+            <TD/>
+            <TD>54.357275765895906</TD>
+            <TD>0.0</TD>
+            <TD>0.542729</TD>
+            <TD>0.542729</TD>
+            <TD>5.294E-16</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>3.206E-16</TD>
+            <TD>1.18E-16</TD>
+            <TD/>
+            <TD>0.0484612</TD>
+            <TD>-0.78687</TD>
+            <TD>-0.835331</TD>
+            <TD/>
+            <TD>210.79459338824384</TD>
+            <TD>3.62662</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>2</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>168173.0</TD>
+            <TD>4.38694E-16</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>3.13782E-16</TD>
+            <TD>1.71508E-16</TD>
+            <TD/>
+            <TD>1.43612E-15</TD>
+            <TD>1.35241E-17</TD>
+            <TD>0.0</TD>
+            <TD>3.61143E-16</TD>
+            <TD>1.15067E-16</TD>
+            <TD>1.35667E-15</TD>
+            <TD>5.85643E-17</TD>
+            <TD>0.0</TD>
+            <TD>3.50272E-16</TD>
+            <TD>1.37665E-16</TD>
+            <TD>8.70717E-16</TD>
+            <TD>1.42551E-17</TD>
+            <TD>0.0</TD>
+            <TD>3.73438E-16</TD>
+            <TD>1.71287E-16</TD>
+            <TD>8.22546E-16</TD>
+            <TD>6.173E-17</TD>
+            <TD>0.0</TD>
+            <TD>3.62196E-16</TD>
+            <TD>2.04926E-16</TD>
+            <TD>59.766748</TD>
+            <TD>102.053816</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.360081</TD>
+            <TD>0.00695516</TD>
+            <TD/>
+            <TD>0.287184</TD>
+            <TD>0.217727</TD>
+            <TD>0.627644</TD>
+            <TD>6.42114E-5</TD>
+            <TD/>
+            <TD>0.627644</TD>
+            <TD>0.488163</TD>
+            <TD/>
+            <TD>0.140788</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.179361</TD>
+            <TD>0.0</TD>
+            <TD>0.123566</TD>
+            <TD>0.254881</TD>
+            <TD>0.140788</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.179361</TD>
+            <TD>0.0</TD>
+            <TD>0.123566</TD>
+            <TD>0.254881</TD>
+            <TD/>
+            <TD>1.15</TD>
+            <TD>4.843E-7</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>2.964E-7</TD>
+            <TD>1.967E-7</TD>
+            <TD>4.2258E-7</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>2.86203E-7</TD>
+            <TD>3.19357E-7</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.225407</TD>
+            <TD>0.0776394</TD>
+            <TD>0.0</TD>
+            <TD>0.412538</TD>
+            <TD>0.012125</TD>
+            <TD>7.73282E-8</TD>
+            <TD>8.86893E-9</TD>
+            <TD>0.0</TD>
+            <TD>1.03067E-7</TD>
+            <TD>8.63655E-9</TD>
+            <TD>0.540117</TD>
+            <TD>0.5</TD>
+            <TD>0.5</TD>
+            <TD>0.540117</TD>
+            <TD>0.497066</TD>
+            <TD>1.52091E-5</TD>
+            <TD>8.95537E-7</TD>
+            <TD>0.0</TD>
+            <TD>1.42918E-5</TD>
+            <TD>6.57313E-6</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>T</TD>
+            <TD>-32768</TD>
+            <TD>-32768</TD>
+            <TD/>
+            <TD/>
+            <TD>6.48E-16</TD>
+            <TD>1.469E-16</TD>
+            <TD>2.738E-17</TD>
+            <TD>3.844E-16</TD>
+            <TD>1.868E-16</TD>
+            <TD/>
+            <TD>4.114E-16</TD>
+            <TD/>
+            <TD/>
+            <TD>2.575E-16</TD>
+            <TD>6.66E-17</TD>
+            <TD/>
+            <TD/>
+            <TD>5.5329E-16</TD>
+            <TD>1.67628E-16</TD>
+            <TD>2.68959E-17</TD>
+            <TD>3.76615E-16</TD>
+            <TD>2.46473E-16</TD>
+            <TD/>
+            <TD>3.22946E-16</TD>
+            <TD/>
+            <TD/>
+            <TD>2.51077E-16</TD>
+            <TD>1.10069E-16</TD>
+            <TD/>
+            <TD/>
+            <TD>1.82753E-15</TD>
+            <TD>2.96691E-16</TD>
+            <TD>4.60006E-17</TD>
+            <TD>4.68858E-16</TD>
+            <TD>1.79256E-16</TD>
+            <TD/>
+            <TD>1.04543E-15</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD>2.70875E-16</TD>
+            <TD>6.74268E-17</TD>
+            <TD/>
+            <TD/>
+            <TD>1.74311E-15</TD>
+            <TD>3.16276E-16</TD>
+            <TD>4.45267E-17</TD>
+            <TD>4.53997E-16</TD>
+            <TD>2.05858E-16</TD>
+            <TD/>
+            <TD>9.70548E-16</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>2.61477E-16</TD>
+            <TD>8.33091E-17</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>1.10803E-15</TD>
+            <TD>3.12729E-16</TD>
+            <TD>4.38581E-17</TD>
+            <TD>4.84819E-16</TD>
+            <TD>2.66838E-16</TD>
+            <TD/>
+            <TD>6.33842E-16</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD>2.80096E-16</TD>
+            <TD>1.00371E-16</TD>
+            <TD/>
+            <TD/>
+            <TD>1.05684E-15</TD>
+            <TD>3.33372E-16</TD>
+            <TD>4.24529E-17</TD>
+            <TD>4.69452E-16</TD>
+            <TD>3.06437E-16</TD>
+            <TD/>
+            <TD>5.88442E-16</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>2.70379E-16</TD>
+            <TD>1.24013E-16</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.130521</TD>
+            <TD>-0.0108202</TD>
+            <TD>-0.636108</TD>
+            <TD>-0.905555</TD>
+            <TD>-0.735553</TD>
+            <TD>-0.918419</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>5.772E-7</TD>
+            <TD>2.433E-8</TD>
+            <TD>1.097E-8</TD>
+            <TD>3.552E-7</TD>
+            <TD>3.14E-7</TD>
+            <TD/>
+            <TD>3.923E-7</TD>
+            <TD/>
+            <TD/>
+            <TD>2.381E-7</TD>
+            <TD>1.093E-7</TD>
+            <TD/>
+            <TD/>
+            <TD>5.1094E-7</TD>
+            <TD>2.77965E-8</TD>
+            <TD>1.07735E-8</TD>
+            <TD>3.42888E-7</TD>
+            <TD>4.59318E-7</TD>
+            <TD/>
+            <TD>3.34417E-7</TD>
+            <TD/>
+            <TD/>
+            <TD>2.28974E-7</TD>
+            <TD>2.04422E-7</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+          </TR>
+          <TR>
+            <TD>196492</TD>
+            <TD>CXO J140312.5+542053</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>7</TD>
+            <TD>2</TD>
+            <TD>6</TD>
+            <TD>6</TD>
+            <TD>6</TD>
+            <TD>1.7347</TD>
+            <TD>54.34805287</TD>
+            <TD>90.0001</TD>
+            <TD>0.11554</TD>
+            <TD>0.11545</TD>
+            <TD>1.64449E-14</TD>
+            <TD>7.57279E-15</TD>
+            <TD>2.87561E-15</TD>
+            <TD>2.61163E-15</TD>
+            <TD>1.13013E-15</TD>
+            <TD>1.38E-14</TD>
+            <TD>0.0200971</TD>
+            <TD>-0.124703</TD>
+            <TD>-0.144801</TD>
+            <TD>8.9279</TD>
+            <TD>210.80224128</TD>
+            <TD>15.2582</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>22</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>957054.0</TD>
+            <TD>1.658E-14</TD>
+            <TD>7.57366E-15</TD>
+            <TD>2.91587E-15</TD>
+            <TD>2.77117E-15</TD>
+            <TD>1.35503E-15</TD>
+            <TD>9.06E-15</TD>
+            <TD>2.35322E-14</TD>
+            <TD>8.26752E-15</TD>
+            <TD>3.24526E-15</TD>
+            <TD>2.70409E-15</TD>
+            <TD>7.06684E-16</TD>
+            <TD>2.33555E-14</TD>
+            <TD>8.38851E-15</TD>
+            <TD>3.12294E-15</TD>
+            <TD>2.78435E-15</TD>
+            <TD>7.3176E-16</TD>
+            <TD>1.42667E-14</TD>
+            <TD>8.71141E-15</TD>
+            <TD>3.09494E-15</TD>
+            <TD>2.80721E-15</TD>
+            <TD>1.0536E-15</TD>
+            <TD>1.41596E-14</TD>
+            <TD>8.8389E-15</TD>
+            <TD>2.97828E-15</TD>
+            <TD>2.89053E-15</TD>
+            <TD>1.09099E-15</TD>
+            <TD>59.772057</TD>
+            <TD>102.036417</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.989618</TD>
+            <TD>0.944543</TD>
+            <TD>0.869078</TD>
+            <TD>0.949516</TD>
+            <TD>0.99985</TD>
+            <TD>0.998667</TD>
+            <TD>0.948428</TD>
+            <TD>0.934233</TD>
+            <TD>0.99028</TD>
+            <TD>0.969091</TD>
+            <TD>0.51549</TD>
+            <TD>5.09405E-4</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>9.04627E-13</TD>
+            <TD>0.00161871</TD>
+            <TD>0.0062984</TD>
+            <TD>2.31312</TD>
+            <TD>5.09405E-4</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>9.04627E-13</TD>
+            <TD>0.00161871</TD>
+            <TD>0.0062984</TD>
+            <TD>2.31312</TD>
+            <TD>1.0E-5</TD>
+            <TD>1.15</TD>
+            <TD>6.13645E-6</TD>
+            <TD>1.44809E-6</TD>
+            <TD>1.15607E-6</TD>
+            <TD>1.87963E-6</TD>
+            <TD>1.94797E-6</TD>
+            <TD>6.24954E-6</TD>
+            <TD>1.44333E-6</TD>
+            <TD>1.17392E-6</TD>
+            <TD>1.99919E-6</TD>
+            <TD>2.31269E-6</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0730746</TD>
+            <TD>0.00627961</TD>
+            <TD>0.0265303</TD>
+            <TD>0.00190122</TD>
+            <TD>1.67748E-4</TD>
+            <TD>1.19711E-6</TD>
+            <TD>5.13097E-7</TD>
+            <TD>3.61089E-7</TD>
+            <TD>5.17312E-7</TD>
+            <TD>1.68461E-6</TD>
+            <TD>0.993407</TD>
+            <TD>0.820106</TD>
+            <TD>0.920188</TD>
+            <TD>0.969809</TD>
+            <TD>0.980843</TD>
+            <TD>0.00121724</TD>
+            <TD>17479.6</TD>
+            <TD>4.09272E-4</TD>
+            <TD>7.1314E-4</TD>
+            <TD>70394.8</TD>
+            <TD>T</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>T</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>T</TD>
+            <TD>T</TD>
+            <TD>-32768</TD>
+            <TD>-32768</TD>
+            <TD>2.0264</TD>
+            <TD>1.4686</TD>
+            <TD>1.68479E-14</TD>
+            <TD>7.94735E-15</TD>
+            <TD>2.99975E-15</TD>
+            <TD>2.71154E-15</TD>
+            <TD>1.23547E-15</TD>
+            <TD/>
+            <TD>1.6046E-14</TD>
+            <TD>7.20197E-15</TD>
+            <TD>2.75271E-15</TD>
+            <TD>2.51272E-15</TD>
+            <TD>1.02584E-15</TD>
+            <TD/>
+            <TD/>
+            <TD>1.69804E-14</TD>
+            <TD>7.94956E-15</TD>
+            <TD>3.03898E-15</TD>
+            <TD>2.87229E-15</TD>
+            <TD>1.46949E-15</TD>
+            <TD/>
+            <TD>1.61836E-14</TD>
+            <TD>7.20153E-15</TD>
+            <TD>2.79399E-15</TD>
+            <TD>2.67106E-15</TD>
+            <TD>1.24171E-15</TD>
+            <TD/>
+            <TD/>
+            <TD>2.50721E-14</TD>
+            <TD>9.4601E-15</TD>
+            <TD>3.61005E-15</TD>
+            <TD>2.97424E-15</TD>
+            <TD>8.40457E-16</TD>
+            <TD/>
+            <TD>2.20078E-14</TD>
+            <TD>7.08687E-15</TD>
+            <TD>2.88412E-15</TD>
+            <TD>2.43665E-15</TD>
+            <TD>5.74248E-16</TD>
+            <TD/>
+            <TD/>
+            <TD>2.48828E-14</TD>
+            <TD>9.58885E-15</TD>
+            <TD>3.47465E-15</TD>
+            <TD>3.05448E-15</TD>
+            <TD>8.67808E-16</TD>
+            <TD/>
+            <TD>2.18435E-14</TD>
+            <TD>7.20016E-15</TD>
+            <TD>2.77475E-15</TD>
+            <TD>2.51694E-15</TD>
+            <TD>5.97076E-16</TD>
+            <TD/>
+            <TD/>
+            <TD>9.69E-15</TD>
+            <TD>8.03E-15</TD>
+            <TD>1.52003E-14</TD>
+            <TD>9.96802E-15</TD>
+            <TD>3.44283E-15</TD>
+            <TD>3.08766E-15</TD>
+            <TD>1.25305E-15</TD>
+            <TD/>
+            <TD>1.33425E-14</TD>
+            <TD>7.46738E-15</TD>
+            <TD>2.75052E-15</TD>
+            <TD>2.52958E-15</TD>
+            <TD>8.56152E-16</TD>
+            <TD/>
+            <TD/>
+            <TD>1.50855E-14</TD>
+            <TD>1.01037E-14</TD>
+            <TD>3.3137E-15</TD>
+            <TD>3.17096E-15</TD>
+            <TD>1.29382E-15</TD>
+            <TD/>
+            <TD>1.32429E-14</TD>
+            <TD>7.58674E-15</TD>
+            <TD>2.64622E-15</TD>
+            <TD>2.61293E-15</TD>
+            <TD>8.90185E-16</TD>
+            <TD/>
+            <TD/>
+            <TD>1.49E-14</TD>
+            <TD>1.28E-14</TD>
+            <TD>0.0706118</TD>
+            <TD>-0.0314663</TD>
+            <TD>-0.0655962</TD>
+            <TD>-0.183422</TD>
+            <TD>-0.0937054</TD>
+            <TD>-0.196125</TD>
+            <TD/>
+            <TD/>
+            <TD>0.56795</TD>
+            <TD>0.46355</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>1.2988</TD>
+            <TD/>
+            <TD>17.627</TD>
+            <TD>0.96945</TD>
+            <TD>6.2862E-6</TD>
+            <TD>1.5188E-6</TD>
+            <TD>1.20591E-6</TD>
+            <TD>1.95139E-6</TD>
+            <TD>2.12732E-6</TD>
+            <TD/>
+            <TD>5.98819E-6</TD>
+            <TD>1.37809E-6</TD>
+            <TD>1.10673E-6</TD>
+            <TD>1.80858E-6</TD>
+            <TD>1.77041E-6</TD>
+            <TD/>
+            <TD/>
+            <TD>6.40032E-6</TD>
+            <TD>1.51425E-6</TD>
+            <TD>1.22348E-6</TD>
+            <TD>2.07256E-6</TD>
+            <TD>2.50986E-6</TD>
+            <TD/>
+            <TD>6.10027E-6</TD>
+            <TD>1.37313E-6</TD>
+            <TD>1.12486E-6</TD>
+            <TD>1.92656E-6</TD>
+            <TD>2.11749E-6</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+          </TR>
+          <TR>
+            <TD>196493</TD>
+            <TD>CXO J140312.5+542056</TD>
+            <TD>8</TD>
+            <TD>6</TD>
+            <TD>6</TD>
+            <TD>6</TD>
+            <TD>0</TD>
+            <TD>2</TD>
+            <TD>6</TD>
+            <TD>3</TD>
+            <TD>2</TD>
+            <TD>2</TD>
+            <TD>2.1474</TD>
+            <TD>54.34894974</TD>
+            <TD>180.0</TD>
+            <TD>0.12542</TD>
+            <TD>0.12534</TD>
+            <TD>1.36557E-14</TD>
+            <TD>5.86062E-15</TD>
+            <TD>2.42405E-15</TD>
+            <TD>2.81258E-15</TD>
+            <TD>1.44941E-15</TD>
+            <TD>2.38E-14</TD>
+            <TD>-0.022537</TD>
+            <TD>-0.199918</TD>
+            <TD>-0.177381</TD>
+            <TD>16.451</TD>
+            <TD>210.80226711</TD>
+            <TD>17.2982</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>21</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>892355.0</TD>
+            <TD>1.41733E-14</TD>
+            <TD>5.84356E-15</TD>
+            <TD>2.6012E-15</TD>
+            <TD>3.22361E-15</TD>
+            <TD>1.83118E-15</TD>
+            <TD>1.68E-14</TD>
+            <TD>4.66013E-14</TD>
+            <TD>1.47204E-14</TD>
+            <TD>6.6078E-15</TD>
+            <TD>3.37697E-15</TD>
+            <TD>1.09712E-15</TD>
+            <TD>4.71447E-14</TD>
+            <TD>1.5206E-14</TD>
+            <TD>6.59667E-15</TD>
+            <TD>3.60709E-15</TD>
+            <TD>1.46369E-15</TD>
+            <TD>3.15686E-14</TD>
+            <TD>1.55423E-14</TD>
+            <TD>6.35968E-15</TD>
+            <TD>3.50575E-15</TD>
+            <TD>1.63571E-15</TD>
+            <TD>3.19367E-14</TD>
+            <TD>1.60551E-14</TD>
+            <TD>6.34897E-15</TD>
+            <TD>3.74465E-15</TD>
+            <TD>2.18223E-15</TD>
+            <TD>59.771297</TD>
+            <TD>102.037362</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.993529</TD>
+            <TD>0.892707</TD>
+            <TD>0.902285</TD>
+            <TD>0.958564</TD>
+            <TD>0.999561</TD>
+            <TD>0.978262</TD>
+            <TD>0.933893</TD>
+            <TD>0.843208</TD>
+            <TD>0.863596</TD>
+            <TD>0.891496</TD>
+            <TD>0.46327</TD>
+            <TD>0.00510303</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0117039</TD>
+            <TD>0.0145978</TD>
+            <TD>0.0336925</TD>
+            <TD>0.0438441</TD>
+            <TD>0.00510303</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0117039</TD>
+            <TD>0.0145978</TD>
+            <TD>0.0336925</TD>
+            <TD>0.0438441</TD>
+            <TD>1.0E-5</TD>
+            <TD>1.15</TD>
+            <TD>5.8634E-6</TD>
+            <TD>1.16655E-6</TD>
+            <TD>9.78271E-7</TD>
+            <TD>2.0867E-6</TD>
+            <TD>2.6318E-6</TD>
+            <TD>6.26122E-6</TD>
+            <TD>1.15097E-6</TD>
+            <TD>1.04728E-6</TD>
+            <TD>2.39441E-6</TD>
+            <TD>3.19609E-6</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>1.0</TD>
+            <TD>0.999509</TD>
+            <TD>0.999997</TD>
+            <TD>0.998238</TD>
+            <TD>0.0499797</TD>
+            <TD>4.05616E-6</TD>
+            <TD>1.10546E-6</TD>
+            <TD>9.49102E-7</TD>
+            <TD>1.27299E-6</TD>
+            <TD>2.85111E-6</TD>
+            <TD>0.776443</TD>
+            <TD>0.934407</TD>
+            <TD>0.827877</TD>
+            <TD>0.890354</TD>
+            <TD>0.779829</TD>
+            <TD>4.81162E-4</TD>
+            <TD>2.93106E-4</TD>
+            <TD>9.23058E-5</TD>
+            <TD>2.59604E-4</TD>
+            <TD>31903.9</TD>
+            <TD>T</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>T</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>T</TD>
+            <TD>T</TD>
+            <TD>-32768</TD>
+            <TD>-32768</TD>
+            <TD>2.4537</TD>
+            <TD>1.8637</TD>
+            <TD>1.39971E-14</TD>
+            <TD>6.18391E-15</TD>
+            <TD>2.53723E-15</TD>
+            <TD>2.91406E-15</TD>
+            <TD>1.56359E-15</TD>
+            <TD/>
+            <TD>1.33178E-14</TD>
+            <TD>5.54056E-15</TD>
+            <TD>2.312E-15</TD>
+            <TD>2.71211E-15</TD>
+            <TD>1.33637E-15</TD>
+            <TD/>
+            <TD/>
+            <TD>1.45172E-14</TD>
+            <TD>6.17243E-15</TD>
+            <TD>2.71701E-15</TD>
+            <TD>3.33016E-15</TD>
+            <TD>1.96084E-15</TD>
+            <TD/>
+            <TD>1.38328E-14</TD>
+            <TD>5.51799E-15</TD>
+            <TD>2.48655E-15</TD>
+            <TD>3.11813E-15</TD>
+            <TD>1.70281E-15</TD>
+            <TD/>
+            <TD/>
+            <TD>4.93506E-14</TD>
+            <TD>1.66853E-14</TD>
+            <TD>7.26156E-15</TD>
+            <TD>3.67733E-15</TD>
+            <TD>1.26271E-15</TD>
+            <TD/>
+            <TD>4.38796E-14</TD>
+            <TD>1.2775E-14</TD>
+            <TD>5.96063E-15</TD>
+            <TD>3.07963E-15</TD>
+            <TD>9.33198E-16</TD>
+            <TD/>
+            <TD/>
+            <TD>4.98367E-14</TD>
+            <TD>1.71918E-14</TD>
+            <TD>7.23615E-15</TD>
+            <TD>3.9113E-15</TD>
+            <TD>1.6487E-15</TD>
+            <TD/>
+            <TD>4.44255E-14</TD>
+            <TD>1.324E-14</TD>
+            <TD>5.96361E-15</TD>
+            <TD>3.30594E-15</TD>
+            <TD>1.27682E-15</TD>
+            <TD/>
+            <TD/>
+            <TD>1.78E-14</TD>
+            <TD>1.54E-14</TD>
+            <TD>3.34311E-14</TD>
+            <TD>1.7617E-14</TD>
+            <TD>6.98889E-15</TD>
+            <TD>3.81757E-15</TD>
+            <TD>1.88258E-15</TD>
+            <TD/>
+            <TD>2.97249E-14</TD>
+            <TD>1.34884E-14</TD>
+            <TD>5.73681E-15</TD>
+            <TD>3.19708E-15</TD>
+            <TD>1.39131E-15</TD>
+            <TD/>
+            <TD/>
+            <TD>3.37604E-14</TD>
+            <TD>1.81518E-14</TD>
+            <TD>6.96444E-15</TD>
+            <TD>4.06046E-15</TD>
+            <TD>2.45806E-15</TD>
+            <TD/>
+            <TD>3.00947E-14</TD>
+            <TD>1.39793E-14</TD>
+            <TD>5.73968E-15</TD>
+            <TD>3.43201E-15</TD>
+            <TD>1.90362E-15</TD>
+            <TD/>
+            <TD/>
+            <TD>2.58E-14</TD>
+            <TD>2.19E-14</TD>
+            <TD>0.0216078</TD>
+            <TD>-0.0655807</TD>
+            <TD>-0.147272</TD>
+            <TD>-0.249372</TD>
+            <TD>-0.131085</TD>
+            <TD>-0.224534</TD>
+            <TD/>
+            <TD/>
+            <TD>0.4963</TD>
+            <TD>0.43179</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>1.3086</TD>
+            <TD/>
+            <TD>24.937</TD>
+            <TD>8.5778</TD>
+            <TD>6.00882E-6</TD>
+            <TD>1.22976E-6</TD>
+            <TD>1.02388E-6</TD>
+            <TD>2.16189E-6</TD>
+            <TD>2.83818E-6</TD>
+            <TD/>
+            <TD>5.71944E-6</TD>
+            <TD>1.10397E-6</TD>
+            <TD>9.33114E-7</TD>
+            <TD>2.01226E-6</TD>
+            <TD>2.42748E-6</TD>
+            <TD/>
+            <TD/>
+            <TD>6.41139E-6</TD>
+            <TD>1.21462E-6</TD>
+            <TD>1.0939E-6</TD>
+            <TD>2.47393E-6</TD>
+            <TD>3.42499E-6</TD>
+            <TD/>
+            <TD>6.11254E-6</TD>
+            <TD>1.08797E-6</TD>
+            <TD>1.00113E-6</TD>
+            <TD>2.31569E-6</TD>
+            <TD>2.96947E-6</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+          </TR>
+          <TR>
+            <TD>162692</TD>
+            <TD>CXO J140314.8+542122</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>4</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>1</TD>
+            <TD/>
+            <TD>54.35636551</TD>
+            <TD>90.0</TD>
+            <TD>0.72792</TD>
+            <TD>0.72791</TD>
+            <TD>2.50759E-15</TD>
+            <TD>1.52541E-15</TD>
+            <TD>2.60931E-16</TD>
+            <TD>2.71816E-16</TD>
+            <TD>3.819E-17</TD>
+            <TD/>
+            <TD>0.287036</TD>
+            <TD>0.175109</TD>
+            <TD>-0.111927</TD>
+            <TD/>
+            <TD>210.81180364</TD>
+            <TD>3.85153</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>2</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>115689.0</TD>
+            <TD>2.80938E-15</TD>
+            <TD>1.86626E-15</TD>
+            <TD>2.90895E-16</TD>
+            <TD>2.74307E-16</TD>
+            <TD>9.11763E-17</TD>
+            <TD/>
+            <TD>3.15725E-15</TD>
+            <TD>2.38051E-15</TD>
+            <TD>2.65584E-16</TD>
+            <TD>2.98955E-16</TD>
+            <TD>3.83113E-17</TD>
+            <TD>3.14166E-15</TD>
+            <TD>2.25696E-15</TD>
+            <TD>3.33483E-16</TD>
+            <TD>2.77545E-16</TD>
+            <TD>7.53423E-17</TD>
+            <TD>2.13165E-15</TD>
+            <TD>2.51435E-15</TD>
+            <TD>2.55609E-16</TD>
+            <TD>3.36478E-16</TD>
+            <TD>7.40825E-17</TD>
+            <TD>2.12112E-15</TD>
+            <TD>2.38385E-15</TD>
+            <TD>3.20957E-16</TD>
+            <TD>3.12381E-16</TD>
+            <TD>1.4569E-16</TD>
+            <TD>59.76205</TD>
+            <TD>102.036127</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0182028</TD>
+            <TD>0.52192</TD>
+            <TD>2.10399E-5</TD>
+            <TD>0.565842</TD>
+            <TD>0.745422</TD>
+            <TD>0.0140345</TD>
+            <TD>0.352168</TD>
+            <TD>0.00124935</TD>
+            <TD>0.773183</TD>
+            <TD>0.291309</TD>
+            <TD/>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.76614</TD>
+            <TD>0.0</TD>
+            <TD>0.397905</TD>
+            <TD>0.60949</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.76614</TD>
+            <TD>0.0</TD>
+            <TD>0.397905</TD>
+            <TD>0.60949</TD>
+            <TD/>
+            <TD>1.15</TD>
+            <TD>8.1475E-7</TD>
+            <TD>3.04459E-7</TD>
+            <TD>1.139E-7</TD>
+            <TD>2.13288E-7</TD>
+            <TD>4.92743E-8</TD>
+            <TD>8.20615E-7</TD>
+            <TD>3.20844E-7</TD>
+            <TD>1.25179E-7</TD>
+            <TD>2.0631E-7</TD>
+            <TD>1.88128E-7</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.024592</TD>
+            <TD>0.108937</TD>
+            <TD>0.0467006</TD>
+            <TD>0.120473</TD>
+            <TD>0.161886</TD>
+            <TD>1.49267E-8</TD>
+            <TD>3.9889E-8</TD>
+            <TD>7.73669E-9</TD>
+            <TD>3.1999E-8</TD>
+            <TD>1.04723E-7</TD>
+            <TD>0.439498</TD>
+            <TD>0.661244</TD>
+            <TD>0.484777</TD>
+            <TD>0.481602</TD>
+            <TD>0.52111</TD>
+            <TD>263167.0</TD>
+            <TD>114294.0</TD>
+            <TD>58800.7</TD>
+            <TD>14604.3</TD>
+            <TD>2975.91</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>T</TD>
+            <TD>F</TD>
+            <TD>-32768</TD>
+            <TD>-32768</TD>
+            <TD/>
+            <TD/>
+            <TD>2.99099E-15</TD>
+            <TD>2.02032E-15</TD>
+            <TD>3.58778E-16</TD>
+            <TD>3.57663E-16</TD>
+            <TD>1.06891E-16</TD>
+            <TD/>
+            <TD>2.02903E-15</TD>
+            <TD>1.02762E-15</TD>
+            <TD>1.6254E-16</TD>
+            <TD>1.86569E-16</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD>3.40999E-15</TD>
+            <TD>2.49576E-15</TD>
+            <TD>4.02509E-16</TD>
+            <TD>3.74497E-16</TD>
+            <TD>1.89927E-16</TD>
+            <TD/>
+            <TD>2.20895E-15</TD>
+            <TD>1.23521E-15</TD>
+            <TD>1.79892E-16</TD>
+            <TD>1.7409E-16</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD>3.94241E-15</TD>
+            <TD>3.36439E-15</TD>
+            <TD>4.35853E-16</TD>
+            <TD>4.51737E-16</TD>
+            <TD>1.01267E-16</TD>
+            <TD/>
+            <TD>2.37959E-15</TD>
+            <TD>1.57124E-15</TD>
+            <TD>1.41939E-16</TD>
+            <TD>1.82024E-16</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD>3.95488E-15</TD>
+            <TD>3.25719E-15</TD>
+            <TD>5.20979E-16</TD>
+            <TD>4.27881E-16</TD>
+            <TD>2.23091E-16</TD>
+            <TD/>
+            <TD>2.3355E-15</TD>
+            <TD>1.43965E-15</TD>
+            <TD>1.90918E-16</TD>
+            <TD>1.58965E-16</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>2.66176E-15</TD>
+            <TD>3.55355E-15</TD>
+            <TD>4.19483E-16</TD>
+            <TD>5.08437E-16</TD>
+            <TD>1.95819E-16</TD>
+            <TD/>
+            <TD>1.6066E-15</TD>
+            <TD>1.65958E-15</TD>
+            <TD>1.36608E-16</TD>
+            <TD>2.0487E-16</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD>2.67017E-15</TD>
+            <TD>3.44033E-15</TD>
+            <TD>5.01412E-16</TD>
+            <TD>4.81586E-16</TD>
+            <TD>4.31392E-16</TD>
+            <TD/>
+            <TD>1.57683E-15</TD>
+            <TD>1.52059E-15</TD>
+            <TD>1.83747E-16</TD>
+            <TD>1.78918E-16</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.427907</TD>
+            <TD>0.141734</TD>
+            <TD>0.347619</TD>
+            <TD>-0.0021601</TD>
+            <TD>0.00974393</TD>
+            <TD>-0.236066</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>9.61577E-7</TD>
+            <TD>3.92615E-7</TD>
+            <TD>1.55327E-7</TD>
+            <TD>2.78737E-7</TD>
+            <TD>1.57286E-7</TD>
+            <TD/>
+            <TD>6.69391E-7</TD>
+            <TD>2.17041E-7</TD>
+            <TD>7.2206E-8</TD>
+            <TD>1.47915E-7</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD>9.8891E-7</TD>
+            <TD>4.24168E-7</TD>
+            <TD>1.7252E-7</TD>
+            <TD>2.80966E-7</TD>
+            <TD>4.35853E-7</TD>
+            <TD/>
+            <TD>6.53086E-7</TD>
+            <TD>2.16774E-7</TD>
+            <TD>7.78968E-8</TD>
+            <TD>1.31017E-7</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+          </TR>
+          <TR>
+            <TD>162659</TD>
+            <TD>CXO J140314.8+542110</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>1</TD>
+            <TD>4</TD>
+            <TD>1</TD>
+            <TD>3</TD>
+            <TD>1</TD>
+            <TD/>
+            <TD>54.35285467</TD>
+            <TD>90.0</TD>
+            <TD>0.36665</TD>
+            <TD>0.36662</TD>
+            <TD>1.61151E-15</TD>
+            <TD>5.71437E-16</TD>
+            <TD>2.79559E-16</TD>
+            <TD>3.67309E-16</TD>
+            <TD>8.25922E-17</TD>
+            <TD/>
+            <TD>-0.00119576</TD>
+            <TD>-0.509949</TD>
+            <TD>-0.508753</TD>
+            <TD/>
+            <TD>210.81197262</TD>
+            <TD>4.99049</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>6</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>412150.0</TD>
+            <TD>1.56096E-15</TD>
+            <TD>6.18809E-16</TD>
+            <TD>2.73856E-16</TD>
+            <TD>3.67147E-16</TD>
+            <TD>5.43769E-17</TD>
+            <TD/>
+            <TD>4.82094E-15</TD>
+            <TD>1.73127E-15</TD>
+            <TD>5.47666E-16</TD>
+            <TD>6.99931E-16</TD>
+            <TD>2.39108E-16</TD>
+            <TD>4.72925E-15</TD>
+            <TD>1.53138E-15</TD>
+            <TD>5.07323E-16</TD>
+            <TD>7.56815E-16</TD>
+            <TD>2.27176E-16</TD>
+            <TD>3.26789E-15</TD>
+            <TD>1.82583E-15</TD>
+            <TD>5.26048E-16</TD>
+            <TD>7.8514E-16</TD>
+            <TD>4.59975E-16</TD>
+            <TD>3.20573E-15</TD>
+            <TD>1.61503E-15</TD>
+            <TD>4.87297E-16</TD>
+            <TD>8.48949E-16</TD>
+            <TD>4.37022E-16</TD>
+            <TD>59.764941</TD>
+            <TD>102.032165</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.647615</TD>
+            <TD>0.809931</TD>
+            <TD>0.835711</TD>
+            <TD>0.340703</TD>
+            <TD>0.520376</TD>
+            <TD>0.893215</TD>
+            <TD>0.870549</TD>
+            <TD>0.907258</TD>
+            <TD>0.481506</TD>
+            <TD>0.785311</TD>
+            <TD/>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.586637</TD>
+            <TD>0.349185</TD>
+            <TD>0.143106</TD>
+            <TD>0.31155</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.586637</TD>
+            <TD>0.349185</TD>
+            <TD>0.143106</TD>
+            <TD>0.31155</TD>
+            <TD/>
+            <TD>1.15</TD>
+            <TD>6.96809E-7</TD>
+            <TD>1.02116E-7</TD>
+            <TD>1.17079E-7</TD>
+            <TD>2.73E-7</TD>
+            <TD>1.94589E-7</TD>
+            <TD>6.93261E-7</TD>
+            <TD>1.07804E-7</TD>
+            <TD>1.13902E-7</TD>
+            <TD>2.78017E-7</TD>
+            <TD>1.36765E-7</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.392887</TD>
+            <TD>0.129883</TD>
+            <TD>0.175902</TD>
+            <TD>0.102784</TD>
+            <TD>0.0156352</TD>
+            <TD>3.81856E-7</TD>
+            <TD>8.87745E-8</TD>
+            <TD>1.01351E-7</TD>
+            <TD>1.36222E-7</TD>
+            <TD>3.14671E-7</TD>
+            <TD>0.643765</TD>
+            <TD>0.635405</TD>
+            <TD>0.590629</TD>
+            <TD>0.551697</TD>
+            <TD>0.515543</TD>
+            <TD>10058.9</TD>
+            <TD>74094.4</TD>
+            <TD>1.90654E-5</TD>
+            <TD>15369.5</TD>
+            <TD>6.01929E-6</TD>
+            <TD>T</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>T</TD>
+            <TD>T</TD>
+            <TD>-32768</TD>
+            <TD>-32768</TD>
+            <TD/>
+            <TD/>
+            <TD>1.79791E-15</TD>
+            <TD>7.65726E-16</TD>
+            <TD>3.34861E-16</TD>
+            <TD>4.20061E-16</TD>
+            <TD>1.21032E-16</TD>
+            <TD/>
+            <TD>1.42699E-15</TD>
+            <TD>3.77992E-16</TD>
+            <TD>2.2481E-16</TD>
+            <TD>3.15084E-16</TD>
+            <TD>4.40477E-17</TD>
+            <TD/>
+            <TD/>
+            <TD>1.75258E-15</TD>
+            <TD>8.26548E-16</TD>
+            <TD>3.28516E-16</TD>
+            <TD>4.19563E-16</TD>
+            <TD>9.23422E-17</TD>
+            <TD/>
+            <TD>1.37126E-15</TD>
+            <TD>4.12233E-16</TD>
+            <TD>2.19011E-16</TD>
+            <TD>3.15256E-16</TD>
+            <TD>1.64263E-17</TD>
+            <TD/>
+            <TD/>
+            <TD>5.76202E-15</TD>
+            <TD>2.58075E-15</TD>
+            <TD>7.70482E-16</TD>
+            <TD>8.96388E-16</TD>
+            <TD>4.01923E-16</TD>
+            <TD/>
+            <TD>3.88927E-15</TD>
+            <TD>1.06662E-15</TD>
+            <TD>3.71413E-16</TD>
+            <TD>5.03479E-16</TD>
+            <TD>1.22621E-16</TD>
+            <TD/>
+            <TD/>
+            <TD>5.66629E-15</TD>
+            <TD>2.35758E-15</TD>
+            <TD>7.18772E-16</TD>
+            <TD>9.61046E-16</TD>
+            <TD>3.92135E-16</TD>
+            <TD/>
+            <TD>3.78384E-15</TD>
+            <TD>8.71278E-16</TD>
+            <TD>3.36687E-16</TD>
+            <TD>5.51522E-16</TD>
+            <TD>1.01984E-16</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>3.9058E-15</TD>
+            <TD>2.72172E-15</TD>
+            <TD>7.40068E-16</TD>
+            <TD>1.00551E-15</TD>
+            <TD>7.73185E-16</TD>
+            <TD/>
+            <TD>2.63635E-15</TD>
+            <TD>1.12488E-15</TD>
+            <TD>3.56752E-16</TD>
+            <TD>5.64772E-16</TD>
+            <TD>2.35887E-16</TD>
+            <TD/>
+            <TD/>
+            <TD>3.84091E-15</TD>
+            <TD>2.48635E-15</TD>
+            <TD>6.90399E-16</TD>
+            <TD>1.07804E-15</TD>
+            <TD>7.54356E-16</TD>
+            <TD/>
+            <TD>2.56488E-15</TD>
+            <TD>9.18868E-16</TD>
+            <TD>3.23397E-16</TD>
+            <TD>6.18663E-16</TD>
+            <TD>1.96187E-16</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0804546</TD>
+            <TD>-0.0750561</TD>
+            <TD>-0.36747</TD>
+            <TD>-0.635808</TD>
+            <TD>-0.382649</TD>
+            <TD>-0.618226</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>7.71107E-7</TD>
+            <TD>1.33124E-7</TD>
+            <TD>1.39908E-7</TD>
+            <TD>3.12173E-7</TD>
+            <TD>2.80032E-7</TD>
+            <TD/>
+            <TD>6.23253E-7</TD>
+            <TD>7.09368E-8</TD>
+            <TD>9.44779E-8</TD>
+            <TD>2.34218E-7</TD>
+            <TD>1.08512E-7</TD>
+            <TD/>
+            <TD/>
+            <TD>7.6978E-7</TD>
+            <TD>1.40877E-7</TD>
+            <TD>1.36623E-7</TD>
+            <TD>3.18306E-7</TD>
+            <TD>2.25813E-7</TD>
+            <TD/>
+            <TD>6.17507E-7</TD>
+            <TD>7.44444E-8</TD>
+            <TD>9.14088E-8</TD>
+            <TD>2.38131E-7</TD>
+            <TD>4.83884E-8</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+          </TR>
+          <TR>
+            <TD>103927</TD>
+            <TD>CXO J140316.4+542105</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>2</TD>
+            <TD>0</TD>
+            <TD>1</TD>
+            <TD>2</TD>
+            <TD>1</TD>
+            <TD/>
+            <TD>54.35159489499266</TD>
+            <TD>90.0</TD>
+            <TD>0.549424</TD>
+            <TD>0.549424</TD>
+            <TD>1.929E-15</TD>
+            <TD>1.191E-15</TD>
+            <TD>2.607E-16</TD>
+            <TD>1.548E-16</TD>
+            <TD>3.674E-17</TD>
+            <TD/>
+            <TD>0.26243</TD>
+            <TD>0.200645</TD>
+            <TD>-0.0617843</TD>
+            <TD/>
+            <TD>210.81872874814906</TD>
+            <TD>4.64009</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>2</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>168173.0</TD>
+            <TD>1.88103E-15</TD>
+            <TD>1.19188E-15</TD>
+            <TD>2.44616E-16</TD>
+            <TD>1.55027E-16</TD>
+            <TD>1.43154E-16</TD>
+            <TD/>
+            <TD>2.21595E-15</TD>
+            <TD>1.60267E-15</TD>
+            <TD>2.39946E-16</TD>
+            <TD>1.96191E-16</TD>
+            <TD>1.00415E-17</TD>
+            <TD>2.29039E-15</TD>
+            <TD>1.62587E-15</TD>
+            <TD>2.29621E-16</TD>
+            <TD>2.00441E-16</TD>
+            <TD>8.77412E-17</TD>
+            <TD>1.33993E-15</TD>
+            <TD>1.68815E-15</TD>
+            <TD>2.28861E-16</TD>
+            <TD>2.03673E-16</TD>
+            <TD>1.49941E-17</TD>
+            <TD>1.38495E-15</TD>
+            <TD>1.71258E-15</TD>
+            <TD>2.19014E-16</TD>
+            <TD>2.08085E-16</TD>
+            <TD>1.31016E-16</TD>
+            <TD>59.763852</TD>
+            <TD>102.024245</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.568249</TD>
+            <TD>0.0285423</TD>
+            <TD>0.00658086</TD>
+            <TD>0.725726</TD>
+            <TD>0.354688</TD>
+            <TD>0.242899</TD>
+            <TD>0.121354</TD>
+            <TD>0.141777</TD>
+            <TD>0.296744</TD>
+            <TD>0.456268</TD>
+            <TD/>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.119543</TD>
+            <TD>0.0</TD>
+            <TD>0.176754</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.119543</TD>
+            <TD>0.0</TD>
+            <TD>0.176754</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD>1.15</TD>
+            <TD>5.731E-7</TD>
+            <TD>2.15E-7</TD>
+            <TD>1.034E-7</TD>
+            <TD>1.217E-7</TD>
+            <TD>4.688E-8</TD>
+            <TD>5.75598E-7</TD>
+            <TD>2.15002E-7</TD>
+            <TD>9.71839E-8</TD>
+            <TD>1.23729E-7</TD>
+            <TD>2.52432E-7</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.296807</TD>
+            <TD>0.314279</TD>
+            <TD>0.106046</TD>
+            <TD>0.156471</TD>
+            <TD>0.252071</TD>
+            <TD>1.11213E-7</TD>
+            <TD>7.02045E-8</TD>
+            <TD>1.20632E-8</TD>
+            <TD>2.54744E-8</TD>
+            <TD>1.90336E-7</TD>
+            <TD>0.669668</TD>
+            <TD>0.491069</TD>
+            <TD>0.521512</TD>
+            <TD>0.706988</TD>
+            <TD>0.54945</TD>
+            <TD>3.22901E-5</TD>
+            <TD>9.4777E-6</TD>
+            <TD>5.82012E-6</TD>
+            <TD>2.71536E-5</TD>
+            <TD>8.62033E-6</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>-32768</TD>
+            <TD>-32768</TD>
+            <TD/>
+            <TD/>
+            <TD>2.269E-15</TD>
+            <TD>1.563E-15</TD>
+            <TD>3.501E-16</TD>
+            <TD>2.036E-16</TD>
+            <TD>6.843E-17</TD>
+            <TD/>
+            <TD>1.592E-15</TD>
+            <TD>8.708E-16</TD>
+            <TD>1.865E-16</TD>
+            <TD>1.055E-16</TD>
+            <TD>5.391E-18</TD>
+            <TD/>
+            <TD/>
+            <TD>2.21538E-15</TD>
+            <TD>1.56697E-15</TD>
+            <TD>3.31057E-16</TD>
+            <TD>2.04334E-16</TD>
+            <TD>2.0737E-16</TD>
+            <TD/>
+            <TD>1.55003E-15</TD>
+            <TD>8.71693E-16</TD>
+            <TD>1.72623E-16</TD>
+            <TD>1.05398E-16</TD>
+            <TD>7.85894E-17</TD>
+            <TD/>
+            <TD/>
+            <TD>2.69795E-15</TD>
+            <TD>2.18736E-15</TD>
+            <TD>3.54741E-16</TD>
+            <TD>2.79766E-16</TD>
+            <TD>4.75285E-17</TD>
+            <TD/>
+            <TD>1.73405E-15</TD>
+            <TD>1.1123E-15</TD>
+            <TD>1.5074E-16</TD>
+            <TD>1.29865E-16</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD>2.77742E-15</TD>
+            <TD>2.22091E-15</TD>
+            <TD>3.41356E-16</TD>
+            <TD>2.84007E-16</TD>
+            <TD>1.4719E-16</TD>
+            <TD/>
+            <TD>1.80091E-15</TD>
+            <TD>1.13728E-15</TD>
+            <TD>1.42802E-16</TD>
+            <TD>1.32236E-16</TD>
+            <TD>4.23493E-17</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>1.63139E-15</TD>
+            <TD>2.30402E-15</TD>
+            <TD>3.38354E-16</TD>
+            <TD>2.90435E-16</TD>
+            <TD>7.09701E-17</TD>
+            <TD/>
+            <TD>1.04854E-15</TD>
+            <TD>1.17163E-15</TD>
+            <TD>1.43776E-16</TD>
+            <TD>1.34817E-16</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD>1.67944E-15</TD>
+            <TD>2.33936E-15</TD>
+            <TD>3.25587E-16</TD>
+            <TD>2.94838E-16</TD>
+            <TD>2.19786E-16</TD>
+            <TD/>
+            <TD>1.08897E-15</TD>
+            <TD>1.19793E-15</TD>
+            <TD>1.36206E-16</TD>
+            <TD>1.37279E-16</TD>
+            <TD>6.32366E-17</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.390783</TD>
+            <TD>0.127264</TD>
+            <TD>0.345574</TD>
+            <TD>0.0469759</TD>
+            <TD>0.0469325</TD>
+            <TD>-0.168136</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>6.745E-7</TD>
+            <TD>2.806E-7</TD>
+            <TD>1.389E-7</TD>
+            <TD>1.606E-7</TD>
+            <TD>9.193E-8</TD>
+            <TD/>
+            <TD>4.727E-7</TD>
+            <TD>1.59E-7</TD>
+            <TD>7.411E-8</TD>
+            <TD>8.267E-8</TD>
+            <TD>1.268E-9</TD>
+            <TD/>
+            <TD/>
+            <TD>6.77128E-7</TD>
+            <TD>2.80653E-7</TD>
+            <TD>1.31341E-7</TD>
+            <TD>1.64038E-7</TD>
+            <TD>3.68575E-7</TD>
+            <TD/>
+            <TD>4.73043E-7</TD>
+            <TD>1.58551E-7</TD>
+            <TD>6.86343E-8</TD>
+            <TD>8.36353E-8</TD>
+            <TD>1.36729E-7</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+          </TR>
+          <TR>
+            <TD>162694</TD>
+            <TD>CXO J140316.5+542055</TD>
+            <TD>-32768</TD>
+            <TD>-32768</TD>
+            <TD>-32768</TD>
+            <TD>-32768</TD>
+            <TD>-32768</TD>
+            <TD>7</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>7</TD>
+            <TD>8</TD>
+            <TD/>
+            <TD>54.34865528</TD>
+            <TD>0.0</TD>
+            <TD>1.0085</TD>
+            <TD>1.00849</TD>
+            <TD>7.92776E-16</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>1.01747E-15</TD>
+            <TD>1.85501E-15</TD>
+            <TD/>
+            <TD>0.0226659</TD>
+            <TD>-0.731526</TD>
+            <TD>-0.754192</TD>
+            <TD/>
+            <TD>210.81881863</TD>
+            <TD>3.95451</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>1</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>61270.3</TD>
+            <TD>5.83846E-16</TD>
+            <TD>0.0</TD>
+            <TD>3.79056E-17</TD>
+            <TD>1.03288E-15</TD>
+            <TD>1.54617E-15</TD>
+            <TD/>
+            <TD>2.25679E-15</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>7.22769E-16</TD>
+            <TD>1.12293E-15</TD>
+            <TD>2.3302E-15</TD>
+            <TD>0.0</TD>
+            <TD>3.3773E-17</TD>
+            <TD>7.02539E-16</TD>
+            <TD>1.13011E-15</TD>
+            <TD>1.51899E-15</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>8.1124E-16</TD>
+            <TD>2.19362E-15</TD>
+            <TD>1.56841E-15</TD>
+            <TD>0.0</TD>
+            <TD>3.24945E-17</TD>
+            <TD>7.88535E-16</TD>
+            <TD>2.20766E-15</TD>
+            <TD>59.766288</TD>
+            <TD>102.020976</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.998524</TD>
+            <TD>9.86866E-12</TD>
+            <TD>0.614678</TD>
+            <TD>0.999835</TD>
+            <TD>0.999717</TD>
+            <TD>0.999581</TD>
+            <TD>3.24568E-9</TD>
+            <TD>0.104957</TD>
+            <TD>0.999934</TD>
+            <TD>0.999979</TD>
+            <TD/>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.266187</TD>
+            <TD>0.188923</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.266187</TD>
+            <TD>0.188923</TD>
+            <TD/>
+            <TD>1.15</TD>
+            <TD>7.03076E-7</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>5.63869E-7</TD>
+            <TD>4.54243E-6</TD>
+            <TD>7.13166E-7</TD>
+            <TD>0.0</TD>
+            <TD>1.56727E-8</TD>
+            <TD>5.37379E-7</TD>
+            <TD>4.45952E-6</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.998208</TD>
+            <TD>0.428011</TD>
+            <TD>0.456111</TD>
+            <TD>0.999775</TD>
+            <TD>0.999984</TD>
+            <TD>2.65669E-4</TD>
+            <TD>7847.77</TD>
+            <TD>3928.45</TD>
+            <TD>2.52166E-4</TD>
+            <TD>3.19754E-4</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>F</TD>
+            <TD>T</TD>
+            <TD>F</TD>
+            <TD>-32768</TD>
+            <TD>-32768</TD>
+            <TD/>
+            <TD/>
+            <TD>1.14008E-15</TD>
+            <TD>4.64317E-16</TD>
+            <TD>1.41061E-15</TD>
+            <TD>1.32249E-15</TD>
+            <TD>2.39993E-15</TD>
+            <TD/>
+            <TD>4.48266E-16</TD>
+            <TD/>
+            <TD/>
+            <TD>7.60503E-16</TD>
+            <TD>1.38009E-15</TD>
+            <TD/>
+            <TD/>
+            <TD>9.29638E-16</TD>
+            <TD>4.47455E-16</TD>
+            <TD>1.41865E-16</TD>
+            <TD>1.341E-15</TD>
+            <TD>2.05315E-15</TD>
+            <TD/>
+            <TD>2.38078E-16</TD>
+            <TD/>
+            <TD>0.0</TD>
+            <TD>7.71147E-16</TD>
+            <TD>1.08668E-15</TD>
+            <TD/>
+            <TD/>
+            <TD>2.92266E-15</TD>
+            <TD>4.66306E-16</TD>
+            <TD>8.12782E-17</TD>
+            <TD>9.39857E-16</TD>
+            <TD>1.43697E-15</TD>
+            <TD/>
+            <TD>1.59175E-15</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>5.3877E-16</TD>
+            <TD>8.58153E-16</TD>
+            <TD/>
+            <TD/>
+            <TD>3.02751E-15</TD>
+            <TD>4.51202E-16</TD>
+            <TD>1.34062E-16</TD>
+            <TD>9.1459E-16</TD>
+            <TD>1.43615E-15</TD>
+            <TD/>
+            <TD>1.63933E-15</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>5.20946E-16</TD>
+            <TD>8.65661E-16</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>1.96717E-15</TD>
+            <TD>4.92737E-16</TD>
+            <TD>7.82014E-17</TD>
+            <TD>1.0549E-15</TD>
+            <TD>2.8071E-15</TD>
+            <TD/>
+            <TD>1.07137E-15</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>6.04719E-16</TD>
+            <TD>1.67639E-15</TD>
+            <TD/>
+            <TD/>
+            <TD>2.03775E-15</TD>
+            <TD>4.76777E-16</TD>
+            <TD>1.28988E-16</TD>
+            <TD>1.02654E-15</TD>
+            <TD>2.8055E-15</TD>
+            <TD/>
+            <TD>1.10339E-15</TD>
+            <TD>0.0</TD>
+            <TD>0.0</TD>
+            <TD>5.84713E-16</TD>
+            <TD>1.69106E-15</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>0.127001</TD>
+            <TD>-0.0635119</TD>
+            <TD>-0.546191</TD>
+            <TD>-0.879717</TD>
+            <TD>-0.604001</TD>
+            <TD>-0.881746</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD>9.08162E-7</TD>
+            <TD>8.43873E-8</TD>
+            <TD>3.73149E-8</TD>
+            <TD>7.33542E-7</TD>
+            <TD>5.80439E-6</TD>
+            <TD/>
+            <TD>4.96489E-7</TD>
+            <TD/>
+            <TD/>
+            <TD>4.21165E-7</TD>
+            <TD>3.46635E-6</TD>
+            <TD/>
+            <TD/>
+            <TD>9.24027E-7</TD>
+            <TD>8.06635E-8</TD>
+            <TD>6.02606E-8</TD>
+            <TD>6.99275E-7</TD>
+            <TD>5.66629E-6</TD>
+            <TD/>
+            <TD>5.02281E-7</TD>
+            <TD/>
+            <TD>0.0</TD>
+            <TD>3.98945E-7</TD>
+            <TD>3.41989E-6</TD>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+            <TD/>
+          </TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>

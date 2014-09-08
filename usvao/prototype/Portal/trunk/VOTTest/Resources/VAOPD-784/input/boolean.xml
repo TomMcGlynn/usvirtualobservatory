@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ivoa.net/xml/VOTable/v1.2" version="1.2" xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.2 http://www.ivoa.net/xml/VOTable/v1.2">
+  <RESOURCE type="results">
+    <TABLE>
+      <FIELD name="Title" ucd="VOX:Image_Title" datatype="char" arraysize="*">
+        <DESCRIPTION>Row Number</DESCRIPTION>
+      </FIELD>
+      <FIELD name="boolTest1" datatype="boolean">
+        <DESCRIPTION>Test datatype="boolean"</DESCRIPTION>
+      </FIELD>
+      <DATA>
+        <TABLEDATA>
+          <TR>
+            <TD>row 01</TD>
+            <TD>true</TD>
+          </TR>
+          <TR>
+            <TD>row 02</TD>
+            <TD>True</TD>
+          </TR>
+          <TR>
+            <TD>row 03</TD>
+            <TD>TRUE</TD>
+          </TR>
+          <TR>
+            <TD>row 04</TD>
+            <TD>False</TD>
+          </TR>
+          <TR>
+            <TD>row 05</TD>
+            <TD>T</TD>
+          </TR>
+          <TR>
+            <TD>row 06</TD>
+            <TD>t</TD>
+          </TR>
+          <TR>
+            <TD>row 07</TD>
+            <TD>F</TD>
+          </TR>
+          <TR>
+            <TD>row 08</TD>
+            <TD>f</TD>
+          </TR>
+          <TR>
+            <TD>row 09</TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD>row 10</TD>
+            <TD>1</TD>
+          </TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>

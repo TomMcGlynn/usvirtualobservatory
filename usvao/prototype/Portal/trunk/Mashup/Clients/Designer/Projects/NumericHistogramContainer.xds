@@ -1,0 +1,57 @@
+{
+    "name": "NumericHistogramContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.3",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1666",
+            "type": "fieldset",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": null,
+                "margin": null,
+                "width": 275,
+                "layout": null,
+                "collapsed": true,
+                "collapsible": true,
+                "designer|userClassName": "NumericFacetContainer"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen2079",
+                    "type": "container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 80,
+                        "itemId": "histogramContainer",
+                        "margin": "0 0 0 11",
+                        "width": 238,
+                        "designer|userClassName": "MyContainer3"
+                    }
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

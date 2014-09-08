@@ -1,0 +1,1697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B0C99A3F-AB09-4984-B1C7-F95E8D169F31}</ProjectGuid>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mashup</RootNamespace>
+    <AssemblyName>Mashup</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <newfilesearch>OnLoad</newfilesearch>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PackageAsSingleFile>false</PackageAsSingleFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Clients\Designer\Containers\app\view\AstroViewOptionsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ChartCanvasContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\DatascopeDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\FacetChooserContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\AstroViewContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\CaomDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ChartContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ColorPickerContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\GenericDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\FilterContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\HlaDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ImportTableContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\SummaryDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\JqPlotContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\KeywordDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\MinMaxSliderContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\LayerChooserContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\NumericFacetContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\RegistryDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\SiaDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\StprDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\TextCloudContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\TextFacetContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\TopBarContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\AstroViewContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\AstroViewOptionsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\CaomDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\ChartCanvasContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\ChartContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\ColorPickerContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\DatascopeDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\FacetChooserContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\FilterContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\GenericDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\ImportTableContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\JqPlotContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\KeywordDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\LayerChooserContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\MinMaxSliderContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\NumericFacetContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\RegistryDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\SiaDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\TextCloudContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\TextFacetContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\TopBarContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\ZingChartContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ZingChartContainer.js" />
+    <Content Include="Clients\Designer\Exports\app\view\DownloadTabContainer.js" />
+    <Content Include="Clients\Designer\Exports\app\view\DownloadWindowContainer.js" />
+    <Content Include="Clients\Designer\Exports\app\view\ui\DownloadTabContainer.js" />
+    <Content Include="Clients\Designer\Exports\app\view\ui\DownloadWindowContainer.js" />
+    <Content Include="Clients\Designer\Exports\app\view\ui\UploadOptionsForm.js" />
+    <Content Include="Clients\Designer\Exports\app\view\UploadOptionsForm.js" />
+    <Content Include="Clients\dt\app-all.js" />
+    <Content Include="Clients\Mast\all-classes.js" />
+    <Content Include="Clients\Mast\app-all.js" />
+    <Content Include="Clients\Mast\data\html\Start Page.html" />
+    <Content Include="Clients\Mast\data\images\home_screenshot.png" />
+    <Content Include="Clients\Mast\data\images\mastbanner.png" />
+    <Content Include="Clients\Mast\data\images\mastlogo.png" />
+    <Content Include="Clients\Mast\data\images\mastlogo_thumb.png" />
+    <Content Include="Clients\Mast\data\images\mastwatermark.png" />
+    <Content Include="Clients\Mast\data\images\mastwatermark_small.png" />
+    <Content Include="Clients\Portal\all-classes.js" />
+    <Content Include="Clients\Portal\app-all.js" />
+    <Content Include="Clients\Portal\data\images\vao_icon.png" />
+    <Content Include="Clients\Shared\app\DownloadBasket.js" />
+    <Content Include="Clients\Shared\charts\jqplot.plugins.min.js" />
+    <Content Include="Clients\Shared\charts\jquery.charts.min.js" />
+    <Content Include="Clients\Shared\charts\jquery.jqplot.css" />
+    <Content Include="Clients\Shared\charts\jquery.jqplot.js" />
+    <Content Include="Clients\Shared\charts\jquery.jqplot.min.css" />
+    <Content Include="Clients\Shared\charts\jquery.jqplot.min.js" />
+    <Content Include="Clients\Shared\charts\jquery.js" />
+    <Content Include="Clients\Shared\charts\jquery.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.barRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.barRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.BezierCurveRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.BezierCurveRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.blockRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.blockRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.bubbleRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.bubbleRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.canvasAxisLabelRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.canvasAxisLabelRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.canvasAxisTickRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.canvasAxisTickRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.canvasOverlay.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.canvasOverlay.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.canvasTextRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.canvasTextRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.categoryAxisRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.categoryAxisRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.ciParser.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.ciParser.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.cursor.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.cursor.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.cursor.min.stsci.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.dateAxisRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.dateAxisRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.donutRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.donutRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.dragable.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.dragable.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.enhancedLegendRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.enhancedLegendRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.funnelRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.funnelRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.highlighter.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.highlighter.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.json2.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.json2.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.logAxisRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.logAxisRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.mekkoAxisRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.mekkoAxisRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.mekkoRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.mekkoRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.meterGaugeRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.meterGaugeRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.mobile.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.mobile.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.ohlcRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.ohlcRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.pieRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.pieRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.pointLabels.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.pointLabels.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.pyramidAxisRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.pyramidAxisRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.pyramidGridRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.pyramidGridRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.pyramidRenderer.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.pyramidRenderer.min.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.trendline.js" />
+    <Content Include="Clients\Shared\charts\plugins\jqplot.trendline.min.js" />
+    <Content Include="Clients\Shared\css\data-view.css" />
+    <Content Include="Clients\Shared\css\customStyles.css" />
+    <Content Include="Clients\Shared\custom\Generic.js" />
+    <Content Include="Clients\Shared\custom\Hla.js" />
+    <Content Include="Clients\Shared\custom\GalexTiles.js" />
+    <Content Include="Clients\Shared\custom\Ads.js" />
+    <Content Include="Clients\Shared\custom\Registry.js" />
+    <Content Include="Clients\Shared\custom\MastMission.js" />
+    <Content Include="Clients\Shared\custom\Summary.js" />
+    <Content Include="Clients\Shared\data\DecimalHistogram.js" />
+    <Content Include="Clients\Shared\flashplayer.swf" />
+    <Content Include="Clients\Shared\gui\custom\Hstpr.js" />
+    <Content Include="Clients\Shared\gui\custom\Hla.js" />
+    <Content Include="Clients\Shared\gui\custom\DownloadBasket.js" />
+    <Content Include="Clients\Shared\gui\custom\DadsDownloadBasket.js" />
+    <Content Include="Clients\Shared\gui\custom\GalexTiles.js" />
+    <Content Include="Clients\Shared\gui\custom\Ads.js" />
+    <Content Include="Clients\Shared\gui\custom\Registry.js" />
+    <Content Include="Clients\Shared\gui\custom\SidFiles.js" />
+    <Content Include="Clients\Shared\gui\custom\Keywords.js" />
+    <Content Include="Clients\Shared\gui\custom\Stpr.js" />
+    <Content Include="Clients\Shared\gui\custom\Siap.js" />
+    <Content Include="Clients\Shared\gui\DetailsWindow.js" />
+    <Content Include="Clients\Shared\gui\custom\MastMissionView.js" />
+    <Content Include="Clients\Shared\gui\textcloud\canvasport-v0.1.js" />
+    <Content Include="Clients\Shared\gui\textcloud\nebulos.js" />
+    <Content Include="Clients\Shared\gui\textcloud\textcloud.min.js" />
+    <Content Include="Clients\Shared\help\addtobasket.png" />
+    <Content Include="Clients\Shared\help\astroview.png" />
+    <Content Include="Clients\Shared\help\datascope.png" />
+    <Content Include="Clients\Shared\help\details_popup.png" />
+    <Content Include="Clients\Shared\help\filtered_search.png" />
+    <Content Include="Clients\Shared\help\m57_Results.png" />
+    <Content Include="Clients\Shared\help\search.png" />
+    <Content Include="Clients\Shared\help\startup.png" />
+    <Content Include="Clients\Shared\img\about_16x16.png" />
+    <Content Include="Clients\Shared\img\about_16x16_orange.png" />
+    <Content Include="Clients\Shared\img\about_24x24.png" />
+    <Content Include="Clients\Shared\img\about_24x24_orange.png" />
+    <Content Include="Clients\Shared\img\about_32x32.png" />
+    <Content Include="Clients\Shared\img\about_32x32_orange.png" />
+    <Content Include="Clients\Shared\img\addbk_16x16.png" />
+    <Content Include="Clients\Shared\img\addbk_24x24.png" />
+    <Content Include="Clients\Shared\img\addbk_32x32.png" />
+    <Content Include="Clients\Shared\img\add_basket.png" />
+    <Content Include="Clients\Shared\img\add_basket_16.png" />
+    <Content Include="Clients\Shared\img\add_basket_32.png" />
+    <Content Include="Clients\Shared\img\broadcast_gray.png" />
+    <Content Include="Clients\Shared\img\cancl_16x16.png" />
+    <Content Include="Clients\Shared\img\cancl_24x24.png" />
+    <Content Include="Clients\Shared\img\cancl_32x32.png" />
+    <Content Include="Clients\Shared\img\cart_16x16.png" />
+    <Content Include="Clients\Shared\img\cart_24x24.png" />
+    <Content Include="Clients\Shared\img\cart_32x32.png" />
+    <Content Include="Clients\Shared\img\chart_16x16.png" />
+    <Content Include="Clients\Shared\img\chart_24x24.png" />
+    <Content Include="Clients\Shared\img\chart_32x32.png" />
+    <Content Include="Clients\Shared\img\checkmark.png" />
+    <Content Include="Clients\Shared\img\close_16x16.png" />
+    <Content Include="Clients\Shared\img\close_24x24.png" />
+    <Content Include="Clients\Shared\img\close_32x32.png" />
+    <Content Include="Clients\Shared\img\docs_16x16.png" />
+    <Content Include="Clients\Shared\img\docs_24x24.png" />
+    <Content Include="Clients\Shared\img\docs_32x32.png" />
+    <Content Include="Clients\Shared\img\down-btn.png" />
+    <Content Include="Clients\Shared\img\exclamation_24x24.png" />
+    <Content Include="Clients\Shared\img\exclamation_tri_24x24.png" />
+    <Content Include="Clients\Shared\img\exp_16x16.png" />
+    <Content Include="Clients\Shared\img\exp_16x16_up.png" />
+    <Content Include="Clients\Shared\img\exp_24x24.png" />
+    <Content Include="Clients\Shared\img\exp_24x24_up.png" />
+    <Content Include="Clients\Shared\img\exp_32x32.png" />
+    <Content Include="Clients\Shared\img\exp_32x32_up.png" />
+    <Content Include="Clients\Shared\img\galaxy.png" />
+    <Content Include="Clients\Shared\img\galaxy_16.png" />
+    <Content Include="Clients\Shared\img\image_16x16.png" />
+    <Content Include="Clients\Shared\img\image_16x16_camera.png" />
+    <Content Include="Clients\Shared\img\image_24x24.png" />
+    <Content Include="Clients\Shared\img\image_24x24_camera.png" />
+    <Content Include="Clients\Shared\img\image_32x32.png" />
+    <Content Include="Clients\Shared\img\image_32x32_camera.png" />
+    <Content Include="Clients\Shared\img\left-btn.png" />
+    <Content Include="Clients\Shared\img\nopreview.png" />
+    <Content Include="Clients\Shared\img\open_16x16.png" />
+    <Content Include="Clients\Shared\img\open_24x24.png" />
+    <Content Include="Clients\Shared\img\open_32x32.png" />
+    <Content Include="Clients\Shared\img\opnbr_16x16.png" />
+    <Content Include="Clients\Shared\img\opnbr_24x24.png" />
+    <Content Include="Clients\Shared\img\opnbr_32x32.png" />
+    <Content Include="Clients\Shared\img\ref_16x16.png" />
+    <Content Include="Clients\Shared\img\ref_24x24.png" />
+    <Content Include="Clients\Shared\img\ref_32x32.png" />
+    <Content Include="Clients\Shared\img\right-btn.png" />
+    <Content Include="Clients\Shared\img\savas_16x16.png" />
+    <Content Include="Clients\Shared\img\savas_24x24.png" />
+    <Content Include="Clients\Shared\img\savas_32x32.png" />
+    <Content Include="Clients\Shared\img\smicn_16x16.png" />
+    <Content Include="Clients\Shared\img\smicn_24x24.png" />
+    <Content Include="Clients\Shared\img\smicn_32x32.png" />
+    <Content Include="Clients\Shared\img\spectrum.png" />
+    <Content Include="Clients\Shared\detectMobile.js" />
+    <Content Include="Clients\Shared\img\spectrum_16.png" />
+    <Content Include="Clients\Shared\img\srchvo_24x24.png" />
+    <Content Include="Clients\Shared\img\srch_16x16.png" />
+    <Content Include="Clients\Shared\img\srch_24x24.png" />
+    <Content Include="Clients\Shared\img\srch_32x32.png" />
+    <Content Include="Clients\Shared\img\telescope_16.png" />
+    <Content Include="Clients\Shared\img\telescope_24.png" />
+    <Content Include="Clients\Shared\img\telescope_32.png" />
+    <Content Include="Clients\Shared\img\trash.png" />
+    <Content Include="Clients\Shared\img\trash_16.png" />
+    <Content Include="Clients\Shared\img\trash_32.png" />
+    <Content Include="Clients\Shared\img\up-btn.png" />
+    <Content Include="Clients\Shared\img\web_16x16.png" />
+    <Content Include="Clients\Shared\img\web_24x24.png" />
+    <Content Include="Clients\Shared\img\web_32x32.png" />
+    <Content Include="Clients\Shared\img\zoomi_16x16.png" />
+    <Content Include="Clients\Shared\img\zoomi_24x24.png" />
+    <Content Include="Clients\Shared\img\zoomi_32x32.png" />
+    <Content Include="Clients\Shared\img\zoomo_16x16.png" />
+    <Content Include="Clients\Shared\img\zoomo_24x24.png" />
+    <Content Include="Clients\Shared\img\zoomo_32x32.png" />
+    <Content Include="Clients\Shared\util\Constants.js" />
+    <Content Include="Clients\Shared\util\Wcs.js" />
+    <Content Include="Clients\Shared\util\Coords.js" />
+    <Content Include="Mashup.asmx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Clients\Shared\data\BufferedStore.js" />
+    <Content Include="Clients\Shared\data\StoreProxy.js" />
+    <Content Include="Clients\Shared\InitializeJavaScript.js" />
+    <Content Include="Clients\Shared\InitializeLocal.js" />
+    <Content Include="Clients\Shared\data\Histogram.js" />
+    <Content Include="Clients\Shared\grid\MvpGrid.js" />
+    <Content Include="Clients\swfobject\index_dynamic.html" />
+    <Content Include="Clients\swfobject\index.html" />
+    <Content Include="Clients\swfobject\swfobject.js" />
+    <Content Include="Clients\swfobject\src\swfobject.js" />
+    <Content Include="Clients\Shared\util\NameResolverModel.js" />
+    <Content Include="Clients\Shared\util\SearchBox.js" />
+    <Content Include="Clients\Shared\util\MashupQuery.js" />
+    <Content Include="Clients\Shared\util\Util.js" />
+    <Content Include="Config\AdaptorsConfig.json" />
+    <Content Include="Config\ColumnsConfig.json" />
+    <Content Include="Clients\Portal\Portal.js" />
+    <Content Include="Clients\Portal\data\images\VAO_logo_100.png" />
+    <Content Include="Clients\Portal\DataDiscovery.html" />
+    <Content Include="Logs\Empty.txt" />
+    <Content Include="Clients\Shared\InitializeAnalytics.js" />
+    <Content Include="Clients\Shared\util\Exporter.js" />
+    <Content Include="Clients\Portal\data\images\MAST_logo.png" />
+    <Content Include="Clients\Shared\util\Uploader.js" />
+    <Content Include="Clients\Shared\checkplayer.js" />
+    <Content Include="Clients\Shared\flensed.js" />
+    <Content Include="Clients\Shared\flXHR.js" />
+    <Content Include="Clients\Shared\json2.js" />
+    <Content Include="Clients\Shared\samp.js" />
+    <Content Include="Clients\Shared\swfobject.js" />
+    <Content Include="Clients\Shared\util\SampManager.js" />
+    <Content Include="Clients\Shared\custom\Caom.js" />
+    <Content Include="Clients\Designer\Exports\app\store\ActionStore.js" />
+    <Content Include="Clients\Designer\Exports\app\store\FormatStore.js" />
+    <Content Include="Clients\Designer\Exports\app\store\WhichColumnsStore.js" />
+    <Content Include="Clients\Designer\Exports\app\view\ExportToWindowCombos.js" />
+    <Content Include="Clients\Designer\Exports\app\view\ui\ExportToWindowCombos.js" />
+    <Content Include="Clients\AstroView\AstroView.swf" />
+    <Content Include="Clients\AstroView\AC_OETags.js" />
+    <Content Include="Clients\AstroView\swfobject.js" />
+    <Content Include="Clients\AstroView\playerProductInstall.swf" />
+    <Content Include="Clients\Shared\util\TableUtils.js" />
+    <Content Include="Clients\Designer\Exports\app\store\RadiusUnits.js" />
+    <Content Include="Clients\Designer\Exports\app\view\VaoPositionSearchPanel.js" />
+    <Content Include="Clients\Designer\Exports\app\view\ui\VaoPositionSearchPanel.js" />
+    <Content Include="Clients\Shared\custom\FullSearch.js" />
+    <Content Include="Clients\Shared\img\palette.png" />
+    <Content Include="Clients\Shared\img\starlist.png" />
+    <Content Include="Clients\Shared\img\grid.png" />
+    <Content Include="Clients\Portal\data\images\invalid_line.gif" />
+    <Content Include="Clients\Portal\data\images\ElPortal.jpg" />
+    <Content Include="Clients\Designer\Containers\app\view\NedSedDetails.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\NedSedDetails.js" />
+    <Content Include="Clients\AstroView\assets\images\0_0.PNG" />
+    <Content Include="Clients\AstroView\assets\images\0_1.PNG" />
+    <Content Include="Clients\AstroView\assets\images\1_0.PNG" />
+    <Content Include="Clients\AstroView\assets\images\1_1.PNG" />
+    <Content Include="Clients\AstroView\assets\images\NE.png" />
+    <Content Include="Clients\AstroView\assets\images\NW.png" />
+    <Content Include="Clients\AstroView\assets\images\SE.png" />
+    <Content Include="Clients\AstroView\assets\images\SW.png" />
+    <Content Include="Clients\AstroView\assets\images\camera.png" />
+    <Content Include="Clients\AstroView\assets\images\fullscreen.png" />
+    <Content Include="Clients\AstroView\assets\images\letitstop.png" />
+    <Content Include="Clients\AstroView\assets\images\map_all.PNG" />
+    <Content Include="Clients\AstroView\assets\images\zoom_down.gif" />
+    <Content Include="Clients\AstroView\assets\images\zoom_thumb.gif" />
+    <Content Include="Clients\AstroView\assets\images\zoom_up.gif" />
+    <Content Include="Clients\AstroView\assets\data\surveys.txt" />
+    <Content Include="Clients\Shared\custom\Hst.js" />
+    <Content Include="Clients\Designer\Containers\app\view\PressReleaseContainer.js" />
+    <Content Include="Clients\Shared\context\Context.js" />
+    <Content Include="Clients\Shared\context\Manager.js" />
+    <Content Include="Clients\Shared\gui\GridView.js" />
+    <Content Include="Clients\Shared\gui\PortalBorderContainer.js" />
+    <Content Include="Clients\Shared\search\SearchContext.js" />
+    <Content Include="Clients\Shared\search\SearchParams.js" />
+    <Content Include="Clients\Shared\search\receivers\ExtjsReceiver.js" />
+    <Content Include="Clients\Shared\search\receivers\SantaXmlReceiver.js" />
+    <Content Include="Clients\Shared\util\ExtBugWorkarounds.js" />
+    <Content Include="Clients\Mast\MastNamespace.js" />
+    <Content Include="Clients\Mast\Portal.html" />
+    <Content Include="Clients\Mast\Portal.js" />
+    <Content Include="Clients\Shared\util\Version.js" />
+    <Content Include="Clients\Mast\view\AboutPanel.js" />
+    <Content Include="Clients\Mast\view\MastTopBar.js" />
+    <Content Include="Clients\Mast\data\html\MastHelp.html" />
+    <Content Include="Clients\Mast\data\images\ElPortal.jpg" />
+    <Content Include="Clients\Mast\data\images\invalid_line.gif" />
+    <Content Include="Clients\Mast\data\images\MAST_logo.png" />
+    <Content Include="Clients\Mast\data\images\VAO_logo_100.png" />
+    <Content Include="Clients\Shared\gui\AvItems.js" />
+    <Content Include="Clients\Shared\gui\StatusItems.js" />
+    <Content Include="Clients\Shared\gui\TitleItems.js" />
+    <Content Include="Clients\Shared\gui\RefreshToolbar.js" />
+    <Content Include="Clients\Shared\gui\FacetedGridView.js" />
+    <Content Include="Clients\Shared\gui\FilterView.js" />
+    <Content Include="Clients\Shared\gui\ResultViewPanel.js" />
+    <Content Include="Clients\Shared\data\Columns.js" />
+    <Content Include="Clients\Shared\gui\custom\DataScope.js" />
+    <Content Include="Clients\AstroView\AstroBasicView.js" />
+    <Content Include="Clients\AstroView\AstroViewExtContainer.html" />
+    <Content Include="Clients\AstroView\AstroViewExtWindow.html" />
+    <Content Include="Clients\AstroView\AstroViewThree.html" />
+    <Content Include="Clients\AstroView\CameraController.js" />
+    <Content Include="Clients\AstroView\CatalogLayer.js" />
+    <Content Include="Clients\AstroView\cube.html" />
+    <Content Include="Clients\AstroView\Diamond.js" />
+    <Content Include="Clients\AstroView\FootprintLayer.js" />
+    <Content Include="Clients\AstroView\ImageLayer.js" />
+    <Content Include="Clients\AstroView\Stats.js" />
+    <Content Include="Clients\AstroView\textures\circle.png" />
+    <Content Include="Clients\AstroView\textures\Diamond.png" />
+    <Content Include="Clients\AstroView\textures\TOAST_0_0.PNG" />
+    <Content Include="Clients\AstroView\textures\TOAST_0_1.PNG" />
+    <Content Include="Clients\AstroView\textures\TOAST_1_0.PNG" />
+    <Content Include="Clients\AstroView\textures\TOAST_1_1.PNG" />
+    <Content Include="Clients\AstroView\textures\TOAST_ALL.PNG" />
+    <Content Include="Clients\AstroView\AstroViewFlash.html" />
+    <Content Include="Clients\AstroView\AstroView.js" />
+    <Content Include="Clients\Shared\gui\custom\Caom.js" />
+    <Content Include="Clients\Shared\gui\AlbumView.js" />
+    <Content Include="Clients\Shared\data\AstroStore.js" />
+    <Content Include="Clients\Shared\gui\AvAdaptor.js" />
+    <Content Include="Clients\Portal\data\images\VAO_logo_200.png" />
+    <Content Include="Clients\Portal\Vao.js" />
+    <Content Include="Clients\Portal\view\VaoTopBar.js" />
+    <Content Include="Clients\Portal\Bootstrap.js" />
+    <Content Include="Clients\Mast\Bootstrap.js" />
+    <Content Include="Clients\Shared\util\BasePortal.js" />
+    <Content Include="Clients\AstroView\GraphicsLayer.js" />
+    <Content Include="Clients\AstroView\Three\src\Three.js" />
+    <Content Include="Clients\AstroView\Three\src\cameras\Camera.js" />
+    <Content Include="Clients\AstroView\Three\src\cameras\OrthographicCamera.js" />
+    <Content Include="Clients\AstroView\Three\src\cameras\PerspectiveCamera.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Clock.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Color.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Edge.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Face3.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Face4.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Frustum.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Geometry.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Math.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Matrix3.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Matrix4.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Object3D.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Projector.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Quaternion.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Ray.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Rectangle.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Spline.js" />
+    <Content Include="Clients\AstroView\Three\src\core\UV.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Vector2.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Vector3.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Vector4.js" />
+    <Content Include="Clients\AstroView\Three\src\core\Vertex.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\ColorUtils.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\GeometryUtils.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\ImageUtils.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\SceneUtils.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\ShaderUtils.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\animation\Animation.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\animation\AnimationHandler.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\animation\AnimationMorphTarget.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\animation\KeyFrameAnimation.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\cameras\CombinedCamera.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\cameras\CubeCamera.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\cameras\FirstPersonCamera.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\cameras\FlyCamera.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\cameras\PathCamera.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\cameras\RollCamera.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\cameras\TrackballCamera.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\controls\FirstPersonControls.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\controls\FlyControls.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\controls\PathControls.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\controls\RollControls.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\controls\TrackballControls.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\core\BufferGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\core\Curve.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\core\CurvePath.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\core\Gyroscope.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\core\Path.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\core\Shape.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\core\TextPath.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\CubeGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\CylinderGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\ExtrudeGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\IcosahedronGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\LatheGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\OctahedronGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\PlaneGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\SphereGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\TextGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\TorusGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\TorusKnotGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\helpers\AxisHelper.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\helpers\CameraHelper.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\loaders\BinaryLoader.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\loaders\ColladaLoader.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\loaders\JSONLoader.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\loaders\Loader.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\loaders\SceneLoader.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\loaders\UTF8Loader.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\modifiers\SubdivisionModifier.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\objects\LensFlare.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\objects\MarchingCubes.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\plugins\LensFlarePlugin.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\plugins\ShadowMapPlugin.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\plugins\SpritePlugin.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\renderers\AnaglyphWebGLRenderer.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\renderers\CrosseyedWebGLRenderer.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\renderers\ParallaxBarrierWebGLRenderer.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\shaders\ShaderFlares.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\shaders\ShaderSprite.js" />
+    <Content Include="Clients\AstroView\Three\src\lights\AmbientLight.js" />
+    <Content Include="Clients\AstroView\Three\src\lights\DirectionalLight.js" />
+    <Content Include="Clients\AstroView\Three\src\lights\Light.js" />
+    <Content Include="Clients\AstroView\Three\src\lights\PointLight.js" />
+    <Content Include="Clients\AstroView\Three\src\lights\SpotLight.js" />
+    <Content Include="Clients\AstroView\Three\src\materials\LineBasicMaterial.js" />
+    <Content Include="Clients\AstroView\Three\src\materials\Material.js" />
+    <Content Include="Clients\AstroView\Three\src\materials\MeshBasicMaterial.js" />
+    <Content Include="Clients\AstroView\Three\src\materials\MeshDepthMaterial.js" />
+    <Content Include="Clients\AstroView\Three\src\materials\MeshFaceMaterial.js" />
+    <Content Include="Clients\AstroView\Three\src\materials\MeshLambertMaterial.js" />
+    <Content Include="Clients\AstroView\Three\src\materials\MeshNormalMaterial.js" />
+    <Content Include="Clients\AstroView\Three\src\materials\MeshPhongMaterial.js" />
+    <Content Include="Clients\AstroView\Three\src\materials\MeshShaderMaterial.js" />
+    <Content Include="Clients\AstroView\Three\src\materials\ParticleBasicMaterial.js" />
+    <Content Include="Clients\AstroView\Three\src\materials\ParticleCanvasMaterial.js" />
+    <Content Include="Clients\AstroView\Three\src\materials\ParticleDOMMaterial.js" />
+    <Content Include="Clients\AstroView\Three\src\materials\ShaderMaterial.js" />
+    <Content Include="Clients\AstroView\Three\src\objects\Bone.js" />
+    <Content Include="Clients\AstroView\Three\src\objects\LOD.js" />
+    <Content Include="Clients\AstroView\Three\src\objects\Line.js" />
+    <Content Include="Clients\AstroView\Three\src\objects\Mesh.js" />
+    <Content Include="Clients\AstroView\Three\src\objects\MorphAnimMesh.js" />
+    <Content Include="Clients\AstroView\Three\src\objects\Particle.js" />
+    <Content Include="Clients\AstroView\Three\src\objects\ParticleSystem.js" />
+    <Content Include="Clients\AstroView\Three\src\objects\Ribbon.js" />
+    <Content Include="Clients\AstroView\Three\src\objects\SkinnedMesh.js" />
+    <Content Include="Clients\AstroView\Three\src\objects\Sprite.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\CanvasRenderer.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\DOMRenderer.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\SVGRenderer.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\WebGLRenderTarget.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\WebGLRenderTargetCube.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\WebGLRenderer.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\WebGLShaders.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\renderables\RenderableFace3.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\renderables\RenderableFace4.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\renderables\RenderableLine.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\renderables\RenderableObject.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\renderables\RenderableParticle.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\renderables\RenderableVertex.js" />
+    <Content Include="Clients\AstroView\Three\src\scenes\Fog.js" />
+    <Content Include="Clients\AstroView\Three\src\scenes\FogExp2.js" />
+    <Content Include="Clients\AstroView\Three\src\scenes\Scene.js" />
+    <Content Include="Clients\AstroView\Three\src\textures\DataTexture.js" />
+    <Content Include="Clients\AstroView\Three\src\textures\Texture.js" />
+    <Content Include="Clients\AstroView\textures\circle11.png" />
+    <Content Include="Clients\AstroView\textures\diamond11.png" />
+    <Content Include="Clients\AstroView\textures\plus11.png" />
+    <Content Include="Clients\AstroView\textures\square11.png" />
+    <Content Include="Clients\AstroView\textures\stop11.png" />
+    <Content Include="Clients\AstroView\AstroView.html" />
+    <Content Include="Clients\AstroView\assets\images\TOAST_0_0.PNG" />
+    <Content Include="Clients\AstroView\assets\images\TOAST_0_1.PNG" />
+    <Content Include="Clients\AstroView\assets\images\TOAST_1_0.PNG" />
+    <Content Include="Clients\AstroView\assets\images\TOAST_1_1.PNG" />
+    <Content Include="Clients\AstroView\assets\images\TOAST_ALL.PNG" />
+    <Content Include="Temp\Empty.txt" />
+    <Content Include="Clients\Designer\Containers\app\view\SsaDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\SsaDetailsContainer.js" />
+    <Content Include="Clients\Shared\gui\custom\Ssap.js" />
+    <Content Include="Clients\dt\AccordionWindow.js" />
+    <Content Include="Clients\dt\all-classes.js" />
+    <Content Include="Clients\dt\App.js" />
+    <Content Include="Clients\dt\AstroViewWindow.js" />
+    <Content Include="Clients\dt\BogusMenuModule.js" />
+    <Content Include="Clients\dt\BogusModule.js" />
+    <Content Include="Clients\dt\Bootstrap.js" />
+    <Content Include="Clients\dt\desktop.html" />
+    <Content Include="Clients\dt\GridWindow.js" />
+    <Content Include="Clients\dt\MastNamespace.js" />
+    <Content Include="Clients\dt\Notepad.js" />
+    <Content Include="Clients\dt\Portal.js" />
+    <Content Include="Clients\dt\SearchWindow.js" />
+    <Content Include="Clients\dt\Settings.js" />
+    <Content Include="Clients\dt\SystemStatus.js" />
+    <Content Include="Clients\dt\TabWindow.js" />
+    <Content Include="Clients\dt\VideoWindow.js" />
+    <Content Include="Clients\dt\WallpaperModel.js" />
+    <Content Include="Clients\dt\css\desktop.css" />
+    <Content Include="Clients\dt\data\html\MastHelp.html" />
+    <Content Include="Clients\dt\data\images\ElPortal.jpg" />
+    <Content Include="Clients\dt\data\images\invalid_line.gif" />
+    <Content Include="Clients\dt\data\images\MAST_logo.png" />
+    <Content Include="Clients\dt\data\images\mastlogo_thumb.png" />
+    <Content Include="Clients\dt\data\images\mastlogo.png" />
+    <Content Include="Clients\dt\data\images\VAO_logo_100.png" />
+    <Content Include="Clients\dt\images\accordian.gif" />
+    <Content Include="Clients\dt\images\accordionLarge.png" />
+    <Content Include="Clients\dt\images\astroview16x16.png" />
+    <Content Include="Clients\dt\images\astroview48x48.png" />
+    <Content Include="Clients\dt\images\bogus.png" />
+    <Content Include="Clients\dt\images\chart48x48.png" />
+    <Content Include="Clients\dt\images\desktop.gif" />
+    <Content Include="Clients\dt\images\desktop3.jpg" />
+    <Content Include="Clients\dt\images\gears.gif" />
+    <Content Include="Clients\dt\images\gears.png" />
+    <Content Include="Clients\dt\images\grid.png" />
+    <Content Include="Clients\dt\images\grid32x32.gif" />
+    <Content Include="Clients\dt\images\grid48x48.gif" />
+    <Content Include="Clients\dt\images\grid48x48.png" />
+    <Content Include="Clients\dt\images\gridLarge.png" />
+    <Content Include="Clients\dt\images\hatch.gif" />
+    <Content Include="Clients\dt\images\hd-bg.gif" />
+    <Content Include="Clients\dt\images\hd-tb-bg.gif" />
+    <Content Include="Clients\dt\images\icon_padlock.png" />
+    <Content Include="Clients\dt\images\icons-bg.png" />
+    <Content Include="Clients\dt\images\im32x32.gif" />
+    <Content Include="Clients\dt\images\im48x48.gif" />
+    <Content Include="Clients\dt\images\im48x48.png" />
+    <Content Include="Clients\dt\images\launcher-bg.gif" />
+    <Content Include="Clients\dt\images\launcher-btn.gif" />
+    <Content Include="Clients\dt\images\logout.gif" />
+    <Content Include="Clients\dt\images\logout.png" />
+    <Content Include="Clients\dt\images\member.gif" />
+    <Content Include="Clients\dt\images\member.png" />
+    <Content Include="Clients\dt\images\notepadLarge.png" />
+    <Content Include="Clients\dt\images\powered-by-ext-js.png" />
+    <Content Include="Clients\dt\images\s.gif" />
+    <Content Include="Clients\dt\images\search16x16-nostar-trans.png" />
+    <Content Include="Clients\dt\images\search16x16-trans.png" />
+    <Content Include="Clients\dt\images\search16x16.gif" />
+    <Content Include="Clients\dt\images\search16x16.jpg" />
+    <Content Include="Clients\dt\images\search16x16.png" />
+    <Content Include="Clients\dt\images\search48x48-nohighlight-trans.png" />
+    <Content Include="Clients\dt\images\search48x48-trans.png" />
+    <Content Include="Clients\dt\images\search48x48.jpg" />
+    <Content Include="Clients\dt\images\search48x48.png" />
+    <Content Include="Clients\dt\images\statusLarge.png" />
+    <Content Include="Clients\dt\images\tabs.gif" />
+    <Content Include="Clients\dt\images\winbar-bg.gif" />
+    <Content Include="Clients\dt\images\winbar-btn.gif" />
+    <Content Include="Clients\dt\images\windows-bg.gif" />
+    <Content Include="Clients\dt\images\taskbar\sencha.gif" />
+    <Content Include="Clients\dt\images\taskbar\black\item-over.gif" />
+    <Content Include="Clients\dt\images\taskbar\black\scroll-left.gif" />
+    <Content Include="Clients\dt\images\taskbar\black\scroll-right.gif" />
+    <Content Include="Clients\dt\images\taskbar\black\start-menu-left-corners.png" />
+    <Content Include="Clients\dt\images\taskbar\black\start-menu-left-right.png" />
+    <Content Include="Clients\dt\images\taskbar\black\start-menu-right-corners.png" />
+    <Content Include="Clients\dt\images\taskbar\black\start-menu-right.png" />
+    <Content Include="Clients\dt\images\taskbar\black\start-menu-top-bottom.png" />
+    <Content Include="Clients\dt\images\taskbar\black\startbutton-icon.gif" />
+    <Content Include="Clients\dt\images\taskbar\black\startbutton.gif" />
+    <Content Include="Clients\dt\images\taskbar\black\taskbar-split-h.gif" />
+    <Content Include="Clients\dt\images\taskbar\black\taskbar-start-panel-bg.gif" />
+    <Content Include="Clients\dt\images\taskbar\black\taskbutton.gif" />
+    <Content Include="Clients\dt\images\taskbar\black\taskbuttons-panel-bg.gif" />
+    <Content Include="Clients\dt\js\App.js" />
+    <Content Include="Clients\dt\js\Desktop.js" />
+    <Content Include="Clients\dt\js\Module.js" />
+    <Content Include="Clients\dt\js\ShortcutModel.js" />
+    <Content Include="Clients\dt\js\StartMenu.js" />
+    <Content Include="Clients\dt\js\TaskBar.js" />
+    <Content Include="Clients\dt\js\Video.js" />
+    <Content Include="Clients\dt\js\Wallpaper.js" />
+    <Content Include="Clients\dt\shared\example.css" />
+    <Content Include="Clients\dt\shared\examples.js" />
+    <Content Include="Clients\dt\shared\include-theme.js" />
+    <Content Include="Clients\dt\shared\states.js" />
+    <Content Include="Clients\dt\shared\extjs\App.js" />
+    <Content Include="Clients\dt\shared\extjs\site.js" />
+    <Content Include="Clients\dt\shared\extjs\css\extjs.css" />
+    <Content Include="Clients\dt\shared\extjs\images\c-sep-l.gif" />
+    <Content Include="Clients\dt\shared\extjs\images\extanim32.gif" />
+    <Content Include="Clients\dt\shared\extjs\images\sample-over.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\accept.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\accept.png" />
+    <Content Include="Clients\dt\shared\icons\fam\add.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\add.png" />
+    <Content Include="Clients\dt\shared\icons\fam\application_go.png" />
+    <Content Include="Clients\dt\shared\icons\fam\application_view_list.png" />
+    <Content Include="Clients\dt\shared\icons\fam\book.png" />
+    <Content Include="Clients\dt\shared\icons\fam\cog.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\cog.png" />
+    <Content Include="Clients\dt\shared\icons\fam\cog_edit.png" />
+    <Content Include="Clients\dt\shared\icons\fam\connect.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\connect.png" />
+    <Content Include="Clients\dt\shared\icons\fam\control_rewind.png" />
+    <Content Include="Clients\dt\shared\icons\fam\cross.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\delete.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\error.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\error.png" />
+    <Content Include="Clients\dt\shared\icons\fam\feed_add.png" />
+    <Content Include="Clients\dt\shared\icons\fam\feed_delete.png" />
+    <Content Include="Clients\dt\shared\icons\fam\feed_error.png" />
+    <Content Include="Clients\dt\shared\icons\fam\folder_go.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\folder_go.png" />
+    <Content Include="Clients\dt\shared\icons\fam\folder_wrench.png" />
+    <Content Include="Clients\dt\shared\icons\fam\grid.png" />
+    <Content Include="Clients\dt\shared\icons\fam\image_add.png" />
+    <Content Include="Clients\dt\shared\icons\fam\information.png" />
+    <Content Include="Clients\dt\shared\icons\fam\plugin.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\plugin_add.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\rss_go.png" />
+    <Content Include="Clients\dt\shared\icons\fam\table_refresh.png" />
+    <Content Include="Clients\dt\shared\icons\fam\user.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\user.png" />
+    <Content Include="Clients\dt\shared\icons\fam\user_add.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\user_add.png" />
+    <Content Include="Clients\dt\shared\icons\fam\user_comment.png" />
+    <Content Include="Clients\dt\shared\icons\fam\user_delete.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\user_delete.png" />
+    <Content Include="Clients\dt\shared\icons\fam\user_edit.png" />
+    <Content Include="Clients\dt\shared\icons\fam\user_female.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\user_female.png" />
+    <Content Include="Clients\dt\shared\icons\fam\user_gray.png" />
+    <Content Include="Clients\dt\shared\icons\fam\user_green.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\user_green.png" />
+    <Content Include="Clients\dt\shared\icons\fam\user_orange.png" />
+    <Content Include="Clients\dt\shared\icons\fam\user_red.png" />
+    <Content Include="Clients\dt\shared\icons\fam\user_suit.gif" />
+    <Content Include="Clients\dt\shared\icons\fam\user_suit.png" />
+    <Content Include="Clients\dt\shared\screens\acc-tree.gif" />
+    <Content Include="Clients\dt\shared\screens\actions-grid.gif" />
+    <Content Include="Clients\dt\shared\screens\actions.gif" />
+    <Content Include="Clients\dt\shared\screens\advanced-dataview.png" />
+    <Content Include="Clients\dt\shared\screens\air.gif" />
+    <Content Include="Clients\dt\shared\screens\anchor.gif" />
+    <Content Include="Clients\dt\shared\screens\animated-dataview.png" />
+    <Content Include="Clients\dt\shared\screens\app-simple.gif" />
+    <Content Include="Clients\dt\shared\screens\area-browsers.gif" />
+    <Content Include="Clients\dt\shared\screens\blank.gif" />
+    <Content Include="Clients\dt\shared\screens\border-layout.gif" />
+    <Content Include="Clients\dt\shared\screens\buffer-grid.gif" />
+    <Content Include="Clients\dt\shared\screens\buttons.gif" />
+    <Content Include="Clients\dt\shared\screens\calendar.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-area-browser.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-area.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-bar-renderer.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-bar-stacked.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-bar.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-column.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-line.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-mixed.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-pie-renderer.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-pie.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-radar-fill.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-radar.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-reload.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-scatter.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-stacked.gif" />
+    <Content Include="Clients\dt\shared\screens\chart-themed.gif" />
+    <Content Include="Clients\dt\shared\screens\charts.gif" />
+    <Content Include="Clients\dt\shared\screens\chooser.gif" />
+    <Content Include="Clients\dt\shared\screens\column2.gif" />
+    <Content Include="Clients\dt\shared\screens\combo-custom.gif" />
+    <Content Include="Clients\dt\shared\screens\combo.gif" />
+    <Content Include="Clients\dt\shared\screens\complex-layout.gif" />
+    <Content Include="Clients\dt\shared\screens\data-associations.gif" />
+    <Content Include="Clients\dt\shared\screens\data-view.gif" />
+    <Content Include="Clients\dt\shared\screens\dd-fieldtogrid.gif" />
+    <Content Include="Clients\dt\shared\screens\dd-gridtoformpanel.gif" />
+    <Content Include="Clients\dt\shared\screens\dd-gridtogrid.gif" />
+    <Content Include="Clients\dt\shared\screens\dd-zones.gif" />
+    <Content Include="Clients\dt\shared\screens\debug-console.gif" />
+    <Content Include="Clients\dt\shared\screens\desktop.gif" />
+    <Content Include="Clients\dt\shared\screens\direct.gif" />
+    <Content Include="Clients\dt\shared\screens\docs.gif" />
+    <Content Include="Clients\dt\shared\screens\draw-logos.gif" />
+    <Content Include="Clients\dt\shared\screens\draw-rotate-text.gif" />
+    <Content Include="Clients\dt\shared\screens\draw-sencha.gif" />
+    <Content Include="Clients\dt\shared\screens\draw-tiger.gif" />
+    <Content Include="Clients\dt\shared\screens\editor.gif" />
+    <Content Include="Clients\dt\shared\screens\feeds.gif" />
+    <Content Include="Clients\dt\shared\screens\field-container.gif" />
+    <Content Include="Clients\dt\shared\screens\form-absolute.gif" />
+    <Content Include="Clients\dt\shared\screens\form-adv-vtypes.gif" />
+    <Content Include="Clients\dt\shared\screens\form-check-radio.gif" />
+    <Content Include="Clients\dt\shared\screens\form-checkout.gif" />
+    <Content Include="Clients\dt\shared\screens\form-contact.gif" />
+    <Content Include="Clients\dt\shared\screens\form-custom-access.gif" />
+    <Content Include="Clients\dt\shared\screens\form-custom.gif" />
+    <Content Include="Clients\dt\shared\screens\form-dashboard.gif" />
+    <Content Include="Clients\dt\shared\screens\form-dynamic.gif" />
+    <Content Include="Clients\dt\shared\screens\form-field-layout.gif" />
+    <Content Include="Clients\dt\shared\screens\form-field-types.gif" />
+    <Content Include="Clients\dt\shared\screens\form-fieldcontainer.png" />
+    <Content Include="Clients\dt\shared\screens\form-file-upload.gif" />
+    <Content Include="Clients\dt\shared\screens\form-grid-binding-access.gif" />
+    <Content Include="Clients\dt\shared\screens\form-grid-binding.gif" />
+    <Content Include="Clients\dt\shared\screens\form-hbox.gif" />
+    <Content Include="Clients\dt\shared\screens\form-multiselect.gif" />
+    <Content Include="Clients\dt\shared\screens\form-registration.gif" />
+    <Content Include="Clients\dt\shared\screens\form-slider.png" />
+    <Content Include="Clients\dt\shared\screens\form-spinner.gif" />
+    <Content Include="Clients\dt\shared\screens\form-vbox.gif" />
+    <Content Include="Clients\dt\shared\screens\form-xml.gif" />
+    <Content Include="Clients\dt\shared\screens\forum.gif" />
+    <Content Include="Clients\dt\shared\screens\gauge.gif" />
+    <Content Include="Clients\dt\shared\screens\gmap-panel.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-array.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-buffer.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-cell-editing.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-columngrouping.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-data-binding.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-edit.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-filter.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-from-markup.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-group-summaries.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-grouped-headers.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-grouping.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-infinite-scroll.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-live-search.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-locking.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-multiple-sorting.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-multiple-sorting.png" />
+    <Content Include="Clients\dt\shared\screens\grid-paging.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-plugins.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-property.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-row-editor.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-summary.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-transform.gif" />
+    <Content Include="Clients\dt\shared\screens\grid-xml.gif" />
+    <Content Include="Clients\dt\shared\screens\group-tabs.gif" />
+    <Content Include="Clients\dt\shared\screens\grouped-bar.gif" />
+    <Content Include="Clients\dt\shared\screens\grouped-tab.gif" />
+    <Content Include="Clients\dt\shared\screens\history.gif" />
+    <Content Include="Clients\dt\shared\screens\keyboard.gif" />
+    <Content Include="Clients\dt\shared\screens\kitchensink.gif" />
+    <Content Include="Clients\dt\shared\screens\layout-absolute.gif" />
+    <Content Include="Clients\dt\shared\screens\layout-accordion.gif" />
+    <Content Include="Clients\dt\shared\screens\layout-anchor.gif" />
+    <Content Include="Clients\dt\shared\screens\layout-browser.gif" />
+    <Content Include="Clients\dt\shared\screens\layout-column.gif" />
+    <Content Include="Clients\dt\shared\screens\layout-form.gif" />
+    <Content Include="Clients\dt\shared\screens\layout-table.gif" />
+    <Content Include="Clients\dt\shared\screens\layout-vbox.gif" />
+    <Content Include="Clients\dt\shared\screens\list-view.gif" />
+    <Content Include="Clients\dt\shared\screens\live-animated.gif" />
+    <Content Include="Clients\dt\shared\screens\live-updated.gif" />
+    <Content Include="Clients\dt\shared\screens\locale-dutch.gif" />
+    <Content Include="Clients\dt\shared\screens\locale-switch.gif" />
+    <Content Include="Clients\dt\shared\screens\msg-box.gif" />
+    <Content Include="Clients\dt\shared\screens\multisort-dataview.png" />
+    <Content Include="Clients\dt\shared\screens\nested-loading.gif" />
+    <Content Include="Clients\dt\shared\screens\organizer.gif" />
+    <Content Include="Clients\dt\shared\screens\panel-bubble.gif" />
+    <Content Include="Clients\dt\shared\screens\panel.gif" />
+    <Content Include="Clients\dt\shared\screens\pivotgrid-cellcls.gif" />
+    <Content Include="Clients\dt\shared\screens\pivotgrid-people.gif" />
+    <Content Include="Clients\dt\shared\screens\pivotgrid.gif" />
+    <Content Include="Clients\dt\shared\screens\portal.gif" />
+    <Content Include="Clients\dt\shared\screens\progress-bar-pager.gif" />
+    <Content Include="Clients\dt\shared\screens\progress.gif" />
+    <Content Include="Clients\dt\shared\screens\qtips.gif" />
+    <Content Include="Clients\dt\shared\screens\reload-chart.gif" />
+    <Content Include="Clients\dt\shared\screens\resizable.gif" />
+    <Content Include="Clients\dt\shared\screens\restful-thumb.gif" />
+    <Content Include="Clients\dt\shared\screens\rich-tips.gif" />
+    <Content Include="Clients\dt\shared\screens\sandbox.gif" />
+    <Content Include="Clients\dt\shared\screens\slider-pager.gif" />
+    <Content Include="Clients\dt\shared\screens\slider.gif" />
+    <Content Include="Clients\dt\shared\screens\spotlight.gif" />
+    <Content Include="Clients\dt\shared\screens\state-saving.gif" />
+    <Content Include="Clients\dt\shared\screens\statusbar-adv.gif" />
+    <Content Include="Clients\dt\shared\screens\statusbar-demo.gif" />
+    <Content Include="Clients\dt\shared\screens\tab-panel-scroller-menu.gif" />
+    <Content Include="Clients\dt\shared\screens\tabs-adv.gif" />
+    <Content Include="Clients\dt\shared\screens\tabs.gif" />
+    <Content Include="Clients\dt\shared\screens\tasks.gif" />
+    <Content Include="Clients\dt\shared\screens\templates.gif" />
+    <Content Include="Clients\dt\shared\screens\themes.gif" />
+    <Content Include="Clients\dt\shared\screens\toolbar-actions.gif" />
+    <Content Include="Clients\dt\shared\screens\toolbar-button-groups.gif" />
+    <Content Include="Clients\dt\shared\screens\toolbar-droppable.png" />
+    <Content Include="Clients\dt\shared\screens\toolbar-overflow.gif" />
+    <Content Include="Clients\dt\shared\screens\toolbar-reorderable.png" />
+    <Content Include="Clients\dt\shared\screens\toolbar.gif" />
+    <Content Include="Clients\dt\shared\screens\tree-check.gif" />
+    <Content Include="Clients\dt\shared\screens\tree-columns.gif" />
+    <Content Include="Clients\dt\shared\screens\tree-reorder.gif" />
+    <Content Include="Clients\dt\shared\screens\tree-two.gif" />
+    <Content Include="Clients\dt\shared\screens\tree-xml-loader.gif" />
+    <Content Include="Clients\dt\shared\screens\window-layout.gif" />
+    <Content Include="Clients\dt\shared\screens\window.gif" />
+    <Content Include="Clients\dt\shared\screens\writer-thumb.gif" />
+    <Content Include="Clients\dt\view\AboutPanel.js" />
+    <Content Include="Clients\dt\view\MastTopBar.js" />
+    <Content Include="Clients\dt\wallpapers\Blue-Sencha.jpg" />
+    <Content Include="Clients\dt\wallpapers\Dark-Sencha.jpg" />
+    <Content Include="Clients\dt\wallpapers\Wood-Sencha.jpg" />
+    <Content Include="Clients\dt\wallpapers\blue.jpg" />
+    <Content Include="Clients\dt\wallpapers\desk.jpg" />
+    <Content Include="Clients\dt\wallpapers\desktop.jpg" />
+    <Content Include="Clients\dt\wallpapers\desktop2.jpg" />
+    <Content Include="Clients\dt\wallpapers\ext.gif" />
+    <Content Include="Clients\dt\wallpapers\shiny.gif" />
+    <Content Include="Clients\dt\wallpapers\sky.jpg" />
+    <Content Include="Clients\dt\wallpapers\Sombrero.jpg" />
+    <Content Include="Clients\dt\images\folder16x16.png" />
+    <Content Include="Clients\dt\images\folder48x48.png" />
+    <Content Include="Clients\dt\DnDWindow.js" />
+    <Content Include="Clients\Shared\grid\BufferedCheckboxModel.js" />
+    <Content Include="Clients\Shared\app\App.js" />
+    <Content Include="Clients\Shared\app\EventManager.js" />
+    <Content Include="Clients\Portal\data\Start Page.html" />
+    <Content Include="Clients\Shared\gui\IFrame.js" />
+    <Content Include="Clients\Portal\data\Start Page Down Time.html" />
+    <Content Include="Clients\Shared\gui\AstroGridView.js" />
+    <Content Include="Clients\Portal\view\VaoTopBarDownTime.js" />
+    <Content Include="Clients\Portal\data\images\PowerOutage.jpg" />
+    <Content Include="Clients\AstroView\Three\src\extras\core\EventTarget.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\ParametricGeometries.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\ParametricGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\PolyhedronGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\TetrahedronGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\geometries\TubeGeometry.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\helpers\ArrowHelper.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\objects\ImmediateRenderObject.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\objects\MorphBlendMesh.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\renderers\plugins\DepthPassPlugin.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\renderers\plugins\LensFlarePlugin.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\renderers\plugins\ShadowMapPlugin.js" />
+    <Content Include="Clients\AstroView\Three\src\extras\renderers\plugins\SpritePlugin.js" />
+    <Content Include="Clients\AstroView\Three\src\loaders\BinaryLoader.js" />
+    <Content Include="Clients\AstroView\Three\src\loaders\ImageLoader.js" />
+    <Content Include="Clients\AstroView\Three\src\loaders\JSONLoader.js" />
+    <Content Include="Clients\AstroView\Three\src\loaders\Loader.js" />
+    <Content Include="Clients\AstroView\Three\src\loaders\SceneLoader.js" />
+    <Content Include="Clients\AstroView\Three\build\custom\ThreeCanvas.js" />
+    <Content Include="Clients\AstroView\Three\build\custom\ThreeDOM.js" />
+    <Content Include="Clients\AstroView\Three\build\custom\ThreeExtras.js" />
+    <Content Include="Clients\AstroView\Three\build\custom\ThreeSVG.js" />
+    <Content Include="Clients\AstroView\Three\build\custom\ThreeWebGL.js" />
+    <Content Include="MashupQuery.asmx" />
+    <Content Include="Clients\Shared\data\DownloadItem.js" />
+    <Content Include="Clients\Shared\util\UcdTrans.js" />
+    <Content Include="Clients\AstroView\assets\images\crosshair.png" />
+    <Content Include="Clients\Mast\data\images\spinning.jpg" />
+    <Content Include="Clients\AstroView\Three\src\scenes\CanvasScene.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\CanvasRendererMobile.js" />
+    <Content Include="Clients\AstroView\keyboard.png" />
+    <Content Include="Clients\AstroView\textures\cross99.png" />
+    <Content Include="Clients\AstroView\M101.js" />
+    <Content Include="Clients\AstroView\RaDecView.js" />
+    <Content Include="Clients\AstroView\Healpix\HealpixIndex.js" />
+    <Content Include="Clients\AstroView\Healpix\Healpix.html" />
+    <Content Include="Clients\AstroView\Healpix\Constants.js" />
+    <Content Include="Clients\AstroView\Healpix\Json.js" />
+    <Content Include="Clients\Shared\gui\custom\NedImages.js" />
+    <Content Include="Clients\Shared\custom\NedImages.js" />
+    <Content Include="Clients\AstroView\HealpixGeometry.js" />
+    <Content Include="Clients\AstroView\HealpixSphere.js" />
+    <Content Include="Clients\AstroView\Healpix\Healpix.js" />
+    <Content Include="Clients\AstroView\textures\TEST_0.png" />
+    <Content Include="Clients\AstroView\textures\TEST_1.png" />
+    <Content Include="Clients\AstroView\textures\TEST_10.png" />
+    <Content Include="Clients\AstroView\textures\TEST_11.png" />
+    <Content Include="Clients\AstroView\textures\TEST_12.png" />
+    <Content Include="Clients\AstroView\textures\TEST_13.png" />
+    <Content Include="Clients\AstroView\textures\TEST_2.PNG" />
+    <Content Include="Clients\AstroView\textures\TEST_3.PNG" />
+    <Content Include="Clients\AstroView\textures\TEST_4.PNG" />
+    <Content Include="Clients\AstroView\textures\TEST_5.PNG" />
+    <Content Include="Clients\AstroView\textures\TEST_6.png" />
+    <Content Include="Clients\AstroView\textures\TEST_7.png" />
+    <Content Include="Clients\AstroView\textures\TEST_8.png" />
+    <Content Include="Clients\AstroView\textures\TEST_9.png" />
+    <Content Include="Clients\AstroView\ToastGeometry.js" />
+    <Content Include="Clients\AstroView\ToastSphere.js" />
+    <Content Include="Clients\data\RegistryStandardServices.xml" />
+    <Content Include="Clients\Shared\gui\custom\Summary.js" />
+    <Content Include="Clients\Shared\img\redx.png" />
+    <Content Include="Clients\Shared\img\greencheck.png" />
+    <Content Include="Clients\Portal\loading1.gif" />
+    <Content Include="Clients\Shared\search\Summary.js" />
+    <Content Include="Clients\Shared\img\search16x16-nostar-trans.png" />
+    <Content Include="Clients\Shared\img\MAST_16.png" />
+    <Content Include="Clients\Shared\img\MAST_20.png" />
+    <Content Include="Clients\Shared\img\MAST_24.png" />
+    <Content Include="Clients\AstroView\Three\build\three.min.js" />
+    <Content Include="Clients\AstroView\Three\build\three49.js" />
+    <Content Include="Clients\AstroView\AstroViewThree49.html" />
+    <Content Include="Clients\AstroView\AstroView49.js" />
+    <Content Include="Clients\AstroView\Three\build\three.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Box2.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Box3.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Color.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Frustum.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Math.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Matrix3.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Matrix4.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Plane.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Quaternion.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Ray.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Sphere.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Spline.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Triangle.js" />
+    <Content Include="Clients\AstroView\Three\src\math\UV.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Vector2.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Vector3.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Vector4.js" />
+    <Content Include="Clients\AstroView\Three\src\math\Vertex.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\WebGLRenderer2.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\webgl\LowLevelRenderer.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\webgl\ShaderBuilder.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\webgl\objects\LineRenderer.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\webgl\objects\MeshRenderer.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\webgl\objects\Object3DRenderer.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\webgl\objects\ParticleRenderer.js" />
+    <Content Include="Clients\AstroView\Three\src\renderers\webgl\objects\RibbonRenderer.js" />
+    <Content Include="Clients\AstroView\Three\src\textures\CompressedTexture.js" />
+    <Content Include="Clients\Shared\search\Datascope.js" />
+    <Content Include="Clients\AstroView\Jo.html" />
+    <Content Include="Clients\AstroView\Jo.js" />
+    <Content Include="Clients\AstroView\gear.png" />
+    <Content Include="Clients\AstroView\gear2.png" />
+    <Content Include="Clients\AstroView\search.png" />
+    <Content Include="Clients\AstroView\jo\css\back-icon.png" />
+    <Content Include="Clients\AstroView\jo\css\back-line.png" />
+    <Content Include="Clients\AstroView\jo\css\back-mini.png" />
+    <Content Include="Clients\AstroView\jo\css\bright-shiny.png" />
+    <Content Include="Clients\AstroView\jo\css\browser.css" />
+    <Content Include="Clients\AstroView\jo\css\dark_matte.png" />
+    <Content Include="Clients\AstroView\jo\css\expando.png" />
+    <Content Include="Clients\AstroView\jo\css\full-matte.png" />
+    <Content Include="Clients\AstroView\jo\css\jo.css" />
+    <Content Include="Clients\AstroView\jo\css\jo2.css" />
+    <Content Include="Clients\AstroView\jo\css\lite-matte.png" />
+    <Content Include="Clients\AstroView\jo\css\sample.html" />
+    <Content Include="Clients\AstroView\jo\css\shade-top-split.png" />
+    <Content Include="Clients\AstroView\jo\css\shade-top.png" />
+    <Content Include="Clients\AstroView\jo\css\shade.png" />
+    <Content Include="Clients\AstroView\jo\css\shiny-button.png" />
+    <Content Include="Clients\AstroView\jo\css\shiny-split.png" />
+    <Content Include="Clients\AstroView\jo\css\shiny.png" />
+    <Content Include="Clients\AstroView\jo\css\subtle-matte-full.png" />
+    <Content Include="Clients\AstroView\jo\css\subtle-shiny-button.png" />
+    <Content Include="Clients\AstroView\jo\css\subtle-shiny.png" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\aluminum.css" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\blueButton.png" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\brushedgrey.png" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\chrome.css" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\commuter.css" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\expando.png" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\gecko.css" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\grayButton.png" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\shine.png" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\shiny.png" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\titletop.png" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\topbar.png" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\webkit.css" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\webos.css" />
+    <Content Include="Clients\AstroView\jo\css\aluminum\widgets.css" />
+    <Content Include="Clients\AstroView\jo\css\bootstrap\expando.png" />
+    <Content Include="Clients\AstroView\jo\css\bootstrap\jo.bootstrap.css" />
+    <Content Include="Clients\AstroView\jo\css\flat\expando.png" />
+    <Content Include="Clients\AstroView\jo\css\flat\jo.flat.css" />
+    <Content Include="Clients\AstroView\jo\css\ios\index.js" />
+    <Content Include="Clients\AstroView\jo\css\ios\index_splitview.js" />
+    <Content Include="Clients\AstroView\jo\css\ios\ios.css" />
+    <Content Include="Clients\AstroView\jo\css\ios\ios.html" />
+    <Content Include="Clients\AstroView\jo\css\ios\ios_expando.png" />
+    <Content Include="Clients\AstroView\jo\css\ios\ios_splitview.html" />
+    <Content Include="Clients\AstroView\jo\css\ios-codebykevin\index.js" />
+    <Content Include="Clients\AstroView\jo\css\ios-codebykevin\index_splitview.js" />
+    <Content Include="Clients\AstroView\jo\css\ios-codebykevin\ios.css" />
+    <Content Include="Clients\AstroView\jo\css\ios-codebykevin\ios.html" />
+    <Content Include="Clients\AstroView\jo\css\ios-codebykevin\ios_expando_retina.png" />
+    <Content Include="Clients\AstroView\jo\css\ios-codebykevin\ios_splitview.html" />
+    <Content Include="Clients\AstroView\jo\css\simple\simple.css" />
+    <Content Include="Clients\AstroView\jo\js\jo.js" />
+    <Content Include="Clients\AstroView\jo\js\jo_min.js" />
+    <Content Include="Clients\Shared\img\loading1.gif" />
+    <Content Include="Clients\AstroView\Surveys.js" />
+    <Content Include="Clients\AstroView\radec.png" />
+    <Content Include="Clients\AstroView\Timer.js" />
+    <Content Include="Clients\AstroView\Coord.js" />
+    <Content Include="Clients\AstroView\minus.png" />
+    <Content Include="Clients\AstroView\plus.png" />
+    <Content Include="Clients\AstroView\DiamondDefault.png" />
+    <Content Include="Clients\AstroView\DiamondError.png" />
+    <Content Include="Clients\AstroView\AladinLite.html" />
+    <Content Include="Clients\Designer\Exports\app\view\CrossMatch.js" />
+    <Content Include="Clients\Designer\Exports\app\view\ui\CrossMatch.js" />
+    <Content Include="Clients\Designer\Exports\app\store\CDSTableStore.js" />
+    <Content Include="Clients\Shared\img\cds_32.png" />
+    <Content Include="Clients\Shared\img\cds_small.png" />
+    <Content Include="Clients\AstroView\AstroViewApp.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Histogram.cs" />
+    <Compile Include="Mashup.asmx.cs">
+      <DependentUpon>Mashup.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MashupQuery.asmx.cs">
+      <DependentUpon>MashupQuery.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Adaptors\SqlServer.cs" />
+    <Compile Include="Adaptors\Votable.cs" />
+    <Compile Include="Adaptors\Csv.cs" />
+    <Compile Include="Adaptors\Datascope.cs" />
+    <Compile Include="Adaptors\HttpProxy.cs" />
+    <Compile Include="Adaptors\IAsyncAdaptor.cs" />
+    <Compile Include="Adaptors\ISyncAdaptor.cs" />
+    <Compile Include="Adaptors\Exporter.cs" />
+    <Compile Include="Config\AdaptorsConfig.cs" />
+    <Compile Include="Config\ColumnsConfig.cs" />
+    <Compile Include="MashupRequest.cs" />
+    <Compile Include="MashupResponse.cs" />
+    <Compile Include="MashupResponseData.cs" />
+    <Compile Include="MashupCache.cs" />
+    <Compile Include="Adaptors\Download.cs" />
+    <Compile Include="MashupRequestValidator.cs" />
+    <Compile Include="Adaptors\Distribution.cs" />
+    <Compile Include="Adaptors\Summary.cs" />
+    <Compile Include="Adaptors\SummaryWrapper.cs" />
+    <Compile Include="Adaptors\DatascopeListable.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JsonFx.Json\JsonFx.Json.csproj">
+      <Project>{ABA23F14-7E47-43FE-A3E7-1FF97840C3FB}</Project>
+      <Name>JsonFx.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{BEC86334-6BA5-4594-838B-C77A4FDB7FB3}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VOTLib\VOTLib.csproj">
+      <Project>{4E3C1001-3AB5-4659-BDCE-13ED677D79FD}</Project>
+      <Name>VOTLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\log4net\log4net.csproj">
+      <Project>{FA2E72F6-D583-4B7D-A934-8553A54D7021}</Project>
+      <Name>log4net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExcelLibrary\ExcelLibrary.csproj">
+      <Project>{0716F257-72DD-41EF-8E79-54BA388E3AB1}</Project>
+      <Name>ExcelLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LumenWorks.Framework.IO\LumenWorks.Framework.IO.csproj">
+      <Project>{E3B83D68-C90C-4874-8E5F-DEC8D038BC7C}</Project>
+      <Name>LumenWorks.Framework.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Collections\Collections.csproj">
+      <Project>{FD71C7F5-D3E7-491D-9916-27A7D8E73544}</Project>
+      <Name>Collections</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349C5851-65DF-11DA-9384-00065B846F21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3324</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+    <MonoDevelop>
+      <Properties VerifyCodeBehindFields="True" VerifyCodeBehindEvents="True">
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+        <WebDeployTargets>
+          <Target Name="">
+            <FileCopier Handler="MonoDevelop.Deployment.LocalFileCopyHandler" TargetDirectory="/Volumes/d$/web/Portal/Mashup" ctype="LocalFileCopyConfiguration" />
+          </Target>
+        </WebDeployTargets>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_Data\GalexSiapVotable.xml" />
+    <None Include="App_Data\CaomConeVotable.xml" />
+    <None Include="Clients\Designer\Projects\AstroViewContainer.xds" />
+    <None Include="Clients\Designer\Projects\AstroViewOptionsContainer.xds" />
+    <Content Include="Clients\Designer\Projects\ChartCanvasContainer.xds" />
+    <None Include="Clients\Designer\Projects\ChartContainer.xds" />
+    <None Include="Clients\Designer\Projects\ColorPickerContainer.xds" />
+    <Content Include="Clients\Designer\Projects\DownloadTabContainer.xds" />
+    <Content Include="Clients\Designer\Projects\DatascopeDetailsContainer.xds" />
+    <None Include="Clients\Designer\Projects\DownloadWindowContainer.xds" />
+    <None Include="Clients\Designer\Projects\FacetChooserContainer.xds" />
+    <None Include="Clients\Designer\Projects\FilterContainer.xds" />
+    <None Include="Clients\Designer\Projects\GenericDetailsContainer.xds" />
+    <None Include="Clients\Designer\Projects\ImportContainer.xds" />
+    <Content Include="Clients\Designer\Projects\JqPlotContainer.xds" />
+    <None Include="Clients\Designer\Projects\LayerChooserContainer.xds" />
+    <Content Include="Clients\Designer\Projects\NumericHistogramContainer.xds" />
+    <None Include="Clients\Designer\Projects\SiaDetailsContainer.xds" />
+    <None Include="Clients\Designer\Projects\TextFacetContainer.xds" />
+    <None Include="Clients\Designer\Projects\TopBarContainer.xds" />
+    <None Include="Clients\Designer\Projects\UploadOptionsForm.xds" />
+    <None Include="Adaptors\HttpProxy.cs">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Adaptors\IAsyncAdaptor.cs">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Adaptors\ISyncAdaptor.cs">
+      <Visible>False</Visible>
+    </None>
+    <Content Include="Clients\Designer\Projects\ZingChartContainer.xds" />
+    <None Include="Clients\dt\portal.jsb3" />
+    <None Include="Clients\Mast\portal.jsb3" />
+    <None Include="Clients\Portal\portal.jsb3" />
+    <None Include="Clients\swfobject\expressInstall.swf" />
+    <None Include="Clients\swfobject\test.swf" />
+    <None Include="Clients\swfobject\src\expressInstall.as" />
+    <None Include="Clients\swfobject\src\expressInstall.fla" />
+    <None Include="AdaptorsConfig.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="ColumnsConfig.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Shared\flXHR.swf" />
+    <None Include="Clients\Shared\flXHR.vbs" />
+    <None Include="Clients\Shared\updateplayer.swf" />
+    <None Include="Clients\Designer\Projects\ExportWindowCombos.xds" />
+    <None Include="Clients\MashupClients.komodoproject" />
+    <None Include="Clients\Designer\Projects\CaomDetailsContainer.xds" />
+    <None Include="Clients\Designer\Projects\VaoPositionSearch.xds" />
+    <None Include="Clients\Designer\Projects\NedSedDetails.xds" />
+    <None Include="Clients\Portal\loading1.gif">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\assets\images\0_0.bmp" />
+    <None Include="Clients\Shared\flashplayer.swf" />
+    <None Include="Clients\Desktop\data\images\invalid_line.gif">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Shared\util\Wcs.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Designer\Projects\MinMaxSliderContainer.xds" />
+    <None Include="Clients\Designer\Containers\app\view\AstroViewContainerThree.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Designer\Containers\app\view\ui\AstroViewContainerThree.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\textures\circle9.png">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\textures\diamond10.png">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\textures\diamond45.png">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\textures\plus9.png">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\textures\square9.png">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\textures\stop9.png">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Designer\Projects\SsaDetailsContainer.xds" />
+    <None Include="Clients\dt\app.jsb3" />
+    <None Include="Clients\dt\credits.txt" />
+    <None Include="Clients\dt\images\taskbar\sencha.ico" />
+    <None Include="Clients\dt\shared\icons\fam\SILK.txt" />
+    <None Include="Properties\PublishProfiles\MASTDEV.pubxml" />
+    <None Include="Clients\build.sh" />
+    <None Include="Clients\AstroView\go.astroview" />
+    <None Include="go.xsp" />
+    <None Include="Clients\AstroView\Healpix\go.healpix" />
+    <None Include="build.cmd">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\fixit.astroview">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\CONTRIBUTING.md">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\LICENSE">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\README.md">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\core\BufferGeometry.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\core\EventDispatcher.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\core\Raycaster.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\extras\FontUtils.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\extras\geometries\AsteriskGeometry.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\extras\geometries\CircleGeometry.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\extras\geometries\ConvexGeometry.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\extras\geometries\ShapeGeometry.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\extras\helpers\DirectionalLightHelper.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\extras\helpers\HemisphereLightHelper.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\extras\helpers\PointLightHelper.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\extras\helpers\SpotLightHelper.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\lights\AreaLight.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\lights\HemisphereLight.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\loaders\LoadingMonitor.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\loaders\TextureLoader.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\materials\LineDashedMaterial.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\src\materials\SpriteMaterial.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2013_01_30.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="bin\License.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="bin\Readme.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\build.bat">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\build.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\build.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\build.sh">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\build.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\build2.sh">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\build_all.bat">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\build_all.sh">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\build_debug.bat">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\build_debug.sh">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\build_max.bat">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\externs_common.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\externs_extras.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\package.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\ctm\LICENSE.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\ctm\join_ctm.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\fbx\LICENSE">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\fbx\README.md">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\fbx\convert_to_threejs.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\obj\convert_obj_three.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\obj\split_obj.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\utf8\build.bat">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\utf8\src\README">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\utf8\src\base.h">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\utf8\src\bounds.h">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\utf8\src\compress.h">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\utf8\src\mesh.h">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\utf8\src\obj2utf8.cc">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\utf8\src\obj2utf8x.cc">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\utf8\src\objcompress.cc">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\utf8\src\optimize.h">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\utf8\src\stream.h">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\converters\utf8\src\utf8.h">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\blender\README.md">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\blender\2.62\scripts\addons\io_mesh_threejs\__init__.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\blender\2.62\scripts\addons\io_mesh_threejs\export_threejs.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\blender\2.62\scripts\addons\io_mesh_threejs\import_threejs.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\blender\2.63\scripts\addons\io_mesh_threejs\__init__.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\blender\2.63\scripts\addons\io_mesh_threejs\export_threejs.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\blender\2.63\scripts\addons\io_mesh_threejs\import_threejs.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\blender\2.65\scripts\addons\io_mesh_threejs\__init__.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\blender\2.65\scripts\addons\io_mesh_threejs\export_threejs.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\blender\2.65\scripts\addons\io_mesh_threejs\import_threejs.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\ctm\LICENSE.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\ctm\join_ctm.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\fbx\convert_fbx_three.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\fbx\modules\readme.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\fbx\modules\win\Python26_x86\FbxCommon.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\fbx\modules\win\Python26_x86\FbxCommon.pyc">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\fbx\modules\win\Python26_x86\fbx.pyd">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\fbx\modules\win\Python26_x86\sip.pyd">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\max\ThreeJSExporter.ms">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\obj\convert_obj_three.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\obj\split_obj.py">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\utf8\README">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\utf8\build.bat">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\utf8\mesh.h">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\utf8\objcompress">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\exporters\utf8\objcompress.cc">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\externs\common.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\externs\examples.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\externs\extras.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\includes\canvas.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\includes\common.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\includes\common2.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\includes\css3d.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\includes\examples.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\includes\extras.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\includes\math.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\includes\webgl.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\npm\README.md">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\npm\build.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\npm\footer.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\npm\header.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\npm\test.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\npm\three-math.package.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\npm\three.package.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\servers\nodejs_server.sh">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\servers\perl_server.sh">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\servers\python_server.sh">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\servers\readme.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\servers\ruby_server.sh">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\Three\utils\servers\simplehttpserver.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\jo\ABOUT.mdown">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\jo\CONTENTS.mdown">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\jo\LICENSE.mdown">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\jo\README.mdown">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\jo\build">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\jo\build.bat">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\jo\makedoc">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Shared\css\example.css">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Shared\css\ext-all-debug.css">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2013_03_05.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2013_03_12.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2013_03_13.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\jo\js\jshint.json" />
+  </ItemGroup>
+</Project>

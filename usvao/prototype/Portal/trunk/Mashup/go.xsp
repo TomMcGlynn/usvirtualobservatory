@@ -1,0 +1,6 @@
+# Extract IP Address of this machine
+set ipaddr = `ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d" " -f2 | head -1`
+echo "using ip:port {$ipaddr}:80"
+
+# Launch xsp web server using sudo because port 80 < 1024.
+sudo /Library/Frameworks/Mono.framework/Versions/2.10.9/bin/mono --debug /Library/Frameworks/Mono.framework/Versions/2.10.9/lib/mono/4.0/xsp4.exe --port 80 --address {$ipaddr} --nonstop --verbose
