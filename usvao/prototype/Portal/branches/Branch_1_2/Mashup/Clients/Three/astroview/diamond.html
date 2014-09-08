@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>diamond [three.js]</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #202020;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+
+		<script src="../build/Three.js"></script>	
+		<script src="../examples/js/Stats.js"></script>
+		<script src="DiamondGeometry.js"></script>
+
+		<script>
+		
+			// Math Constants
+			const RADIANS_90 = Math.PI/2.0;
+			const RADIANS_360 = Math.PI*2.0;
+			const TO_RADIANS = Math.PI/180.0;
+			const TO_DEGREES = 180.0/Math.PI;
+
+			// Viewport Constraints
+			const RADIUS = 100;
+			const FOV = 30;
+			
+			// Core 3D objects
+			var container, stats;
+			var camera, scene, renderer;
+			
+			// Scene objects
+			var diamond3D;
+			
+			var target;
+			
+			var renderCount;
+							
+			///////////////
+			// Main
+			///////////////
+			console.debug("Hello Canvas!!!");
+			createScene();
+			renderScene();
+
+			/////////////////
+			// createScene()
+			/////////////////
+			function createScene() 
+			{
+				container = document.createElement('div');
+				document.body.appendChild(container);
+
+				camera = new THREE.PerspectiveCamera( FOV, window.innerWidth / window.innerHeight, 1, RADIUS*10 );
+				camera.position.set( 0, 0, 400 );
+				camera.eulerOrder = 'YXZ';
+
+				scene = new THREE.Scene();
+				scene.add( camera );
+				
+				renderer = createRenderer();		
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+				
+				addDiamondSphere3D();
+				addStats();
+				addEvents();
+			}
+			
+			function createRenderer()
+			{
+				var rend;
+				try{
+					console.debug("Trying THREE.WebGLRenderer()...");
+					rend = new THREE.WebGLRenderer();
+				} catch(error) {rend=null;}
+				
+				if (!rend)
+				{	
+					try{
+						console.debug("Trying THREE.CanvasRenderer()...");
+						rend = new THREE.CanvasRenderer();
+					} catch(error) {rend=null;}
+				}
+				
+				if (!rend)
+				{			
+					try{
+						console.debug("Trying THREE.SVGRenderer...");
+						rend = new THREE.SVGRenderer();
+					} catch(error) {rend=null;}
+				}
+				
+				if (!rend)
+				{
+					alert("Bummer. Unable to create a Renderer.");
+					console.debug("Unable to create a Renderer.");
+				}
+				
+				return rend;
+			}
+			
+			////////////////////////
+			// addDiamondSphere3D()
+			////////////////////////
+			function addDiamondSphere3D()
+			{
+				diamond3D = createDiamondSphere3D();
+				scene.add(diamond3D);	
+			}
+			
+			function createDiamondSphere3D()
+			{
+				//
+				// 3D Quadrant (I, II, III, IV) ====> TOAST [tx, ty] Mapping
+				//
+				//////////////////////////////////////////////////////////////////////
+				//
+				//                                 -X
+				//        [0,0]                     ^                    [1,0]
+				//                                  |
+				//                                  |
+				//                                  |
+				//                   IV             |           III
+				//                                  |
+				//                                  |
+				//                                  |
+				//   <)  +Z <-----------------------+-------------------------> -Z
+				// camera                           |
+				//                                  |
+				//                                  |
+				//                    I             |           II
+				//                                  |
+				//                                  |
+				//                                  |
+				//        [0,1]                     V                    [1,1]
+				//                                 +X
+				//
+				//////////////////////////////////////////////////////////////////////
+				
+				var depth = 3;
+				var zlevel = 1;	
+				
+				//
+				// STEP 1: Create Unit Vectors for the Unit Sphere
+				//
+				var YY = new THREE.Vertex( new THREE.Vector3(0.0,  1.0,  0.0)); // +Y
+				var _Y = new THREE.Vertex( new THREE.Vector3(0.0, -1.0,  0.0)); // -Y
+								
+				var XX = new THREE.Vertex( new THREE.Vector3( 1.0,  0.0,  0.0)); // +X
+				var _X = new THREE.Vertex( new THREE.Vector3(-1.0,  0.0,  0.0)); // -X	
+
+				var ZZ = new THREE.Vertex( new THREE.Vector3(0.0,  0.0,  1.0)); // +Z
+				var _Z = new THREE.Vertex( new THREE.Vector3(0.0,  0.0, -1.0)); // +Z
+				
+				//
+				// STEP 2: Create The Top Level Diamond located in each 3D Qudrant (I, II, III, IV),
+				//         mapping it to a TOAST Image Coordinate [tx, ty] as shown in the
+				//         3D Quadrant (I, II, III, IV) ====> TOAST [tx, ty] Mapping above.
+				//
+				
+				//
+				// 3D Quadrant I: [+X,+Z] ===> TOAST: [0,1] 
+				//
+				var dI = new THREE.DiamondGeometry([YY, XX, _Y, ZZ], 0, 1, "I", 0x0000ff, zlevel, 1, RADIUS);
+				var matI = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'textures/TOAST_0_1.PNG' ) } );
+				
+				//
+				// 3D Quadrant II: [-Z,+X] ===> TOAST: [1,1]
+				//
+				var dII = new THREE.DiamondGeometry([YY, _Z, _Y, XX], 1, 1, "II", 0x00ff00, zlevel, 0, RADIUS);
+				var matII = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'textures/TOAST_1_1.PNG' ) } );
+
+				//
+				// 3D Quadrant III: [-X,-Z] ===> TOAST: [1,0] 
+				//
+				var dIII = new THREE.DiamondGeometry([YY, _X, _Y, _Z], 1, 0, "III", 0xff0000, zlevel, 2, RADIUS);
+				var matIII = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'textures/TOAST_1_0.PNG' ) } );
+				
+				//
+				// 3D Quadrant IV: [+Z,-X] ===> TOAST: [0,0] 
+				//
+				var dIV = new THREE.DiamondGeometry([YY, ZZ, _Y, _X], 0, 0, "IV", 0xffff00, zlevel, 3, RADIUS);
+				var matIV = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'textures/TOAST_0_0.PNG' ) } );
+				
+				//
+				// STEP 3: Expand Each diamond by the defined level into Array of Diamond objects
+				//
+				zlevel = depth+1;
+	
+				var daI = THREE.DiamondGeometry.expandDiamond(dI, depth, RADIUS, zlevel);		// Quadrant I
+				var daII = THREE.DiamondGeometry.expandDiamond(dII, depth, RADIUS, zlevel);		// Quadrant II
+				var daIII = THREE.DiamondGeometry.expandDiamond(dIII, depth, RADIUS, zlevel);	// Quadrant III
+				var daIV = THREE.DiamondGeometry.expandDiamond(dIV, depth, RADIUS, zlevel);		// Quadrant IV		
+				
+				//
+				// STEP 4: Add the diamonds to the mesh as children objects
+				//
+				var sphere = new THREE.Object3D();
+				
+				//
+				// Add Diamonds with Test Material
+				//
+				addDiamonds(sphere, [dI], matI); 
+				addDiamonds(sphere, [dII], matII);
+				addDiamonds(sphere, [dIII], matIII);
+				addDiamonds(sphere, [dIV], matIV);
+				
+				//
+				// Add Diamonds with URL Material
+				//
+				/*
+				url = "http://mastproxyvm1.stsci.edu/images/dss2/[LEVEL]/[TX]/dss2_[LEVEL]_[TX]_[TY].jpg";
+				addDiamondsUrl(sphere, daI, url); 
+				addDiamondsUrl(sphere, daII, url);
+				addDiamondsUrl(sphere, daIII, url);
+				addDiamondsUrl(sphere, daIV, url);
+				*/
+				
+				return sphere;
+			}
+			
+			function addDiamondsUrl(sphere, diamonds, url)
+			{
+				var surl = new String(url);
+
+				for (i=0; i<diamonds.length; i++)
+				{
+					var dg = diamonds[i];
+					var maturl = surl.replace("[LEVEL]", dg.zlevel).replace("[TX]", dg.tx).replace("[TY]", dg.ty).replace("[LEVEL]", dg.zlevel).replace("[TX]", dg.tx).replace("[TY]", dg.ty);
+					var mat = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture(maturl) } );
+					addDiamond(sphere, dg, mat);
+				}
+			}
+			
+			function addDiamonds(sphere, diamonds, material)
+			{
+				for (i=0; i<diamonds.length; i++)
+				{
+					var dg = diamonds[i];
+					addDiamond(sphere, dg, material);
+				}
+			}
+			
+			function addDiamond(sphere, dg, material)
+			{
+				var dm = new THREE.Mesh( dg, material );
+				//dm.flipSided = true;
+				dm.doubleSided = true;
+				sphere.add(dm);
+			}
+			
+			function onImageLoaded(arg)
+			{
+				//alert ("onImageLoaded: arg = " + arg);
+			}
+			
+			////////////////////////
+			// addEvents()
+			////////////////////////
+			function addEvents()
+			{
+				// Mouse Events
+				container.addEventListener( 'mouseout', onMouseOut, false );
+				container.addEventListener( 'mousemove', onMouseMove, false );
+                container.addEventListener( 'mousedown', onMouseDown, false );
+                container.addEventListener( 'mouseup', onMouseUp, false );
+				
+				// Mouse Wheel Events: Need both for WebKit and FF
+				window.addEventListener('DOMMouseScroll', onMouseWheel, false);
+				window.addEventListener('mousewheel', onMouseWheel, false);
+				
+				// Keypress events
+                document.onkeypress=onKeyPress;
+			}
+			
+			var last = new THREE.Vector2();
+			var delta = new THREE.Vector2();
+			var mouseDown = false;
+			
+			/////////////////////////
+			// Events
+			/////////////////////////
+			function onMouseOut(event)
+			{
+                event.preventDefault();
+				//mouseDown = false;
+				console.debug("onMouseOut()");
+			}
+			
+			function onMouseMove(event)
+			{
+                event.preventDefault();
+								
+				if (mouseDown)
+				{
+					camera.rotation.y += (event.clientX - last.x) * TO_RADIANS * (camera.fov/(FOV*17));
+					camera.rotation.x += (event.clientY - last.y) * TO_RADIANS * (camera.fov/(FOV*17));
+					
+					updateCamera();
+						
+					last.x = event.clientX;
+					last.y = event.clientY;
+				}
+			}
+			
+			function updateCamera()
+			{
+				// Bounds Checking
+				if (camera.rotation.y > RADIANS_360) camera.rotation.y -= RADIANS_360;
+				if (camera.rotation.y < 0.0) camera.rotation.y += RADIANS_360;		
+				
+				if (camera.rotation.x > RADIANS_90) camera.rotation.x = RADIANS_90;
+				if (camera.rotation.x < -RADIANS_90) camera.rotation.x = -RADIANS_90;
+			}
+			
+			function onMouseDown(event)
+			{
+                event.preventDefault();
+				mouseDown=true;
+				last.x = event.clientX;
+				last.y = event.clientY;
+			}
+			
+			function onMouseUp(event)
+			{
+                event.preventDefault();
+				mouseDown=false;
+			}
+			
+			function onKeyPress( event )
+			{
+                var unicode=event.keyCode? event.keyCode : event.charCode;
+                //alert(unicode); // find the char code		
+                switch(unicode)
+				{
+                    case 37:  	rotateLeft(); break;
+                    case 39: 	rotateRight(); break;
+                    case 38: 	rotateUp(); break;
+                    case 40: 	rotateDown(); break;
+                    case 105: 	zoomIn(); break;
+                    case 111:  	zoomOut(); break;
+					case 116:   checkFrustum(); break;
+                }
+            }
+			
+			function onMouseWheel( event )
+			{		  
+				// Get wheel direction for both WebKit or FF
+				var delta = ((typeof event.wheelDelta != "undefined") ? (-event.wheelDelta) : event.detail );
+				console.debug("onMouseWheel():" + delta);
+				zoom(delta);
+			}
+			
+			/////////////////////////
+			// Actions
+			/////////////////////////
+			function rotateLeft()
+			{
+				camera.rotation.y += .01;
+				updateCamera();
+			}
+			
+			function rotateRight()
+			{
+				camera.rotation.y -= .01;
+				updateCamera();
+			}
+			
+			function rotateUp()
+			{
+				camera.rotation.x += .01;
+				updateCamera();
+			}
+			
+			function rotateDown()
+			{
+				camera.rotation.x -= .01;
+				updateCamera();
+			}
+			
+			function zoom(delta)
+			{
+				camera.fov += delta;
+				if (camera.fov <= 1.0) camera.fov = 1.0;
+				if (camera.fov >= FOV) camera.fov = FOV;
+				camera.updateProjectionMatrix();
+			}
+			
+			function zoomIn()
+			{
+				camera.fov -= 1.0;
+				if (camera.fov <= 1.0) camera.fov = 1.0;
+				camera.updateProjectionMatrix();
+			}
+			
+			function zoomOut()
+			{
+				camera.fov += 1.0;
+				if (camera.fov >= FOV) camera.fov = FOV;
+				camera.updateProjectionMatrix();
+			}
+			
+			////////////////////////
+			// addStats()
+			////////////////////////
+			function addStats()
+			{
+				stats = new createStats();
+				container.appendChild(stats.domElement);
+			}
+			
+			function createStats()
+			{	
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				return stats;
+			}
+
+			////////////////////////
+			// renderScene()
+			////////////////////////
+			function renderScene() 
+			{
+				//diamond3D.rotation.y += .01;
+				renderer.render(scene, camera);
+				stats.update();
+				requestAnimationFrame(renderScene);
+			}
+			
+			function checkFrustum()
+			{
+				var visbileCount=0;
+
+				var diamonds = diamond3D.children;
+				for (var i=0; i<diamonds.length; i++)
+				{
+					var culled = true;
+					var d=diamonds[i];
+					var vertices = d.geometry.vertices;
+					for (var j=0; j<vertices.length; j++)
+					{
+						var v = unprojectVector(vertices[j].position, camera);
+						console.debug("v:" + v);
+						if (v.x > 0 && v.x <= window.innerWidth &&
+							v.y > 0 && v.y <= window.innerHeight)
+						{
+							culled = false;
+							break;
+						}
+					}
+					
+					if (culled)
+					{
+						console.debug("culled d:" + d);
+					}
+					else
+					{
+						console.debug("visible d:" + d);
+						visbileCount++;
+					}
+				}
+				console.debug("frustumCount: " + frustumCount);
+			}
+			
+			function unprojectVector( vector, camera )
+			{
+				var projectionMatrixInverse = new THREE.Matrix4();
+				var projectionScreenMatrix = new THREE.Matrix4();
+				projectionMatrixInverse.getInverse( camera.projectionMatrix );
+				projectionScreenMatrix.multiply( camera.matrixWorld, camera.projectionMatrixInverse );
+				projectionScreenMatrix.multiplyVector3( vector );
+
+				return vector;
+			};
+			
+			//////////////////////////////////////////////////////////////////////////////////////////////////				
+			//
+			// Sample Code - No Longer Used !!!
+			//
+			//////////////////////////////////////////////////////////////////////////////////////////////////
+
+			function createGrid()
+			{
+				//
+				// Grid
+				//
+				var geometry = new THREE.Geometry();
+				geometry.vertices.push( new THREE.Vertex( new THREE.Vector3( - 500, 0, 0 ) ) );
+				geometry.vertices.push( new THREE.Vertex( new THREE.Vector3( 500, 0, 0 ) ) );
+
+				var material = new THREE.LineBasicMaterial( { color: 0xffffff, opacity: 0.2 } );
+
+				for ( var i = 0; i <= 10; i ++ ) 
+				{
+					var line = new THREE.Line( geometry, material );
+					line.position.y = - 120;
+					line.position.z = ( i * 100 ) - 500;
+					scene.add( line );
+
+					var line = new THREE.Line( geometry, material );
+					line.position.x = ( i * 100 ) - 500;
+					line.position.y = - 120;
+					line.rotation.y = 90 * Math.PI / 180;
+					scene.add( line );
+				}
+			}
+			
+			function createPlane()
+			{
+				var planegeom = new THREE.PlaneGeometry(100, 100, 1, 1);
+				var imagem = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'textures/0_0.PNG' ) } );
+				var plane = new THREE.Mesh( planegeom, imagem );
+				plane.doubleSided = true;
+				scene.add(plane);
+			}
+			
+			function createSphere()
+			{
+				var spheregeom = new THREE.SphereGeometry( 100, 14, 7, false );		
+				var linem = new THREE.MeshBasicMaterial( { color: 0x00ffff, wireframe: true } );
+				var sphere = new THREE.Mesh( spheregeom, linem );
+				sphere.doubleSided = true;
+				scene.add( sphere );
+			}
+			
+			var particle;
+			function createSpheres()
+			{	
+				//
+				// Spheres
+				//
+				var geometry = new THREE.SphereGeometry( 100, 14, 7, false );
+
+				var materials = [
+					{ material: new THREE.MeshBasicMaterial( { color: 0x00ffff, wireframe: true } ), 																		doubleSided: true },
+					{ material: new THREE.MeshBasicMaterial( { color: 0xff0000, blending: THREE.AdditiveBlending } ), 														doubleSided: true },
+					{ material: new THREE.MeshLambertMaterial( { color: 0xffffff, shading: THREE.FlatShading, overdraw: true } ), 											doubleSided: false },
+					{ material: new THREE.MeshLambertMaterial( { color: 0xffffff, shading: THREE.SmoothShading, overdraw: true } ), 										doubleSided: false },
+					{ material: new THREE.MeshDepthMaterial( { overdraw: true } ), 																							doubleSided: false },
+					{ material: new THREE.MeshNormalMaterial( { overdraw: true } ), 																						doubleSided: false },
+					{ material: new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'textures/land_ocean_ice_cloud_2048.jpg' ) } ), 							doubleSided: false },
+					{ material: new THREE.MeshLambertMaterial( { map: THREE.ImageUtils.loadTexture( 'textures/land_ocean_ice_cloud_2048.jpg' ) } ), 						doubleSided: false },
+					{ material: new THREE.MeshBasicMaterial( { envMap: THREE.ImageUtils.loadTexture( 'textures/envmap.png', new THREE.SphericalReflectionMapping() ) } ), 	doubleSided: false }
+				];
+
+				for ( var i = 0, l = geometry.faces.length; i < l; i ++ ) 
+				{
+					var face = geometry.faces[ i ];
+					if ( Math.random() > 0.7 )
+					{
+						face.material = [ materials[ Math.floor( Math.random() * materials.length )  ].material ];
+					}
+				}
+
+				materials.push( { material: new THREE.MeshFaceMaterial(), overdraw: false, doubleSided: true } );
+
+				for ( var i = 0, l = materials.length; i < l; i ++ ) 
+				{
+					var sphere = new THREE.Mesh( geometry, materials[ i ].material );
+					sphere.doubleSided = materials[ i ].doubleSided;
+
+					sphere.position.x = ( i % 5 ) * 200 - 400;
+					sphere.position.z = Math.floor( i / 5 ) * 200 - 200;
+
+					sphere.rotation.x = Math.random() * 200 - 100;
+					sphere.rotation.y = Math.random() * 200 - 100;
+					sphere.rotation.z = Math.random() * 200 - 100;
+
+					scene.add( sphere );
+				}
+
+				var PI2 = Math.PI * 2;
+				var renderParticle = function ( context ) 
+				{
+					context.beginPath();
+					context.arc( 0, 0, 1, 0, PI2, true );
+					context.closePath();
+					context.fill();
+				}
+
+				particle = new THREE.Particle( new THREE.ParticleCanvasMaterial( { color: 0xffffff, program: renderParticle } ) );
+				particle.scale.x = particleLight.scale.y = particleLight.scale.z = 4;
+				scene.add( particle );
+			}
+			
+			function loadImage( path ) 
+			{
+				var image = document.createElement( 'img' );
+				var texture = new THREE.Texture( image, THREE.UVMapping )
+
+				image.onload = function () { texture.needsUpdate = true; };
+				image.src = path;
+
+				return texture;
+			}
+
+		</script>
+
+	</body>
+</html>

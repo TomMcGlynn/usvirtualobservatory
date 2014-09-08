@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>ExtTop - Desktop Sample App</title>
+
+    <script type="text/javascript" src="../Shared/InitializeJavaScript.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/desktop.css" />
+    <script type="text/javascript" src="uxClasses.js"></script>
+    <script type="text/javascript" src="newClasses.js"></script>
+    <script type="text/javascript" src="DemoApp.js"></script>
+    
+    <!-- The JavaScript for the SAMP. -->
+    <script type="text/javascript" src="../Shared/samp.js"></script>    
+    <script type="text/javascript" src="../Shared/flXHR.js"></script>
+
+    <!-- The JavaScript for the AstroView. -->
+    <script type="text/javascript" src="../pagebus/pagebus.js" language="JavaScript1.2"></script>
+    <script type="text/javascript" src="../pagebus/pagebusAstroView.js" language="JavaScript1.2"></script>
+    <script type="text/javascript" src="../swfobject/swfobject.js"></script>
+
+    <script type="text/javascript">
+        Ext.Loader.setPath({
+            'Ext.ux.desktop': 'js',
+            MyDesktop: ''
+        });
+
+        Ext.require('MyDesktop.App');
+
+        var myDesktopApp;
+        Ext.onReady(function () {
+            myDesktopApp = new MyDesktop.App();
+        });
+    </script>
+</head>
+
+<body>
+
+    <a href="http://www.sencha.com" target="_blank" alt="Powered by Ext JS"
+       id="poweredby"><div></div></a>
+
+</body>
+</html>

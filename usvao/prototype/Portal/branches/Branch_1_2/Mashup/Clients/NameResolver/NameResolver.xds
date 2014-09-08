@@ -1,0 +1,137 @@
+{
+	"name": "MobileSearchDesigner.xds",
+	"projectId": "B0F52BBA-3262-4692-A54D-0484E0709898",
+	"settings": {
+		"urlPrefix": "http://localhost/",
+		"directAPI": "",
+		"spacesToIndent": "4",
+		"codeGenFormat": "Class",
+		"extPath": "http://extjs.cachefly.net/ext-3.2.1/",
+		"exportPath": "/Users/rogers/Documents/Komodo/extjs/MobileSearch",
+		"lineEnding": "LF",
+		"instantiateStore": true,
+		"exportXDSFiles": true,
+		"genTimestamps": true
+	},
+	"xdsVersion": "xds-1.0.3.2",
+	"components": [
+		{
+			"id": "MyContainer",
+			"cid": "container",
+			"jsClass": "SearchContainer",
+			"snapToGrid": 5,
+			"userConfig": {
+				"width": 330,
+				"height": 70,
+				"layout": "absolute"
+			},
+			"userXType": "searchcontainer",
+			"cn": [
+				{
+					"id": "MyButton",
+					"cid": "button",
+					"jsClass": "MyButton",
+					"snapToGrid": 10,
+					"userConfig": {
+						"text": "Search",
+						"x": 270,
+						"y": 20,
+						"autoRef": "btnSearch"
+					}
+				},
+				{
+					"id": "MyTextField",
+					"cid": "textfield",
+					"jsClass": "MyTextField",
+					"snapToGrid": 10,
+					"userConfig": {
+						"x": 15,
+						"y": 20,
+						"autoRef": "txtSearch",
+						"width": 250
+					}
+				},
+				{
+					"id": "MyLabel",
+					"cid": "label",
+					"jsClass": "MyLabel",
+					"snapToGrid": 10,
+					"userConfig": {
+						"text": "Resolved To:",
+						"x": 15,
+						"y": 45,
+						"autoRef": "lblResolved"
+					}
+				},
+				{
+					"id": "MyLabel1",
+					"cid": "label",
+					"jsClass": "MyLabel",
+					"snapToGrid": 10,
+					"userConfig": {
+						"text": "Enter Object Name:",
+						"x": 15,
+						"y": 5,
+						"width": 240,
+						"autoRef": "lblEnter",
+						"style": "font-size:12"
+					}
+				}
+			]
+		},
+		{
+			"id": "MyTabPanel",
+			"cid": "tabpanel",
+			"jsClass": "MyTabPanel",
+			"snapToGrid": 10,
+			"userConfig": {
+				"activeTab": 0,
+				"width": 400,
+				"height": 250
+			},
+			"cn": [
+				{
+					"id": "MyPanel",
+					"cid": "panel",
+					"jsClass": "MyPanel",
+					"snapToGrid": 10,
+					"userConfig": {
+						"title": "Tab 1"
+					},
+					"cn": [
+						{
+							"id": "MyUserComponent",
+							"cid": "usercomponent",
+							"jsClass": "SearchContainer",
+							"snapToGrid": 10,
+							"userConfig": {
+								"jsClass": "SearchContainer",
+								"userXType": "searchcontainer"
+							},
+							"userComponent": "MyContainer"
+						}
+					]
+				},
+				{
+					"id": "MyPanel1",
+					"cid": "panel",
+					"jsClass": "MyPanel1",
+					"snapToGrid": 10,
+					"userConfig": {
+						"title": "Tab 2"
+					}
+				},
+				{
+					"id": "MyPanel2",
+					"cid": "panel",
+					"jsClass": "MyPanel2",
+					"snapToGrid": 10,
+					"userConfig": {
+						"title": "Tab 3"
+					}
+				}
+			]
+		}
+	],
+	"stores": []
+}

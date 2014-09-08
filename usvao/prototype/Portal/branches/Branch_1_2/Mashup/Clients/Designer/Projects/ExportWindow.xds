@@ -1,0 +1,351 @@
+{
+    "name": "ExportWindow.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Exports",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": false,
+        "genTimestamps": true,
+        "appName": "Mvpd"
+    },
+    "xdsVersion": "1.2.0",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1666",
+            "type": "window",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoRender": false,
+                "height": null,
+                "width": 399,
+                "activeItem": 0,
+                "layout": "fit",
+                "title": "Export Table As...",
+                "designer|userClassName": "ExportToWindow"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen15046",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "exportPanel",
+                        "layout": "anchor",
+                        "designer|userClassName": "MyContainer1"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen12032",
+                            "type": "form",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": 0,
+                                "itemId": "formPanel",
+                                "defaults": "{margin: 10, labelWidth: 100}",
+                                "bodyPadding": 10,
+                                "title": null,
+                                "designer|userClassName": "MyForm1"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen4369",
+                                    "type": "textfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "filenameField",
+                                        "margin": null,
+                                        "fieldLabel": "File Name",
+                                        "labelWidth": null,
+                                        "allowBlank": false,
+                                        "blankText": "Enter File Name",
+                                        "designer|userClassName": "MyTextField1",
+                                        "layout|anchor": "100%"
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen1806",
+                                    "type": "radiogroup",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "border": null,
+                                        "height": null,
+                                        "itemId": "filetypeRadios",
+                                        "margin": null,
+                                        "width": 400,
+                                        "defaultType": null,
+                                        "defaults": "{name: 'filetype'}",
+                                        "layout": "anchor",
+                                        "fieldLabel": "Format",
+                                        "labelWidth": null,
+                                        "designer|userClassName": "MyRadioGroup1",
+                                        "dock": null
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen47448",
+                                    "type": "radiogroup",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "border": null,
+                                        "height": null,
+                                        "itemId": "actionRadios",
+                                        "margin": null,
+                                        "width": 400,
+                                        "layout": "anchor",
+                                        "fieldLabel": "Action",
+                                        "labelWidth": null,
+                                        "designer|userClassName": "MyRadioGroup1",
+                                        "dock": null
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen47454",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "name": "destination",
+                                                "fieldLabel": null,
+                                                "boxLabel": "Download File",
+                                                "checked": true,
+                                                "inputValue": "file",
+                                                "designer|userClassName": "MyRadio1"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen47459",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "name": "destination",
+                                                "fieldLabel": null,
+                                                "boxLabel": "Open with Browser",
+                                                "inputValue": "browser",
+                                                "designer|userClassName": "MyRadio1"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen4620",
+                                    "type": "radiogroup",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "border": null,
+                                        "height": null,
+                                        "itemId": "columnsRadios",
+                                        "margin": null,
+                                        "width": 400,
+                                        "layout": "anchor",
+                                        "fieldLabel": "Which Columns?",
+                                        "labelSeparator": " ",
+                                        "labelWidth": null,
+                                        "designer|userClassName": "MyRadioGroup1",
+                                        "dock": null
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen4626",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "name": "exportColumns",
+                                                "fieldLabel": null,
+                                                "boxLabel": "Displayed Only",
+                                                "checked": true,
+                                                "inputValue": "displayed",
+                                                "designer|userClassName": "MyRadio1"
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen4631",
+                                            "type": "radiofield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "name": "exportColumns",
+                                                "fieldLabel": null,
+                                                "boxLabel": "All",
+                                                "inputValue": "all",
+                                                "designer|userClassName": "MyRadio1"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen2181",
+                                    "type": "combobox",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "WhichPulldown",
+                                        "value": null,
+                                        "fieldLabel": "Which Columns?",
+                                        "labelSeparator": " ",
+                                        "allowBlank": false,
+                                        "displayField": "displayField",
+                                        "forceSelection": true,
+                                        "queryMode": "local",
+                                        "store": "WhichColumnsStore",
+                                        "valueField": "valueField",
+                                        "designer|userClassName": "MyComboBox",
+                                        "layout|anchor": "100%"
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen37774",
+                                    "type": "container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "height": null,
+                                        "itemId": "buttonContainer",
+                                        "layout": "hbox",
+                                        "designer|userClassName": "MyContainer3",
+                                        "container|align": "middle",
+                                        "container|pack": "center",
+                                        "dock": null
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen38183",
+                                            "type": "button",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "id": null,
+                                                "itemId": "exportButton",
+                                                "margin": "10 10 10 10 ",
+                                                "text": "Export",
+                                                "designer|userClassName": "MyButton10",
+                                                "layout|flex": null,
+                                                "layout|margins": null
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen38359",
+                                            "type": "button",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "itemId": "cancelButton",
+                                                "margin": "10 10 10 10",
+                                                "text": "Cancel",
+                                                "designer|userClassName": "MyButton11",
+                                                "layout|flex": null
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "stores": [
+        {
+            "id": "ExtBox1-ext-gen2758",
+            "type": "arraystore",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "storeId": "WhichColumnsStore",
+                "data": "[['Displayed Only', 'displayed'],['All', 'all']]\n",
+                "designer|userClassName": "WhichColumnsStore"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen2762",
+                    "type": "ajaxproxy",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "Ajax Proxy"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen2768",
+                            "type": "arrayreader",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "Array Reader"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "framework": "ext40"
+}

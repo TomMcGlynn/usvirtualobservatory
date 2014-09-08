@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:resolvedItems xmlns:ns2="santa.stsci.edu">
+    <resolvedCoordinate>
+      <cacheDate>2011-02-28T11:42:15-05:00</cacheDate>
+      <cached>true</cached>
+      <canonicalName>MESSIER 051</canonicalName>
+      <dec>47.23151</dec>
+      <objectType>GPair</objectType>
+      <ra>202.48219</ra>
+      <radius>0.075</radius>
+      <resolver>NED</resolver>
+      <searchRadius>-1.0</searchRadius>
+      <searchString>m51</searchString>
+    </resolvedCoordinate>
+</ns2:resolvedItems>
