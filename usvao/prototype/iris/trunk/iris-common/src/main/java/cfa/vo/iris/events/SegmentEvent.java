@@ -1,0 +1,58 @@
+/**
+ * Copyright (C) 2012 Smithsonian Astrophysical Observatory
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package cfa.vo.iris.events;
+
+import cfa.vo.iris.events.SegmentEvent.SegmentPayload;
+import cfa.vo.iris.sed.ExtSed;
+import cfa.vo.sedlib.Segment;
+
+/**
+ *
+ * @author olaurino
+ */
+public class SegmentEvent extends GenericEvent<Segment, SegmentListener, SegmentPayload> {
+    private static class Holder {
+        private static final SegmentEvent INSTANCE = new SegmentEvent();
+    }
+
+    public static SegmentEvent getInstance() {
+        return Holder.INSTANCE;
+    }
+
+    public static class SegmentPayload {
+        private ExtSed sed;
+        private SedCommand cmd;
+
+        public SegmentPayload(ExtSed sed, SedCommand cmd) {
+            this.sed = sed;
+            this.cmd = cmd;
+        }
+
+        public ExtSed getSed() {
+            return sed;
+        }
+
+        public SedCommand getSedCommand() {
+            return cmd;
+        }
+    }
+}
