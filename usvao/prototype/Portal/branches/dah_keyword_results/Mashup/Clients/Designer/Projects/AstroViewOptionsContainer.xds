@@ -1,0 +1,586 @@
+{
+    "name": "AstroViewOptionsContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.1.0/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.3",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1836",
+            "type": "tabpanel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": null,
+                "itemId": "optionsTabPanel",
+                "margin": null,
+                "width": null,
+                "layout": "accordion",
+                "closeAction": "hide",
+                "title": null,
+                "activeTab": 0,
+                "designer|userClassName": "AstroViewOptionsContainer",
+                "designer|userAlias": "optionsTabPanel"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen1847",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "graphicsTab",
+                        "collapsed": null,
+                        "title": "Graphics",
+                        "designer|userClassName": "MyPanel2"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen3066",
+                            "type": "fieldset",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "graphicsFieldset",
+                                "margin": 5,
+                                "width": 300,
+                                "title": "Graphics",
+                                "designer|userClassName": "MyFieldSet"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen3237",
+                                    "type": "slider",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "brightnessSlider",
+                                        "margin": "10 0",
+                                        "width": 300,
+                                        "value": 51,
+                                        "fieldLabel": "Brightness",
+                                        "designer|userClassName": "MySlider",
+                                        "layout|anchor": "100%"
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen3699",
+                                    "type": "slider",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "contrastSlider",
+                                        "value": 50,
+                                        "fieldLabel": "Contrast",
+                                        "designer|userClassName": "MySlider1",
+                                        "layout|anchor": "100%"
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen8114",
+                                    "type": "container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "graphicsButtonContainer",
+                                        "margin": "10 0",
+                                        "layout": "hbox",
+                                        "designer|userClassName": "MyContainer1",
+                                        "container|align": "middle",
+                                        "container|pack": "center"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen2757",
+                                            "type": "button",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "itemId": "brightenButton",
+                                                "margin": "0 40 0 0",
+                                                "text": "Brighten",
+                                                "designer|userClassName": "MyButton",
+                                                "layout|flex": 1
+                                            }
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen2944",
+                                            "type": "button",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "itemId": "resetButton",
+                                                "text": "Reset",
+                                                "designer|userClassName": "MyButton1",
+                                                "layout|flex": 1
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen9468",
+                            "type": "fieldset",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "drawingFieldset",
+                                "margin": 5,
+                                "width": 300,
+                                "layout": "column",
+                                "title": "Drawing",
+                                "designer|userClassName": "MyFieldSet1"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen11247",
+                                    "type": "checkboxfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "gridCheckbox",
+                                        "margin": "0 10 5 5",
+                                        "width": null,
+                                        "fieldLabel": null,
+                                        "hideLabel": true,
+                                        "labelAlign": null,
+                                        "boxLabel": "Grid",
+                                        "designer|userClassName": "MyCheckbox"
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen14537",
+                                    "type": "checkboxfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "graphicsCheckbox",
+                                        "margin": "0 10 5 5",
+                                        "width": null,
+                                        "fieldLabel": null,
+                                        "hideLabel": true,
+                                        "labelAlign": null,
+                                        "boxLabel": "Graphics",
+                                        "checked": true,
+                                        "designer|userClassName": "MyCheckbox"
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen14740",
+                                    "type": "checkboxfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "imageCheckbox",
+                                        "margin": "0 10 5 10",
+                                        "width": null,
+                                        "fieldLabel": null,
+                                        "hideLabel": true,
+                                        "labelAlign": null,
+                                        "boxLabel": "Image",
+                                        "checked": true,
+                                        "designer|userClassName": "MyCheckbox"
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen14623",
+                                    "type": "checkboxfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "debugCheckbox",
+                                        "margin": "0 10 5 5",
+                                        "width": null,
+                                        "fieldLabel": null,
+                                        "hideLabel": true,
+                                        "labelAlign": null,
+                                        "boxLabel": "Debug",
+                                        "designer|userClassName": "MyCheckbox"
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen14828",
+                                    "type": "checkboxfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "hidden": null,
+                                        "itemId": "wireCheckbox",
+                                        "margin": "0 10 5 5",
+                                        "width": null,
+                                        "fieldLabel": null,
+                                        "hideLabel": true,
+                                        "labelAlign": null,
+                                        "boxLabel": "Wire",
+                                        "designer|userClassName": "MyCheckbox"
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen15037",
+                                    "type": "checkboxfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "hidden": null,
+                                        "itemId": "colorCheckbox",
+                                        "margin": "0 10 10 1",
+                                        "width": null,
+                                        "fieldLabel": null,
+                                        "hideLabel": true,
+                                        "labelAlign": null,
+                                        "boxLabel": "Color",
+                                        "designer|userClassName": "MyCheckbox"
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen14917",
+                                    "type": "checkboxfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "hidden": null,
+                                        "itemId": "textCheckbox",
+                                        "margin": "0 0 0 28",
+                                        "width": null,
+                                        "fieldLabel": null,
+                                        "hideLabel": true,
+                                        "labelAlign": null,
+                                        "boxLabel": "Text",
+                                        "designer|userClassName": "MyCheckbox"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen1856",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "toolsTab",
+                        "collapsed": null,
+                        "title": "Tools",
+                        "designer|userClassName": "MyPanel3"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen17395",
+                            "type": "fieldset",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "surveyFieldset",
+                                "margin": 5,
+                                "width": 300,
+                                "title": "Survey",
+                                "designer|userClassName": "MyFieldSet15"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen7634",
+                                    "type": "container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "surveyContainer",
+                                        "designer|userClassName": "MyContainer6"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen22336",
+                            "type": "fieldset",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "actionsFieldset",
+                                "margin": 5,
+                                "width": 300,
+                                "title": "Actions",
+                                "designer|userClassName": "MyFieldSet4"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen23435",
+                                    "type": "container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "toolsButtonsContainer",
+                                        "layout": null,
+                                        "designer|userClassName": "MyContainer"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen11772",
+                                            "type": "container",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "itemId": "toolsButtonsContainer1",
+                                                "layout": "hbox",
+                                                "designer|userClassName": "MyContainer7",
+                                                "layout|flex": 1,
+                                                "container|align": "middle"
+                                            },
+                                            "cn": [
+                                                {
+                                                    "id": "ExtBox1-ext-gen22985",
+                                                    "type": "button",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "itemId": "screenshotButton",
+                                                        "margin": "8 5 3 5",
+                                                        "text": "Take Screenshot",
+                                                        "designer|userClassName": "MyButton3",
+                                                        "layout|flex": 1
+                                                    }
+                                                },
+                                                {
+                                                    "id": "ExtBox1-ext-gen23134",
+                                                    "type": "button",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "itemId": "fullscreenButton",
+                                                        "margin": "8 5 3 5",
+                                                        "text": "Go Fullscreen",
+                                                        "designer|userClassName": "MyButton4",
+                                                        "layout|flex": 1
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen11964",
+                                            "type": "container",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "itemId": "toolsButtonsContainer2",
+                                                "layout": "hbox",
+                                                "designer|userClassName": "MyContainer8",
+                                                "layout|flex": 1,
+                                                "container|align": null
+                                            },
+                                            "cn": [
+                                                {
+                                                    "id": "ExtBox1-ext-gen23284",
+                                                    "type": "button",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "itemId": "coneSearchButton",
+                                                        "margin": "0 5 5 5",
+                                                        "text": "Cone Search Tool",
+                                                        "designer|userClassName": "MyButton5",
+                                                        "layout|flex": 1
+                                                    }
+                                                },
+                                                {
+                                                    "id": "ExtBox1-ext-gen15706",
+                                                    "type": "button",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "itemId": "positionMarkerButton",
+                                                        "margin": "0 5 5 5",
+                                                        "text": "Position Marker",
+                                                        "designer|userClassName": "MyButton18",
+                                                        "layout|flex": 1
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen1865",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "searchTab",
+                        "collapsed": null,
+                        "title": "Search",
+                        "designer|userClassName": "MyPanel4"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen18072",
+                            "type": "fieldset",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "searchFieldset",
+                                "margin": 5,
+                                "width": 300,
+                                "layout": "column",
+                                "title": "Enter Object Name or Coordinates",
+                                "designer|userClassName": "MyFieldSet2"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen19045",
+                                    "type": "textfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "searchText",
+                                        "width": 210,
+                                        "fieldLabel": "",
+                                        "labelAlign": "top",
+                                        "labelSeparator": null,
+                                        "designer|userClassName": "MyTextField"
+                                    }
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen20303",
+                                    "type": "button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "itemId": "searchButton",
+                                        "margin": "0 0 0 5",
+                                        "text": "Search",
+                                        "designer|userClassName": "MyButton2"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen18226",
+                            "type": "fieldset",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "examplesFieldset",
+                                "margin": 5,
+                                "width": 300,
+                                "title": "Examples",
+                                "designer|userClassName": "MyFieldSet3"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

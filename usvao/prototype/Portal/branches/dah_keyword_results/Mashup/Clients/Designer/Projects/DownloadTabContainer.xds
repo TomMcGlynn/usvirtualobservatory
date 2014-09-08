@@ -1,0 +1,92 @@
+{
+    "name": "DownloadTabContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Exports",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpd"
+    },
+    "xdsVersion": "1.2.3",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1816",
+            "type": "window",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "floating": null,
+                "height": 400,
+                "width": 633,
+                "layout": "fit",
+                "closeAction": "hide",
+                "title": "Download Basket",
+                "constrain": true,
+                "constrainHeader": true,
+                "minimizable": true,
+                "designer|userClassName": "DownloadTabContainer"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen1670",
+                    "type": "tabpanel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 250,
+                        "itemId": "downloadTabContainer",
+                        "width": null,
+                        "activeTab": 0,
+                        "designer|userClassName": "DownloadTabContainer"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen1679",
+                            "type": "panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "internalTab",
+                                "layout": "fit",
+                                "title": "Internal",
+                                "designer|userClassName": "MyPanel"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen1688",
+                            "type": "panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "externalTab",
+                                "layout": "fit",
+                                "title": "External",
+                                "designer|userClassName": "MyPanel1"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

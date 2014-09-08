@@ -1,0 +1,46 @@
+{
+    "projectName": "VAO Data Discovery Tool",
+    "licenseText": "Copyright(c) 2012 Space Telscope Science Institute and USVAO",
+    "builds": [
+        {
+            "name": "All Classes",
+            "target": "all-classes.js",
+            "options": {
+                "debug": true
+            },
+            "files": [
+                {
+                    "clsName": "Mvp.util.ExtBugWorkarounds",
+                    "name": "ExtBugWorkarounds.js",
+                    "path": "../Shared/util/"
+                },
+                {
+                    "clsName": "Ext.tip.QuickTipManager",
+                    "name": "QuickTipManager.js",
+                    "path": "../../../../extjs-4.1.0//src/tip/"
+                },
+                {
+                    "clsName": "Vao.Portal",
+                    "name": "Portal.js",
+                    "path": "./"
+                }
+            ]
+        },
+        {
+            "name": "Application - Production",
+            "target": "app-all.js",
+            "compress": true,
+            "files": [
+                {
+                    "path": "",
+                    "name": "all-classes.js"
+                },
+                {
+                    "path": "",
+                    "name": "app.js"
+                }
+            ]
+        }
+    ],
+    "resources": []
+}
