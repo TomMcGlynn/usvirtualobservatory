@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_bkg" refkeywords="set set_back back background bkg pha pha2 phaII spectrum spectra" seealsogroups="sh.bg  sh.set " displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+      Set a background PHA dataset
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_bkg([id], bkg, [bkg_id=1])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The set_bkg command assigns a background PHA dataset to a
+        source dataset.  
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+	  bkg - a PHA dataset, e.g. created by
+	  unpack_pha ("ahelp unpack_pha")
+	</ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background to use, e.g. if more
+          than one background is associated with the data; default is
+          the first background dataset
+        </ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; pha1 = unpack_pha("pha.fits")</LINE>
+	  <LINE>sherpa&gt; set_pha("src", pha1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Create a Sherpa dataset called "pha1" from the file pha.fits.  It is
+	    then assigned as the first background for the dataset "src".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+       <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_pha("bkg","ae_hxd_pinbkg_20060929.pha")</LINE>
+	  <LINE>sherpa&gt; set_bkg("src", get_data("bkg"), bkg_id=2)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The background data "bkg" is set as the second background for
+	    dataset "src". 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="calc_kcorr" refkeywords="k kcorr corr correction calculate redshift flux luminosity" seealsogroups="sh.data " displayseealsogroups="" context="utilities">
+
+     <SYNOPSIS>
+     Calculate the k correction for a spectral model.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>calc_kcorr(z, obslo, obshi, [restlo, resthi, id, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The calc_kcorr command calculates the k correction for a
+	spectral model, redshift, and energy range for a source or
+	background dataset.  The energy range is taken to be obslo
+	&lt;= energy &lt; obshi .
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  z - the redshift can be a scalar or a 1-D array; the return
+	  value matches that of z.  If it is an array, the k
+	  correction is evaluated for each redshift in the array. 
+	</ITEM>	
+	<ITEM>
+          obslo - observed-frame lower energy limit (keV)
+	</ITEM>	
+	<ITEM>
+          obshi - observed-frame upper energy limit (keV)
+	</ITEM>	
+	<ITEM>
+          restlo - rest-frame lower energy limit (keV); default=obslo
+	</ITEM>	
+	<ITEM>
+          resthi - rest-frame upper energy energy (keV); default=obshi
+	</ITEM>	
+	<ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>	
+	<ITEM>
+          bkg_id - the id of the background, if calculating the kcorr
+          for the background; default is the first background
+          associated with the id	 
+	</ITEM>	
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_kcorr(0.5, 0.5, 2)</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	  Calculate the k correction for a redshift of 0.5 over the
+	  energy range 0.5 to 2 keV.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; calc_kcorr(0.5, 0.5, 2, 2, 10, bkg_id=2)</LINE>
+          
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	  Calculate the k correction for the background dataset
+	  bkg_id=2 for a redshift of 0.5 over the energy range 0.5 to 2
+	  keV with rest-frame energy limits of 2 to 10 keV.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_rmf" refkeywords=" rmf data response get " seealsogroups=" sh.rmf sh.get  " displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+     Return a source or background RMF by data set ID
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_rmf( [id, resp_id, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+         The get_rmf command returns the RMF data loaded in association with the
+    specified source or background data set, by source,
+      background, or response data set ID.  The response ID
+      denotes which response(s) in the source or background(s) data
+      set(s) to return, in the event that more than one response has
+      been loaded in association with a particular data set.  The
+      background ID denotes which
+	background(s) response(s) in the source data set to
+      return. The data returned by get_rmf may be printed to the
+    screen or stored in a variable, e.g. to be used in another command for
+    explicitly defining a response in a model expression (see "ahelp
+    set_full_model" and "ahelp get_response").
+
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_pha("source.pi")</LINE>
+          <LINE>sherpa&gt; load_rmf("source.rmf")</LINE>
+          <LINE>sherpa&gt; rmf1=get_rmf()</LINE>
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            Get the first RMF loaded in association with default data
+      set 1 and store it as "rmf1".  The contents may be printed:
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; print(rmf1)
+name     = source.rmf
+detchans = 1024
+energ_lo = Float64[1090]
+energ_hi = Float64[1090]
+n_grp    = UInt64[1090]
+f_chan   = UInt32[1090]
+n_chan   = UInt32[1090]
+matrix   = Float64[572598]
+offset   = 1
+e_min    = Float64[1024]
+e_max    = Float64[1024]
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_rmf("src",2))</LINE>
+          <LINE>None</LINE>
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            Print the second RMF associated with the data set "src".
+            There is only one RMF for that data set, so the command
+            returns "None".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+    <QEXAMPLE>
+        <SYNTAX>
+
+         <LINE>sherpa&gt; fake_pha("faked", arf=get_arf(), rmf=get_rmf(), exposure=10000, bkg=get_bkg())</LINE>
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            The get_rmf command is used to populate the 'rmf' argument of
+            fake_pha for faking a data set using a specified
+	    instrument response.
+
+            (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/fake_pha.html">"ahelp fake_pha"</HREF>).
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; arf = get_arf()</LINE>
+          <LINE>sherpa&gt; rmf = get_rmf()</LINE>
+          <LINE>sherpa&gt; set_full_model(rmf(arf(xsphabs.abs1*powlaw1d.p1)))</LINE>
+        </SYNTAX>
+        <DESC>
+         <PARA>
+          The 'instrument' version of the RMF data set associated with
+          default data set id=1 is stored in variable 'rmf', and used
+          in the model expression of the set_full_model command for
+          explicitly defining the instrument response. The multiplication
+          with the exposure time is implicit in the model expression
+          (see also "ahelp get_response").
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

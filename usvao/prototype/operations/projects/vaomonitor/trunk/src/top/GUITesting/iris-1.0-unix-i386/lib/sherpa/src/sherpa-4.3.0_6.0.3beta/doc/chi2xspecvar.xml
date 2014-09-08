@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="chi2xspecvar" refkeywords="chi chi2 chisquare variance sigma stat stats statistics statistic xspecvar" seealsogroups="sh.stat " displayseealsogroups="" context="statistics">
+	<SYNOPSIS>
+      Chi-square statistic with variance computed from data
+      amplitudes. 
+    </SYNOPSIS>
+
+    <DESC>
+      <PARA>
+	The chi2xspecvar statistic is equivalent to chi2datavar
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/chi2datavar.html">"ahelp chi2datavar"</HREF>),
+	except that when the number of counts in a channel bin is less
+	than 1, the variance is set to 1.  
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_stat("chi2xspecvar")</LINE>
+	  <LINE>sherpa&gt; show_stat()</LINE>
+	  <LINE>Statistic: Chi2XspecVar</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Set the fitting statistic and then confirm the new value.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+    
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

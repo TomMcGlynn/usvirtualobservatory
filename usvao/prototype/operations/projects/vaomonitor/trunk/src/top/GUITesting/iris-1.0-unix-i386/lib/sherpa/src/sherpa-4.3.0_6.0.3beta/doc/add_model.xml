@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="add_model" refkeywords="model  class models modeling modelling usermodel registermodel userpars parameter par parameters" seealsogroups="sh.io sh.model " displayseealsogroups="" context="modeling">
+
+
+    <SYNOPSIS>
+      Add a user-defined model class as a Sherpa model type
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>add_model(modelclass)</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The add_model command registers a user-defined Sherpa model class as
+        a Sherpa model type, to allow users to create instances of models
+        that are recognized automatically in Sherpa model
+        expressions. This is primarily an alternative to using
+        load_user_model together with add_user_pars (see "ahelp load_user_model" and "ahelp add_user_pars") for explicitly defining user models as Python classes for use in Sherpa.
+      </PARA>
+      
+      <LIST>
+        <ITEM>
+	 modelclass - a Python class that characterizes a user-defined Sherpa
+                      model class type.
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; from sherpa.models import Gauss1D</LINE>
+	  <LINE>sherpa&gt; class MyGauss1D(Gauss1D): pass</LINE>
+          <LINE>sherpa&gt; add_model(MyGauss1D)</LINE>
+          <LINE>sherpa&gt; set_model(mygauss1d.g1+mygauss1d.g2)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Define a Python class, MyGauss1D, that inherits from the Sherpa 
+            Gauss1D model class.  Register MyGauss1D as a Sherpa model type for
+            use in Sherpa model expressions using add_model(). 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; from sherpa.models import PowLaw1D</LINE>
+	  <LINE>sherpa&gt; class MyPowLaw1D(PowLaw1D): pass</LINE>
+          <LINE>sherpa&gt; add_model(MyPowLaw1D)</LINE>
+          <LINE>sherpa&gt; set_model(xswabs.abs1*mypowlaw1d.p1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Define a Python class, MyPowLaw1D, that inherits from the Sherpa 
+            Powlaw1D model class.  Register MyPowLaw1D as a Sherpa
+            model type for use in Sherpa model expressions using
+	    add_model(). Set the model expression for data set 1 to an absorbed
+	    power law, using the newly defined model type. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+ 
+        <BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

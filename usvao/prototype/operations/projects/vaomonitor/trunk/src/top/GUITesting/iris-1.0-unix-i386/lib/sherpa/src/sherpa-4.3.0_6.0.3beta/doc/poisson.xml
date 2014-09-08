@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="poisson" refkeywords=" model models modeling modelling source composite nested joint " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Poisson function.  
+</SYNOPSIS>
+	<DESC>
+<PARA>
+A model expressing the ratio of two Poisson distributions of
+mean mu, one for which the random variable is x, and the other 
+for which the random variable is equal to mu itself:
+</PARA>
+
+<PARA>
+<EQUATION>
+f(x) = A (mu!/x!) mu^(x-mu)
+</EQUATION>
+</PARA>
+
+<TABLE>
+<CAPTION>poisson Parameters</CAPTION>
+<ROW> <DATA>Number</DATA> <DATA>Name</DATA> <DATA>Description</DATA> </ROW>
+<ROW> <DATA>1</DATA> <DATA>mean</DATA> <DATA>mean mu</DATA> </ROW>
+<ROW> <DATA>2</DATA> <DATA>ampl</DATA> <DATA>amplitude A</DATA> </ROW>
+</TABLE>
+
+<PARA>
+  The integration of models in Sherpa is controlled by an 
+  integration flag in each model structure.  Refer to <HREF link="http://cxc.harvard.edu/sherpa/ahelp/integrate.html">"ahelp integrate"</HREF> 
+  for information on integrating model components. 
+</PARA>
+
+</DESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

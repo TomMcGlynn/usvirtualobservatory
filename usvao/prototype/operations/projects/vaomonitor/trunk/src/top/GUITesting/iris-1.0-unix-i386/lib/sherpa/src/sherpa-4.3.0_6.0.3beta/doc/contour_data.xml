@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="contour_data" refkeywords="contour contours plot plots data ChIPS  chips image images img imager imaging visualize visualization visualise visualisation" seealsogroups="sh.contour sh.img sh.data" displayseealsogroups="" context="visualization">
+	<SYNOPSIS>
+     Open a contour plot of a data set in ChIPS
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>contour_data( [ id, [replot=False,overcontour=False]] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+          The contour_data() function opens in ChIPS a contour plot of
+	  a data set by data set ID.  If no data set ID is specified,
+          the default data set will be used.  To
+          plot contours of a model, fit, fit residuals, data-to-model
+          ratio, or PSF, use the contour function. 
+      </PARA>
+
+       <PARA>
+        Arguments:
+       </PARA>
+       <LIST>
+       <ITEM>
+         id -  Sherpa data set ID; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+
+       <ITEM>
+         replot - Send cached data arrays to ChIPS; 
+          default=False
+          
+       </ITEM>
+
+       <ITEM>
+         overcontour - Contour data without clearing previous plot;
+          default=False
+          
+       </ITEM>
+       </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; contour_data()</LINE>
+          
+        </SYNTAX>
+       	<DESC>
+          <PARA>
+	    The contour_data function can be called with no arguments,
+	    in which case a contour plot of the data is made for the first
+	    data set loaded in the Sherpa session, with the default
+	    settings.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; contour_data(3, overcontour=False)</LINE>
+          
+        </SYNTAX>
+       	 <DESC>
+          <PARA>
+	    Here, the contour_data function clears the previous plot
+	    and sends a contour plot of data set 3 to ChIPS.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; contour_data(replot=True, overcontour=True)</LINE>
+	  
+	</SYNTAX>
+	 <DESC>
+          <PARA>
+	    This command sends to ChIPS a cached contour plot of data
+	    set 1, without clearing the previous plot.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

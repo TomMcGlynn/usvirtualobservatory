@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="save_pha" refkeywords="pha pha2 phaII spectrum spectra write output io create save " seealsogroups="sh.save sh.io " displayseealsogroups="" context="saving">
+	<SYNOPSIS>
+      Save a Sherpa data set to a PHA file.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>save_pha( [id,] filename)</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The save_pha command saves a dataset to a PHA file.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+	  filename - the output filename, including path
+	</ITEM>
+      </LIST>
+     </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; save_pha("data.pha")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Save dataset 1 as a PHA file named "data.pha".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_pha("src", "source.pha")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Dataset "src" is written to the file "source.pha".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

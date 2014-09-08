@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_proj" refkeywords="get_proj_opt get_proj_results get_projection_results proj projection confidence get covar covariance" seealsogroups="sh.get  sh.conf" displayseealsogroups="" context="confidence">
+	<SYNOPSIS>
+      Return information regarding the projection method.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_proj()</LINE>
+	<LINE>get_proj_results()</LINE>
+	<LINE>get_proj_opt( [name] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+get_proj
+      </PARA>
+
+      <PARA>
+	The get_proj command returns the current projection estimation
+	method object.The function accepts no arguments. The returned
+	information includes: 
+      </PARA>
+
+      <LIST>
+	<ITEM>sigma - to get 1, 2, or 3-sigma limits</ITEM>
+	<ITEM>eps - precision of resulting limits</ITEM>
+        <ITEM>maxiters- maximum number of tries to bracket desired limits, before returning</ITEM>
+	<ITEM>remin - if during search, a new
+	fit statistic is found that is smaller than original best fit,
+	the difference between new and original statistics must be
+	greater than this value</ITEM> 
+      </LIST>
+
+      <PARA>
+        The full list of options is described in the "get_proj_opt"
+        section, below.
+      </PARA>
+
+      <PARA>
+get_proj_results
+      </PARA>
+
+      <PARA>
+	The get_proj_results command accesses results from the last
+	time projection was run. The function accepts no
+	arguments. The results include the following attributes:
+      </PARA>
+
+      <LIST>
+       <ITEM>datasets - Data sets in fit</ITEM> 
+       <ITEM>methodname - Estimation method name</ITEM> 
+       <ITEM>fitname  - Fitting method name</ITEM> 
+       <ITEM>statname - Statistic name</ITEM> 
+       <ITEM>sigma    - Change in statistic</ITEM> 
+       <ITEM>parnames - Model parameter names</ITEM> 
+       <ITEM>parvals  - Model parameter fit values</ITEM> 
+       <ITEM>parmins  - Model parameter minimum values</ITEM> 
+       <ITEM>parmaxes - Model parameter maximum values</ITEM> 
+       <ITEM>warnings - Warning messages</ITEM> 
+      </LIST>
+
+      <PARA>
+get_proj_opt
+      </PARA>
+
+      <PARA>
+	The get_proj_opt command returns a projection option by
+	name. If the name isn't specified, it returns a dictionary of
+	all options that govern how projection is run.
+       </PARA>
+
+      <LIST>
+	<ITEM>eps - precision of resulting limits, default=0.01</ITEM>
+	<ITEM>fast - the method is automatically switched to a faster option to reduce the time per fit, default=True</ITEM>
+	<ITEM>max_rstat - maximum possible value of the reduced statistic, default=3</ITEM>
+	<ITEM>maxfits - maximum number of tries to fit the parameter space, default=5</ITEM>
+        <ITEM>maxiters- maximum number of tries to bracket desired limits, before returning, default=200</ITEM>
+	<ITEM>remin - if during search, a new
+	fit statistic is found that is smaller than original best fit,
+	the difference between new and original statistics must be
+	greater than this value, default=0.01</ITEM> 
+	<ITEM>sigma - to get 1, 2, or 3-sigma limits, default=0.01</ITEM>
+        <ITEM>soft_limits - a switch which allows the search to go all
+         the way out to the hard parameter limits; if switched on, the
+         search will be restricted to occur within the soft limits,
+         which can be changed by the user, default=False</ITEM>
+	<ITEM>tol - tolerance for the fit, default=0.20000000000000001</ITEM>
+      </LIST>
+     </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_proj()</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Return a variable listing of all settings that govern how
+            the projection method calculates confidence limits.
+	    Sample output is
+	  </PARA>
+
+<VERBATIM>
+name        = projection
+max_rstat   = 3
+maxiters    = 200
+soft_limits = False
+eps         = 0.01
+fast        = True
+maxfits     = 5
+remin       = 0.01
+tol         = 0.2
+sigma       = 1
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_proj_results()</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Return a variable listing of all results from the last
+	    time projection was run.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_proj_opt("sigma")</LINE>
+	  <LINE>1</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Return the value of the sigma option, which is "1" in this
+	    example. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+     </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

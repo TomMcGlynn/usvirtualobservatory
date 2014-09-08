@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_covar_opt" refkeywords="set opt option options confidence covar region error interval uncertainty parameter statistic statistics  sigma project goodness" seealsogroups="sh.conf sh.set " displayseealsogroups="" context="confidence">
+
+<SYNOPSIS>
+  Set the options for covariance
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_covar_opt( name, val )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The set_covar_opt command sets the options for covariance.  
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          name - covariance option name
+        </ITEM>
+
+        <ITEM>
+          val - value for the option
+        </ITEM>
+      </LIST>
+
+      <PARA>
+        A list of the available options is returned by the
+        get_covar_opt command  
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/get_covar.html">"ahelp get_covar_opt"</HREF>), e.g.
+      </PARA>
+<VERBATIM>
+{'eps': 0.01, 'maxiters': 200, 'sigma': 1, 'soft_limits': False}
+</VERBATIM>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_covar_opt ("maxiters", 400)</LINE>
+	  <LINE>sherpa&gt; set_covar_opt ("sigma", 3)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+		Set the "maxiters" value to 400 and the "sigma" value to 3 for the next run of covariance.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

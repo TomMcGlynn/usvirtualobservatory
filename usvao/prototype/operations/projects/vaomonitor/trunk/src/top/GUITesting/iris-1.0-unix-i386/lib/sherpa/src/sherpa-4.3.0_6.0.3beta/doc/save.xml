@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="save" refkeywords="write session output system save_all all store report status results" seealsogroups="sh.save " displayseealsogroups="" context="saving">
+	<SYNOPSIS>
+     Save the current Sherpa session to a file
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>save([filename=sherpa.save])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The save command stores all information about the current
+        Sherpa session, including the data.  The restore command may
+        then be used to recreate the session later  
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/restore.html">"ahelp restore"</HREF>).	
+	The file is platform-independent, allowing collaborators to
+	send a Sherpa session to one another.
+      </PARA>
+
+      <LIST> 
+	<ITEM>
+	  filename - name, including path, of the output save file;
+	  default is "sherpa.save" in the working directory
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	Currently the session is stored as a binary file, so it cannot
+	be viewed or modified outside of Sherpa.   To save the output
+	as an ASCII file instead, use the "save_all" command.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	      The session is saved with the default name - sherpa.save
+	      - in the current working directory.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save("/data/m31/model2.shp")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	      The session is saved in the file /data/m31/model2.shp.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

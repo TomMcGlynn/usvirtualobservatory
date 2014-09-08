@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_quality" refkeywords="get quality flags array show data " seealsogroups="sh.get sh.data" displayseealsogroups="" context="data">
+	<SYNOPSIS>
+     Obtain the quality flags from a data set
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_quality( id [,bkg_id=None] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The get_quality command returns the array of quality flags
+        associated with a data set, by data set id (required argument). An array element
+	set to x &gt;= 1 marks a good channel and an element set to x
+	&lt; 1 marks a bad channel. Bad	channels indicated by the
+	quality flags are filtered out of the data array using
+	the command ignore_bad.  An array of quality flags can be read
+	from a FITS table file or column-based ASCII file and assigned
+	to a data set with the load_quality command, and the set_quality
+	command is used to actually apply such an array to a data set.
+	The set_quality and get_quality 
+	commands require that the data set in question be a PHA data set.
+      </PARA>
+
+      <LIST> 
+        <ITEM>
+          id - the id of the dataset to use (required) 
+	  default=None
+          
+        </ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if the quality is to be
+          applied to the background data;
+          default=None
+          
+        </ITEM>	
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_quality(1)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The get_quality function retrieves the quality flags
+      associated withdata set id=1 (the data set id is a required argument).
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_quality(2)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Here, an array of quality flags is read from the ASCII
+            file 'quality.txt' and assigned to data set 2 (3c273.pi). The
+            set_quality function is used to apply
+            the quality flags to data set 2, using the quality array
+            which is returned by the get_quality function. 
+          </PARA>
+<VERBATIM>
+sherpa&gt; load_pha(2, "3c273.pi")
+sherpa&gt; load_quality(2, "quality.txt")
+sherpa&gt; get_quality(2)
+
+array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+
+sherpa&gt; set_quality(2, get_quality(2))
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_quality(2, 1)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The get_quality function is used to return the array of
+            quality flags associated with the background of source
+            data set 2 (bkg_id=1 represents the first background data
+        set loaded in association with the source data set id=2).
+
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

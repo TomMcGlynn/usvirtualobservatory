@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_kernel" refkeywords="psf kernel point spread function get get_kernel_plot get_kernel_image get_kernel_contour" seealsogroups="sh.psf sh.get " displayseealsogroups="" context="psfs">
+
+    <SYNOPSIS>
+     Return kernel plot, image, and contour preferences.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_kernel_plot( [id] )</LINE>
+	<LINE>get_kernel_image( [id] )</LINE>
+	<LINE>get_kernel_contour( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <LIST>
+        <ITEM>
+          id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+      </LIST>
+	<PARA title="What is the difference between the PSF and the kernel?">
+	   The point spread function (PSF) is defined by the full (unfiltered) PSF image loaded into Sherpa or the PSF model expression evaluated over the full range of the dataset; both types of PSFs are established with the load_psf() command.  The kernel is the subsection of the PSF image or model which is used to convolve the data.  This subsection is created from the PSF when the size and center of the kernel are defined by the command set_psf().  While the kernel and PSF might be congruent, defining a smaller kernel helps speed the convolution process by restricting the number of points within the PSF that Sherpa must evaluate.
+	 </PARA>
+	<PARA>
+	get_kernel_plot: 
+      </PARA>
+      <PARA>
+	returns the data and preferences defining the 1D kernel plot
+	visualized with plot_kernel().
+      </PARA>
+
+      <PARA>
+	get_kernel_image:
+      </PARA>
+      <PARA>
+	returns a variable containing the 2D data and settings 
+	characterizing the kernel visualized with image_kernel().
+      </PARA>
+      
+      <PARA>
+	get_kernel_contour:
+      </PARA>
+      <PARA>
+	returns a variable containing
+	the data and preferences defining the contour plot of the kernel
+	visualized with contour_kernel()
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>	  
+          <LINE>sherpa&gt; get_kernel_plot("src")</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+
+          <PARA>
+	    Returns the data and preferences defining the PSF plot
+	    calculated from the PSF model "src".
+	  </PARA>
+<VERBATIM>
+sherpa&gt; print(get_kernel_plot("src"))
+PSF frac: 0.991270796001
+x      = [  1.0000e+00   2.0000e+00   3.0000e+00 ...,   5.1820e+03   5.1830e+03
+   5.1840e+03]
+y      = [  7.6365e-07   1.6777e-06   7.0964e-07 ...,   4.9221e-07   4.3923e-07
+   1.0823e-06]
+yerr   = None
+xerr   = None
+xlabel = None
+ylabel = PSF data
+title  = psf_f1_norm_0.25pix.fits
+plot_prefs = {'errstyle': 'line', 'symbolfill': False, 'symbolstyle':
+4, 'linestyle': 0, 'symbolsize': 3, 'yerrorbars': True}
+
+sherpa&gt; get_kernel_plot("src").plot_prefs
+PSF frac: 0.991270796001
+            
+{'errstyle': 'line',
+ 'linestyle': 0,
+ 'symbolfill': False,
+ 'symbolsize': 3,
+ 'symbolstyle': 4,
+ 'yerrorbars': True}
+  
+sherpa&gt; get_kernel_plot("src").plot_prefs["linestyle"]=3
+
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_kernel_image()</LINE>
+          
+	</SYNTAX>
+
+	<DESC>
+          <PARA>
+	   Return the data and settings defining the PSF image for the
+	   default dataset.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; image_kernel()
+
+sherpa&gt; print(get_kernel_image())  
+PSF frac: 0.991270796001
+name   = PSF_Data
+y      = [[  7.6365e-07   1.6777e-06   7.0964e-07 ...,   3.6620e-07   4.2709e-07
+    1.2908e-06]
+ [  5.0448e-07   1.1551e-06   6.6760e-07 ...,   3.5132e-07   5.2898e-07
+    1.0603e-06]
+ [  1.5065e-06   1.9085e-06   1.6145e-07 ...,   6.0550e-07   1.0842e-06
+    1.6097e-06]
+ ..., 
+ [  1.6771e-07   3.0185e-07   1.5670e-06 ...,   8.7316e-07   2.3804e-07
+    2.2776e-07]
+ [  3.6587e-07   1.8109e-08   3.4516e-08 ...,   7.9327e-07   1.4121e-06
+    7.3247e-07]
+ [  3.2451e-07   1.1731e-08   4.3682e-07 ...,   4.9221e-07   4.3923e-07
+    1.0823e-06]]
+eqpos  = world
+ crval    = [ 248.6211   70.531 ]
+ crpix    = [ 4096.5  4096.5]
+ cdelt    = [-0.0001  0.0001]
+ crota    = 0
+ epoch    = 2000
+ equinox  = 2000
+sky    = physical
+ crval    = [ 4064.5  4026.5]
+ crpix    = [ 0.5  0.5]
+ cdelt    = [ 0.25  0.25]
+  
+</VERBATIM>
+
+     </DESC>
+    </QEXAMPLE>
+	<QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_kernel_contour(2)</LINE>
+	  
+	</SYNTAX>
+
+	<DESC>
+          <PARA>
+	   Return the data and settings defining the PSF contour plot
+	   for dataset id=2.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; contour_kernel(2)
+
+sherpa&gt; print(get_kernel_contour(2))  
+PSF frac: 0.991270796001
+x0     = [  1.   2.   3. ...,  70.  71.  72.]
+x1     = [  1.   1.   1. ...,  72.  72.  72.]
+y      = [  7.6365e-07   1.6777e-06   7.0964e-07 ...,   4.9221e-07   4.3923e-07
+   1.0823e-06]
+xlabel = x0
+ylabel = x1
+title  = PSF Data: psf_f1_norm_0.25pix.fits
+levels = None
+contour_prefs = {}
+</VERBATIM>
+
+     </DESC>
+    </QEXAMPLE>
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

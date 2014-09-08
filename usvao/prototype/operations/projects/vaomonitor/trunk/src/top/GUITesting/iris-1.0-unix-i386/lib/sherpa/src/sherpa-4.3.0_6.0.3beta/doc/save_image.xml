@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="save_image" refkeywords="images img write output io create save " seealsogroups="sh.save sh.io" displayseealsogroups="" context="saving">
+	<SYNOPSIS>
+      Save image data to a file
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>save_image( [id,] filename )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The save_image command saves a dataset to an image file.
+	This command has no return value.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+	  filename - the output filename, including path
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_image("image.fits")</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Write dataset 1 to an image named "image.fits".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_image("srcimg","output.fits")</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The dataset "srcimg" is written to the output image "output.fits".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

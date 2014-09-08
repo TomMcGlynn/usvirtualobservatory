@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsplcabs" refkeywords="plcabs model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Cutoff power law observed through dense, cold matter.
+XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+This model describes X-ray transmission of an isotropic source of
+photons located at the center of a uniform, spherical distribution
+of matter, correctly taking into account Compton scattering.
+The model can be used for radial column densities up to
+5e24 cm^-2.
+The valid energy range for which data can be modeled is between
+10 and 18.5 keV, depending on the column density. Details of the
+physics of the model, the approximations used and further details on
+the regimes of validity can be found in Yaqoob (1996; ApJ, vol 479).
+In this particular incarnation, the initial spectrum is a power law
+modified by a high-energy exponential cutoff above a certain
+threshold energy. 
+</PARA>
+
+<PARA>
+Also, to improve the speed, a FAST option is available in which a full
+integration over the input spectrum is replaced by a simple mean
+energy shift for each bin. This option is obtained by setting
+the parameter "FAST" to a value of 1 or greater and freezing it.
+Further, for single-scattering albedos less than acrit (parameter 8),
+energy shifts are neglected altogether.  The recommended value is
+acrit=0.1, which corresponds to about 4 keV for cosmic abundances.
+</PARA>
+
+<PARA>
+Note that for column densities in the range
+10^23 - 10^24 cm^-2, the maximum number of scatterings which need
+be considered for convergence of the spectrum of better than 1% is
+between 1 and 5. For columns as high as 5e24, the maximum number of scatterings which need be
+considered for the same level of convergence is 12.  
+</PARA>
+
+<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsplcabs Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>nh</DATA> <DATA>column density in
+  units 10^22 cm^-2</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>nmax</DATA> <DATA>maximum number
+  of scatterings to consider; must be frozen</DATA>
+</ROW>
+<ROW> 
+  <DATA>3</DATA> <DATA>feabun</DATA> <DATA>iron
+  abundance</DATA> 
+</ROW>
+<ROW> 
+  <DATA>4</DATA> <DATA>fekedge</DATA> <DATA>iron K edge
+  energy</DATA> 
+</ROW>
+<ROW> 
+  <DATA>5</DATA> <DATA>phoindex</DATA> <DATA>power law
+  photon index</DATA>
+</ROW>
+<ROW> 
+  <DATA>6</DATA> <DATA>highecut</DATA> <DATA>high-energy
+  cutoff threshold energy</DATA> 
+</ROW>
+<ROW> 
+  <DATA>7</DATA> <DATA>folde</DATA> <DATA>high-energy
+  cutoff e-folding energy</DATA> 
+</ROW>
+<ROW> 
+  <DATA>8</DATA> <DATA>acrit</DATA> <DATA>critical albedo
+  for switching to elastic scattering</DATA> 
+</ROW>
+<ROW> 
+  <DATA>9</DATA> <DATA>fast</DATA> <DATA>If FAST &gt; 1,
+  mean energy shift is used instead of integration (see DESCRIPTION for
+  details)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>10</DATA> <DATA>redshift</DATA> <DATA>source
+  redshift, z</DATA> 
+</ROW>
+<ROW> 
+  <DATA>11</DATA> <DATA>norm</DATA>
+  <DATA>normalization</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

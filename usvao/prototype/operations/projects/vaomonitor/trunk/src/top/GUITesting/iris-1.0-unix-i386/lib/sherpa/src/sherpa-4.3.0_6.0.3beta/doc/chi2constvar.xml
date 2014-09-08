@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="chi2constvar" refkeywords="chi chi2 parent cvar constvar chiparent chicvar chisquare variance sigma stat stats statistics statistic " seealsogroups="sh.stat " displayseealsogroups="" context="statistics">
+	<SYNOPSIS>
+      Chi-square statistic with constant variance computed from the
+      counts data. 
+    </SYNOPSIS>
+
+    <DESC>
+      <PARA>
+        The chi2constvar statistic was named CHI PARENT or CHI CVAR in
+        CIAO 3.4. 
+      </PARA>
+
+      <PARA>
+	In some applications, analysts have seen fit to assume that
+	the variance is constant for each bin.  For this choice of
+	statistic, the variance is assumed to be the mean number of
+	counts, or 
+      </PARA>
+
+      <PARA>
+	<EQUATION>
+	    sigma(i)^2 = (1/N) * (sum)_(j=1)^N N(j,S) + [A(S)/A(B)]^2 N(j,B) ,
+	  </EQUATION>
+      </PARA>
+
+      <PARA>
+	where N is the number of on-source (and
+	off-source) bins included in the fit.  The background term
+	appears only if a background region is
+	specified and background subtraction is done.  The help file
+        on the chi-square statistic has more information, including
+        definitions of the additional quantities in the equation:
+        
+        <HREF link="http://cxc.harvard.edu/sherpa/ahelp/chisquare.html">"ahelp chisquare"</HREF>
+        .
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_stat("chi2constvar")</LINE>
+	  <LINE>sherpa&gt; show_stat()</LINE>
+	  <LINE>Statistic: Chi2ConstVar</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Set the fitting statistic and then confirm the new value.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+    
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="jdpileup" refkeywords="model models modeling modelling source composite nested joint pile pileup pile-up " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+A CCD pileup model developed by John Davis of MIT.
+</SYNOPSIS>
+
+<DESC>
+
+<PARA>
+The 1D pileup model can be applied to model the 1D Chandra spectrum
+obtained in the imaging mode.  The pileup model does not work for
+pileup in dispersed grating spectra or 2D image data.  The model was
+designed for imaging pileup, including pileup by the gratings in
+zeroth order.   It should be used only for energy spectra.
+</PARA>
+
+<PARA>
+The use of multiple optimization methods is desirable when fitting
+data with pileup model. 
+</PARA>
+
+<TABLE>
+<CAPTION>jdpileup Parameters</CAPTION> <ROW>
+<DATA>Number</DATA>
+<DATA>Name</DATA> 
+<DATA>Description</DATA>
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>alpha</DATA> <DATA>probability of a good grade when two photons pile together</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>g0</DATA> <DATA>probability of
+  grade 0 assignment</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> <DATA>f</DATA> <DATA>fraction of flux
+  falling into the pileup region</DATA> 
+</ROW>
+<ROW> 
+  <DATA>4</DATA> <DATA>n</DATA> <DATA>number of detection
+  cells</DATA> 
+</ROW>
+<ROW> 
+  <DATA>5</DATA> <DATA>ftime</DATA> <DATA>frame time
+  [seconds] (keyword EXPTIME in the event file)</DATA> 
+</ROW>
+
+<ROW> 
+  <DATA>6</DATA> <DATA>fracexp</DATA> <DATA>fractional
+  exposure that the point source experienced while dithering on the
+  chip (keyword FRACPROB in the ARF file)</DATA> 
+</ROW>
+
+<ROW> 
+  <DATA>7</DATA> <DATA>nterms</DATA> <DATA>maximum number of photons considered for pileup in a single frame.  </DATA> 
+</ROW>
+</TABLE>
+<PARA>
+
+ n, f  and g0: The values of n, f and g0
+should remain frozen; The full discussion of these parameters is
+presented in Davis (2001).
+</PARA>
+
+<PARA>
+alpha:
+
+The value of the parameter alpha should be allowed to vary. alpha
+parameterizes "grade migration" in the detector, and represents the
+probability, per photon count greater than one, that the piled event
+is not rejected by the spacecraft software as a "bad
+event". Specifically, if n photons are piled together in a single
+frame, the probability of them being retained (as a single photon
+event with their summed energy) is given by alpha(n-1). In reality,
+the alpha parameter should be a photon-energy-dependent and
+detector-chip-dependent matrix; for simplicity, the jdpileup model
+assumes a constant value.
+</PARA>
+
+<PARA>
+ ftime:  
+
+The ftime and parameter should be set to the value
+given in the header keyword EXPTIME of the event file. (Note that
+EXPTIME is used instead of TIMEDEL because the latter includes the
+transfer time, which ftime should not.)
+</PARA>
+
+<PARA>
+ fracexp:  
+
+The fracexp parameter should be set to the
+value given in the header keyword FRACEXPO of the ARF file.
+</PARA>
+
+<PARA>
+ nterms:  
+This should be left frozen at its maximum value of 30.  I.e., the 
+expansion of the model will include terms corresponding to 0, 1, 2,
+.. 30 photon events landing in the same extraction region during the 
+same frame time.
+</PARA>
+	<PARA>
+  The integration of models in Sherpa is controlled by an 
+  integration flag in each model structure.  Refer to <HREF link="http://cxc.harvard.edu/sherpa/ahelp/integrate.html">"ahelp integrate"</HREF> 
+  for information on integrating model components. 
+</PARA>
+
+</DESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

@@ -1,0 +1,53 @@
+nValidation (how to run)
+
+-This directory contains the code necessary to
+retrive resources from the vo registry, update
+the db with new resources and perform the 
+validation of those resources. The directory
+also contains the client side cgi program to
+view the results.
+
+Directory structure:
+
+vresults.pl - client side cgi application to view
+              results
+
+SQL -   dir containing code for vresults.pl
+HTML-   dir containing code fro vresults.pl
+Table - dir containing code for vresults.pl
+
+doc - dir containing information on the validation
+system.
+
+java - the dir containing the java package that
+performs validation.
+
+perl - the dir containing the code to retrieve the
+vo resources from the registry,parse the resources,
+and update our db.
+
+Everything runs under a cron job. Example of a full
+end to end run is as follows.
+
+Run:
+1)get_registry_cone_siap.pl (this retrieves all types of
+   data: cone,siap,etc.)
+2)parse_registry_resources.pl (this parses all types of 
+  data that *have been downloaded locally*)
+3)updatedb.pl (this uses the files created by (2) to
+update our nmysql db with new data)
+
+Then in the java dir, run:
+4)java Test 
+
+5) view results by going to:
+
+http://heasarcdev.gsfc.nasa.gov/vo/validation/vresults.pl
+
+
+*Right now the scripts above use "-t siap" to download the SIAP
+services only. You can also use "-t cone" to download only the
+Cone services. In the longrun we may want all types downloaded 
+at once to one file. However to provide more flexibility and
+control over the dowload,update, and validation cycle, I have
+provide the above command line options for now.

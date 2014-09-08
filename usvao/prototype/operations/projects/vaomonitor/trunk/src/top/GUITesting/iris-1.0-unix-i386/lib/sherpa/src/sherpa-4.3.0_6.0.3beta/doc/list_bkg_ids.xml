@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="list_bkg_ids" refkeywords="list lists show get bkg bg background backgrounds ID IDS IDs id ids bkgid bkg_id bg_id bgid" seealsogroups="sh.bg sh.io sh.info" displayseealsogroups="" context="info">
+	<SYNOPSIS>
+     List all background IDs associated with a data set.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>list_bkg_ids( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       A spectral data set can have background data sets assigned to
+       it automatically with load_pha, or manually by the
+       user with load_bkg.  (The background can
+       either be subtracted from the data, or simultaneously fit with
+       the data.)  The list_bkg_ids function returns a list
+       of all background data sets associated with a data set, by data
+       set ID.
+      </PARA>
+
+       <LIST>
+       <ITEM>
+        id - the id of the data set to use; if not given, uses the default sherpa id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+      </LIST>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; list_bkg_ids()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   The list_bkg_ids function lists all background data sets 
+	   associated with a source data set.  If no argument is
+	   given, then the default data set ID is assumed, and
+	   the backgrounds (if any) associated with that data set are
+	   listed, by their IDs. 
+          </PARA>
+          <VERBATIM>
+           sherpa&gt; load_pha(1, "acis_2019_pha.fits")
+	         read ARF file acis_2019_arf.fits
+	         read RMF file acis_2019_rmf.fits
+	         read background file acis_2019_pha.fits
+	    
+           sherpa&gt; load_bkg(id=1, "acis_2019_bkg2.fits", bkgid=2)
+	   
+           sherpa&gt; list_bkg_ids()
+	         [1, 2]
+          </VERBATIM>
+         </DESC>
+       </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; list_bkg_ids(2)</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	    In this example, the background IDs associated with data set 2 are
+            listed.
+	  </PARA>
+          <VERBATIM>
+           sherpa&gt; load_pha(2, "acis_309_pha.fits")
+	         read ARF file acis_309_arf.fits
+	         read RMF file acis_309_rmf.fits
+	         read background file acis_309_pha.fits
+
+           sherpa&gt; load_bkg(id=2, "acis_309_bkg2.fits", bkgid="bkg2")
+
+           sherpa&gt; list_bkg_ids()
+	         [1, 'bkg2']
+          </VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="dataspace2d" refkeywords="dataspace simulate sim blank empty grid gridded" seealsogroups="sh.data sh.io" displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Create a blank 2D dataset
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>dataspace2d( dims, [id,dstype=DataIMG] )</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+	The dataspace2d command creates a blank 2D image with a grid
+	in logical coordinates according to the dimensional array
+	argument (dims).   To create 1D data, use the dataspace1d
+	command 
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/dataspace1d.html">"ahelp dataspace1d"</HREF>)	
+	.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  dims - array of image dimensions, i.e. [width,height]
+        </ITEM>
+
+        <ITEM>
+          id - the id of the new dataset; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+          dstype - dataset type: DataIMG (the default), Data2D, or Data2DInt
+        </ITEM>
+      </LIST>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; dataspace2d([216,216])</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Create a blank image with dimensions 216x216.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; dataspace2d([50,100], id="newimg")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Create a blank image that is 50x100 and give it an id of
+	    "newimg". 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+   </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

@@ -1,0 +1,9 @@
+VAO Validation;http://www.usvao.org/operations/health/validation;http://heasarc.gsfc.nasa.gov/vo/validation
+VAO Monitor Results;http://www.usvao.org/operations/health/vaomonitor;http://heasarc.gsfc.nasa.gov/vo/vaomonitor
+VAO Monitor Interactive;http://www.usvao.org/operations/health/vaomonitor/vaomonitor.pl;http://heasarc.gsfc.nasa.gov/vo/vaomonitor/vaomonitor.pl
+VAO Tests;http://www.usvao.org/operations/tests/;http://heasarc.gsfc.nasa.gov/vo/support
+VAO Weblogs;http://www.usvao.org/operations/logs/weblogs;http://voservices.net/nvologs/
+VAO CFM;http://www.usvao.org/operations/cfm;http://usvao-svn@svn.usvao.org/usvao
+VAO Cone Validator;htpp://www.usvao.org/operations/health/validators/conevalidator;http://nvo.ncsa.uiuc.edu/dalvalidate/csvalidate.html
+VAO SIAP Validator;htpp://www.usvao.org/operations/health/validators/siavalidator;http://nvo.ncsa.uiuc.edu/dalvalidate/siavalidate.html
+VAO Registry Validator;htpp://www.usvao.org/operations/health/validators/registryvalidator;http://nvo.ncsa.uiuc.edu/dalvalidate/regvalidate.html

@@ -1,0 +1,107 @@
+<HTML>
+ <HEAD>
+   <TITLE>
+     Validation Design
+   </TITLE>
+     <LINK REL="StyleSheet" HREF='http://www.us-vo.org/app_templates/usvo_template.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/datascope/css/styles.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/monitor/css/tr.css' TYPE="text/css">
+ </HEAD>
+<Body>
+
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>   
+     <td width="112" height="32" align="center" valign="top">
+        <a href="http://www.us-vo.org" class="nvolink" target="_top">
+          <img src="http://www.usvao.org/documents/Templates/Logos/VAO_logo_100.png" alt="NVO HOME" border="0"/>
+        </a>
+        <span class="nvolink">
+          <a href="http://www.us-vo.org/" target="_top">National Virtual Observatory</a></span>
+     </td>   
+     <td valign="top"><table  width="100%" border="0" cellpadding="0" cellspacing="0">      
+       <tr>       
+         <td width="2" height="30" bgcolor="white"></td>
+         <td width="678" height="39" align="center" valign="middle" 
+         background="http://www.us-vo.org/images/templatestars.jpg" bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+         
+    <span class= \"nvoapptitle\" style= \"background\-repeat: repeat\-y;\">Vaomonitor (Documentation)</span></td></tr>
+    </td> 
+    
+   
+    <td bgcolor="white" width="2"></td>     
+    </tr>     
+    <tr>       
+     <td bgcolor="white" width="2"></td>      
+     <td bgcolor="white" width="2"></td>      
+     </tr>      
+     <tr>       
+     <td align="center" valign="top" colspan="3"><table cellspacing="2" cellpadding="0" border="0" width="100%"  style="margin: 0pt;"> 
+  <tr>
+     <!-- the local links -->
+  
+     <td  class='navlink'><a href='/cgi-bin/vo/notification/shownote.pl'>VO Service Notices </a></td>
+     <td  class='navlink'><a href='/cgi-bin/vo/monitor/monitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'>NVO Home</a></td>  
+     <td  class='navlink'><a href=http://us-vo.org/feedback/index.cfm>NVO Feedback</a></td> 
+            
+     </tr>       
+     </table></td>
+      </tr>
+      </table></td>
+      <td width = 140 align = center valign = top><a href = "http://www.heasarc.gsfc.nasa.gov">
+      <img src=/vo/datascope//images/nasa_logo.gif width=72 height=60 border=0 alt='NASA home'>
+      </img></a><br><span>Hosted by:</span><br>HEASARC<br> 
+      <br>
+      </td></tr></table>
+
+<h4>USVAO Home Page and the Role of the VAO Monitor and Notification Systems</h4>
+<p>The USVAO Home Page at usvao.org displays the current status of each of the 4 primary Science Services. The
+status is represented by one of 3 possible icons. These icons are A) a green dot (service is up) B)  a red X (service is down),
+and C) a yellow triangle (service has an active or pending notice). The local (HEASARC) system is responsible for creating these icons and it behaves in the following way:<br><br>
+
+
+1. A cronjob runs hourly that retrieves an xml page containing the latest status of every VAO service (not including Legacy services). This is done by querying the VAO Monitor with:<br><br>http://heasarc.gsfc.nasa.gov/vo/vaomonitor/vaodb.pl?format=xml<br><br>
+
+2. A cronjob runs hourly that retrieves an xml page containing any active or pending server notices entered by users.This is done by querying the notification system for all
+current or pending notices via: <br><br> http://heasarc.gsfc.nasa.gov/vo/notification/shownote.pl?format=rawcurrent.<br><br> The xml response is stored in a file in the
+/tmp.shared area for use by other applications. This tmp.shared area is a publicly writable area. <br><br>
+
+3. An update script runs hourly at the HEASARC that reads the xml files in (1) and (2) and generates soft links to the correct icons. Since this script is always reading the latest status and notices files, the status represented by the icons is reliable to within an hour.
+ 
+</p>
+
+
+<p>
+
+</p> 
+
+ <hr align="left" noshade>
+        <table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+        <tr align="center" valign="top">   <td width="16%" valign="top"><div align="center" class="style10">
+        <a href="http://www.nsf.gov"><img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0">
+        </a>
+        <a href="http://www.nasa.gov"><img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0">
+        </a>
+        </div></td>
+        <td width="76%"><div align="center">       
+        <p class="style10"> Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> 
+        <br>          under Cooperative Agreement AST0122449 with the Johns Hopkins University 
+        <br>         The NVO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a></p>
+        <p class="style10">This NVO Application is hosted by <a href="#">LocalSiteName</a></p>
+        </div></td>    
+        <td width="8%"><div align="center"><span class="tiny">Member<br>
+        </span>
+        <a href="http://www.ivoa.net">
+        <img src="http://www.us-vo.org/images/ivoa_small.jpg" alt="IVOA HOME" width="68" height="39" border="0" align="top"></a></div></td>
+        <td width="8%"><span class="style4"><span class="tiny">Meet the Developers</span><br>
+        <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border=0></span></td> </tr></table>
+        <hr noshade='noshade' />
+        <p>Hosted by the <a href='http://universe.gsfc.nasa.gov/'>Astrophysics Science Division</a>and the 
+        <a href='http://heasarc.gsfc.nasa.gov/'>High Energy Astrophysics Science Archive Research Center (HEASARC)</a>at
+        <a href='http://www.nasa.gov/'>NASA/</a><a href='http://www.gsfc.nasa.gov/'>GSFC</a>
+        </p><p>HEASARC Director:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/bios/white.html'>Dr. Nicholas E. White</a>,</p>
+        <p>HEASARC Associate Director: Dr. Roger Brissenden,</p><p>Responsible NASA Official:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/nospam/panewman.html'>Phil Newman</a> </p>
+        <p class='tiny'> <a href='/banner.html'>Privacy, Security, Notices</a></p>
+        </div><!-- id='footer' --></body>

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="delta2d" refkeywords="delta delta-function model models modeling modelling source composite nested joint " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+2-D delta function.  
+</SYNOPSIS>
+	<DESC>
+<PARA>
+A 2-D delta-function model:
+</PARA>
+
+<PARA>
+<EQUATION>
+f(x,y) = A
+</EQUATION>
+</PARA>
+
+<PARA>
+if x=x_o and y=y_o,
+</PARA>
+
+<PARA> 
+and,
+</PARA>
+
+<PARA>
+<EQUATION>
+f(x,y) = 0
+</EQUATION>
+otherwise.
+</PARA>
+
+<PARA>
+with
+</PARA>
+
+<PARA>
+<EQUATION>
+Int_(-Inf)^(+Inf) Int_(-Inf)^(+Inf) dx dy f(x,y) = A
+</EQUATION>
+</PARA>
+
+<TABLE>
+<CAPTION>delta2d Parameters</CAPTION>
+<ROW> <DATA>Number</DATA> <DATA>Name</DATA> <DATA>Description</DATA> </ROW>
+<ROW> <DATA>1</DATA> <DATA>xpos</DATA> <DATA>x position x_o</DATA> </ROW>
+<ROW> <DATA>2</DATA> <DATA>ypos</DATA> <DATA>y position y_o</DATA> </ROW>
+<ROW> <DATA>3</DATA> <DATA>ampl</DATA> <DATA>amplitude 
+A</DATA> </ROW>
+</TABLE>
+
+<PARA>
+  The integration of models in Sherpa is controlled by an 
+  integration flag in each model structure.  Refer to <HREF link="http://cxc.harvard.edu/sherpa/ahelp/integrate.html">"ahelp integrate"</HREF> 
+  for information on integrating model components. 
+</PARA>
+
+</DESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

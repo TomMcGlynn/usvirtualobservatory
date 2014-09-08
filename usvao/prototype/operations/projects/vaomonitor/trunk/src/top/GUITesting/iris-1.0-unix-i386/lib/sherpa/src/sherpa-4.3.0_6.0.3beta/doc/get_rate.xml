@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_rate" refkeywords="get count counts  rate" seealsogroups="sh.get  sh.data " displayseealsogroups="" context="utilities">
+	<SYNOPSIS>
+     Return the measured count rate of a data set 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_rate( [id, filter=False, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The get_rate() function returns the measured count rate
+       of a source or background data set, by data id or bkg_id. For a
+       data set in energy units, the count rate is Counts/sec/keV, for
+       wavelength units the count rate is Counts/sec/Angstrom, and for
+       channel units the count rate is Counts/sec.  
+      </PARA>
+ 
+      <PARA>
+       If a data filter has been applied to the data set in question,
+       e.g. ignore() or notice(), the count rate for
+       either the filtered or unfiltered data set may be returned by
+       setting the 'filter' argument to 'True' or 'False'.  If set to
+       'True', the count rate array returned by get_rate() will be
+       filtered, i.e. the array will be shorter in length than the
+       unfiltered array (not padded with zeros).
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+      <ITEM>
+        filter - apply an established data filter to the data set
+        before returning results? ;
+        default=False 
+        
+      </ITEM>
+      <ITEM>
+        bkg_id -  the id of the background to use,
+        e.g. if more than one background is associated with the
+        data; default is the first background dataset loaded
+      </ITEM>
+    </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_rate()</LINE>
+          
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    When called with no arguments, the get_rate() function
+	    returns the count rate array of the unfiltered default data
+	    set.
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_rate()
+
+array([ 0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+        0.        ,  0.00727432,  0.01212387,  0.00242477,  0.        ,
+        0.        ,  0.00484955,  0.00484954,  0.01333627,  0.01454863,
+        0.00484954,  0.00727431,  0.00484955,  0.00363716,  0.00606193,
+ . . . . . . . . .,
+       0.0012124 ,  0.00242481,  0.        ,  0.00363697,  0.00242481,
+        0.        ,  0.0012124 ,  0.00242481,  0.00242465,  0.0012124 ,
+        0.        ,  0.00363721,  0.0012124 ,  0.36006014])
+
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_rate(3, filter=True)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+        <PARA>
+          If a data set ID is supplied to get_rate(), the unfiltered
+          count rate array of the specified data set is
+          returned, unless the 'filter' argument is set to 'True'.
+        </PARA>
+<VERBATIM>
+sherpa&gt; notice()
+
+sherpa&gt; get_rate(3).size
+           1024
+
+sherpa&gt; ignore(10.0, 12.0)
+
+sherpa&gt; get_rate(3, filter=True).size
+           886
+</VERBATIM>
+
+        </DESC>
+       </QEXAMPLE>
+
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_rate(4, bkg_id=2)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           To return the dependent variable array of a background
+           associated with a data set, the background ID must be specified
+           along with the data set ID. Here, the second background
+           loaded for data set 4 is returned by get_rate().
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

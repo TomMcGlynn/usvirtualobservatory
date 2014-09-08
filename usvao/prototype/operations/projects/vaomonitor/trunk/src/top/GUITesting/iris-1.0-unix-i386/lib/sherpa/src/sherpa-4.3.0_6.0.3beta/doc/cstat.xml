@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="cstat" refkeywords="chi chi2 chisquare variance sigma stat stats statistics statistic " seealsogroups="sh.stat " displayseealsogroups="" context="statistics">
+	<SYNOPSIS>
+      A maximum likelihood function
+    </SYNOPSIS>
+
+    <DESC>
+      <PARA>
+        The cstat statistic is equivalent to the XSPEC implementation
+        of the Cash statistic.  
+      </PARA>
+
+      <PARA>
+        Counts are sampled from the Poisson distribution, and so the
+	best way to assess the quality of model fits is to use the 
+	product of individual Poisson probabilities computed in each
+	bin i, or the
+	likelihood L: 
+      </PARA>
+
+      <PARA>
+	<EQUATION>
+	    L = (product)_i [ M(i)^N(i)/N(i)! ] * exp[-M(i)]
+	  </EQUATION>
+      </PARA>
+
+      <PARA>
+ 	where M(i) = S(i) + B(i)
+	is the sum of source and background model amplitudes,
+	and D(i) is the number of observed
+	counts, in bin i. 
+      </PARA>
+
+      <PARA>
+	The cstat statistic (Cash 1979, ApJ 228, 939) is derived by
+	(1) taking the logarithm of the likelihood function, (2)
+	changing its sign, (3) dropping the factorial term (which
+	remains constant during fits to the same dataset), (4) adding
+	an extra data-dependent term, and (4) multiplying by two:
+      </PARA>
+
+      <PARA>
+	<EQUATION>
+	    C = 2 * (sum)_i [ M(i) - D(i) + D(i)*[log D(i) - log M(i)] ]
+	  </EQUATION>
+      </PARA>
+
+      <PARA>
+	The factor of two exists so that the change in cstat statistic
+	from one model fit to the
+	next, (Delta)C,  is distributed
+	approximately
+	as (Delta)chi-square when
+	the number of counts in each bin is high (&gt; 5). One can
+	then in principle use (Delta)C
+	instead
+	of (Delta)chi-square in
+	certain model comparison tests. However,
+	unlike chi-square, the cstat
+	statistic may be used regardless of the number of counts in
+	each bin. 
+      </PARA>
+
+      <PARA>
+	The advantage of cstat over Sherpa's implementation
+	of cash is that one can assign an approximate goodness-of-fit
+	measure to a given value of the cstat statistic, i.e. the
+	observed statistic, divided by the number of degrees of
+	freedom, should be of order 1 for good fits. 
+      </PARA>
+
+      <PARA title="Background Subtraction">
+	The background should not be subtracted from the data when
+	this statistic is used.  It should be modeled simultaneously
+	with the source.
+      </PARA>
+
+      <PARA title="Zero and negative value numbers">
+	The C-stat statistic function evaluates the logarithm of each
+	data point. If the number of counts is zero or negative, it's
+	not possible to take the log of that number.   The behavior in
+	this case is controlled by the truncate and trunc_value
+	settings in the .sherpa.rc file; see <HREF link="http://cxc.harvard.edu/sherpa/ahelp/sherparc.html">"ahelp sherparc"</HREF> for
+	details on this file.
+      </PARA>
+      
+      <PARA>
+	If truncate is set to True (the default), then
+	log(&lt;trunc_value&gt;) is substituted into the equation, and  
+	the statistics calculation proceeds.   The default trunc_value
+	is 1.0e-25.
+      </PARA>
+
+      <PARA>
+	If truncate is set to False, C-stat returns an error
+	and stops the calculation when the number of counts in a bin
+	is zero or negative.   The trunc_value setting is not used.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_stat("cstat")</LINE>
+	  <LINE>sherpa&gt; show_stat()</LINE>
+	  <LINE>Statistic: CStat</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Set the fitting statistic and then confirm the new value.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

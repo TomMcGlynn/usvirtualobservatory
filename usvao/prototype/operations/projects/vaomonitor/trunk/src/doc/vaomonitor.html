@@ -1,0 +1,147 @@
+<HTML>
+ <HEAD>
+   <TITLE>
+     Validation Design
+   </TITLE>
+     <LINK REL="StyleSheet" HREF='http://www.us-vo.org/app_templates/usvo_template.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/datascope/css/styles.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/monitor/css/tr.css' TYPE="text/css">
+ </HEAD>
+<Body>
+
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>   
+     <td width="112" height="32" align="center" valign="top">
+        <a href="http://www.us-vo.org" class="nvolink" target="_top">
+          <img src="http://www.usvao.org/documents/Templates/Logos/VAO_logo_100.png" alt="NVO HOME" border="0"/>
+        </a>
+        <span class="nvolink">
+          <a href="http://www.us-vo.org/" target="_top">National Virtual Observatory</a></span>
+     </td>   
+     <td valign="top"><table  width="100%" border="0" cellpadding="0" cellspacing="0">      
+       <tr>       
+         <td width="2" height="30" bgcolor="white"></td>
+         <td width="678" height="39" align="center" valign="middle" 
+         background="http://www.us-vo.org/images/templatestars.jpg" bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+         
+    <span class= \"nvoapptitle\" style= \"background\-repeat: repeat\-y;\">Vaomonitor (Documentation)</span></td></tr>
+    </td> 
+    
+   
+    <td bgcolor="white" width="2"></td>     
+    </tr>     
+    <tr>       
+     <td bgcolor="white" width="2"></td>      
+     <td bgcolor="white" width="2"></td>      
+     </tr>      
+     <tr>       
+     <td align="center" valign="top" colspan="3"><table cellspacing="2" cellpadding="0" border="0" width="100%"  style="margin: 0pt;"> 
+  <tr>
+     <!-- the local links -->
+  
+     <td  class='navlink'><a href='/cgi-bin/vo/notification/shownote.pl'>VO Service Notices </a></td>
+     <td  class='navlink'><a href='/cgi-bin/vo/monitor/monitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'>NVO Home</a></td>  
+     <td  class='navlink'><a href=http://us-vo.org/feedback/index.cfm>NVO Feedback</a></td> 
+            
+     </tr>       
+     </table></td>
+      </tr>
+      </table></td>
+      <td width = 140 align = center valign = top><a href = "http://www.heasarc.gsfc.nasa.gov">
+      <img src=/vo/datascope//images/nasa_logo.gif width=72 height=60 border=0 alt='NASA home'>
+      </img></a><br><span>Hosted by:</span><br>HEASARC<br> 
+      <br>
+      </td></tr></table>
+
+<h4>VAOMonitor Home Page</h4>
+<h5>What's on the Page</h5>
+<p>1. Pending or active server notices. These are displayed at the top if any exist<br>
+2. The current status of every VAO service (science services, support services,
+and testing services). The status is either 'OK', or 'Fail' and in turn the status
+is also a link to the test history for a given service.<br>
+3. The current status of every Legacy service.<br>
+4. A list of any external (non-vao) centers that are currently failing. The information
+produced in this table comes from the External Monitor. To read about how this information
+is collected and displayed, please see the "External Sites" section below.<br>
+5. The current status of System services<br>
+6. The last time services were harvested from various registries<br>
+7. The status of Selenium tests run on VAO Science services<br>
+8. The date and time services were last monitored and the next scheduled monitor
+check.
+<h5>Capabilities:</h5>
+<p>1.The VAO Science Monitor - a page that provides the status of key VAO services<br>
+http://heasarc.gsfc.nasa.gov/vo/vaomonitor/vaodb.pl?format=html<br><br>
+*This page is linked to from the usvao home page.<br><br>
+
+2.An xml representation of the status of all VAO services and System services.<br>
+*Note, the xml response does not include Legacy services. The url for this feature is:<br>
+http://heasarc.gsfc.nasa.gov/vo/vaomonitor/vaodb.pl?format=xml
+</p>
+
+<h5>External Sites</h5>
+<p>The External Monitor ("http://heasarc.gsfc.nasa.gov/vo/external_monitor/vodb.pl")
+provides a number of capabilities that are used in the vaomonitor home page. <br><br>When
+the vaomonitor home page loads this section, the following takes place:<br>
+1) The external monitor is invoked with format=xml.The response is an xml
+containing the status of every external site tested. It is important to note that
+this is the overall status of a site, not a service.<br><br>
+
+2)The xml response contains the service name,status and authority id of the center.<br>E.g.<br>
+&lt;Service&gt;<br>
+ &lt;name&gt;SVO CAB&lt;name/&gt;<br>
+&lt;status&gt;OK&lt;/status&gt;<br>
+&lt;authid&gt;ivo://svo.cab/&lt;/authid&gt;<br>
+&lt;/Service&gt;<br><br>
+
+
+3)The xml is parsed and the total number of centers up,the total down,and the
+center names are returned to the vaomonitor page.<br><br>
+
+4)The vaomonitor sw uses some JavaScript to display a bar showing the number of
+centers up relative to the total number of centers <br><br>
+
+5) Pending Feature: A bar representing the fraction of all services organized by
+type relative to the total number of services (app. 9,000). How to do this is tbd but
+the general expected setup is:<br><br>
+a)A new authid will be added to the Services table in the VAOMonitor.<br>
+b)A nightly script will run and perhaps by using MySQL will get the total number of unique
+services and the total number of services for a unique authid.This will only work if we
+introduce an authid column into the Validation DB's Services table<br>
+
+<br><br>
+*For more information on the external monitor, please see the documentation that comes with
+that system.
+
+</p> 
+ 
+<hr align="left" noshade>
+        <table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+        <tr align="center" valign="top">   <td width="16%" valign="top"><div align="center" class="style10">
+        <a href="http://www.nsf.gov"><img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0">
+        </a>
+        <a href="http://www.nasa.gov"><img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0">
+        </a>
+        </div></td>
+        <td width="76%"><div align="center">       
+        <p class="style10"> Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> 
+        <br>          under Cooperative Agreement AST0122449 with the Johns Hopkins University 
+        <br>         The NVO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a></p>
+        <p class="style10">This NVO Application is hosted by <a href="#">LocalSiteName</a></p>
+        </div></td>    
+        <td width="8%"><div align="center"><span class="tiny">Member<br>
+        </span>
+        <a href="http://www.ivoa.net">
+        <img src="http://www.us-vo.org/images/ivoa_small.jpg" alt="IVOA HOME" width="68" height="39" border="0" align="top"></a></div></td>
+        <td width="8%"><span class="style4"><span class="tiny">Meet the Developers</span><br>
+        <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border=0></span></td> </tr></table>
+        <hr noshade='noshade' />
+        <p>Hosted by the <a href='http://universe.gsfc.nasa.gov/'>Astrophysics Science Division</a>and the 
+        <a href='http://heasarc.gsfc.nasa.gov/'>High Energy Astrophysics Science Archive Research Center (HEASARC)</a>at
+        <a href='http://www.nasa.gov/'>NASA/</a><a href='http://www.gsfc.nasa.gov/'>GSFC</a>
+        </p><p>HEASARC Director:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/bios/white.html'>Dr. Nicholas E. White</a>,</p>
+        <p>HEASARC Associate Director: Dr. Roger Brissenden,</p><p>Responsible NASA Official:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/nospam/panewman.html'>Phil Newman</a> </p>
+        <p class='tiny'> <a href='/banner.html'>Privacy, Security, Notices</a></p>
+        </div><!-- id='footer' --></body>

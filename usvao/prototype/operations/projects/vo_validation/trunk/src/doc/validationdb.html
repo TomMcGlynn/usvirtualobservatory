@@ -1,0 +1,185 @@
+<HTML>
+ <HEAD>
+   <TITLE>
+     Validation Design
+   </TITLE>
+     <LINK REL="StyleSheet" HREF='http://www.us-vo.org/app_templates/usvo_template.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/datascope/css/styles.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/monitor/css/tr.css' TYPE="text/css">
+ </HEAD>
+<Body>
+
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>   
+     <td width="112" height="32" align="center" valign="top">
+        <a href="http://www.us-vo.org" class="nvolink" target="_top">
+          <img src="http://www.usvao.org/documents/Templates/Logos/VAO_logo_100.png" alt="NVO HOME" border="0"/>
+        </a>
+        <span class="nvolink">
+          <a href="http://www.us-vo.org/" target="_top">National Virtual Observatory</a></span>
+     </td>   
+     <td valign="top"><table  width="100%" border="0" cellpadding="0" cellspacing="0">      
+       <tr>       
+         <td width="2" height="30" bgcolor="white"></td>
+         <td width="678" height="39" align="center" valign="middle" 
+         background="http://www.us-vo.org/images/templatestars.jpg" bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+         
+    <span class= \"nvoapptitle\" style= \"background\-repeat: repeat\-y;\">Vaomonitor (Documentation)</span></td></tr>
+    </td> 
+    
+   
+    <td bgcolor="white" width="2"></td>     
+    </tr>     
+    <tr>       
+     <td bgcolor="white" width="2"></td>      
+     <td bgcolor="white" width="2"></td>      
+     </tr>      
+     <tr>       
+     <td align="center" valign="top" colspan="3"><table cellspacing="2" cellpadding="0" border="0" width="100%"  style="margin: 0pt;"> 
+  <tr>
+     <!-- the local links -->
+  
+     <td  class='navlink'><a href='/cgi-bin/vo/notification/shownote.pl'>VO Service Notices </a></td>
+     <td  class='navlink'><a href='/cgi-bin/vo/monitor/monitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'>NVO Home</a></td>  
+     <td  class='navlink'><a href=http://us-vo.org/feedback/index.cfm>NVO Feedback</a></td> 
+            
+     </tr>       
+     </table></td>
+      </tr>
+      </table></td>
+      <td width = 140 align = center valign = top><a href = "http://www.heasarc.gsfc.nasa.gov">
+      <img src=/vo/datascope//images/nasa_logo.gif width=72 height=60 border=0 alt='NASA home'>
+      </img></a><br><span>Hosted by:</span><br>HEASARC<br> 
+      <br>
+      </td></tr></table>
+
+<h4>Validation DB design</h4>
+<p>The Validation DB consists of 5 tables plus one extra table used as a temporary storage area
+during a given session. They are:
+<ul><li>Services</li>
+<li>Tests</li>
+<li>Test</li>
+<li>Errors</li>
+<li>ErrorCodes</li>
+<li>TMP</li>
+</ul>
+
+</p>
+<h5>Services</h5>
+<p>The Services table has 11 columns. They are serviceId,shortname,serviceURL,xsitype,ivoid,test_ra,test_dec,radius,role,deleted,and deprecated<br>
+A brief description of each follows:<br><br>
+<ol><li>serviceId - the primary key used to join the Services and Tests table.<br>
+<li>shortname - the shortname of the VO service (E.g. IRAS PSC)<br>
+<li>serviceURL- the service url of the service.
+<li>xsitype-the xsitype of the service. The possible values are sia:SimpleImageAccess,cs:ConeSearch,vg:Harvest,ssa:SimpleSpectralAccess,vg:Search,<br>
+null,tap:TableAcess. A null value occurs if the raw xml for the registry resource does not have an xsitype.
+<li>ivoid -The ivo identifier of the service. 
+<li>test_ra-a sample test ra for the service as it is defined in the resource record.This test ra can be overriden by an external override file.This<br>
+is common practice for services whose default test_ra and test_dec do not produce a VOTable containing a downloadable url (E.g.A FITS url)
+<li>test_dec-a sample test dec that like the test_ra column can be overriden.
+<li>radius-the test radius. This can also be overriden.
+<li>role-the role as defined in the registry resource. This is either 'std' or 'null'.
+<li>deleted- The value here is either 'yes' or null and indicates that the service no longer exists in the registry.
+<li>deprecated-this column is used to indicate that a service has been deprecated in the registry.The value is either 'yes' or null. A problem that <br>
+arises with this column is when a service is first deprecated and subsequently deleted in the registry. If the flag is both set here and in the deleted<br>
+column, then the  statistics on deprecated vs. deleted services is compromised. One solution is to manually set the deleted flag for a service and unset<br>
+the deprecated flag.
+</ol>
+
+</p>
+
+
+
+<h5>Tests</h5>
+<p>The Tests table has 6 columns. They are runid,serviceId, validationstatus, type,time,and validatorCode. A better name for this
+table would have been Testhistory <br>but this was never changed... A brief description of each column follows.<br><br>
+
+<ol><li>runid-a unique id associated with a test for a given service. E.g. The VOInventory Service currently has two unique tests associated<br>
+with it. One test checks that the top level irsa.ipac page is up while the second greps a string from an xml response to an IRSA query<br>
+with positional information.
+<li>serviceId-the primary key used to join the Services and Tests table.
+<li>validationstatus- the value is either failed,aborted,pass, or skip</li>
+<li>type-this should be renamed to xsitype. The values are the same as those for the xsitype column in the Services table</li>
+<li>time-the timestamp associated with a test run</li>
+<li>validatorCode-this is the id for the validator used in the test. The possible values are: 1A, 2A,3A,4A,5A,and 8A</li>
+</ol>
+</p>
+
+<h5>Test</h5>
+<p>
+The Test table has 5 columns and it contains the information linking the xsitypes to the validators that will be used at runtime.The columns are <br>
+type, url,id,classmethod, and status. A brief description of each column follows.<br>
+<ol><li>type- this should be renamed to xsitype. The values are the same as for the type column in the Services table. </li>
+<li>url-the url of the NCSA validator that will run the test.</li>
+<li>id-A unique id assigned to the NCSA validators. The current values are: 1A,2A,3A,4A,5A,and 8A.
+<li>classmethod -this is the name of the Perl class that will handle the test at run time. Java will read in the correct classname<br>
+at run time and drive the test using the appropriate validator.
+<li>status- this column allows the user to turn validation on or off for the corresponding xsitype.However, this column is not well thought out since<br>
+the need to turn validation types on or off is now handled by the validation page. This column should probably be deleted or redefined.
+</li>
+</ol>
+</p>
+<p>
+
+
+<ol>
+</ol>
+</p>
+
+<h5>Errors</h5><p>
+The Errors table has 3 columns. They are runid,subtestid,and validationResCode. A brief description of each follows.<br>
+<ol>
+<li>
+runid- a unique id assiged at runtime to the test being executed. This column is used to join information with the Tests table.
+<li>subtestid-this is an id that comes from the NCSA validators in *most* cases. An important note here is that locally we also assign ids for<br>
+certain tests that are not handled by the validators (E.g. the ability to download image data is not tested by the validator and this test is assigned its own id). 
+<li>validationResCode -this column joins information with the ErrorCodes table.Each entry is an integer that maps 1 to 1 with an error message in the ErrorCodes<br>
+table. In this table there can be many identical validationResCode entries but there will be only one error message<br>
+associated with this number in the ErrorCodes table.
+</ol>
+</p>
+
+
+<h5>Error Codes</h5>
+<p>
+The Error Codes table has 2 columns. They are validationResCode and description. A brief description of each follows.<br>
+<ol>
+<li>validationResCode- this is the column that ties this table to the Errors table.
+<li>description-this is the error message associated with a failed or aborted test.Error messages can be long in this table and due to some issues at run time, we <br> began truncating error messages. This can be a problem sometimes if the most important part of the message is in the chunk that is removed.<br>
+</ol>
+</p>
+<p>
+
+</p> 
+ 
+<hr align="left" noshade>
+        <table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+        <tr align="center" valign="top">   <td width="16%" valign="top"><div align="center" class="style10">
+        <a href="http://www.nsf.gov"><img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0">
+        </a>
+        <a href="http://www.nasa.gov"><img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0">
+        </a>
+        </div></td>
+        <td width="76%"><div align="center">       
+        <p class="style10"> Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> 
+        <br>          under Cooperative Agreement AST0122449 with the Johns Hopkins University 
+        <br>         The NVO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a></p>
+        <p class="style10">This NVO Application is hosted by <a href="#">LocalSiteName</a></p>
+        </div></td>    
+        <td width="8%"><div align="center"><span class="tiny">Member<br>
+        </span>
+        <a href="http://www.ivoa.net">
+        <img src="http://www.us-vo.org/images/ivoa_small.jpg" alt="IVOA HOME" width="68" height="39" border="0" align="top"></a></div></td>
+        <td width="8%"><span class="style4"><span class="tiny">Meet the Developers</span><br>
+        <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border=0></span></td> </tr></table>
+        <hr noshade='noshade' />
+        <p>Hosted by the <a href='http://universe.gsfc.nasa.gov/'>Astrophysics Science Division</a>and the 
+        <a href='http://heasarc.gsfc.nasa.gov/'>High Energy Astrophysics Science Archive Research Center (HEASARC)</a>at
+        <a href='http://www.nasa.gov/'>NASA/</a><a href='http://www.gsfc.nasa.gov/'>GSFC</a>
+        </p><p>HEASARC Director:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/bios/white.html'>Dr. Nicholas E. White</a>,</p>
+        <p>HEASARC Associate Director: Dr. Roger Brissenden,</p><p>Responsible NASA Official:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/nospam/panewman.html'>Phil Newman</a> </p>
+        <p class='tiny'> <a href='/banner.html'>Privacy, Security, Notices</a></p>
+        </div><!-- id='footer' --></body>

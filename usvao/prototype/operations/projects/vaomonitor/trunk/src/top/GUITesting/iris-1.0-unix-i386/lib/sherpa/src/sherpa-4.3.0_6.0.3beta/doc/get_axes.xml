@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_axes" refkeywords=" get alternate grid  axis axes " seealsogroups="sh.get  sh.data " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Return the alternate grid of a data set
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_axes( [id, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The get_axes() function returns the alternate grid
+       of a 1- or 2-D data set by data id or bkg_id.
+       For PHA spectra, the alternate grid corresponds to (E_MIN,
+       E_MAX), the energy grid of the data set.
+       For images, get_axes() returns the axes lengths in the current
+       coordinate system, where the size of each axis array returned matches
+       the size of the corresponding image dimension.
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+
+      <ITEM>
+	bkg_id -  the id of the background to use, e.g. if more than
+	one background is associated with the data
+   
+      </ITEM>
+    </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_axes()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           When called with no arguments, get_axes() returns the
+           (e_min, e_max) grid of the default data set. In this
+           example, data set 1 is a PHA spectrum.
+          </PARA>
+<VERBATIM>
+sherpa&gt; print(get_data())
+name           = simple.pi
+channel        = Float64[1024]
+counts         = Float64[1024]
+staterror      = None
+syserror       = None
+bin_lo         = None
+bin_hi         = None
+grouping       = None
+quality        = None
+exposure       = 56494.4943719
+backscal       = 9.36267570731e-05
+areascal       = 1.0
+grouped        = False
+subtracted     = False
+units          = energy
+response_ids   = [1]
+background_ids = [1]
+
+sherpa&gt; get_axes()
+           
+(array([  7.3000e-03,   1.4600e-02,   2.9200e-02, ...,   1.4907e+01,
+         1.4921e+01,   1.4936e+01]),
+ array([  1.4600e-02,   2.9200e-02,   4.3800e-02, ...,   1.4921e+01,
+         1.4936e+01,   1.4950e+01]))
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_axes(2)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           If supplied with a data set ID, get_axes() returns the
+           alternate grid of the specified data set. In this example, data set 2
+           is an image.
+          </PARA>
+<VERBATIM>
+sherpa&gt; print(get_data(2))
+name      = image.fits
+x0        = Float64[56376]
+x1        = Float64[56376]
+y         = Float64[56376]
+shape     = (216, 261)
+staterror = None
+syserror  = None
+sky       = physical
+ crval    = [ 3798.5  4019.5]
+ crpix    = [ 0.5  0.5]
+ cdelt    = [ 2.  2.]
+eqpos     = world
+ crval    = [ 278.3866  -10.5893]
+ crpix    = [ 4096.5  4096.5]
+ cdelt    = [-0.0001  0.0001]
+ crota    = 0
+ epoch    = 2000
+ equinox  = 2000
+coord     = logical
+
+sherpa&gt; get_axes(2)
+            
+(array([   1.,    2.,    3., ...,  259.,  260.,  261.]),
+ array([   1.,    2.,    3., ...,  214.,  215.,  216.]))
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+     
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

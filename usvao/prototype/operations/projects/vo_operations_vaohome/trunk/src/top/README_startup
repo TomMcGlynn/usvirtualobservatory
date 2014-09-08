@@ -1,0 +1,48 @@
+#
+# This is a startup file. 
+#
+# This file contains urls and paths
+# that can be altered by the user.
+# However these are the default paths.
+#
+# If changes are made to this file,
+# user must change the location of
+# any code referenced by this file.
+#
+#
+#
+#####################################
+#   Global variable definitions     #
+#####################################
+#
+#
+# $::opsdb          -  the vao_operations db
+#
+#
+# $::user           - the username used to connect to the vao_operations database
+#
+#
+# $::opspw          - the password used to connect to the vao_operations db
+#                     
+#
+#
+#
+
+
+
+package data::startup;
+{
+    $::user           =  "<username associated with the database connection>";
+    $::opsdb           = "vao_operations";
+    $::opspw           = '<vao operations db pw>';
+
+    BEGIN
+    {
+	@::libs = ("/usr/local/web_chroot/www/htdocs/cgi-bin/W3Browse/lib",
+		   "/www/htdocs/cgi-bin/lib/heasarc",
+		   "/heasarc/src/misc/perl/lib",);
+	unshift(@INC,@::libs);
+    }
+
+}
+1;

@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="gamma" refkeywords="cephes utility function math " seealsogroups="sh.calc " displayseealsogroups="" context="utilities">
+
+     <SYNOPSIS>
+     Calculate the Gamma function
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>gamma(z)</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+	Calculate the CEPHES function, Gamma, in the range [-171 &lt;
+	z &lt;= 171.6].  The command returns the Gamma function of
+	the argument (scalar or array). 
+      </PARA>
+
+      <PARA>
+	Arguments |x| &lt;= 34 are reduced by recurrence and the
+	function approximated by a rational function of degree 6/7 in
+	the interval (2,3).  Large arguments are handled by Stirling's
+	formula. Large negative arguments are made positive using a
+	reflection formula. 
+      </PARA>
+
+	<TABLE>
+	<CAPTION>Relative error:</CAPTION>
+	
+	<ROW>
+	<DATA>arithmetic</DATA>
+	<DATA>domain</DATA>
+	<DATA># trials</DATA>
+	<DATA>peak</DATA>
+	<DATA>rms</DATA>
+	</ROW>
+	
+	<ROW>
+	<DATA>DEC</DATA>
+	<DATA>-34, 34</DATA>
+	<DATA>10000</DATA>
+	<DATA>1.3e-16</DATA>
+	<DATA>2.5e-17</DATA>
+	</ROW>
+
+	<ROW>
+	<DATA>IEEE</DATA>
+	<DATA>-170,-33</DATA>
+	<DATA>20000</DATA>
+	<DATA>2.3e-15</DATA>
+	<DATA>3.3e-16</DATA>
+	</ROW>
+
+	<ROW>
+	<DATA>IEEE</DATA>
+	<DATA>-33,  33</DATA>
+	<DATA>20000</DATA>
+	<DATA>9.4e-16</DATA>
+	<DATA>2.2e-16</DATA>
+	</ROW>
+
+	<ROW>
+	<DATA>IEEE</DATA>
+	<DATA>33, 171.6</DATA>
+	<DATA>20000</DATA>
+	<DATA>2.3e-15</DATA>
+	<DATA>3.2e-16</DATA>
+	</ROW>
+	</TABLE>
+
+        <PARA>
+	  Error for arguments outside the test range will be larger
+	  owing to error amplification by the exponential function.
+	</PARA>
+
+	<PARA title="Reference">
+	Cephes Math Library Release 2.0:  April, 1987.
+	Copyright 1985, 1987 by Stephen L. Moshier.
+	Direct inquiries to 30 Frost Street, Cambridge, MA 02140.
+	</PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; gamma(3.14)</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	    Calculate the gamma of z=3.14 .
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; gamma([3.14,2.71])</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	    Calculate the gamma of z=[3.14,2.71] .
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

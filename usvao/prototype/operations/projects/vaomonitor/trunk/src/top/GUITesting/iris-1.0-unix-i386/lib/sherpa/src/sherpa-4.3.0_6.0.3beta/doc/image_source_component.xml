@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="image_source_component" refkeywords="image images img imager imaging model models modeling modelling visualize visualization visualise visualisation comp component components " seealsogroups="sh.img sh.model " displayseealsogroups="" context="modeling">
+
+
+    <SYNOPSIS>
+      Sends image of the unconvolved model component to ds9.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>image_source_component([id], name, [newframe=False, tile=False]] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The image_source_component command sends an image of one, or a
+      combination of, individual 2D source model components to the imager
+       (ds9) to allow the user to quickly visualize the contribution
+      to the full model being used to fit the data. The model
+      components will not be convolved
+    with any assigned PSF convolution models; the image_model_component command is available for displaying convolved model components.  By default, the image is sent to the same frame and the frames are not tiled.
+      </PARA>
+
+      <LIST>
+       <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+        <ITEM>
+         name - variable name representing the model component
+        </ITEM>
+        <ITEM>
+        newframe  - add a new frame;
+          default=False
+          
+        </ITEM>
+
+        <ITEM>
+         tile - tile image frame; 
+          default=False
+          
+       </ITEM>
+      </LIST>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+        <LINE>sherpa&gt; set_source(2, const2d.c1 + gauss2d.g1 + beta2d.b1)</LINE>
+        <LINE>sherpa&gt; fit(2)</LINE>
+	<LINE>sherpa&gt; image_source_component(2, g1+b1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   Display in DS9 an image of the sum of the unconvolved Gaussian 2D and Beta 2D
+      model components "g1" and "b1" assigned to data set 2 with the image_source_component command.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

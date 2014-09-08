@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_xsxset" refkeywords="get_xsxset  set environment variables xspec modelmodels XSPEC xs  " seealsogroups="sh.set sh.model " displayseealsogroups="" context="modeling">
+
+
+    <SYNOPSIS>
+      Set environment variables for XSPEC models
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_xsxset(var_name, var_value)</LINE>
+      <LINE>get_xsxset(var_name)</LINE>
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The set_xsxset() command is associated with the XSPEC XSET
+        command for defining XSPEC model environment variables. The
+      required string arguments for set_xsxset() are a model
+        environment variable name and an associated value to which it
+        should be set. The get_xsxset() command
+        returns the current value setting for the specified model
+        variable.  
+      </PARA>
+      
+      <PARA>	
+       The list of current variable name options, models to which they
+   apply, and brief descriptions of each are given in the <HREF link="http://starchild.gsfc.nasa.gov/xanadu/xspec/manual/XSxset.tml">table found
+    on the 'xset' help page in the XSPEC documentation</HREF>.
+      </PARA>
+
+      <PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+    <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_xsxset("NEIVERS", "2.0")</LINE>
+          <LINE>sherpa&gt; set_xsxset("NEIAPECROOT", "/home/user/apec")</LINE>
+          <LINE>sherpa&gt; set_model(xsvnei.nn)</LINE>
+	  <LINE>sherpa&gt; get_xsxset("NEIAPECROOT")</LINE>
+	  <LINE>'/home/user/apec'</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+           	Set the NEIVERS model variable to a value of 2.0, and
+      switch the NEIAPECROOT variable from the default NEIAPEC file to
+      a user input file.  Return the current value set for the
+      NEIAPECROOT variable to check that it was correctly set.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+     
+
+
+    <BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+    <VERSION>CIAO 4.3</VERSION>
+
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

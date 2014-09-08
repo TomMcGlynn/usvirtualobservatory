@@ -1,0 +1,8 @@
+sia:SimpleImageAccess,SIAP
+cs:ConeSearch,Cone
+ssa:SimpleSpectralAccess,SSA
+vg:Search,RegistrySearch
+vg:Harvest,RegistryHarvest
+vg:Unknown,Registry
+sla:SimpleLineAccess,SLA
+tap:TableAccess,TAP

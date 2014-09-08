@@ -1,0 +1,149 @@
+<HTML>
+ <HEAD>
+   <TITLE>
+     Validation Design
+   </TITLE>
+     <LINK REL="StyleSheet" HREF='http://www.us-vo.org/app_templates/usvo_template.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/datascope/css/styles.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/monitor/css/tr.css' TYPE="text/css">
+ </HEAD>
+<Body>
+
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>   
+     <td width="112" height="32" align="center" valign="top">
+        <a href="http://www.us-vo.org" class="nvolink" target="_top">
+          <img src="http://www.usvao.org/documents/Templates/Logos/VAO_logo_100.png" alt="NVO HOME" border="0"/>
+        </a>
+        <span class="nvolink">
+          <a href="http://www.us-vo.org/" target="_top">National Virtual Observatory</a></span>
+     </td>   
+     <td valign="top"><table  width="100%" border="0" cellpadding="0" cellspacing="0">      
+       <tr>       
+         <td width="2" height="30" bgcolor="white"></td>
+         <td width="678" height="39" align="center" valign="middle" 
+         background="http://www.us-vo.org/images/templatestars.jpg" bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+         
+    <span class= \"nvoapptitle\" style= \"background\-repeat: repeat\-y;\">Vaomonitor (Documentation)</span></td></tr>
+    </td> 
+    
+   
+    <td bgcolor="white" width="2"></td>     
+    </tr>     
+    <tr>       
+     <td bgcolor="white" width="2"></td>      
+     <td bgcolor="white" width="2"></td>      
+     </tr>      
+     <tr>       
+     <td align="center" valign="top" colspan="3"><table cellspacing="2" cellpadding="0" border="0" width="100%"  style="margin: 0pt;"> 
+  <tr>
+     <!-- the local links -->
+  
+     <td  class='navlink'><a href='/cgi-bin/vo/notification/shownote.pl'>VO Service Notices </a></td>
+     <td  class='navlink'><a href='/cgi-bin/vo/monitor/monitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'>NVO Home</a></td>  
+     <td  class='navlink'><a href=http://us-vo.org/feedback/index.cfm>NVO Feedback</a></td> 
+            
+     </tr>       
+     </table></td>
+      </tr>
+      </table></td>
+      <td width = 140 align = center valign = top><a href = "http://www.heasarc.gsfc.nasa.gov">
+      <img src=/vo/datascope//images/nasa_logo.gif width=72 height=60 border=0 alt='NASA home'>
+      </img></a><br><span>Hosted by:</span><br>HEASARC<br> 
+      <br>
+      </td></tr></table>
+
+<h4>VAO Operations DB design</h4>
+<p>The VAO Operations DB consists of 3 tables. They are:
+<ul><li>notification_emails</li>
+<li>vao_notices</li>
+<li>xsitype_restrictions</li>
+</ul>
+
+</p>
+<h5>notification emails</h5>
+<p>This table is only used as part of the automated (service alert) notification system.This table has 3 columns.They are serviceName, addresses, and id. A brief description of each follows:<br>
+<ol><li>serviceName - the name of the Service.This column is used when joining information between the vaomonitor db and the vao operations db.<br>
+<li>addresses - the email addresses of the people who curate a service or who need to be contacted when a given service
+is not working.<br>
+<li>id- a unique id associated with a Service. This column is not currently being used but can potentially be useful at a later
+date.
+</ol>
+
+</p><p>
+Usage: This table is currently queried by the vao notification system. If any services are failing in the hourly monitoring, an email will be sent to the list of addresses associated with a given service.<br><br>
+Problems: Any new services added to the vaomonitor need to be added here,otherwise notifications will *not* be sent
+out when that service goes down.
+</p>
+
+
+
+<h5>vao notices</h5>
+<p>The vao notices table has 11 columns. They are id,ipaddress,note,start_date,end_date,priority,host,science services,other services,
+reason deleted,and deleted. A brief description of each follows.<br>
+
+<ol><li>id-a unique id associated with a notice entered by the user in the interactive notification system. When a user enters a notice on a pending downtime or active downtime for a service, the notice is stored in this table. When a user subsequently searches for either active or deleted notices, this id is used to pull out the appropriate information. 
+<li>ipaddress-the ipaddress of the person entering the notice.
+<li>note-the notice entered by the user.
+<li>start_date-the start time of the service downtime. This is stored in GMT.
+<li>end_date-the end date of the service downtime. This is stored in GMT. 
+<li>priority- an integer representing the importance of this notice. Possible values range from 1-4 and they have the following meanings: 1=Highest,2=High,3=Medium,
+4=Low. 
+<li>host-the host affected by the downtime.
+<li>science services-A comma-delimited list of the VAO science services impacted by this downtime <br>
+<li>other services-A comma-delimited list of VAO non-science services impacted by the dowtime(E.g. JIRA).
+<li>reason deleted - this is either "by user" or "expired". This column should be combined with the deleted column.
+<li>deleted-this column is either "T" or null and should probably become "by user" or null. Here, null would mean 'expired'.
+</ol>
+</p>
+
+<h5>xsitype restrictions</h5>
+<p>This xsitype restrictions table is currently used only with the validation pages and the validation db.It has 3 columns. They are 'id','xsitype', and status. A brief description of each follows.<br>
+<ol>
+<li>id - a unique number associated with an entry. This column is not currently being used but could be useful in the future.
+</li>
+<li>xsitype-the xsitype.This column is used to suppress certain data from appearing in the validation statistics and validation pages. This is very
+useful when users need to see statistics by xsitype.
+<li>status - this column is either 'T' or null. A 'T' indicates that this type should be suppressed in the validation output. It is important to note
+however, that the validation sw also has the ability to suppress output by xsitype.
+</ol>
+</p>
+<p>
+Usage: This table is used to suppress certain xsi types from appearing in the *default* validation output.<br><br>
+Problems: This table must be updated to contain all the types being shown on the validation pages. Therefore if new statistics are needed for an
+xsitype previously not shown<br> in the validation results, both the validation code and this table should be updated.
+<p>
+
+</p> 
+ 
+<hr align="left" noshade>
+        <table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+        <tr align="center" valign="top">   <td width="16%" valign="top"><div align="center" class="style10">
+        <a href="http://www.nsf.gov"><img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0">
+        </a>
+        <a href="http://www.nasa.gov"><img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0">
+        </a>
+        </div></td>
+        <td width="76%"><div align="center">       
+        <p class="style10"> Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> 
+        <br>          under Cooperative Agreement AST0122449 with the Johns Hopkins University 
+        <br>         The NVO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a></p>
+        <p class="style10">This NVO Application is hosted by <a href="#">LocalSiteName</a></p>
+        </div></td>    
+        <td width="8%"><div align="center"><span class="tiny">Member<br>
+        </span>
+        <a href="http://www.ivoa.net">
+        <img src="http://www.us-vo.org/images/ivoa_small.jpg" alt="IVOA HOME" width="68" height="39" border="0" align="top"></a></div></td>
+        <td width="8%"><span class="style4"><span class="tiny">Meet the Developers</span><br>
+        <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border=0></span></td> </tr></table>
+        <hr noshade='noshade' />
+        <p>Hosted by the <a href='http://universe.gsfc.nasa.gov/'>Astrophysics Science Division</a>and the 
+        <a href='http://heasarc.gsfc.nasa.gov/'>High Energy Astrophysics Science Archive Research Center (HEASARC)</a>at
+        <a href='http://www.nasa.gov/'>NASA/</a><a href='http://www.gsfc.nasa.gov/'>GSFC</a>
+        </p><p>HEASARC Director:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/bios/white.html'>Dr. Nicholas E. White</a>,</p>
+        <p>HEASARC Associate Director: Dr. Roger Brissenden,</p><p>Responsible NASA Official:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/nospam/panewman.html'>Phil Newman</a> </p>
+        <p class='tiny'> <a href='/banner.html'>Privacy, Security, Notices</a></p>
+        </div><!-- id='footer' --></body>

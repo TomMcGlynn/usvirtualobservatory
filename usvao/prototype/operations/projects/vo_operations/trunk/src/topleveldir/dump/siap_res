@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <NewDataSet xmlns="">
+        <Table>        <pkey>1080</pkey>
+        <xsi_type>vs:CatalogService</xsi_type>
+        <_x0040_created>2007-01-16T00:00:00-05:00</_x0040_created>
+        <_x0040_updated>2007-01-16T00:00:00-05:00</_x0040_updated>
+        <_x0040_status>1</_x0040_status>
+        <validationLevel>1</validationLevel>
+        <title>Cosmic Background Explorer DIRBE</title>
+        <shortName>COBE</shortName>
+        <identifier>ivo://nasa.heasarc/skyview/cobe</identifier>
+        <curation_x002F_publisher_x002F__x0040_ivo-id>ivo://nasa.heasarc</curation_x002F_publisher_x002F__x0040_ivo-id>
+        <curation_x002F_publisher>NASA/GSFC HEASARC</curation_x002F_publisher>
+        <content_x002F_subject>#surveys#</content_x002F_subject>
+        <content_x002F_description>&amp;lt;P&amp;gt; The DIRBE Project Data Sets cover the whole sky and provide photometric data in 10 bands ranging in wavelength from 1.25 to 240 microns. SkyView currently provides three maps: an early averaged map including including zodiacal and Galactic components (COBE DIRBE (OLD)), a more recent cleaner version of that data (COBE DIRBE/AAM) and a map with the zodaical light subtracted out (COBE DIRBE/ZSMA). We do not recommend use of the first map, but it is retained for compability with earlier investigations. &amp;lt;P&amp;gt; Detailed descriptions of the DIRBE, the data processing, and the data products are given in an Explanatory Supplement. A Small Source Spectral Energy Distribution Browser can be used to assess the visibility of an unresolved or small extended source in the DIRBE data and see its spectral energy distribution. As noted in section 5.6.6 of the Explanatory Supplement, the DIRBE Time-ordered Data are required to derive definitive point source fluxes. &amp;lt;p&amp;gt; These maps provide an estimate of the infrared intensity at each pixel and wavelength band based on an interpolation of the observations made at various times at solar elongations close to 90°. &amp;lt;P&amp;gt; These COBE DIRBE maps are a combination original ten band passes with the following wavelengths: &amp;lt;UL&amp;gt; &amp;lt;LI&amp;gt;Band 1 - 1.25 µm &amp;lt;LI&amp;gt;Band 2 - 2.2 µm &amp;lt;LI&amp;gt;Band 3 - 3.5 µm &amp;lt;LI&amp;gt;Band 4 - 4.9 µm &amp;lt;LI&amp;gt;Band 5 - 12 µm &amp;lt;LI&amp;gt;Band 6 - 25 µm &amp;lt;li&amp;gt;Band 7 - 60 µm &amp;lt;li&amp;gt;Band 8 - 100 µm &amp;lt;li&amp;gt;Band 9 - 140 µm &amp;lt;li&amp;gt;Band 10 - 240 µm &amp;lt;/ul&amp;gt; &amp;lt;p&amp;gt; The default two dimensional array uses Band 8 (100 µm). &amp;lt;P&amp;gt; The COBE DIRBE/Annual Average Maps (AAM) is the cumulative weighted average of the photometry. This average is calculated using the weighted number of observations from each Weekly Averaged Map ( WtNumObs from the Weekly Averaged Map) as the weight, such that annual_average =sum( weekly_average * weekly_weight )/ sum( weekly_weight ) &amp;lt;p&amp;gt; COBE DIRBE/Zodi-Subtracted Mission Average (ZSMA) Skymap represents the extra-Solar system sky brightness. It is the average residual map that results after the modelled interplanetary dust (IPD) signal is subtracted from each of the DIRBE Weekly Skymaps from the cryogenic mission. Individual weekly residual maps can be reconstructed from the data supplied in the DIRBE Sky and Zodi Atlas (DSZA).</content_x002F_description>
+        <content_x002F_referenceURL>http://skyview.gsfc.nasa.gov</content_x002F_referenceURL>
+        <content_x002F_type>#Archive#</content_x002F_type>
+        <content_x002F_contentLevel>#Research#</content_x002F_contentLevel>
+        <coverage_x002F_waveband>#Infrared#</coverage_x002F_waveband>
+        <harvestedFrom>http://heasarc.gsfc.nasa.gov/cgi-bin/OAI2/XMLFile/nvo/oai.pl</harvestedFrom>
+        <harvestedFromDate>2008-04-03T16:09:35-04:00</harvestedFromDate>
+        <tag>#Images#</tag>
+        <xml>&lt;ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:sia="http://www.ivoa.net/xml/SIA/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vs:CatalogService" status="active" updated="2007-01-16T00:00:00" created="2007-01-16T00:00:00" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0  http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0  http://www.ivoa.net/xml/SIA/v1.0 http://www.ivoa.net/xml/SIA/v1.0 "&gt;&lt;title&gt;Cosmic Background Explorer DIRBE&lt;/title&gt;&lt;shortName&gt;COBE&lt;/shortName&gt;&lt;identifier&gt;ivo://nasa.heasarc/skyview/cobe&lt;/identifier&gt;&lt;curation&gt;&lt;publisher ivo-id="ivo://nasa.heasarc"&gt;NASA/GSFC HEASARC&lt;/publisher&gt;&lt;creator&gt;&lt;name&gt;COBE Team&lt;/name&gt;&lt;/creator&gt;&lt;contributor&gt;Skyview Project&lt;/contributor&gt;&lt;date role="created"&gt;2006-03-27&lt;/date&gt;&lt;contact&gt;&lt;name&gt;SkyView Help&lt;/name&gt;&lt;email&gt;Skyview@skyview.gsfc.nasa.gov&lt;/email&gt;&lt;/contact&gt;&lt;/curation&gt;&lt;content&gt;&lt;subject&gt;surveys&lt;/subject&gt;&lt;description&gt;
+&amp;lt;P&amp;gt;
+The DIRBE Project Data Sets cover the whole sky and provide photometric data
+in 10 bands ranging in wavelength from 1.25 to 240 microns. SkyView currently 
+provides three maps: an early averaged map including including zodiacal and 
+Galactic components (COBE DIRBE (OLD)),  a more recent cleaner version of 
+that data (COBE DIRBE/AAM) and a map with the zodaical light subtracted out 
+(COBE DIRBE/ZSMA).  We do not recommend use of the first map, but it is 
+retained for compability with earlier investigations.
+
+&amp;lt;P&amp;gt;
+Detailed descriptions of the DIRBE, the data processing, and the data products
+are given in an Explanatory Supplement. A Small Source Spectral Energy Distribution
+Browser can be used to assess the visibility of an unresolved or small extended source
+in the DIRBE data and see its spectral energy distribution. As noted in section
+5.6.6 of the Explanatory Supplement, the DIRBE Time-ordered Data are required to
+derive definitive point source fluxes.
+
+&amp;lt;p&amp;gt;
+These maps provide an estimate of the infrared intensity at each pixel and 
+wavelength band based on an interpolation of the observations made at 
+various times at solar elongations close to 90°. 
+&amp;lt;P&amp;gt;
+These COBE DIRBE maps are a combination original ten band passes with the following wavelengths:
+
+&amp;lt;UL&amp;gt;
+  &amp;lt;LI&amp;gt;Band 1  - 1.25 µm
+  &amp;lt;LI&amp;gt;Band 2  - 2.2  µm
+  &amp;lt;LI&amp;gt;Band 3  - 3.5  µm
+  &amp;lt;LI&amp;gt;Band 4  - 4.9  µm
+  &amp;lt;LI&amp;gt;Band 5  -  12  µm
+  &amp;lt;LI&amp;gt;Band 6  -  25  µm
+  &amp;lt;li&amp;gt;Band 7  -  60  µm
+  &amp;lt;li&amp;gt;Band 8  - 100  µm
+  &amp;lt;li&amp;gt;Band 9  - 140  µm
+  &amp;lt;li&amp;gt;Band 10 - 240  µm
+
+&amp;lt;/ul&amp;gt;
+&amp;lt;p&amp;gt;
+The default two dimensional array uses Band 8 (100 µm).
+&amp;lt;P&amp;gt;
+The COBE DIRBE/Annual Average Maps (AAM) is the cumulative weighted
+average of the photometry. This average is calculated using the
+weighted number of observations from each Weekly Averaged Map
+( WtNumObs from the Weekly Averaged Map) as the weight, such that
+annual_average =sum( weekly_average * weekly_weight )/ sum( weekly_weight )
+&amp;lt;p&amp;gt;
+COBE DIRBE/Zodi-Subtracted Mission Average (ZSMA) Skymap represents
+the extra-Solar system sky brightness. It is the average
+residual map that results after the modelled interplanetary dust (IPD) signal
+is subtracted from each of the DIRBE Weekly Skymaps from the cryogenic mission.
+Individual weekly residual maps can be reconstructed from the data supplied in
+the DIRBE Sky and Zodi Atlas (DSZA).
+
+      &lt;/description&gt;&lt;referenceURL&gt;http://skyview.gsfc.nasa.gov&lt;/referenceURL&gt;&lt;type&gt;Archive&lt;/type&gt;&lt;contentLevel&gt;Research&lt;/contentLevel&gt;&lt;relationship&gt;&lt;relationshipType&gt;service-for&lt;/relationshipType&gt;&lt;relatedResource ivo-id="ivo://nasa.heasarc/eud"&gt;
+               NASA/GSFC Exploration of the Universe Division
+            &lt;/relatedResource&gt;&lt;/relationship&gt;&lt;/content&gt;&lt;capability standardID="ivo://ivoa.net/std/SIA" xsi:type="sia:SimpleImageAccess"&gt;&lt;interface role="std" xsi:type="vs:ParamHTTP"&gt;&lt;accessURL use="base"&gt;http://skyview.gsfc.nasa.gov/cgi-bin/vo/sia.pl?survey=COBE&amp;amp;&lt;/accessURL&gt;&lt;queryType&gt;GET&lt;/queryType&gt;&lt;resultType&gt;text/xml+votable&lt;/resultType&gt;&lt;param&gt;&lt;name&gt;POS&lt;/name&gt;&lt;description&gt;
+            Search Position in the form "ra,dec" where ra and dec are given in decimal degrees
+            in the ICRS coordinate system.
+         &lt;/description&gt;&lt;unit&gt;degrees&lt;/unit&gt;&lt;dataType&gt;real&lt;/dataType&gt;&lt;/param&gt;&lt;param&gt;&lt;name&gt;SIZE&lt;/name&gt;&lt;description&gt;
+            Size of search region in the RA and Dec. directions.   
+         &lt;/description&gt;&lt;unit&gt;degrees&lt;/unit&gt;&lt;dataType&gt;real&lt;/dataType&gt;&lt;/param&gt;&lt;param&gt;&lt;name&gt;FORMAT&lt;/name&gt;&lt;description&gt;
+            Requested format of images.
+         &lt;/description&gt;&lt;dataType&gt;string&lt;/dataType&gt;&lt;/param&gt;&lt;param&gt;&lt;name&gt;CFRAME&lt;/name&gt;&lt;description&gt;
+            Coordinate frame: ICRS, FK5, FK4, GAL, ECL
+         &lt;/description&gt;&lt;dataType&gt;string&lt;/dataType&gt;&lt;/param&gt;&lt;param&gt;&lt;name&gt;EQUINOX&lt;/name&gt;&lt;description&gt;
+            Equinox used in FK4 or FK5 frames.
+
+      &lt;/description&gt;&lt;dataType&gt;real&lt;/dataType&gt;&lt;/param&gt;&lt;/interface&gt;&lt;imageServiceType&gt;Cutout&lt;/imageServiceType&gt;&lt;maxQueryRegionSize&gt;&lt;long&gt;360.0&lt;/long&gt;&lt;lat&gt;180.0&lt;/lat&gt;&lt;/maxQueryRegionSize&gt;&lt;maxImageExtent&gt;&lt;long&gt;360.0&lt;/long&gt;&lt;lat&gt;180.0&lt;/lat&gt;&lt;/maxImageExtent&gt;&lt;maxImageSize&gt;&lt;long&gt;5000&lt;/long&gt;&lt;lat&gt;5000&lt;/lat&gt;&lt;/maxImageSize&gt;&lt;maxFileSize&gt;10000000&lt;/maxFileSize&gt;&lt;maxRecords&gt;500&lt;/maxRecords&gt;&lt;testQuery&gt;&lt;pos&gt;&lt;long&gt;120&lt;/long&gt;&lt;lat&gt;20&lt;/lat&gt;&lt;/pos&gt;&lt;size&gt;&lt;long&gt;1&lt;/long&gt;&lt;lat&gt;1&lt;/lat&gt;&lt;/size&gt;&lt;/testQuery&gt;&lt;/capability&gt;&lt;coverage&gt;&lt;stc:STCResourceProfile xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd"&gt;&lt;stc:AstroCoordSystem xlink:type="simple" xlink:href="ivo://STClib/CoordSys#UTC-ICRS-TOPO" id="x_cobe_UTC-ICRS-TOPO" /&gt;&lt;stc:AstroCoordArea coord_system_id="x_cobe_UTC-ICRS-TOPO"&gt;&lt;stc:AllSky /&gt;&lt;/stc:AstroCoordArea&gt;&lt;/stc:STCResourceProfile&gt;&lt;waveband&gt;Infrared&lt;/waveband&gt;&lt;/coverage&gt;&lt;/ri:Resource&gt;</xml>
+      </Table>
+        <Table>        <pkey>1099</pkey>
+        <xsi_type>vs:CatalogService</xsi_type>
+        <_x0040_created>2007-01-16T00:00:00-05:00</_x0040_created>
+        <_x0040_updated>2007-01-16T00:00:00-05:00</_x0040_updated>
+        <_x0040_status>1</_x0040_status>
+        <validationLevel>1</validationLevel>
+        <title>ROSAT All-Sky X-ray Survey 1.5 keV</title>
+        <shortName>RASS</shortName>
+        <identifier>ivo://nasa.heasarc/skyview/rass</identifier>
+        <curation_x002F_publisher_x002F__x0040_ivo-id>ivo://nasa.heasarc</curation_x002F_publisher_x002F__x0040_ivo-id>
+        <curation_x002F_publisher>NASA/GSFC HEASARC</curation_x002F_publisher>
+        <content_x002F_subject>#surveys#</content_x002F_subject>
+        <content_x002F_description>&amp;lt;i&amp;gt; The following is adapted from the MPI FTP site information: 7/16/97 &amp;lt;/i&amp;gt;&amp;lt;br&amp;gt; These maps present the initial version of the results from the ROSAT soft X-ray all-sky survey as presented in ApJ 454, 643. The maps cover approximately 98% of the sky in the 1/4 keV, 3/4 keV, and 1.5 keV bands, with about 2° angular resolution and high sensitivity for low surface brightness extended features. The effects of non-X-ray contamination and X-rays of solar system origin have been eliminated to the greatest possible extent, but discrete X-ray sources have not been removed. The much improved angular resolution, statistical precision, and completeness of coverage of these maps reveals considerable structure over the entire 0.1-2.0 keV energy range that was not observed previously. The data compare well with previous all-sky surveys in terms of absolute normalization and zero point. These maps may be used for scientific purposes as long as reference is made to the relevant publication</content_x002F_description>
+        <content_x002F_referenceURL>http://skyview.gsfc.nasa.gov</content_x002F_referenceURL>
+        <content_x002F_type>#Archive#</content_x002F_type>
+        <content_x002F_contentLevel>#Research#</content_x002F_contentLevel>
+        <coverage_x002F_waveband>#X-ray#</coverage_x002F_waveband>
+        <harvestedFrom>http://heasarc.gsfc.nasa.gov/cgi-bin/OAI2/XMLFile/nvo/oai.pl</harvestedFrom>
+        <harvestedFromDate>2008-04-03T16:09:42-04:00</harvestedFromDate>
+        <tag>#Images#</tag>
+        <xml>&lt;ri:Resource xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" xmlns:sia="http://www.ivoa.net/xml/SIA/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vs:CatalogService" status="active" updated="2007-01-16T00:00:00" created="2007-01-16T00:00:00" xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0  http://www.ivoa.net/xml/VODataService/v1.0 http://www.ivoa.net/xml/VODataService/v1.0  http://www.ivoa.net/xml/SIA/v1.0 http://www.ivoa.net/xml/SIA/v1.0 "&gt;&lt;title&gt;ROSAT All-Sky X-ray Survey 1.5 keV&lt;/title&gt;&lt;shortName&gt;RASS&lt;/shortName&gt;&lt;identifier&gt;ivo://nasa.heasarc/skyview/rass&lt;/identifier&gt;&lt;curation&gt;&lt;publisher ivo-id="ivo://nasa.heasarc"&gt;NASA/GSFC HEASARC&lt;/publisher&gt;&lt;creator&gt;&lt;name&gt;
+Max Planck Institute for Exterrestrial Physics (Garching FRG)
+    &lt;/name&gt;&lt;/creator&gt;&lt;contributor&gt;Skyview Project&lt;/contributor&gt;&lt;date role="created"&gt;2006-03-27&lt;/date&gt;&lt;contact&gt;&lt;name&gt;SkyView Help&lt;/name&gt;&lt;email&gt;Skyview@skyview.gsfc.nasa.gov&lt;/email&gt;&lt;/contact&gt;&lt;/curation&gt;&lt;content&gt;&lt;subject&gt;surveys&lt;/subject&gt;&lt;description&gt;
+&amp;lt;i&amp;gt; The following is adapted from the MPI FTP site information: 7/16/97
+&amp;lt;/i&amp;gt;&amp;lt;br&amp;gt;
+These maps present the initial version of the results from the
+ROSAT soft X-ray all-sky survey as presented in ApJ 454, 643.
+The maps cover approximately 98% of the sky in the 1/4 keV, 3/4 keV, 
+and 1.5 keV bands, with about 2° angular resolution and high 
+sensitivity for low surface brightness extended features.  
+The effects of non-X-ray contamination and X-rays of solar system 
+origin have been eliminated to the greatest possible extent, but 
+discrete X-ray sources have not been removed.  
+The much improved angular resolution, statistical precision, and 
+completeness of coverage of these maps reveals considerable structure 
+over the entire 0.1-2.0 keV energy range that was not observed 
+previously. The data compare well with previous all-sky surveys in 
+terms of absolute normalization and zero point.
+  
+These maps may be used for scientific purposes as long as reference
+is made to the relevant publication
+    
+      &lt;/description&gt;&lt;referenceURL&gt;http://skyview.gsfc.nasa.gov&lt;/referenceURL&gt;&lt;type&gt;Archive&lt;/type&gt;&lt;contentLevel&gt;Research&lt;/contentLevel&gt;&lt;relationship&gt;&lt;relationshipType&gt;service-for&lt;/relationshipType&gt;&lt;relatedResource ivo-id="ivo://nasa.heasarc/eud"&gt;
+               NASA/GSFC Exploration of the Universe Division
+            &lt;/relatedResource&gt;&lt;/relationship&gt;&lt;/content&gt;&lt;capability standardID="ivo://ivoa.net/std/SIA" xsi:type="sia:SimpleImageAccess"&gt;&lt;interface role="std" xsi:type="vs:ParamHTTP"&gt;&lt;accessURL use="base"&gt;http://skyview.gsfc.nasa.gov/cgi-bin/vo/sia.pl?survey=RASS&amp;amp;&lt;/accessURL&gt;&lt;queryType&gt;GET&lt;/queryType&gt;&lt;resultType&gt;text/xml+votable&lt;/resultType&gt;&lt;param&gt;&lt;name&gt;POS&lt;/name&gt;&lt;description&gt;
+            Search Position in the form "ra,dec" where ra and dec are given in decimal degrees
+            in the ICRS coordinate system.
+         &lt;/description&gt;&lt;unit&gt;degrees&lt;/unit&gt;&lt;dataType&gt;real&lt;/dataType&gt;&lt;/param&gt;&lt;param&gt;&lt;name&gt;SIZE&lt;/name&gt;&lt;description&gt;
+            Size of search region in the RA and Dec. directions.   
+         &lt;/description&gt;&lt;unit&gt;degrees&lt;/unit&gt;&lt;dataType&gt;real&lt;/dataType&gt;&lt;/param&gt;&lt;param&gt;&lt;name&gt;FORMAT&lt;/name&gt;&lt;description&gt;
+            Requested format of images.
+         &lt;/description&gt;&lt;dataType&gt;string&lt;/dataType&gt;&lt;/param&gt;&lt;param&gt;&lt;name&gt;CFRAME&lt;/name&gt;&lt;description&gt;
+            Coordinate frame: ICRS, FK5, FK4, GAL, ECL
+         &lt;/description&gt;&lt;dataType&gt;string&lt;/dataType&gt;&lt;/param&gt;&lt;param&gt;&lt;name&gt;EQUINOX&lt;/name&gt;&lt;description&gt;
+            Equinox used in FK4 or FK5 frames.
+
+      &lt;/description&gt;&lt;dataType&gt;real&lt;/dataType&gt;&lt;/param&gt;&lt;/interface&gt;&lt;imageServiceType&gt;Cutout&lt;/imageServiceType&gt;&lt;maxQueryRegionSize&gt;&lt;long&gt;360.0&lt;/long&gt;&lt;lat&gt;180.0&lt;/lat&gt;&lt;/maxQueryRegionSize&gt;&lt;maxImageExtent&gt;&lt;long&gt;360.0&lt;/long&gt;&lt;lat&gt;180.0&lt;/lat&gt;&lt;/maxImageExtent&gt;&lt;maxImageSize&gt;&lt;long&gt;5000&lt;/long&gt;&lt;lat&gt;5000&lt;/lat&gt;&lt;/maxImageSize&gt;&lt;maxFileSize&gt;10000000&lt;/maxFileSize&gt;&lt;maxRecords&gt;500&lt;/maxRecords&gt;&lt;testQuery&gt;&lt;pos&gt;&lt;long&gt;120&lt;/long&gt;&lt;lat&gt;20&lt;/lat&gt;&lt;/pos&gt;&lt;size&gt;&lt;long&gt;1&lt;/long&gt;&lt;lat&gt;1&lt;/lat&gt;&lt;/size&gt;&lt;/testQuery&gt;&lt;/capability&gt;&lt;coverage&gt;&lt;stc:STCResourceProfile xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd"&gt;&lt;stc:AstroCoordSystem xlink:type="simple" xlink:href="ivo://STClib/CoordSys#UTC-ICRS-TOPO" id="x_rass1_UTC-ICRS-TOPO" /&gt;&lt;stc:AstroCoordArea coord_system_id="x_rass1_UTC-ICRS-TOPO"&gt;&lt;stc:AllSky /&gt;&lt;/stc:AstroCoordArea&gt;&lt;/stc:STCResourceProfile&gt;&lt;waveband&gt;X-ray&lt;/waveband&gt;&lt;/coverage&gt;&lt;/ri:Resource&gt;</xml>
+      </Table>
+</NewDataSet>

@@ -1,0 +1,168 @@
+<HTML>
+ <HEAD>
+   <TITLE>
+     Validation Design
+   </TITLE>
+     <LINK REL="StyleSheet" HREF='http://www.us-vo.org/app_templates/usvo_template.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='../css/styles.css' TYPE="text/css">
+ </HEAD>
+<Body>
+
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>   
+     <td width="112" height="32" align="center" valign="top">
+        <a href="http://www.us-vo.org" class="nvolink" target="_top">
+          <img src="http://www.usvao.org/documents/Templates/Logos/VAO_logo_100.png" alt="NVO HOME" border="0"/>
+        </a>
+        <span class="nvolink">
+          <a href="http://www.usvao.org/" target="_top">Virtual Astronomical Observatory</a></span>
+     </td>   
+     <td valign="top"><table  width="100%" border="0" cellpadding="0" cellspacing="0">      
+       <tr>       
+         <td width="2" height="30" bgcolor="white"></td>
+         <td width="678" height="39" align="center" valign="middle" 
+         background="http://www.us-vo.org/images/templatestars.jpg" bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+         
+    <span class= \"nvoapptitle\" style= \"background\-repeat: repeat\-y;\">Validation (Documentation)</span></td></tr>
+    </td> 
+    
+   
+    <td bgcolor="white" width="2"></td>     
+    </tr>     
+    <tr>       
+     <td bgcolor="white" width="2"></td>      
+     <td bgcolor="white" width="2"></td>      
+     </tr>      
+     <tr>       
+     <td align="center" valign="top" colspan="3"><table cellspacing="2" cellpadding="0" border="0" width="100%"  style="margin: 0pt;">         
+     <tr>
+     <!-- the local links -->
+  
+     <td  class='navlink'><a href='/cgi-bin/vo/notification/shownote.pl'>VO Service Notices </a></td>
+     <td  class='navlink'><a href='/cgi-bin/vo/monitor/monitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'>NVO Home</a></td>  
+     <td  class='navlink'><a href=http://us-vo.org/feedback/index.cfm>NVO Feedback</a></td> 
+            
+     </tr>       
+     </table></td>
+      </tr>
+      </table></td>
+      <td width = 140 align = center valign = top><a href = "http://www.heasarc.gsfc.nasa.gov">
+      <img src=/vo/datascope//images/nasa_logo.gif width=72 height=60 border=0 alt='NASA home'>
+      </img></a><br><span>Hosted by:</span><br>HEASARC<br> 
+      <br>
+      </td></tr></table>
+
+
+<h4>Validation Home Page</h4>
+
+<p>
+
+The validation home page "http://heasarc.gsfc.nasa.gov/vo/validation/vresults.pl" provides some statistics on the
+current validation results.
+
+
+<br>
+
+
+<span style = "position: relative; left: 90px;"><img src = "./validation_homepage.png" width  =  300 >
+</span>
+
+<p>
+Total Number of Services - shows the total number of Services in the local database</b><br><br>
+Total Number of Active Services Tested - shows the number of services tested by our system. This number will
+not necessarilly match the Total Number of Services since there are services that over time are either deleted
+or deprecated in the STScI registry.<br><br>
+In Validation Queue- the total number of services that still need to be tested by our system.
+Validated -shows the number of services validated <br><br>
+Deleted-the total number of services deleted in our system.<br><br>
+Deprecated-the total number of services deprecated in the registry and in our system. This means that the
+service has been made "invisble" in the interactive registry search pages but still exists in the registry.<br><br>
+Skipped -this number shows how many services are being skipped in the statistics calculation. This
+page can be queried using parameters to suppress or include different xsi types in the results.Please see the section
+below entitled "Specifying Different Types of Output"<br><br>
+Passed - the number of services passing validation<br><br>
+Failed - the number of services that are not currently passing validation<br><br>
+Aborted - the number of services that could not be correctly validated. This could be due to a communication problem
+with the web page for example.<br><br>
+View Results By Center (button) - get a list of validation results by center <br><br>
+View Resulst By Type (button) - get a list of validation results by Type <br><br>
+Query Box - use this to enter a string. Any strings entered are matched to ivo identifiers.<br>
+<h4>View Results by Center</h4>
+<p>
+This table shows how many services have been validated at each center<br>
+<img src = "./viewer.allservices.png" width  =  400 >
+</span>
+
+<h4>View Results by Type</h4>
+<p>
+This table shows how many services have been validated within a given service type</span><br>
+<img src = "./viewer.bytype.png" width  =  400 >
+
+
+<h4>View Results at Individual Center</h4>
+<p>
+This table shows the validation results at a specific center. Here the center is the HEASARC. You can click on the status next to a service name <br> to get more information on the individual test. You can click on the service URL to get the URL being tested </span><br><br>
+<img src = "./viewer.bycenter.png" width  =  900>
+
+<h4><span style="position: relative; left: 10px;"> </span>Capabilities</h4>
+<p>The Validation page has several built in capabilities that users may find quite useful. A description of each follows:</p>
+<h5>Getting Statistics By Type</h5>
+<p>If you wish to get the statistics for a particular xsitype, you must provide the names of the types you want to skip. Possible values are: cone,siap,tap,ssap,vgharvest, and vgsearch. If you wish to get the statistics
+for the SSA types only for example, the syntax would be:</p>
+<p><span class="WYSIWYG_LINK">http://heasarc.gsfc.nasa.gov/vo/validation/vresults.pl?turnoff=cone|siap|tap|vgharvest|vgsearch</span></p>
+<p>Once on this page, you may view results by type or by center. In this example,the results will include only SSA types since the "turnoff" parameter's values persist when the new pages load.</p>
+<h5>Getting an XML representation of an Error Message</h5>
+<p>If a user is on any of the pages summarizing the latest status of a service (i.e. a page with the 'pass', 'fail', and 'abort' links), the user may click on the status to get a list of the latest errors for the service.
+The subsequent page has a url that looks something like:</p>
+<p><span class="WYSIWYG_LINK">http://heasarc.gsfc.nasa.gov/vo/validation/vresults.pl?show=details&amp;sid=547&amp;runid=324501&amp;switch=no</span></p>
+<p>This page is an html representation of the error(s). However, the user may instead want an xml representation of this page. This can be obtained by adding 'votable=yes' to the query.</p>
+<p>E.g. <span class="WYSIWYG_LINK">http://heasarc.gsfc.nasa.gov/vo/validation/vresults.pl?show=details&amp;sid=547&amp;runid=324501&amp;switch=no&amp;votable=yes</span></p>
+<p>&nbsp;</p>
+<h5>Getting a Complete List of all the Errors at a Given Center</h5>
+<p>A complete list of all the current errors for a given center can be fetched directly with the syntax:</p>
+<p><span class="WYSIWYG_LINK">http://heasarc.gsfc.nasa.gov/vo/validation/getcenter.pl?show=XXX</span></p>
+<p>where XXX is the name of the center. (E.g. AGES, Aladin, etc.). Of course for this the user must</p>
+<p>know the name of the center as described on the page:</p>
+<p><span class="WYSIWYG_LINK">http://heasarc.gsfc.nasa.gov/vo/validation/vresults.pl?show=View+Results+by+Center</span></p>
+<p>*Note: The script getcenter.pl is independent of the validation pages and can be queried directly as shown above</p>
+<p>However,it might be easier for the user to access this script from the "View Results by Center" page via the 'view list' links.</p>
+<p>
+
+<hr align="left" noshade>
+        <table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+        <tr align="center" valign="top">   <td width="16%" valign="top"><div align="center" class="style10">
+        <a href="http://www.nsf.gov"><img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0">
+        </a>
+        <a href="http://www.nasa.gov"><img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0">
+        </a>
+        </div></td>
+        <td width="76%"><div align="center">       
+        <p class="style10"> Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> 
+        <br>          under Cooperative Agreement AST0122449 with the Johns Hopkins University 
+        <br>         The NVO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a></p>
+        <p class="style10">This NVO Application is hosted by <a href="#">LocalSiteName</a></p>
+        </div></td>    
+        <td width="8%"><div align="center"><span class="tiny">Member<br>
+        </span>
+        <a href="http://www.ivoa.net">
+        <img src="http://www.us-vo.org/images/ivoa_small.jpg" alt="IVOA HOME" width="68" height="39" border="0" align="top"></a></div></td>
+        <td width="8%"><span class="style4"><span class="tiny">Meet the Developers</span><br>
+        <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border=0></span></td> </tr></table>
+        <hr noshade='noshade' />
+        <p>Hosted by the <a href='http://universe.gsfc.nasa.gov/'>Astrophysics Science Division</a>and the 
+        <a href='http://heasarc.gsfc.nasa.gov/'>High Energy Astrophysics Science Archive Research Center (HEASARC)</a>at
+        <a href='http://www.nasa.gov/'>NASA/</a><a href='http://www.gsfc.nasa.gov/'>GSFC</a>
+        </p><p>HEASARC Director:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/bios/white.html'>Dr. Nicholas E. White</a>,</p>
+        <p>HEASARC Associate Director: Dr. Roger Brissenden,</p><p>Responsible NASA Official:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/nospam/panewman.html'>Phil Newman</a> </p>
+        <p class='tiny'> <a href='/banner.html'>Privacy, Security, Notices</a></p>
+        </div><!-- id='footer' --></body>
+   
+
+</span>
+</span>
+</body>
+
+</html>

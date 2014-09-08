@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_pha" refkeywords="read pha pha2 phaII spectrum spectra readpha readfile load PHACrate" seealsogroups="sh.io  sh.pha " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Load PHA source spectra
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_pha( [id], filename|PHACrate, [use_errors=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The load_pha command loads a PHA spectrum from a type I or
+	type II FITS file or a PHACrate and assigns it to a source id.
+	An individual dataset is established for each spectrum in a
+	PHA type II file; the generated ids can be listed with the
+	list_data_ids command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/list_data_ids.html">"ahelp list_data_ids"</HREF>).
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+	  filename|PHACrate - the name of the file (with path) or
+	  PHACrate which contains the PHA data
+	</ITEM>
+
+        <ITEM>
+	  use_errors - read the statistical errors from the PHA file?
+          default=False
+          
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        If the input PHA file contains grouping information, the data
+        are automatically grouped.  Sherpa also reads any quality
+        information, allowing the user to filter out bad channels.
+      </PARA>
+
+      <PARA title="Loading Background and Responses">
+        If the header keywords of the PHA file contain ARF, RMF, and
+        background information, the files are automatically read
+        in and assigned to the source dataset.  Background and
+        response files may also be loaded manually with the 
+	load_bkg 
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_bkg.html">"ahelp load_bkg"</HREF>), 
+	load_arf 
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_arf.html">"ahelp load_arf"</HREF>), 
+	and load_rmf
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_rmf.html">"ahelp load_rmf"</HREF>)
+	commands.
+      </PARA>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_pha("source.pha")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    A spectrum is loaded from the file source.pha with data id
+	    1 by default. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_pha("acis_459_pha2.fits")</LINE>
+	  <LINE>sherpa&gt; list_data_ids</LINE>
+	  <LINE>sherpa&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    An ACIS/HETG type II PHA file is read into Sherpa,
+	    establishing twelve	datasets (one for each row in the file).
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_pha("src", "3c273.pi", use_errors=True")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Read the spectrum from 3c273.pi and give it the id "src".
+	    The errors are read from the file as well.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; srcr = read_pha("src.pi")</LINE>
+	  <LINE>sherpa&gt; load_pha(srcr)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            The PHA file is read into a PHACrate (named "srcr") from
+	    src.pi.  The source data is then loaded into Sherpa from
+	    the crate, using the default options. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

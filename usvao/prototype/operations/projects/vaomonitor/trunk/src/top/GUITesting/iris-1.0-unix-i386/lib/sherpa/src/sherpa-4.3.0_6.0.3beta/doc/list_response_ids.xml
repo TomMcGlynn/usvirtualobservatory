@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="list_response_ids" refkeywords="list lists show get ID IDS IDs id ids respid resp_id response_id responseid response responses arf arfs rmf rmfs ARF RMF ARFs RMFs ARFS RMFS" seealsogroups="sh.list sh.arf sh.rmf sh.data " displayseealsogroups="" context="info">
+	<SYNOPSIS>
+     List all response IDs associated with a data set.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>list_response_ids( [id], [bkg_id=None] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       A spectral data set can have instrument response data (RMF and
+       ARF files) assigned to it automatically with
+      load_pha(), or manually by the user with load_arf() /
+      load_rmf().    The list_response_ids() function returns a list 
+      of all response files associated with a data set, by
+      data set ID. 
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+	  bkg_id - the id of the background, if the response is a
+	  background response;
+          default=None
+          
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; list_response_ids()</LINE>
+          <LINE>sherpa&gt; list_response_ids(1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   This function lists the response associated with a data
+           set.  If no argument is given, then the default data set ID
+           is assumed, and the response (if any) associated with
+           that data set is listed, by ID.
+           listed.
+	  </PARA>
+          <VERBATIM>
+           sherpa&gt; load_pha(1, "acis_2019_pha.fits")
+           read ARF file acis_2019_arf.fits
+           read RMF file acis_2019_rmf.fits
+           read background file acis_2019_pha.fits
+
+           sherpa&gt; load_arf(1, "acis_2019_arf2.fits", 2)
+	       sherpa&gt; load_rmf(1, "acis_2019_rmf2.fits", "rmf2")
+
+           sherpa&gt; list_response_ids()
+           [1, 2, 'rmf2']
+          </VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

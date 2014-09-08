@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_model_component" refkeywords=" get_model_pars get_model_type  model type pars parameters get_model get_model_component_image get_source_component_image get_model_component_plot get_source_component_plot " seealsogroups=" sh.get sh.model " displayseealsogroups="" context="modeling">
+	
+
+
+    <SYNOPSIS>
+      Returns the parameters for the specified model component
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_model_component(name)</LINE>
+    </SYNTAX>
+
+    <DESC>
+      <LIST>
+        <ITEM>
+         name - variable name representing the model component
+        </ITEM>
+      </LIST>
+
+      <PARA>
+	The get_model_component command returns the parameter values
+	and settings currently defining the specified model component
+	(the get_model function returns the full model by data set
+	ID). This command is useful in scripting since any portion
+	of the model
+	parameter information it returns
+	can be stored to a variables and therefore easily accessed and
+	manipulated within a script. Furthermore, it allows the user
+	to view model settings before the model has been assigned to a data set,
+	whereas the show_model and get_model commands do not.  The
+	show_model command (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/show_model.html">"ahelp
+	show_model"</HREF>) is recommended to simply print the current
+	model to the screen after the model has been assigned to a
+	data set.
+      </PARA>
+      </DESC>
+     <QEXAMPLELIST>
+
+       <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; src1 = get_model_component("p1")</LINE>
+	</SYNTAX>
+        <DESC>
+	<PARA>
+         Store the parameters defining the model component "p1" to the
+        variable "src1."
+	</PARA>
+	
+<VERBATIM>
+sherpa&gt; set_model(xsphabs.abs1*powlaw1d.p1)
+sherpa&gt; fit()
+sherpa&gt; src1 = get_model_component("p1")
+sherpa&gt; print(src1)
+powlaw1d.p1
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   p1.gamma     thawed      1.63768          -10           10           
+   p1.ref       frozen            1 -3.40282e+38  3.40282e+38           
+   p1.ampl      thawed  0.000131805            0  3.40282e+38   
+
+sherpa&gt; print(src1.gamma)
+val         = 1.63768019074
+min         = -10.0
+max         = 10.0
+units       = 
+frozen      = False
+link        = None
+default_val = 1.0
+default_min = -10.0
+default_max = 10.0
+
+sherpa&gt; print(src1.gamma.max)
+10.0
+
+sherpa&gt; src1.gamma.max = 12.
+
+</VERBATIM>	
+          <PARA>
+	    Return the current parameter values defining the power law
+          model component
+            named "p1" and store them in the variable "src1". Return the 
+            individual model parameter "p1.gamma" stored in
+          "src1"; change the maximum value for this parameter to a new value.
+	  </PARA>
+        </DESC>
+       </QEXAMPLE>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; create_model_component("gauss1d", "g1")</LINE>
+	  <LINE>sherpa&gt; g1_pars = get_model_component("g1")</LINE>
+	  <LINE>sherpa&gt; g1_pars.fwhm.val = 3.</LINE>
+          <LINE>sherpa&gt; g1pars.fwhm.frozen = True</LINE>
+	</SYNTAX>
+        <DESC>
+	 <PARA>
+           Create a 1D Gaussian model component named "g1" and store
+          it to the variable "g1_pars".  Use the "g1_pars" variable to
+          set the FWHM value of the model to 3, and then freeze it so
+          that it does not vary in the next fit.
+	 </PARA>
+        </DESC>
+      </QEXAMPLE>
+     </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

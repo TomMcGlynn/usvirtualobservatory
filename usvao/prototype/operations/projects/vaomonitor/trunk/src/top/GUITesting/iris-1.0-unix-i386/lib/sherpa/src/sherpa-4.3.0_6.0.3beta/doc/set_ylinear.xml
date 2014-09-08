@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_ylinear" refkeywords="plot plotting data lin_scale linear_scale axis axes xaxis yaxis log logarithm logarithmic scale scaling" seealsogroups="sh.data sh.plot " displayseealsogroups="" context="plotting">
+
+    <SYNOPSIS>
+      Changes the plot Y axis to use a linear scale.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_ylinear([plot])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The set_ylinear() command sets the scale of the Y axis of a
+      specified plot to use linear scale. It is issued before generating
+      the desired plot; i.e., the command will not alter a plot which
+      has already been created. Once the command has been issued for a
+      specific plot - e.g., for all fit plots with 'set_ylinear("fit")' - it will remain in effect for
+      all such plots created in the current Sherpa session. The set_ylinear
+      command accepts argument values similar to the generic Sherpa
+      plot() function (see "ahelp plot"), e.g., "data", "model",
+      "source", "fit", "delchi", etc. When called with no arguments,
+      the Y axis of all plots
+      created in the current Sherpa session will be set to use
+      log scale.  The Sherpa function set_xlinear behaves similarly for
+      the X axis of plots.  To set plot axes to linear scale, use the
+      set_xlinear() and set_ylinear() commands. Note that the set_*log() and
+      set_*linear() commands behave similarly to the ChIPS get_data_plot_prefs()
+      and log_scale()/lin_scale() commands.        
+
+      </PARA>
+
+     <LIST>
+        <ITEM>
+          plot - the type of plot: arf, bkg, bkgchisqr,
+          bkgdelchi, bkgfit, bkgmodel, bkgratio, bkgresid, bkgsource,
+          chisqr, data, delchi, fit, kernel, model (convolved source
+          model), psf, ratio, resid, or source (unconvolved source
+          model).
+        </ITEM>
+     </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_ylinear()</LINE>
+          <LINE>sherpa&gt; plot_data()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   Set the Y axis of all plots created in the current Sherpa
+      session to linear scale.  Plot default data set 1 with a linearly scaled Y axis.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_xlog()</LINE>
+          <LINE>sherpa&gt; set_ylog()</LINE>
+          <LINE>sherpa&gt; set_xlinear("model")</LINE>
+          <LINE>sherpa&gt; plot("model", 2)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   Display all plots created in the current Sherpa session in
+           log scale, except the X axis of model plots; these
+           should be in linear scale. Plot the model associated with data set
+           2, with the X axis in linear scale and the Y axis in log scale. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+  </ENTRY></cxchelptopics>

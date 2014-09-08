@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsvphabs" refkeywords="vphabs model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Photoelectric absorption with variable abundances.
+XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+A photoelectric absorption with variable abundances using
+Balucinska-Church and McCammon (ApJ 400, 699) cross-sections set by
+the set_xsxsect command.  The abundances are specified relative to the
+Solar abundance table set using the set_xsabund command. This model
+is identical to xsvarabs except for the way that the parameters are
+defined.
+</PARA>
+
+<PARA>
+     This is a multiplicative model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsvphabs Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>nh</DATA> <DATA>equivalent hydrogen
+  column (in units of 10^22 atoms/cm^2)</DATA>
+</ROW>
+<ROW> 
+  <DATA>2-18</DATA> <DATA>(element)</DATA>
+  <DATA>Abundances for He, C, N, O, Ne, Na, Mg, Al, Si, S, Cl, Ar, Ca,
+  Cr, Fe, Co, Ni with respect to Solar.</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

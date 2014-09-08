@@ -1,0 +1,671 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xs" refkeywords="XSpec xspec model models modeling modelling source composite nested joint " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+    <SYNOPSIS>
+      XSpec model functions.
+    </SYNOPSIS>
+
+    <DESC>
+      <PARA>
+	Sherpa includes the "additive" and "multiplicative" models of
+	XSpec version 12.5.1.  The XSpec model names have the prefix
+	"xs", e.g. XSpec phabs model is called "xsphabs."
+      </PARA>
+
+      <PARA title="Important Note:">
+	XSpec models based on physical processes (e.g. line models
+	such as raymond or absorption models such as wabs) assume that
+	the dataspace is defined in keV.  On the other hand, Sherpa
+	models are always calculated based on the input data scale.
+	Thus when XSpec models are combined with Sherpa models, the
+	user should be careful to ensure that both components have the
+	same dataspace units; otherwise, calculated model amplitudes
+	may be incorrect. 
+      </PARA>
+
+      <PARA>
+        These models also expect that the x-values will always be
+        energy bins.  When the analysis setting is using non-energy
+        bins and an XSPEC model is defined, Sherpa converts the bins
+        to energy before sending them to the XSPEC model.  After the
+        XSPEC model finishes, Sherpa converts back to the original
+        units. Sherpa also scales the model values appropriately
+        (e.g., if counts/keV came out of the XSPEC model and Sherpa is
+        working with wavelength, then Sherpa scales the output of the
+        XSPEC model to counts/Angstrom). 
+      </PARA>
+    </DESC>
+    
+    <ADESC title="Unavailable XSPEC Models and Commands">
+
+      <PARA>
+        The following XSPEC components are NOT included in CIAO:
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	 the atable, etable, and mtable models 
+	</ITEM>
+      </LIST>
+    </ADESC>
+
+    <ADESC title="Available XSPEC Models">
+      <PARA>
+	The available XSpec models are listed below.  Refer to the
+	ahelp page for each model (e.g. "ahelp xsabsori") or the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+	User's Guide</HREF> for more information.  Note that the ahelp
+	files describe the version of the XSpec model included in
+	CIAO, while the XSpec User's Guide may reference a newer
+	version with different options. 
+      </PARA>
+
+      <TABLE>
+	<ROW>
+	  <DATA>&lt;xspecname&gt;</DATA>
+	  <DATA>Description</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>absori</DATA>
+	  <DATA>Ionized absorber</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>acisabs</DATA>
+	  <DATA>Decay in the ACIS quantum efficiency</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>apec</DATA>
+	  <DATA>APEC thermal plasma model</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>bapec</DATA>
+	  <DATA>APEC thermal plasma model with velocity broadening</DATA> 
+	</ROW>
+	<ROW>
+	  <DATA>bbody</DATA>
+	  <DATA>Blackbody spectrum</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>bbodyrad</DATA>
+	  <DATA>Blackbody spectrum with norm proportional to surface
+	  area</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>bexrav</DATA>
+	  <DATA>E-folded broken power law reflected from neutral
+	  matter</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>bexriv</DATA>
+	  <DATA>E-folded broken power law reflected from ionized
+	  matter</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>bkn2pow</DATA>
+	  <DATA>Broken power law, two break energies</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>bknpower</DATA>
+	  <DATA>Broken power law</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>bmc</DATA>
+	  <DATA>Comptonization by relativistically moving matter</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>bremss</DATA>
+	  <DATA>Thermal bremsstrahlung</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>bvapec</DATA>
+	  <DATA>APEC thermal plasma model with variable abundances and
+	  velocity broadening as a free parameter</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>c6mekl</DATA>
+	  <DATA>6th-order Chebyshev polynomial DEM using mekal</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>c6pmekl</DATA>
+	  <DATA>Exponential of 6th-order Chebyshev polynomial DEM
+	  using mekal</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>c6pvmkl</DATA>
+	  <DATA>Variable abundance version of c6pmekl</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>c6vmekl</DATA>
+	  <DATA>Variable abundance version of c6mekl</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>cabs</DATA>
+	  <DATA>Compton scattering (non-relativistic)</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>cemekl</DATA>
+	  <DATA>Multi-temperature mekal</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>cevmkl</DATA>
+	  <DATA>Multi-temperature vmeka</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>cflow</DATA>
+	  <DATA>Cooling flow model</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>compbb</DATA>
+	  <DATA>Comptonized blackbody spectrum after Nishimura et
+	  al. (1986)</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>compls</DATA>
+	  <DATA>Comptonization spectrum after Lamb and Sanford
+	  (1979)</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>compps</DATA>
+	  <DATA>Comptonization spectrum after Poutanen and Svenson</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>compst</DATA>
+	  <DATA>Comptonization spectrum after Sunyaev and Titarchuk
+	  (1980)</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>comptt</DATA>
+	  <DATA>Comptonization spectrum after Titarchuk (1994)</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>constant</DATA>
+	  <DATA>Energy-independent multiplicative factor</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>cutoffpl</DATA>
+	  <DATA>Power law with high energy exponential cutoff</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>cyclabs</DATA>
+	  <DATA>Cyclotron absorption line</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>disk</DATA>
+	  <DATA>Disk model</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>diskbb</DATA>
+	  <DATA>Multiple blackbody disk model</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>diskir</DATA>
+	  <DATA>Irradiated inner and outer disk</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>diskline</DATA>
+	  <DATA>Line emission from relativistic accretion disk</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>diskm</DATA>
+	  <DATA>Disk model with gas pressure viscosity</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>disko</DATA>
+	  <DATA>Modified blackbody disk model</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>diskpbb</DATA>
+	  <DATA>Accretion disk, power law dependence for T(r)</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>diskpn</DATA>
+	  <DATA>Accretion disk around a black hole</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>dust</DATA>
+	  <DATA>Dust scattering out of the beam</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>edge</DATA>
+	  <DATA>Absorption edge</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>equil</DATA>
+	  <DATA>Equilibrium ionization collisional plasma model from
+	  Borkowski</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>expabs</DATA>
+	  <DATA>Low-energy exponential cutoff</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>expdec</DATA>
+	  <DATA>Exponential decay</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>expfac</DATA>
+	  <DATA>Exponential factor</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>ezdiskbb</DATA>
+	  <DATA>Multiple blackbody disk model with zero-torque inner boundary</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>gabs</DATA>
+	  <DATA>Multiplicative gaussian absorption line</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>gaussian</DATA>
+	  <DATA>Simple gaussian line profile</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>gnei</DATA>
+	  <DATA>Generalized single ionization NEI plasma model</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>grad</DATA>
+	  <DATA>GR accretion disk around a black hole</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>grbm</DATA>
+	  <DATA>Gamma-ray burst model</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>highecut</DATA>
+	  <DATA>High energy cutoff</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>hrefl</DATA>
+	  <DATA>Simple reflection model good up to 15 keV</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>kerrbb</DATA>
+	  <DATA>Multi-temp blackbody for thin accretion disk around a Kerr black hole</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>kerrd</DATA>
+	  <DATA>Optically thick accretion disk around a Kerr black hole</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>kerrdisk</DATA>
+	  <DATA>Accretion disk line emission with BH spin as free parameter</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>laor</DATA>
+	  <DATA>Line from accretion disk around a black hole</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>laor2</DATA>
+	  <DATA>Accretion disk with broken-power law emissivity, black hole emission line</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>lorentz</DATA>
+	  <DATA>Lorentzian line profile</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>meka</DATA>
+	  <DATA>Mewe-Gronenschild-Kaastra thermal plasma (1992)</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>mekal</DATA>
+	  <DATA>Mewe-Kaastra-Liedahl thermal plasma (1995)</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>mkcflow</DATA>
+	  <DATA>Cooling flow model based on mekal</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>nei</DATA>
+	  <DATA>Simple nonequilibrium ionization plasma model</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>notch</DATA>
+	  <DATA>Notch line absorption</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>npshock</DATA>
+	  <DATA>Plane-parallel shock with ion and electron
+	  temperatures</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>nsa</DATA>
+	  <DATA>Spectra in the X-ray range (0.05-10 keV) emitted from a hydrogen atmosphere of a neutron star</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>nsagrav</DATA>
+	  <DATA>Neutron star hydrogen atmosphere model for different g</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>nsatmos</DATA>
+	  <DATA>Neutron star hydrogen atmosphere model with electron conduction and self-irradiation</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>nsmax</DATA>
+	  <DATA>Neutron Star Magnetic Atmosphere</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>nteea</DATA>
+	  <DATA>Pair plasma model</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>nthcomp</DATA>
+	  <DATA>Thermally comptonized continuum</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>pcfabs</DATA>
+	  <DATA>Partial covering fraction absorption</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>pegpwrlw</DATA>
+	  <DATA>Power law with pegged normalization</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>pexrav</DATA>
+	  <DATA>Exponentially cutoff power law reflected from neutral
+	  matter</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>pexriv</DATA>
+	  <DATA>Exponentially cutoff power law reflected from ionized
+	  matter</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>phabs</DATA>
+	  <DATA>Photo-electric absorption</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>plabs</DATA>
+	  <DATA>Absorption model with power law dependence on
+	  energy</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>plcabs</DATA>
+	  <DATA>Cutoff power law observed through dense, cold
+	  matter</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>posm</DATA>
+	  <DATA>Positronium continuum</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>powerlaw</DATA>
+	  <DATA>Simple photon power law</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>pshock</DATA>
+	  <DATA>Constant temperature, plane-parallel shock plasma
+	  model</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>pwab</DATA>
+	  <DATA>Extension of partial covering fraction absorption into
+	  a power-law distribution of covering fraction</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>raymond</DATA>
+	  <DATA>Raymond-Smith thermal plasma</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>redden</DATA>
+	  <DATA>IR/optical/UV extinction from Cardelli et al. (1989)</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>redge</DATA>
+	  <DATA>Recombination edge</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>refsch</DATA>
+	  <DATA>E-folded power law reflected from an ionized
+	  relativistic disk</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>sedov</DATA>
+	  <DATA>Sedov model with electron and ion temperatures</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>smedge</DATA>
+	  <DATA>Smoothed absorption edge</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>spexpcut</DATA>
+	  <DATA>Super-exponential cutoff absorption</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>spline</DATA>
+	  <DATA>Spline multiplicative factor</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>srcut</DATA>
+	  <DATA>Synchrotron radiation from cutoff electron
+	  distribution</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>sresc</DATA>
+	  <DATA>Synchrotron radiation from escape-limited electron
+	  distribution</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>sss_ice</DATA>
+	  <DATA>Einstein Observatory SSS ice absorption</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>step</DATA>
+	  <DATA>Step function convolved with gaussian</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>swind1</DATA>
+	  <DATA>Absorption by partially ionized material with large velocity shear</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>tbabs</DATA>
+	  <DATA>Calculates the absorption of X-rays by the ISM</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>tbgrain</DATA>
+	  <DATA>Calculates the absorption of X-rays by the ISM with
+	  variable hydrogen to H2 ratio and grain parameters</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>tbvarabs</DATA>
+	  <DATA>Calculates the absorption of X-rays by the ISM,
+	  allowing user to vary all abundances, depletion factors, and
+	  grain properties</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>uvred</DATA>
+	  <DATA>UV reddening</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>vapec</DATA>
+	  <DATA>APEC thermal plasma model with variable abundances</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>varabs</DATA>
+	  <DATA>Photoelectric absorption with variable abundances</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>vbremss</DATA>
+	  <DATA>Thermal bremsstrahlung spectrum with variable H/He</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>vequil</DATA>
+	  <DATA>Ionization equilibrium collisional plasma model with
+	  variable abundances</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>vgnei</DATA>
+	  <DATA>Non-equilibrium ionization collisional plasma model
+	  with variable abundances</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>vmcflow</DATA>
+	  <DATA>Cooling flow model based on vmekal</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>vmeka</DATA>
+	  <DATA>M-G-K thermal plasma with variable abundances</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>vmekal</DATA>
+	  <DATA>M-K-L thermal plasma with variable abundances</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>vnei</DATA>
+	  <DATA>Non-equilibrium ionization collisional plasma model
+	  with variable abundances</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>vnpshock</DATA>
+	  <DATA>Plane-parallel shock plasma model with separate ion
+	  and electron temperatures and variable abundances</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>vphabs</DATA>
+	  <DATA>Photoelectric absorption with variable abundances</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>vpshock</DATA>
+	  <DATA>Constant temperature, plane-parallel shock plasma
+	  model with variable abundances</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>vraymond</DATA>
+	  <DATA>Raymond-Smith thermal plasma with variable abundances</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>vsedov</DATA>
+	  <DATA>Sedov model with separate ion and electron
+	  temperatures and variable abundances</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>wabs</DATA>
+	  <DATA>Photoelectric absorption (Morrison and McCammon)</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>wndabs</DATA>
+	  <DATA>Photoelectric absorption with low energy window</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>xion</DATA>
+	  <DATA>Reflected spectra of a photo-ionized accretion disk or
+	  ring</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zbbody</DATA>
+	  <DATA>Redshifted blackbody</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zbremss</DATA>
+	  <DATA>Redshifted thermal bremsstrahlung</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zdust</DATA>
+	  <DATA>Extinction by dust grains</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zedge</DATA>
+	  <DATA>Redshifted absorption edge</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zgauss</DATA>
+	  <DATA>Redshifted gaussian</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zhighect</DATA>
+	  <DATA>Redshifted high energy cutoff</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zpcfabs</DATA>
+	  <DATA>Redshifted partial covering absorption</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zphabs</DATA>
+	  <DATA>Redshifted photoelectric absorption</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zpowerlw</DATA>
+	  <DATA>Redshifted power law</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zredden</DATA>
+	  <DATA>Redshifted version of redden</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zsmdust</DATA>
+	  <DATA>Extinction by dust grains in starburst galaxies</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>ztbabs</DATA>
+	  <DATA>Calculates the absorption of X-rays by the ISM for
+	  modeling redshifted absorption. Does not include a dust
+	  component.</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>zvarabs</DATA>
+	  <DATA>Redshifted photoelectric absorption with variable
+	  abundances</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zvfeabs</DATA>
+	  <DATA>Redshifted absorption with variable iron
+	  abundance</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zvphabs</DATA>
+	  <DATA>Redshifted photoelectric absorption with variable
+	  abundances</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zwabs</DATA>
+	  <DATA>Redshifted ``Wisconsin absorption''</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zwndabs</DATA>
+	  <DATA>Redshifted photoelectric absorption with low energy
+	  window</DATA>
+	</ROW>
+	<ROW>
+	  <DATA>zxipcf</DATA>
+	  <DATA>Partial covering absorption by partially ionized material</DATA>
+	</ROW>
+      </TABLE>
+
+    </ADESC>
+
+    <BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+    <VERSION>CIAO 4.3</VERSION>
+
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="notice_id" refkeywords="notice include filter exclude wave wavelength energy keV Angstrom bin channel pha  lambda logical image physical wcs world" seealsogroups="sh.filter " displayseealsogroups="" context="filtering">
+
+    <SYNOPSIS>
+      Apply an include filter to 1D data by dataset id
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>notice_id( ids, [lo,hi] )</LINE>
+      <LINE>notice_id( ids, expr )</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+        The notice_id command specifies the portion of 1D data to be
+	included in the analysis.  The filter is applied to the
+	specified dataset ids; to operate on all datasets without
+	having to list the ids, use the notice command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/notice.html">"ahelp notice"</HREF>).
+      </PARA>
+ 
+      <LIST>
+        <ITEM>
+          ids - a list of ids of the data sets to filter;
+	  default=None
+	  
+        </ITEM>
+
+        <ITEM>
+	  lo: lower bound of the filter;
+	  default=None
+	  
+	</ITEM>
+
+        <ITEM>
+	  hi: upper bound of the filter;
+	  default=None
+	  
+	</ITEM>
+
+	<ITEM>
+	  expr: a filter expression to notice an intersection of
+	  filters, e.g. "0.1:5, 6:7".  Range filtering allows ":#" and
+	  "#:", which includes an open-ended range of data up to or
+	  beginning at the given value (#), respectively.
+	</ITEM>
+       </LIST>
+
+      <PARA>
+        The units for the limits are determined by the "units" field
+        of the data structure: channels, energy (keV), or wavelength
+        (angstrom).  The value can be obtained by using the
+	get_analysis command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/get_analysis.html">"ahelp get_analysis"</HREF>).
+      </PARA>
+
+      <PARA>
+	If no limits are supplied, all data points in the specified
+	datasets are included.  Noticing the entire set is a method of
+	clearing any filters that have been applied.  It is also
+	possible to specify just a lower limit or just an upper limit; the
+	unspecified value will remain at the data minimum or maximum.
+      </PARA>   
+
+      <PARA>
+        If the data is binned and the endpoint of the interval falls
+        within a bin, the entire bin is included in the filter.
+      </PARA>
+
+      <PARA title="Two-dimensional Data Filtering">
+        To apply an include filter to 2D data, use the
+	notice2d command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/notice2d.html">"ahelp notice2d"</HREF>)
+	or the notice2d_id command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/notice2d_id.html">"ahelp notice2d_id"</HREF>).
+      </PARA>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; notice_id([1,2])</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The command is called without any limits defined, so all
+	    data points in datasets 1 and 2 are included.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; notice_id("src", 1.0, 6.0)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Apply a filter to notice_id the range 1.0-6.0 keV in the
+	    dataset "src".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; notice_id(2, "0.1:5, 6:7")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Notice the bins in dataset id=2 between 0.1 and 5 keV and
+	    between 6 and 7 keV. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; notice_id(2, 200,)</LINE>
+	  <LINE>sherpa&gt; notice_id(2, 200, None)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    These commands are two equivalent ways of applying an
+	    open-ended notice_id filter to data in channel space.  The
+	    lower limit of the filter for dataset 2 is set to 200
+	    channels, but the upper limit is undefined.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; notice_id([2,4], , 8.0)</LINE>
+	  <LINE>sherpa&gt; notice_id([2,4], None, 8.0)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    These commands are two equivalent ways of applying an
+	    open-ended notice_id filter to data in energy space.  The
+	    lower limit of the filter for datasets 2 and 4 is undefined
+	    and the upper limit is set to 8.0 keV.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+	</QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

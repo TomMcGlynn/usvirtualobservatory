@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_num_par" refkeywords="get_num_par_thawed  get_num_par_frozen return  get model params pars parameters frozen  " seealsogroups="sh.model sh.get  " displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+      Returns the number of parameters (total, frozen, or thawed) in a model.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_num_par( [id] )</LINE>
+	<LINE>get_num_par_frozen( [id] )</LINE>
+	<LINE>get_num_par_thawed( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <LIST>
+	<ITEM>
+	id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	get_num_par
+      </PARA>
+      
+      <PARA>
+	The get_num_par command returns the total number of parameters
+	(frozen and thawed) in the model assigned to the dataset. If
+	the model is a combination of several different model
+	components, the number returned is the sum of the number of
+	parameters of each model component (both frozen and thawed
+	parameters are included). 
+      </PARA>
+
+      <PARA>
+	get_num_par_frozen
+      </PARA>
+      
+      <PARA>
+	The get_num_par_frozen command returns the number of frozen
+	parameters in the model assigned to the dataset; see 
+	<HREF link="http://cxc.harvard.edu/sherpa/ahelp/freeze.html">"ahelp freeze"</HREF> for information on freezing parameters.
+      </PARA>
+
+      <PARA>
+	get_num_par_thawed
+      </PARA>
+      
+      <PARA>
+	The get_num_par_thawed command returns the number of thawed
+	parameters in the model assigned to the dataset; see 
+	<HREF link="http://cxc.harvard.edu/sherpa/ahelp/thaw.html">"ahelp thaw"</HREF> for information on thawing parameters.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_num_par("src")</LINE>
+	  <LINE>12</LINE>
+	</SYNTAX>
+
+	<DESC>
+          <PARA>
+	    There are 12 parameters in the model for dataset "src".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+       <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_num_par_frozen("src")</LINE>
+	  <LINE>2</LINE>
+	</SYNTAX>
+
+	<DESC>
+          <PARA>
+	    There are 2 frozen parameters in the model for dataset "src".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_num_par_thawed("src")</LINE>
+	  <LINE>10</LINE>
+	</SYNTAX>
+
+	<DESC>
+          <PARA>
+	    There are 10 thawed parameters in the model for dataset "src".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

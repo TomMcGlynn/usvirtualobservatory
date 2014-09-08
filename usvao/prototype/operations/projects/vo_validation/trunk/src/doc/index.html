@@ -1,0 +1,146 @@
+<HTML>
+ <HEAD>
+   <TITLE>
+     Validation Design
+   </TITLE>
+     <LINK REL="StyleSheet" HREF='http://www.us-vo.org/app_templates/usvo_template.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='../css/styles.css' TYPE="text/css">
+ </HEAD>
+<Body>
+
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>   
+     <td width="112" height="32" align="center" valign="top">
+        <a href="http://www.us-vo.org" class="nvolink" target="_top">
+          <img src="http://www.usvao.org/documents/Templates/Logos/VAO_logo_100.png" alt="NVO HOME" border="0"/>
+        </a>
+        <span class="nvolink">
+          <a href="http://www.usvao.org/" target="_top">Virtual Astronomical Observatory</a></span>
+     </td>   
+     <td valign="top"><table  width="100%" border="0" cellpadding="0" cellspacing="0">      
+       <tr>       
+         <td width="2" height="30" bgcolor="white"></td>
+         <td width="678" height="39" align="center" valign="middle" 
+         background="http://www.us-vo.org/images/templatestars.jpg" bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+         
+    <span class= \"nvoapptitle\" style= \"background\-repeat: repeat\-y;\">Validation (Documentation)</span></td></tr>
+    </td> 
+    
+   
+    <td bgcolor="white" width="2"></td>     
+    </tr>     
+    <tr>       
+     <td bgcolor="white" width="2"></td>      
+     <td bgcolor="white" width="2"></td>      
+     </tr>      
+     <tr>       
+     <td align="center" valign="top" colspan="3"><table cellspacing="2" cellpadding="0" border="0" width="100%"  style="margin: 0pt;">         
+     <tr>
+     <!-- the local links -->
+  
+     <td  class='navlink'><a href='/vo/notification/shownote.pl'>VO Service Notices </a></td>
+     <td  class='navlink'><a href='/vo/vaomonitor/vaomonitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'>NVO Home</a></td>  
+     <td  class='navlink'><a href=http://us-vo.org/feedback/index.cfm>NVO Feedback</a></td> 
+            
+     </tr>       
+     </table></td>
+      </tr>
+      </table></td>
+      <td width = 140 align = center valign = top><a href = "http://www.heasarc.gsfc.nasa.gov">
+      <img src=/vo/datascope//images/nasa_logo.gif width=72 height=60 border=0 alt='NASA home'>
+      </img></a><br><span>Hosted by:</span><br>HEASARC<br> 
+      <br>
+      </td></tr></table>
+
+
+<h3>
+Overview
+</h3>
+<p>
+The validation of data in the STScI registry is a two-part process:<br><br>
+A) Collecting data from the Registry and Updating our local database<br>
+B) Validating the services in our database and storing the results.<br><br>
+Since there are approximately 6,000 unique records to validate, we validate 300 per day. All results are stored
+with a timestamp. After all records have been validated, the validation starts with the record with the oldest timestamp 
+and the process repeats itself.
+</p> <br>
+
+<h4>A. Collecting data from the Registry and Updating our local Database</h4>
+<p>Once a month, we download the Cone, Siap,SSA and Registry services from the registry and store them in separate files. The download
+by default is an XML structure so this results in 4 separate XML files. This process is handled by the <a href = './get_datatype.html'>get_datatype.pl</a> Perl program. <br><br>
+
+<p>The outputs of the above program are then parsed. Metadata for each individual service are extracted and stored in simple ascii files that contain data of the same type. There will be four final output files, one for each datatype we are validating (Cone, SIAP, SSA and Registry).  This procedure is 
+handled by the Perl tool  <a href = './parse.html'> parse_registry_resources.pl</a><br><br>
+
+<p>
+Lastly, the <a href = './updatedb.html'>updatedb.pl</a> Perl program </a> looks at each unique service contained in the output files above and updates the database. New
+services are added to our database and a mail is sent to the user on identifiers that have been deleted from the STScI registry. It is then up to the user
+to manually delete this data from the local database<br><br>
+
+
+<h4>B. Validating the Services in our database and storing the results</h4>
+<p>We validate each service at least once per month. We select n/30 records per day from our database (based on oldest timestamp) where 'n' is the total number of records and 30 represents the average number of days in a month.  The n/30 records are then validated by calling on the SIAP/Cone/Registry validators. Results are then stored in our database. This process is handled by the <a href = './validate.html'>validation system</a> <br><br>
+
+
+Diagram (download and validation)
+<p><b><span style = "position: relative; left: 199px;">Runs every 30 days</b></span>
+<span style = "position: relative; left: 260px;">Validation Runs Daily</span></p>
+<span style = "position: relative; left: 190px;"><img src = "./design.gif" width  =  400 ></span>
+
+<h4>Database</h4>
+<p>We use a MySQL database. The internal database is called validation and it contains five tables. The tables are Services, Tests, Errors,ErrorCodes,and Test. A detailed
+description of the database and its tables can be found <a href = './db.html'>here.</a><br><br>
+
+<p> Access to the validation database is achieved via the Perl DBI driver for perl programs. For the Java side validation, access is achieved via JDBC.<br><br> 
+
+
+<h4>Viewing Results and How to Use the Validation Pages</h4>
+<p>We provide a perl cgi tool to view the validation results stored in the local database.Information on the validation home page and how to use it can be 
+found <a href = "./viewer.html">here</a></p><br>
+
+<h4> Dependencies</h4>
+<p>Update DB - needs to use the files created after the registry download.</p>
+
+<p>
+Validation - Tests are run on the service URLs contained in the db. However, there are cases where the system uses an override file to create a test. For example, SSATheory services which account for a very small fraction of the total number of services, require a separate specialized test. The system therefore uses an external file to override the default test behavior for SSA services. 
+
+
+<h4>Running the System</h4>
+<p>To download the tarball of the system and find out how to run it, read <a href = './run_all.howto.html'>this</a>
+<hr align="left" noshade>
+        <table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+        <tr align="center" valign="top">   <td width="16%" valign="top"><div align="center" class="style10">
+        <a href="http://www.nsf.gov"><img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0">
+        </a>
+        <a href="http://www.nasa.gov"><img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0">
+        </a>
+        </div></td>
+        <td width="76%"><div align="center">       
+        <p class="style10"> Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> 
+        <br>          under Cooperative Agreement AST0122449 with the Johns Hopkins University 
+        <br>         The NVO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a></p>
+        <p class="style10">This NVO Application is hosted by <a href="#">LocalSiteName</a></p>
+        </div></td>    
+        <td width="8%"><div align="center"><span class="tiny">Member<br>
+        </span>
+        <a href="http://www.ivoa.net">
+        <img src="http://www.us-vo.org/images/ivoa_small.jpg" alt="IVOA HOME" width="68" height="39" border="0" align="top"></a></div></td>
+        <td width="8%"><span class="style4"><span class="tiny">Meet the Developers</span><br>
+        <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border=0></span></td> </tr></table>
+        <hr noshade='noshade' />
+        <p>Hosted by the <a href='http://universe.gsfc.nasa.gov/'>Astrophysics Science Division</a>and the 
+        <a href='http://heasarc.gsfc.nasa.gov/'>High Energy Astrophysics Science Archive Research Center (HEASARC)</a>at
+        <a href='http://www.nasa.gov/'>NASA/</a><a href='http://www.gsfc.nasa.gov/'>GSFC</a>
+        </p><p>HEASARC Director:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/bios/white.html'>Dr. Nicholas E. White</a>,</p>
+        <p>HEASARC Associate Director: Dr. Roger Brissenden,</p><p>Responsible NASA Official:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/nospam/panewman.html'>Phil Newman</a> </p>
+        <p class='tiny'> <a href='/banner.html'>Privacy, Security, Notices</a></p>
+        </div><!-- id='footer' --></body>
+   
+
+
+</p>
+</Body>
+</HTML>

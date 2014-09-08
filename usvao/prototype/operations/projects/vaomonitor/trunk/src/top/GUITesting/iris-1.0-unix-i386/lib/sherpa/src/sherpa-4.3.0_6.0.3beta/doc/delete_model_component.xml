@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="delete_model_component" refkeywords="delete remove  models modeling modelling" seealsogroups="sh.model " displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+      Delete a model component
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>delete_model_component( name )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The delete_model_component command deletes a model component
+	by name.  
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          name - the name of the model component.  Once deleted, it is
+	  removed from the local variable scope.
+        </ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; list_model_components()</LINE>
+          <LINE>['abs1', 'pl']</LINE>
+          <LINE>sherpa&gt; delete_model_component("abs1")</LINE>
+          <LINE>sherpa&gt; list_model_components()</LINE>
+          <LINE>['pl']</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Delete the model component "abs1".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; list_model_components()</LINE>
+          <LINE>['c', 'g1']</LINE>
+	  <LINE>sherpa&gt; delete_model_component("g1")</LINE>
+          <LINE>sherpa&gt; list_model_components()</LINE>
+          <LINE>['c']</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Delete the model component "g1".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

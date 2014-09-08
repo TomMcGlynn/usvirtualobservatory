@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_grouping" refkeywords="read grouping group flags load array arrays " seealsogroups="sh.io sh.data sh.group" displayseealsogroups="" context="data">
+ 
+    <SYNOPSIS>
+     Load a grouping scheme from a FITS table or ASCII file
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_grouping( [id=1], filename, [bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The load_grouping command reads an array of grouping flags 
+        from a FITS table file
+	or column-based ASCII file and assigns it to a PHA data set,
+	specified by data set ID.  The second column of the
+	supplied table is read as the grouping array, which must be
+      the same length as the input data set. An array element set to 1 marks the beginning of a group and an element set to -1 
+        marks subsequent members of that group. Use the get_grouping
+	command to view the grouping scheme associated with a
+        data set, and the set_grouping command to apply the grouping to
+        a data set.
+      </PARA>
+
+      <LIST>
+       <ITEM>
+         id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+       <ITEM>
+         filename - name of FITS table file or column-based ASCII file
+      containing a grouping array in the second column
+       </ITEM>
+        <ITEM>
+           bkd_id - the id of the background data set to use (e.g., bkg_id=1 
+           represents the first background data set loaded in association with
+           the source data set specified in the 'id' argument)
+        </ITEM>
+      </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_grouping("grouping.txt")</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            The load_grouping command can be called with just a filename and path
+	    argument, in which case the grouping scheme is assigned to data
+	    set id=1. Here, 'grouping.txt' is read as a column-based
+	    ASCII table; the second column of that table is defined as
+	    the group array for data set 1. The
+	    set_grouping function is used to actually apply
+	    the grouping scheme to data set 1, using the array
+            which is returned by the get_grouping function. The
+	    set_grouping and get_grouping functions require that the
+	    data set in question be a PHA data set.
+	  </PARA>
+
+<VERBATIM>
+sherpa&gt; load_pha("3c273.pi")
+sherpa&gt; load_grouping("grouping.txt")
+sherpa&gt; get_grouping(1)
+
+array([1, -1, -1, -1, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1,..., -1, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1])
+
+sherpa&gt; set_grouping(1, get_grouping())
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+	<SYNTAX>  
+          <LINE>sherpa&gt; load_grouping("grouping.fits")</LINE> 
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            In this case, 'grouping.fits' is read as a FITS table; the
+	second column of that table is defined as the group array for data set 1.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+	<SYNTAX>  
+          <LINE>sherpa&gt; load_grouping(2, "grouping.dat")</LINE>
+          
+        </SYNTAX>  
+	<DESC>
+          <PARA>
+            The file 'grouping.dat' is read as a column-based ASCII table; the
+	second column of that table is defined as the group array for data set 2.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+	
+      <QEXAMPLE>
+	<SYNTAX>  
+	  <LINE>sherpa&gt; load_grouping(2, "grouping.dat", bkg_id=1)</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            The file 'grouping.dat' is read as a column-based ASCII table; the
+	    second column of that table is defined as the group array
+     	    for the background associated with data set 2.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+	</QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

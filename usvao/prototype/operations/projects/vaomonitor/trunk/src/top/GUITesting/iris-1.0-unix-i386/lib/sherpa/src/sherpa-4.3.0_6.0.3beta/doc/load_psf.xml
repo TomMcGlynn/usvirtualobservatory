@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_psf" refkeywords="read psf  load" seealsogroups="sh.psf " displayseealsogroups="" context="psfs">
+
+    <SYNOPSIS>
+      Load a PSF model 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_psf( modelname, filename|model )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The load_psf command loads a PSF from file or model.
+        The PSF model can then be used to convolve (fold) a given
+        source model by using the set_psf command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/set_psf.html">"ahelp set_psf"</HREF>).
+      </PARA>
+
+     <LIST>
+        <ITEM>
+          modelname - a name for the PSF model
+        </ITEM>
+
+        <ITEM>
+          filename|model - the name of a file, including path,
+          which contains the PSF image or the name of a model to use
+          in creating the PSF model
+        </ITEM>
+      </LIST>
+     
+      <PARA>
+	If the function is being loaded from a file, some additional
+	options are allowed.  A table will accept the arguments to
+        load_table: ncols, colkeys, dstype
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_table.html">"ahelp load_table"</HREF>).
+        An image will accept the argument associated with
+        load_image: coord
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_image.html">"ahelp load_image"</HREF>).
+      </PARA>
+
+      <PARA>
+       Note that it is not required that 2D PSF models have equal (x,y) size
+    parameters; rectangular PSFs are supported. It is also possible
+    to simultaneously fit multiple data sets with each independent source model
+    convolved by a different PSF model.   
+      </PARA>
+
+<PARA title="What is the difference between the PSF and the kernel?">
+	   The point spread function (PSF) is defined by the full (unfiltered) PSF image loaded into Sherpa or the PSF model expression evaluated over the full range of the dataset; both types of PSFs are established with the load_psf() command.  The kernel is the subsection of the PSF image or model which is used to convolve the data.  This subsection is created from the PSF when the size and center of the kernel are defined by the command set_psf().  While the kernel and PSF might be congruent, defining a smaller kernel helps speed the convolution process by restricting the number of points within the PSF that Sherpa must evaluate.
+	 </PARA>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_psf( "psf", "psf_0.25pix.fits" )</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Load a PSF image from the file psf_0.25pix.fits, using the
+	    id "psf".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_psf( "modpsf", gauss2d.g1 )</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Create a model-based PSF from the model component "gauss2d.g1".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_image("xmm_source.fits")</LINE>
+          <LINE>sherpa&gt; set_coord("logical")</LINE>
+          <LINE>sherpa&gt; set_source(beta2d.src+const2d.bg)</LINE>
+	  <LINE>sherpa&gt; load_psf("psf0", beta2d.p1 )</LINE>
+          <LINE>sherpa&gt; p1.center =[276,117]</LINE>
+          <LINE>sherpa&gt; p1.r0 = 2.2</LINE>
+          <LINE>sherpa&gt; p1.alpha = 1.58</LINE>
+          <LINE>sherpa&gt; freeze(p1)</LINE>
+          <LINE>sherpa&gt; set_psf(psf0)</LINE>
+	  <LINE>sherpa&gt; fit()</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    A 2-D Beta model is defined as the PSF to convolve with
+           the source model for image data set 1. The source model is
+	   defined as the sum of a 2-D Beta model and 2-D constant
+	   amplitude model, for modeling diffuse emission and
+	   the background level, respectively. The central (x,y) position
+	   of the PSF model is set to match the (image) coordinates of the
+	   source of interest in data set 'source.fits', and the 'r0'
+	   and 'alpha' parameters are set to match the PSF of XMM;
+	   the PSF model parameters are then frozen before the fit.
+	   The PSF model is convolved with the source model when
+ 	  set_psf is issued,and the PSF-convolved model is then fit to
+	data set 1 when the fit command is run.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_psf("psf1", beta2d.p1)</LINE>
+          <LINE>sherpa&gt; set_psf(psf1)</LINE>
+	  <LINE>sherpa&gt; load_psf("psf2", "psf.fits")</LINE>
+          <LINE>sherpa&gt; set_psf(2, psf2)</LINE>
+	  <LINE>sherpa&gt; fit()</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    A 2-D Beta model is used as the PSF to convolve with
+            the source model for data set 1, and the PSF model
+	    defined in file 'psf.fits' is used to convolve the source
+	    model for data set 2. 
+	    The PSF models are convolved with the corresponding source models when
+ 	  set_psf is issued. Data sets 1 and 2 are simultaneously fit
+	with their associated source models convolved by different PSF models.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

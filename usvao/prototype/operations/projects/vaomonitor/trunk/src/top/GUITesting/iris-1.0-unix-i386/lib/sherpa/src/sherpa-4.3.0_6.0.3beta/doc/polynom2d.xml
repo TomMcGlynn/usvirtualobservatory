@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="polynom2d" refkeywords="poly polynomial polynom model models modeling modelling source composite nested joint " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+2-D polynomial function.  
+</SYNOPSIS>
+	<DESC>
+<PARA>
+A 2-D polynomial model of order &lt;= 2:
+</PARA>
+
+<PARA>
+<EQUATION>
+f(x,y) = c_0 + c_x1 x + c_x2 x^2 + c_y1 y + c_y2 y^2 + c_(x1,y1) xy + c_(x1,y2) x y^2 + c_(x2,y1) x^2 y + c_(x2,y2) x^2 y^2
+</EQUATION>
+</PARA>
+
+<TABLE>
+<CAPTION>polynom2d Parameters</CAPTION>
+<ROW> <DATA>Number</DATA> <DATA>Name</DATA> <DATA>Description</DATA> </ROW>
+<ROW> <DATA>1</DATA> <DATA>constant</DATA> <DATA>constant coefficient</DATA> </ROW>
+<ROW> <DATA>2</DATA> <DATA>cx1</DATA> <DATA>coefficient c_x1</DATA> </ROW>
+<ROW> <DATA>3</DATA> <DATA>cx2</DATA> <DATA>coefficient c_x2</DATA> </ROW>
+<ROW> <DATA>4</DATA> <DATA>cy1</DATA> <DATA>coefficient c_y1</DATA> </ROW>
+<ROW> <DATA>5</DATA> <DATA>cy2</DATA> <DATA>coefficient c_y2</DATA> </ROW>
+<ROW> <DATA>6</DATA> <DATA>cx1y1</DATA> <DATA>coefficient c_(x1,y1)</DATA> </ROW>
+<ROW> <DATA>7</DATA> <DATA>cx1y2</DATA> <DATA>coefficient c_(x1,y2)</DATA> </ROW>
+<ROW> <DATA>8</DATA> <DATA>cx2y1</DATA> <DATA>coefficient c_(x2,y1)</DATA> </ROW>
+<ROW> <DATA>9</DATA> <DATA>cx2y2</DATA> <DATA>coefficient c_(x2,y2)</DATA> </ROW>
+</TABLE>
+
+<PARA>
+  The integration of models in Sherpa is controlled by an 
+  integration flag in each model structure.  Refer to <HREF link="http://cxc.harvard.edu/sherpa/ahelp/integrate.html">"ahelp integrate"</HREF> 
+  for information on integrating model components. 
+</PARA>
+
+</DESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

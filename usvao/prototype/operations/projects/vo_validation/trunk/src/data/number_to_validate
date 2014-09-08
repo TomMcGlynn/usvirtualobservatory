@@ -1,0 +1,9 @@
+# 
+#  This file contains the total number of services you  
+#  want to validate.
+#  
+#  This file is read in by both the valiation results perl sw 
+#  and the java validation code.
+# 
+#
+300

@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_conf_opt" refkeywords="set opt option options confidence region error interval uncertainty parameter statistic statistics sigma  goodness" seealsogroups="sh.conf sh.set " displayseealsogroups="" context="confidence">
+
+<SYNOPSIS>
+  Set the options for confidence
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_conf_opt( name, val )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The set_conf_opt command allows the user to set the options
+        for the confidence parameter estimation method (see <HREF link="http://cxc.harvard.edu/sherpa/ahelp/conf.html">"ahelp conf"</HREF>).  
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          name - confidence option name
+        </ITEM>
+
+        <ITEM>
+          val - value for the option
+        </ITEM>
+
+      </LIST>
+
+      <PARA>
+        A list of the available options is returned by the get_conf_opt command		 (see <HREF link="http://cxc.harvard.edu/sherpa/ahelp/get_conf.html">"ahelp get_conf"</HREF>), e.g.:
+      </PARA>
+
+<VERBATIM>
+sherpa&gt; print(get_conf_opt())
+{'verbose': False, 'openinterval': False, 'max_rstat': 3, 'maxiters': 200, 'soft_limits':False, 'eps': 0.01, 'fast': True, 'maxfits': 5, 'remin': 0.01, 'tol': 0.20000000000000001,
+ 'sigma': 1, 'parallel': True}
+</VERBATIM>
+
+      <LIST>
+       <ITEM>eps - precision of resulting limits, default=0.01</ITEM>
+       <ITEM>fast - the fit optimization method is automatically
+       switched to a faster option to reduce the time per fit; default=True
+       </ITEM>
+       <ITEM>max_rstat - maximum possible value of the reduced statistic, default=3</ITEM>
+        <ITEM>maxfits - maximum number of tries to fit the parameter space, default=5</ITEM>
+        <ITEM>maxiters- maximum number of tries to bracket desired limits, before returning, default=200</ITEM>
+       <ITEM>openinterval - how the confidence function should behave when it cannot locate the root within the open interval; see "ahelp conf" for a detailed explanation; default=False</ITEM>
+	<ITEM>parallel - switch which allows confidence to be run as a
+       parallel process; default=True</ITEM>
+        <ITEM>remin - if during search, a new
+        fit statistic is found that is smaller than original best fit,
+        the difference between new and original statistics must be
+        greater than this value, default=0.01</ITEM>
+        <ITEM>sigma - to get 1, 2, or 3-sigma limits, default=1</ITEM>
+        <ITEM>soft_limits - a switch which allows the search to go all
+         the way out to the hard parameter limits; if switched on, the
+         search will be restricted to occur within the soft limits,
+         which can be changed by the user, default=False</ITEM>
+        <ITEM>tol - tolerance for the fit, default=0.20000000000000001</ITEM>
+        <ITEM>verbose - print information to the screen?; default=False</ITEM>
+      </LIST>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_conf_opt("maxiters", 400)</LINE>
+	  <LINE>sherpa&gt; set_conf_opt("sigma", 3)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   Set the value of the "maxiters" confidence option to 400 and the
+          "sigma" value to 3 for the next run of the confidence command.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

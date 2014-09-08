@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_iter_method_name" refkeywords="iterative iterate fitting fit method methods name optimization Primini primini sigmarej sigma-rejection sigma" seealsogroups="sh.get sh.fit" displayseealsogroups="" context="methods">
+
+
+<SYNOPSIS>
+      Return the name of the current iterative fitting method
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_iter_method_name()</LINE>
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The get_iter_method_name command prints the current iterative
+        fitting method, which is set with the set_iter_method
+	command. The return value can be either "none" (default),
+	"primini", or "sigmarej".   All available iterative fitting
+	methods are returned by the list_iter_methods command. The
+	essence of an iterative fitting method is that the chosen fit
+        optimization method can be called several times, until some
+        criterion is met. The fit statistic and optimization methods are 
+        selected independently of the iterative fitting method.     
+      </PARA>
+
+      <PARA>
+       If the iterative fitting method is "none", then no iterative
+       fitting is done when "fit()" is called; the optimization method is called once, and Sherpa otherwise operates as expected.
+      </PARA>
+
+      <PARA>
+       Primini's method is used for re-calculating statistical
+       errors using the best-fit model parameters from the *previous*
+       fit, until the fit can no longer be improved.
+      </PARA>
+
+    
+      <PARA>
+         The sigma-rejection method is based on the IRAF SFIT
+         function.  In successive fits, data points for which ((data -
+         model) / error) exceeds some threshold are added to the
+         filter, and automatically excluded from the next fit.
+      </PARA>
+
+      <PARA>
+        Primini's method and sigma-rejection can only be called when
+        the fit statistic is a chi-squared statistic; it cannot be used with
+	least-squares, Cash or C-statistic.
+      </PARA>
+    </DESC> 
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_stat("chi2datavar")</LINE>
+	  <LINE>sherpa&gt; set_method("neldermead")</LINE>
+	  <LINE>sherpa&gt; print(get_iter_method_name())</LINE>
+	  <LINE>primini</LINE>                      
+	  <LINE>sherpa&gt; fit()</LINE>                  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Primini's iterative fitting method is used to fit 
+      data set 1. When "fit()" is run, the Nelder-Mead optimization
+      method is called until the fit can no longer be improved.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_stat("chi2xspecvar")</LINE>
+	  <LINE>sherpa&gt; set_method("levmar")</LINE>
+	  <LINE>sherpa&gt; print(get_iter_method_name())</LINE>
+	  <LINE>none</LINE>                      
+	  <LINE>sherpa&gt; fit(2)</LINE>           
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The current iterative fitting method is set to the default
+        value of 'none', so no iterative fitting is done when data set
+        2 is fit; the Levenberg-Marquardt optimization
+      method is called once, as expected.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_stat("chi2gehrels")</LINE>
+	  <LINE>sherpa&gt; set_method("simplex")</LINE>
+	  <LINE>sherpa&gt; print(get_iter_method_name())</LINE>
+	  <LINE>sigmarej</LINE>                      
+	  <LINE>sherpa&gt; fit(2,3)</LINE>   
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   The sigma-rejection iterative fitting method is used in the 
+        simultaneous fitting of data sets 2 and 3. When "fit(2,3)" is run,
+        the Nelder-Mead optimization method is called until the fit
+        can no longer be improved.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,51 @@
+
+ 
+.active { font-family: arial; background-color: #FFFFCC; color:green;}
+.critMessage { font-family:arial;  text-align: left;  color: red;  font-weight: bold;  font-size: 12;}
+.critmessage {font-family:arial; text-align: center; background-color: #F83838; font-weight: bold; font-size: 12; color: black;} 
+.entry { text-align: center;  font-family: arial;   font-size: small;  background-color: #5188A9;  color: white; }
+.errorDescription { font-family: arial,serif;  text-align: center;  font-weight: bold;  font-size: 14pt; }
+.errorMessage { font-family: arial;  font-weight: bold;  font-size: 14pt;  background-color: black;  color: white; }
+.featureDisabled { text-align: center;  font-family: arial;  font-weight: bold;  font-size: 12pt;  background-color: #ffcccc;  color: #b3b3b3; }
+.featureEnabled { text-align: center;  font-family: arial;  font-weight: bold;  font-size: 12pt;  background-color: #ccffcc;  color: #8f8f8f; }
+.featureHeader { text-align: center;  font-family: arial;  font-weight: bold;  font-size: 12pt;  background-color: #C4C2C2;  color: black; }
+.featureTitle { text-align: left;  font-family: arial;  font-weight: bold;  font-size: 12pt;  background-color: #999797;  color: black; }
+.greenlnextra {text-align: left; font-family:arial;  font-size: small; color: green;}
+.greenln { text-align: center;  font-family: arial;   font-size: small; color: green; }
+.hostHeader { text-align: center;  font-family: arial;  font-weight: bold;  font-size: 12pt;  background-color: #C4C2C2;  color: black;  text-decoration: none; }
+.hostImportantProblem { text-align: left;  font-family: arial;  font-size: 10pt;  background-color: #ff0000;  color: black; }
+.hostTitle { text-align: left;  font-family: arial;  font-weight: bold;  font-size: 12pt;  background-color: #999797;  color: black; }
+.hostUnimportantProblem { text-align: left;  font-family: arial;  font-size: 10pt;  background-color: #ffcccc;  color: black; }
+.label { text-align: center; font-family: arial;  font-weight: bold;  font-size: 12pt;  background-color: #C4C2C2;  color: black; }
+.nonactive{ font-family: arial; background-color: #F2EAB6; color:green;}
+.noteA { text-align: center; font-family: arial;     background-color: #F2F5A9;  color: green;}
+.noteB { text-align: center; font-family: arial;      background-color: #FFFFCC;  color: green;}
+.noteC { text-align: center; font-family: arial;      background-color: #FFFFCC;  color: red;}
+.notered { text-align: center; font-family: arial; color: red;}
+a.red {color: red;}
+a.green { color: green;} 
+.passedMessage {font-family:arial;  text-align: center;  background-color: #33FF00; color: green; font-weight: bold; font-size: 12;}
+.portal { text-align: center;  font-family: arial;  font-weight: bold;  font-size: 10pt;  background-color: #999797;  color: black; }
+.portal { text-align: left;  font-family: arial;  font-weight: bold;  font-size: 10pt;  background-color: #999797;  color: black; }
+.report { font-family: arial,serif;  background-color: black;  background: black;  color: green;  background-color: #FFFFCC; }
+.serviceHeader { text-align: center;  font-family: arial;  font-weight: bold;  font-size: 12pt;  background-color: #C4C2C2;  color: black;  text-decoration: none; }
+.servicename {text-align: left; font-family:arial; font-size: 10pt; color: blue;}
+.serviceTitle { text-align: left;  font-family: arial;  font-weight: bold;  font-size: 12pt;  background-color: #999797;  color: black; }
+.tac { font-family: arial,serif;  background-color: black;  background: black;  color: white;  background-color: #FFFFCC; }
+.tblue { text-align: center;  font-family: arial;  font-weight: bold;  font-size: small;  background-color: #198EB8;  color: white; height:9px;}
+.testTitle  {text-align: left; font-family:arial; font-size: 12pt; background-color: #5188A9;  color: black; font-weight: bold}
+.title_a { text-align: center;  font-family: arial;   font-size: medium;  background-color: #5188A9;  color: white; }
+.titleblueb { text-align: center;  font-family: arial;  font-size: small;  background-color: #198EB8;  color: white; height: 19px;}
+
+.title_c { text-align: center; font-family: arial; font-size: small; background-color: #4A9586; color: white; height: 19px;}
+.titleblue { text-align: center;  font-family: arial;  font-weight: bold;  font-size: large;  background-color: #198EB8;  color: white; height:19px;}
+.titlebrown{ text-align: left; font-family: arial; font-size: small; background-color: #A49D9D; height: 9px;}
+.titleItem { text-align: left;  font-family: arial;  font-weight: bold;  font-size: 10pt;  background-color: black;  color: white; }
+.titleredb { text-align: center;  font-family: arial;  font-weight: bold;  font-size: large;  background-color: #F2EAB6;  color: green; height: 19px;}
+.titleredc { text-align: center;  font-family: arial;  font-size: small;  background-color: #B0205A;  color: white; height: 19px;}
+.titlered { text-align: center;  font-family: arial;  font-weight: bold;  font-size: large;  background-color: #F84871;  color: white; height: 19px;}
+.title { text-align: center;  font-family: arial;  font-weight: bold;  font-size: large;  background-color: #5188A9;  color: white; }
+.tred { text-align: center;  font-family: arial;   font-size: small;  background-color: #F84871;  color: white; height:9px;}
+.tyellow { text-align: center;  font-family: arial;   font-size: small;  background-color: #FFFF00;  color: green; height:9px;}
+.italicentry { text-align: center; font-family: arial; font-size: small; background-color: ; color: blue; height: 9px; font-style: italicize} 
+.warningMessage {font-family:arial;  text-align: left;  color: orange; font-weight: bold; font-size: 12;}

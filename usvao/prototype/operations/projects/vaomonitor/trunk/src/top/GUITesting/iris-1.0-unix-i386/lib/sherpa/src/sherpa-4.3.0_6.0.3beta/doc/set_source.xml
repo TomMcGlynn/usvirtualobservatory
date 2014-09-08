@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_source" refkeywords="set set_model expression expressions source src model models modeling modelling composite nested joint component " seealsogroups="sh.model sh.set " displayseealsogroups="" context="modeling">
+
+    <SYNOPSIS>
+      Set the source model expression to be used for fitting a dataset
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_source([id], model)</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The set_source command sets the source model expression to be
+	used for fitting the dataset.  It may be used to establish model
+	components for use by commands such as eqwidth        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/eqwidth.html">"ahelp eqwidth"</HREF>).
+      </PARA>
+
+      <PARA>
+	The set_source command may also be called as "set_model".
+      </PARA>
+       
+      <PARA>
+       To manually set the complete convolved model expression to be
+       used for fitting a data set - i.e., other than automatically
+       with set_source - use the set_full_model and set_bkg_full_model
+       commands (see "ahelp set_full_model").
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id") 
+	</ITEM>
+
+	<ITEM>
+           model - the model expression to use as the source;
+	   for a list of all available models, see "ahelp models"
+	</ITEM>
+      </LIST>
+
+    <PARA>
+     Model caching is available for Sherpa models via the model "cache"
+     attribute, e.g. "modelname.cache=0"; it is on by default
+     for XSPEC and 1D analytic models, but not for 2D analytic
+     models due to the potential impact on memory usage. The default value for "cache" is a non-zero value
+     indicating that caching will be turned on only if all parameters
+     in the model are frozen; a zero value will turn off caching
+     even if all model parameters are frozen.   
+     Compared to fit results in previous Sherpa releases, there should be no
+     change to any calculated value; the only difference that may be
+     seen is a reduction in program execution time.
+    </PARA>
+
+    <PARA>
+     In lieu of the "integrate" flag found on Sherpa models, a 1D
+    integration helper function, "integrate1d", can be used to define 1D numerical integration on a
+    particular arbitrary Sherpa model expression.  This function is
+    used inside a Sherpa model definition as an explicit indication
+    that Sherpa should numerically integrate the expression in
+    parenthesis.  The helper function numerically integrates the
+    expression as a whole, correctly, instead of each component
+    individually.  Note that the model expression should not include
+    any XSPEC additive models, as those models perform integration on
+    themselves. Multiple instances of the helper function can be used in a Sherpa model expression when multiple tolerances are needed for various
+    components; but these instances should not be nested.
+    </PARA>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_source(powlaw1d.pl)</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Set the source model of the default dataset to a 1-D 
+	    powerlaw named "pl".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_source(2, xswabs.a1*xsbbody.b1)</LINE>
+          <LINE>sherpa&gt; a1.cache=0</LINE>
+          <LINE>sherpa&gt; b1.cache=0</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Set the source model for dataset 2 to an absorbed
+        blackbody. Turn off model caching for each model
+        component, which is turned on by default for XSPEC
+        models. The default value for "cache" in this case is a
+        non-zero value, indicating that caching will be turned on, but only
+        if all parameters in the model are frozen; a zero value will turn off caching
+        even if all model parameters are frozen.   
+	  </PARA>
+
+<VERBATIM>
+sherpa&gt; set_source(2, xswabs.a1*xsbbody.b1)
+sherpa&gt; show_source(2)
+Model: 1
+(xswabs.a1 * xsbbody.b1)
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   a1.nH        thawed            1            0       100000 10^22 atoms / cm^2
+   b1.kT        thawed            3         0.01          100        keV
+   b1.norm      thawed            1            0        1e+24 L39 / (D10)**2
+
+sherpa&gt; print a1.cache
+5
+sherpa&gt; print b1.cache
+5
+sherpa&gt; a1.cache=0
+sherpa&gt; b1.cache=0
+
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_image("image.fits")</LINE>
+          <LINE>sherpa&gt; set_source("beta2d.b1")</LINE>
+          <LINE>sherpa&gt; freeze(b1)</LINE>
+          <LINE>sherpa&gt; b1.cache=1</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Set the source model for the 2D dataset "image.fits"
+        (assigned to default data set 1) to a 2D
+        Beta model named "b1", and freeze all the parameters. Turn on caching for model "b1", since
+        it is turned off by default for 2D analytic models (due to the
+        the potential impact on memory usage).  Note that model caching will be turned on only
+        if all parameters in the model are frozen.
+	  </PARA>
+        
+
+<VERBATIM>
+sherpa&gt; load_image("image.fits")
+sherpa&gt; set_source("beta2d.b1")
+sherpa&gt; freeze(b1)
+sherpa&gt; show_source()
+Model: 1
+beta2d.b1
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   b1.r0        frozen           10  1.17549e-38  3.40282e+38
+   b1.xpos      frozen            0 -3.40282e+38  3.40282e+38
+   b1.ypos      frozen            0 -3.40282e+38  3.40282e+38
+   b1.ellip     frozen            0            0        0.999
+   b1.theta     frozen            0            0      6.28319    radians
+   b1.ampl      frozen            1 -3.40282e+38  3.40282e+38
+   b1.alpha     frozen            1          -10           10
+
+sherpa&gt; print b1.cache
+0
+
+sherpa&gt; b1.cache=1
+</VERBATIM>
+    </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_source("src","bbody.bb+powlaw1d.pl+gauss1d.line1+gauss1d.line2")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The source model for dataset "src" is built from four different 
+	    model components.
+         </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_model(integrate1d.int1(beta1d.b1*gauss1d.g1))</LINE>
+	  <LINE>sherpa&gt; print int1</LINE>
+          <LINE>sherpa&gt; int1.epsabs = 1.e-7</LINE>
+	</SYNTAX>
+	<DESC>
+	 <PARA>
+	   Define a source model expression for default data set 1
+        which should be numerically integrated as a whole,
+        instead of each component individually; the "integrate1d"
+        helper function is used for this purpose, in lieu of the
+        "integrate" flag found on Sherpa models.  Print the
+        integration helper function meta-data, displayed as
+    frozen parameters, and use this interface to change the
+    tolerance of integration to a lower value (e.g. in the event that numerical integration fails with double precision tolerance) . 
+        </PARA>
+
+<VERBATIM>
+sherpa&gt; set_model(integrate1d.int1(beta1d.b1*gauss1d.g1))
+sherpa&gt; print int1
+
+integrate1d.int1
+Param        Type          Value          Min          Max      Units
+-----        ----          -----          ---          ---      -----
+int1.epsabs  frozen  2.22045e-16 -3.40282e+38  3.40282e+38
+int1.epsrel  frozen            0 -3.40282e+38  3.40282e+38
+int1.maxeval frozen        10000 -3.40282e+38  3.40282e+38
+
+sherpa&gt; int1.epsabs = 1.e-7
+</VERBATIM>
+      </DESC>
+     </QEXAMPLE>
+    </QEXAMPLELIST>
+
+  <ADESC title="CHANGES IN CIAO 4.3">
+   <PARA>
+    Model caching is now available for Sherpa models via the model "cache" attribute; it is on by default for XSPEC and 1D analytic models, but not for 2D analytical models due to the potential impact on memory usage. 
+   </PARA>
+   <PARA>
+      In lieu of the "integrate" flag found on Sherpa models, a new 1D
+    integration helper function, "integrate1d", is available for defining 1D numerical integration on a
+    particular arbitrary Sherpa model expression.  This function is
+    used inside a Sherpa model definition as an explicit indication
+    that Sherpa should numerically integrate the expression in
+    parenthesis.
+    </PARA>
+  </ADESC>
+
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

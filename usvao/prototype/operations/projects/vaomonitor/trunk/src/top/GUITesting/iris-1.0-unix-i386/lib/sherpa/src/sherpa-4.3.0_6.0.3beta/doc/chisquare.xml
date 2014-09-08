@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="chisquare" refkeywords="chi chi2 chisquare variance sigma stat stats statistics statistic " seealsogroups="sh.stat " displayseealsogroups="" context="statistics">
+	<SYNOPSIS>
+      About the chi-square statistic.
+    </SYNOPSIS>
+
+    <DESC>
+      <PARA>
+	The chi-square statistic is
+      </PARA>
+
+      <PARA>
+	<EQUATION>
+	    chi^2 = (sum)_i [ [ N(i,S) - B(i,x,pB) - S(i,x,pS) ]^2 / sigma(i)^2 ]
+	  </EQUATION>
+      </PARA>
+
+      <PARA>
+	where N(i,S) is the total number
+	of observed counts in bin i of the
+	on-source region; B(i,x,pB) 
+	is the number of predicted background model counts in
+	bin i of the on-source region (zero for
+	background-subtracted data), rescaled from
+	bin i of the off-source region, and
+	computed as a function of the model
+	argument x(i) (e.g., energy or time)
+	and set of background model parameter
+	values pB; 
+	S(i,x,pS) is the number of
+	predicted source model counts in bin i, 
+	as a function of the model argument x(i) 
+	and set of source model parameter
+	values pS;
+	and sigma(i) is the error in bin  
+	i.
+      </PARA>
+
+      <PARA>
+	There are several methods for
+	assigning sigma(i): 
+      </PARA>
+
+      <LIST>
+	<ITEM>leastsq</ITEM>
+	<ITEM>chi2constvar</ITEM>
+	<ITEM>chi2datavar</ITEM>
+	<ITEM>chi2gehrels</ITEM>
+	<ITEM>chi2modvar</ITEM>
+	<ITEM>chi2xspecvar</ITEM>
+      </LIST>
+
+      <PARA>
+	In each of the
+	implementations, N(i,B) is the 
+	total number of observed counts in bin i
+	of the off-source region; A(B) is the
+	off-source "area", which could be the size of the region from
+	which the background is extracted, or the length of a
+	background time segment, or a product of the two, etc.; and
+	A(S) is the on-source "area".
+      </PARA>
+
+      <PARA>
+	In the analysis of PHA data, A(B)  is
+	the product of the BACKSCAL
+	and EXPTIME FITS header keyword values, provided
+	in the file containing the background
+	data.  A(S) is computed similarly,
+	from keyword values in the source data file. 
+      </PARA>
+      
+      <PARA>
+	Note that it is currently assumed that there is a one-to-one
+	mapping between a given background region bin and a given
+	source region bin.  For instance,  in the analysis of PHA
+	data, it is assumed that the input background counts spectrum
+	is binned in exactly the same way as the input source counts
+	spectrum, and any filter applied to the source spectrum
+	automatically applied to the background spectrum.  This means
+	that the user cannot, for example, specify arbitrary
+	background and source regions in two dimensions and get
+	correct results. 
+      </PARA>
+
+      <PARA>
+	 However, this limitation only applies when analyzing
+	 background data that have been entered with the load_bkg
+	 command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_bkg.html">"ahelp load_bkg"</HREF>).
+	One can always enter the background as a separate dataset and
+	jointly fit the source and background regions. 
+      </PARA>
+    </DESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

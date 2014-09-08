@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsztbabs" refkeywords=" ism  ztbabs model models modeling modelling source composite nested joint xspec" seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Calculates the absorption of X-rays by the ISM for modeling redshifted
+absorption. Does not include a dust component.
+XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+The Tuebingen-Boulder ISM absorption model. This model calculates the
+cross-section for X-ray absorption by the ISM as the sum of the
+cross-sections for X-ray absorption due to the gas-phase ISM and the
+molecules in the ISM. In the molecular contribution to the ISM
+cross-section, only molecular hydrogen is considered. In the gas-phase
+ISM, the cross-section is the sum of the photoionization
+cross-sections of the different elements, weighted by abundance and
+taking
+into account depletion onto grains. In addition to the updates to the
+photoionization cross-sections, the gas-phase cross-section differs
+from previous values as a result of updates to the ISM
+abundances. Details of updates to the photoionization cross-sections
+as well as to abundances can be found in Wilms, Allen and McCray
+(2000, ApJ 542, 914). Note that this model differs from xstbabs in that
+grains are not included. 
+</PARA>
+
+<PARA>
+     This is a multiplicative model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsztbabs Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>nh</DATA> <DATA>equivalent
+  hydrogen column (in units of 10^22 atoms/cm^2)</DATA>
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>redshift</DATA> <DATA>redshift,
+  z</DATA>
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

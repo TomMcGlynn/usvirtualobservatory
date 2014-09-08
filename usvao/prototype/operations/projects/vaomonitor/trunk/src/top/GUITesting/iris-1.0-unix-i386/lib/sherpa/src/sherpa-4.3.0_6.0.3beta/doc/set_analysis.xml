@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_analysis" refkeywords="set analysis energy wave wavelength channel keV lambda plotx ploty set_unit set_units factor scale unit units" seealsogroups="sh.set " displayseealsogroups="" context="utilities">
+
+<SYNOPSIS>
+ Set the units for spectral analysis
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_analysis([id], quantity, [type,] [factor])</LINE>
+      
+    </SYNTAX>
+
+<DESC>
+  <PARA>
+  	The set_analysis command sets the units for spectral
+  	analysis. Note that in order to change the units of a data set
+  	from 'channel' to 'energy' or 'wavelength', the appropriate
+  	ARF and RMF instrument response files must be loaded.
+  </PARA>
+  
+  <LIST>
+    <ITEM>
+      id - the id of the dataset to use; default is to change the
+      analysis setting for all datasets     
+    </ITEM>
+
+    <ITEM>
+      quantity - the analysis setting: channel (or "chan" or "bin"),
+      energy (or "ener"), wavelength (or "wave")     
+    </ITEM>
+
+    <ITEM>
+      type -  unit type for the y-axis of a plot: rate (the default)
+      or counts 
+    </ITEM>
+
+    <ITEM>
+      factor - integer indicating the number of times multiplied by 
+      energy (dE) or wavelength (dlambda).  The default value is 0;
+      values are listed below.
+    </ITEM>
+  </LIST>
+
+  <LIST>
+    <CAPTION>Values for the factor option</CAPTION>
+
+    <ITEM>
+      0 = counts/sec/keV (the default)
+    </ITEM>
+
+    <ITEM>
+      1 = counts/sec (with quantity="energy")
+    </ITEM>
+
+    <ITEM>
+      2 = keV counts/sec (with quantity="energy")
+    </ITEM>
+  </LIST>
+</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_analysis("wave")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the analysis quantity to wavelength for all datasets.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_analysis(2, "chan")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the analysis quantity to channel for a dataset id=2.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_analysis(1, "ener", "counts", 2)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the plot units for dataset id=1 to keV (x-axis) and counts*keV^2 (y-axis).
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

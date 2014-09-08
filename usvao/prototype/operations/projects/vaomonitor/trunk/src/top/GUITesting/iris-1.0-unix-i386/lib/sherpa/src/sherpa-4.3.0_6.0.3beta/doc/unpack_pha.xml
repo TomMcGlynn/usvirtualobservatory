@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="unpack_pha" refkeywords="pha pha2 phaII spectrum spectra unpack PHACrate" seealsogroups="sh.pha sh.io " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Unpack PHA data from a PHACrate
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>unpack_pha( filename|PHACrate, [use_errors=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The unpack_pha command unpacks PHA data from a FITS file or a
+        PHACrate into a Sherpa data object.  Unpack_pha always returns
+        a list of PHA datasets, in order to handle both Type I
+        and II PHA files.  To select specific elements after
+        unpacking, use the syntax file[0], file[1], etc.
+      </PARA>
+
+      <PARA>
+	If a filename is provided as input, a crate is created but
+	hidden and cannot be used for other analysis in the session. 
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  filename|PHACrate - the name of the file (with path) or
+	  PHACrate which contains the PHA data
+	</ITEM>
+
+        <ITEM>
+	  use_errors - read the statistical errors from the PHA file?
+          default=False
+          
+	</ITEM>
+      </LIST>
+
+     </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; pha1 = unpack_pha("pha.fits")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Unpack the spectrum into the object "pha1".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; phacr = read_pha("3c273.pha")</LINE>
+          <LINE>sherpa&gt; phadata = unpack_pha(phacr)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The spectrum is read into an PHACrate (named "phacr") from the file 
+	    3c273.pha.  The data is then unpacked into Sherpa from the
+	    crate.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

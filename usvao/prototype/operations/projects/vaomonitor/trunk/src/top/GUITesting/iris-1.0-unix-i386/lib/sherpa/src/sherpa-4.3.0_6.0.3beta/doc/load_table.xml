@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_table" refkeywords=" read errors tabular load table TABLECrate" seealsogroups="sh.io " displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+      Load tabular data
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_table( [id], filename|TABLECrate, [ncols=2,colkeys=None,dstype=Data1D] )</LINE>
+	</SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The load_table command loads tabular data from a FITS table, a
+        column-based text file, or a TABLECrate object.
+      </PARA>
+
+      <PARA>
+        The load_ascii command is similar to load_table, but allows
+        the user to specify the comment character and column separator
+        used in the input file
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_ascii.html">"ahelp load_ascii"</HREF>).
+      </PARA>
+
+      <LIST>
+        <ITEM> 
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+	  filename|TABLECrate - the name of the file (with path) or
+	  TABLECrate which contains the data
+	</ITEM>
+
+        <ITEM>
+	  ncols - number of columns to read; default=2
+	</ITEM>
+
+        <ITEM>
+	  colkeys - list of column names;
+          default=None
+          
+	</ITEM>
+
+        <ITEM>
+	  dstype - dataset type: Data1D, Data1DInt, Data2D, Data2DInt;
+	  default=Data1D
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	The columns to load are specified by a Data Model filter
+	on the filename or the colkeys option of the load_table
+	command, as shown in the examples.  Vector columns are
+	separated to form two dstype columns when the file is loaded.
+	If no columns are specified, the first two columns in the file
+	are read by default.  If column names are not included in the
+	file, Sherpa calls them "col1", "col2", etc.
+      </PARA>
+
+      <PARA> 
+	The columns must be listed in the order required by the
+	dataset type:   
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  Data1D: x, y,
+          staterror=None, 
+          
+          syserror=None
+          
+	</ITEM>
+
+	<ITEM>
+	  Data1DInt: xlo, xhi, y,
+          staterror=None, 
+          
+          syserror=None
+          
+	</ITEM>
+
+	<ITEM>
+	  Data2D: x0, x1, y, 
+          shape=None, 
+          
+          staterror=None, 
+          
+          syserror=None
+          
+	</ITEM>
+
+	<ITEM>
+	  Data2DInt: x0lo, x1lo, x0hi, x1hi, y,
+          shape=None, 
+          
+          staterror=None, 
+          
+          syserror=None
+          
+	</ITEM>
+      </LIST>
+
+	<PARA>
+	  While possible, it is not recommended that load_table be
+	  used with images (2D dstypes), PHA files, or ARF and RMF
+	  response files.  For these cases, use the load command
+	  specific to the filetype instead (e.g. load_image).  
+	</PARA>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_table("rprofile_mid.fits[cols RMID,SUR_BRI,SUR_BRI_ERR]")</LINE>
+	  <LINE>sherpa&gt; load_table("rprofile_mid.fits", colkeys=["RMID","SUR_BRI","SUR_BRI_ERR"])</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    These commands are equivalent ways of loading x=RMID,
+	    y=SUR_BRI, and staterror=SUR_BRI_ERR from
+	    rprofile_mid.fits, a radial profile for which the midpoint
+	    of the annular regions has been calculated. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_table("rprof", "rprofile.fits[cols R,SUR_BRI,SUR_BRI_ERR]", dstype=Data1DInt)</LINE>
+	  <LINE>sherpa&gt; load_table("rprof", "rprofile.fits", colkeys=["R","SUR_BRI","SUR_BRI_ERR"], dstype=Data1DInt)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Two ways of loading a radial profile as dataset id "rprof".
+	    The Data1DInt dstype is used in this example so that the
+	    column R, a vector column containing the annulus radii, is
+	    loaded as xlo=R[0], xhi=R[1]; the remaining columns are
+	    y=SUR_BRI, and staterror=SUR_BRI_ERR.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_table(1, "tbl.fits", colkeys=["x", "y", "net_error"])</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Three columns are read from the file tbl.fits.	    
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_table(2, "input.dat", ncols=2, colkeys=["col1", "col5"])</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Columns "col1" and "col5" are read from the file input.dat
+	    and assigned as dataset id 2.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; tabcr = read_file("data.tab")</LINE>
+	  <LINE>sherpa&gt; load_table(tabcr)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            Tabular data is read into a TABLECrate (named "tabcr") from
+	    data.tab.  The table is then loaded into Sherpa from the
+	    crate, using the default options. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+     
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="ungroup" refkeywords="bungroup group  groups grouped grouping bin bins binning" seealsogroups="sh.group sh.data" displayseealsogroups="" context="data">
+
+<SYNOPSIS>
+  Ungroup PHA data
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>ungroup( [id,] [bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+<DESC>
+  <PARA>
+    The ungroup command turns off grouping for PHA data.  The
+    "grouping" field in the data object is set to
+    False
+    
+    .
+  </PARA>
+
+     <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if ungrouping background data;
+          default=None
+          
+        </ITEM>
+      </LIST>
+</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; ungroup()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Turn off grouping for the default dataset.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; print(get_data().grouped)
+False
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; ungroup("src", bkg_id=1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Ungroup the second background associated with the dataset
+	    "src".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

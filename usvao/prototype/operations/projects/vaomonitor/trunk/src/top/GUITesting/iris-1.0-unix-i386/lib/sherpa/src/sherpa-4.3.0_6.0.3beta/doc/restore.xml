@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="restore" refkeywords="use session output system save_all all restore report status results" seealsogroups="sh.save " displayseealsogroups="" context="saving">
+	<SYNOPSIS>
+     Restore a previous Sherpa session from a file
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>restore([filename=sherpa.save])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The restore command restores all information about a Sherpa
+        session, including the data, from a save file
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/save.html">"ahelp save"</HREF>).	
+	The file is platform-independent, allowing collaborators to
+	send a Sherpa session to one another.
+      </PARA>
+
+      <LIST> 
+	<ITEM>
+	  filename - name, including path, of the save file;
+	  default is "sherpa.save" in the working directory
+	</ITEM>
+      </LIST>
+
+      <PARA>	
+	Currently the session is stored as a binary file, so it cannot 
+	be viewed or modified outside of Sherpa.  To save the output
+	as an ASCII file, use the "save_all" command.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; restore()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	      The session is restored from the default file,
+	      sherpa.save.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; restore("/data/m31/model2.shp")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	      The session is restored from the file /data/m31/model2.shp.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

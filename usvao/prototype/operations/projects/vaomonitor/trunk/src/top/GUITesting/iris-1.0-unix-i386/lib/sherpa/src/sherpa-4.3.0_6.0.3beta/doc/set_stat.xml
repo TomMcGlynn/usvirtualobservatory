@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_stat" refkeywords="set likelihood fitting fit chi chi2 chisquare variance sigma  chi2constvar chi2modvar cash chi2gehrels chi2datavar chi2xspecvar cstat stat stats statistics statistic" seealsogroups="sh.set sh.stat " displayseealsogroups="" context="statistics">
+
+    <SYNOPSIS>
+      Set the statistical method
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_stat( stat )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The set_stat command sets the statistical method to be used in fitting.
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  stat - the statistical method
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	Available statistics are returned by the list_stats command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/list_stats.html">"ahelp list_stats"</HREF>).
+	There is a help file for each statistical method, e.g.
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/chi2constvar.html">"ahelp chi2constvar"</HREF>).
+      </PARA>
+
+      <TABLE>
+      <ROW> 
+        <DATA>Statistic</DATA> 
+	<DATA>Description</DATA> 
+      </ROW>
+ 
+      <ROW> 
+        <DATA>leastsq</DATA> 
+	<DATA>least-squares fitting (chi^2 without statistical errors)</DATA>
+      </ROW> 
+
+      <ROW> 
+        <DATA>chi2constvar</DATA> 
+	<DATA>chi^2 with constant variance computed from the counts
+        data</DATA>
+      </ROW> 
+
+      <ROW> 
+        <DATA>chi2modvar</DATA> <DATA>chi^2 with model amplitude
+        variance</DATA>
+      </ROW>
+
+      <ROW> 
+        <DATA>chi2gehrels</DATA> <DATA>chi^2 with gehrels method
+        (default)</DATA>
+      </ROW> 
+
+      <ROW> 
+        <DATA>chi2datavar</DATA> 
+	<DATA>chi^2 with data variance</DATA>
+      </ROW>
+
+      <ROW> 
+        <DATA>chi2xspecvar</DATA> 
+	<DATA>chi^2 with data variance (XSPEC-style, variance = 1.0 if
+        data less than or equal to 0.0).</DATA>
+      </ROW> 
+
+      <ROW> 
+        <DATA>cstat</DATA> 
+	<DATA>CStat - A maximum likelihood function (XSPEC
+        implementation of Cash)</DATA>
+      </ROW> 
+
+      <ROW> 
+        <DATA>cash</DATA> 
+	<DATA>Cash  - A maximum likelihood function</DATA>
+      </ROW>      
+      </TABLE>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_stat( "chi2modvar" )</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   Set the statistic to "chi2modvar", chi^2 with model
+	   amplitude variance.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_stat( "cash" )</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   Set the statistic to "cash", a maximum likelihood function.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

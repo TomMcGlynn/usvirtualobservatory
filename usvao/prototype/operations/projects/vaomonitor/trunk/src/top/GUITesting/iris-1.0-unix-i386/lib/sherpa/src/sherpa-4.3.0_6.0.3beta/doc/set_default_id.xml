@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_default_id" refkeywords=" set  default id ids" seealsogroups=" sh.set " displayseealsogroups="" context="utilities">
+	<SYNOPSIS>
+     Set the default Sherpa data id
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_default_id( id )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The set_default_id command sets the default id for the
+        session.  The default dataset id is "1". 
+	If a Sherpa command has an optional id parameter and it is not
+        specified, the default data id value is used.  
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  id - a string or integer value for the default data id
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	The currently default is returned by the get_default_id
+	command 
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/get_default_id.html">"ahelp get_default_id"</HREF>).
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_default_id( 2 )</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The default data id is set to "2".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_default_id("source")</LINE>
+          <LINE>sherpa&gt; get_default_id()</LINE>
+          <LINE>'source'</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The default data id is set to "source", then the change is
+	    confirmed. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

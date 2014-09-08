@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_syserror" refkeywords="errors error backerrors system syserr syserrors syserror  read errors load" seealsogroups="sh.io " displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+       Load systematic errors
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_syserror( [id=1], filename, [bkg_id], [options] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The load_syserror command loads a user-input systematic error array
+      from a FITS table or column-based text file for 1D data, or an
+      error map from a FITS image for 2D data. The source dataset
+      must be loaded before the systematic errors can be associated
+      with it. The get_syserror command is available for accessing the
+      array(s) of systematic error values.
+      </PARA>
+
+      <PARA>
+	Systematic errors are added in quadrature with statistical
+	errors (if specified) to produce an overall error estimate in
+	each data bin. If the systematic errors are not loaded, it is
+	assumed that they are zero. 
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  id - the id of the dataset to group; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if the errors are for a
+          background dataset;
+          default=None
+          
+        </ITEM>
+ 
+	<ITEM>
+          filename - the name of the FITS or column-based ASCII file
+          (with path) which contains the error data
+ 	</ITEM>
+
+	<ITEM>
+          options - optional arguments.  The allowed options depend on
+          the file type. 
+ 	</ITEM>
+      </LIST>
+
+      <PARA>
+	Options for a FITS file: 
+          [ncols=2,colkeys=None]
+          
+      </PARA>
+
+      <LIST>  
+        <ITEM>
+	  ncols - number of columns to read; default=2
+	</ITEM>
+
+        <ITEM>
+	  colkeys - list of column names;
+          default=None
+          
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	Options for an ASCII file:
+          [ncols=2, colkeys=None, sep=" ", comment='#']
+          
+      </PARA>
+      
+      <LIST>
+        <ITEM>
+	  ncols - number of columns to read; default=2
+	</ITEM>
+
+        <ITEM>
+	  colkeys - list of column names;
+          default=None
+          
+	</ITEM>
+
+        <ITEM>
+	  sep - the column-separating character; default is a space (" ")
+	</ITEM>
+
+        <ITEM>
+	  comment - character which indicates a comment line; default=#
+	</ITEM>
+      </LIST>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_syserror("src", "syserror.fits[cols channel,syserr]")</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The systematic errors for the dataset with id "src" are
+	    loaded from the columns "channel" and "syserrs" of the
+	    file syserror.fits. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_syserror("syserror.dat", bkg_id=1)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Systematic errors for the background with bkg_id=1 of the
+	    default dataset are read from the first two columns (the
+	    default) of the ASCII file syserror.dat.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_image(3, "src_image.fits")</LINE>
+          <LINE>sherpa&gt; load_syserror(3, "syserror_img.fits")</LINE>
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Source image data is loaded into the Sherpa session
+        and assigned to data set ID 3 with the load_image command.
+        The systematic errors map associated with the source image is
+        loaded for data set 3 with the load_syserror command.
+          </PARA>
+<VERBATIM>
+sherpa&gt; load_image(3, "src_image.fits")
+sherpa&gt; load_syserror(3, "syserror_img.fits")
+
+sherpa&gt; show_data(3)
+Data Set: 1
+Filter:
+name = src_image.fits
+x0 = Float64[56376]
+x1 = Float64[56376]
+y = Float64[56376]
+shape = (216, 261)
+staterror = None
+syserror = Float64[56376]
+sky = physical
+crval = [ 3798.5 4019.5]
+crpix = [ 0.5 0.5]
+cdelt = [ 2. 2.]
+eqpos = world
+crval = [ 278.386 -10.5899]
+crpix = [ 4096.5 4096.5]
+cdelt = [-0.0001 0.0001]
+crota = 0
+epoch = 2000
+equinox = 2000
+coord = logical
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

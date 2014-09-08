@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="fake_pha" refkeywords="fakeit bfakeit pha pha2 phaII simulate simulated fake Poisson" seealsogroups="sh.pha " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+     Simulate a PHA dataset with faked counts using Poisson noise
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>fake_pha( id, arf, rmf, exposure, [backscal=None, areascal=None, grouping=None, grouped=False, quality=None, bkg=None] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The fake_pha command creates a PHA dataset with faked counts
+	given a source model and a grid (e.g. ARF and RMF).  The
+	generated counts will contain Poisson noise. 
+      </PARA>
+
+      <PARA>
+	Before fake_pha can be run, a model with the same id as the
+	faked dataset must be defined; see 
+        
+        <HREF link="http://cxc.harvard.edu/sherpa/ahelp/set_source.html">"ahelp set_source"</HREF>
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  id - id for the faked dataset.  Any existing id will be
+	  overwritten, so use different values to compare results from
+	  more than one simulation or to compare a simulation to real
+	  data. 
+	</ITEM>
+
+	<ITEM>
+	  arf - accepts an ARF filename or a Sherpa data
+	  object that contains the ARF data (see "unpack_arf")
+	</ITEM>
+
+	<ITEM>
+	  rmf - accepts an RMF filename or a Sherpa data object that
+	  contains the RMF data (see "unpack_rmf")
+	</ITEM>
+
+	<ITEM>
+	  exposure - length of observation in seconds
+	</ITEM>
+
+	<ITEM>
+	  backscal - background scaling factor;
+          default=None
+          
+	</ITEM>
+
+	<ITEM>
+	  areascal - area scaling factor;
+          default=None
+          
+	</ITEM>
+
+	<ITEM>
+	  grouping - integer array of grouping flags;
+          default=None
+          
+	</ITEM>
+
+	<ITEM>
+	  grouped - boolean to indicate if data is grouped;
+          default=False
+          
+	</ITEM>
+
+	<ITEM>
+	  quality - integer array of quality flags;
+          default=None
+          
+	</ITEM>
+
+	<ITEM>
+	  bkg - PHA data for the background;
+          default=None
+          
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	If a source data set by
+	data set ID is used and contains no grouping flags then
+	'grouped' should be negated.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; fake_pha(1, arf="data_arf.fits", rmf="data_rmf.fits", exposure=50000)</LINE>
+          <LINE>sherpa&gt; fake_pha(1, "data_arf.fits", "data_rmf.fits", exposure=50000)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    These two commands are equivalent ways of running fake_pha
+	    with the ARF and RMF filenames specified.
+	  </PARA>
+
+	  <PARA>
+	    The ARF and RMF response files associated with dataset 1
+	    are loaded directly with fake_pha() and used to simulate a
+	50ks dataset, ungrouped by default.  The faked data overwrites
+	the existing dataset with id=1.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+       <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; arf1=unpack_arf("data_arf.fits")</LINE>
+	  <LINE>sherpa&gt; set_arf(1, arf1, 1)</LINE>
+	  <LINE>sherpa&gt; rmf1=unpack_rmf("data_rmf.fits")</LINE>
+	  <LINE>sherpa&gt; set_rmf(1, rmf1, 1)</LINE>
+          <LINE>sherpa&gt; fake_pha(1, arf=arf1, rmf=rmf1, exposure=30000)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The ARF and RMF response files associated with dataset 1
+	    are loaded with the unpack_arf/rmf functions and assigned
+	    response data set ID "1" with the set_arf/rmf
+	    functions. Data set 1 and its instrument response are then
+	    used to simulate a 30ks ungrouped
+	    dataset with fake_pha.  The faked data overwrites the
+	    existing dataset with id=1.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; fake_pha(1, arf=get_arf(), rmf=get_rmf(), exposure=50000)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Using the ARF and RMF associated with dataset 1 - obtained
+	    via the get_arf and get_rmf commands - simulate a 50ks ungrouped
+	    dataset.  The faked data overwrites the existing dataset
+	    with id=1.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_source("faked",const1d.c1*powlaw1d.p1)</LINE>
+	  <LINE>sherpa&gt; fake_pha("faked", arf=get_arf(), rmf=get_rmf(), exposure=10000, grouped=True, bkg=get_bkg())</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    A model is defined for the dataset id "faked", then
+	    fake_pha is run to simulate a grouped 10ks dataset.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; rmf = unpack_rmf("3c273.rmf")</LINE>
+	  <LINE>sherpa&gt; set_source(xsphabs.abs1*powlaw1d.p1)</LINE>
+	  <LINE>sherpa&gt; fake_pha(1, arf=None, rmf=rmf, exposure=10000,grouped=True)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    A 10ks grouped dataset is faked with just an RMF (no ARF).
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+     </QEXAMPLELIST>
+ 
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

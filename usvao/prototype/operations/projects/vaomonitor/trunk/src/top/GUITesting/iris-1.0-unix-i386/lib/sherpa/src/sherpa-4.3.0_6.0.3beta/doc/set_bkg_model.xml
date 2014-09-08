@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_bkg_model" refkeywords="set expression expressions model models modeling modelling composite nested joint component back background bkg bg" seealsogroups="sh.model  sh.set " displayseealsogroups="" context="modeling">
+
+<SYNOPSIS>
+      Set a background model expression 
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_bkg_model( [id], model, [bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The set_bkg_model command sets the model expression to be
+        used for fitting a background dataset.
+      </PARA>
+
+      <PARA>
+       To manually set the complete convolved model expression to be
+       used for fitting a background data set - i.e., other than automatically
+       with set_bkg_model - use the set_full_model and set_bkg_full_model
+       commands (see "ahelp set_full_model").
+      </PARA>
+
+      
+      <LIST>
+        <ITEM>
+          id - the id of the dataset; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id") 
+	</ITEM>
+
+	<ITEM>
+           model - the model expression;
+	   for a list of all available models, see "ahelp models"
+	</ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background to use, e.g. if more
+          than one background is associated with the data; default is
+          the first background dataset
+        </ITEM>
+  </LIST>
+</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_bkg_model(xsphabs.abs1*powlaw1d.p1)</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The model for the first background of the default dataset
+	    is set to photo-electric absorption times a 1-D powerlaw.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_bkg_model(2, gauss2d.g2d, bkg_id=2)</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The model for the second background of dataset id=2 is set to a gauss2d model.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+ 
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

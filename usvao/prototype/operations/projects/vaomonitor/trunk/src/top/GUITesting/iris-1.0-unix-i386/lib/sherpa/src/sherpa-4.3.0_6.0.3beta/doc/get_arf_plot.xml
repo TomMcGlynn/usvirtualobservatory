@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_arf_plot" refkeywords="get arf ARF plot plotting plots " seealsogroups="sh.get sh.plot" displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+      Return the data and preferences defining an ARF plot
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_arf_plot( [id, resp_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The get_arf_plot() command returns the data and preferences
+        which define a plot of ARF (auxiliary response function) data
+        in a Sherpa session.  Once an ARF associated with a data set
+        is loaded, this command can be used to list the x, y,
+        x error, and y error data arrays used in the ARF plot created
+        with plot_arf() or plot(), in addition to the values for the
+        x label, y label, title, and other plotting preferences. The
+        information returned by get_arf_plot() may be stored in a
+        variable, or printed to the screen, as shown in the examples section.
+      </PARA>
+ 
+      <LIST>
+	<ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+	<ITEM>
+          resp_id - the id of the ARF to use, e.g. if more than one is
+          associated with the data set; default is the first ARF loaded
+          for the given data set ID (resp_id=1)
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	Attributes:
+      </PARA>
+     
+      <LIST>
+	<ITEM> title        - title of plot </ITEM>
+    
+        <ITEM> xlabel       - x axis label </ITEM>
+    
+        <ITEM> ylabel      - y axis label </ITEM>
+    
+        <ITEM> units       - units of grid </ITEM>
+ 
+        <ITEM> xlo          - grid array, low bins </ITEM>
+    
+        <ITEM> xhi          - grid array, high bins </ITEM>
+    
+        <ITEM> flux         - unconvolved counts </ITEM>
+    
+        <ITEM> y            - convolved counts </ITEM>
+      
+        <ITEM> plot_prefs   - dictionary of plotting preferences </ITEM>
+      </LIST>
+       
+     </DESC>   
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_arf_plot())</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            When called with no arguments within the print() command,
+            get_arf_plot() returns the data and preferences associated
+            with the plot of the first ARF loaded for data set 1.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; print(get_arf_plot())
+x      = [  0.305   0.315   0.325 ...,  10.975  10.985  10.995]
+y      = [ 24.6003  59.3127  73.6197 ...,   0.6435   0.6227   0.6021]
+yerr   = None
+xerr   = [ 0.01  0.01  0.01 ...,  0.01  0.01  0.01]
+xlabel = Energy (keV)
+ylabel = cm^2
+title  = source.arf
+plot_prefs = {'symbolstyle': 0, 'linethickness': 3, 'linestyle': 1, 'linecolor': 'red'}
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+
+        <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; arf_plot=get_arf_plot(3, 2)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            This command stores to the variable "arf_plot" the data
+	    and preferences defining the plot of the second ARF loaded for data
+            set 3. The contents may be printed with 'print(arf_plot)'.
+          </PARA>
+        </DESC>
+        </QEXAMPLE>
+	<QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_arf_plot().plot_prefs</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+           This command lists the library of plotting preferences
+           available for get_arf_plot(), and can be used to modify
+           the plot settings:
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_arf_plot().plot_prefs
+            {'linecolor': 'red', 'linestyle': 1, 'linethickness': 3, 'symbolstyle': 0}
+
+sherpa&gt; get_arf_plot().plot_prefs["linestyle"]=3
+
+sherpa&gt; get_arf_plot().plot_prefs
+            {'linecolor': 'red', 'linestyle': 3, 'linethickness': 3, 'symbolstyle': 0}
+
+</VERBATIM>
+
+        </DESC>
+        </QEXAMPLE>
+
+   </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

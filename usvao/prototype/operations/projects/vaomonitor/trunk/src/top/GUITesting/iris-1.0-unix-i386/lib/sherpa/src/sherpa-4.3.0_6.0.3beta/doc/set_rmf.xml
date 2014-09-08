@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_rmf" refkeywords="set rmf response responses instrument " seealsogroups="sh.rmf sh.set " displayseealsogroups="" context="data">
+     
+    <SYNOPSIS>
+       Set an RMF dataset
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_rmf( [id], rmf, [resp_id=1, bkg_id=None] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The set_rmf command assigns an RMF to a dataset.  
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+	  rmf - an RMF dataset, e.g. created by
+	  unpack_rmf ("ahelp unpack_rmf")
+	</ITEM>
+
+        <ITEM>
+	  resp_id - the id of the response, if multiple responses
+	  exist for the dataset; default is id=1
+	</ITEM>
+
+        <ITEM>
+	  bkg_id - the id of the background, if the response is a
+	  background response;
+          default=None
+          
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; rmf1 = unpack_rmf("rmf.fits")</LINE>
+	  <LINE>sherpa&gt; set_rmf("src", rmf1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Create a Sherpa dataset called "rmf1" from the file rmf.fits.  It is
+	    then assigned as the first response for the dataset "src".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_rmf( 2, myrmf, resp_id=3)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Set the data in "myrmf" as the third RMF of dataset 2.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

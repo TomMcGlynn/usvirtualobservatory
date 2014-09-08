@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_conv" refkeywords="read psf load convolution convolve" seealsogroups="sh.psf sh.model " displayseealsogroups="" context="psfs">
+
+    <SYNOPSIS>
+     Load a 1D convolution kernel
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_conv( modelname, filename|model )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The load_conv command loads a one-dimensional general
+        convolution kernel from a file (FITS or ASCII) or Sherpa
+        model, e.g. a PSF kernel.  A source model may be convolved
+        (folded) with the loaded kernel via the set_model command, 
+	e.g. 'set_model(conv(beta1d.b1))', where "conv" is the name
+	assigned to the convolution kernel by load_conv().
+      </PARA>
+
+      <PARA>
+	For two-dimensional convolution, refer to <HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_psf.html">"ahelp load_psf"</HREF>.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          modelname - a name for the convolution model
+        </ITEM>
+
+        <ITEM>
+          filename|model - the name of a file, including path,
+          which contains the convolution image (e.g. a PSF image), or
+          the name of a Sherpa model to use in creating the convolution model
+        </ITEM>
+      </LIST>
+     </DESC>
+
+    <QEXAMPLELIST>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_conv("conv", "psf.dat")</LINE>
+          <LINE>sherpa&gt; set_model(conv(gauss1d.g1))</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+           The load_conv function loads a convolution kernel from the
+	  ASCII file psf.dat and assigns it the id 'conv'. The
+	  set_model function is then used to assign a 1D Gaussian model
+	  convolved with the file-based PSF kernel to source data set 1.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_conv("conv", "psf.fits")</LINE>
+          <LINE>sherpa&gt; set_model(2, conv(beta1d.b1))</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+           The load_conv function loads a convolution kernel from the
+	   FITS file psf.fits and assigns it the id 'conv'. The
+	   set_model function is then used to assign a 1D Beta model
+	   convolved with the file-based PSF kernel to source data set 2.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_conv("conv", gauss1d.psf)</LINE>
+          <LINE>sherpa&gt; set_model(conv(gauss1d.g1))</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	  The load_conv function creates a model-based PSF convolution kernel
+	  using the Sherpa 1D Gaussian model component 'gauss1d.psf', and assigns it the id 'conv'. The
+	  set_model function is then used to assign a PSF-convolved
+	  1D Gaussian model to source data set 1 (i.e., the PSF Gaussian model
+	  "psf" is convolved with a second Gaussian model, "g1").
+          The Gaussian model "psf" is evaluated on the source data set grid.
+          </PARA>
+<VERBATIM>
+sherpa&gt; load_conv("conv", gauss1d.psf)
+sherpa&gt; set_model(conv(gauss1d.g1))
+sherpa&gt; show_model()
+
+Model: 1
+apply_rmf(apply_arf((38564.6089269 * (convolutionkernel.conv) o (gauss1d.g1))))
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   psf.fwhm     thawed           10  1.17549e-38  3.40282e+38           
+   psf.pos      thawed            0 -3.40282e+38  3.40282e+38           
+   psf.ampl     thawed            1 -3.40282e+38  3.40282e+38           
+   g1.fwhm      thawed           10  1.17549e-38  3.40282e+38           
+   g1.pos       thawed            0 -3.40282e+38  3.40282e+38           
+   g1.ampl      thawed            1 -3.40282e+38  3.40282e+38  
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

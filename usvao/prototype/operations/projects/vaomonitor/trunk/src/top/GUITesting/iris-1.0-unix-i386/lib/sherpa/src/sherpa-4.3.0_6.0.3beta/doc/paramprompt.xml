@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="paramprompt" refkeywords="parameter value initial initialize initialise component estimate guessing set range ranges min minimum max maximum prompt prompting " seealsogroups="sh.par " displayseealsogroups="" context="modeling">
+
+    <SYNOPSIS>
+      Toggle parameter prompting for initial model values
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>paramprompt( [val=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The paramprompt command controls whether Sherpa prompts the
+	user for initial parameter values when a model component is
+	created.  
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          val - a boolean value which indicates whether parameter
+          prompting is off (the default, 
+          val=False)
+          
+	  or on
+          (val=True).
+          
+        </ITEM>
+      </LIST>
+
+      <PARA>
+	If parameter prompting is turned on, the user is
+	queried for the initial value of each model component
+	parameter when it is established. At the model component
+	prompt, either specify the initial value for the component or
+	just hit &lt;Return&gt; to accept the default value.  
+      </PARA>
+
+      <PARA>
+	In addition to the initial value, the minimum and maximum
+	parameter limits may be set at the prompt.  They must be
+	comma-separated and specified in the order "value, min, max".
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; paramprompt(True)</LINE>
+	  <LINE>sherpa&gt; set_model(gauss1d.g1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Parameter prompting is turned on, then a gauss1d model is
+	    created and named "g1".  The screen output is:
+          </PARA>
+
+<VERBATIM>
+g1.fwhm parameter value [10] 20
+g1.pos parameter value [0] 0.05
+g1.ampl parameter value [1]
+</VERBATIM>
+
+          <PARA>
+	    Initial parameter values are set for the fwhm and pos
+	    parameters, while the default of the ampl parameter is
+	    accepted by hitting &lt;Return&gt;.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; paramprompt(True)</LINE>
+	  <LINE>sherpa&gt; set_model(gauss2d.src)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Parameter prompting is turned on, then a gauss2d model is
+	    created and named "src".  The screen output is:
+          </PARA>
+
+<VERBATIM>
+src.fwhm parameter value [20] 20, 0.1, 300
+src.xpos parameter value [0] 4024
+src.ypos parameter value [0] 4250
+src.ellip parameter value [0]
+src.theta parameter value [0]
+src.ampl parameter value [1] 20, 0.1, 1000
+</VERBATIM>
+
+          <PARA>
+	    The initial value, minimum, and maximum are set for the
+	    fwhm and ampl parameters.  An initial value only is set
+	    for the xpos and ypos parameters; the ellip and theta
+	    values are left unchanged by hitting &lt;Return&gt;.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+	</QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

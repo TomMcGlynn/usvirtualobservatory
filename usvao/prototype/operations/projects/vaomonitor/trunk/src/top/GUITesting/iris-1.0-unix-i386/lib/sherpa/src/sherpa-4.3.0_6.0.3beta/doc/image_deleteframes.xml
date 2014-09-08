@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="image_deleteframes" refkeywords="image images img imager imaging delete erase frame frames visualize visualization visualise visualisation" seealsogroups="sh.img sh.del " displayseealsogroups="" context="visualization">
+
+    <SYNOPSIS>
+     Delete frames in the imager window (ds9).
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>image_deleteframes()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+      Delete all frames in the imager window - by default, ds9.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; image_deleteframes()</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+           The image_deleteframes() function deletes all frames in the
+           imager window.  The function accepts no arguments
+           and returns no values.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="sherparc" context="sherpa" refkeywords="rc resource resources default defaults .sherpa.rc .sherparc config configure option options" seealsogroups="sh.concepts" displayseealsogroups="">
+
+    <SYNOPSIS>
+      The .sherpa.rc file provides user-configuration options for Sherpa
+    </SYNOPSIS>
+
+    <DESC>
+      <PARA>           
+        When Sherpa is started, it processes the $HOME/.sherpa.rc
+	resource file.  The resource file defines default behavior for
+      	the Sherpa commands and can be customized to the user's
+      	preferences.  
+      </PARA>
+
+      <PARA>
+	The .sherpa.rc file may be edited in any text editor to change
+	the settings.
+     </PARA>
+
+      <PARA>
+	Since Sherpa uses ChIPS, any preferences set in the .chips.rc
+	resource file will be available during plotting as well.
+	There is an option to override the .chips.rc settings in
+	.sherpa.rc; refer to the "[chips]" section, below.
+      </PARA>
+    </DESC>
+
+    <ADESC title="Contents of default .sherpa.rc file">
+      <PARA>
+	The default .sherpa.rc file contains the following entries:
+      </PARA>
+<VERBATIM>
+[options]
+# Plotting packages available- pylab, chips
+plot_pkg   : chips
+
+# IO packages available- pyfits, crates
+io_pkg     : crates
+
+[statistics]
+# If true, use truncation value in Cash, C-stat
+truncate   : True
+
+# Truncation value for Cash, C-stat (ignored if
+# truncate option is False)
+trunc_value: 1.0e-25
+
+[verbosity]
+# Sherpa Chatter level
+# a non-zero value will
+# display full error traceback
+level      : 0
+# NumPy arrays have a threshold size print option, such that when an
+# array greater than that size is converted to a string, for printing,
+# only the first few and last few elements are shown.  If the array is
+# smaller than the threshold size, all the elements are printed out.
+# (This setting makes no change to the actual array, but merely
+# governs how the array is represented when a copy of the array is
+# converted to a string.)  
+#
+# The default threshold size is 1000.  Here, the threshold size is
+# changed to a much larger value as Sherpa often deals with large
+# arrays.
+arraylength: 1000000
+
+[chips]
+# If the plotting package is chips, set Sherpa-specific
+# preferences here.  If plotting package is anything else,
+# this section is completely ignored.  These preferences
+# go into effect the first time a Sherpa plot function
+# is called (*not* when Sherpa is started; chips is not
+# imported until the first plot is made).
+
+window.height          : 6
+window.width           : 8
+window.units           : inches
+
+
+[parallel]
+numcores : None
+
+</VERBATIM>
+    </ADESC>
+
+    <ADESC title="[options]">
+      <PARA title="plot_pkg">
+	The plot_pkg defines whether chips (the default) or pylab is
+	used for Sherpa plotting.  ChIPS is the CIAO plotting program
+	and is distributed with the CIAO
+	software.  PyLab is part
+	of <HREF link="http://matplotlib.sourceforge.net/">matplotlib</HREF>
+	and needs to be installed by the user.
+      </PARA>
+
+      <PARA title="io_pkg">
+	The io_pkg defines whether crates (the default) or pyfits will
+	be used to handle reading and writing of files.  CRATES is a
+	software package developed by the CXC and distributed in CIAO;
+	see <HREF link="http://cxc.harvard.edu/ciao/ahelp/crates.html">"ahelp crates"</HREF> for
+	details.  <HREF link="http://www.stsci.edu/resources/software_hardware/pyfits">PyFITS</HREF>
+	is developed by STSci and needs to be installed by the user.  
+      </PARA>
+
+    </ADESC>
+
+    <ADESC title="[statistics]">
+      <PARA title="truncate and trunc_value">
+	The Cash and C-stat statistic functions evaluate the logarithm 
+	of each data point. If the number of counts is zero or negative,
+	it's not possible to take the log of that number.
+      </PARA>
+      
+      <PARA>
+	If truncate is set to True (the default), then
+	log(&lt;trunc_value&gt;) is substituted into the equation, and  
+	the statistics calculation proceeds.   The default trunc_value
+	is 1.0e-25.
+      </PARA>
+
+      <PARA>
+	If truncate is set to False, C-stat or Cash returns an error
+	and stops the calculation when the number of counts in a bin
+	is zero or negative.   The trunc_value setting is not used.
+      </PARA>
+    </ADESC>
+
+    <ADESC title="[verbosity]">
+      <PARA title="level">	
+	If the level is set to a number greater than zero (the
+	default), debugging information is printed when a command
+	fails. 
+      </PARA>
+
+      <PARA title="arraylength">	
+	When a NumPy array is converted to a string for printing to
+	the screen, only the first few and last few elements are
+	shown.  The arraylength value determines only how the array is
+	displayed; it does not affect the the actual array. 
+	The default value is 1000000, as Sherpa often deals with large
+	arrays. 
+      </PARA>
+    </ADESC>
+
+    <ADESC title="[chips]">
+      <PARA>
+	This section of the file contains ChIPS preferences to
+	override the settings in the .chips.rc file;  see 
+	<HREF link="http://cxc.harvard.edu/chips/ahelp/chipsrc.html">"ahelp chipsrc"</HREF> for details.  Note that these preferences and the
+	.chips.rc file are read when a plot function is called and
+	ChIPS is launched, not at the beginning of the Sherpa session.  
+      </PARA>
+
+      <PARA>
+	The [chips] section can be left blank, in which case none of
+	the values defined in .chips.rc are overridden.
+      </PARA>
+
+      <PARA>
+	If a plotting package (plot_pkg option) other than ChIPS is
+	used, this section of the file is ignored.
+      </PARA>
+    </ADESC>
+
+    <ADESC title="[parallel]">
+      <PARA>
+       The 'numcores' switch in the [parallel] section is
+      available for setting the number of cores on the user's system
+      which should be used in the execution of the Sherpa parallelized
+      commands, such as the computationally intensive conf() and
+      proj() functions. The default value for 'numcores' is None, which
+      indicates that all available cores will be used for concurrent
+      functions.  
+      </PARA>
+    </ADESC>
+
+   <ADESC title="CHANGES IN CIAO 4.3">
+     <PARA title="Removal of S-Lang Support">
+       The CXC no longer supports the S-Lang scripting language as of
+       CIAO 4.3. As a consequence, the "shell" setting in .sherpa.rc has
+       been removed. 
+     </PARA>  
+
+     <PARA>
+      The Sherpa configuration file is updated with a new section
+      [parallel] that includes a switch 'numcores' to specify how many
+      cores on a user's system should be utilized when Sherpa
+      parallelized functions(e.g., conf()) are run. 
+     </PARA>   
+   </ADESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+  </ENTRY></cxchelptopics>

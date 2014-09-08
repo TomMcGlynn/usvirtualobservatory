@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_psf" refkeywords="set response responses instrument psf psf1d psf2d " seealsogroups="sh.psf " displayseealsogroups="" context="psfs">
+
+    <SYNOPSIS>
+      Convolve the PSF model with the source model
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_psf( [id], psf )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The set_psf command adds a PSF model to the instrument list
+	and uses it to convolve the entire source model expression.
+	To convolve specific model components with the PSF, use
+	the <HREF link="http://cxc.harvard.edu/sherpa/ahelp/set_full_model.html">"ahelp
+	set_full_model"</HREF> 
+      </PARA>  
+
+      <PARA>
+	The PSF was
+	loaded by the load_psf command        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_psf.html">"ahelp load_psf"</HREF>).
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+	<ITEM>
+	  psf - the name of the PSF model
+	</ITEM>
+      </LIST>
+
+<PARA title="What is the difference between the PSF and the kernel?">
+	   The point spread function (PSF) is defined by the full (unfiltered) PSF image loaded into Sherpa or the PSF model expression evaluated over the full range of the dataset; both types of PSFs are established with the load_psf() command.  The kernel is the subsection of the PSF image or model which is used to convolve the data.  This subsection is created from the PSF when the size and center of the kernel are defined by the command set_psf().  While the kernel and PSF might be congruent, defining a smaller kernel helps speed the convolution process by restricting the number of points within the PSF that Sherpa must evaluate.
+	 </PARA>
+	<PARA title="1-D PSF models">
+	In a 1-D PSF model, a radial profile or 1-D model array is used to
+	convolve (fold) the given source model using the Fast Fourier
+	Transforms (FFTs).   The kernel centroid must always be at the
+	center of the extracted sub-image.  Otherwise, systematic
+	shifts will occur in best-fit positions of point sources,
+	etc.
+       </PARA>
+
+      <PARA>
+	Output from an example 1-D PSF model named "psf1":
+      </PARA>
+<VERBATIM>
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   psf1.psf  frozen rprofile_rmid.fits
+   psf1.size    frozen           38           38           38
+   psf1.center  frozen           19           19           19
+   psf1.radial  frozen            0            0            1
+   psf1.norm    frozen            1            0            1
+</VERBATIM>
+
+      <TABLE>
+	<CAPTION>Parameters for a 1-D PSF Model</CAPTION>
+	<ROW>
+	  <DATA>Name</DATA> 
+	  <DATA>Description</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>kernel</DATA> 
+	  <DATA>the input data file or array used for the PSF kernel</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>size</DATA> 
+	  <DATA>x full-width of the subset of the PSF array to use in convolution</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>center</DATA> 
+	  <DATA>x-direction center of the kernel</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>radial</DATA> 
+	  <DATA>radial profile: 1=yes/0=no</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>norm</DATA> 
+	  <DATA>renormalize the kernel? 1=yes/0=no (kernel mode) </DATA>
+	</ROW>
+	</TABLE>
+
+      <PARA>
+	The PSF data or model array is renormalized to 1 by default, 
+	unless the parameter 'norm' is 0; norm=0 produces the
+	functionality of a 1-D kernel model.  Renormalization is done
+	by summing over all image pixels, regardless of the size
+	value.
+      </PARA>
+
+      <PARA> 
+	If the radial parameter is set to 1, the kernel array will be
+	extended and its values reflected across the edge
+	boundary. The resultant function will be symmetric. The
+	default value is 0 to reduce some of the edge effects from
+	convolution. 
+      </PARA>
+
+      <PARA title="2-D PSF models">
+	In a 2-D PSF model, an image or 2-D model array is used to
+	convolve (fold) the given source model using the Fast Fourier
+	Transforms (FFTs).   The kernel centroid must always be at the
+	center of the extracted sub-image.  Otherwise, systematic
+	shifts will occur in best-fit positions of point sources,
+	etc. 
+      </PARA>
+
+      <PARA>
+	Output from an example 2-D PSF model named "psf0":
+      </PARA>
+<VERBATIM>
+    Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   psf0.psf  frozen psf_image.fits
+   psf0.size    frozen   (256, 256)   (256, 256)   (256, 256)
+   psf0.center  frozen   (128, 128)   (128, 128)   (128, 128)
+   psf0.radial  frozen            0            0            1
+   psf0.norm    frozen            1            0            1
+</VERBATIM>
+
+      <TABLE>
+	<CAPTION>Parameters for a 2-D PSF Model</CAPTION>
+	<ROW>
+	  <DATA>Name</DATA> 
+	  <DATA>Description</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>kernel</DATA> 
+	  <DATA>the input image or array used for the PSF kernel</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>size</DATA> 
+	  <DATA>(x,y) width of the subset of the PSF array to use in convolution</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>center</DATA> 
+	  <DATA>(x,y) center of the kernel</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>radial</DATA> 
+	  <DATA>[not applicable to 2-D PSFs]</DATA>
+	</ROW>
+
+	<ROW>
+	  <DATA>norm</DATA> 
+	  <DATA>renormalize the kernel? 1=yes/0=no (kernel mode) </DATA>
+	</ROW>
+	</TABLE>
+
+      <PARA>
+	The PSF image array or model array is renormalized to 1 by
+	default, unless the parameter 'norm' is 0; norm=0 produces the
+	functionality of a 2-D kernel model.  Renormalization is done
+	by summing over all image pixels, regardless of the size
+	value.
+      </PARA>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_psf("psf1","psf256.fits")</LINE>
+	  <LINE>sherpa&gt; set_psf(psf1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    A PSF model is created from the file psf256.fits, then is
+	    set as the PSF for the default dataset.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_psf("psf", "psf_0.25pix.fits")</LINE>
+	  <LINE>sherpa&gt; set_psf("src",  psf )</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The PSF model created from psf_0.25pix.fits is set for
+	    dataset "src".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+           <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_psf("psf1", beta2d.p1)</LINE>
+          <LINE>sherpa&gt; set_psf(psf1)</LINE>
+          <LINE>sherpa&gt; load_psf("psf2", "psf.fits")</LINE>
+          <LINE>sherpa&gt; set_psf(2, psf2)</LINE>
+          <LINE>sherpa&gt; fit()</LINE>
+
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            A 2-D Beta model is used as the PSF to convolve with
+            the source model for data set 1, and the PSF model
+            defined in file 'psf.fits' is used to convolve the source
+            model for data set 2. The PSF models are convolved with
+	    the corresponding source models when set_psf is
+	    issued. Data sets 1 and 2 are simultaneously fit with
+	    their associated source models convolved by different PSF models.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

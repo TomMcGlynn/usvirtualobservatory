@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_user_stat" refkeywords="errors error backerrors  statistical staterr staterrors staterror user read errors load" seealsogroups="sh.io " displayseealsogroups="" context="statistics">
+
+    <SYNOPSIS>
+      Load a user-defined fit statistic
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_user_stat(statname, calc_stat_func, calc_err_func=None, priors={})</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The load_user_stat command loads a user-defined statistic
+	which can be used during fitting.   After loading the
+	function, use the set_stat() command (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/set_stat.html">"ahelp set_stat"</HREF>) to set
+	it as the method to be used in fitting.
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  statname - name of the new statistic
+	</ITEM>
+
+	<ITEM>
+	  calc_stat_func - reference to the function that calculates
+	  the statistic
+	</ITEM>
+
+	<ITEM>
+	  calc_err_func - reference to the function that will
+	  calculate errors used in the statistic calculation;
+          default=None
+          
+	  (Note: if the statistic doesn't require errors, such as a
+	  likelihood function, calc_err_func should be left at its
+	  default.) 
+	</ITEM>
+
+	<ITEM>
+	  priors - a dictionary of prior functions for the user
+	  statistic.  If there are no such functions, leave this as an
+	  empty dictionary (i.e., {}).
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	The statistic and error functions may defined at the Sherpa
+	command line or read in by a script.  The format of the
+	calc_stat_func and calc_err_func are: 
+      </PARA>
+
+<VERBATIM>
+def calc_stat_func(data, model, staterror=None, syserror=None, weight=None):
+
+def calc_err_func(data):
+</VERBATIM>
+	<PARA>
+	where
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  data - array of y-values from the data set
+	</ITEM>
+
+	<ITEM>
+	  model - array of predicted y-values calculated from model
+	</ITEM>
+
+	<ITEM>
+	  staterror - array of statistical errors (if any)
+	</ITEM>
+
+	<ITEM>
+	  syserror - array of systematic errors (if any)
+	</ITEM>
+
+	<ITEM>
+	  weight - array of weights (if any)
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	The calc_stat_func function must return a two-element tuple
+	with values (stat_value, stat_err_per_bin). stat_value is the
+	statistic value and stat_err_per_bin is a numpy array with the
+	statistic contribution per data bin.
+      </PARA>
+
+      <PARA>
+	The calc_err_func function must return a numpy array with the 
+	statistical error corresponding to each data bin.
+      </PARA>
+
+      <PARA>
+	The following functions show a simple example of defining a
+	custom statistic to illustrate the basic code and interface
+	requirements: 
+      </PARA>
+
+<VERBATIM>
+def custom_staterr_func(data):
+    staterror = 10 # Constant one-sigma uncertainty of 10
+    return staterror * numpy.ones_like(data)
+
+def custom_stat_func(data, model, staterror=None, syserror=None, weight=None):
+    if staterror is None:
+        staterror = 1
+    chi2 = ((data - model) / staterror)**2 # Chi^2 per bin
+    return chi2.sum(), chi2
+</VERBATIM>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_user_stat("new_stat", custom_stat_func, custom_staterr_func)</LINE>
+	  <LINE>sherpa&gt; set_stat( "new_stat" )</LINE>
+
+          <LINE>sherpa&gt; load_user_stat("new_stat", custom_stat_func, custom_staterr_func);</LINE>
+	  
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Create a new user statistic from the functions
+	    "custom_stat_func" and "custom_staterr_func" which have been
+	    previously defined.  Then set "new_stat" as the current
+	    fit statistic.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

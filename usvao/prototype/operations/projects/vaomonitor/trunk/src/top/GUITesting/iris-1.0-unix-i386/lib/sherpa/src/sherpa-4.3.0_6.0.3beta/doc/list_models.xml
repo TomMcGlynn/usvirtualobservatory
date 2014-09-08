@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="list_models" refkeywords="list lists show get model models" seealsogroups="sh.models sh.list " displayseealsogroups="" context="models">
+	<SYNOPSIS>
+     List all Sherpa models. 
+     
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>list_models()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       Sherpa provides many different types of basic 1D and 2D models to be fit
+       to data; they can 
+       be used alone or as components of arbitrary model expressions.  
+       (Such models include the Gaussian function, the Lorentzian
+       function, XSPEC models, among many others.)  When called with
+      no arguments (default), this function
+       lists all the different types of models available in Sherpa.
+     Valid arguments include "all", "xspec", "1d", and "2d":
+     </PARA>
+
+     <LIST>
+     <ITEM> 
+      list_models()             default, list all models by type
+      list_models("all")       
+      </ITEM>
+     <ITEM>
+      list_models("xspec")      all xspec models
+     </ITEM>
+     <ITEM>
+      list_models("2d")         Sherpa 2D analytic models
+     </ITEM>
+     <ITEM>
+      list_models("1d")         Sherpa 1D analytic models
+     </ITEM>
+    </LIST>
+    </DESC>
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; list_models()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   This function returns a sorted list of all Sherpa models, by type.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; list_models("xspec")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   This function returns a list of all XSPEC models in Sherpa.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+  <ADESC title="CHANGES IN CIAO 4.3">
+   <PARA>
+    The list_models() function now accepts the arguments "all", "xspec",
+  "1d", and "2d".
+   </PARA>
+  </ADESC>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

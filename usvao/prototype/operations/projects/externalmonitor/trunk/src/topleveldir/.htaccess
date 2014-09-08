@@ -1,0 +1,3 @@
+DirectoryIndex /vo/external_monitor/vodb.pl
+Options +ExecCGI
+AddHandler cgi-script .pl .java 

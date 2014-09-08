@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="calc_chisqr" refkeywords="calc calculate chi-squared chi-square chisquare chisquared chi2 stat statistic statistics fit model models" seealsogroups="sh.calc sh.fit sh.model  " displayseealsogroups="" context="utilities">
+	<SYNOPSIS>
+     Calculate the Chi Squared statistic contribution per bin
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>calc_chisqr( [ id, [otherids]] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       When fitting data with Chi Squared statistics, the calc_chisqr
+       function returns an array of Chi
+       Squared statistic contributions for each bin of the specified
+       data set ID(s).  The data set ID(s) supplied
+       to calc_chisqr must be ready for fitting, i.e. it has been
+       assigned a model to be fit.  The calc_chisqr function can be
+       called with no arguments, in which
+       case the Chi Squared statistic array for the first
+       data set ready for fitting
+       will be returned.  If multiple data set IDs are given, then the
+       simultaneous Chi Squared fit statistics are
+       calculated for those data sets.  
+      </PARA>
+
+    <LIST>
+       <ITEM>
+          id, otherids - the id(s) of the dataset(s) to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id");
+          otherids=None
+          
+        </ITEM>
+      </LIST>
+    
+          <PARA>
+	    Below are the Chi Squared fit statistics available in Sherpa:
+	  </PARA>
+	  <TABLE>
+	    <ROW>
+              <DATA>chi2constvar</DATA>
+	      <DATA>chi^2 with constant variance computed from the counts data.</DATA>
+	    </ROW>
+	    <ROW>
+	      <DATA>chi2modvar</DATA>
+	      <DATA>chi^2 with model amplitude variance.</DATA>
+	    </ROW>
+	    <ROW>
+	      <DATA>chi2gehrels</DATA>
+	      <DATA>chi^2 with gehrels method (default).</DATA>
+	    </ROW>
+	    <ROW>
+	      <DATA>chi2datavar</DATA>
+	      <DATA>chi^2 with data variance.</DATA>
+	    </ROW>
+	    <ROW>
+	      <DATA>chi2xspecvar</DATA>
+	      <DATA>chi^2 with data variance (XSPEC-style, variance = 1.0
+		if data less than or equal to 0.0)</DATA>
+	    </ROW>
+         </TABLE>
+        </DESC>
+	<QEXAMPLELIST>
+     <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_chisqr()</LINE>
+	  
+        </SYNTAX>
+          <DESC>
+          <PARA>
+           When called with no arguments, calc_chisqr() returns the
+           Chi Squared
+           statistic array for the default data set, if it has been assigned a
+           model to be fit.  
+          </PARA>
+          </DESC>
+      </QEXAMPLE>
+       
+      <QEXAMPLE>
+         <SYNTAX> 
+	  <LINE>sherpa&gt; calc_chisqr(1)</LINE>
+	  
+          <LINE>sherpa&gt; calc_chisqr("src")</LINE>
+	  
+         </SYNTAX>
+          <DESC>
+          <PARA>
+           Supplying a specific data set ID to calc_chisqr - such as
+           "1" or  "src" - will return the Chi Squared
+           statistic array for only that data set.
+          </PARA>
+          </DESC>
+       </QEXAMPLE>
+       
+       <QEXAMPLE> 
+         <SYNTAX>
+	  <LINE>sherpa&gt; calc_chisqr(1,2)</LINE>
+	  
+          <LINE>sherpa&gt; calc_chisqr("src", "bkg")</LINE>
+          
+	</SYNTAX>
+           <DESC>
+          <PARA>
+           When supplied with multiple data set IDs, calc_chisqr
+           returns the Chi Squared statistic array produced by the
+           simultaneous fit on those data sets.
+          </PARA>
+          </DESC>
+       </QEXAMPLE>
+       
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

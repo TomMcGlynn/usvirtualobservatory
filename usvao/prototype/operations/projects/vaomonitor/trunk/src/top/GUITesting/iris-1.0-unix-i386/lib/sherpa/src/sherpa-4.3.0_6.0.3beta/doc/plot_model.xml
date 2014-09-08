@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="plot_model" refkeywords="plot plotting model models modeling modelling " seealsogroups="sh.model sh.plot " displayseealsogroups="" context="plotting">
+
+    <SYNOPSIS>
+     Plot the convolved source model
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>plot_model( [id], [replot=False, overplot=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The plot_model command plots the convolved source model.
+       The plot_source command is available for plotting the unconvolved model amplitudes.
+      </PARA>
+
+      <PARA>
+      Note that the plot_model command always plots the ungrouped,
+      full-resolution source model on a grouped data set. To view the
+      grouped model overlaid on the grouped data spectrum, use the
+      generic 'plot' function with the 'model' option, e.g. "plot("data",1,"model",1)".
+      </PARA>
+
+      <TABLE>
+	<ROW><DATA>Argument</DATA><DATA>Default</DATA><DATA>Description</DATA></ROW>
+	<ROW><DATA>id</DATA><DATA>1 (can be changed, see "ahelp get_default_id")</DATA><DATA>the id of the dataset to plot</DATA></ROW>
+	<ROW><DATA>replot</DATA>
+	<DATA>
+	  False
+	  
+	</DATA>
+	<DATA>
+	  should previously-calculated arrays be used to create the plot?
+	</DATA>
+	</ROW>
+	<ROW><DATA>overplot</DATA>
+	<DATA>
+	  False
+	  
+	</DATA>
+	<DATA>
+	  If
+	  True
+	  
+	  then add the data to the current plot, otherwise erase the frame and
+	  create a new plot.
+	</DATA>
+	</ROW>
+      </TABLE>
+
+      <PARA>
+        The plot is displayed in a ChIPS plotting window. If there is
+        no plotting window open, one is created.  If a plotting window
+        exists, the overplot parameter value determines whether the
+        new plot is overlaid on any existing plots in the window or if
+        the window is cleared before the plot is drawn. 
+      </PARA>
+
+      <PARA>
+        ChIPS commands may be used within Sherpa to modify plot
+        characteristics and create hardcopies; refer to the <HREF link="http://cxc.harvard.edu/chips/">ChIPS website</HREF> for
+        information. 
+      </PARA>
+
+      <PARA>
+	The default values for the plot can be read - and changed - using
+	the get_model_plot_prefs() command. See
+      </PARA>
+      <PARA>
+	<SYNTAX><LINE>unix% ahelp get_model_plot</LINE></SYNTAX>
+      </PARA>
+      <PARA>
+	and the examples below for more information.
+      </PARA>
+
+
+      <PARA title="Plotting Multiple Objects">
+	To plot multiple Sherpa objects - e.g. data, model, fit,
+	residuals - in a single window, use
+	the <HREF link="http://cxc.harvard.edu/sherpa/ahelp/plot.html">plot command</HREF>.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; plot_model()</LINE>
+          <LINE>sherpa&gt; log_scale(XY_AXIS)</LINE>
+          <LINE>sherpa&gt; print_window()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Plot the convolved source model for the default dataset.
+	    The ChIPS command log_scale() is used to change the scaling of
+	    the axes to logarithmic and the print_window() command
+	    is used to send a postscript version of the plot to the
+	    default printer (since no argument is given).
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_model_plot_prefs()["xlog"] = True</LINE>
+          <LINE>sherpa&gt; get_model_plot_prefs()["ylog"] = True</LINE>
+          <LINE>sherpa&gt; plot_model()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The plot preferences for model plots is changed to use a logarithmic
+	    scale for both X and Y axes. Any new plots created by plot_model()
+	    will therefore be drawn with both axes logged.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; plot_data("src")</LINE>
+	  <LINE>sherpa&gt; plot_model("src", overplot=True)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    PLot the data and then overplot the convolved source model
+	    for the "src" dataset (this is essentially what plot_fit("src")
+	    does).
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

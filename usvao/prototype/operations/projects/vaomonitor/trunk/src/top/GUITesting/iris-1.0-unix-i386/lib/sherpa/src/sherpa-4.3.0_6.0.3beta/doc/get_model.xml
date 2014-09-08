@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_model" refkeywords=" get_model_pars get_model_type  model type pars parameters " seealsogroups=" sh.get sh.model " displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+      Return the model, model parameters, or model type
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_model( [id] )</LINE>
+	<LINE>get_model_pars(model)</LINE>
+	<LINE>get_model_type( model )</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <LIST>
+        <ITEM>
+        id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+         model - model variable or model expression string
+        </ITEM>
+      </LIST>
+
+      <PARA title="get_model">
+	The get_model command returns the full model by id.
+	If an instrument model is part expression, then the full
+	convolved model is returned.       
+	The show_model command (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/show_model.html">"ahelp show_model"</HREF>) is recommended to
+	simply print the current model to the screen.
+      </PARA>
+
+      <PARA title="get_model_pars">
+	The get_model_pars command returns a list of model parameters
+	by model variable or model expression string.
+      </PARA>
+
+      <PARA title="get_model_type">
+	The get_model_type command returns the model type by the model
+	variable or model expression string.
+      </PARA>
+      </DESC>
+
+     <QEXAMPLELIST>
+
+       <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; srcmod=get_model("src")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Return the model assigned to dataset "src" and store it in
+	    the variable "srcmod".
+	  </PARA>
+        </DESC>
+       </QEXAMPLE>
+
+       <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_model_pars(g1)</LINE>
+	  <LINE>['fwhm', 'pos', 'ampl']</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Return the model parameters for the model object "g1".
+	  </PARA>
+        </DESC>
+       </QEXAMPLE>
+
+       <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_model_type(g1)</LINE>
+	  <LINE>'gauss1d'</LINE>
+	  <LINE>sherpa&gt; get_model_type(gauss1d.g1 * powlaw1d.p1)</LINE>
+	  <LINE>'binaryopmodel'</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Return the model type for a simple component and a complex
+	    model expression. 
+	  </PARA>
+        </DESC>
+       </QEXAMPLE>
+
+     </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

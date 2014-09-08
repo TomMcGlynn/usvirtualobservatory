@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="show_method" refkeywords="show report status state information results optimization method optimize " seealsogroups="sh.info " displayseealsogroups="" context="info">
+
+   <SYNOPSIS>
+     Display the optimization method
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>show_method([outfile=None, clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+          The show_method command displays the current optimization
+          method and parameters. 
+      </PARA>
+
+    <LIST>
+      <ITEM>
+        outfile - name of the file in which to store the information
+      </ITEM>
+
+      <ITEM>
+        clobber -  a Boolean switch which indicates whether or not
+        the 'outfile' should be overwritten, if the file already exists;
+        default=False
+        
+      </ITEM>
+    </LIST>
+
+      <PARA>        
+        The command output looks like:
+      </PARA>        
+
+<VERBATIM>
+Optimization Method: NelderMead
+name         = simplex
+ftol         = 1.19209289551e-07
+maxfev       = None
+initsimplex  = 0
+finalsimplex = 9
+step         = None
+iquad        = 1
+verbose      = 0
+</VERBATIM>
+
+      <PARA>        
+        The behavior of the screen output is determined by the
+        user's $PAGER environment variable setting, which
+        is usually a variant of "more."  To disable paging within
+        show_all() - i.e. print the entire contents, even if it
+        scrolls offscreen - change this setting to "cat" before starting
+        Sherpa: 
+      </PARA>
+
+<VERBATIM>
+unix% setenv PAGER cat
+
+unix% sherpa
+</VERBATIM>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; show_method()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Print the optimization method to the screen.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; show_method("sherpa.method", True)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Write the optimization method to the file "sherpa.method",
+	    clobbering any existing file with the same name.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+     </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

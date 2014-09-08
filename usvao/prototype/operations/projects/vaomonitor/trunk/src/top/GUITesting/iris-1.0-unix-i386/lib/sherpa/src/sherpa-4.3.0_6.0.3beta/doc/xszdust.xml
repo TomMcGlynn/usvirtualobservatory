@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xszdust" refkeywords="zdust model models modeling modelling source composite nested joint xspec" seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Extinction by dust grains.
+XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+  Extinction by dust grains from Pei (1992, ApJ 395, 130), suitable
+  for IR, optical and UV energy bands, including the full energy
+  ranges of the Swift UVOT and XMM-Newton OM detectors. Three models
+  are included which characterize the extinction curves of (1) the
+  Milky Way, (2) the LMC and (3) the SMC. The models can be modified
+  by redshift and can therefore be applied to extragalactic
+  sources. The transmission is set to unity shortward of 912 Angstroms
+  in the rest frame of the dust. This is incorrect physically but does
+  allow the model to be used in combination with an X-ray
+  photoelectric absorption model such as xsphabs. Parameter 1 (method)
+  describes which extinction curve (MW, LMC or SMC) will be
+  constructed and should never be allowed to float during a fit. 
+</PARA>
+
+<PARA>
+  The extinction at V,  
+</PARA>
+
+<PARA>
+<EQUATION>
+  A(V) = E(B-V) x Rv.
+</EQUATION>
+</PARA>
+
+<PARA>
+  Rv should typically remain
+  frozen for a fit. Standard values for Rv are MW = 3.08, LMC = 3.16
+  and SMC = 2.93 (from table 2 of Pei 1992), although these may not be
+  applicable to more distant dusty sources.
+</PARA>
+
+<PARA>
+     This is a multiplicative model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xszdust Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> 
+  <DATA>method</DATA> 
+  <DATA>1 = Milky Way, 2 = LMC, 3 = SMC</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> 
+  <DATA>ebv</DATA> 
+  <DATA>E(B-V): color excess</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> 
+  <DATA>rv</DATA> 
+  <DATA>ratio of total to selective extinction</DATA> 
+</ROW>
+<ROW> 
+  <DATA>4</DATA> 
+  <DATA>redshift</DATA> 
+  <DATA>redshift, z</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

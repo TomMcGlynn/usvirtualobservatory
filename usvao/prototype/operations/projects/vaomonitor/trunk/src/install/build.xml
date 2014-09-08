@@ -1,0 +1,41 @@
+<project name="simpleCompile" default="dist" basedir="/www/htdocs/vo/usvao_svn/vaomonitor/trunk/src/">
+  <property name="sourceDir" value="${basedir}/top/"/>
+  <property name="outputDir" value="/www/htdocs/vo/vaomonitor_3"/>
+  <property name ="perl"     value = "${outputDir}/perl"/>
+   <target name="compile"  depends = "deploy">
+     <javac srcdir = "${basedir}/java"  includeantruntime ="false" destdir = "${outputDir}/java"/>
+   </target>
+   <target name = "dist"  depends = "compile">
+      <echo message = "Installing Vaomonitor System"/>
+   </target>
+   <target name="deploy" depends = "init">
+     <copy  todir  = "${outputDir}">
+        <fileset dir = "${sourceDir}"/>
+     </copy>
+     <copy todir = "${outputDir}/java_automonitor">
+       <fileset dir = "${basedir}/java_automonitor"/>	
+     </copy>
+     <copy todir = "${outputDir}/doc">
+       <fileset dir = "${basedir}/doc"/>
+     </copy>
+     <copy  todir   = "${outputDir}/js">
+        <fileset dir = "${basedir}/js"/>
+     </copy>
+     <copy todir = "${outputDir}/java">
+       <fileset dir = "${basedir}/java"/>
+     </copy>
+     <copy todir = "${outputDir}/css">
+       <fileset dir = "${basedir}/css"/>
+     </copy>
+     <copy todir = "${outputDir}/data">
+      <fileset dir = "${basedir}/data"/>
+     </copy>
+     <copy todir = "${outputDir}/install">
+    <fileset dir = "${basedir}/install"/>
+     </copy>
+   </target>
+   <target name = 'init'>
+      <echo message="Creating new installation directory"/>
+      <mkdir dir = "${outputDir}"/>
+   </target>
+</project>

@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="unpack_ascii" refkeywords="ascii unpack TABLECrate" seealsogroups="sh.io sh.data " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Unpack ASCII data from a crate
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>unpack_ascii( filename|crate, [ncols=2,colkeys=None,dstype=Data1D,sep=" ",comment="#"] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The unpack_ascii command unpacks tabular data from a
+        column-based text file into a Sherpa data object.
+      </PARA>
+
+      <PARA>
+	If a filename is provided as input, a crate is created but
+	hidden and cannot be used for other analysis in the session. 
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  filename - the name of the file (with path) or crate which
+	  contains the data 
+	</ITEM>
+
+        <ITEM>
+	  ncols - number of columns to read; default=2
+	</ITEM>
+
+        <ITEM>
+	  colkeys - list of column names;
+          default=None
+          
+	</ITEM>
+
+        <ITEM>
+	  sep - the column-separating character; default is a space (" ")
+	</ITEM>
+
+        <ITEM>
+	  comment - character which indicates a comment line; default=#
+	</ITEM>
+
+        <ITEM>
+	  dstype - dataset type: Data1D, Data1DInt, Data2D, Data2DInt;
+	  default=Data1D
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; src = unpack_ascii("data.txt", ncols=3)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Unpack the first three columns of data.txt into the data
+ 	    object "src".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; tabdat = unpack_ascii("tabbed.txt", sep="\t")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Unpack ASCII data from tabbed.txt, which uses a tab as the
+	    separator character.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; rprof = unpack_ascii("radpro.txt[cols RMID, SUR_BRI, SUR_BRI_ERR]", dstype=Data1D)</LINE>
+          <LINE>sherpa&gt; rprof = unpack_ascii("radpro.txt", colkeys=["RMID", "SUR_BRI", "SUR_BRI_ERR"], dstype=Data1D)</LINE>
+	</SYNTAX>
+
+        <DESC>
+          <PARA>
+	    The two commands are equivalent.  The columns RMID,
+	    SUR_BRI, and SUR_BRI_ERR are unpacked from the Data1D
+            dataset radpro.txt.  The default comment character and
+	    column separator are used. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

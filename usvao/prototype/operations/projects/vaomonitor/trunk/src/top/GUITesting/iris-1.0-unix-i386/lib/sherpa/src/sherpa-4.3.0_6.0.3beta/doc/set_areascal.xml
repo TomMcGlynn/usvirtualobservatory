@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_areascal" refkeywords="set area areascale scale areascal " seealsogroups="sh.set " displayseealsogroups="" context="data">
+
+<SYNOPSIS>
+  Set the fractional area
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_areascal([id], area, [bkg_id])</LINE>
+      
+    </SYNTAX>
+
+<DESC>
+  <PARA>
+  	The set_areascal command sets the fractional area scale (areascal).
+  	In spectral analysis, the areascal is usually set to "1" and the ARF is used to scale the data.
+  </PARA>
+  
+  <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")      
+        </ITEM>
+
+  	<ITEM>
+  	  area - the areascal value [pixel]
+  	</ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if setting the background value;
+          default=None
+          
+        </ITEM>
+  </LIST>
+</DESC>
+
+      <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_areascal(0.75)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the areascal of the default dataset to 0.75.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_areascal(2, 0.90)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the areascal of dataset id=2 to 0.90.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_areascal(1, 0.75, 1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the areascal for the first background of dataset id=1 to 0.75.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

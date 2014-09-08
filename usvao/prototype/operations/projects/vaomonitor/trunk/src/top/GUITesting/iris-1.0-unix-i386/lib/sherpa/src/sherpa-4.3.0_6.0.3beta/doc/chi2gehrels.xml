@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="chi2gehrels" refkeywords="chi chi2 chisquare gehrels variance sigma stat stats statistics statistic " seealsogroups="sh.stat " displayseealsogroups="" context="statistics">
+	<SYNOPSIS>
+      Chi-square statistic with the Gehrels variance function.
+    </SYNOPSIS>
+
+    <DESC>
+      <PARA>
+	chi2gehrels is the default statistic in Sherpa.
+      </PARA>
+
+      <PARA>
+	If the number of counts in each bin is small (&lt; 5), then we
+	cannot assume that the Poisson distribution from which the
+	counts are sampled has a nearly Gaussian shape.  The standard
+	deviation (i.e., the square-root of the variance) for this
+	low-count case has been derived by Gehrels (1986): 
+      </PARA>
+
+      <PARA>
+	<EQUATION>
+	    sigma(i,S) = 1 + (sqrt)[N(i,S)+0.75] .
+	  </EQUATION>
+      </PARA>
+
+      <PARA>
+	Higher-order terms have been dropped from the expression; it
+	is accurate to approximately one percent.  If one does not
+	perform background subtraction, then sigma(i) =  sigma(i,S); otherwise, one may
+	use standard error propagation to estimate that
+      </PARA>
+
+      <PARA>
+	<EQUATION>
+	    sigma(i)^2 = sigma(i,S)^2 + [A(S)/A(B)]^2 sigma(i,B)^2 .
+	  </EQUATION>
+      </PARA>
+
+      <PARA>
+	The background term appears only if a background region is
+	specified and background subtraction is done.  The help file
+	on the chi-square statistic has more information, including
+	definitions of the quantities in the equation:
+        
+        <HREF link="http://cxc.harvard.edu/sherpa/ahelp/chisquare.html">"ahelp chisquare"</HREF>
+	.
+      </PARA>
+
+      <PARA title="Note on Background Subtraction">
+	The accuracy of the latter expression has not been determined,
+	thus the user should proceed with caution when subtracting
+	background from the raw data when using this statistic.  An
+	approach preferable to background subtraction is to model the
+	background and data simultaneously. 
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_stat("chi2gehrels")</LINE>
+	  <LINE>sherpa&gt; show_stat()</LINE>
+	  <LINE>Statistic: Chi2Gehrels</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Set the fitting statistic and then confirm the new value.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+    
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

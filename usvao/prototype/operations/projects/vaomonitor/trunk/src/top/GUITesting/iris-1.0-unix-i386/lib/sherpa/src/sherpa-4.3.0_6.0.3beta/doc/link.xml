@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="link" refkeywords="link linked linking model models parameter parameters fit" seealsogroups="sh.model sh.par " displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+     Link a model parameter to another model parameter.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>link( par, val )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The link command links model parameters together, so that the
+       value of one model parameter is determined by the value of
+       another model parameter.  The model parameter
+       being linked may be set to an arbitrary arithmetic expression
+       that includes the other model parameter. The linked parameters
+       may be thawed or frozen during the fit with commands thaw()
+       and freeze(),  and can be unlinked with the
+       command unlink().
+      </PARA>
+
+    <LIST>
+     <ITEM>
+       par      - Sherpa model parameter to be linked
+     </ITEM>
+     <ITEM>
+       val      - value of other model parameter or arithmetic
+                  function of other model parameter, assigned to 'par' 
+     </ITEM>
+     </LIST>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; link(p1.phoindex, p1.norm)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   The link() function assigns the value of the second
+	   argument to the first argument.  Here, the 'phoindex'
+	   parameter of model "p1" is set to the value of the 'norm'
+	   parameter of the same model.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+        <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; link(p1.phoindex, 1.7*p1.norm)</LINE>
+          
+ 	</SYNTAX>
+	<DESC>
+          <PARA>
+	   In this example, the value of the 'phoindex' parameter of
+	   model "p1" is set to the 'norm' parameter value multiplied
+	   by 1.7. 
+          </PARA>
+        </DESC>
+        </QEXAMPLE>
+
+       <QEXAMPLE>
+         <DESC>
+          <PARA>
+            The changes made by the link() function can be
+	    viewed with show_model():
+          </PARA>
+          <VERBATIM>
+sherpa&gt; show_model()
+(xsphabs.abs1 * xspowerlaw.p1)
+Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   abs1.nh      frozen         0.03            0        1e+05 10^22 atoms / cm^2
+   p1.phoindex  thawed          1.7           -2            9           
+   p1.norm      thawed            1            0        1e+24   
+
+sherpa&gt; link(p1.phoindex, p1.norm)
+
+sherpa&gt; show_model()
+(xsphabs.abs1 * xspowerlaw.p1)
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   abs1.nh      frozen         0.03            0        1e+05 10^22 atoms / cm^2
+   p1.phoindex  linked            1            expr: p1.norm           
+   p1.norm      thawed            1            0        1e+24           
+          </VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

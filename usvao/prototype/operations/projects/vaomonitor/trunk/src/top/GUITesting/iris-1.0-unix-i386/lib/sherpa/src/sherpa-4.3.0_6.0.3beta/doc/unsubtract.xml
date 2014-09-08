@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="unsubtract" refkeywords="unsubtraction background back bkg backscale backscal rescale rescaling" seealsogroups="sh.bg " displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+      Undo background subtraction
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>unsubtract( id )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+	The unsubtract command undoes the background subtraction to restore the 
+	input source dataset amplitudes.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to unsubtract; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+      </LIST>
+
+      <PARA>
+	The "subtracted" field of the source dataset is updated to indicate that 
+	the data are not background-subtracted, as shown in the examples.
+      </PARA>
+
+      <PARA>
+	To background-subtract a dataset, use the subtract command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/subtract.html">"ahelp subtract"</HREF>). 
+      </PARA>
+     </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; unsubtract()</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Undo the background subtraction of the default dataset.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; unsubtract("src")</LINE>
+	  <LINE>sherpa&gt; get_data("src").subtracted</LINE>
+	  <LINE>False</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Undo the background subtraction of the dataset "src".  The "subtracted" 
+	    field of the source data object is updated to show that the dataset 
+	    is not background-subtracted.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

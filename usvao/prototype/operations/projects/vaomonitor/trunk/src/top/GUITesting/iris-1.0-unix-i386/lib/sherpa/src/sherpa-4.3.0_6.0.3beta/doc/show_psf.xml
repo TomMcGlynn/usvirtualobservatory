@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="show_psf" refkeywords="show report status state information psf" seealsogroups="sh.psf " displayseealsogroups="" context="psfs">
+
+    <SYNOPSIS>
+     Display the PSF model 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>show_psf([id=None, outfile=None, clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+          <PARA>
+	  The show_psf function displays the PSFs that have been
+          defined in Sherpa. To view the filtered kernel which will be used in the convolution, use the show_kernel command.
+          </PARA>
+
+<PARA title="What is the difference between the PSF and the kernel?">
+	   The point spread function (PSF) is defined by the full (unfiltered) PSF image loaded into Sherpa or the PSF model expression evaluated over the full range of the dataset; both types of PSFs are established with the load_psf() command.  The kernel is the subsection of the PSF image or model which is used to convolve the data.  This subsection is created from the PSF when the size and center of the kernel are defined by the command set_psf().  While the kernel and PSF might be congruent, defining a smaller kernel helps speed the convolution process by restricting the number of points within the PSF that Sherpa must evaluate.
+	 </PARA>
+	<LIST>
+        <ITEM>
+          id - the id of the dataset to use; default
+          is to show PSF information for all available datasets.
+        </ITEM>
+
+      <ITEM>
+        outfile - name of the file in which to store the information
+      </ITEM>
+
+      <ITEM>
+        clobber -  a Boolean switch which indicates whether or not
+        the 'outfile' should be overwritten, if the file already exists;
+        default=False
+        
+      </ITEM>
+    </LIST>
+	<PARA>        
+        The behavior of the screen output is determined by the
+        user's $PAGER environment variable setting, which
+        is usually a variant of "more."  To disable paging within
+        show_all() - i.e. print the entire contents, even if it
+        scrolls offscreen - change this setting to "cat" before starting
+        Sherpa: 
+      </PARA>
+
+<VERBATIM>
+unix% setenv PAGER cat
+
+unix% sherpa
+</VERBATIM>
+
+        </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_data("center_box_0.25pix.fits")</LINE>
+	  <LINE>sherpa&gt; load_psf("psf0","psf_f1_norm_0.25pix.fits")</LINE>
+	  <LINE>sherpa&gt; set_psf(psf0)</LINE>
+	  <LINE/>
+	  <LINE>sherpa&gt; show_psf</LINE>
+	  <LINE>PSF Model: 1</LINE>
+	  <LINE>name      = psf_f1_norm_0.25pix.fits</LINE>
+	  <LINE>x0        = Float64[65536]</LINE>
+	  <LINE>x1        = Float64[65536]</LINE>
+	  <LINE>y         = Float64[65536]</LINE>
+	  <LINE>shape     = (256, 256)</LINE>
+	  <LINE>staterror = None</LINE>
+	  <LINE>syserror  = None</LINE>
+	  <LINE>sky       = physical</LINE>
+	  <LINE> crval    = [ 4064.5  4026.5]</LINE>
+	  <LINE> crpix    = [ 0.5  0.5]</LINE>
+	  <LINE> cdelt    = [ 0.25  0.25]</LINE>
+	  <LINE>eqpos     = world</LINE>
+	  <LINE> crval    = [ 248.6211   70.531 ]</LINE>
+	  <LINE> crpix    = [ 4096.5  4096.5]</LINE>
+	  <LINE> cdelt    = [-0.0001  0.0001]</LINE>
+	  <LINE> crota    = 0</LINE>
+	  <LINE> epoch    = 2000</LINE>
+	  <LINE> equinox  = 2000</LINE>
+	  <LINE>coord     = logical</LINE>
+	  <LINE/>
+	  <LINE>sherpa&gt; show_kernel</LINE>
+	  <LINE>PSF Kernel: 1</LINE>
+	  <LINE>psfmodel.psf0</LINE>
+	  <LINE>   Param        Type          Value          Min          Max      Units</LINE>
+	  <LINE>   -----        ----          -----          ---          ---      -----</LINE>
+	  <LINE>   psf0.kernel  frozen psf_f1_norm_0.25pix.fits</LINE>
+	  <LINE>   psf0.size    frozen   (256, 256)   (256, 256)   (256, 256)</LINE>
+	  <LINE>   psf0.center  frozen   (128, 128)   (128, 128)   (128, 128)</LINE>
+	  <LINE>   psf0.radial  frozen            0            0            1</LINE>
+	  <LINE>   psf0.norm    frozen            1            0            1</LINE>
+	  <LINE/>
+	  <LINE>sherpa&gt; psf0.size = [32,32]</LINE>
+	  <LINE>sherpa&gt; psf0.center = [128,129]</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            A PSF is loaded from file and assigned to the first
+            dataset with "set_psf".  The first pair of "show_psf" and
+            "show_kernel" commands indicate that the PSF and the
+            kernel are identical at this point. 
+          </PARA>
+
+          <PARA>
+            Finally, the size and center of the psf are set.  If we
+            run the "show" commands again, we can see that the
+            original PSF data are unaltered.  The kernel, however, is
+            now defined as a subsection of the full PSF with the size
+            (32,32) and center (128,129) that were specified.   
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; show_psf
+PSF Model: 1
+name      = psf_f1_norm_0.25pix.fits
+x0        = Float64[65536]
+x1        = Float64[65536]
+y         = Float64[65536]
+shape     = (256, 256)
+staterror = None
+syserror  = None
+sky       = physical
+ crval    = [ 4064.5  4026.5]
+ crpix    = [ 0.5  0.5]
+ cdelt    = [ 0.25  0.25]
+eqpos     = world
+ crval    = [ 248.6211   70.531 ]
+ crpix    = [ 4096.5  4096.5]
+ cdelt    = [-0.0001  0.0001]
+ crota    = 0
+ epoch    = 2000
+ equinox  = 2000
+coord     = logical
+	sherpa&gt; show_kernel
+PSF Kernel: 1
+psfmodel.psf0
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   psf0.kernel  frozen psf_f1_norm_0.25pix.fits
+   psf0.size    frozen     (32, 32)     (32, 32)     (32, 32)
+   psf0.center  frozen   (128, 129)   (128, 129)   (128, 129)
+   psf0.radial  frozen            0            0            1
+   psf0.norm    frozen            1            0            1
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

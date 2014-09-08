@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="sample_energy_flux" context="utilities" refkeywords="sample sampling flux energy distribution" seealsogroups="sh.sample sh.energy sh.flux">
+
+    <SYNOPSIS>
+     Sample the energy flux distribution
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>sample_energy_flux( [lo, hi], [id=1, num=1, correlated=False] )</LINE>
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The sample_energy_flux command returns one or more samples of
+       the energy flux distribution,
+       which is the flux distribution for the model component accounting for the errors
+       on the model parameters.
+      </PARA>
+
+      <PARA>
+	The plot_energy_flux() command can be used to plot up this distribution.
+      </PARA>
+
+      <LIST>
+	<CAPTION>Function arguments</CAPTION>
+	<ITEM>
+          lo - lower photon bound; the default value of
+	  None
+	  means that the lower limit if the instrument model (ARF and RMF) should be used.
+	</ITEM>
+	<ITEM>
+          hi - upper photon bound; the default value of
+	  None
+	  means that the upper limit if the instrument model (ARF and RMF) should be used.
+       </ITEM>
+
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+	<ITEM>
+	  num - number of samples used in the distribution (the default value is 1)
+	</ITEM>
+
+	<ITEM>
+	  correlated - whether to use a multi- or uni-variate distribution to sample the parameter values.
+	  The default value of 
+	  False
+	  means use a uni-variate distribution,
+	  whilst
+	  True
+	  means use a multi-variate distribution.
+	</ITEM>
+
+
+      </LIST>
+
+      <PARA title="The return value">
+	The return value is a two-dimensional array. The number of rows in the array
+	matches the number of samples used (so the value of the num argument).
+	The first column is the flux value; the remaining columns give the
+	parameter values used to calculate the flux value (the order is that of
+	the parnames field of the get_fit_results() output).
+      </PARA>
+      <PARA>
+	The units for the flux values are the same as that returned by the
+	calc_energy_flux() command.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; a = sample_energy_flux()</LINE>
+          <LINE>sherpa&gt; print (a[0][0])</LINE>
+
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Obtain and print one sample of the energy flux distribution from the default model,
+	    over the whole energy interval.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; a = sample_energy_flux(0.5, 7.0)</LINE>
+
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Obtain one sample of the energy flux distribution from the default model,
+	    between 0.5 and 7.0 keV.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; a = sample_energy_flux(id="src", num=100)</LINE>
+	  <LINE>sherpa&gt; f = a[:,0]</LINE>
+
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Obtain 100 samples of the energy flux distribution from the "src" model. The flux values
+	    are extracted as the one-dimensional array f.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+   <BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+   <VERSION>CIAO 4.3</VERSION>
+   <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

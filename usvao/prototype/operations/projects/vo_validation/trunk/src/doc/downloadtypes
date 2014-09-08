@@ -1,0 +1,4 @@
+cone|ConeSearch|cone_res|"http://nvo.stsci.edu/vor10/RegistryAdmin.asmx/DSQueryRegistry?predicate= [@status]=1 and xsi_type = 'vs:CatalogService' and contains(*, 'STANDARDID*ivo://ivoa.net/std/ConeSearch')"
+siap|SIA|siap_res|"http://nvo.stsci.edu/vor10/RegistryAdmin.asmx/DSQueryRegistry?predicate= [@status]=1 and xsi_type = 'vs:CatalogService' and contains(*, 'STANDARDID*ivo://ivoa.net/std/SIA')"
+registry|Registry|registry_res|"http://nvo.stsci.edu/vor10/RegistryAdmin.asmx/DSQueryRegistry?predicate= [@status]=1 and xsi_type = 'vg:Registry'"
+ssa|SSA|ssa_res|"http://nvo.stsci.edu/vor10/RegistryAdmin.asmx/DSQueryRegistry?predicate= [@status]=1 and xsi_type = 'vs:CatalogService' and contains(*, 'STANDARDID*ivo://ivoa.net/std/SSA')"

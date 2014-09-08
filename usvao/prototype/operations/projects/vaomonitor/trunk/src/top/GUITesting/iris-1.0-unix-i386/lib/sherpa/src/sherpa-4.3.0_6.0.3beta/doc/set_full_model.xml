@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_full_model" refkeywords=" set_bkg_full_model set set_model expression expressions source src model models modeling modelling composite nested joint component response resp rsp convolved unconvolved non-convolved" seealsogroups="sh.model sh.set " displayseealsogroups="" context="modeling">
+
+ 
+    <SYNOPSIS>
+      Set the complete convolved source and background model expressions to be used for
+      fitting a data set
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_full_model([id], model)</LINE>
+      <LINE>set_bkg_full_model([id], model)</LINE>
+
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The functions set_full_model() and set_bkg_full_model() allow
+       users to define model expressions that apply instrument responses, or
+       PSFs, to some model components, while not applying the response or the PSF to
+       other model components in the model expression.  An example of this kind of
+       model is an expression where a spectral model is defined in
+       energy space, and folded through a response matrix; then, a
+       background model defined in *counts*, which is *not*  folded
+       through the response, is added to the model expression.
+      </PARA>
+
+     
+      <PARA>
+        The set_full_model command allows the user to explicitly set the
+        complete convolved model expression to be used for fitting a
+        data set, e.g., in place of the automatic version of the
+        function, set_source.  It may be used to
+        establish complex convolution model components to model 
+        specific background features, e.g., in the scenario in which
+        the background emission cannot be disentangled from the
+        source emission in a diffuse source. The set_bkg_full_model
+        command is available for simultaneously fitting a source data
+        set and its corresponding background data set.
+      </PARA>
+
+      <PARA>
+	Users should note that the Sherpa functions which are related to a
+        source or background model defined with set_source or
+	set_bkg_source, such as plot_source/plot_bkg_source or
+        calc_energy_flux, are not compatible with the complete model
+        expression defined by the set_full_model or set_bkg_full_model functions. In order to
+        use these Sherpa functions, users should define source and
+	background models in the
+        usual way with the automatic functions set_source and
+	set_bkg_source.
+	Similarly, if a PSF model is explicitly convolved with a
+	source model in a set_full_model expression - which does not
+	require a call to set_psf - then the functions show_psf,
+show_kernel, image_kernel, plot_psf, and other Sherpa PSF functions will not work.  To use these
+	functions, the PSF model should be added to the instrument list in the usual way
+	with set_psf (see "ahelp set_psf"), and the source model defined with set_source.
+      </PARA>
+      
+      <LIST>
+        <ITEM>
+          id - the id of the data set; if not given, uses the default
+        data set id (id=1 by default, see "ahelp get_default_id") 
+	</ITEM>
+
+	<ITEM>
+           model - the complete convolved model expression to use as the full model;
+	   for a list of all available models, see "ahelp models"
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; rsp = get_response()</LINE>
+	  <LINE>sherpa&gt; set_full_model(rsp(powlaw1d.pl))</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Obtain the instrument response for default data set id=1
+	   using get_response(), and convolve it with the source model
+ 	    of data set 1, a 1-D powerlaw named "pl". This series of
+	commands is the manual-equivalent of the command
+	'set_source("powlaw1d.pl")', which automatically convolves the response associated with data set 1 with the specified source model. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; rmf = get_rmf(2)</LINE>
+	  <LINE>sherpa&gt; arf = get_arf(2)</LINE>
+	  <LINE>sherpa&gt; set_full_model(2, rmf(arf(xswabs.a1 * xsbbody.b2)))</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Use both the get_rmf() and get_arf() commands (in lieu of
+	get_response()) to obtain the instrument response, and
+	convolve it with the source model for data set 2 in the
+	set_full_model expression. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; rsp = get_response("src")</LINE>
+          <LINE>sherpa&gt; set_full_model("src","rsp(bbody.bb+powlaw1d.pl)+gauss1d.line1+gauss1d.line2")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The complete convolved model for data set "src" is built
+        from four different 
+	    model components plus an instrument response.  The
+        black-body and power-law model components  are
+	    convolved with the response, whereas the Gaussian model
+        components are not convolved with the response.  Note that in
+        this instance the model components which are convolved
+        with the response are in energy space, while the unconvolved
+        components are in channel space.  The use of set_full_model
+        in this way is especially useful in the context where a
+        separate background spectrum is not available, e.g., to model
+        the instrumental background emission contributing to a diffuse
+        source which covers the entire field of view of the
+        observation. The set_bkg_full_model function ought to be used
+        where a separate background file is available (see Example 5 below).
+         </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; rsp = get_response()</LINE>
+          <LINE>sherpa&gt; bkg_rsp = get_response(bkg_id=1)</LINE>
+	  <LINE>sherpa&gt; bkg_scale = get_exposure()*get_backscal()/get_exposure(bkg_id=1)/get_backscal(bkg_id=1)</LINE>
+	  <LINE>sherpa&gt; set_full_model(rsp(xsphabs.abs1*powlaw1d.p1) + bkg_scale*bkg_rsp(abs1*powlaw1d.p2))</LINE>
+          <LINE>sherpa&gt; set_bkg_full_model(bkg_rsp(abs1*p2))</LINE>
+
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The complete convolved model for the source is set, which includes
+         a corresponding background component scaled
+        by the source-to-background exposure and backscale
+        ratios. The function
+        set_bkg_full_model is then used to define the complete
+        convolved background model. This series of commands allows the
+        source and background components to be fitted simultaneously
+        (compare with a background fit using set_source and
+        set_bkg_source, by calling  'print get_model()' and 'print get_bkg_model()'). 
+         </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+       <SYNTAX>
+	  <LINE>sherpa&gt; load_image("subimage_bin.fits")</LINE>
+	  <LINE>sherpa&gt; load_psf("psf1","psf.fits")</LINE>
+	  <LINE>sherpa&gt; set_full_model(psf1(gauss2d.g1) +
+        beta2d.b1+const2d.c1)</LINE>
+	</SYNTAX>
+	<DESC>
+         <PARA>
+	  An image data set is loaded into Sherpa along with a PSF
+        model from file.  The set_full_model function is used to
+        explicitly convolve the PSF model with one component of the
+        full, multi-component source model expression.  When a PSF
+        is explicitly convolved with a source model using the
+        set_full_model function, it is not necessary to add the PSF to
+        the instrument with set_psf (see "ahelp
+        set_psf").  
+	 </PARA>
+	 </DESC>
+      </QEXAMPLE>
+     
+  
+
+    </QEXAMPLELIST>
+        <BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

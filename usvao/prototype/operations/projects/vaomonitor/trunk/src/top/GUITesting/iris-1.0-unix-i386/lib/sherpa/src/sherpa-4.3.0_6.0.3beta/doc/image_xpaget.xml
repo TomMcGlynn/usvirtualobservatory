@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="image_xpaget" refkeywords="image images img imager imaging xpa xpaget visualize visualization  visualise visualisation" seealsogroups="sh.img " displayseealsogroups="" context="visualization">
+
+    <SYNOPSIS>
+     Retrieve data from ds9 using XPA.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>image_xpaget( arg )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The image_xpaget() function is used to retrieve data from the
+       SAO imager, ds9, using XPA; it provides a simple,
+       user-friendly interface which is similar to the xpaget
+       command-line tool
+       [http://hea-www.harvard.edu/saord/xpa/programs.html#xpaget]
+       from the XPA package.  A call to the function
+       image_xpaget("file") would translate to 'xpaget ds9 file' on
+       the command line. 
+      </PARA>
+
+      <LIST>
+       <ITEM>
+        arg - string value; "arg" in the command-line syntax 'xpaget ds9 arg'. 
+       </ITEM>
+      </LIST>
+	</DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; image_xpaget("file")</LINE>
+	  <LINE>sherpa&gt; image_xpaget("regions")</LINE>
+	  <LINE>sherpa&gt; image_xpaget("wcs sky")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The image_xpaget function accepts one string argument, using it as
+	    the command 'xpaget ds9 arg'.  For example, to ask ds9
+	    which file is currently displayed, or which regions have
+	    been defined, one would use "file" or "regions" as the
+	    argument, respectively.   
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

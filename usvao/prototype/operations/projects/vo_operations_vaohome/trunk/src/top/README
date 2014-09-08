@@ -1,0 +1,32 @@
+#
+#
+Summary:
+This directory contains code that ties in with the usvaohome page (www.usvao.org).
+The code updates the service status icons for vao services on the vao home page and is used
+with other pages including the Science Service Monitor.
+
+SW:
+-update_service_icons.pl - the tool that handles the icon updates. This can be called in
+a cgi and command line context. However, it would be better to invoke this tool inside another
+cgi tool since this script is meant to run under the hood (i.e. the vao notification tool calls
+this tool dynamically).
+-Connect/* - code to connect to your MySQL db.
+-SQL/* - queries 
+
+What's needed to run this:
+a) a publicly writeable tmp area where users have permissions to make updates via a cgi tool.
+b) a tmp area where the icons can be stored,probably the same area used in (a)
+c) an xml status file that contains the current status of each of the vao services. This can be generated
+by calling the vaomonitor tool using:
+http://heasarc.gsfc.nasa.gov/vo/vaomonitor/vaodb.pl?format=xml
+
+The xml status file is currently called "status.xml". The user may wish to rename this but must edit
+the update_service_icons.pl script to point to the correct path and filename.
+d)a MySQL DB that has the appropriate tables and columns (i.e. the vo_operations db containing the vao_notices
+table
+
+
+
+
+
+

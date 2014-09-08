@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="unpack_arrays" refkeywords="array arrays unpack" seealsogroups="sh.io " displayseealsogroups="" context="data">
+
+<SYNOPSIS> 
+  Unpack arrays from a CrateData object
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>unpack_arrays( array0, ..., arrayN, [dstype] )</LINE>
+      
+    </SYNTAX>
+
+<DESC>
+      <PARA>
+        The unpack_arrays command unpacks one or more arrays from a
+        CrateData object into a Sherpa data object.  
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  array0 ... arrayN - the input arrays
+	</ITEM>
+
+        <ITEM>
+	  dstype - dataset type: Data1D, Data1DInt, Data2D, Data2DInt,
+	  DataPHA, DataIMG; default=Data1D
+	</ITEM>
+      </LIST>
+ 
+      <PARA>
+	The data must be listed in the order required by the
+	dataset type:   
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  Data1D: x, y,
+          staterror=None, 
+          
+          syserror=None
+          
+	</ITEM>
+
+	<ITEM>
+	  Data1DInt: xlo, xhi, y,
+          staterror=None, 
+          
+          syserror=None
+          
+	</ITEM>
+
+	<ITEM>
+	  Data2D: x0, x1, y, 
+          shape=None, 
+          
+          staterror=None, 
+          
+          syserror=None
+          
+	</ITEM>
+
+	<ITEM>
+	  Data2DInt: x0lo, x1lo, x0hi, x1hi, y,
+          shape=None, 
+          
+          staterror=None, 
+          
+          syserror=None
+          
+	</ITEM>
+
+	<ITEM>
+	  DataPHA: channel, counts, 
+          staterror=None, 
+          
+          syserror=None, 
+          
+          bin_lo=None, 
+          
+          bin_hi=None, 
+          
+          grouping=None, 
+          
+          quality=None, 
+          
+          exposure=None, 
+          
+          backscal=None, 
+          
+          areascal=None
+          
+	</ITEM>
+
+	<ITEM>
+	  DataIMG:  x0, x1, y, 
+          shape=None, 
+          
+          staterror=None, 
+          
+          syserror=None, 
+          
+          sky=None, 
+          
+          eqpos=None, 
+          
+	  coord=logical
+	</ITEM>	
+      </LIST>
+
+</DESC>
+ 
+   <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; grid=unpack_arrays(xlo, xhi, counts)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Unpack the arrays "xlo", "xhi", and "counts" to create a
+	    data object named "grid".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

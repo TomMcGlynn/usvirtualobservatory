@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_data_plot" refkeywords=" get_data_contour get_data_contour_prefs get_data_image get_data_plot_prefs get data plot prefs preferences type " seealsogroups=" sh.get sh.data  " displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+      Return a plot, contour, or image of the data, or the associated
+      preferences
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_data_plot( [id] )</LINE>
+	<LINE>get_data_plot_prefs()</LINE>
+	<LINE>get_data_contour( [id] )</LINE>
+	<LINE>get_data_contour_prefs()</LINE>
+	<LINE>get_data_image( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <LIST>
+        <ITEM>
+        id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+      </LIST>
+
+      <PARA title="get_data_plot">
+	The get_data_plot command returns a data plot object which
+	holds references to various plot preferences and data arrays.
+	The attributes are:
+      </PARA>
+
+       <TABLE>
+        <ROW><DATA>Field name</DATA><DATA>Description</DATA></ROW>
+        <ROW><DATA>x</DATA><DATA>The bin centers (independent variable)</DATA></ROW>
+        <ROW><DATA>y</DATA><DATA>The value of the dependent variable</DATA></ROW>
+        <ROW><DATA>yerr</DATA><DATA>The error on y</DATA></ROW>
+        <ROW><DATA>xerr</DATA><DATA>The half-width of the bin</DATA></ROW>
+        <ROW><DATA>xlabel</DATA><DATA>The label for the X axis</DATA></ROW>
+        <ROW><DATA>ylabel</DATA><DATA>The label for the Y axis</DATA></ROW>
+        <ROW><DATA>title</DATA><DATA>The plot title</DATA></ROW>
+        <ROW><DATA>plot_prefs</DATA><DATA>The preferences for the plot</DATA></ROW>
+      </TABLE>
+
+   <PARA>
+      Note that the show_data command (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/show_data.html">"ahelp show_data"</HREF>) is
+      recommended to simply print the current data to the screen.
+    </PARA>
+
+      <PARA title="get_data_plot_prefs">
+	The get_data_plot_prefs command returns a dictionary of data
+	plot preferences.   For example:
+      </PARA>
+
+<VERBATIM>
+{'errstyle': 'line',
+ 'linestyle': 0,
+ 'symbolfill': False,
+ 'symbolsize': 3,
+ 'symbolstyle': 4,
+ 'yerrorbars': True}
+</VERBATIM>
+
+      <PARA>
+	Users can change preferences as desired in the set returned by
+	this function, as shown below in the examples.
+	These preferences changes the appearance of data plotted using
+	the following commands:
+	plot_data(), plot_bkg(), plot_ratio(), and the "fit" versions
+	of these commands, such as plot_fit(), plot_bkg_fit(), and
+	plot_fit_delchi().
+      </PARA>
+
+      <PARA title="get_data_contour">
+	The get_data_contour command returns a data contour object
+	which holds references to various plot preferences and data
+	arrays. The attributes are:
+      </PARA>
+
+       <TABLE>
+        <ROW><DATA>Field name</DATA><DATA>Description</DATA></ROW>
+        <ROW><DATA>x0</DATA><DATA>The coordinate values for the first axis as a 1D array</DATA></ROW>
+        <ROW><DATA>x1</DATA><DATA>The coordinate values for the second axis as a 1D array</DATA></ROW>
+        <ROW><DATA>y</DATA><DATA>The data value at each point of (x0,x1) as a 1D array</DATA></ROW>
+        <ROW><DATA>levels</DATA><DATA>The levels used for drawing contours</DATA></ROW>
+        <ROW><DATA>xlabel</DATA><DATA>The label for the X axis</DATA></ROW>
+        <ROW><DATA>ylabel</DATA><DATA>The label for the Y axis</DATA></ROW>
+        <ROW><DATA>title</DATA><DATA>The plot title</DATA></ROW>
+        <ROW><DATA>contour_prefs</DATA><DATA>The preferences for the plot</DATA></ROW>
+      </TABLE>
+
+      <PARA title="get_data_contour_prefs">
+	The get_data_contour_prefs command returns a dictionary of
+	data contour preferences. By default, the set is empty:
+      </PARA>
+
+<VERBATIM>
+{}
+</VERBATIM>
+
+      <PARA title="get_data_image">
+	The get_data_image command returns an image object which
+	holds the reference to the image array.	The attributes are:
+      </PARA>
+
+       <TABLE>
+        <ROW><DATA>Field name</DATA><DATA>Description</DATA></ROW>
+        <ROW><DATA>name</DATA><DATA>A label for the object</DATA></ROW>
+        <ROW><DATA>y</DATA><DATA>The image data (as a 2D array)</DATA></ROW>
+        <ROW><DATA>eqpos</DATA><DATA>Information on the world coordinate system (if available)</DATA></ROW>
+        <ROW><DATA>sky</DATA><DATA>Information on the physical coordinate system (if available)</DATA></ROW>
+       </TABLE>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; p = get_data_plot_prefs()</LINE>
+	  <LINE>sherpa&gt; p["xlog"] = True</LINE>
+	  <LINE>sherpa&gt; p["ylog"] = True</LINE>
+	  <LINE>sherpa&gt; p["symbolfill"] = True</LINE>
+	  <LINE>sherpa&gt; p["symbolstyle"] = chips_diamond</LINE>
+	  <LINE>sherpa&gt; p["symbolcolor"] = "blue"</LINE>
+	  <LINE>sherpa&gt; p["errcolor"] = "yellow"</LINE>
+	  <LINE>sherpa&gt; p["errstyle"] = "capped"</LINE>
+	  <LINE>sherpa&gt; p["linetyle"] = chips_solid</LINE>
+	  <LINE>sherpa&gt; p["linecolor"] = "orange"</LINE>
+	  <LINE>sherpa&gt; p["linethickness"] = 2</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	    Change the defaults for plot_data() so that:
+	  </PARA>
+	  <LIST>
+	    <ITEM>both the X and Y axes will be drawn using a log scale;</ITEM>
+	    <ITEM>symbols will be drawn as blue, filled diamonds;</ITEM>
+	    <ITEM>errors will be drawn as yellow bars with caps on the end;</ITEM>
+	    <ITEM>the points will be connected using a solid, orange line of thickness 2.</ITEM>
+	  </LIST>
+	</DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; d = get_data_plot()</LINE>
+	  <LINE>sherpa&gt; erase()</LINE>
+	  <LINE>sherpa&gt; add_curve(d.x, d.y, d.yerr)</LINE>
+	  <LINE>sherpa&gt; set_plot_xlabel(d.xlabel)</LINE>
+	  <LINE>sherpa&gt; set_plot_ylabel(d.ylabel)</LINE>
+	  <LINE>sherpa&gt; set_plot_title(d.title)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Manually create a plot of the data, similar to that created by the
+	    plot_data() command.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_data_contour("src")</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Return a data contour object for dataset "src".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+     </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+  </ENTRY></cxchelptopics>

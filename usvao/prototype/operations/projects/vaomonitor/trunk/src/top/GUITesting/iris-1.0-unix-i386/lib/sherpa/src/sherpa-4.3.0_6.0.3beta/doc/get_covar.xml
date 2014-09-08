@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_covar" refkeywords="get_covariance_results get_covar_results get_covar_opt get covar covariance confidence xconf proj projection " seealsogroups="sh.get sh.conf" displayseealsogroups="" context="confidence">
+	<SYNOPSIS>
+     Return settings or results for the covariance method.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_covar()</LINE>
+	<LINE>get_covar_results()</LINE>
+	<LINE>get_covar_opt( [name] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+get_covar   
+      </PARA>
+
+      <PARA>
+	The get_covar command returns the current covariance estimation
+	method object.  The function accepts no arguments. The
+	returned information includes: 
+      </PARA>
+
+      <LIST>
+	<ITEM>sigma - to get 1, 2, or 3-sigma limits</ITEM>
+	<ITEM>eps - precision of resulting limits</ITEM>
+        <ITEM>maxiters- maximum number of tries to bracket desired limits, before returning</ITEM>
+	<ITEM>soft_limits - a switch which allows the search to go all
+         the way out to the hard parameter limits; if switched on, the
+	 search will be restricted to occur within the soft limits,
+         which can be changed by the user</ITEM> 
+      </LIST>
+
+      <PARA>
+get_covar_results
+      </PARA>
+
+      <PARA>
+	The get_covar_results command accesses results from the last
+	time covariance was run.  The function accepts no arguments.
+	The results include the following attributes:
+      </PARA>
+
+      <LIST>
+       <ITEM>datasets - Data sets in fit</ITEM> 
+       <ITEM>methodname - Estimation method name</ITEM> 
+       <ITEM>fitname  - Fitting method name</ITEM> 
+       <ITEM>statname - Statistic name</ITEM> 
+       <ITEM>percent</ITEM>
+       <ITEM>sigma    - Change in statistic</ITEM> 
+       <ITEM>parnames - Model parameter names</ITEM> 
+       <ITEM>parvals  - Model parameter fit values</ITEM> 
+       <ITEM>parmins  - Model parameter minimum values</ITEM> 
+       <ITEM>parmaxes - Model parameter maximum values</ITEM> 
+       <ITEM>extra_output - the covariance matrix</ITEM> 
+      </LIST>
+
+      <PARA>
+get_covar_opt
+      </PARA>
+
+      <PARA>
+	The get_covar_opt command returns a covariance option by
+	name. If the name isn't specified, it returns a dictionary of
+	all options that govern how covariance is run.
+       </PARA>
+
+      <LIST>
+	<ITEM>sigma - to get 1, 2, or 3-sigma limits, default=0.01</ITEM>
+	<ITEM>eps - precision of resulting limits, default=0.01</ITEM>
+        <ITEM>maxiters- maximum number of tries to bracket desired limits, before returning, default=200</ITEM>
+	<ITEM>soft_limits - a switch which allows the search to go all
+         the way out to the hard parameter limits; if switched on, the
+	 search will be restricted to occur within the soft limits,
+         which can be changed by the user, default=False</ITEM> 
+      </LIST>
+     </DESC>
+
+   <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_covar()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+	    Return a variable listing of all settings that govern how
+            the covariance method calculates confidence limits.
+	    Sample output is
+          </PARA>
+<VERBATIM>
+sherpa&gt; print(get_covar())
+name        = covariance
+soft_limits = False
+maxiters    = 200
+sigma       = 1
+eps         = 0.01
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_covar_results()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+	    Return a variable listing of all results from the last
+	    time covariance was run, e.g.
+          </PARA>
+<VERBATIM>
+sherpa&gt; print(get_covar_results())
+data sets   = (2,)
+methodname = covariance
+fitname    = levmar
+statname   = chi2gehrels
+sigma      = 1
+percent    = 68.2689492137
+parnames   = ('p2.gamma', 'p2.ampl')
+parvals    = (1.0, 1.0)
+parmins    = (-2.5123712497785912e-05, -1.8031410361942839e-05)
+parmaxes   = (2.5123712497785912e-05, 1.8031410361942839e-05)
+nfits      = 0
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_covar_opt("sigma")</LINE>
+	  <LINE>1</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Return the value of the sigma option, which is "1" in this
+	    example. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; print get_covar_results().extra_output</LINE>
+	  <LINE>[[  1.00688203e-07   1.94309062e-07   1.63077981e-07  -2.14579320e-08   -2.33234708e-07]</LINE>
+	  <LINE> [  1.94309062e-07   5.97149180e-08   6.14497850e-07   5.95866729e-07   -3.20550581e-07]</LINE>
+	  <LINE> [  1.63077981e-07   6.14497850e-07   1.36168008e-06   9.66523748e-07   -1.53815319e-06]</LINE>
+	  <LINE> [ -2.14579320e-08   5.95866729e-07   9.66523748e-07   4.53031826e-06   -1.61278260e-06]</LINE>
+	  <LINE> [ -2.33234708e-07  -3.20550581e-07  -1.53815319e-06  -1.61278260e-06    1.74050730e-06]]</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Retrieve the covariance matrix as a numpy N-D array.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

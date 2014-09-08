@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="fake" refkeywords="fakeit bfakeit pha generic simulate simulated fake faked Poisson" seealsogroups="sh.pha sh.data sh.io" displayseealsogroups="" context="data">
+	<SYNOPSIS>
+     Simulate a generic data set with a chosen model and add noise
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>fake( [id=None] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The fake command simulates a generic data set by evaluating a
+        chosen source model over a blank data set created with the
+        dataspace1d command; Poisson noise is added to the modeled
+	data values. The dataspace1d command creates an empty
+        data array with a user-defined grid; the user specifies the grid
+        'start' and 'stop' points, and optionally the grid 'step' size
+      or 'numbins' and
+         data set type ('dstype', default is Data1dInt). 
+	</PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; dataspace1d(0.1,10,0.01)</LINE>
+          <LINE>sherpa&gt; set_model(gauss1d.g1)</LINE>
+          <LINE>sherpa&gt; fake()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            The fake command evaluates a 1D Gaussian model function
+	    over an empty 1D data array created with the dataspace1d
+	    command. The modeled values are simulated with Poisson noise and
+	    stored to data set id=1. Since the 'dstype' argument was not
+	    explicitly set in the dataspace1d command, the empty array
+	    has the default data set type Data1DInt. 
+          </PARA>
+<VERBATIM>
+sherpa&gt; dataspace1d(0.1,10,0.01)
+sherpa&gt; set_model(gauss1d.g1)
+sherpa&gt; fake()
+
+sherpa&gt; show_data()
+Data Set: 1
+Filter: 0.1050-10.0050 x
+name      = dataspace1d
+xlo       = Float64[991]
+xhi       = Float64[991]
+y         = Float64[991]
+staterror = None
+syserror  = None
+
+sherpa&gt; show_model()
+Model: 1
+gauss1d.g1
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   g1.fwhm      thawed           10  1.17549e-38  3.40282e+38           
+   g1.pos       thawed            0 -3.40282e+38  3.40282e+38           
+   g1.ampl      thawed            1 -3.40282e+38  3.40282e+38      
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; dataspace1d(1,10,id=2,dstype=DataPHA)</LINE>
+          <LINE>sherpa&gt; set_model(2, xspowerlaw.p1)</LINE>
+          <LINE>sherpa&gt; fake(2)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            Here, the fake command is used to generate a generic 1D PHA
+	    data set using a powerlaw model function. Since the
+	    'step' argument was not explicitly set in the dataspace1d
+	    command, the empty data array is created using the default grid step
+	  size of 1. The modeled values are simulated with Poisson noise and stored to data set id=2.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; dataspace2d([256,256])</LINE>
+          <LINE>sherpa&gt; set_model(beta2d.bb+const2d.cc)</LINE>
+          <LINE>sherpa&gt; bb.xpos=128</LINE>
+          <LINE>sherpa&gt; bb.ypos=128</LINE>
+          <LINE>sherpa&gt; fake()</LINE>
+          <LINE>sherpa&gt; image_model()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+              The fake command is used to generate a 2D dataset using
+              a beta2d model combined with a 2D constant (const2d).
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

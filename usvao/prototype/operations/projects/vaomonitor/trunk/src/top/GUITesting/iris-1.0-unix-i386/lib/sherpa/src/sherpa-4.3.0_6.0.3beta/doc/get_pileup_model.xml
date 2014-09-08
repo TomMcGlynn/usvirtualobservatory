@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_pileup_model" refkeywords=" get return pileup pile up model  " seealsogroups="sh.get sh.model " displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+     Return the pileup model associated with a data set.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_pileup_model( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The get_pileup_model commands returns the jdpileup model
+	associated with a data set.  
+      </PARA>
+
+    <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+    </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_pileup_model("src")</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Return the pileup model for dataset "src".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

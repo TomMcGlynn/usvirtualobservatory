@@ -1,0 +1,124 @@
+<HTML>
+ <HEAD>
+   <TITLE>
+     Validation Design
+   </TITLE>
+     <LINK REL="StyleSheet" HREF='http://www.us-vo.org/app_templates/usvo_template.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/datascope/css/styles.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/monitor/css/tr.css' TYPE="text/css">
+ </HEAD>
+<Body>
+
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>   
+     <td width="112" height="32" align="center" valign="top">
+        <a href="http://www.us-vo.org" class="nvolink" target="_top">
+          <img src="http://www.usvao.org/documents/Templates/Logos/VAO_logo_100.png" alt="NVO HOME" border="0"/>
+        </a>
+        <span class="nvolink">
+          <a href="http://www.us-vo.org/" target="_top">National Virtual Observatory</a></span>
+     </td>   
+     <td valign="top"><table  width="100%" border="0" cellpadding="0" cellspacing="0">      
+       <tr>       
+         <td width="2" height="30" bgcolor="white"></td>
+         <td width="678" height="39" align="center" valign="middle" 
+         background="http://www.us-vo.org/images/templatestars.jpg" bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+         
+    <span class= \"nvoapptitle\" style= \"background\-repeat: repeat\-y;\">Vaomonitor (Documentation)</span></td></tr>
+    </td> 
+    
+   
+    <td bgcolor="white" width="2"></td>     
+    </tr>     
+    <tr>       
+     <td bgcolor="white" width="2"></td>      
+     <td bgcolor="white" width="2"></td>      
+     </tr>      
+     <tr>       
+     <td align="center" valign="top" colspan="3"><table cellspacing="2" cellpadding="0" border="0" width="100%"  style="margin: 0pt;"> 
+  <tr>
+     <!-- the local links -->
+  
+     <td  class='navlink'><a href='/cgi-bin/vo/notification/shownote.pl'>VO Service Notices </a></td>
+     <td  class='navlink'><a href='/cgi-bin/vo/monitor/monitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'>NVO Home</a></td>  
+     <td  class='navlink'><a href=http://us-vo.org/feedback/index.cfm>NVO Feedback</a></td> 
+            
+     </tr>       
+     </table></td>
+      </tr>
+      </table></td>
+      <td width = 140 align = center valign = top><a href = "http://www.heasarc.gsfc.nasa.gov">
+      <img src=/vo/datascope//images/nasa_logo.gif width=72 height=60 border=0 alt='NASA home'>
+      </img></a><br><span>Hosted by:</span><br>HEASARC<br> 
+      <br>
+      </td></tr></table>
+
+
+<h3>
+VAOMonitor
+</h3>
+
+<h4>Overview</h4>
+<p>The Vaomonitor system consists of three parts:<br>
+<br>
+<p><b>A.An automated testing System</b><br>
+-This system tests each service daily and stores the results in a local MySQL database.<br>
+<br>
+<b>B.An interactive Testing System</b><br>
+-There is a page that allows users to perform real time tests on individual services<br>
+-A capability exists to support multiple tests for a given service.<br>
+<br>
+<b>C. The Vaomonitor Page</b><br>
+This page contains the latest vao service test results. In addition, this page
+provides information on external (non-vao services) that are currently failing and the last time
+services were harvested from other regsitries. Complete documentation for this page can be found
+<a href = './help.html'>here</a><br>
+
+
+<br>
+<h4>System Design</h4>
+<p> The following diagrams illustrate the behavior of the
+system. Arrows indicate the order in which scripts and tests are executed at runtime.
+<br><br>
+A. HOURLY AUTOMATED MONITORING<br>
+Java is used to drive the hourly tests. The code extracts 
+test metadata from the MYSQL database and builds a Perl test query. This Perl wrapper 
+in turn runs either a Perl or Java test on a service. Tests are either general (aliveness checks)
+or unique tests that require their own specialized code and require unique Perl Responses,which are in XML format are 
+parsed and all metadata is stored in the db.<br><br>
+ 
+<img src = "./automated.png" width = '600'><br>
+
+A vaomonitor home page is provided to users showing the latest status of each
+service. This is a cgi script that extracts and processes test results
+and displays them. <br>
+
+<img src = "./dailymonitoring.png"  width = '480'><br>
+
+B.Interactive Monitoring<br>
+The interactive web page for testing services in real time will provide
+buttons for each test that will allow users to:<br>
+1.Choose a particular test to run on a given service via drop down boxes.<br>
+2.Choose whether the response should be the service response, or a wrapped
+pass/fail response.<br>
+3.Responses to pass/fail checks are handled by AJAX and will appear in a popup.<br>
+
+<img src = "./interactive.png" width = '600'><br> 
+
+<br>
+<h4>Database Design</h4>
+<p>The Vaomonitor will store the monitoring results in a MySQL database. The database
+will consist of the following 5 tables:<br>
+-A Services table:<br>
+-A Testhistory table:<br>
+-A Tests table<br>
+-An Error log table<br>
+-A table containing error types<br><br>
+
+The specifics of each table, including column parameters, primary keys,
+and table relationships can <br> be found <a href = './vaomonitordb.html'>here</a><br>
+
+<br>The Vaomonitor also uses the VAO Operations db when displaying notices. Information on this table
+can be found <a href = './vaooperationsdb.html'>here</a><br>
+

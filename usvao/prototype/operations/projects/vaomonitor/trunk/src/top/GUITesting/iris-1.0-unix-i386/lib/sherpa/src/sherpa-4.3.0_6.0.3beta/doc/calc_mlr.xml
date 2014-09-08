@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="calc_mlr" refkeywords="calculate mlr maximum significance likelihood ratio" seealsogroups="sh.data " displayseealsogroups="" context="utilities">
+
+     <SYNOPSIS>
+     Calculate the Maximum Likelihood Ratio test
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>calc_mlr(delta_dof, delta_stat)</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+      	The calc_mlr command computes significance using the Maximum Likelihood Ratio test
+	 	using the change in degrees of freedom and the change in the statistic value.
+      </PARA>
+      
+      <LIST>
+		<ITEM>delta_dof: the change in degrees of freedom</ITEM>
+		<ITEM>delta_stat: change in the statistic value</ITEM>
+      </LIST>
+
+	  <PARA>
+	  The Maximum Likelihood Ratio (MLR) test is a model comparison test. Model comparison
+	   tests are used to select from two competing models that which best describes a
+	   particular dataset. A model comparison test statistic, T, is created from the
+	   best-fit statistics of each fit; as with all statistics, it is sampled from a
+	   probability distribution p(T). The test significance is defined as the integral of
+	   p(T) from the observed value of T to infinity. The significance quantifies the
+	   probability that one would select the more complex model when in fact the null
+	   hypothesis is correct. A standard threshold for selecting the more complex model is
+	   significance &gt; 0.05 (the "95% criterion" of statistics).
+	</PARA>
+	
+	<PARA>
+	   The MLR test may be used if:
+	</PARA>
+		
+		<LIST>
+			<ITEM>
+	       the simpler of the two models is nested within the other, i.e., one can obtain
+	       the simpler model by setting the extra parameters of the more complex model to
+	       default values, often zero;
+			</ITEM>
+			
+			<ITEM>
+	       the extra parameters have values sampled from normal distributions under the null
+	       hypothesis (i.e., if one samples many datasets given the null hypothesis and fits
+	       these data with the more complex model, the distributions of values for the extra
+	       parameters must be Gaussian);
+			</ITEM>
+			
+			<ITEM>
+	       those normal distributions are not truncated by parameter space boundaries; and
+			</ITEM>
+			
+			<ITEM>
+	       the best-fit statistics for each fit individually are sampled from the 
+	       chi-square distribution.
+	       </ITEM>
+	     </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_mlr(2, 20)</LINE>
+          
+	</SYNTAX>
+	    <DESC>
+	   	  <PARA>
+	   	  	Calculate the maximum likelihood ratio where the change in degrees of freedom is 2 and the change in statistic is 20.
+	   	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

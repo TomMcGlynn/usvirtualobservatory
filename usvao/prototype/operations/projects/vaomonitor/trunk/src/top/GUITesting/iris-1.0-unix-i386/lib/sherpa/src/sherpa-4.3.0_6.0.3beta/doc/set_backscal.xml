@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_backscal" refkeywords="set set_bbackscale setdata setback backscale time exposure timescale scale backscal" seealsogroups="sh.set " displayseealsogroups="" context="data">
+
+<SYNOPSIS>
+ Set the extraction region area
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_backscal([id], backscal, [bkg_id])</LINE>
+      
+    </SYNTAX>
+
+<DESC>
+  <PARA>
+  	The set_backscal command sets the extraction region area (backscal).   
+  	Backscale can be defined as the ratio of the area of the source (or background) 
+  	extraction region in image pixels to the total number of image pixels. A strict 
+  	definition is less important than ensuring that the backscale for the source 
+  	dataset and its associated background dataset are defined the same, because only
+    the ratio of source and background backscale is used in analyses.
+  </PARA>
+  
+  <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")      
+        </ITEM>
+
+  	<ITEM>
+  	  backscal - the backscale value [pixel]
+  	</ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if setting the background value;
+          default=None
+          
+        </ITEM>
+  </LIST>
+</DESC>
+       
+      <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_backscal(2.5e-6)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the backscal value for the default dataset to 2.5e-6.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_backscal(2, 2e-6)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the backscal value for dataset id=2 to 2e-6.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_backscal(1, 1e-5, 1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the backscal value for the first background of dataset id=1 to 1e-5.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+     </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

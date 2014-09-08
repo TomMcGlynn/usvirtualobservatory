@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="list_methods" refkeywords="list lists show get method methods opt optimization" seealsogroups="sh.method sh.list" displayseealsogroups="" context="methods">
+	<SYNOPSIS>
+     List all Sherpa optimization methods.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>list_methods()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       Sherpa includes several different optimization methods that can
+       be used to fit models to data.  This function lists all
+       available methods, by name; it accepts no arguments. 
+        
+      </PARA>
+      <PARA>
+        The primary task of Sherpa is to fit a model M(p) to a set of
+	observed data, where the vector p
+	denotes the model parameters. An optimization method is one
+	that is used to determine the vector of model parameter values,
+	p0, for which the chosen fit statistic is minimized.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; list_methods()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+           ['levmar', 'moncar', 'simplex', 'neldermead']
+          </PARA>
+          <PARA>
+	   The list_methods() function lists the names of all fit
+	   optimization methods available in Sherpa:
+         </PARA>	 
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

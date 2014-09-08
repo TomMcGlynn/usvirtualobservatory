@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="projection" refkeywords=" proj region error interval uncertainty parameter statistic statistics sigma project goodness" seealsogroups="sh.conf " displayseealsogroups="" context="confidence">
+	<SYNOPSIS>
+      Estimate confidence intervals for selected thawed parameters
+      based on projection method 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>proj([id], [otherids], [parameters], [numcores] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+	CIAO 4.2 has a new confidence function which supersedes
+	projection; see <HREF link="http://cxc.harvard.edu/sherpa/ahelp/conf.html">"ahelp conf"</HREF>.  The projection function has
+	been deprecated and may be removed in the future; users	should
+	replace it with the confidence function in their analysis.  
+      </PARA>
+
+      <PARA>
+         The projection command computes confidence interval bounds
+	 for the specified model parameters in the dataset.  A given
+         parameter's value is varied along a grid of values while the
+         values of all the other thawed parameters are allowed to
+         float to new best-fit values.  The function may be called
+	 as "projection" or simply "proj".
+      </PARA>
+
+      <PARA>
+	The projection command differs from covariance
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/covariance.html">"ahelp covariance"</HREF>)
+	in that all other thawed parameters are allowed to float to
+        new best-fit values, instead of being fixed to the initial
+        best-fit values.  While projection is more general
+        (e.g. allowing the user to examine the parameter space away
+        from the best-fit point), it is in the strictest sense no more
+        accurate than covariance for determining confidence
+        intervals. 
+      </PARA>
+      
+      <PARA>
+        The computationally intensive confidence function is
+       parallelized to make use of multi-core systems (i.e., laptops or
+       desktops with 2 or 4 cores) to provide 
+       significant improvements in efficiency compared to previous
+       releases of Sherpa; the 'numcores' argument may be used to
+       specify how the cores should be used when confidence is run.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  id, otherids - the id(s) of the dataset(s) to use; default
+	  is all thawed parameters for all datasets which have a model
+	  defined; 
+          otherids=None
+	</ITEM>
+
+        <ITEM>
+	  parameters - model parameters on which projection should be
+	  run; default is all thawed parameters
+	</ITEM>
+	
+	<ITEM>
+         numcores - number of cores to use in parallelization; default
+         is to use all cores available
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        When running on multiple ids and parameters, the arguments may
+        be given in any order (see the examples); any argument that is
+        not defined as a model parameter is assumed to be a data id.
+      </PARA>
+
+      <PARA>
+        To control the number of sigma used for the limits (i.e. the
+        change in statistic), set the value of get_proj.sigma
+	
+	(<HREF link="http://cxc.harvard.edu/sherpa/ahelp/get_proj.html">"ahelp get_proj"</HREF>).
+	The default setting is to calculate +/- 1 sigma limits.
+      </PARA>
+
+      <PARA>
+        Because projection estimates confidence intervals for each
+        parameter independently, the relationship between sigma and
+        the change in statistic value delta_S can be particularly
+        simple: sigma = the square root of delta_S for statistics
+        sampled from the chi-square distribution and for the Cash
+        statistic, and is approximately equal to the square root of (2
+        * delta_S) for fits based on the general log-likelihood.  
+      </PARA>
+
+      <PARA>
+	When the search for confidence limits for a parameter has been
+	completed, it is reported to the screen, e.g.
+      </PARA>
+<VERBATIM>
+Confidence limits search for g2.fwhm finished (1 of 3)
+Confidence limits search for g2.pos finished (2 of 3)
+Confidence limits search for g2.ampl finished (3 of 3) 	
+</VERBATIM>
+
+      <PARA title="Accuracy of confidence intervals">
+        An estimated confidence interval is accurate if and only if:
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  the chi-square or logL surface in parameter space is
+	  approximately shaped like a multi-dimensional paraboloid,
+	  and
+	</ITEM>
+
+	<ITEM>
+	  the best-fit point is sufficiently far (~3 sigma) from
+	  parameter space boundaries.
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        One may determine if these conditions hold, for example, by
+        plotting the fit statistic as a function of each parameter's
+        values (the curve should approximate a parabola) and by
+        examining contour plots of the fit statistics made by varying
+        the values of two parameters at a time (the contours should be
+        elliptical, and parameter space boundaries should be no closer
+        than approximately 3 sigma from the best-fit point).  The
+	int_proj
+	
+	(<HREF link="http://cxc.harvard.edu/sherpa/ahelp/int_proj.html">"ahelp int_proj"</HREF>).
+	and reg_proj
+	
+	(<HREF link="http://cxc.harvard.edu/sherpa/ahelp/reg_proj.html">"ahelp reg_proj"</HREF>).
+	can be used to create the contours.
+      </PARA>
+
+      <PARA>
+        If either of the conditions given above does not hold, then
+        the output from projection may be meaningless except to give
+        an idea of the scale of the confidence intervals. To
+        accurately determine the confidence intervals, one would have
+        to reparameterize the model, or use Monte Carlo simulations or
+        Bayesian methods.  
+      </PARA>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; proj()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Run projection on the default dataset(s), calculating
+	    limits for all thawed parameters of all data sets for
+	    which the user has defined a model to be fit.  The output
+	    for two data sets looks like:
+	  </PARA>
+
+<VERBATIM>
+projection 1-sigma bounds:
+   Param            Best-Fit  Lower Bound  Upper Bound
+   -----            --------  -----------  -----------
+   p1.gamma          2.15852   -0.0827856    0.0827856
+   p1.ampl        0.00022484 -1.48256e-05  1.48256e-05
+   g.gamma           2.15147   -0.0800326    0.0800326
+   g.ampl         0.00176499 -2.14396e-05  2.14396e-05
+
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; proj(2, g.gamma)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Compute parameter limits for the model parameter g.gamma,
+	    which is assigned to dataset 2.  The output is:
+	  </PARA>
+
+<VERBATIM>
+projection 1-sigma bounds:
+   Param            Best-Fit  Lower Bound  Upper Bound
+   -----            --------  -----------  -----------
+   g.gamma          2.15147   -0.0800326    0.0800326
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; proj(1, p1.ampl, 2, g.fwhm, g.ampl)</LINE>
+	  <LINE>sherpa&gt; proj(1, 2, p1.ampl, g.fwhm, g.ampl)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    These commands are two equivalent ways of running
+	    projection on one parameter from dataset 1 (p1.ampl) and
+	    two parameters from dataset 2 (g.fwhm and g.ampl).  Note
+	    that the order in which the ids and parameters names are
+	    supplied does not matter.  In both cases, the output is:
+	  </PARA>
+
+<VERBATIM>
+projection 1-sigma bounds:
+   Param            Best-Fit  Lower Bound  Upper Bound
+   -----            --------  -----------  -----------
+   p1.ampl       0.000224842 -1.48255e-05  1.48255e-05
+   g.fwhm            2.76124   -0.0335314    0.0335314
+   g.ampl         0.00176499 -2.14396e-05  2.14396e-05
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+  <ADESC title="CHANGES IN CIAO 4.3">
+   <PARA>
+    The projection function has a new argument 'numcores' to specify
+   how many cores on a user's system should be utilized when the
+   computationally intensive command is run.
+   </PARA>
+  </ADESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

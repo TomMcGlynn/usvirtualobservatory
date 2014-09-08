@@ -1,0 +1,550 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_bkg_plot" refkeywords="get background bkgnd bkg model models plot plots plotting fit residuals ratio data chisqr chi2 chisquared delchi deltachi get_bkg_source_plot get_bkg_model_plot get_bkg_fit_plot get_bkg_resid_plot get_bkg_ratio_plot get_bkg_chisqr_plot get_bkg_delchi_plot " seealsogroups="sh.get sh.model sh.data sh.plot" displayseealsogroups="" context="data">
+	<SYNOPSIS>
+     Return the data and preferences defining a background plot.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_bkg_plot( [id, bkg_id] )</LINE>
+	<LINE> get_bkg_source_plot( [id, lo, hi, bkg_id] )</LINE>
+	<LINE> get_bkg_model_plot( [id, bkg_id] )</LINE>
+	<LINE> get_bkg_fit_plot( [id, bkg_id] )</LINE>
+	<LINE> get_bkg_resid_plot( [id, bkg_id] )</LINE>
+	<LINE> get_bkg_ratio_plot( [id, bkg_id] )</LINE>
+	<LINE> get_bkg_chisqr_plot( [id, bkg_id] )</LINE>
+	<LINE> get_bkg_delchi_plot( [id, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <LIST>
+       <ITEM>
+         id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+
+       <ITEM>
+         bkg_id - the id of the background to use,
+         e.g. if more than one background is associated with the
+         data; default is the first background dataset loaded in the
+         Sherpa session
+       </ITEM>
+
+       <ITEM>
+         lo - low bound of the desired plotting range;
+        default=None 
+        
+       </ITEM>
+
+       <ITEM>
+         hi - high bound of the desired plotting range;
+        default= None 
+        
+       </ITEM>
+      </LIST>
+
+      <PARA>
+get_bkg_plot
+      </PARA>
+      <PARA>
+        The get_bkg_plot() function returns the data and preferences
+	defining a plot of a background associated
+	with a source data set. The function lists the x
+	and y data arrays used in the background plot created with
+	plot_bkg() (e.g. counts/sec/keV vs. energy), in
+	addition to the values for the x label, y label, units, title,
+	and other plotting preferences (such as linestyle,
+	linethickness, etc.). The information returned by
+	get_bkg_plot() may be stored in a variable, or printed to the
+	screen, as shown in the examples section.
+      </PARA>
+      <PARA>
+get_bkg_source_plot, get_bkg_model_plot
+      </PARA>
+      <PARA>
+        The get_bkg_source_plot() and get_bkg_model_plot() functions
+	return the data and preferences defining a plot of an
+	unconvolved and convolved background model,
+	repspectively. Once a model has been assigned to a background
+	associated with a data set, these functions can be used
+	to list the x and y data arrays used in the background model
+	plot created with plot_bkg_source() or plot_bkg_model(), in
+	addition to the values for the x label, y label, units, title,
+	and other plotting preferences (such as linestyle,
+	linethickness, etc.). The information returned by
+	these functions may be stored in a variable, or printed to the
+	screen, as shown in the examples section.
+      </PARA> 
+     <PARA>
+       Plot attributes returned by get_bkg_source_plot:
+     </PARA>
+      <LIST>
+	<ITEM> title        - title of plot </ITEM>
+    
+        <ITEM> xlabel       - x axis label </ITEM>
+    
+        <ITEM> ylabel      - y axis label </ITEM>
+    
+        <ITEM> units       - units of grid </ITEM>
+
+        <ITEM> xlo          - grid array, low bins </ITEM>
+    
+        <ITEM> xhi          - grid array, high bins </ITEM>
+    
+        <ITEM> flux         - unconvolved counts </ITEM>
+    
+        <ITEM> y            - convolved counts </ITEM>
+      </LIST>
+
+      <PARA>
+get_bkg_fit_plot
+      </PARA>
+      <PARA>
+	The get_bkg_fit_plot() function returns the data and
+	preferences defining the 'bkgdataplot' and 'bkgmodelplot'
+	which together produce the plot of a model fit to a background
+	data set. Once a model is assigned to a background associated
+	with a source data set, this command can be used to list the
+	x, y, x error, and y error data arrays used in the background data and model
+	plots, in addition to the values for the x label, y label, units, title, and
+	other plotting preferences (such as linestyle, linethickness, etc.). The
+	information returned by get_bkg_fit_plot() may be stored in a
+	variable, or printed to the screen, as shown in the examples
+	section. The background data, the model
+	assigned to the background, and the fit of the model to the
+	background can be visualized with plot_bkg(),
+	plot_bkg_model(), and plot_bkg_fit(), respectively.
+      </PARA>
+      <PARA>
+get_bkg_resid_plot
+      </PARA>
+      <PARA>
+      	The get_bkg_resid_plot() function returns the data and
+	preferences defining a plot of data-minus-model fit residuals
+	for a 1-D background data set.  Once a model is assigned to a
+	background associated with a source data set, this command can
+	be used to list the x, y, x error, and y error data arrays
+	used in the background fit residuals plot created with
+	plot_bkg_resid(), in addition to the
+	values for the x label, y label, units, title, and
+	other plotting preferences (such as linestyle, linethickness, etc.). The
+	information returned by get_bkg_resid_plot() may be stored in a
+	variable, or printed to the screen, as shown in the examples
+	section. 
+      </PARA>
+      <PARA>
+get_bkg_ratio_plot
+      </PARA>
+      <PARA>
+	The get_bkg_ratio_plot() function returns the data and
+	preferences defining a plot of the (data/model) ratio
+	for a 1-D background data set.  Once a model is assigned to a 
+	background associated with a source data set, this command can
+	be used to list the x, y, x error, and y error data arrays
+	used in the background ratio plot created with
+	plot_bkg_ratio(), in addition to the
+	values for the x label, y label, units, title, and
+	other plotting preferences (such as linestyle, linethickness, etc.). The
+	information returned by get_bkg_ratio_plot() may be stored in a
+	variable, or printed to the screen, as shown in the examples section.
+      </PARA>
+      <PARA>
+get_bkg_chisqr_plot
+      </PARA>
+      <PARA>
+	The get_bkg_chisqr_plot() command returns the data and
+	preferences defining a plot of the chi^2 of a background data
+	set, where the quantity 'chi^2' represents the background-minus-model
+	fit residuals divided by background uncertainties, the quantity
+	squared. Once a model is assigned to a background associated
+	with a source data set, this command can be used to list the x,
+	y, x error, and y error data arrays used in the chi^2 plot created with
+        plot_bkg_chisqr(), in addition to the values for the x label, y label,
+	title, and other plotting preferences. The information returned by
+	get_bkg_chisqr_plot() may be stored in a variable, or printed
+	to the screen, as shown in the examples section.
+      </PARA>
+      <PARA>
+get_bkg_delchi_plot
+      </PARA>
+      <PARA>
+	The get_bkg_delchi_plot() command returns the data and
+	preferences defining a plot of the delta chi of a background
+	data set, where the quantity 'delta chi' represents the
+	background-minus-model fit residuals divided by background
+	uncertainties. Once a model is assigned to a background
+	associated with a source data set, this command can be used to
+	list the x, y, x error, and y error data arrays used in the
+	delta chi plot created with plot_bkg_delchi(), in addition to
+	the values for the x label, y label, title, and other plotting
+	preferences. The information returned by get_bkg_delchi_plot()
+	may be stored in a variable, or printed to the screen, as
+	shown in the examples section.
+      </PARA>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_bkg_plot()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           When called with no arguments, get_bkg_plot() returns the
+	   data and preferences
+           defining a plot of the default background for the default
+           data set.  If a data set ID is specified
+           without a background ID, the first background loaded for
+           that data set is returned. If a background other than the
+           default is desired, e.g. if more than one is associated
+           with a data set, then both the data set ID and background ID must be specified.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; bplot= get_bkg_plot()
+sherpa&gt; print(bplot)
+x      = [  1.0950e-02   2.1900e-02   3.6500e-02 ...,   1.4914e+01   1.4928e+01
+   1.4943e+01]
+y      = [ 0.      0.      0.     ...,  0.0012  0.      0.0921]
+yerr   = [ 0.0045  0.0023  0.0023 ...,  0.0028  0.0023  0.0118]
+xerr   = [ 0.0073  0.0146  0.0146 ...,  0.0146  0.0146  0.0146]
+xlabel = Energy (keV)
+ylabel = Counts/sec/keV
+title  = simple_bkg.pi
+plot_prefs = {'errstyle': 'line', 'symbolfill': False, 'symbolstyle': 4, 'linestyle': 0, 'symbolsize': 3, 'yerrorbars': True}
+
+sherpa&gt; get_bkg_plot(2).title
+1843_bkg.pi
+
+sherpa&gt; get_bkg_plot(2,2).title
+1843_bkg2.pi
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_bkg_source_plot()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           When called with no arguments, get_bkg_source_plot()
+           returns the the data and preferences
+           defining a plot of the unconvolved background model for the default
+           background.  If a data set ID
+           is specified without a background ID, the unconvolved model
+           for the first background loaded for that data set is
+           returned. If a background other than the
+           default is desired, e.g. if more than one is associated
+           with a data set, then both the data set ID and background
+           ID must be specified.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; set_bkg_model(1, "const1d.c1", 1)
+sherpa&gt; set_bkg_model(2, "const1d.c2_1", 1)
+sherpa&gt; set_bkg_model(2, "const1d.c2_2", 2)
+
+sherpa&gt; bplot_source=get_bkg_source_plot()
+sherpa&gt; print(bplot_source)
+xlo    = [  0.3    0.31   0.32 ...,  10.97  10.98  10.99]
+xhi    = [  0.31   0.32   0.33 ...,  10.98  10.99  11.  ]
+flux   = [ 1.  1.  1. ...,  1.  1.  1.]
+y      = [ 0.01  0.01  0.01 ...,  0.01  0.01  0.01]
+xlabel = Energy (keV)
+ylabel = Photons/sec/keV/cm^2
+units  = energy
+title  = Source Model of simple_bkg.pi
+plot_prefs = {'symbolstyle': 0, 'linethickness': 3, 'linestyle': 1,
+'linecolor': 'red'}
+
+sherpa&gt; get_bkg_source_plot(2).title
+Source Model of 1843_bkg.pi
+
+sherpa&gt; get_bkg_source_plot(2,2).title
+Source Model of 1843_bkg2.pi
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+        <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_bkg_model_plot()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           When called with no arguments, get_bkg_model_plot() returns
+           the data and preferences defining a plot of the convolved 
+	   background model for the default
+           background.  If a data set ID
+           is specified without a background ID, the convolved model
+           for the first background loaded for that data set is
+           returned. If a background other than the
+           default is desired, e.g. if more than one is associated
+           with a data set, then both the data set ID and background
+           ID must be specified.
+          </PARA>
+<VERBATIM>
+sherpa&gt; set_bkg_model(1, "const1d.c1", 1)
+
+sherpa&gt; bplot_model=get_bkg_model_plot()
+sherpa&gt; print(bplot_model)
+xlo    = [  7.3000e-03   1.4600e-02   2.9200e-02 ...,   1.4907e+01   1.4921e+01
+   1.4936e+01]
+xhi    = [  1.4600e-02   2.9200e-02   4.3800e-02 ...,   1.4921e+01   1.4936e+01
+   1.4950e+01]
+y      = [ 0.  0.  0. ...,  0.  0.  0.]
+xlabel = Energy (keV)
+ylabel = Counts/sec/keV
+title  = Model
+histo_prefs = {'linethickness': 2, 'linecolor': 'red'}
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+	 <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_bkg_fit_plot()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+	   When called with no arguments, get_bkg_fit_plot() returns
+  	   the data and preferences defining a plot of a model fit to
+	   the default background
+ 	   data set.  If a data set ID
+           is specified without a background ID, the model fit to
+           the first background loaded for that data set is
+           returned. If a background other than the
+           default is desired, e.g. if more than one is associated
+           with a data set, then both the data set ID and background
+           ID must be specified.
+          </PARA>
+<VERBATIM>
+sherpa&gt; bplot_fit=get_bkg_fit_plot()
+sherpa&gt; print(bplot_fit)
+dataplot   = simple_bkg.pi
+x      = [  1.0950e-02   2.1900e-02   3.6500e-02 ...,   1.4914e+01   1.4928e+01
+   1.4943e+01]
+y      = [ 0.      0.      0.     ...,  0.0012  0.      0.0921]
+yerr   = [ 0.0045  0.0023  0.0023 ...,  0.0028  0.0023  0.0118]
+xerr   = [ 0.0073  0.0146  0.0146 ...,  0.0146  0.0146  0.0146]
+xlabel = Energy (keV)
+ylabel = Counts/sec/keV
+title  = simple_bkg.pi
+plot_prefs = {'errstyle': 'line', 'symbolfill': False, 'symbolstyle': 4, 'linestyle': 0, 'symbolsize': 3, 'yerrorbars': True}
+
+modelplot  = Background Model Contribution
+x      = [  1.0950e-02   2.1900e-02   3.6500e-02 ...,   1.4914e+01   1.4928e+01
+   1.4943e+01]
+y      = [ 0.  0.  0. ...,  0.  0.  0.]
+yerr   = None
+xerr   = [ 0.0073  0.0146  0.0146 ...,  0.0146  0.0146  0.0146]
+xlabel = Energy (keV)
+ylabel = Counts/sec/keV
+title  = Background Model Contribution
+plot_prefs = {'symbolstyle': 0, 'linethickness': 3, 'linestyle': 1, 'linecolor': 'red'}
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+	  <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_bkg_resid_plot()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           When called with no arguments, get_bkg_resid_plot() returns
+  	   the data and preferences defining a plot of the background
+  	   model fit residuals for the default background
+ 	   data set.  If a data set ID
+           is specified without a background ID, the model fit
+  	   residuals for
+           the first background loaded for that data set is
+           returned. If a background other than the
+           default is desired, e.g. if more than one is associated
+           with a data set, then both the data set ID and background
+           ID must be specified.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; bplot_resid=get_bkg_resid_plot()
+sherpa&gt; print(bplot_resid)
+x      = [  1.0950e-02   2.1900e-02   3.6500e-02 ...,   1.4914e+01   1.4928e+01
+   1.4943e+01]
+y      = [ 0.      0.      0.     ...,  0.0012  0.      0.0921]
+yerr   = [ 0.0045  0.0023  0.0023 ...,  0.0028  0.0023  0.0118]
+xerr   = [ 0.0073  0.0146  0.0146 ...,  0.0146  0.0146  0.0146]
+xlabel = Energy (keV)
+ylabel = Counts/sec/keV
+title  = Residuals of simple_bkg.pi - Bkg Model
+plot_prefs = {'symbolfill': False, 'errstyle': 'line', 'yerrorbars': True, 'xaxis': True, 'symbolstyle': 2, 'linestyle': 0, 'xerrorbars': True, 'symbolsize': 3}
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+	   <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_bkg_ratio_plot()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           When called with no arguments, get_bkg_ratio_plot() returns
+  	   the data and preferences defining a plot of the background-to-model
+  	   ratio for the default background
+ 	   data set.  If a data set ID
+           is specified without a background ID, the ratio for
+           the first background loaded for that data set is
+           returned. If a background other than the
+           default is desired, e.g. if more than one is associated
+           with a data set, then both the data set ID and background
+           ID must be specified.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; bplot_ratio=get_bkg_ratio_plot()
+sherpa&gt; print(bplot_ratio)
+x      = [  1.0950e-02   2.1900e-02   3.6500e-02 ...,   1.4914e+01   1.4928e+01
+   1.4943e+01]
+y      = [ 0.  0.  0. ...,  0.  0.  0.]
+yerr   = [ 0.0045  0.0023  0.0023 ...,  0.0028  0.0023  0.0118]
+xerr   = [ 0.0073  0.0146  0.0146 ...,  0.0146  0.0146  0.0146]
+xlabel = Energy (keV)
+ylabel = Data / Model
+title  = Ratio of simple_bkg.pi : Bkg Model
+plot_prefs = {'symbolfill': False, 'ratioline': True, 'errstyle': 'line', 'yerrorbars': True, 'symbolstyle': 2, 'linestyle': 0, 'xerrorbars': True, 'symbolsize': 3}
+
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_bkg_chisqr_plot()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           When called with no arguments, get_bkg_chisqr_plot() returns
+  	   the data and preferences defining a plot of the chi^2 of
+  	   the default background
+ 	   data set.  If a data set ID
+           is specified without a background ID, the chi^2 for
+           the first background loaded for that data set is
+           returned. If a background other than the
+           default is desired, e.g. if more than one is associated
+           with a data set, then both the data set ID and background
+           ID must be specified.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; bplot_chisqr=get_bkg_chisqr_plot()
+sherpa&gt; print(bplot_chisqr)
+x      = [  1.0950e-02   2.1900e-02   3.6500e-02 ...,   1.4914e+01   1.4928e+01
+   1.4943e+01]
+y      = [  0.       0.       0.     ...,   0.1853   0.      60.6268]
+yerr   = None
+xerr   = [ 0.0073  0.0146  0.0146 ...,  0.0146  0.0146  0.0146]
+xlabel = Energy (keV)
+ylabel = chi2
+title  = chi2 of simple_bkg.pi
+plot_prefs = {'symbolstyle': 0, 'linethickness': 3, 'linestyle': 1, 'linecolor': 'red'}
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_bkg_delchi_plot()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           When called with no arguments, get_bkg_delchi_plot() returns
+  	   the data and preferences defining a plot of the delta chi residuals
+  	   of the default background data set.  If a
+  	   data set ID
+           is specified without a background ID, the delta chi residuals for
+           the first background loaded for that data set is
+           returned. If a background other than the
+           default is desired, e.g. if more than one is associated
+           with a data set, then both the data set ID and background
+           ID must be specified.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; bplot_delchi=get_bkg_delchi_plot()
+sherpa&gt; print(bplot_delchi)
+x      = [  1.0950e-02   2.1900e-02   3.6500e-02 ...,   1.4914e+01   1.4928e+01
+   1.4943e+01]
+y      = [ 0.      0.      0.     ...,  0.4305  0.      7.7863]
+yerr   = [ 1.  1.  1. ...,  1.  1.  1.]
+xerr   = [ 0.0073  0.0146  0.0146 ...,  0.0146  0.0146  0.0146]
+xlabel = Energy (keV)
+ylabel = Sigma
+title  = Sigma Residuals of simple_bkg.pi
+plot_prefs = {'symbolfill': False, 'errstyle': 'line', 'yerrorbars': True, 'xaxis': True, 'symbolstyle': 2, 'linestyle': 0, 'xerrorbars': True, 'symbolsize': 3}
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+         <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_bkg_*_plot().plot_prefs</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+           This command lists the library of plotting preferences
+           available for the get_bkg_*_plot() functions, and can be
+           used to modify the plot settings:
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_bkg_plot().plot_prefs
+            
+{'errstyle': 'line',
+ 'linestyle': 0,
+ 'symbolfill': False,
+ 'symbolsize': 3,
+ 'symbolstyle': 4,
+ 'yerrorbars': True}
+
+sherpa&gt; get_bkg_plot().plot_prefs["linestyle"]=3
+
+sherpa&gt; get_bkg_plot().plot_prefs
+            
+{'errstyle': 'line',
+ 'linestyle': 3,
+ 'symbolfill': False,
+ 'symbolsize': 3,
+ 'symbolstyle': 4,
+ 'yerrorbars': True}
+
+</VERBATIM>
+
+        </DESC>
+        </QEXAMPLE>
+
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

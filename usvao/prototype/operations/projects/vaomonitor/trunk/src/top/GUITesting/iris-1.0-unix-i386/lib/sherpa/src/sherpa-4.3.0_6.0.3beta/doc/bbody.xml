@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="bbody" refkeywords="body blackbody black bb model models modeling modelling source composite nested joint " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Blackbody as a function of energy.  
+</SYNOPSIS>
+	<DESC>
+<PARA>
+Blackbody emission calculated as a function of energy using the expression:
+</PARA>
+
+<PARA>
+<EQUATION>
+f(E) = A (E^2/exp[E/kT]-1) ,
+</EQUATION>
+</PARA>
+
+<PARA>
+where E is the photon energy, and 
+kT is the
+blackbody temperature (expressed in the same units as the photon energy).
+The amplitude 
+A is related to the ratio of source radius to distance:
+</PARA>
+
+<PARA>
+<EQUATION>
+A = (2pi/[c^2 h^3]) (R/d)^2 = 9.884 x 10^31 (R/d)^2 ,
+</EQUATION>
+</PARA>
+
+<PARA>
+with Planck's constant h specified in keV-s and
+the speed of light c specified in cm/s, and with
+R and d representing the
+radius of, and distance to, the source respectively. If E/kt &lt; 10^-4, f(E) = AEkT, while if E/kT &gt; 60, f(E) = 0.
+</PARA>
+
+<TABLE>
+<CAPTION>bbody Parameters</CAPTION>
+<ROW> <DATA>Number</DATA> <DATA>Name</DATA> <DATA>Description</DATA> </ROW>
+<ROW> <DATA>1</DATA> <DATA>space</DATA> <DATA>0: energy | 1: wavelength</DATA> </ROW>
+<ROW> <DATA>2</DATA> <DATA>kt</DATA> <DATA>temperature kT (in energy units)</DATA> </ROW>
+<ROW> <DATA>3</DATA> <DATA>ampl</DATA> <DATA>amplitude A</DATA> </ROW>
+</TABLE>
+
+<PARA>
+  The integration of models in Sherpa is controlled by an 
+  integration flag in each model structure.  Refer to <HREF link="http://cxc.harvard.edu/sherpa/ahelp/integrate.html">"ahelp integrate"</HREF> 
+  for information on integrating model components. 
+</PARA>
+
+</DESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

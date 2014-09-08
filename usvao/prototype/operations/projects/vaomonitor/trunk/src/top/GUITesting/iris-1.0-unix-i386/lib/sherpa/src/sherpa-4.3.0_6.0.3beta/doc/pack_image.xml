@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="pack_image" refkeywords="images img IMAGECrate pack image" seealsogroups="sh.io sh.img " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+     Pack image data into an IMAGECrate
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>pack_image( [id])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The pack_image command packs data from a Sherpa data object into
+        an IMAGECrate.  The crates write_file command 
+        
+        (<HREF link="http://cxc.harvard.edu/ciao/ahelp/write_file.html">"ahelp write_file"</HREF>)
+	can then be used to create an output file containing the data.
+	The commands may be combined into one step, but then the crate
+ 	is hidden and cannot be used for other analysis in the session.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to pack; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+      </LIST>
+
+      <PARA>
+	For more information on what crates are and how to use them,
+	see
+        
+        <HREF link="http://cxc.harvard.edu/ciao/ahelp/crates.html">"ahelp crates"</HREF>
+	.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; imgcr=pack_image()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Pack the default image into an IMAGECrate named "imgcr".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; write_file(pack_image("img"), "new_img.fits")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The pack_image command is combined with write_file to get
+	    the image data from the "img" object and create an output
+	    file. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

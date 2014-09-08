@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_xsxsect" refkeywords="get_xsxsect xspecabund xspec xsect cross-section bcmc obcm vern " seealsogroups="sh.set sh.model " displayseealsogroups="" context="modeling">
+
+    <SYNOPSIS>
+      Set XSPEC photoelectric cross-section
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_xsxsect(cross-section)</LINE>
+      <LINE>get_xsxsect()</LINE>
+	</SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The set_xsxsect command sets the photoelectric cross-section
+        used in XSpec absorption models.  The get_xsxsect command
+        returns the current setting.
+      </PARA>
+
+      <TABLE>
+	<CAPTION>Available Cross-sections</CAPTION>
+	<ROW> 
+	  <DATA>Name</DATA>
+	  <DATA>Description</DATA> 
+	</ROW>
+	<ROW> 
+	  <DATA>bcmc</DATA> <DATA>default value;
+	    Balucinska-Church &amp; McCammon (1992, ApJ 400, 699) with a new He
+	    cross-section based on (1998, ApJ 496, 1044)</DATA>
+	</ROW>
+	<ROW> 
+	  <DATA>obcm</DATA> <DATA>bcmc with the old He
+	    cross-section</DATA> 
+	</ROW>
+	<ROW> 
+	  <DATA>vern</DATA> <DATA>Verner et al. (1996, ApJ 465,
+	    487)</DATA> 
+	</ROW>
+      </TABLE>
+
+      <PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; print get_xsxsect()</LINE>
+	  <LINE>bcmc</LINE>
+	  <LINE>sherpa&gt; set_xsxsect("vern")</LINE>
+	  <LINE>Cross Section Table set to vern:  Verner, Ferland, Korista, and Yakovlev 1996</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            The current cross-section setting is retrieved ("bcmc",
+            the default).  It is then changed to "vern".	   
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+    <VERSION>CIAO 4.3</VERSION>
+
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

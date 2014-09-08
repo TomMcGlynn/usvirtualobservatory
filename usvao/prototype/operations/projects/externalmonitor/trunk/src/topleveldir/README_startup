@@ -1,0 +1,61 @@
+#
+# The external monitor code uses a startup file that
+# is not included with this installation. This file
+# therefore describes what the content needs to be
+# in order to run the system. The user should feel
+# free to modify the startup file as he sees fit.
+#
+#
+# 
+#####################################
+#   Global variable definitions     #
+#####################################
+#
+#
+# $::cssA           - the css file containing classes for the validation software.
+# 
+# $::cssB          - the css files containing classes for the vaomonitor sw.
+#
+# $::valcode       - the external monitor page 
+#
+# $::pw            - the password used to connect to the external monitor and operations db 
+#
+# $::db            - the database name. Should be "external_monitor" or "monitor"
+#
+# $::top           - the top level directory
+#
+# $::opsdb         - the vao_operations db
+#
+#
+#
+
+
+package data::startup;
+{
+    
+    
+   # my $db = 'vaomonitor'
+   
+    $::cssA           = "./css/validation.css";
+    $::cssB           = "./css/styles.css";
+    $::valcode        = "./vodb.pl";	  
+    $::pw             = "<the external monitor and vao operations db pw>";
+    $::db             = "monitor";
+    $::top            = "./"; 
+    $::opsdb          = "vao_operations";
+    
+ 
+    BEGIN
+    {
+	my $www = 'www';
+        @::libs = ("
+                    ("<path to cgi bin directory system code>"
+                   "<path to perl libraries>",
+                   "<top level notification system directory>",
+                  );
+        unshift(@INC,@::libs);
+	
+    }
+
+}
+1;

@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="dered" refkeywords="dereddening deredden model models modeling modelling source composite nested joint " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Dereddening function.  
+</SYNOPSIS>
+	<DESC>
+<PARA>
+This dereddening model uses the analytic formula for the
+mean extension law described in
+Cardelli, Clayton, &amp; Mathis 1989, ApJ 345, 245:
+</PARA>
+
+<PARA>
+<EQUATION>
+A(lambda) = E(B-V) (aR_v+b) = 1.086 tau(lambda)
+</EQUATION>
+</PARA>
+
+<PARA>
+where tau(lambda) is the
+wavelength-dependent optical depth,
+</PARA>
+
+<PARA>
+<EQUATION>
+I(lambda) = I(0) exp[-tau(lambda)] ,
+</EQUATION>
+</PARA>
+
+<PARA>
+and a and b are computed
+using wavelength-dependent formulae which we will not reproduce here,
+for the wavelength range 1000 A - 3.3
+microns. The relationship between the color excess and the column
+density is 
+</PARA>
+
+<PARA>
+<EQUATION>
+E(B-V) = [ N_(Hgal) (10^20 cm^-2) ]/58.0
+</EQUATION>
+</PARA>
+
+<PARA>
+(Bohlin, Savage, &amp; Drake 1978, ApJ 224, 132).  The value of the
+ratio of total to  selective extinction, R_v,
+is initially set to 3.1, the standard value for the diffuse ISM.  The
+final model form is:
+</PARA>
+
+<PARA>
+<EQUATION>
+I(lambda) = I(0) exp[-N_(Hgal)(aR_v+b)/58.0/1.086]
+</EQUATION>
+</PARA>
+
+<PARA>
+This model should only be used as a multiplicative model:
+</PARA>
+
+<VERBATIM>
+sherpa&gt; powlaw1d[con1](1.,2588.6,0.1)
+sherpa&gt; dered[dr](3.1,0.1)
+sherpa&gt; source 1 = con1*dr
+</VERBATIM>
+
+<PARA>
+This model provided courtesy of Karl Forster.
+</PARA>
+
+<TABLE>
+<CAPTION>dered Parameters</CAPTION>
+<ROW> <DATA>Number</DATA> <DATA>Name</DATA> <DATA>Description</DATA> </ROW>
+<ROW> <DATA>1</DATA> <DATA>rv</DATA> <DATA>total to selective extinction ratio R_v</DATA> </ROW>
+<ROW> <DATA>2</DATA> <DATA>nhgal</DATA> <DATA>absorbing column density N(H_gal)</DATA> </ROW>
+</TABLE>
+
+<PARA>
+  The integration of models in Sherpa is controlled by an 
+  integration flag in each model structure.  Refer to <HREF link="http://cxc.harvard.edu/sherpa/ahelp/integrate.html">"ahelp integrate"</HREF> 
+  for information on integrating model components. 
+</PARA>
+
+</DESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

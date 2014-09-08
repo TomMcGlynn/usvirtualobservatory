@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_model_component_image" refkeywords=" get_model_contour get_model_contour_prefs get_model_image get_model_plot_prefs get model plot prefs preferences type get_model_component component components " seealsogroups=" sh.get sh.model  " displayseealsogroups="" context="modeling">
+ 
+   
+    <SYNOPSIS>
+      Returns the 2D data and coordinate settings defining the convolved model component image
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_model_component_image([id], name)</LINE>
+    </SYNTAX>
+
+    <DESC>
+      <LIST>
+        <ITEM>
+        id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+        <ITEM>
+	 name - the variable name(s) representing the model component(s)
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        The get_model_component_image() command returns the 2D data array
+        and coordinate system settings defining an image of the convolved 2D model components displayed
+	by the image_model_component() command. (The
+        get_source_component_image command is available for returning
+        information pertaining to images of unconvolved model
+        components.) Once a 2D data set
+        has been loaded into the Sherpa session, this command can be used to
+	list the following attributes associated with an image of the
+        model assigned to that data set: 
+      </PARA>
+
+       <TABLE>
+        <ROW><DATA>Field name</DATA><DATA>Description</DATA></ROW>
+        <ROW><DATA>name</DATA><DATA>A label for the object</DATA></ROW>
+        <ROW><DATA>y</DATA><DATA>The convolved model data (as a 2D array)</DATA></ROW>
+        <ROW><DATA>eqpos</DATA><DATA>Information on the world coordinate system (if available)</DATA></ROW>
+        <ROW><DATA>sky</DATA><DATA>Information on the physical coordinate system (if available)</DATA></ROW>
+       </TABLE>
+
+    
+    <PARA>
+    The information returned by get_model_component_image() may be stored in 
+        variables, or printed to the screen, as shown in the examples section.
+    </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+     <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print get_model_component_image("g1")</LINE>
+	</SYNTAX>
+	<DESC>
+	<PARA>
+         Return the data arrays and coordinate system settings
+     defining an image of the convolved Gaussian 2D model component
+     "g1" associated with default data set 1.
+	</PARA>
+<VERBATIM>
+sherpa&gt; load_psf("psf0","psf.fits")
+sherpa&gt; set_psf("psf0")
+sherpa&gt; set_model(const2d.c1 + gauss2d.g1 + beta2d.b1)
+sherpa&gt; fit()
+sherpa&gt; image_model_component(g1)
+sherpa&gt; print get_model_component_image(g1)
+
+name   = Model_component
+y      = [[  8.6708e-01   2.1489e-06   6.7142e-19 ...,   0.0000e+00   0.0000e+00
+    0.0000e+00]
+ [  3.4736e-06   8.6089e-12   2.6898e-24 ...,   0.0000e+00   0.0000e+00
+    0.0000e+00]
+ [  1.7543e-18   4.3478e-24   1.3584e-36 ...,   0.0000e+00   0.0000e+00
+    0.0000e+00]
+ ..., 
+ [  0.0000e+00   0.0000e+00   0.0000e+00 ...,   0.0000e+00   0.0000e+00
+    0.0000e+00]
+ [  0.0000e+00   0.0000e+00   0.0000e+00 ...,   0.0000e+00   0.0000e+00
+    0.0000e+00]
+ [  0.0000e+00   0.0000e+00   0.0000e+00 ...,   0.0000e+00   0.0000e+00
+    0.0000e+00]]
+eqpos  = world
+ crval    = [ 278.386   -10.5899]
+ crpix    = [ 4096.5  4096.5]
+ cdelt    = [-0.0001  0.0001]
+ crota    = 0
+ epoch    = 2000
+ equinox  = 2000
+sky    = physical
+ crval    = [ 3798.5  4019.5]
+ crpix    = [ 0.5  0.5]
+ cdelt    = [ 2.  2.]
+
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+     <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_model(2,"gauss1d.g1+const1d.c1")</LINE>
+          <LINE>sherpa&gt; gauss_image=get_model_component_image(2,"g1")</LINE>
+          <LINE>sherpa&gt; bin=gauss_image.sky.cdelt</LINE>
+	</SYNTAX>
+	<DESC>
+	<PARA>
+         Store the image data and settings returned by the
+	 get_model_component_image command for the Guass 2D model
+	 component "g1" (assigned to data set 2) to the variable "gauss_image". Use the "gauss_image" variable to access the image binning in
+        physical coordinates. 
+         </PARA>
+        </DESC>
+       </QEXAMPLE>
+     </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+  </ENTRY></cxchelptopics>

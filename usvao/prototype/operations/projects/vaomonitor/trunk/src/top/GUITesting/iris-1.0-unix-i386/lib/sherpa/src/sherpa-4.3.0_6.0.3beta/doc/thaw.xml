@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="thaw" refkeywords="parameter parameters par pars model models modeling modelling unfix unfreeze" seealsogroups="sh.par " displayseealsogroups="" context="modeling">
+
+    <SYNOPSIS>
+      Thaw model parameters so they vary during a fit
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>thaw([parameter])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The thaw command thaws the specified model parameters so that they may 
+        vary during a fit.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          parameter(s) - model parameters to thaw
+        </ITEM>
+      </LIST>
+
+      <PARA>
+	To fix a parameter at the current value during a fit, use the freeze 
+	command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/freeze.html">"ahelp freeze"</HREF>).
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; thaw(pl.ampl)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Thaw the amplitude parameter of a powerlaw1d model named "pl".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_source(xswabs.gal*xsmekal.mek)</LINE>
+	  <LINE>sherpa&gt; thaw(mek.kT)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Create a source model and thaw the plasma temperature parameter (kt) 
+	    of the xsmekal model.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; thaw(poly.c1, poly.c2)</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Thaw the second and third (c1, c2) coefficients of a polynomial model.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

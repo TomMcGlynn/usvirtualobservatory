@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="eqwidth" refkeywords="beqwidth equivalent width emission absorption line" seealsogroups="sh.model " displayseealsogroups="" context="utilities">
+	<SYNOPSIS>
+      Calculate the equivalent width of an emission or absorption line.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>eqwidth( src, combo, [lo, hi], [id], [bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The eqwidth command calculates the equivalent width of an
+	emission or absorption line in the source or background data.
+	The equivalent width is reported in the units of the analysis,
+	either energy or wavelength.
+      </PARA>
+
+      <PARA>
+        An integral over the entire energy or wavelength range of the
+        dataset - or a specified interval - 
+        is performed to evaluate the continuum model (src) and the
+        continuum-plus-line model (combo) at each point.  The
+        integrand is then (combo-src)/src.  
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  src - model expression that describes the continuum
+	</ITEM>
+
+        <ITEM>
+	  combo - model expression that describes the continuum plus
+	  the line
+	</ITEM>
+	
+	 <ITEM>
+          lo  - low energy/wavelength limit;
+          default=None
+          
+	 </ITEM>
+	 <ITEM>
+	   hi - high energy/wavelength limit;
+          default=None
+          
+	 </ITEM>
+	<ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background to use; default is
+          the first background dataset
+        </ITEM>
+      </LIST>
+
+      <PARA>
+        The src and combo model expression components must be
+        established, e.g. with set_source or set_model(), before they
+        can be used by eqwidth. 
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_model("powlaw1d.cont")</LINE>
+          <LINE>sherpa&gt; set_model("gauss1d.eline")</LINE>
+          <LINE>sherpa&gt; eqwidth(cont, cont+eline)</LINE>
+          <LINE>0.535073</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	    Define 1D gaussian and powerlaw models, then use them to
+	    find the equivalent width of the line.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_bkg_model(2,"const1d.c1+gauss1d.line")</LINE>
+          <LINE>sherpa&gt; eqwidth(c1, c1+line, lo=2., hi=10., id=2, bkg_id=1)</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	    Define 1D constant and powerlaw models for background data
+	    set 1 associated with source data set 2, then use them to find the 
+	    equivalent width of the line between 2.0 and 10.0 keV.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_source("src","bbody.bb+powlaw1d.pl+gauss1d.line1+gauss1d.line2")</LINE>
+          <LINE>sherpa&gt; eqwidth(bb+pl, bb+pl+line1, "src")</LINE>
+          <LINE>0.454946</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	    Model components from the source model are used to
+	    calculate the equivalent width of a line in dataset
+	    "src". 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

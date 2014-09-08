@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsbmc" refkeywords="bmc model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Comptonization by relativistically moving matter.
+XSpec model.
+</SYNOPSIS>
+	<DESC>
+<PARA>
+This is an analytic model describing Comptonization of soft photons by
+matter undergoing relativistic bulk-motion. The typical scenario
+involves thermal X-rays from the inner region of an accretion disk in
+a black-hole binary illuminating in-falling matter in close proximity
+to the black-hole event horizon. For a detailed description of the
+model, refer to one of the following:
+</PARA>
+
+<LIST>
+<ITEM>Titarchuk, Mastichiadis and Kylafis 1997, ApJ, 487, 834</ITEM>
+<ITEM>Titarchuk and Zannias, 1998, ApJ, 493, 863</ITEM>
+<ITEM>Laurent and Titarchuk 1999, ApJ, 511, 289</ITEM>
+<ITEM>Zannias, Borozdin, Revnivtsev., Trudolyubov, Shrader, and
+Titarchuk, 1999, ApJ, 517, 367</ITEM>
+<ITEM>Shrader and Titarchuk 1999, ApJ 521, L21</ITEM>
+</LIST>
+
+<PARA>
+The model parameters are the characteristic black-body temperature of
+the soft photon source, a spectral (energy) index, and an illumination
+parameter characterizing the fractional illumination of the
+bulk-motion flow by the thermal photon source. 
+</PARA>
+
+<PARA>
+It must be emphasized that this model is not an additive combination
+of power law and thermal sources, rather it represents a
+self-consistent convolution.  The bulk-motion up-scattering and
+Compton recoil combine to produce the hard spectral tail, which
+combined with the thermal source results in the canonical
+high-soft-state spectrum of black hole accretion. The position of the
+sharp high energy cutoff (due to recoil) can be determined using the
+theta function Theta (E_c-E). The model can also be used for the
+general Comptonization case when the energy range is limited from
+above by the plasma temperature.
+</PARA>
+
+<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsbmc Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>kt</DATA> <DATA>temperature of
+  thermal photon source in keV</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>alpha</DATA> <DATA>energy spectral
+  index</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> <DATA>loga</DATA> <DATA>log of the A
+  parameter. Note that f in Borozdin et al 1999 and Shrader and
+  Titarchuk 1999 is 10^logA.</DATA> 
+</ROW>
+<ROW> 
+  <DATA>4</DATA> <DATA>norm</DATA> <DATA>A_N, defined in
+  in Borozdin et al 1999 and Shrader and Titarchuk 1999</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

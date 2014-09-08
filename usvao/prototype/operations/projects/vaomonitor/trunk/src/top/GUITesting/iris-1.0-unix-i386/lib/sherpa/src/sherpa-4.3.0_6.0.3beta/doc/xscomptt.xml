@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xscomptt" refkeywords="comptt model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Comptonization spectrum after Titarchuk (1994).
+XSpec model.
+</SYNOPSIS>
+	<DESC>
+<PARA>
+This is an analytic model describing Comptonization of soft photons in
+a hot plasma, developed by L. Titarchuk (see ApJ, 434, 313). This
+replaces the Sunyaev-Titarchuk Comptonization model in the sense that
+the theory is extended to include relativistic effects. Also, the
+approximations used in the model work well for both the optically thin
+and thick regimes. 
+</PARA>
+
+<PARA>
+The Comptonized spectrum is determined completely by the plasma
+temperature and the so-called "beta parameter" which is independent of
+geometry. The optical depth is then determined as a function of beta
+for a given geometry. Thus the fifth parameter - "approx" - switches
+between spherical and disk geometries so that beta is not a direct
+input here. This parameter MUST be frozen. If approx &gt; 0, beta
+is obtained from the optical depth using analytic approximation
+(e.g. Titarchuk 1994). If approx &lt; 0 and 0.1 &lt; tau &lt; 10,
+beta is obtained by interpolation from a set of accurately calculated
+pairs of beta and tau from Sunyaev and Titarchuk 1985 (A&amp;A 143,
+374).
+</PARA>
+
+<PARA>
+In this incarnation of the model, the soft photon input spectrum is a
+Wien law [x^2 exp(-x) photons] because this lends itself to
+particularly simple analytical form of the model. For present X-ray
+detectors, this should be adequate. Note that in energy flux space the
+peak of the Wien law occurs at 3kT as opposed to 2.8kT for a
+blackbody.  The spectral fitter is strongly urged to read the
+following references before using this model in order to fully
+understand and appreciate the physical assumptions made:
+</PARA>
+
+<LIST>
+<ITEM>Titarchuk, L., 1994, ApJ, 434, 313</ITEM>
+<ITEM>Hua, X-M., Titarchuk, L., 1995, ApJ, 449, 188</ITEM>
+<ITEM>Titarchuk, L., Lyubarskij, Y., 1995, ApJ, 450, 876</ITEM>
+</LIST>
+
+<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xscomptt Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>redshift</DATA> <DATA>redshift,
+  z</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>t0</DATA> <DATA>soft photon
+  (Wien) temperature (keV)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> <DATA>kt</DATA> <DATA>plasma temperature
+  (keV)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>4</DATA> <DATA>taup</DATA> <DATA>plasma optical
+  depth</DATA> 
+</ROW>
+<ROW> 
+  <DATA>5</DATA> <DATA>approx</DATA> <DATA>geometry
+  switch. ABS(approx) &lt;= 1: disk, &gt; 1: sphere; if approx &gt;= 0,
+  use analytic approx for beta vs. tau; if approx &lt; 0, get beta
+  vs. tau from interpolation.</DATA> 
+</ROW>
+<ROW> 
+  <DATA>6</DATA> <DATA>norm</DATA> <DATA>normalization</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

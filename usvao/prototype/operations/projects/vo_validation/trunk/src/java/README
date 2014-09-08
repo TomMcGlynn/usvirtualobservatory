@@ -1,0 +1,30 @@
+running validation on the command line:
+
+Default:
+java -Ddatabase=validation RunValidation
+
+Special (results for a specific id):
+java -Ddatabase=validation RunValidation  ivo://astronet.ru/cas/denis
+
+Special (results dumped to screen only...not to the db):
+java -Ddatabase=validation RunValidation ivo://astronet.ru/cas/denis toscreen 
+
+Debugging(can be used with or without above options):
+java -Ddatabase=validation -Debug=true RunValidation ivo://astronet.ru/cas/denis
+
+Dependencies:
+This code relies on the following packages:
+nom.tam.fits
+stilts.jar
+mysql-connector-java-5.1.7-bin.jar
+
+These packages can be added to your classpath so that your classpath contains
+something like:
+/www/server/vo/mysql-connector-java-5.1.7/mysql-connector-java-5.1.7-bin.jar:
+.:
+../javalib:/software/jira/software/class/:
+/www/htdocs/vo/vaomonitor/java/:
+/software/jira/software/ljar/fits.jar:
+/software/jira/software/fjar/bzip2.jar:
+/www/htdocs/vo/validation/javalib/stilts.jar
+

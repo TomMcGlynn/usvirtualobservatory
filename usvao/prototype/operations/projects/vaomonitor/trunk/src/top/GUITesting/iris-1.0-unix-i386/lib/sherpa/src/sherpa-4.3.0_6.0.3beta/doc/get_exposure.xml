@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_exposure" refkeywords="get exposure time  seconds" seealsogroups="sh.get " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Return the exposure time for a source or background data set
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_exposure( [id, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The get_exposure() function returns the exposure time in
+	seconds of a source or background PHA dataset, by data id or bkg_id.
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; 
+        default= 
+          
+      </ITEM>
+      <ITEM>
+        bkg_id -  the id of the background to use,
+        e.g. if more than one background is associated with the
+        data; default is the first background dataset loaded
+      </ITEM>
+    </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_exposure()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+          When called with no arguments, get_exposure() returns the
+          exposure time of the default data set.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; get_exposure()
+56494.494371879999
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_exposure(id=2, bkg_id=1)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           To return the exposure time of a background associated with
+	   a source data set, the background ID must be specified
+           along with the data set ID. Here, the first background
+           loaded for data set 2 is returned by get_exposure().
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_exposure(id=2, bkg_id=1)
+7854.4664748687001
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

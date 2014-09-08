@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="show_covar" refkeywords="show report status state information results covar covariance " seealsogroups="sh.info " displayseealsogroups="" context="info">
+
+   <SYNOPSIS>
+     Display the covariance information
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>show_covar([outfile=None, clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+          The show_covar command displays the results of the
+          covariance command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/covariance.html">"ahelp covariance"</HREF>)
+	  .
+      </PARA>
+
+    <LIST>
+      <ITEM>
+        outfile - name of the file in which to store the information
+      </ITEM>
+
+      <ITEM>
+        clobber -  a Boolean switch which indicates whether or not
+        the 'outfile' should be overwritten, if the file already exists;
+        default=False
+        
+      </ITEM>
+    </LIST>
+
+      <PARA>        
+        The command output looks like:
+      </PARA>        
+
+<VERBATIM>
+Covariance:Dataset               = 1
+Confidence Method     = covariance
+Fitting Method        = neldermead
+Statistic             = cstat
+covariance 1-sigma (68.2689%) bounds:
+   Param            Best-Fit  Lower Bound  Upper Bound
+   -----            --------  -----------  -----------
+   abs1.nh         0.0349312   -0.0108587    0.0108587
+   p1.gamma          1.72895   -0.0636437    0.0636437
+   p1.ampl       4.24936e-05 -2.19037e-06  2.19037e-06
+</VERBATIM>
+
+      <PARA>        
+        The behavior of the screen output is determined by the
+        user's $PAGER environment variable setting, which
+        is usually a variant of "more."  To disable paging within
+        show_all() - i.e. print the entire contents, even if it
+        scrolls offscreen - change this setting to "cat" before starting
+        Sherpa: 
+      </PARA>
+
+<VERBATIM>
+unix% setenv PAGER cat
+
+unix% sherpa
+</VERBATIM>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; show_covar()</LINE>
+	  
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Print the covariance information for all datasets to the
+	    screen.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; show_covar("sherpa.covar", True)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Write the covariance information to the
+	    file "sherpa.covar", clobbering any existing file with the
+	    same name.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

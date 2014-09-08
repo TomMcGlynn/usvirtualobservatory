@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_data" refkeywords="set pha pha2 phaII spectrum spectra" seealsogroups="sh.data sh.set " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+     Set a source dataset
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_data( [id], data )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The set_data command establishes a dataset from a Sherpa data
+        object.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+	  data - a dataset, e.g. created by
+	  unpack_data ("ahelp unpack_data")
+	  or unpack_pha ("ahelp unpack_pha")
+	</ITEM>
+      </LIST>
+
+     </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; filt = unpack_data("data.filtered")</LINE>
+          <LINE>sherpa&gt; set_data("filtered",filt)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Unpack data from the file "data.filtered", using the
+	    default settings, and set it as dataset "filtered".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; pha1 = unpack_pha("3c273.pi")</LINE>
+          <LINE>sherpa&gt; set_data(pha1[0])</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    PHA data is unpacked and set as a dataset.  Since the
+	    unpack_pha command output is a list - in order to
+	    handle Type I and II PHA files - it's necessary to specify
+	    which element ("[0]") to provide to set_data. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

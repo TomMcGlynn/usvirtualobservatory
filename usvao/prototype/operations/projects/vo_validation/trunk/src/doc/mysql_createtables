@@ -1,0 +1,19 @@
+create table Services (serviceId int not null auto_increment, primary key(serviceId)); 
+
+
+create table Tests  (runid int(4) not null auto_increment, primary key(runid), serviceId int(11), validationstatus varchar(10), type varchar(40), time varchar(30), validatorCode varchar(10));
+
+create table Test (type varchar(40), url  varchar(190), id varchar(10), classmethod  varchar(40), status varchar(16));
+
+
+create table ErrorCodes  (validationResCode int(11), description   varchar(300));
+
+create table Errors  (runid int(4), subtestid  varchar(30), validationResCode int(4));  
+
+
+insert into Test (type, url, id,  classmethod, status) values ('sia:SimpleImageAccess', '//nvo.ncsa.uiuc.edu/dalvalidate/SIAValidater?runid=', '1A', 'SIAP', 'Active'); 
+
+insert into Test (type, url, id,  classmethod, status) values ('cs:ConeSearch','//nvo.ncsa.uiuc.edu/dalvalidate/ConeSearchValidater?runid='1A', 'SIAP', 'Active');
+
+ 
+ 

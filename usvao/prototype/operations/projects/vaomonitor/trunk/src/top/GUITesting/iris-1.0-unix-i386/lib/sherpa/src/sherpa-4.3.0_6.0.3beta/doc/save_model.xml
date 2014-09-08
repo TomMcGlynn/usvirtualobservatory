@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="save_model" refkeywords="create save write store convolved source model " seealsogroups="sh.save sh.io sh.model " displayseealsogroups="" context="modeling">
+
+    <SYNOPSIS>
+     Save the convolved source model to a FITS table or ASCII file
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>save_model( [id=1], filename, [bkg_id=1,ascii=False,clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The save_model() function saves the 1D or 2D data arrays which
+	define a convolved source model to a FITS table or ASCII file; the
+	arrays are written as columns XLO, XHI, and MODEL.  Note that
+	the ASCII option is not supported for 2-dimensional source 
+	models, so the optional parameter
+	'ascii' should be set to 'False' in this case. 
+      </PARA>
+
+      <PARA>
+	The convolved source model used is the one which has been
+	assigned to the data set set specified in the 'id' argument
+	(or the 'bkg_id' argument in the case of a background data
+	set, in which case 'id' must also be specified). The convolved
+	model is computed with the instrument response files (ARF,
+	RMF) loaded in association with the source data set. The
+	models will respect any data filters in place, and models from
+	associated PHA spectra will also respect the data grouping
+	settings. 
+      </PARA>
+
+       <LIST>
+        <ITEM>
+          id - the id of the data set to which the convolved
+	  model has been assigned; if not given, uses the
+	  default data set id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+        <ITEM>
+          filename - name of outfile
+        </ITEM>
+        <ITEM>
+          bkd_id - the id of the background data set to use (e.g., bkg_id=1 
+	  represents the first background data set loaded in association with
+          the source data set specified in the 'id' argument)
+        </ITEM>
+        <ITEM>
+           ascii - outfile format specification; True
+          to save outfile in ASCII
+          format, False
+          for FITS, default=False
+          </ITEM>
+          <ITEM> 
+            clobber - clobber outfile;
+            default=False
+            (do not clobber if file exists)
+        </ITEM>
+      </LIST>
+	</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_model("source.fits")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            The save_model() function can be called with just a
+	    filename, in which case all the default arguments will be used.
+	    In this example, the convolved model array associated
+	    with data set id=1 is written to
+	    the FITS table 'source.fits'.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_model(2, "source.txt", ascii=True)</LINE>
+	  
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+           Here, the optional 'ascii' argument is set
+           to True
+           in order to produce an outfile in ASCII format (overriding
+           the default setting ascii=False). The convolved model array
+           assigned to data set id=2 is written to the text file 'sources.txt'.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_model(2,"source.fits", bkg_id=1, clobber=True)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+           The convolved source model associated with the first
+           background data set loaded for source data set 2 is written
+           to FITS file source.fits (note the 'ascii' parameter
+           default is False). 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

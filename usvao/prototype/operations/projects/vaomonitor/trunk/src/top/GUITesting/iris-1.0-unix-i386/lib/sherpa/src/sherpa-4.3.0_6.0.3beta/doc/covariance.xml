@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="covariance" refkeywords="confidence covar region error interval uncertainty parameter statistic statistics  sigma project goodness" seealsogroups="sh.conf " displayseealsogroups="" context="confidence">
+	<SYNOPSIS>
+      Estimate confidence intervals for selected thawed parameters
+      based on covariance method 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>covar( [id], [otherids], [parameters] )</LINE>
+      
+    </SYNTAX>
+ 
+    <DESC>
+      <PARA>
+         The covariance function computes confidence interval bounds
+	 for the specified model parameters in the dataset.  The
+	 method is based on computing the covariance matrix and
+	 returning the diagonal elements.  The function may be called
+	 as "covariance" or simply "covar".
+      </PARA>
+
+      <PARA>
+	The covariance command differs from projection
+	
+	(<HREF link="http://cxc.harvard.edu/sherpa/ahelp/projection.html">"ahelp projection"</HREF>)
+	in that all other thawed parameters are fixed to the initial
+        best-fit values, instead of being allowed to float to
+        new best-fit values.  While projection is more general
+        (e.g. allowing the user to examine the parameter space away
+        from the best-fit point), it is in the strictest sense no more
+        accurate than covariance for determining confidence
+        intervals. 
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  id, otherids - the id(s) of the dataset(s) to use; default
+	  is to fit all datasets;
+          otherids=None
+          
+	</ITEM>
+
+        <ITEM>
+	  parameters - model parameters on which covariance should be
+	  run; default is all thawed parameters
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        If no arguments are given, covariance is run on all thawed
+        parameters for all datasets which have a model defined.
+      </PARA>
+
+      <PARA>
+        When running on multiple ids and parameters, the arguments may
+        be given in any order (see the examples); any argument that is
+        not defined as a model parameter is assumed to be a data id.
+      </PARA>
+
+      <PARA>
+        To control the number of sigma used for the limits (i.e. the
+        change in statistic), set the value of get_covar.sigma
+	
+	(<HREF link="http://cxc.harvard.edu/sherpa/ahelp/get_covar.html">"ahelp get_covar"</HREF>).
+	The default setting is to calculate +/- 1 sigma limits.
+      </PARA>
+
+      <PARA>
+        Because covariance estimates confidence intervals for each
+        parameter independently, the relationship between sigma and
+        the change in statistic value delta_S can be particularly
+        simple: sigma = the square root of delta_S for statistics
+        sampled from the chi-square distribution and for the Cash
+        statistic, and is approximately equal to the square root of (2
+        * delta_S) for fits based on the general log-likelihood.  
+      </PARA>
+
+      <PARA title="Accuracy of confidence intervals">
+        An estimated confidence interval is accurate if and only if:
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  the chi-square or logL surface in parameter space is
+	  approximately shaped like a multi-dimensional paraboloid, 
+	  and
+	</ITEM>
+
+	<ITEM>
+	  the best-fit point is sufficiently far (~3 sigma) from parameter space 
+          boundaries.
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        One may determine if these conditions hold, for example, by
+        plotting the fit statistic as a function of each parameter's
+        values (the curve should approximate a parabola) and by
+        examining contour plots of the fit statistics made by varying
+        the values of two parameters at a time (the contours should be
+        elliptical, and parameter space boundaries should be no closer
+        than approximately 3 sigma from the best-fit point).  The
+	int_unc
+	
+	(<HREF link="http://cxc.harvard.edu/sherpa/ahelp/int_unc.html">"ahelp int_unc"</HREF>).
+	and reg_unc
+	
+	(<HREF link="http://cxc.harvard.edu/sherpa/ahelp/reg_unc.html">"ahelp reg_unc"</HREF>).
+	can be used to create the contours.
+      </PARA>
+
+      <PARA>
+        If either of the conditions given above does not hold, then
+        the output from covariance may be meaningless except to give
+        an idea of the scale of the confidence intervals. To
+        accurately determine the confidence intervals, one would have
+        to reparameterize the model, or use Monte Carlo simulations or
+        Bayesian methods.  
+      </PARA>
+     </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; covar()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Run covariance on the default dataset(s), calculating
+	    limits for all thawed parameters of all data sets for
+	    which the user has defined a model to be fit.  The output
+	    for two data sets looks like:
+	  </PARA>
+
+<VERBATIM>
+covariance 1-sigma bounds:
+   Param            Best-Fit  Lower Bound  Upper Bound
+   -----            --------  -----------  -----------
+   p1.gamma          2.15852   -0.0827856    0.0827856
+   p1.ampl        0.00022484 -1.48256e-05  1.48256e-05
+   g.gamma           2.15147   -0.0800326    0.0800326
+   g.ampl         0.00176499 -2.14396e-05  2.14396e-05
+
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; covar(2, g.gamma)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Compute parameter limits for the model parameter g.gamma,
+	    which is assigned to dataset 2.  The output is:
+	  </PARA>
+
+<VERBATIM>
+covariance 1-sigma bounds:
+   Param            Best-Fit  Lower Bound  Upper Bound
+   -----            --------  -----------  -----------
+   g.gamma          2.15147   -0.0800326    0.0800326
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; covar(1, p1.ampl, 2, g.fwhm, g.ampl)</LINE>
+	  <LINE>sherpa&gt; covar(1, 2, p1.ampl, g.fwhm, g.ampl)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    These commands are two equivalent ways of running
+	    covariance on one parameter from dataset 1 (p1.ampl) and
+	    two parameters from dataset 2 (g.fwhm and g.ampl).  Note
+	    that the order in which the ids and parameters names are
+	    supplied does not matter.  In both cases, the output is:
+	  </PARA>
+
+<VERBATIM>
+covariance 1-sigma bounds:
+   Param            Best-Fit  Lower Bound  Upper Bound
+   -----            --------  -----------  -----------
+   p1.ampl       0.000224842 -1.48255e-05  1.48255e-05
+   g.fwhm            2.76124   -0.0335314    0.0335314
+   g.ampl         0.00176499 -2.14396e-05  2.14396e-05
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

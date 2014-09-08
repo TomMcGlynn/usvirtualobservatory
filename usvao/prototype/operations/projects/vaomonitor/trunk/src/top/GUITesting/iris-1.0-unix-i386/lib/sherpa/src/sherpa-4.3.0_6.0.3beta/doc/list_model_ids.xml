@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="list_model_ids" refkeywords="list lists show get model models ID IDS IDs id ids" seealsogroups="sh.model" displayseealsogroups="" context="info">
+	<SYNOPSIS>
+     List all current model IDs.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>list_model_ids()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       Sherpa allows users to construct arbitrarily complex models
+       from model components (e.g., Gaussians, Lorentzians, XSPEC
+       models, etc.).  These model expressions can then be assigned to
+       Sherpa data sets, so that the models can be fit to
+       the data.  This function lists the IDs of all current, active models
+       in a Sherpa session, i.e., all models which have been assigned
+       to a data set to be fit. A model ID is the same as the ID of the
+       data set to which it has been assigned, though the user has the
+       option to
+       assign an alternate model ID to a given model with the set_model
+       command. However, in this case, the list_model_ids() function
+       will return both the user-defined model ID *and* the ID
+       of the data set to which that model has been assigned.  The
+       list_model_ids() function accepts no input arguments. 
+      </PARA>
+    </DESC> 
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; list_model_ids()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The list_model_ids() function lists the model IDs
+            of all active models in a Sherpa session. A model ID is
+            the same as the ID of the data set to which it has been
+            assigned.  If a user assigns an alternate ID to a model,
+            such as "bkg_model", both the user-defined model
+            ID *and* the ID of the associated data set will be
+            returned by list_model_ids(). (In this example, the set_model
+            function is used to assign models to four data sets, as well
+            as to assign a string model ID to a model expression.)
+	  </PARA>
+          <VERBATIM>
+	    sherpa&gt; set_model(1, xsphabs.abs1)
+	    sherpa&gt; set_model(2, xspowerlaw.p1)
+	    sherpa&gt; set_model(3, abs1*p1)
+            
+       sherpa&gt; set_model("src", gauss1d.g1)
+       sherpa&gt; set_model(4, get_model("src"))
+
+       sherpa&gt; list_model_ids()
+	     [1, 2, 3, 4, 'src']
+          </VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

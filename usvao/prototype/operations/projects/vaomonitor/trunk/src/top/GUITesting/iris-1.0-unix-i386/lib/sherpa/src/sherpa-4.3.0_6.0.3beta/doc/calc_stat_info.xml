@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="calc_stat_info" refkeywords=" calculate fit stat statistic statistics get model results fit stat get_fit_results get_bkg_fit_results chi2 chisquare chisq " seealsogroups="sh.get " displayseealsogroups="" context="fitting">
+
+    <SYNOPSIS>
+     Returns goodness-of-fit statistics associated with a Sherpa data set.
+    </SYNOPSIS>
+    
+    <SYNTAX>  
+       <LINE>calc_stat_info()</LINE>
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+         The calc_stat_info() function is the CIAO 4.2 version of the
+         GOODNESS function in CIAO 3.4; it returns the goodness-of-fit
+         statistics associated with a data set and its assigned model. The advantage it offers
+         over the other Sherpa functions which return similar information,
+         e.g. fit() and get_fit_results(), is that it returns
+         statistics on individual data sets included in a simultaneous fit,
+         plus the statistics of the simultaneous fit, 
+         whereas the other functions would only return the statistics of the
+         simultaneous fit.  The get_stat_info() function is available
+         for parsing the information returned by calc_stat_info(), e.g.
+         so that it can be stored in variables and therefore easily accessed and manipulated within a script.
+      </PARA>
+
+      <PARA>
+      The calc_stat_info() functions returns the following information
+      about how well the specified models fit the data:
+      </PARA>
+
+       <LIST>
+        <ITEM>
+          Dataset - data set ID
+        </ITEM>
+	<ITEM>
+	  Statistic  - the chosen fit statistic
+	</ITEM>
+	<ITEM>
+	  Fit statistic value 
+	</ITEM>
+	<ITEM> 
+	  Data points  -  number of bins in the fit
+	</ITEM> 
+	<ITEM>
+	  Degrees of freedom  - the number of degrees of freedom in
+        the fit, i.e. the number of bins minus the number of free parameters
+        </ITEM>	    
+	<ITEM>
+	  Probability [Q-value]  - [only reported with chi-square and
+        'cstat' statistics] a measure of the probability that one
+        would observe the reduced statistic value, or a larger value, if the assumed model is true and the best-fit model parameters are the true parameter values
+        </ITEM>
+	<ITEM>
+	  Reduced statistic  - [only reported with chi-square and 'cstat' statistics] fit statistic value divided by the number of degrees of freedom
+        </ITEM>
+       </LIST>
+
+      <PARA>
+        This function accepts no
+         arguments; it returns the fit statistics for all data
+         sets which have been assigned models, including background
+        data sets associated with source data sets. This means that if a
+         fit has not yet been performed in the
+         Sherpa session, calc_stat_info() will return
+         not-very-meaningful statistics for data sets which have
+         been assigned models but which have not yet been fit. Also,
+         if a fit has been performed for only some of the data sets
+         with assigned models, those data sets which were not explicitly fit
+         will be included in the simultaneous fit results returned by calc_stat_info()
+         (see an example of this behavior below in the examples section).
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+       <SYNTAX>
+         <LINE>sherpa&gt; load_pha("source.pi")</LINE>
+         <LINE>sherpa&gt; load_arf("arf1.fits")</LINE>
+         <LINE>sherpa&gt; load_rmf("rmf1.fits")</LINE>
+         <LINE>sherpa&gt; set_model("xsphabs.abs1*xspowerlaw.p1")</LINE>
+         <LINE>sherpa&gt; subtract()</LINE>
+         <LINE>sherpa&gt; fit()</LINE>
+         <LINE>sherpa&gt; calc_stat_info()</LINE>
+         <LINE>sherpa&gt; f=get_stat_info()[0]</LINE>
+         <LINE>sherpa&gt; print(f.rstat)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   The calc_stat_info() function is used to return the
+      goodness-of-fit statistics resulting from the fit of an absorbed
+      power law model to background-subtracted data set 1. The
+      get_stat_info() function is used to store this information to
+      variable "f", and variable "f" is used to access the reduced
+      statistic value contained in the calc_stat_info() results.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; calc_stat_info()
+Dataset               = 1
+Statistic             = chi2gehrels
+Fit statistic value   = 703.792
+Data points           = 1024
+Degrees of freedom    = 1021
+Probability [Q-value] = 1
+Reduced statistic     = 0.689316
+
+sherpa&gt; f=get_stat_info()[0]
+
+sherpa&gt; print(f)
+name      = Dataset [1]
+ids       = [1]
+bkg_ids   = None
+statname  = chi2gehrels
+statval   = 703.791857589
+numpoints = 1024
+dof       = 1021
+qval      = 1.0
+rstat     = 0.689316217031
+
+sherpa&gt; print(f.rstat)
+0.689316217031
+</VERBATIM>    
+	</DESC>
+      </QEXAMPLE>
+      
+      <QEXAMPLE>
+       <SYNTAX>
+         <LINE>sherpa&gt; set_model(xsphabs.abs1*powlaw1d.p1)</LINE>
+	 <LINE>sherpa&gt; set_bkg_model("p1")</LINE>
+	 <LINE>sherpa&gt; fit()</LINE>
+         <LINE>sherpa&gt; calc_stat_info()</LINE>
+       </SYNTAX>
+       <DESC>
+        <PARA>
+	 Return the statistics resulting from a simultaneous fit of the source
+       spectrum assigned to default data set 1 and its associated background spectrum.
+	</PARA>
+<VERBATIM>
+sherpa&gt; calc_stat_info()
+Dataset               = 1
+Statistic             = chi2gehrels
+Fit statistic value   = 229.711
+Data points           = 46
+Degrees of freedom    = 43
+Probability [Q-value] = 2.46463e-27
+Reduced statistic     = 5.34212
+
+Background 1 in Dataset = 1
+Statistic             = chi2gehrels
+Fit statistic value   = 150.291
+Data points           = 46
+Degrees of freedom    = 44
+Probability [Q-value] = 1.54791e-13
+Reduced statistic     = 3.4157
+
+Dataset               = 1
+Statistic             = chi2gehrels
+Fit statistic value   = 380.002
+Data points           = 92
+Degrees of freedom    = 89
+Probability [Q-value] = 1.318e-37
+Reduced statistic     = 4.26968
+</VERBATIM>
+	</DESC>
+       </QEXAMPLE>
+
+      <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>sherpa&gt; fit(2)</LINE>
+         <LINE>sherpa&gt; calc_stat_info()</LINE>
+       </SYNTAX>
+       <DESC>
+        <PARA>
+	 Return the statistics resulting from an explicit fit to
+	 source data set 2, and the statistics for data set 1 had it
+	 been included in the fit to data set 2. 
+	</PARA>
+<VERBATIM>
+sherpa&gt; list_data_ids()
+[1,2]
+sherpa&gt; fit(2)
+
+sherpa&gt; calc_stat_info()
+WARNING: data set 1 has associated backgrounds, but they have not been subtracted, nor have background models been set
+WARNING: data set 2 has associated backgrounds, but they have not been subtracted, nor have background models been set
+Dataset               = 1
+Statistic             = chi2gehrels
+Fit statistic value   = 225.242
+Data points           = 46
+Degrees of freedom    = 43
+Probability [Q-value] = 1.54579e-26
+Reduced statistic     = 5.23818
+
+Dataset               = 2
+Statistic             = chi2gehrels
+Fit statistic value   = 54.4582
+Data points           = 46
+Degrees of freedom    = 44
+Probability [Q-value] = 0.134171
+Reduced statistic     = 1.23769
+
+Datasets              = [1, 2]
+Statistic             = chi2gehrels
+Fit statistic value   = 279.7
+Data points           = 92
+Degrees of freedom    = 89
+Probability [Q-value] = 1.44025e-21
+Reduced statistic     = 3.1427
+</VERBATIM>
+	</DESC>	
+	</QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

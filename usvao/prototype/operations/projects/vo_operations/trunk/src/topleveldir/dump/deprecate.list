@@ -1,0 +1,10 @@
+ivo://wfau.roe.ac.uk/ukidssdr4-siap|http://wfaudata.roe.ac.uk/ukidssdr4-siap/|siap|fail
+ivo://wfau.roe.ac.uk/ukidssdr5-siap|http://wfaudata.roe.ac.uk/ukidssdr5-siap/|siap|fail
+ivo://www.g-vo.org/scs.service.rassphotons|http://www.g-vo.org/rosat/RASS_SCS?action=doSCS&amp;CAT=PHOTONS&amp;|cone|fail
+ivo://xcatdb/2xmmi/cs/withcorr|http://xcatdb.u-strasbg.fr/2xmmi/conesearch?collection=[CATALOGUE(CatalogueEntry)]&amp;withrel=tru|cone|fail
+ivo://xcatdb/2xmmi/cs|http://xcatdb.u-strasbg.fr/2xmmi/conesearch?collection=[CATALOGUE(CatalogueEntry)]|cone|fail
+ivo://xcatdb/2xmmi/epicsia|http://xcatdb.u-strasbg.fr/2xmmi/|siap|fail
+ivo://xcatdb/2xmmidr3/cs/withcorr|http://xcatdb.u-strasbg.fr/2xmmidr3/conesearch?collection=[CATALOGUE(CatalogueEntry)]&amp;withrel=true|cone|fail
+ivo://xcatdb/2xmmidr3/cs|http://xcatdb.u-strasbg.fr/2xmmidr3/conesearch?collection=[CATALOGUE(CatalogueEntry)]|cone|fail
+ivo://xcatdb/2xmmidr3/epicsia|http://xcatdb.u-strasbg.fr/2xmmidr3/sia?collection=[EPIC(EpicObsImage)]|siap|fail
+ivo://xcatdb/xidresult/cs|http://xcatdb.u-strasbg.fr/xidresult/conesearch?collection=[SpectroscopicSample]|cone|fail

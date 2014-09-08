@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsdiskpbb" refkeywords="diskpbb model models modeling modelling source composite nested joint xspec" seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Accretion disk, power-law dependence for T(r).
+XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+  A multiple blackbody disk model where local disk temperature T(r) is
+  proportional to r-p, where p is a free parameter. The standard disk
+  model, diskbb, is recovered if p = 0.75. If radial advection is
+  important then p &lt; 0.75. See the discussion and examples in, e.g.,
+  Mineshige et al. 1994, ApJ, 426, 308, Hirano et al. 1995, ApJ, 446,
+  350, Watarai et al. 2000, PASJ, 52, 133, Kubota and Makishima 2004,
+  ApJ, 601, 428, Kubota et al. 2005, ApJ, 631, 1062.
+</PARA>
+
+<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsdiskpbb Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> 
+  <DATA>tin</DATA> 
+  <DATA>temperature at inner disk radius (keV)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> 
+  <DATA>p</DATA> 
+  <DATA>exponent of the radial dependence of the disk temperature</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> 
+  <DATA>norm</DATA> 
+  <DATA>[(R_in/km)/(D/10kpc)]^2 * cos(theta), where R_in is "an apparent" inner disk radius, D the distance to the source, and theta the angle of the disk (theta = 0 is face-on).  On the correction factor between the apparent inner disk radius and the realistic radius, see e.g., Kubota et al. 1998, PASJ, 50, 667.</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_xscosmo" refkeywords="xspec xscosmo cosmo Hubble cosmological deceleration get_xscosmo " seealsogroups="sh.set sh.model " displayseealsogroups="" context="modeling">
+
+    <SYNOPSIS>
+      Set XSPEC cosmology settings (H0, q0, L0)
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_xscosmo(H0, q0, L0)</LINE>
+      <LINE>get_xscosmo()</LINE>
+	</SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The set_xscosmo command specifies the cosmology settings (H0,
+        q0, L0) used in XSpec models.
+      </PARA>
+
+      <PARA>
+	The get_xscosmo command returns the current setting.
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  H0 - the Hubble constant in km/s/Mpc; default is 50
+	</ITEM>
+	<ITEM>
+	  q0 - the deceleration parameter; default is 0.5
+	</ITEM>
+	<ITEM>
+	  L0 - the cosmological constant; default is 0
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	If the cosmological constant is non-zero, then the value of q0
+	will be ignored and it is assumed that Omega_matter is &gt;= 1-L0.
+      </PARA>
+
+      <PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; print get_xscosmo()</LINE>
+	  <LINE>(50.0, 0.5, 0.0)</LINE>
+	  <LINE>sherpa&gt; set_xscosmo(100,0,0.7)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The current cosmology setting is retrieved ("(50.0, 0.5,
+	    0.0)", the default).  It is then changed to "100,0,0.7".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+    <VERSION>CIAO 4.3</VERSION>
+
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

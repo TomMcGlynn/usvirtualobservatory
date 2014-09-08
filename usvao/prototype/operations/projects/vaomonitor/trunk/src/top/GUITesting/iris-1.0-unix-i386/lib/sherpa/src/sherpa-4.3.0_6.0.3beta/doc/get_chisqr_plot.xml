@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_chisqr_plot" refkeywords="get chisq chisqr chi^2 CHI^2 CHISQ CHISQR chisquare chisquare plot plotting plots " seealsogroups="sh.get sh.plot" displayseealsogroups="" context="statistics">
+
+    <SYNOPSIS>
+      Return the data and preferences defining a chi^2 plot
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_chisqr_plot( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The get_chisqr_plot() command returns the data and preferences
+        which define a plot of the chi^2 of a data set in a Sherpa
+        session (chi^2 --&gt; data-minus-model residuals divided by dataset
+        uncertainties, the quantity squared). Once a model is assigned
+        to a loaded data set, this command can be used to list the
+        x, y, x error, and y error data arrays used in the chi^2 plot
+        created with plot_chisqr() or plot(), in addition to the
+        values for the x label, y label, title, and other
+        plotting preferences. The information returned by
+        get_chisqr_plot() may be stored in a variable, or printed to
+        the screen, as shown in the examples section.
+      </PARA>
+      <PARA>
+       Arguments:
+      </PARA>
+
+      <LIST>
+	<ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+      </LIST>
+     </DESC>   
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_chisqr_plot())</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            When called with no arguments within the print() command,
+            get_chisqr_plot() returns the data and preferences associated
+            with the chi^2 plot of the default data set 1 (using the
+            model assigned to data set 1).
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; print(get_chisqr_plot())
+x      = [  1.0950e-02   2.1900e-02   3.6500e-02 ...,   1.4914e+01 1.4928e+01 1.4943e+01]
+y      = [  0.0000e+00   0.0000e+00   0.0000e+00 ...,   1.0437e+00 1.8533e-01 2.6468e+02]
+yerr   = None
+xerr   = [ 0.0073  0.0146  0.0146 ...,  0.0146  0.0146  0.0146]
+xlabel = Energy (keV)
+ylabel = chi2
+title  = chi2 of source.pi
+plot_prefs = {'symbolstyle': 0, 'linethickness': 3, 'linestyle': 1, 'linecolor': 'red'}
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+
+        <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; chi2_plot=get_chisqr_plot(3)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            This command stores to the variable "chi2_plot" the data
+	    and preferences defining the plot of the chi^2 of data set
+	    3 (using its associated model). The contents may be printed
+	    with 'print(chi2_plot)'.
+          </PARA>
+        </DESC>
+        </QEXAMPLE>
+	   <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_chisqr_plot().plot_prefs</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+           This command lists the library of plotting preferences
+           available for get_chisqr_plot(), and can be
+           used to modify the plot settings:
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_chisqr_plot().plot_prefs
+
+    {'linecolor': 'red', 'linestyle': 1, 'linethickness': 3, 'symbolstyle': 0}
+	sherpa&gt; get_chisqr_plot().plot_prefs["linestyle"]=3
+            
+</VERBATIM>
+
+        </DESC>
+        </QEXAMPLE>
+
+   </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

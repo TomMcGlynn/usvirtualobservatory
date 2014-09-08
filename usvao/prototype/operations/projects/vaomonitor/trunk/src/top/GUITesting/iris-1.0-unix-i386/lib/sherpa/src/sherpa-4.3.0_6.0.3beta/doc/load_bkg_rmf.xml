@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_bkg_rmf" refkeywords="read back background rmf instrument response responses load readrmf readfile RMFCrate" seealsogroups="sh.io sh.rmf " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Load a background RMF
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_bkg_rmf( [id], filename|RMFCrate )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The load_bkg_rmf command loads an RMF from a
+	FITS file or an RMFCrate.  The RMF is assigned as the
+	default response id for the default background id of the
+	specified source dataset; i.e. for most simple analyses, this
+	command will assign the RMF as the first response of the first
+	background dataset associated with the id.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+	  filename|RMFCrate - the name of the file (with path) or
+	  RMFCrate which contains the RMF data
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        The load_bkg command 
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_bkg.html">"ahelp load_bkg"</HREF>)
+	may instead be used to load the background RMF.  It allows the
+        user to specify the background and response ids, in addition
+        to the source dataset id.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_bkg_rmf("back.rmf")</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Load the RMF from the file "back.rmf" and assign it as the
+	    background RMF for the default dataset. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; rmfcr = read_rmf("3c273.rmf")</LINE>
+          <LINE>sherpa&gt; load_bkg_rmf("src", rmfcr)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The RMF is read into an RMFCrate (named "rmfcr") from the file
+	    3c273.rmf.  The RMF is then loaded into Sherpa from the
+	    crate and assigned to the background of data id "src".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+    
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

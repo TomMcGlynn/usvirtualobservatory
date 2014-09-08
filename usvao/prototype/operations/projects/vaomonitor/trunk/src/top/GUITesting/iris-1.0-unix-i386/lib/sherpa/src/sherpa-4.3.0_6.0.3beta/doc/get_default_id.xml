@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_default_id" refkeywords=" get default data dataset datasets ID IDS IDs id ids" seealsogroups="sh.io sh.data sh.get" displayseealsogroups="" context="info">
+	<SYNOPSIS>
+     Return the default data set ID in a Sherpa session.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_default_id()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       Sherpa can contain, and perform fits to, several different data
+       sets in a single Sherpa session.  The get_default_id() function
+       returns the ID of the default data set in a Sherpa session
+       (id=1 by default). The get_default_id() function accepts no
+       arguments.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_default_id()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   The get_default_id() function accepts no arguments; it
+	   returns the ID of the default dataset defined for the
+	   Sherpa session. 
+	  </PARA>
+
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

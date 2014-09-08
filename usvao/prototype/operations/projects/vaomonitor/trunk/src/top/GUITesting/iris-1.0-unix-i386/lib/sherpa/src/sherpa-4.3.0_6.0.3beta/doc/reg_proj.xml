@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="reg_proj" refkeywords="region-projection region_projection reg-proj regproj confidence region error interval projection parameter statistic statistics  sigma project goodness space" seealsogroups="sh.conf " displayseealsogroups="" context="confidence">
+	<SYNOPSIS>
+      Create a confidence contour of fit statistic vs. two thawed
+      parameter values. 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>reg_proj(par0, par1, [id, otherids=None, replot=False, min=None, max=None, nloop=(10,10), delv=None, fac=4, log=(False,False), sigma=(1,2,3), levels=None, overplot=False,numcores] )</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+        The reg_proj command creates a confidence contour of fit
+	statistic as a function of two thawed parameter values.  The
+	confidence regions are determined by varying the value of each
+	selected parameter on the grid, computing the best-fit
+	statistic at each grid point, and interpolating on the grid. 
+	Each parameter value is varied until the fit statistic is
+	increased by delta_S, which is a function of the largest value
+	of sigma (e.g., delta_S = 11.8 if the statistic is chi-square
+	and 3 is the largest element of the array sigma). The data
+        arrays defining a reg_proj plot may be accessed with the
+        get_reg_proj command (see examples below).
+      </PARA>
+
+      <PARA>
+        reg_proj differs from reg_unc
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/reg_unc.html">"ahelp reg_unc"</HREF>)
+	in that all other thawed parameters are allowed to float to
+        new best-fit values, instead of being fixed to the initial
+        best-fit values.   This makes reg_proj contours more accurate,
+        but the computation is slower.
+      </PARA>
+      <PARA>
+       The computationally intensive projection function is
+       parallelized to make use of multi-core systems (i.e., laptops or
+       desktops with 2 or 4 cores) to provide 
+       significant improvements in efficiency compared to previous
+       releases of Sherpa; the 'numcores' argument may be used to
+       specify how the cores should be used when projection is run.
+       </PARA>
+      <LIST>
+        <ITEM>
+	  par0 - first thawed source model parameter
+	</ITEM>
+
+        <ITEM>
+	  par1 - second thawed source model parameter
+	</ITEM>
+
+        <ITEM>
+	  id, otherids - the id(s) of the dataset(s) to use; 
+	  by default, uses all datasets;
+	  otherids=None
+	  
+	</ITEM>
+ 
+        <ITEM>
+	  replot - should the cached arrays be used in the plot?
+	  
+	    False (default)=do the calculation, True=redisplay the
+	    existing values
+	</ITEM>
+
+        <ITEM>
+	  min - list of minimum grid boundaries [min_par0, min_par1]; 
+	  default=None, 
+	  
+	  which calculates the values from the covariance. This is
+          always a linear quantity, regardless of the log setting.
+	</ITEM>
+
+        <ITEM>
+	  max - list of maximum grid boundaries [max_par0, max_par1]; 
+	  default=None, 
+	  
+	  which calculates the values from the covariance. This is
+          always a linear quantity, regardless of the log setting.
+	</ITEM>
+
+        <ITEM>
+	  nloop - list of bin sizes for calculating the step sizes (delv);
+	  default=(10,10)
+	  
+	</ITEM>
+
+        <ITEM>
+	  delv - list of step sizes; 
+	  default=None, 
+	  
+	  which calculates the values using the min, max, and nloop values
+	</ITEM>
+
+        <ITEM>
+	  fac - factor used to expand or condense the contour
+	  intervals; default=4
+	</ITEM>
+
+        <ITEM>
+	  log - use log space for the contours?  Value is a list;
+	  default=(False,False)
+	  
+	</ITEM>
+
+        <ITEM>
+	  sigma - list of the number of sigma (i.e., the change in
+	  statistic) for the contours;
+	  default=(1,2,3)
+	  
+	</ITEM>
+
+        <ITEM>
+	  levels - list of confidence level "z" values;
+	  default=None, 
+	  
+	  which uses the sigma values
+	</ITEM>
+
+        <ITEM>
+	  overplot  - should the new plot be overlaid in the plotting window?
+	  False (default)=clear the window, True=overplot on any existing plots
+	  
+	</ITEM>
+	<ITEM>
+         numcores - number of cores to use in parallelization; default
+         is to use all cores available (2 or 4)
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        The calculated values, such as the grid min and max, can be	
+        retrieved with get_reg_proj
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/get_reg_proj.html">"ahelp get_reg_proj"</HREF>).
+      </PARA>
+
+      <PARA>
+        The plot is displayed in a ChIPS plotting window. If there is
+        no plotting window open, one is created.  If a plotting
+        window exists, the overplot parameter value determines whether
+        the new plot is overlaid on any existing plots in the window
+        or if the window is cleared before the plot is drawn.   
+      </PARA>
+
+      <PARA>
+        ChIPS commands may be used within Sherpa to modify plot
+        characteristics and create hardcopies; refer to the <HREF link="http://cxc.harvard.edu/chips/">ChIPS website</HREF> for
+        information. 
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; reg_proj(pl.gamma, pl.ampl)</LINE>
+          <LINE>sherpa&gt; print get_reg_proj()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Using the default settings, run reg_proj on the 'gamma' and
+	    'ampl' parameters of a power-law model ("pl").  Return the
+	    confidence data arrays which define the most recently
+	    produced reg_proj plot with the get_reg_proj command.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; reg_proj(pl.gamma, pl.ampl)
+sherpa&gt; print get_reg_proj()
+x0      = [ 1.8274  1.901   1.9745 ...,  2.3425  2.4161  2.4897]
+x1      = [ 0.0002  0.0002  0.0002 ...,  0.0003  0.0003  0.0003]
+y       = [ 55.7019  53.6498  54.4308 ...,  54.3251  56.0053  59.9229]
+min     = [  1.8274e+00   1.6554e-04]
+max     = [  2.4897e+00   2.8414e-04]
+nloop   = (10, 10)
+fac     = 4
+delv    = None
+log     = [False False]
+sigma   = (1, 2, 3)
+parval0 = 2.15851551134
+parval1 = 0.00022484014788
+levels  = [ 40.2037  44.088   49.7371]
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; reg_proj(clus.xpos, clus.ypos, id=1, otherids=[2,3,4])</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Run reg_proj on the parameters xpos and ypos from a beta2d
+	    model ("clus") for data ids 1, 2, 3, and 4.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; reg_proj(p1.gamma, zabs1.nh, id="src" min=[1.2, 0.15], max=[1.35, 0.5] )</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Run reg_proj for parameters p1.gamma and zabs1.nh, which
+	    are model components assigned to data id "src".  The min
+	    and max grid values are manually set.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+  <ADESC title="CHANGES IN CIAO 4.3">
+   <PARA>
+    The reg_proj function has a new argument 'numcores' to specify
+   how many cores on a user's system should be utilized when the
+   computationally intensive projection command is run.
+   </PARA>
+  </ADESC>
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_iter_method_opt" refkeywords=" get iterative iterate fitting fit method methods option options optimization Primini primini sigmarej sigma-rejection sigma" seealsogroups="sh.get sh.fit" displayseealsogroups="" context="methods">
+
+
+<SYNOPSIS>
+      Return the value of the specified option for the current iterative fitting method
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_iter_method_opt()[option]</LINE>
+    </SYNTAX>
+
+    <DESC>
+      <PARA> 
+        The get_iter_method_opt command prints the value of the named option
+        for the current iterative fitting method; if no argument is
+        given, it lists all options and their associated values. The
+        name of the current iterative fitting method can be printed
+	with the get_iter_method_name command (default is "none"), and
+        the iterative fitting method can be set to "none", "primini", or "sigmarej" with the
+        set_iter_method command (see "ahelp get_iter_method_name" and
+        "ahelp set_iter_method").  All available iterative fitting
+	methods are returned by the list_iter_methods command. The
+	essence of an iterative fitting method is that the chosen fit
+        optimization method can be called several times, until some
+        criterion is met. The fit statistic and optimization methods are 
+        selected independently of the iterative fitting method.     
+      </PARA>
+    
+      <LIST>
+        <ITEM>
+         option - the name of the iterative fitting option whose value
+         should be returned
+        </ITEM>
+      </LIST>
+
+      <PARA>
+       If the iterative fitting method is "none", then no iterative
+       fitting is done when "fit()" is called; the optimization method
+       is called once, and Sherpa otherwise operates as expected.
+      </PARA>
+
+      <PARA>
+       Primini's method is used for re-calculating statistical
+       errors using the best-fit model parameters from the *previous*
+       fit, until the fit can no longer be improved.
+      </PARA>
+
+          <PARA>
+       The options which may be edited for Primini's method are:
+      </PARA>
+      
+      <LIST>
+        <ITEM>
+	  maxiters - maximum number of iterations to perform, even if
+        the fit statistic has not converged
+        </ITEM>
+	<ITEM>
+	  name - name of the current iterative fitting method
+        </ITEM>
+	<ITEM>
+	  tol  - the iterative fitting is stopped when the statistic
+        varies by less than the tolerance value between iterations. 
+        </ITEM>
+      </LIST>
+
+      <PARA>
+         The sigma-rejection method is based on the IRAF SFIT
+         function.  In successive fits, data points for which ((data -
+         model) / error) exceeds some threshold are added to the
+         filter, and automatically excluded from the next fit. Iterations cease when there is no change in the filter from one iteration to the next, or when the fit has iterated a user-specified maximum number of times.
+      </PARA>
+      <PARA>
+         The options which may be edited for Sigma-rejection are:
+      </PARA>
+	
+      <LIST>
+        <ITEM>
+	  lrej - data point rejection criterion in units of sigma, for data points below the model 
+        </ITEM>
+        <ITEM>
+           maxiters -  maximum number of iterations to perform in the
+        fit (if 0, the fit will run to convergence, i.e., until there is no change in the filter)
+        </ITEM>
+        <ITEM>
+          grow  - rejection growing radius (when a given data point is
+        to be filtered out, this parameter sets the number of pixels
+        adjacent to that pixel which are also to be filtered out;
+        i.e., if 0, only the data point itself is filtered out; if 1,
+        the data point and its two immediate neighbors are filtered
+        out, and so on)
+        </ITEM>
+        <ITEM>
+         name - name of the current iterative fitting method
+	</ITEM>
+        <ITEM>
+         hrej - data point rejection criterion in units of sigma, for data points above the model
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        Primini's method and sigma-rejection can only be called when
+        the fit statistic is a chi-squared statistic; it cannot be used with
+	least-squares, Cash or C-statistic.
+      </PARA>
+    </DESC> 
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_stat("chi2datavar")</LINE>
+	  <LINE>sherpa&gt; set_method("neldermead")</LINE>
+	  <LINE>sherpa&gt; print(get_iter_method_name())</LINE>
+	  <LINE>primini</LINE>
+          <LINE>sherpa&gt; print(get_iter_method_opt())</LINE>
+          <LINE>{'maxiters': 10, 'name': 'primini', 'tol': 0.001}</LINE>               
+	  <LINE>sherpa&gt; fit()</LINE>
+       </SYNTAX>
+	<DESC>
+          <PARA>
+	    Print all of the options and associated values of Primini's
+            iterative fitting method before fitting data set 1 (where
+	     the Nelder-Mead optimization method will be called until the
+	      fit can no longer be improved).
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_stat("chi2xspecvar")</LINE>
+	  <LINE>sherpa&gt; set_method("levmar")</LINE>
+	  <LINE>sherpa&gt; print(get_iter_method_name())</LINE>
+	  <LINE>none</LINE>                      
+	  <LINE>sherpa&gt;  print(get_iter_method_opt())</LINE> 
+          <LINE>{'name': 'none'}</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    No iterative fitting method has been set (default is
+        'none'), therefore no iterative fitting is done when data set 2 is fit; the Levenberg-Marquardt optimization method is called once.  In this case, only the name of the current iterative fitting method is printed when get_iter_method_opt() is called (which is 'none').
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_stat("chi2gehrels")</LINE>
+	  <LINE>sherpa&gt; set_method("simplex")</LINE>
+	  <LINE>sherpa&gt; set_iter_method("sigmarej")</LINE>
+          <LINE>sherpa&gt; print(get_iter_method_opt())</LINE>
+	  <LINE>{'lrej': 3, 'maxiters': 5, 'grow': 0, 'name': 'sigmarej', 'hrej': 3}</LINE>
+	  <LINE>sherpa&gt; set_iter_method_opt("maxiters", 10)</LINE>
+          <LINE>sherpa&gt; print(get_iter_method_opt()["maxiters"])</LINE>
+          <LINE>10</LINE>
+	  <LINE>sherpa&gt; fit(2,3)</LINE>   
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   The sigma-rejection iterative fitting method is used in the
+        simultaneous fitting of data sets 2 and 3. The full list of
+        available options and associated values for this method are
+        returned with get_iter_method_opt(); the maximum number of
+        iterations for this method is set to 10 with set_iter_method_opt; and the
+        changed value of 'maxiters' is checked with 'get_iter_method_opt()["maxiters"]'.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

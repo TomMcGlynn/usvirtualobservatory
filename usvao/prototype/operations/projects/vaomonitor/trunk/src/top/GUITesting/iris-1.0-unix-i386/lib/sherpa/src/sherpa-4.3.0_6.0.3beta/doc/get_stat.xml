@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_stat" refkeywords="  get_stat_name get  fit stat statistic" seealsogroups="sh.get sh.fit  " displayseealsogroups="" context="statistics">
+	<SYNOPSIS>
+     Return information on the fit statistic
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_stat([name])</LINE>
+	<LINE>get_stat_name()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The get_stat command returns a descriptive string about the
+        specified fit statistic.  It takes one argument:
+      </PARA>
+
+      <LIST>
+	<ITEM>name - the name of the fit statistic to return; default
+	is the current fit statistic.
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	The get_stat_name command returns the name of the current fit
+	statistic. 
+      </PARA>
+
+      <PARA>
+	To print the current statistic to the screen, use the
+	show_stat command (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/show_stat.html">"ahelp show_stat"</HREF>).
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_stat("chi2datavar")</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	    Return information on the statistic "chi2datavar"; the
+	    output is:
+	  </PARA>
+
+<VERBATIM>
+Chi Squared with data variance
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_stat("chi2gehrels")</LINE>
+	  <LINE>sherpa&gt; get_stat()</LINE>
+	  <LINE>Chi Squared with Gehrels variance</LINE>
+	  <LINE>sherpa&gt; get_stat_name()</LINE>
+	  <LINE>'chi2gehrels'</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Set the statistic to "chi2gehrels", then return
+	    information and the name of the current statistic.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

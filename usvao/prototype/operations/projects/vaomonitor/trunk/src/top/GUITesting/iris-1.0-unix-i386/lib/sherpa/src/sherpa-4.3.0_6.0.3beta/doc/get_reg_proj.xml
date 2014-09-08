@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_reg_proj" refkeywords="get region projection proj covar covariance confidence xconf " seealsogroups="sh.get sh.conf" displayseealsogroups="" context="confidence">
+ 
+   <SYNOPSIS>
+     Return the confidence data defining a region projection contour plot
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_reg_proj( [par0=None, par1=None,
+      id, otherids=None, recalc=False, min=None, max=None,
+      nloop=(10, 10), delv=None, fac=4, log=(False, False),
+      sigma=(1,2,3), levels=None,numcores] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The get_reg_proj() function returns the data defining a
+	confidence contour of fit statistic as a function of two
+	thawed model parameter values,  produced by the reg_proj()
+	function. (The confidence regions are determined by varying
+	the value of each selected parameter on the grid, computing
+	the best-fit statistic at each grid point, and interpolating
+	on the grid. Each parameter value is varied until the fit
+	statistic is increased by delta_S, which is a function of the
+	largest value of sigma. For example, delta_S = 11.8 if the
+	statistic is chi^2 and 3 is the largest element of the sigma
+	array. All other thawed parameter s are allowed to float to new 
+	best-fit values at each step, instead of being fixed to the
+	initial best-fit values.)
+      </PARA>
+      <PARA>
+       The get_reg_proj() function returns information on the most
+       recent confidence contour plot produced with reg_proj(), independent of
+       the arguments supplied, unless the 'recalc' argument is set to
+       True
+       . For example, if a region
+       projection confidence contour plot is produced for the
+       amplitude and gamma parameters of a power-law model, and then 
+       get_reg_proj() is used to obtain confidence data for a different
+       pair of model parameters, the information returned by
+       get_reg_proj() will correspond to the confidence contour of the 
+       amplitude and gamma parameters, *unless* the 'recalc' argument
+       is switched on.
+      </PARA>
+
+       <PARA>
+       The computationally intensive projection function is
+       parallelized to make use of multi-core systems (i.e., laptops or
+       desktops with 2 or 4 cores) to provide 
+       significant improvements in efficiency compared to previous
+       releases of Sherpa; the 'numcores' argument may be used to
+       specify how the cores should be used when projection is run.
+       </PARA>
+
+      <LIST>
+        <ITEM>
+           par0 - first thawed source model parameter
+        </ITEM>
+
+         <ITEM>
+           par1 - second thawed source model parameter
+        </ITEM>
+
+        <ITEM>
+          id, otherids - the id(s) of the dataset(s) to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id");
+          otherids=None
+          
+        </ITEM>
+
+        <ITEM>
+          recalc    - re-calculate confidence data? ;
+          default=False 
+          
+        </ITEM>
+
+        <ITEM>
+          min - list of minimum grid boundaries [min_par0, min_par1];
+          default=None, 
+          
+          which calculates the values from the covariance. This is
+          always a linear quantity, regardless of the log setting.
+        </ITEM>
+        
+        <ITEM>
+          max - list of maximum grid boundaries [max_par0, max_par1];
+          default=None, 
+          
+          which calculates the values from the covariance. This is
+          always a linear quantity, regardless of the log setting.
+        </ITEM>
+
+	<ITEM>
+          nloop - list of bin sizes for calculating the step sizes (delv);
+          default=(10,10)
+          
+        </ITEM>
+
+        <ITEM>
+          delv - list of step sizes;
+          default=None, 
+          
+          which calculates the values using the min, max, and nloop values
+        </ITEM>
+
+        <ITEM>
+          fac - factor used to expand or condense the contour
+          intervals; default=4
+        </ITEM>
+
+        <ITEM>
+          log - use log space for the contours?  Value is a list;
+          default=(False,False)
+          
+        </ITEM>
+
+	<ITEM>
+          sigma - list of the number of sigma (i.e., the change in
+          statistic) for the contours;
+          default=(1,2,3)
+          
+        </ITEM>
+
+        <ITEM>
+          levels - list of confidence level "z" values;
+          default=None, 
+          
+          which uses the sigma values
+        </ITEM>
+	<ITEM>
+         numcores - number of cores to use in parallelization; default
+         is to use all cores available (2 or 4)
+	</ITEM>
+	</LIST>
+     </DESC>
+   <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print get_reg_proj()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           When called with no arguments from within the print
+           command, get_reg_proj() returns the confidence data defining the
+           most recently produced region projection contour plot.  
+          </PARA>
+<VERBATIM>
+sherpa&gt; reg_proj(pl.gamma, pl.ampl)
+sherpa&gt; print get_reg_proj()
+x0      = [ 1.8274  1.901   1.9745 ...,  2.3425  2.4161  2.4897]
+x1      = [ 0.0002  0.0002  0.0002 ...,  0.0003  0.0003  0.0003]
+y       = [ 55.7019  53.6498  54.4308 ...,  54.3251  56.0053  59.9229]
+min     = [  1.8274e+00   1.6554e-04]
+max     = [  2.4897e+00   2.8414e-04]
+nloop   = (10, 10)
+fac     = 4
+delv    = None
+log     = [False False]
+sigma   = (1, 2, 3)
+parval0 = 2.15851551134
+parval1 = 0.00022484014788
+levels  = [ 40.2037  44.088   49.7371]
+</VERBATIM>
+	<PARA>
+	 where the x0, x1, and y arrays contain the par0 values, par1
+	 values, and fit statistic values, respectively.
+	</PARA> 
+       </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_reg_proj("pl2.gamma", "pl2.ampl", id=2, recalc=True))</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           This command will calculate and return the region
+	   projection confidence data for the amplitude and gamma
+	   parameters of the power law model 'p1' assigned to data set
+	   2. Since the 'recalc' argument is set to True, the confidence data for this
+           set of parameters will be returned regardless of whether
+	   or not they were the last ones used with reg_proj.  
+          </PARA>
+
+        </DESC>
+      </QEXAMPLE>
+  </QEXAMPLELIST>
+  <ADESC title="CHANGES IN CIAO 4.3">
+   <PARA>
+    The get_reg_proj function has a new argument 'numcores' to specify
+   how many cores on a user's system should be utilized when the
+   computationally intensive projection command is run.
+   </PARA>
+  </ADESC>
+  
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

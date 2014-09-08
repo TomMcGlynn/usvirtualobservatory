@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="chi2modvar" refkeywords="chi chi2 chisquare chimvar mvar modvar variance sigma stat stats statistics statistic " seealsogroups="sh.stat " displayseealsogroups="" context="statistics">
+	<SYNOPSIS>
+      Chi-square statistic with variance computed from model
+      amplitudes.
+    </SYNOPSIS>
+
+    <DESC>
+      <PARA>
+        The chi2modvar statistic was named CHI MVAR in CIAO 3.4.
+      </PARA>
+
+      <PARA>
+	The chi2xspecvar statistic is equivalent to chi2datavar
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/chi2datavar.html">"ahelp chi2datavar"</HREF>),
+	except that the variance is estimated using the background and
+	source model amplitudes rather than the observed counts data: 
+      </PARA>
+ 
+      <PARA>
+	<EQUATION>
+	    sigma(i)^2 = S(i) + [A(S)/A(B)]^2 B(i,off) ,
+	  </EQUATION>
+      </PARA>
+
+      <PARA>
+	where B(i,off) is the
+	background model amplitude in bin i of
+	the off-source region. The help file
+        on the chi-square statistic has more information, including
+        definitions of the quantities in the equation:
+        
+        <HREF link="http://cxc.harvard.edu/sherpa/ahelp/chisquare.html">"ahelp chisquare"</HREF>
+        .
+      </PARA>
+
+      <PARA title="Note on Background Subtraction">
+	The background should not be subtracted from the data when
+	this statistic is used.  chi2modvar underestimates the
+	variance when fitting background-subtracted data.  
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_stat("chi2modvar")</LINE>
+	  <LINE>sherpa&gt; show_stat()</LINE>
+	  <LINE>Statistic: Chi2ModVar</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Set the fitting statistic and then confirm the new value.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+ 
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

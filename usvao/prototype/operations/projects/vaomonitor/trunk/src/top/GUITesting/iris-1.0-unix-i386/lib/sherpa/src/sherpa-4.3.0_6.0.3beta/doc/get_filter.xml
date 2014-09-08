@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_filter" refkeywords="filter filters ignore notice ignore notice" seealsogroups="sh.filter sh.get sh.data" displayseealsogroups="" context="filtering">
+	<SYNOPSIS>
+     Return the filter of a data set 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_filter( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The get_filter() function returns the filter expression of a
+	data set resulting from the application of the ignore()
+	or notice() filter functions.  In other words,
+	this function returns the range of data being considered in the
+	analysis of a specified data set, by data id.
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+    </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_filter()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+	    When called with no arguments, get_filter() returns the
+	    filter expression of the default data set. 
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; get_filter()
+           '0.010950000258:14.943099975586'
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_filter(3)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+	   If supplied with a data set ID, get_filter() returns
+	   the range of data included in the analysis of the specified
+	   data set.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; ignore(10.0,15.0)
+sherpa&gt; get_filter(3)
+          '0.010950000258:9.979099750519'
+
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

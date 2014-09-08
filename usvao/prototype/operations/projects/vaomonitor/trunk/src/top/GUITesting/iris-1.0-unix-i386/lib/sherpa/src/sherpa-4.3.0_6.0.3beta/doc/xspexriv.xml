@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xspexriv" refkeywords="pexriv model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Exponentially cutoff power law reflected from ionized matter.
+XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+Exponentially cutoff power law spectrum reflected from ionized
+material. See Magdziarz and Zdziarski (MNRAS, 273, 837; 1995) for
+details. Ionization and opacities of the reflecting medium are
+computed as in xsabsori.  The output spectrum is the sum of an
+e-folded power law and the reflection component. 
+</PARA>
+
+<PARA>
+The reflection component alone can be obtained for relRefl
+&lt; 0. Then the actual reflection normalization is |relRefl|. Note
+that you then need to change the limits of relRefl to exclude zero (as
+then the direct component appears). If foldE = 0 there is no cutoff in
+the power law. 
+</PARA>
+
+<PARA>
+The metal and iron abundance are variable with respect
+to those defined by the set_xsabund command.  
+	</PARA>
+
+<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xspexriv Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>phoindex</DATA> <DATA>power law
+  photon index, N_E prop. to E^(-PhoIndx)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>folde</DATA> <DATA>the e-folding
+  energy in keV (if foldE=0, there is no cutoff; change the lower
+  limit for that)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> <DATA>rel_refl</DATA> <DATA>reflection
+  scaling factor; if &lt; 0, there is no direct component; relRefl=1
+  for isotropic source above disk</DATA> 
+</ROW>
+<ROW> 
+  <DATA>4</DATA> <DATA>redshift</DATA> <DATA>redshift,
+  z</DATA> 
+</ROW>
+<ROW> 
+  <DATA>5</DATA> <DATA>abund</DATA> <DATA>abundance of
+  elements heavier than He relative to that defined by
+  set_xsabund</DATA> 
+</ROW>
+<ROW> 
+  <DATA>6</DATA> <DATA>fe_abund</DATA> <DATA>iron
+  abundance relative to that defined by set_xsabund</DATA> 
+</ROW>
+<ROW> 
+  <DATA>7</DATA> <DATA>cosincl</DATA> <DATA>cosine of
+  inclination angle</DATA> 
+</ROW>
+<ROW> 
+  <DATA>8</DATA> <DATA>t_disk</DATA> <DATA>disk
+  temperature in K</DATA> 
+</ROW>
+<ROW> 
+  <DATA>9</DATA> <DATA>xi</DATA> <DATA>disk ionization
+  parameter, xi = 4 pi F_ion/n, where F_ion is the 5 eV - 20 keV
+  irradiating flux and n is the density of the reflector; see Done et
+  al., 1992, ApJ, 395, 275</DATA> 
+</ROW>
+<ROW> 
+  <DATA>10</DATA> <DATA>norm</DATA> <DATA>photon flux at 1
+  keV (photons/keV/cm^2/s) of the power law only in the observed
+  frame</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

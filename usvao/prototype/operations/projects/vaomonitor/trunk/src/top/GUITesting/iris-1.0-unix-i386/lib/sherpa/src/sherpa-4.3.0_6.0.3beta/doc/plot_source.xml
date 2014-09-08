@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="plot_source" refkeywords="source src model models modeling modelling composite nested joint component plot plotting  factor  eufspec eeufspec " seealsogroups=" sh.plot sh.model" displayseealsogroups="" context="plotting">
+
+   
+    <SYNOPSIS>
+      Plot the unconvolved source model
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>plot_source( [id], [lo=None, hi=None, replot=False, overplot=False] )</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+        The plot_source function plots the unconvolved source
+	model in the current units of the spectral analysis, set by
+        the set_analysis command (either channel, energy, or
+        wavelength space).  Any filter applied to the associated data with notice
+        or ignore
+	are not used; set the 'lo' and 'hi' parameters to change the
+	displayed range.  
+	Use the plot_model command to plot the convolved model amplitudes.
+      </PARA>
+
+      <PARA>
+       The plot_source command supports the 'factor' setting of
+       set_analysis (see "ahelp set_analysis"). This means that
+       calling plot_source while the set_analysis
+       'factor' setting is '1' will plot E F(E) versus E in keV, or
+       lambda f(lambda) versus lambda in Angstroms, depending on which units are
+       set for the spectral analysis. A set_analysis 'factor=2'
+       setting will plot E^2 F(E) versus E, or
+       lambda^2 f(lambda) versus lambda.
+      </PARA>
+
+
+      <TABLE>
+	<ROW><DATA>Argument</DATA><DATA>Default</DATA><DATA>Description</DATA></ROW>
+	<ROW><DATA>id</DATA><DATA>1 (can be changed, see "ahelp get_default_id")</DATA><DATA>the id of the dataset to plot</DATA></ROW>
+	<ROW>
+	  <DATA>lo</DATA>
+	  <DATA>
+	    None
+	    
+	  </DATA>
+	  <DATA>
+	    lower limit of the plot in the same units as the data
+	    (energy [keV] or wavelength [A]). The default value of
+	    None
+	    
+	    means that the minimum value from the response file
+	    is used (ENERG_LO).
+	  </DATA>
+	</ROW>
+	<ROW>
+	  <DATA>hi</DATA>
+	  <DATA>
+	    None
+	    
+	  </DATA>
+	  <DATA>
+	    upper limit of the plot in the same units as the data
+	    (energy [keV] or wavelength [A]). The default value of
+	    None
+	    
+	    means that the maximum value from the response file
+	    is used (ENERG_HI).
+	  </DATA>
+	</ROW>
+	<ROW>
+	  <DATA>replot</DATA>
+	  <DATA>
+	    False
+	    
+	  </DATA>
+	  <DATA>
+	    should previously-calculated arrays be used to create the plot?
+	  </DATA>
+	</ROW>
+	<ROW>
+	  <DATA>overplot</DATA>
+	  <DATA>
+	    False
+	    
+	  </DATA>
+	  <DATA>
+	    If
+	    True
+	    
+	    then add the data to the current plot, otherwise erase the frame and
+	    create a new plot.
+	  </DATA>
+	</ROW>
+      </TABLE>
+
+      <PARA>
+        The plot is displayed in a ChIPS plotting window. If there is
+        no plotting window open, one is created.  If a plotting
+        window exists, the overplot parameter value determines whether
+        the new plot is overlaid on any existing plots in the window
+        or if the window is cleared before the plot is drawn.   
+      </PARA>
+
+      <PARA>
+        ChIPS commands may be used within Sherpa to modify plot
+        characteristics and create hardcopies; refer to the <HREF link="http://cxc.harvard.edu/chips/">ChIPS website</HREF> for
+        information. 
+      </PARA>
+
+      <PARA title="Plotting Multiple Objects">
+	To plot multiple Sherpa objects - e.g. data, model, fit,
+	residuals - in a single window, use
+	the <HREF link="http://cxc.harvard.edu/sherpa/ahelp/plot.html">plot command</HREF>.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; plot_source()</LINE>
+          <LINE>sherpa&gt; log_scale(Y_AXIS)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Using the default settings, plot the unconvolved source
+	    model.  The limits for the plot will be
+	    calculated from the response file.
+	    The ChIPS command log_scale is used to change the Y axis
+	    to a logarithmic scale.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; plot_source(lo=0.3, hi=7.0)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Plot the unconvolved source model for the default dataset
+	    (normally 1), using
+	    limits of 0.3-7.0 keV (the analysis setting is
+	    assumed to be "energy" for this example).
+          </PARA>
+	</DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; plot_source( 2, overplot=True )</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Plot the unconvolved source model for data id 2,
+	    overlaying it on any existing plot.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; plot_source("src", hi=5.0)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The unconvolved source model for data set "src" is plotted
+	    with an upper limit of 5.0 keV.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_analysis("energy", factor=1)</LINE>
+	  <LINE>sherpa&gt; plot_source()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The unconvolved source model for data set 1 is plotted
+	    as E F(E) versus E, in units of photons/sec/cm^2 versus
+             keV. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_analysis("wavelength", factor=2)</LINE>
+	  <LINE>sherpa&gt; plot_source(2)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The unconvolved source model for data set 2 is plotted
+	    as lambda^2 f(lambda) versus lambda, in units of Angstroms
+            photons/sec/cm^2 versus Angstroms.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+ 
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+  </ENTRY></cxchelptopics>

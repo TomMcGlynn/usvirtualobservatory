@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_resid" refkeywords=" contour plot residuals data model get_resid_contour get_resid_image get_resid_plot " seealsogroups="sh.data sh.model sh.get " displayseealsogroups="" context="visualization">
+	<SYNOPSIS>
+     Return information on a contour plot of the residuals of data and model.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_resid_contour( [id] )</LINE>
+	<LINE>get_resid_image( [id] )</LINE>
+	<LINE>get_resid_plot( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+get_resid_contour
+       When a 2-D model is assigned to a data set, a contour plot of
+      the residuals between the data and model can be created.  This
+      function returns a variable listing all the information that
+      went into making that plot--title, axis labels, data arrays,
+      contour levels and other plot preferences.
+      </PARA>
+
+      <PARA>
+get_resid_image
+       When a 2-D model is assigned to a data set, an image of
+      the residuals between the data and model can be created.  This
+      function returns a variable containing the image of that residuals.
+      </PARA>
+
+      <PARA>
+get_resid_plot
+       When a 1-D model is assigned to a data set, a plot of
+      the residuals between the data and model can be created.  This
+      function returns a variable listing all the information that
+      went into making that plot--title, axis labels, data arrays,
+      error bars and other plot preferences.
+      </PARA>
+     </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_resid_contour()</LINE>
+          <LINE>sherpa&gt; get_resid_contour(1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   This function returns a variable listing all information
+           that went into making a contour plot of the residuals of data
+           and model.  If no argument is given, then the default data
+           set ID is assumed.  If an argument is given, then
+           information about the residuals contour plot that goes with
+           that data set is returned.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_resid_image()</LINE>
+          <LINE>sherpa&gt; get_resid_image(1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   This function returns a variable containing the image of
+           the residuals of the data and model.  If no argument is given, 
+           then the default data
+           set ID is assumed.  If an argument is given, then
+	   the image of the residuals for that data set is returned.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_resid_plot()</LINE>
+          <LINE>sherpa&gt; get_resid_plot(1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   This function returns a variable listing all information
+           that went into making a plot of the residuals of data
+           and model.  If no argument is given, then the default data
+           set ID is assumed.  If an argument is given, then
+           information about the residuals plot that goes with
+           that data set is returned.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+     </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

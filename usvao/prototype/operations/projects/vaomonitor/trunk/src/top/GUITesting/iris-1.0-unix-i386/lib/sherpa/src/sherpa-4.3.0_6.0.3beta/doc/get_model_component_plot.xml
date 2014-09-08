@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_model_component_plot" refkeywords=" get_model_contour get_model_contour_prefs get_model_image get_model_plot_prefs get model plot prefs preferences type get_model_component component components " seealsogroups=" sh.get sh.model  " displayseealsogroups="" context="modeling">
+ 
+   
+    <SYNOPSIS>
+      Returns the data and preferences defining the convolved model component plot
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_model_component_plot([id], name)</LINE>
+    </SYNTAX>
+
+    <DESC>
+      <LIST>
+        <ITEM>
+        id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+        <ITEM>
+	 name - the variable name(s) representing the model component(s)
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        The get_model_component_plot() command returns the data arrays
+        and preferences
+        which define a plot of convolved model components created
+	with the plot_model_component() command.  (The
+        get_source_component_plot command is available for returning
+        information pertaining to plots of unconvolved model
+        components.) Once a data set
+        has been loaded into the Sherpa session, this command can be used to
+	list the xlo, xhi, and y data arrays associated with a
+        specified model component, as well as the x label,
+	y label, title, and other (histogram) plotting preferences and
+	settings. The
+        information returned by get_model_component_plot() may be stored in 
+        variables, or printed to the screen, as shown in the examples section.
+      </PARA>
+
+      <PARA>
+	Attributes:
+      </PARA>
+
+       <TABLE>
+        <ROW><DATA>Field name</DATA><DATA>Description</DATA></ROW>
+        <ROW><DATA>xlo</DATA><DATA>grid array, low bins (independent
+        variable)</DATA></ROW>
+	<ROW><DATA>xhi</DATA><DATA>grid array, high bins (independent variable)</DATA></ROW>
+        <ROW><DATA>y</DATA><DATA>convolved model amplitudes (dependent variable)</DATA></ROW>
+       
+        <ROW><DATA>xlabel</DATA><DATA>The label for the X axis</DATA></ROW>
+        <ROW><DATA>ylabel</DATA><DATA>The label for the Y axis</DATA></ROW>
+        <ROW><DATA>title</DATA><DATA>The plot title</DATA></ROW>
+        <ROW><DATA>histo_prefs</DATA><DATA>dictionary of histogram
+        plotting preferences</DATA></ROW>
+      </TABLE>
+
+    <PARA>
+      Note that the show_model command (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/show_model.html">"ahelp show_model"</HREF>) is
+      recommended to simply print the current model to the screen.
+    </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+     <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print get_model_component_plot(2, "p1")</LINE>
+	</SYNTAX>
+	<DESC>
+	<PARA>
+         Return the data arrays and preferences defining the plot of
+     the convolved power law model component "p1" associated with data set 2.
+	</PARA>
+<VERBATIM>
+sherpa&gt; load_data(2, "source_pi.fits")
+sherpa&gt; set_model(2, "xsphabs.abs1*powlaw1d.p1")
+
+sherpa&gt; print get_model_component_plot(2, "p1")
+xlo    = [  1.0000e+00   2.0000e+00   3.0000e+00 ...,   1.0220e+03   1.0230e+03
+   1.0240e+03]
+xhi    = [    2.     3.     4. ...,  1023.  1024.  1025.]
+y      = [  1.2732e-04   6.3658e-05   4.2439e-05 ...,   1.2458e-07   1.2445e-07
+   1.2433e-07]
+xlabel = Channel
+ylabel = Counts/sec
+title  = Model component: powlaw1d.p1
+histo_prefs = {'linethickness': 2, 'symbolcolor': None, 'symbolfill': None, 'xlog': False, 'ylog': False, 'symbolangle': None, 'errthickness': None, 'fillcolor': None, 'linecolor': 'orange', 'errstyle': None, 'linestyle': 1, 'symbolstyle': 0, 'errcolor': None, 'fillstyle': None, 'fillopacity': None, 'yerrorbars': False, 'symbolsize': None}
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+     <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_model("gauss1d.g1+const1d.c1")</LINE>
+          <LINE>sherpa&gt; gauss_plot=get_model_component_plot("g1")</LINE>
+          <LINE>sherpa&gt; gauss_plot.histo_prefs["symbolcolor"]="cyan"</LINE>
+	</SYNTAX>
+	<DESC>
+	<PARA>
+         Store the plot information returned by the
+	 get_model_component_plot() command for the Guass 1D model
+	 component "g1" to the variable "gauss_plot". Use the
+	 "gauss_plot" variable to change the color of plot symbols to
+	 cyan.
+         </PARA>
+        </DESC>
+       </QEXAMPLE>
+     </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+  </ENTRY></cxchelptopics>

@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="models" refkeywords=" model models modeling modelling source composite nested joint " seealsogroups="sh.models " displayseealsogroups="" context="models">
+	<SYNOPSIS>
+    Summary of Available Models
+  </SYNOPSIS>
+
+  <DESC>
+    <PARA>
+      The following is the list of models available within Sherpa.
+    </PARA>
+
+    <TABLE>
+      <CAPTION>Summary of Models</CAPTION>
+      
+      <ROW>
+        <DATA>Name</DATA> 
+	<DATA>Description</DATA>
+      </ROW>
+
+      <ROW>
+        <DATA>atten</DATA> <DATA>Attenuation by ISM</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>bbody</DATA> <DATA>Blackbody as a function of energy</DATA>  
+      </ROW>
+
+      <ROW>
+        <DATA>bbodyfreq</DATA> <DATA>Blackbody as a function of frequency</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>beta1d</DATA> <DATA>1-D surface brightness beta-model</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>beta2d</DATA> <DATA>2-D Lorentzian with varying power law</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>box1d</DATA> <DATA>1-D box function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>box2d</DATA> <DATA>2-D box function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>bpl1d</DATA> <DATA>Broken power law function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>const1d</DATA> <DATA>1-D constant amplitude model</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>const2d</DATA> <DATA>2-D constant amplitude model</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>cos</DATA> <DATA>Cosine function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>delta1d</DATA> <DATA>1-D delta function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>delta2d</DATA> <DATA>2-D delta function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>dered</DATA> <DATA>Dereddening function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>devaucouleurs2d</DATA> <DATA>DeVaucouleurs profile</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>edge</DATA> <DATA>Photoabsorption edge model</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>erf</DATA> <DATA>1-D error function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>erfc</DATA> <DATA>1-D complementary error function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>exp</DATA> <DATA>Exponential function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>exp10</DATA> <DATA>Exponential function, base 10</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>gauss1d</DATA> <DATA>1-D unnormalized Gaussian function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>gauss2d</DATA> <DATA>2-D unnormalized Gaussian function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>hubblereynolds</DATA> <DATA>Hubble-Reynolds profile</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>jdpileup</DATA> <DATA>John Davis (MIT) pileup model</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>linebroad</DATA> <DATA>Line broadening profile</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>log</DATA> <DATA>Natural logarithm function</DATA> 
+      </ROW>
+      
+      <ROW>
+        <DATA>logparabola</DATA> <DATA>Log-parabolic function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>log10</DATA> <DATA>Logarithm function, base 10</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>lorentz1d</DATA> <DATA>1-D unnormalized Lorentzian function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>lorentz2d</DATA> <DATA>2-D unnormalized Lorentzian function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>normbeta1d</DATA> <DATA>1-D normalized beta function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>normgauss1d</DATA> <DATA>1-D normalized Gaussian function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>poisson</DATA> <DATA>Poisson function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>polynom1d</DATA> <DATA>1-D polynomial function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>polynom2d</DATA> <DATA>2-D polynomial function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>powlaw1d</DATA> <DATA>1-D power law</DATA> 
+      </ROW>
+    
+      <ROW>
+        <DATA>scale1d</DATA> <DATA>const1d with the integrate flag turned off by default</DATA>
+      </ROW>
+
+      <ROW>
+        <DATA>scale2d</DATA> <DATA>const2d with the integrate flag turned off by default</DATA> 
+      </ROW>
+      <ROW>
+        <DATA>schechter</DATA> <DATA>Schechter function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>sin</DATA> <DATA>Sine function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>sqrt</DATA> <DATA>Square root function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>stephi1d</DATA> <DATA>1-D step function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>steplo1d</DATA> <DATA>1-D step function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>tablemodel</DATA> <DATA>Table model class</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>tan</DATA> <DATA>Tangent function</DATA> 
+      </ROW>
+
+      <ROW>
+        <DATA>XS&lt;xspecname&gt;</DATA> 
+	<DATA>the XSpec model functions</DATA>  
+      </ROW>
+    </TABLE>
+
+    <PARA>
+      See <HREF link="http://cxc.harvard.edu/sherpa/ahelp/xs.html">"ahelp xs"</HREF> for a list of XSPEC models available within Sherpa.
+    </PARA>
+  </DESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+  <VERSION>CIAO 4.3</VERSION>
+
+  <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="tablemodel" refkeywords="table model models modeling modelling source composite nested joint gridmodel array" seealsogroups="sh.models " displayseealsogroups="" context="models">
+	<SYNOPSIS>
+    Using an n-dimensional array of values as a model (table model).
+  </SYNOPSIS>
+
+  <DESC>
+    <PARA>
+      The table model allows you to use an array of values as a model
+      component; the only parameter is "ampl" which acts as a normalization
+      of the input array. See <HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_table_model.html">"ahelp load_table_model"</HREF> for more information.
+    </PARA>
+
+    <PARA>
+      For most cases, the load_table_model() function should be used to create
+      an instance of the table model; it will read in data from a file
+      and create a tablemodel component for you. However, if you wish to
+      use an array that you have created or calculated, you can create an
+      component manually, as shown in the example below.
+    </PARA>
+
+    <PARA>
+      The array of values used, whether read in from a file or set
+      from an array, should match that of the data - e.g. dimensionality and shape.
+    </PARA>
+
+    <TABLE>
+      <CAPTION>tablemodel Parameters</CAPTION>
+      <ROW> <DATA> Number </DATA> <DATA> Name </DATA> <DATA> Description </DATA> </ROW>
+      <ROW> <DATA> 1 </DATA> <DATA> ampl </DATA> <DATA>amplitude; the y-values are multiplied by the amplitude</DATA> </ROW>
+    </TABLE>
+    <PARA>
+      The integration of models in Sherpa is controlled by an 
+      integration flag in each model structure.  Refer to <HREF link="http://cxc.harvard.edu/sherpa/ahelp/integrate.html">"ahelp integrate"</HREF> 
+      for information on integrating model components. 
+    </PARA>
+
+  </DESC>
+	<QEXAMPLELIST> 
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; tablemodel.t1()</LINE>
+          <LINE>sherpa&gt; t1._y = [0.1, 0.2, 0.4 ..., ]</LINE>
+          <LINE>sherpa&gt; t1.ampl=0.45</LINE>
+          <LINE>sherpa&gt; set_source(xsphabs.abs1*t1)</LINE>
+          <LINE>sherpa&gt; show_model()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    An alternative to using the load_table_model() command to
+	    define the tablemodel y values is to input them directly.
+	    The model definition will look like:
+	  </PARA>
+
+<VERBATIM>
+Model: 1
+(xsphabs.abs1 * tablemodel.t1)
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   abs1.nh      thawed            1            0       100000 10^22 atoms / cm^2
+   t1.ampl      thawed         0.45 -3.40282e+38  3.40282e+38           
+</VERBATIM>
+
+	</DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+  </ENTRY></cxchelptopics>

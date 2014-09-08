@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_backscal" refkeywords=" get backscale" seealsogroups="sh.get " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+     Return the source or background extraction region area
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_backscal( [id, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The get_backscal() function returns the extraction region area
+       of a source or background PHA dataset by data id or
+       bkg_id. The 'backscale' can be defined as the
+       ratio of the area of the source (or background) extraction region in
+       image pixels to the total number of image pixels. The fact that
+       there is no ironclad definition for this quantity does not matter so
+       long as the backscale for a source data set and its associated
+       background data set are defined in the similar manner, because only
+       the ratio of source and background backscale is used in analyses.
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+      <ITEM>  
+        bkg_id - the id of the background to use;
+          default=None
+	</ITEM>
+     </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_backscal()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            When called with no arguments, get_backscal() returns the 
+	    extraction region area of the source in the default data set.
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_backscal()
+           9.3626757073098007e-05
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_backscal(id=2, bkg_id=1)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            To return the extraction region area of a background
+           associated with a source data set, the data set ID and background
+           ID must be supplied to get_backscal().
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_backscal(2, 1)
+           1.872535141462e-05 
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

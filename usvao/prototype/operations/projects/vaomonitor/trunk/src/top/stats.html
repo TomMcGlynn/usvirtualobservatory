@@ -1,0 +1,432 @@
+<HTML>  
+  <HEAD><TITLE>$title</TITLE>
+     <LINK REL="StyleSheet" HREF='http://www.us-vo.org/app_templates/usvo_template.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='css/styles.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='css/volib.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='css/annot.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='css/annot.css' TYPE="text/css">     
+     <LINK REL="StyleSheet" HREF='css/tr.css' TYPE="text/css">
+     <LINK REL = "StyleSheet" HREF  = 'css/datepickercontrol.css' TYPE = "text/css" media ="all">
+
+      <script language='JavaScript' type='text/javascript' src="js/julian.js"></script>
+       <script language='JavaScript' type='text/javascript' src="js/vodate.js"></script>
+     <script language='JavaScript' type='text/javascript' src="js/datepickercontrol.js"></script>
+     <input type="hidden" id="DPC_TODAY_TEXT" value="today">
+    <input type="hidden" id="DPC_BUTTON_TITLE" value="Open calendar...">
+    <input type="hidden" id="DPC_MONTH_NAMES" value="['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']">
+    <input type="hidden" id="DPC_DAY_NAMES" value="['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']">
+     <script type = "text/javascript">
+        function displaynewdate()
+        {       
+          var x = document.getElementById("datedivA");
+          var y = document.getElementById("datedivB");
+		  
+          datehandler("none");
+	  
+	         
+        }
+        function datehandler(string)
+        { 
+
+          var caldate        = document.getElementById("DPC_edit1_YYYY-MM-DD");
+          var caldateb       = document.getElementById("DPC_editnew_YYYY-MM-DD");
+                 
+          arraymonths        = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+          array              = caldate.value.split('-');
+          arrayb             = caldateb.value.split('-');
+         
+          var dayAcontent    = document.getElementById("dayA"); 
+          var monthAcontent  = document.getElementById("monthA");
+          var yearAcontent   = document.getElementById("yearA");
+	  //var hourAcontent   = document.getElementById("hourA");
+          var dayBcontent    = document.getElementById("dayB");
+          var monthBcontent  = document.getElementById("monthB");
+          var yearBcontent   = document.getElementById("yearB");
+	  //var hourBcontent   = document.getElementById("hourB");          
+          var currentday;
+                  
+          var currentyear   = array[0];           
+          var currentmonth  = array[1];
+          currentmonth      = arraymonths[Number(currentmonth)-1];
+
+          var currentyearb  = arrayb[0];
+          var currentmonthb = arrayb[1];         
+          var setday        = array[2];
+          var srch          = RegExp("^0+");
+          setday            = setday.replace(srch, "");   
+          dayAcontent       = setmydate(dayAcontent, setday);                     
+          monthAcontent     = setmymonthoryear(monthAcontent,currentmonth);       
+          
+          var dayA          = (dayAcontent.selectedIndex)+1;
+          var monthA        = (monthAcontent.selectedIndex)+1;
+
+          yearAcontent.options[0].value  = currentyear;      
+	  //var hourA         = (hourAcontent.selectedIndex)+1;   
+	  //var hourBtest     = (hourBcontent.selectedIndex)+1;        
+                
+                          
+          var dB, yB, mB;
+              
+          if (caldateb.value) 
+          {  
+	                
+              var srchb          = RegExp("^0+");
+              dB                 = arrayb[2].replace(srchb,"");
+              yB                 = Number(arrayb[0]);
+	      
+              var srch           = RegExp("^0+");
+              mB                 = arrayb[1].replace(srch,"");
+	      mB     =		 Number(mB);
+	      dB            =  Number(dB);
+	      
+	      var JD = cal_to_jd('CE',yB,mB,dB,'0','0','0');
+	      
+               //default new JD
+	       var newJD = Number(JD)+1;
+	       
+               //convert newJD to ymd 
+               arrayQ    = jd_to_cal(newJD);
+               yB    = arrayQ[0];
+               mB    = arrayQ[1];
+               dB    = arrayQ[2];
+	       
+	       
+              if  (string == "changetime")
+              {           
+                 //hourB     = (hourBcontent.selectedIndex)+1;
+              }
+	   }
+          
+         
+           caldateb.value      = yB+ "-" + zeropad(mB) + "-" + zeropad(dB);
+           var D = formfoo.elements["dayB"];
+           D.options[dB-1].selected  = true;
+           //hourBcontent.options[hourB-1].selected  = true;
+           monthBcontent.options[mB-1].selected    = true;
+           yearBcontent.options[0].value = yB;
+                    
+		                       
+          
+        }
+       
+        function evalform()
+        {                                 
+           var divB = document.getElementById('datedivB');
+           var test = divB.attributes[0].nodeValue;
+           
+           
+           datehandler("changetime");
+           return true;
+     
+        }       
+        function load_dates()
+        {      
+              //sets the default date values in divA 
+              // default values seen by user on form
+               document.formfoo.reset();
+               
+               var caldate         = document.getElementById("DPC_edit1_YYYY-MM-DD");         
+               var d               = new Date();
+               var current_date    = d.getDate();
+               var m_names         = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep","Oct", "Nov", "Dec");
+               var currentyear     = d.getFullYear();
+                               
+               var currentmonth    = d.getMonth();
+               currentmonth        = Number(currentmonth)+1;
+
+               //O pad m,d
+               var Currentmonth    = zeropad(currentmonth);
+               var Currentdate     = zeropad(current_date);
+               caldate.value       = currentyear + "-" + Currentmonth + "-" + Currentdate;
+                       
+               var currentday      = d.getDay();
+               var c_month         = m_names[currentmonth];                           
+	       //var current_hour    = d.getHours();            
+	       //var hour_plus_one   = Number(current_hour)+1;
+               var dayAcontent     = document.getElementById("dayA");
+               var monthAcontent   = document.getElementById("monthA");
+               var yearAcontent    = document.getElementById("yearA");
+	       //var hourAcontent    = document.getElementById("hourA");
+               
+               
+              //set current day
+              dayAcontent          = setmydate(dayAcontent,current_date);
+             
+              monthAcontent        = setmymonthoryear(monthAcontent,c_month);
+              yearAcontent         = setmymonthoryear(yearAcontent, currentyear);
+                    //set current hour + 1
+               //hourAcontent   = setmydate(hourAcontent,hour_plus_one);
+              
+
+
+	   
+              
+           }
+</script>
+
+  </HEAD>
+
+ <BODY><a href='#content' title='Skip navigation'> </a>
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>   
+     <td width="112" height="32" align="center" valign="top">
+        <a href="http://www.us-vo.org" class="nvolink" target="_top">
+         <img src="http://www.usvao.org/documents/Templates/Logos/VAO_logo_100.png" alt="NVO HOME" border="0"/>
+
+        </a>
+        <span class="nvolink">
+          <a href="http://www.us-vo.org/" target="_top">National Virtual Observatory</a></span>
+     </td>   
+     <td valign="top"><table  width="100%" border="0" cellpadding="0" cellspacing="0">      
+       <tr>       
+         <td width="2" height="30" bgcolor="white"></td>
+         <td width="678" height="39" align="center" valign="middle" 
+         background="http://www.us-vo.org/images/templatestars.jpg" bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+         
+    <span class= \"nvoapptitle\" style= \"background\-repeat: repeat\-y;\">VAOMonitor Stats</span></td></tr>
+    </td>
+    
+   
+    <td bgcolor="white" width="2"></td>     
+    </tr>     
+    <tr>       
+    <td bgcolor="white" width="2"></td>      
+     <td bgcolor="white" width="2"></td>      
+     </tr>      
+     <tr>       
+     <td align="center" valign="top" colspan="3"><table cellspacing="2" cellpadding="0" border="0" width="100%"  style="margin: 0pt;">         
+     <tr>
+     <!-- the local links -->
+  
+     <td  class='navlink'><a href='/vo/notification/shownote.pl'>VO Service Notices </a></td>
+     <td  class='navlink'><a href='/vo/monitor/monitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'notification/shownote.pl'>VO Service Notices </a></td>
+     <td  class='navlink'><a href='/vo/monitor/monitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'>NVO Home</a></td>  
+     <td  class='navlink'><a href=http://us-vo.org/feedback/index.cfm>NVO Feedback</a></td> 
+            
+     </tr>       
+     </table></td>
+      </tr>
+      </table></td>
+      <td width = 140 align = center valign = top><a href = "http://www.heasarc.gsfc.nasa.gov">
+      <img src=/vo/datascope//images/nasa_logo.gif width=72 height=60 border=0 alt='NASA home'>
+      </img></a><br><span>Hosted by:</span><br>HEASARC<br> 
+      <br>
+      </td></tr></table>
+
+
+
+
+    <head>
+      <title>Text Message For VO Monitor </title>
+    </head>
+    <body>
+    <br>
+    
+    <h3>VAO Monitor Service Uptime</h3>
+    
+
+    <form  action= ./vaostats.pl method = GET  name='formfoo' id = "formA" onSubmit = "return evalform()"><div style="margin:0;padding:0">
+     	
+ <font size = 2  align =center > Chose a start and end time on the calendar </font><br><br>
+ 
+   
+   <!--original location of datep.controler -->
+        
+        
+     <DIV id = "datedivA" style = "float:left;" align = center>
+     <font size = 2  class = greenln> Start date: </font>
+
+        <input type = "hidden" id = "zoneadjust" name = "zoneadjust" >
+        <input type="text" id="DPC_edit1_YYYY-MM-DD" name="caldate" size="12" datepicker_format = "YYYY-MM-DD" >
+        
+
+
+
+        <select name = "year" id = "yearA"  style = "visibility: hidden">
+           <option value = "">     
+        </select>            
+            <select name = "month" id  = "monthA" style = "visibility: hidden">
+            <option value = "jan">Jan
+            <option value = "feb" >Feb
+            <option value = "mar" >Mar
+            <option value = "apr" >Apr
+            <option value = "may" >May 
+
+	       <option value = "jul" >Jul
+             <option value = "aug" >Aug 
+            <option value = "sep" > Sep
+            <option value = "oct" > Oct
+            <option value = "nov" > Nov
+            <option value = "dec" > Dec
+         </select> 
+      
+       
+         <select  name = "dayA" id = "dayA" style = "visibility: hidden" >
+            <option value = "1">1
+            <option value = "2">2
+            <option value = "3">3
+            <option value = "4">4
+            <option value = "5">5 
+            <option value = "6">6
+            <option value = "7">7
+            <option value = "8">8 
+            <option value = "9">9
+            <option value = "10"> 10
+            <option value = "11"> 11
+            <option value = "12"> 12
+            <option value = "13"> 13
+            <option value = "14">14
+            <option value = "15"> 15
+            <option value = "16"> 16
+            <option value = "17"> 17
+            <option value = "18">18
+            <option value = "19"> 19
+            <option value = "20"> 20
+            <option value = "21"> 21
+            <option value = "22">22 
+            <option value = "23"> 23
+            <option value = "24"> 24
+            <option value = "25">25
+            <option value = "26">26
+            <option value = "27"> 27
+            <option value = "28"> 28
+            <option value = "29">29
+            <option value = "30">30
+            <option value = "31">31
+         </select> 
+            </select> 
+        
+         
+           
+           
+           
+            
+            
+     </DIV>         
+   
+
+   
+    
+   
+
+   
+     
+   
+     
+      
+     <DIV id  = "datedivB" name = "foo" style="float:left;">
+     <font size = 2 style = "color: green">End Date:</font> 
+     <input type="text" id="DPC_editnew_YYYY-MM-DD" name="newcaldate" size="12" datepicker_format = "YYYY-MM-DD" > 
+     
+        
+         
+
+
+           <select name = "yearB" id = "yearB" style  = "visibility: hidden">
+           <option  name  = test  value = 'your got it'>
+           </select>
+         
+          
+            <select name = "monthB" id = "monthB" style = "visibility: hidden" >
+            <option value = "jan">Jan
+            <option value = "feb" >Feb 
+            <option value = "mar" >Mar 
+            <option value = "apr" >Apr 
+            <option value = "may" >May 
+            <option value = "jun"> Jun 
+            <option value = "jul" >Jul 
+             <option value = "aug" >Aug 
+            <option value = "sep" > Sep
+            <option value = "oct" > Oct 
+            <option value = "nov" > Nov 
+            <option value = "dec" > Dec 
+         </select> 
+      
+       
+         <select  name = "dayB" id = "dayB" style = "visibility: hidden">
+            <option value = "1">1
+            <option value = "2" >2 
+            <option value = "3" >3 
+            <option value = "4" >4 
+            <option value = "5" >5 
+            <option value = "6"> 6
+            <option value = "7" >7 
+             <option value = "8" >8 
+            <option value = "9" > 9
+            <option value = "10" > 10 
+            <option value = "11" > 11 
+              <option value = "12" > 12 
+            <option value = "13"> 13
+            <option value = "14">14 
+            <option value = "15" > 15 
+            <option value = "16" > 16 
+            <option value = "17"> 17
+            <option value = "18">18 
+            <option value = "19" > 19 
+            <option value = "20" > 20 
+            <option value = "21"> 21
+            <option value = "22">22 
+            <option value = "23"> 23
+            <option value = "24"> 24
+            <option value = "25">25
+            <option value = "26">26
+            <option value = "27"> 27
+            <option value = "28"> 28
+            <option value = "29">29
+            <option value = "30">30
+            <option value = "31">31
+         </select> 
+        &nbsp;&nbsp;        
+                
+
+
+         
+</DIV>           
+            
+            <br><br>
+          
+
+
+	<input type = submit value = "Submit"><input type = reset>
+
+	</form>
+      <br><br>
+     
+     <br>
+        <!-- original location of datep.controler -->
+ <br>
+    <hr align="left" noshade>
+        <table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+        <tr align="center" valign="top">   <td width="16%" valign="top"><div align="center" class="style10">
+        <a href="http://www.nsf.gov"><img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0">
+        </a>
+        <a href="http://www.nasa.gov"><img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0">
+        </a>
+        </div></td>
+        <td width="76%"><div align="center">       
+        <p class="style10"> Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> 
+        <br>          under Cooperative Agreement AST0122449 with the Johns Hopkins University 
+        <br>         The NVO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a></p>
+        <p class="style10">This NVO Application is hosted by <a href="#">LocalSiteName</a></p>
+        </div></td>    
+        <td width="8%"><div align="center"><span class="tiny">Member<br>
+        </span>
+        <a href="http://www.ivoa.net">
+        <img src="http://www.us-vo.org/images/ivoa_small.jpg" alt="IVOA HOME" width="68" height="39" border="0" align="top"></a></div></td>
+        <td width="8%"><span class="style4"><span class="tiny">Meet the Developers</span><br>
+        <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border=0></span></td> </tr></table>
+        <hr noshade='noshade' />
+        <p>Hosted by the <a href='http://universe.gsfc.nasa.gov/'>Astrophysics Science Division</a>and the 
+        <a href='http://heasarc.gsfc.nasa.gov/'>High Energy Astrophysics Science Archive Research Center (HEASARC)</a>at
+        <a href='http://www.nasa.gov/'>NASA/</a><a href='http://www.gsfc.nasa.gov/'>GSFC</a>
+        </p><p>HEASARC Director:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/bios/white.html'>Dr. Nicholas E. White</a>,</p>
+        <p>HEASARC Associate Director: Dr. Roger Brissenden,</p><p>Responsible NASA Official:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/nospam/panewman.html'>Phil Newman</a> </p>
+        <p class='tiny'> <a href='/banner.html'>Privacy, Security, Notices</a></p>
+        </div><!-- id='footer' --></body>
+       </BODY>
+</HTML>

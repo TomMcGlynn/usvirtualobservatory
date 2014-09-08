@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_staterror" refkeywords=" get statistical errors error stat" seealsogroups="sh.get sh.data " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Return the statistical errors on the counts of a data set 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_staterror( [id, filter=False, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The get_staterror() function returns the statistical errors on
+	the counts of a source or background data set, by data id or
+	bkg_id. The statistical errors returned are either those
+	calculated by the current statistics or set by the user with 
+	set_staterror().  If a data filter has been applied to the data set
+	in question, e.g. ignore() or notice(), the statistical
+	error array for either the filtered or unfiltered data set may
+	be returned by setting the 'filter' argument to 'True' or
+	'False'.  If set to 'True', the statistical error array
+	returned by get_staterror() will be filtered, i.e. the array
+	will be shorter in length than the unfiltered array (not
+	padded with zeros). 
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+      <ITEM>
+        filter - apply an established data filter to the data set
+        before returning results;
+        default=False 
+        
+      </ITEM>
+      <ITEM>
+        bkg_id -  the id of the background to use,
+        e.g. if more than one background is associated with the
+        data; default is the first background data set loaded
+      </ITEM>
+    </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_staterror()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            When called with no arguments, the get_staterror() function
+            returns the statistical error array of the unfiltered default data
+            set.
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_staterror()
+
+array([  1.8660254 ,   1.8660254 ,   1.8660254 ,   1.8660254 ,
+         1.8660254 ,   1.8660254 ,   1.8660254 ,   1.8660254 ,
+. . . ., 
+       2.32287566,   2.6583124 ,   2.6583124 ,   2.32287566,
+         1.8660254 ,   2.93649167,   2.32287566,  18.25543393])
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE> 
+	
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_staterror(1, bkg_id=1)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           To return the statistical error array of a background
+           associated with a data set, the background ID must be specified
+           along with the data set ID. Here, the statistical error
+           array for the first background loaded for data set 1 is
+           returned by get_staterror().
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_staterror(1, 1)        
+
+array([  1.8660254 ,   1.8660254 ,   1.8660254 ,   1.8660254 ,
+         1.8660254 ,   1.8660254 ,   1.8660254 ,   1.8660254 ,
+. . . ., 
+       2.32287566,   2.6583124 ,   2.6583124 ,   2.32287566,
+         1.8660254 ,   2.93649167,   2.32287566,  18.25543393])
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_staterror(1, filter=True)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           If a data set ID is supplied to get_staterror(), the unfiltered
+           statistical error array of the specified data set is
+           returned, unless the 'filter' argument is set to 'True'.
+          </PARA>
+<VERBATIM>
+sherpa&gt; notice()
+sherpa&gt; get_staterror().size
+           1024
+sherpa&gt; ignore(10,12)
+sherpa&gt; get_staterror(filter=True).size
+           886
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

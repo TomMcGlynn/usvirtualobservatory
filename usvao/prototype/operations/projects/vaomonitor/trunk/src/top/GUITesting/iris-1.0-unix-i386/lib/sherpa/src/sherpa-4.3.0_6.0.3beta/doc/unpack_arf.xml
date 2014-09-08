@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="unpack_arf" refkeywords="ancillary auxilliary auxiliary read arf instrument response responses unpack ARFCrate" seealsogroups="sh.io sh.arf " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Unpack an ARF from an ARFCrate
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>unpack_arf( filename|ARFCrate )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The unpack_arf command unpacks an ARF from a FITS file or an
+        ARFCrate into a Sherpa data object.  
+      </PARA>
+
+      <PARA>
+	If a filename is provided as input, a crate is created but
+	hidden and cannot be used for other analysis in the session. 
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  filename|ARFCrate - the name of the file (with path) or
+	  ARFCrate which contains the ARF data
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; arf1 = unpack_arf("arf.fits")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Unpack the ARF into the object "arf1".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; arfcr = read_arf("3c273.arf")</LINE>
+          <LINE>sherpa&gt; arfdata = unpack_arf(arfcr)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The ARF is read into an ARFCrate (named "arfcr") from the file
+	    3c273.arf.  The ARF is then unpacked into Sherpa from the
+	    crate.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+    
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsxion" refkeywords="xion model models modeling modelling source reflected xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Reflected spectra of a photo-ionized accretion disk or ring.
+XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+This model describes the reflected spectra of a photo-ionized
+accretion disk or a ring if one so chooses. The approach is similar to
+the one used for tables with stellar spectra. Namely, a large number
+of models are computed for a range of values of the spectral index,
+the incident X-ray flux, disk gravity, the thermal disk flux and iron
+abundance. Each model's output is an un-smeared reflected spectrum for
+5 different inclination angles ranging from nearly pole-on to nearly
+face on, stored in a look-up table. The default geometry is that of a
+lamppost, with free parameters of the model being the height of the
+X-ray source above the disk, h_X; the dimensionless accretion rate
+through the disk, m-dot; the luminosity of the X-ray source, L_X; the
+inner and outer disk radii, and the spectral index. This defines the
+gravity parameter, the ratio of X-ray to thermal fluxes, etc., for
+each radius, which allows the use of a look-up table to approximate
+the reflected spectrum. This procedure is repeated for about 30
+different radii. The total disk spectrum is then obtained by
+integrating over the disk surface, including relativistic smearing of
+the spectrum for a non-rotating black hole (e.g., Fabian 1989).
+</PARA>
+
+<PARA>
+In addition, the geometry of a central sphere (with power law
+optically thin emissivity inside it) plus an outer cold disk
+(Geometry=2), and the geometry of magnetic flares (Geometry=3) are
+available.   One can also turn off relativistic smearing to see what
+the local disk spectrum looks like (Relsmear=2 in this case, otherwise
+leave it at 4). In addition, Reftype=1 produces reflected plus direct
+spectrum/direct; Reftype=2 produces (incident + reflected)/incident
+[note that normalization of incident and direct are different because
+of solid angles covered by the disk; 2 should be used for magnetic
+flare model]; and Reftype=3 produces reflected/incident. Abundance is
+controlled by Feabun and varies between 1 and 4 at the present. A much
+more complete description of the model is available from Nayakshin et
+al. (2001, ApJ 546, 406).
+</PARA>
+
+<PARA>
+     This is a multiplicative model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsxion Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>height</DATA> <DATA>height of the
+  source above the disk (in Schwarzschild radii)</DATA>
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>lxld</DATA> <DATA>ratio of the
+  X-ray source luminosity to that of the disk</DATA>
+</ROW>
+<ROW> 
+  <DATA>3</DATA> <DATA>rate</DATA> <DATA>accretion rate
+  (in Eddington units)</DATA>
+</ROW>
+<ROW> 
+  <DATA>4</DATA> <DATA>cosang</DATA> <DATA>cos i; the
+  inclination angle (1 = face-on)</DATA>
+</ROW>
+<ROW> 
+  <DATA>5</DATA> <DATA>inner</DATA> <DATA>inner radius of
+  the disk (in Schwarzschild radii)</DATA>
+</ROW>
+<ROW> 
+  <DATA>6</DATA> <DATA>outer</DATA> <DATA>outer radius of
+  the disk (in Schwarzschild radii)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>7</DATA> <DATA>index</DATA> <DATA>photon index of
+  the source</DATA>
+</ROW>
+<ROW> 
+  <DATA>8</DATA> <DATA>redshift</DATA> <DATA>redshift,
+  z</DATA>
+</ROW>
+<ROW> 
+  <DATA>9</DATA> <DATA>feabun</DATA> <DATA>Fe abundance
+  relative to Solar (which is defined as 3.16e-5 by number relative to
+  H)</DATA>
+</ROW>
+<ROW> 
+  <DATA>10</DATA> <DATA>e_cut</DATA> <DATA>exponential
+  high energy cut-off energy for the source</DATA>
+</ROW>
+<ROW> 
+  <DATA>11</DATA> <DATA>ref_type</DATA> <DATA>1 =
+  (reflected+direct)/direct; 2 = (reflected+incident)/incident; 3 =
+  reflected/incident</DATA> 
+</ROW>
+<ROW> 
+  <DATA>12</DATA> <DATA>rel_smear</DATA> <DATA>2 = no
+  relativistic smearing; 4 = relativistic smearing</DATA> 
+</ROW>
+<ROW> 
+  <DATA>13</DATA> <DATA>geometry</DATA> <DATA>1 =
+  lamppost; 2 = central hot sphere with outer cold disk; 3 = magnetic
+  flares above a cold disk. Note that setting Geometry to 2.y gives a
+  central hot sphere with luminosity law dL/dR = 4pi R^2 R^(-10y).
+  The inner radius of the sphere is 3 Schwarzschild radii and the
+  outer radius is equal to height (par1).  Only the case with inner &gt;=
+  height has been tested so far.
+ </DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

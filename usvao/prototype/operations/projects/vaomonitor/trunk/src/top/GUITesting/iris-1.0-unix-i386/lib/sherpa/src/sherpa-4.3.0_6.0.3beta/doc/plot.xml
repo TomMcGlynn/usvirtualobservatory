@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="plot" refkeywords="lplot plot plotting  " seealsogroups=" sh.plot " displayseealsogroups="" context="plotting">
+	<SYNOPSIS>
+      Plot multiple objects (data, model, residuals, etc.) 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>plot(plot1, [id1] ... [plotn, idn])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The plot command creates plots of multiple Sherpa objects.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          plot1 ... plotn - the type of plot: arf, bkg, bkgchisqr,
+	  bkgdelchi, bkgfit, bkgmodel, bkgratio, bkgresid, bkgsource,
+	  chisqr, data, delchi, fit, kernel, model (convolved source
+	  model), psf, ratio, resid, or source (unconvolved source
+	  model).   
+	</ITEM>
+
+        <ITEM>
+          id1 ... idn - the id of the dataset to use for each plot;
+          if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id") 
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        Each plot is displayed in a separate plotting area within a
+        ChIPS window.  If a plotting window exists, it is cleared
+        before the plots are drawn.  
+      </PARA>
+
+      <PARA>
+        ChIPS commands may be used within Sherpa to modify plot
+        characteristics and create hardcopies; refer to the <HREF link="http://cxc.harvard.edu/chips/">ChIPS website</HREF> for
+        information.
+      </PARA>
+
+      <PARA>
+	There are also individual commands to create specific types of
+	plots ("ahelp -k plot").  
+      </PARA>
+
+<TABLE>
+  <CAPTION>Individual Plotting Commands</CAPTION>
+  <ROW>
+    <DATA>Command</DATA>
+    <DATA>Plot Created</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_arf</DATA> <DATA>ARF</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_chisqr</DATA> <DATA>chi-squared statistic</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_data</DATA> <DATA>dataset</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_delchi</DATA> <DATA>delchi residuals of the fit</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_fit</DATA> <DATA>fit</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_fit_delchi</DATA> <DATA>fit and delta chi</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_fit_resid</DATA> <DATA>fit and residuals</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_model</DATA> <DATA>convolved source model</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_order</DATA> <DATA>convolved source model by order</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_psf</DATA> <DATA>PSF</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_ratio</DATA> <DATA>(data/model) ratio </DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_resid</DATA> <DATA>residuals (data - plot model)</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_source</DATA> <DATA>unconvolved source model</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_bkg</DATA> <DATA>background counts</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_bkg_chisqr</DATA> <DATA>background chi squared contributions</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_bkg_delchi</DATA> <DATA>background delta chi</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_bkg_fit</DATA> <DATA>background counts with fitted background model</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_bkg_fit_delchi</DATA> <DATA>background fit and background delta chi</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_bkg_fit_resid</DATA> <DATA>background fit and background residuals</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_bkg_model</DATA> <DATA>convolved background model</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_bkg_ratio</DATA> <DATA>background ratio</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_bkg_resid</DATA> <DATA>background residuals</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_bkg_source</DATA> <DATA>unconvolved source model</DATA>
+  </ROW>
+  <ROW>
+    <DATA>plot_bkg_unconvolved</DATA> <DATA>unconvolved source model</DATA>
+  </ROW>
+</TABLE>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; plot("data", "model")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Plot the data and the convolved source model for the
+	    default dataset. If the data set is grouped, the model
+      will also be grouped (use plot_model to plot the ungrouped model
+      with the grouped data).
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; plot("data", "src",  "resid", "src")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Plot the data and residuals for data set "src".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; plot("data", 1, "data", "src", "model", 1, "model", "src")</LINE>
+          <LINE>sherpa&gt; plot("data", "data", "src", "model", "model", "src")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    These commands are two equivalent ways of plotting data
+	    for id 1, data for "src", model for id 1, and model for
+	    "src". 
+          </PARA>
+
+	  <PARA>
+	    Note that the default id (1, in this case) may be omitted
+	    even in the middle of the plot() command.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

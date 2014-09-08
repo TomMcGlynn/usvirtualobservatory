@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="plot_fit" refkeywords="plot_fit_delchi plot_fit_resid plot plotting fit fitting " seealsogroups="sh.fit sh.plot " displayseealsogroups="" context="plotting">
+
+    <SYNOPSIS>
+     Plot the fit, fit plus delta chi, or fit plus residuals
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>plot_fit([id], [replot=False, overplot=False])</LINE>
+      
+      <LINE>plot_fit_delchi([id], [replot=False, clearwindow=True])</LINE>
+      <LINE>plot_fit_resid([id], [replot=False, clearwindow=True])</LINE>
+	</SYNTAX>
+
+    <DESC>
+
+      <PARA>
+       The plot_fit command plots the fit.  The plot_fit_delchi and
+       plot_fit_resid commands plot the fit along with the delta chi
+       (residuals divided by uncertainties) and residuals (measured
+       counts minus predicted counts), respectively. 
+      </PARA>
+
+      <TABLE>
+	<ROW><DATA>Argument</DATA><DATA>Default</DATA><DATA>Description</DATA></ROW>
+	<ROW><DATA>id</DATA><DATA>1 (can be changed, see "ahelp get_default_id")</DATA><DATA>the id of the dataset to plot</DATA></ROW>
+	<ROW>
+	  <DATA>replot</DATA>
+	  <DATA>
+	    False
+	    
+	  </DATA>
+	  <DATA>
+	    should previously-calculated arrays be used to create the plot?
+	  </DATA>
+	</ROW>
+	<ROW>
+	  <DATA>overplot</DATA>
+	  <DATA>
+	    False
+	    
+	  </DATA>
+	  <DATA>
+	    If
+	    True
+	    
+	    then add the data to the current plot, otherwise erase the frame and
+	    create a new plot.
+	  </DATA>
+	</ROW>
+	<ROW>
+	  <DATA>clearwindow</DATA>
+	  <DATA>
+	    True
+	    
+	  </DATA>
+	  <DATA>
+	    If
+	    True
+	    
+	    then do not delete any existing frames in the current ChIPS
+	    window. Note that the plots will be created in a new
+	    ChIPS frame even when this argument is set.
+	  </DATA>
+	</ROW>
+      </TABLE>
+
+      <PARA>
+        The plot is displayed in a ChIPS plotting window. If there is
+        no plotting window open, one is created.  If a plotting window
+        exists, the "overplot" parameter value determines whether the
+        new plot is overlaid on the existing plot in the window or if
+        the window is cleared before the plot is drawn.  The
+        "clearwindow" value determines whether a new ChIPS frame should be
+        created for the plots; setting the value to 
+        False
+        
+	allows for multiple plot_fit_delchi or plot_fit_resid output
+	to be displayed side-by-side, as shown in the examples.
+      </PARA>
+
+      <PARA>
+        ChIPS commands may be used within Sherpa to modify plot
+        characteristics and create hardcopies; refer to the <HREF link="http://cxc.harvard.edu/chips/">ChIPS website</HREF> for
+        information. 
+      </PARA>
+
+      <PARA>
+	The default values for the plots can be read - and changed - using
+	the get_data_plot_prefs() and get_model_plot_prefs()
+	commands. See
+      </PARA>
+      <PARA>
+	<SYNTAX><LINE>unix% ahelp get_data_plot</LINE></SYNTAX>
+	<SYNTAX><LINE>unix% ahelp get_model_plot</LINE></SYNTAX>
+      </PARA>
+      <PARA>
+	and the examples below for more information.
+      </PARA>
+
+
+      <PARA title="Plotting Multiple Objects">
+	To plot multiple Sherpa objects - e.g. data, model, fit,
+	residuals - in a single window, use
+	the <HREF link="http://cxc.harvard.edu/sherpa/ahelp/plot.html">plot command</HREF>.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; plot_fit()</LINE>
+          <LINE>sherpa&gt; log_scale(XY_AXIS)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Plot the fit for the default dataset and then change both axes
+	    to use logarithmic scaling.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_data_plot_prefs()["xlog"] = True</LINE>
+          <LINE>sherpa&gt; get_data_plot_prefs()["ylog"] = True</LINE>
+          <LINE>sherpa&gt; plot_fit()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Here the plot preferences for data plots are chanegd to use logarithmic
+	    scaling for both axes. Any new plot showing data - such as plot_fit() - will
+	    therefore use logged axes by default.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; plot_fit("src", overplot=True)</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Plot the fit for the "src" dataset, overlaying on any
+	    existing plots.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_preference("frame.transparency", "true")</LINE>
+	  <LINE>sherpa&gt; plot_fit_delchi(1)</LINE>
+	  <LINE>sherpa&gt; reposition_frame(0.0,0.5,1.0,1.0)</LINE>
+	  <LINE>sherpa&gt; plot_fit_delchi(2, clearwindow=False)</LINE>
+	  <LINE>sherpa&gt; reposition_frame(0.0,0.0,1.0,0.5)</LINE>
+	  <LINE>sherpa&gt; save_state("fits.state")</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	    Normally, Sherpa plots clear the contents of the current ChIPS
+	    window before creating the new plot. For commands that create
+	    only a single plot - such as plot_fit() - the overplot option can
+	    be used to overlay data onto an existing plot.
+	    There is no overplot support for 
+	    commands like plot_fit_delchi() and plot_fit_resid(), which
+	    create two separate plots; instead it is possible
+	    to create the plots in separate ChIPS frames and then re-size
+	    the frames so as to show multiple datasets in the same window.
+	  </PARA>
+	  <PARA>
+	    In this example we create two plots for dataset 1, then re-size
+	    the frame they are in so that they occupy the top-half of the
+	    window. The second plot_fit_delchi call creates a new frame,
+	    which by default fills the whole window, but does not delete
+	    the existing frame because the clearwindow argument has been
+	    set to
+	    False.
+	    
+	    The second frame is then re-sized so that it fills the bottom-half
+	    of the window.
+	  </PARA>
+	  <PARA>
+	    The save_state() call creates a binary file (i.e. not human readable)
+	    that can be loaded into a new ChIPS session - using
+	    load_state() - so as to re-create the
+	    window. This can be useful to allow further editing of the plot
+	    for publication without having to re-create the fit in Sherpa.
+	  </PARA>
+          <PARA>
+	    The set_preference call is used to allow overlapping ChIPS frames -
+	    as used in this example - to show contents below them. If it
+	    had not been made then the second plot_fit_delchi() call
+	    would have appeared to delete the first frame as the
+	    new frame completely covered the old frame.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+  </ENTRY></cxchelptopics>

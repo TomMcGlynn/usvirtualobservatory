@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_energy_flux_hist" context="plotting" refkeywords="draw display plot plotting flux energy distribution plot_energy_flux " seealsogroups="sh.plot sh.energy sh.flux ">
+
+    <SYNOPSIS>
+     Calculate a histogram of a simulated energy flux probability distribution 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_energy_flux_hist( [lo=None], [hi=None, id=1, n=7500,
+      bins=75, correlated=False, numcores=None] )</LINE>
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The get_energy_flux_hist() function calculates a histogram of
+      simulated energy flux values representing the energy flux
+      probability distribution for a model component, accounting
+      for the errors on the model parameters. The energy flux probability distribution is
+      visualized with the plot_energy_flux() function. The energy range
+      of the flux distribution is set with the 'lo' and 'hi'
+      parameters (in keV), and the number of times to sample the flux
+      distribution in the simulation is controlled by the 'n' parameter. The
+      get_energy_flux_hist() function produces a data object that contains all the information about the simulated sample of parameters, and a histogram, normalized to unity, representing the flux probability distribution. By default, get_energy_flux_hist() creates a histogram with 75 bins; however, the optional parameter, 'bins', may be included to change the binning.
+      </PARA>
+
+      <PARA>
+	The sample_energy_flux() command can be used to return an array of flux values
+	drawn from this distribution.
+      </PARA>
+     
+
+      <LIST>
+	<CAPTION>Function arguments</CAPTION>
+	<ITEM>
+          lo - lower energy bound; the default value of
+	  None
+	  means that the lower limit if the instrument model (ARF and RMF) should be used.
+	</ITEM>
+	<ITEM>
+          hi - upper energy bound; the default value of
+	  None
+	  means that the upper limit if the instrument model (ARF and RMF) should be used.
+       </ITEM>
+
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+	<ITEM>
+	  n - number of samples used in the distribution (the default value is 7500)
+	</ITEM>
+
+	<ITEM>
+	  bins - number of bins used to bin the distribution into a histogram (bins=75 by default)
+	</ITEM>
+
+	<ITEM>
+	  correlated - whether to use a multi- or uni-variate distribution to sample the parameter values.
+	  The default value of 
+	  False
+	  means use a uni-variate distribution,
+	  whilst
+	  True
+	  means use a multi-variate distribution.
+	</ITEM>
+
+
+	<ITEM>
+         numcores - number of cores to use in parallelization; default
+         is to use all cores available ('None')
+	</ITEM>
+      </LIST>
+
+  
+    </DESC>
+
+    <QEXAMPLELIST>
+    <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print get_energy_flux_hist(0.5,2,id=2,numcores=2)</LINE>
+	</SYNTAX>
+    <DESC>
+     <PARA>
+       Return the data arrays and plotting preferences which define 
+      a histogram of simulated energy flux values calculated by the
+    get_energy_flux_hist() command for data set 2, in the 0.5-2 keV
+    energy range. The 'numcores' parameter is used to specify that 2
+    cores should be utilized for the execution of this command.
+    </PARA>
+
+<VERBATIM>
+sherpa&gt; print get_energy_flux_hist(0.5,2,id=2)
+modelvals = [[  3.6131e-02   1.8420e+00   1.4908e-04]
+ [  5.9302e-02   1.9822e+00   1.4376e-04]
+ [  4.1418e-02   1.9517e+00   1.5046e-04]
+ ..., 
+ [  3.8999e-02   2.0593e+00   1.3365e-04]
+ [  4.1892e-02   1.9324e+00   1.3868e-04]
+ [  2.7829e-02   1.9231e+00   1.4013e-04]]
+flux = [  2.9771e-13   2.6558e-13   2.9387e-13 ...,   2.6185e-13   2.7075e-13
+   2.8583e-13]
+xlo    = [  2.1817e-13   2.2019e-13   2.2220e-13 ...,   3.6528e-13   3.6730e-13
+   3.6931e-13]
+xhi    = [  2.2019e-13   2.2220e-13   2.2422e-13 ...,   3.6730e-13   3.6931e-13
+   3.7133e-13]
+y      = [ 0.0028  0.      0.     ...,  0.      0.      0.0028]
+xlabel = Energy flux (ergs cm^{-2} sec^{-1})
+ylabel = Frequency
+title  = Energy flux distribution
+histo_prefs = {'linethickness': 2, 'symbolcolor': None, 'symbolfill': None, 'xlog': False, 'ylog': False, 'symbolangle': None, 'errthickness': None, 'fillcolor': None, 'linecolor': 'red', 'errstyle': None, 'linestyle': 1, 'symbolstyle': 0, 'errcolor': None, 'fillstyle': None, 'fillopacity': None, 'yerrorbars': False, 'symbolsize': None}
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_energy_flux_hist(0.5,7.,n=10000,bins=80)</LINE>
+	  <LINE>sherpa&gt; plot_energy_flux()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Visualize a simulated energy flux probability distribution with a 
+      histogram created by the get_energy_flux_hist() function, where
+        the energy range
+      used is 0.5-7.0 keV, the parameteres are sampled ten thousand
+        times in the simulation, and the histogram contains 80 bins. 
+     </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+  <ADESC title="CHANGES IN CIAO 4.3">
+   <PARA>
+    The get_energy_flux_hist command has a new argument 'numcores' to specify
+   how many cores on a user's system should be utilized when the command is run.
+   </PARA>
+  </ADESC>
+   <BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+   <VERSION>CIAO 4.3</VERSION>
+   <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

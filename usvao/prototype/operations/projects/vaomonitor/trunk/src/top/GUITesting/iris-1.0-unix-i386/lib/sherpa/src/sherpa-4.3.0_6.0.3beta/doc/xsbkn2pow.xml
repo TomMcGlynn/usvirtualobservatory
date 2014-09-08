@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsbkn2pow" refkeywords="bkn2pow model models modeling modelling source composite nested joint xspec" seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Broken power law, two break energies.
+XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+A three-segment broken power law (i.e. with two break energies).
+</PARA>
+
+<PARA>
+<EQUATION>
+A(E)= KE^(-phoindx1) for E &lt; breake1
+</EQUATION>
+</PARA>
+
+<PARA>
+<EQUATION>
+A(E)= Kbreake1^(phoindx2-phoindx1) * (E/1keV)^-phoindx2 for breake1 &lt;= E &lt;= breake2
+</EQUATION>
+
+</PARA>
+
+<PARA>
+<EQUATION>
+A(E)= Kbreake1^(phoindx2-phoindx1)*breake2^(phoindx3-phoindx2)*(E/1keV)^-phoindx3   for breake2  &lt;= E
+</EQUATION>
+
+</PARA>
+
+<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsbkn2pow Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> 
+  <DATA>phoindx1</DATA> 
+  <DATA>power law photon index for E &lt; E_break,1</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> 
+  <DATA>breake1</DATA> 
+  <DATA>first break point for the energy, keV</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> 
+  <DATA>phoindx2</DATA> 
+  <DATA>power law photon index for E_break,1 &lt; E &lt; E_break,2</DATA> 
+</ROW>
+<ROW> 
+  <DATA>4</DATA> 
+  <DATA>breake2</DATA> 
+  <DATA>second break point for the energy, keV</DATA> 
+</ROW>
+<ROW> 
+  <DATA>5</DATA> 
+  <DATA>phoindx3</DATA> 
+  <DATA>power law photon index for E &gt; E_break,2</DATA> 
+</ROW>
+<ROW> 
+  <DATA>6</DATA> 
+  <DATA>norm</DATA> 
+  <DATA>K; photons keV-1cm-2s-1 at 1 keV</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

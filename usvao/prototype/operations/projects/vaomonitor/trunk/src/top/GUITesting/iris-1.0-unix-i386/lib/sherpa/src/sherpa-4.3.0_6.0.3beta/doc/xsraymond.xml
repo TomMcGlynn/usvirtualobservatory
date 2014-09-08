@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsraymond" refkeywords="raymond model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Raymond-Smith thermal plasma.
+XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+An emission spectrum from hot diffuse gas based on the model
+calculations of Raymond and Smith (ApJSuppl 35, 419 and additions)
+including line emission from several elements. This model interpolates
+on a grid of spectra for different temperatures. The grid is
+logarithmically spaced with 80 temperatures ranging from 0.008 to 80
+keV.
+</PARA>
+
+<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsraymond Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>kt</DATA> <DATA>plasma temperature
+  in keV</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>abundanc</DATA> <DATA>metal
+  abundances (He fixed at cosmic) The elements included are C, N, O,
+  Ne, Mg, Si, S, Ar, Ca, Fe, Ni and their relative abundances are set
+  by the set_xsabund command.</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> <DATA>redshift</DATA> <DATA>redshift,
+  z</DATA> 
+</ROW>
+<ROW> 
+  <DATA>4</DATA> <DATA>norm</DATA> <DATA>10^-14 / (4 pi
+  (D_A*(1+z))^2) Int n_e n_H dV, where D_A is the angular size
+  distance to the source (cm), n_e is the electron density (cm^-3),
+  and n_H is the hydrogen density (cm^-3)</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

@@ -1,0 +1,28 @@
+/*
+   css file containing classes for the validation
+   setup.
+
+*/
+.tac { font-family: arial,serif;  background-color: black;  background: black;  color: white;  background-color: #FFFFCC; }
+
+.tred { text-align: center;  font-family: arial;  font-weight: bold;  font-size: small;  background-color: #F84871;  color: white; height:9px;}
+
+.tblue { text-align: center;  font-family: arial;  font-weight: bold;  font-size: small;  background-color: #198EB8;  color: white; height:9px;}
+
+.titlered { text-align: center;  font-family: arial;  font-weight: bold;  font-size: large;  background-color: #F84871;  color: white; height: 19px;}
+
+.titleblue { text-align: center;  font-family: arial;  font-size: small;  background-color: #198EB8;  color: white; height: 19px;}
+
+.greenln { text-align: center;  font-family: arial;   font-size: small; color: green;}
+
+.greenlnleft { text-align: left;  font-family: arial;   font-size: small; color: green;}
+
+.redln { text-align: center;  font-family: arial;   font-size: small; color:green;  background-color: #FF99CC;}
+
+.label { text-align: center; font-family: arial;  font-weight: bold;  font-size: 12pt;  background-color: #C4C2C2;  color: black; }
+
+.testTitle  {text-align: left; font-family:arial; font-size: 12pt; background-color: #5188A9;  color: black; font-weight: bold}
+
+.deleted  { text-align: center;  font-family: arial;   font-size: small; color:green;  background-color: #D8D8D8;}
+
+ 

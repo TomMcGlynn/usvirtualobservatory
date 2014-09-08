@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="plot_source_component" refkeywords="plot plotting model models modeling modelling comp component components  unconvolved " seealsogroups="sh.model sh.plot " displayseealsogroups="" context="plotting">
+
+
+
+    <SYNOPSIS>
+     Plots individual unconvolved source model components
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>plot_source_component([id], name, [replot=False, overplot=False])</LINE>
+      
+    </SYNTAX>
+    <DESC>
+      <PARA>
+       The plot_source_component command plots one, or a combination of, individual
+    source model components to allow the user to quickly visualize the
+    contribution to the full model being used to
+    fit data. The model components will not be convolved
+    with any assigned convolution models, e.g. PSF or PHA responses;
+    the plot_model_component command is available for plotting 
+    convolved model components.
+      </PARA>
+
+      <TABLE>
+	<ROW><DATA>Argument</DATA><DATA>Default</DATA><DATA>Description</DATA></ROW>
+	<ROW><DATA>id</DATA><DATA>1 (can be changed, see "ahelp
+	get_default_id")</DATA><DATA>the id of the dataset to
+	plot</DATA></ROW>
+	<ROW><DATA>name</DATA>
+	<DATA>
+	  no default - required argument
+	</DATA>
+	<DATA>
+	  variable name(s) representing the model component(s)
+	</DATA>
+	</ROW>
+	<ROW><DATA>replot</DATA>
+	<DATA>
+	  False
+	</DATA>
+	<DATA>
+	  should previously-calculated arrays be used to create the plot?
+	</DATA>
+	</ROW>
+	<ROW><DATA>overplot</DATA>
+	<DATA>
+	  False
+	  
+	</DATA>
+	<DATA>
+	  If
+	  True
+	  
+	  then add the data to the current plot, otherwise erase the frame and
+	  create a new plot.
+	</DATA>
+	</ROW>
+      </TABLE>
+
+      <PARA>
+        The plot is displayed in a ChIPS plotting window. If there is
+        no plotting window open, one is created.  If a plotting window
+        exists, the overplot parameter value determines whether the
+        new plot is overlaid on any existing plots in the window or if
+        the window is cleared before the plot is drawn. 
+      </PARA>
+
+      <PARA>
+        ChIPS commands may be used within Sherpa to modify plot
+        characteristics and create hardcopies; refer to the <HREF link="http://cxc.harvard.edu/chips/">ChIPS website</HREF> for
+        information. 
+      </PARA>
+
+      <PARA>
+	The default values for the plot can be read - and changed - using
+	the get_model_plot_prefs() command (set_xlog/set_ylog and
+	set_xlinear/set_ylinear are also available for setting the
+	scale of plot axes to logarithmic or linear). See also
+      </PARA>
+
+      <PARA>
+	<SYNTAX><LINE>unix% ahelp get_source_component_plot</LINE></SYNTAX>
+      </PARA>
+      <PARA>
+	and the examples below for more information.
+      </PARA>
+
+
+      <PARA title="Plotting Multiple Objects">
+	To plot multiple Sherpa objects - e.g. data, model, fit,
+	residuals - in a single window, use
+	the <HREF link="http://cxc.harvard.edu/sherpa/ahelp/plot.html">plot command</HREF>.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_model("xsphabs.abs1*powlaw1d.p1")</LINE>
+          <LINE>sherpa&gt; set_xlog()</LINE>
+	  <LINE>sherpa&gt; set_ylog()</LINE>
+          <LINE>sherpa&gt; plot_source_component("p1")</LINE>
+          <LINE>sherpa&gt; print_window()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Plot the unconvolved power law source model component "p1"
+           which has been used in the fit to default dataset 1.
+	    Use the Sherpa commands set_xlog/set_ylog to change the scaling of
+	    the axes to logarithmic and the ChIPS print_window command
+	    to send a postscript version of the plot to the
+	    default printer (since no argument is given).
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_model("src", "gauss1d.g1+beta1d.b1+const1d.c1")</LINE>
+          <LINE>sherpa&gt; fit("src")</LINE>
+	  <LINE>sherpa&gt; plot_data("src")</LINE>
+	  <LINE>sherpa&gt; plot_source_component("g2", overplot=True)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Plot dataset "src" and then overplot
+        the fitted, unconvolved Gaussian 1D source model component
+        "g1".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_model(2, "xsphabs.gal*xspowerlaw.spl+gal*xsapec.sth")</LINE>
+	  <LINE>sherpa&gt; fit(2)</LINE>
+	  <LINE>sherpa&gt; plot_source_component(2, "gal*sth")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Plot the contribution of the product of the "gal" and
+        "sth" model components to the full model assigned to data set 2.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

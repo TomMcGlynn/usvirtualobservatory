@@ -1,0 +1,22 @@
+Dec 2, 2011 1:42:45 PM org.astrogrid.samp.xmlrpc.XmlRpcKit createDefaultInstance
+INFO: Creating default XmlRpcInstance: jsamp.xmlrpc.impl=null
+Dec 2, 2011 1:42:45 PM org.astrogrid.samp.xmlrpc.XmlRpcKit getInstance
+INFO: Default XmlRpcInstance is internal
+Dec 2, 2011 1:42:45 PM org.astrogrid.samp.xmlrpc.StandardClientProfile getLockUrl
+INFO: Using default Standard Profile lockfile: /Home/eud/preciado/.samp
+Dec 2, 2011 1:42:45 PM org.astrogrid.samp.hub.Hub start
+INFO: Starting hub service
+Dec 2, 2011 1:42:45 PM org.astrogrid.samp.httpd.HttpServer start
+INFO: Server http://localhost:52178 starting
+Dec 2, 2011 1:42:45 PM org.astrogrid.samp.hub.Hub start
+INFO: Starting hub profile org.astrogrid.samp.xmlrpc.StandardHubProfile@dd8e0d
+Dec 2, 2011 1:42:46 PM org.astrogrid.samp.xmlrpc.StandardHubProfile start
+INFO: Wrote new lockfile /Home/eud/preciado/.samp
+Dec 2, 2011 1:42:46 PM org.astrogrid.samp.xmlrpc.StandardHubProfile start
+INFO: Lockfile permissions set to user access only
+Dec 2, 2011 1:42:46 PM org.astrogrid.samp.xmlrpc.StandardHubProfile start
+INFO: SAMP_HUB=std-lockurl:file://localhost/Home/eud/preciado/.samp
+Dec 2, 2011 1:42:50 PM org.astrogrid.samp.hub.HubServiceMode configureHubWindow
+INFO: System tray not supported: displaying hub window
+Dec 2, 2011 3:39:27 PM org.astrogrid.samp.xmlrpc.StandardHubProfile shutdown
+INFO: Lockfile /Home/eud/preciado/.samp deleted

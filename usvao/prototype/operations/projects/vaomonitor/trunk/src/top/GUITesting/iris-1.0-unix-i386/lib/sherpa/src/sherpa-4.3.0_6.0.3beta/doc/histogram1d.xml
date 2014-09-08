@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="histogram1d" refkeywords="histogram grid bin count frequency graph 1d array" seealsogroups="sh.data " displayseealsogroups="" context="visualization">
+	<SYNOPSIS>
+      Create a 1D histogram from a binned grid and array of samples
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>histogram1d( x, xlo, xhi )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The histogram1d command returns a histogram array from an
+	array of samples and a binned grid. 
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  x - array of x values
+	</ITEM>
+
+	<ITEM>
+	  xlo - array of lower bin edges
+	</ITEM>
+
+	<ITEM>
+	  xhi - array of upper bin edges
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; dataspace1d( 0.1, 10, 0.1 )</LINE>
+          <LINE>sherpa&gt; lo, hi = get_indep()</LINE>
+          <LINE>sherpa&gt; n = histogram1d( vals, lo, hi )</LINE>
+          <LINE>sherpa&gt; set_dep( n )</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    A 1d histogram is stored in the blank data set created by
+	    the dataspace1d and set_dep commands.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

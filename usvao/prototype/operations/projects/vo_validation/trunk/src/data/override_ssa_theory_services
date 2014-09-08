@@ -1,0 +1,7 @@
+ivo://graal.fr/ssa-pollux|queryDataCmd=teff_min=7250&teff_max=43954&logg_min=3.380&logg_max=5.000
+ivo://obs-hp.fr/elodie/ssa|queryDataCmd=POS=359.02,14.5&SIZE=0.5
+ivo://org.gavo.dc/theossa/q/ssa|queryDataCmd=MAXREC=1&REQUEST=queryData
+ivo://org.gavo.dc/mlqso/q/q|queryDataCmd=POS=148.75,-1.5&SIZE=0.1&REQUEST=queryData
+ivo://org.gavo.dc/flashheros/q/ssa|queryDataCmd=TARGETNAME=beta%20Ori&REQUEST=queryData
+ivo://org.gavo.dc/feros/q/ssa|queryDataCmd=MAXREC=1&REQUEST=queryData
+ivo://org.gavo.dc/califa/q/s|queryDataCmd=POS=286.4171792,63.92494278&SIZE=0.001&REQUEST=queryData 

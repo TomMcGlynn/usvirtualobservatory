@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="rebin" refkeywords="histogram grid bin count frequency graph rebin array" seealsogroups="sh.data " displayseealsogroups="" context="visualization">
+
+<SYNOPSIS>
+  Rebin a histogram
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>rebin(  x0, x0lo, x0hi, x1lo, x1hi )</LINE>
+      
+    </SYNTAX>
+	<DESC>
+  <PARA>
+    The rebin command redistributes a histogram from one resolution to  
+    another.
+  </PARA>
+</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; arf = get_arf().specresp</LINE>
+          <LINE>sherpa&gt; elo = get_arf().energ_lo</LINE>
+          <LINE>sherpa&gt; ehi = get_arf().energ_hi</LINE>
+          <LINE>sherpa&gt; lo = get_rmf().e_min</LINE>
+          <LINE>sherpa&gt; hi = get_rmf().e_max</LINE>
+          <LINE>sherpa&gt; eff = rebin(arf, elo, ehi, lo, hi) # without normalization</LINE>
+          <LINE>sherpa&gt; width = (hi-lo)</LINE>
+          <LINE>sherpa&gt; ewidth = (ehi-elo)</LINE>
+          <LINE>sherpa&gt; ewidth = ewidth[:len(width)]</LINE>
+          <LINE>sherpa&gt; eff *= (ewidth/width)  # normalized</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            Rebin the ARF from ENERG_LO to E_MIN.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

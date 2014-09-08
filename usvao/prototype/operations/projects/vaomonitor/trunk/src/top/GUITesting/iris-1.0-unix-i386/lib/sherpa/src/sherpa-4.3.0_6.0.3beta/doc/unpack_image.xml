@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="unpack_image" refkeywords="images img IMAGECrate unpack image" seealsogroups="sh.io sh.img " displayseealsogroups="" context="data">
+     
+    <SYNOPSIS>
+      Unpack image data from an IMAGECrate
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>unpack_image( filename|IMAGECrate, [coord="logical"] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The unpack_image command unpacks an image from a FITS file or
+        an IMAGECrate into a Sherpa data object.  
+      </PARA>
+
+      <PARA>
+	If a filename is provided as input, a crate is created but
+	hidden and cannot be used for other analysis in the session. 
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  filename|PHACrate - the name of the file (with path) or
+	  PHACrate which contains the PHA data
+	</ITEM>
+
+        <ITEM>
+	  coord - the coordinate system: logical, image, physical,
+	  world, or wcs; default=logical
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; img = unpack_image("img.fits")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Unpack an image from the file img.fits using the default
+	    coordinate system (logical).  
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; psfdat = unpack_image("psf.fits", coord="world")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    An image is unpacked from the file psf.fits with world
+	    coordinate system.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+	<QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; imgcr = read_file("source.img")</LINE>
+          <LINE>sherpa&gt; data = unpack_image(imgcr)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            The image is read into an IMAGECrate (named "imgcr") from
+	    source.img.  The image data is then unpacked into Sherpa from the
+	    crate. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

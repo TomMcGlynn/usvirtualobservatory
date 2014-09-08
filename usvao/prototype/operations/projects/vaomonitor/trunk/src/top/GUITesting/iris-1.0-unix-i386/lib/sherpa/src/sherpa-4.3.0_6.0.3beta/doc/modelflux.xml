@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<cxchelptopics>
+   <ENTRY key="modelflux" context="tools" refkeywords="sherpa flux" seealsogroups="sh.calc">
+   <SYNOPSIS>
+     Calculate model flux or count rate
+   </SYNOPSIS>
+
+   <DESC>
+      <PARA>
+	Convert between energy flux, photon flux and count rate for
+	any Sherpa model, given a set of spectral response files. 
+	The method assumes the model has an overall linear
+	normalization.
+      </PARA>
+   </DESC>
+
+   <QEXAMPLELIST>
+
+     <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>modelflux arf="arf.fits" rmf="rmf.fits"
+	   model="xsphabs.abs1*powlaw1d.p1"
+	   paramvals="abs1.nh=0.07;p1.gamma=2.26" emin="0.5"
+	   emax="7.0"
+	 </LINE>
+       </SYNTAX>
+       <DESC>
+	 <PARA>
+	   The default use is to convert from rate to flux. This
+	   example calculates the flux of the source in [0.5,7.0] keV
+	   corresponding to a count rate of 1 count/second in the same
+	   band. 
+	 </PARA>
+       </DESC>
+     </QEXAMPLE>
+
+     <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>modelflux arf="arf.fits" rmf="rmf.fits"
+	   model="xsphabs.abs1*powlaw1d.p1"
+	   paramvals="abs1.nh=0.07;p1.gamma=2.26;p1.ampl=0.0003" emin="0.5"
+	   emax="7.0" rate="0.1"
+	 </LINE>
+       </SYNTAX>
+       <DESC>
+	 <PARA>
+	   Here we specify an explicit count rate of 0.1 count/s and
+	   calculate the energy flux and photon flux that would
+	   generate that count rate, given the model. 
+	 </PARA>
+
+	 <PARA>
+	   Even though we specified an amplitude parameter for the
+	   power law, it does not affect the result, since the output
+	   is linearly rescaled to match the requested count rate.
+	 </PARA>
+       </DESC>
+     </QEXAMPLE>
+
+     <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>modelflux arf="arf.fits" rmf="rmf.fits"
+	   model="xsphabs.abs1*powlaw1d.p1"
+	   paramvals="abs1.nh=0.07;p1.gamma=2.26;p1.ampl=0.0003" emin="0.1"
+	   emax="10.0" oemin="0.5" oemax="2.0" rate="0.1"
+	 </LINE>
+       </SYNTAX>
+       <DESC>
+	 <PARA>
+	   This example finds out what flux in the energy range 0.1-10
+	   keV would produce a 0.5-2 keV count rate of 0.1
+	   count/s. The emin and emax parameters always specify the
+	   energy range for the flux; the oemin and oemax parameters
+	   can be used to specify a different energy band for the rate.
+	 </PARA>
+       </DESC>
+     </QEXAMPLE>
+
+     <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>modelflux arf="arf.fits" rmf="rmf.fits"
+	   model="xsphabs.abs1*(powlaw1d.p1+xsgaussian.g)"
+	   paramvals="abs1.nh=0.07;p1.gamma=2.26;p1.ampl=0.0003;g.sigma=0.1;g.line=1.0;g.norm=1.0e-5" emin="0.5"
+	   emax="2.0" flux="1.E-12" opt="flux"
+	 </LINE>
+       </SYNTAX>
+       <DESC>
+	 <PARA>
+	   This example uses "opt=flux" to tell modelflux we are
+	   giving it  the flux and want to know the count rate
+	   (opt="rate" is the default).  Calculates the count rate of
+	   the source in [0.5,2.0] keV where a flux of 1E-12
+	   ergs/cm^2/s is observed in the same band. Although the
+	   overall normalization is scaled to the requested flux, the
+	   relative normalizations of the two components are set using
+	   the p1.ampl and g.norm parameters.
+	 </PARA>
+       </DESC>
+     </QEXAMPLE>
+
+   </QEXAMPLELIST>
+
+   <PARAMLIST>
+     <PARAM name="arf" type="file" filetype="input" reqd="yes">
+       <SYNOPSIS>
+	 Ancillary Response File (ARF)
+       </SYNOPSIS>
+     </PARAM>
+
+     <PARAM name="rmf" type="file" filetype="input" reqd="yes">
+       <SYNOPSIS>
+	 Response File (RMF)
+       </SYNOPSIS>
+     </PARAM>
+
+     <PARAM name="model" type="string" def="" reqd="yes">
+       <SYNOPSIS>
+	 Sherpa model definition string, e.g. xsphabs.abs1*xspowerlaw.p1
+       </SYNOPSIS>
+     </PARAM>
+
+     <PARAM name="paramvals" type="string" def="" reqd="yes">
+       <SYNOPSIS>
+	 semicolon-delimited (';') string of (id.parameter=value) pairs,
+	 e.g. abs1.nh=0.07;p1.gamma=2.26
+       </SYNOPSIS>
+     </PARAM>
+
+     <PARAM name="emin" type="real" def="INDEF" reqd="yes">
+       <SYNOPSIS>
+	 Lower bound of flux energy range in keV
+       </SYNOPSIS>
+     </PARAM>
+
+     <PARAM name="emax" type="real" def="INDEF" reqd="yes">
+       <SYNOPSIS>
+	 Upper bound of flux energy range in keV
+       </SYNOPSIS>
+     </PARAM>
+
+     <PARAM name="oemin" type="real" def="INDEF" reqd="no">
+       <SYNOPSIS>
+	 Lower bound of energy range for count rate in keV, default=emin
+       </SYNOPSIS>
+     </PARAM>
+
+     <PARAM name="oemax" type="real" def="INDEF" reqd="no">
+       <SYNOPSIS>
+	 Upper bound of energy range for count rate in keV, default=emin
+       </SYNOPSIS>
+     </PARAM>
+
+     <PARAM name="rate" type="real" def="1.0" reqd="no">
+       <SYNOPSIS>
+	 count rate in counts s^-1
+       </SYNOPSIS>
+     </PARAM>
+
+     <PARAM name="pflux" type="real" def="INDEF" reqd="no">
+       <SYNOPSIS>
+	 photon flux in energy range in photon cm^-2 s^-1
+       </SYNOPSIS>
+     </PARAM>
+
+     <PARAM name="flux" type="real" def="INDEF" reqd="no">
+       <SYNOPSIS>
+	 energy flux in energy range in erg cm^-2 s^-1
+       </SYNOPSIS>
+     </PARAM>
+
+     <PARAM name="opt" type="string" def="rate" reqd="no">
+       <SYNOPSIS>
+	 Input type: (rate|flux|pflux), rate->flux,pflux or flux->rate,pflux
+       </SYNOPSIS>
+       <DESC>
+         <PARA>
+	   This parameter is used to control whether modelflux
+	   calculates a rate from the flux or pflux parameters, or
+	   vice versa. 
+         </PARA>
+       </DESC>
+     </PARAM>
+ 
+   </PARAMLIST>
+   
+   <BUGS>
+     <PARA>
+       See the
+        <HREF link="http://cxc.harvard.edu/ciao/bugs/modelflux.html">bugs page
+          for this tool</HREF>
+        on the CIAO website for an up-to-date listing of known bugs.
+      </PARA>
+   </BUGS>
+   <VERSION>CIAO 4.3</VERSION>
+   <LASTMODIFIED>December 2010</LASTMODIFIED>
+   </ENTRY>
+</cxchelptopics>

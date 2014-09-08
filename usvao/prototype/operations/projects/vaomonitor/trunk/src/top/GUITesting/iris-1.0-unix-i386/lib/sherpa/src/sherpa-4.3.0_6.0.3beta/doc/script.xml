@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="script" refkeywords="script scripts write save record session output save_all store" seealsogroups="sh.save " displayseealsogroups="" context="saving">
+	<SYNOPSIS>
+     Save every command typed in a Sherpa or ChIPS session to a file.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>script([filename="sherpa.log", clobber=False])</LINE>
+      
+    </SYNTAX>
+ 
+    <DESC>
+      <PARA>
+        The script function saves every command typed in a
+        Sherpa session to the file specified in
+        the 'filename' argument; by default, the file "sherpa.log" is
+        used.  Note that this command saves only the existing history
+        of the session - i.e., everything typed up until the script command
+        is called - and does not log new commands.
+      </PARA>
+
+      <PARA>
+	The script command is also available in ChIPS.  In that
+	program, the default filename is "chips.log".
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        filename - the name of the file to write;
+        default = sherpa.log
+      </ITEM>
+
+      <ITEM>
+        clobber - Boolean to specify if existing 
+	'filename' should be overwritten; 
+          default = False
+          
+      </ITEM>
+    </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; script("sherpa_session1.log", clobber=False)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+          This command will record *everything* typed at the command
+          line in a Sherpa session to the file "sherpa_session1.log", unless
+          this filename already exists in the current working
+          directory.
+	  </PARA>
+
+	  <PARA>
+	    Setting
+          clobber=True
+          
+          overwrites "sherpa_session1.log":
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; script("sherpa_session1.log")
+IOError: script file sherpa_session1.log exists and clobber is not set.
+
+sherpa&gt; script("sherpa_session1.log", True)
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+        <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; script()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           When issued with no arguments, the 'script' command writes
+           to "sherpa.log"; clobber is turned off by default.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; script()      # sherpa.log created
+
+sherpa&gt; script()
+IOError: script file sherpa.log exists and clobber is not set.
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

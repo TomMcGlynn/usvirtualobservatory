@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="image_kernel" refkeywords="image imager imaging visualize visualization visualise visualisation psf kernel point spread function" seealsogroups="sh.img sh.psf " displayseealsogroups="" context="psfs">
+	<SYNOPSIS>
+     Send a PSF kernel image to the imager (ds9).
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>image_kernel( [id, newframe, tile] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+      	The image_kernel command sends the kernel data to the imager (ds9) for display.  This image may be congruent to the PSF data (see <HREF link="http://cxc.harvard.edu/sherpa/ahelp/image_psf.html">"ahelp image_psf"</HREF>), but is more commonly a filtered and recentered subset.  If a 1D PSF was loaded, use the plot_kernel command (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/plot_kernel.html">"ahelp plot_kernel"</HREF>) instead.  To view the full, unfiltered PSF, use the image_psf command.
+      </PARA>
+
+      <LIST>
+       <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+
+        <ITEM>
+        newframe  - add a new frame;
+          default=False
+          
+        </ITEM>
+
+        <ITEM>
+         tile - tile image frame;
+          default=False
+          
+       </ITEM>
+      </LIST>
+
+<PARA title="What is the difference between the PSF and the kernel?">
+	   The point spread function (PSF) is defined by the full (unfiltered) PSF image loaded into Sherpa or the PSF model expression evaluated over the full range of the dataset; both types of PSFs are established with the load_psf() command.  The kernel is the subsection of the PSF image or model which is used to convolve the data.  This subsection is created from the PSF when the size and center of the kernel are defined by the command set_psf().  While the kernel and PSF might be congruent, defining a smaller kernel helps speed the convolution process by restricting the number of points within the PSF that Sherpa must evaluate.
+	 </PARA>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; image_kernel()</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Image the kernel of the default dataset.  If an imager
+	    frame already exists, the kernel image will replace the
+	    current contents of the frame.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; image_kernel(2, newframe=True, tile=True)</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    An image of the kernel for dataset id=2 is sent to ds9.
+	    A new frame is created for the image; the frame is tiled
+	    with any other existing ds9 frames.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+     </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

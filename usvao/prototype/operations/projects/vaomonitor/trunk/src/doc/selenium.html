@@ -1,0 +1,169 @@
+<HTML>
+ <HEAD>
+   <TITLE>
+     Validation Design
+   </TITLE>
+     <LINK REL="StyleSheet" HREF='http://www.us-vo.org/app_templates/usvo_template.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/datascope/css/styles.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/monitor/css/tr.css' TYPE="text/css">
+ </HEAD>
+<Body>
+
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>   
+     <td width="112" height="32" align="center" valign="top">
+        <a href="http://www.us-vo.org" class="nvolink" target="_top">
+          <img src="http://www.usvao.org/documents/Templates/Logos/VAO_logo_100.png" alt="NVO HOME" border="0"/>
+        </a>
+        <span class="nvolink">
+          <a href="http://www.us-vo.org/" target="_top">National Virtual Observatory</a></span>
+     </td>   
+     <td valign="top"><table  width="100%" border="0" cellpadding="0" cellspacing="0">      
+       <tr>       
+         <td width="2" height="30" bgcolor="white"></td>
+         <td width="678" height="39" align="center" valign="middle" 
+         background="http://www.us-vo.org/images/templatestars.jpg" bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+         
+    <span class= \"nvoapptitle\" style= \"background\-repeat: repeat\-y;\">Vaomonitor (Documentation)</span></td></tr>
+    </td> 
+    
+   
+    <td bgcolor="white" width="2"></td>     
+    </tr>     
+    <tr>       
+     <td bgcolor="white" width="2"></td>      
+     <td bgcolor="white" width="2"></td>      
+     </tr>      
+     <tr>       
+     <td align="center" valign="top" colspan="3"><table cellspacing="2" cellpadding="0" border="0" width="100%"  style="margin: 0pt;"> 
+  <tr>
+     <!-- the local links -->
+  
+     <td  class='navlink'><a href='/cgi-bin/vo/notification/shownote.pl'>VO Service Notices </a></td>
+     <td  class='navlink'><a href='/cgi-bin/vo/monitor/monitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'>NVO Home</a></td>  
+     <td  class='navlink'><a href=http://us-vo.org/feedback/index.cfm>NVO Feedback</a></td> 
+            
+     </tr>       
+     </table></td>
+      </tr>
+      </table></td>
+      <td width = 140 align = center valign = top><a href = "http://www.heasarc.gsfc.nasa.gov">
+      <img src=/vo/datascope//images/nasa_logo.gif width=72 height=60 border=0 alt='NASA home'>
+      </img></a><br><span>Hosted by:</span><br>HEASARC<br> 
+      <br>
+      </td></tr></table>
+
+
+<h3>
+Selenium Tests
+</h3>
+
+<h4>Overview</h4>
+<p>The VAO Operations Selenium Testing framework performs a number of heavier tests on VAO Services. The framework is in a beta state and tests should be run manually when failures are reported.
+The selenium framework currenlty requires a number of components to work. The user must have the following installed:
+<ol>
+<li>selenium remote control sw.
+<li>Firefox 2 browser
+<li>a virtual frame buffer (E.g.xvfb)
+<li>a <a href = 'http://girliemangalo.wordpress.com/2009/02/05/creating-firefox-profile-for-your-selenium-rc-tests/'>Firefox  profile </a>(Firefox) specifically for running selenium tests.
+
+
+</ol>
+</p>
+<br>
+
+<h4>The Tests</h4>
+<p>There are currently 3 selenium tests being run under the VAO Monitor. These tests are on the Data Discovery Tool,The Directory Service, and DataScope. If the components described under Overview are in place,
+then the user may use the script run_selenium.pl to drive the tests. Note that this script requires some minor tweaking in order to run correctly. Please see the comments in the program itself to make the necessary
+adjustments. <br><br>
+
+The run_selenium.pl program may be run on the command line with:<br>
+ ./run_selenium.ff3.pl  -H 'www.usvao.org' -u 'science-tools-services/vao-tools-services-data-discovery-tool/ ' -f Modulesnew/DDT.pl  -l . -c c &<br><br>
+
+Flags:<br>
+-H: the hostname of the service<br>
+-u: the base url of the service.<br>
+-f: this flag is for the specific test. In the above example, it is for the DDT test.<br>
+-c: the directory to which a profile of the session will be dumped if there are errors.<br><br>
+
+The status of the test ("OK","FAIL") is stored in a file called selenium_results. The user may subsequently parse this file and display the results on the vaomonitor page.
+
+</p>
+<h4>Caveats</h4>
+<p>
+The system is in a beta state due to a number of unexpected issues. A short description of these issues and suggested fixes follows:<br>
+</p>
+
+<h5>Firefox browser and selenium remote control compatibility</h5> 
+<p>There are a number of problems setting up selenium remote control with a Firefox browser. First be sure that your system has either Firefox 2 or Firefox 3 installed such
+that it can be invoked on the command line and run in the background in a virtual frame buffer. With new releases of Firefox and selenium coming out regularly, tests may
+not run as expected unless both the Firefox and selenium remote control versions are compatible. This system uses Firefox 2  and selenium RC selenium-remote-control-1.0.1
+</p>
+<h5>Virtual Frame buffer </h5>
+<p>The frame buffer used in this system is Xvfb. The buffer should be started with:<br><br>
+
+&lt;somepath&gt;/Xvfb :99 -ac -screen 1 1280x1024x8 > &  /dev/null  &
+
+<br><br>Sometimes the frame buffer can overflow and the tests crash. This is usually due to the number of tests running concurrently and/or the amount of data being generated in the buffer
+as a result of one or more tests.  One solution is to run fewer tests simultaneously. It seems that running between 1-10 lighter weight tests in the same buffer is safe.<br><br>
+
+One problem that arises as a result of the overflow is the creation of a number of uneccessary profile files. These files may contain some helpful information that
+sheds light on why the test(s) crashed. However, these files should be removed.
+
+
+</p>
+<h5>Profile( Firefox )</h5>
+<p>To run this system, there should be a custom profile that is specific to running the tests in this project. The custom profile should be configured
+manually. This system uses a Firefox custom profile (not included in the system install). If the profile is not configured correctly, the tests may
+not run as expected. Please see the "Overview" section at the top of this page which includes a link to a description of what a custom profile should contain.
+
+</p>
+
+<h5>Selenium IDE</h5>
+<p>It is important to note that all tests should be built using the selenium IDE first. Tests can be played back using the IDE and can then be exported
+in Java or Perl. A recurring problem is that sometimes an older IDE will not drive a test correctly so the user will have to use a newer IDE to build
+the test and subsequently check that the test will run on his/her version of the browser. This is a manual effort that may require a significant time 
+investment. This is why it is important to make sure that the IDE, browser and the selenium RC are compatible. <br><br>
+
+N.B. The tests used in this project are in Perl. 
+
+</p>
+
+
+
+<br><br>
+   <hr align="left" noshade>
+        <table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+        <tr align="center" valign="top">   <td width="16%" valign="top"><div align="center" class="style10">
+        <a href="http://www.nsf.gov"><img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0">
+        </a>
+        <a href="http://www.nasa.gov"><img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0">
+        </a>
+        </div></td>
+        <td width="76%"><div align="center">       
+        <p class="style10"> Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> 
+        <br>          under Cooperative Agreement AST0122449 with the Johns Hopkins University 
+        <br>         The NVO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a></p>
+        <p class="style10">This NVO Application is hosted by <a href="#">LocalSiteName</a></p>
+        </div></td>    
+        <td width="8%"><div align="center"><span class="tiny">Member<br>
+        </span>
+        <a href="http://www.ivoa.net">
+        <img src="http://www.us-vo.org/images/ivoa_small.jpg" alt="IVOA HOME" width="68" height="39" border="0" align="top"></a></div></td>
+        <td width="8%"><span class="style4"><span class="tiny">Meet the Developers</span><br>
+        <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border=0></span></td> </tr></table>
+        <hr noshade='noshade' />
+        <p>Hosted by the <a href='http://universe.gsfc.nasa.gov/'>Astrophysics Science Division</a>and the 
+        <a href='http://heasarc.gsfc.nasa.gov/'>High Energy Astrophysics Science Archive Research Center (HEASARC)</a>at
+        <a href='http://www.nasa.gov/'>NASA/</a><a href='http://www.gsfc.nasa.gov/'>GSFC</a>
+        </p><p>HEASARC Director:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/bios/white.html'>Dr. Nicholas E. White</a>,</p>
+        <p>HEASARC Associate Director: Dr. Roger Brissenden,</p><p>Responsible NASA Official:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/nospam/panewman.html'>Phil Newman</a> </p>
+        <p class='tiny'> <a href='/banner.html'>Privacy, Security, Notices</a></p>
+
+</BODY>
+
+</HTML>
+

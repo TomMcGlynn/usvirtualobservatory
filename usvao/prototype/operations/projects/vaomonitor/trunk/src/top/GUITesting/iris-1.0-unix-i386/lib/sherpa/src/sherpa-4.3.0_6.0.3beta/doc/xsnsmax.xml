@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsnsmax" refkeywords=" nsmax model models modeling modelling source composite nested joint xspec" seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Neutron Star Magnetic Atmosphere.
+XSpec model.
+</SYNOPSIS>
+	<DESC>
+<PARA>
+This model interpolates from a grid of neutron star (NS) atmosphere
+spectra to produce a final spectrum that depends on the parameters
+listed below. The atmosphere spectra are obtained using the latest
+equation of state and opacity results for a partially ionized,
+strongly magnetized hydrogen or mid-Z element plasma. The models are
+constructed by solving the coupled radiative transfer equations for
+the two photon polarization modes in a magnetized medium, and the
+atmosphere is in radiative and hydrostatic equilibrium. The atmosphere
+models mainly depend on the surface effective temperature Teff and
+magnetic field strength B and inclination ΘB; there is also a
+dependence on the surface gravity g=(1+zg)GM/R2, where
+1+zg=(1-2GM/R)-1/2 is the gravitational redshift and M and R are the
+NS mass and radius, respectively. 
+</PARA>
+
+<PARA>
+Two sets of models are given: one set with a single surface B and Teff
+and a set which is constructed with B and Teff varying across the
+surface according to the magnetic dipole model (for the latter, θm is
+the angle between the direction to the observer and the magnetic
+axis). The effective temperatures span the range log Teff=5.5-6.8 for
+hydrogen and log Teff.=5.8-6.9 for mid-Z elements(note: for the
+latter, change temperature range in nsmax_lmodel.dat) The models with
+single (B,Teff) cover the energy range 0.05-10 keV, while the models
+with (B,Teff)-distributions cover the range 0.09-5 keV. 
+</PARA>
+	<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsnsmax Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> 
+  <DATA>logteff</DATA> 
+  <DATA>surface (unredshifted) effective temperature</DATA>
+</ROW>
+<ROW> 
+  <DATA>2</DATA> 
+  <DATA>redshift</DATA> 
+  <DATA>1+z_g, gravitational redshift</DATA>
+</ROW>
+<ROW> 
+  <DATA>3</DATA> 
+  <DATA>specfile</DATA> 
+  <DATA>switch indicating model to use (see nsmax.dat or model list [http://www.slac.stanford.edu/~wynnho/nsmax_models.dat])</DATA>
+</ROW>
+<ROW> 
+  <DATA>4</DATA> 
+  <DATA>norm</DATA> 
+  <DATA>A; (R_em/d)^2, normalization, where R_em is the size (in km) of the emission region and d is the distance (kpc) to the object  Note: A is added automatically by XSPEC.</DATA>
+</ROW>
+
+</TABLE>
+
+<PARA>
+Please send your comments/questions to Wynn Ho
+(wynnho@slac.stanford.edu).  If you publish results obtained using
+NSMAX, please reference Ho, W.C.G., Potekhin, A.Y., &amp; Chabrier,
+G. (2008, ApJS, 178, 102) and also Mori, K. &amp; Ho, W.C.G. (2007, MNRAS,
+377, 905) if using the mid-Z models. 
+</PARA>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="ignore_bad" refkeywords="ignore bad quality flags flag filter exclude bin channel" seealsogroups="sh.filter " displayseealsogroups="" context="filtering">
+
+<SYNOPSIS>
+  Ignore bins according to quality flags
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>ignore_bad( [id,] [bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+<DESC>
+  <PARA>
+    The ignore_bad command ignores bins in the PHA data which have a
+    quality flag &gt; 0 ("bad").
+  </PARA>
+
+  <PARA>
+    Ignoring the bad quality bins may alter the grouping flag sizes.
+    In this case, any filters which have been applied to the data are
+    removed when ignore_bad is used.
+  </PARA>
+
+     <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if ignoring bad quality
+          in background data; 
+          default=None
+          
+        </ITEM>
+      </LIST>
+</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; ignore_bad()</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Ignore bins with quality flags set in the default dataset.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; ignore_bad("src")</LINE>
+	  <LINE>sherpa&gt; ignore_bad("src", "bkg1")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Ignore bins with quality flags set in the dataset "src"
+	    and the corresponding background file "bkg1".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+       <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; notice(0.1,4.0)</LINE>
+	  <LINE>sherpa&gt; ignore_bad()</LINE>
+	  <LINE>WARNING: filtering grouped data with quality flags, previous filters deleted</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The ignore_bad command alters the size of the grouping
+	    flags, so a warning is printed.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+     </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

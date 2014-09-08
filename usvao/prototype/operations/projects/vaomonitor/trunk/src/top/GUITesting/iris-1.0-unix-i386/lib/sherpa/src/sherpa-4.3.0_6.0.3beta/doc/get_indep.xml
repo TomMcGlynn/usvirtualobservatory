@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_indep" refkeywords=" get independent variable data array" seealsogroups="sh.get " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Return the independent variable array of a data set
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_indep( [id, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The get_indep() function returns the independent variable
+	array of a 1- or 2-D source or background data set, by data id or
+	bkg_id. For PHA spectra, get_indep() returns the (energ_lo,
+	energ_hi) array, where 'energ_lo' and 'energ_hi' represent the
+	energies at the low and high ends of each bin,
+	respectively. For images, get_indep() returns the (x0, x1)
+	image grid in the current coordinate system.
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+
+      <ITEM>
+        bkg_id -  the id of the background to use,
+        e.g. if more than one background is associated with the
+        data; default is the first background dataset loaded
+      </ITEM>
+    </LIST>
+    </DESC>
+     
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_indep()</LINE>
+          
+        </SYNTAX>
+	<DESC>
+          <PARA>
+           When called with no arguments, get_indep() returns the
+           independent variable array of the default data set.
+           In this example, data set 1 is a PHA spectrum.
+          </PARA>
+<VERBATIM>
+sherpa&gt; print(get_data())
+name           = simple.pi
+channel        = Float64[1024]
+counts         = Float64[1024]
+staterror      = None
+syserror       = None
+bin_lo         = None
+bin_hi         = None
+grouping       = None
+quality        = None
+exposure       = 56494.4943719
+backscal       = 9.36267570731e-05
+areascal       = 1.0
+grouped        = False
+subtracted     = False
+units          = energy
+response_ids   = [1]
+background_ids = [1]
+
+sherpa&gt; get_indep()
+(array([  0.30000001,   0.31      ,   0.31999999,   0.33000001,
+         0.34      ,   0.34999999,   0.36000001,   0.37      ,
+. . . .  10.93999958,  10.94999981,  10.96000004,  10.97000027,
+        10.97999954,  10.98999977]),
+ array([  0.31      ,   0.31999999,   0.33000001,   0.34      ,
+         0.34999999,   0.36000001,   0.37      ,   0.38      ,
+         0.38999999,   0.40000001,   0.41      ,   0.41999999,
+. . . . 10.94999981,  10.96000004,  10.97000027,  10.97999954,
+        10.98999977,  11.        ]))
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_indep(1, bkg_id=1)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            To return the independent variable array of a background 
+	    associated with a data set, the background ID must be
+	    specified along with the data set ID. Here, the first
+	    background loaded for data set 1 is returned by get_indep().
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_indep(1, 1)
+           
+(array([  0.30000001,   0.31      ,   0.31999999,   0.33000001,
+         0.34      ,   0.34999999,   0.36000001,   0.37      ,
+. . . .  10.93999958,  10.94999981,  10.96000004,  10.97000027,
+        10.97999954,  10.98999977]),
+ array([  0.31      ,   0.31999999,   0.33000001,   0.34      ,
+         0.34999999,   0.36000001,   0.37      ,   0.38      ,
+         0.38999999,   0.40000001,   0.41      ,   0.41999999,
+. . . . 10.94999981,  10.96000004,  10.97000027,  10.97999954,
+        10.98999977,  11.        ]))
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

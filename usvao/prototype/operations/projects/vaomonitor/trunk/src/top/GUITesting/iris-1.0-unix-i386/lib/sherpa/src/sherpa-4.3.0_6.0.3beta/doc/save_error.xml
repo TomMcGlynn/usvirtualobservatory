@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="save_error" refkeywords="save record store write error errors counts statistical systematic quadrature " seealsogroups="sh.save  sh.data sh.io " displayseealsogroups="" context="saving">
+	<SYNOPSIS>
+     Save total errors to a FITS table or ASCII file
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>save_error( [id=1], filename, [bkg_id=1,ascii=False,clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	 The save_error command saves the array of total errors associated
+	 with the counts in a data set to a column in a FITS table
+	 file or column-based ASCII file, by data set id. The total errors 
+	 are computed by adding the statistical and systematic
+         errors in quadrature; they may be viewed with the
+         get_error command.
+     </PARA>
+	<LIST>
+        <ITEM>
+          id - the id of the data set to use; if not given, uses the
+          default data set id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+        <ITEM>
+          filename - name of outfile
+        </ITEM>
+        <ITEM>
+          bkd_id - the id of the background data set to use (e.g., bkg_id=1 
+          represents the first background data set loaded in association with
+          the source data set specified in the 'id' argument)
+        </ITEM>
+        <ITEM>
+           ascii - outfile format specification; 
+True to save outfile in ASCII format, False for FITS, default=False
+         </ITEM>
+         <ITEM> 
+            clobber - clobber outfile; default=False (do not clobber if file exists)
+        </ITEM>
+      </LIST>
+      </DESC>
+
+    <QEXAMPLELIST>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_error("tot_error.fits")</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            The save_error function can be called with just a
+            filename, in which case all the default arguments will be used.
+            In this example, the total error array associated
+            with the counts in data set 1 is written to the FITS table file 'tot_error.fits'.
+          </PARA>
+<VERBATIM>
+ciao% dmlist tot_error.fits blocks
+
+--------------------------------------------------------------------------------
+Dataset: tot_error.fits
+--------------------------------------------------------------------------------
+
+     Block Name                          Type         Dimensions
+--------------------------------------------------------------------------------
+Block    1: PRIMARY                        Null
+Block    2: TABLE                          Table         2 cols x 46       rows
+	ciao% dmlist tot_error.fits data
+
+--------------------------------------------------------------------------------
+Data for Table Block TABLE
+--------------------------------------------------------------------------------
+
+ROW    X                    ERR
+
+     1     0.00146000005770         5.2130748866
+     2     0.24819999933243         4.9686269666
+     3     0.30660000443459         5.0926763859
+     4     0.46720001101494         4.9686269666
+     5     0.56940001249313         5.0926763859
+     6     0.64240002632141         4.9686269666
+     7     0.70080000162125         5.3301270189
+     8     0.74459999799728         5.3301270189
+     9     0.78839999437332         4.9686269666
+     .
+     .    
+     .
+[rest of output omitted] 
+
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_error(2, "tot_error.txt", ascii=True)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           Here, the optional 'ascii' argument is set
+           to True
+           in order to produce an outfile in ASCII format (overriding
+           the default setting ascii=False). The total error array
+           associated with the counts in data set 2 is written to the text file 'tot_error.txt'.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_error(2,"tot_error_bkg.fits", bkg_id=1, clobber=True)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           The total error array associated with the first
+           background data set loaded for source data set 2 is written
+           to FITS file tot_error_bkg.fits (note the 'ascii' parameter
+           default is False). 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="show_model" refkeywords="show report status state information results convolved source model " seealsogroups="sh.info " displayseealsogroups="" context="info">
+
+   <SYNOPSIS>
+     Display the convolved source model
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>show_model([id, outfile=None, clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+          The show_model command displays the convolved source model.
+	  To obtain the unconvolved model information, use the
+          command show_source
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/show_source.html">"ahelp show_source"</HREF>).
+      </PARA>
+
+    <LIST>
+        <ITEM>
+          id - the id of the dataset to use; default
+          is to show model information for all available datasets.
+        </ITEM>
+
+       <ITEM>
+        outfile - name of the file in which to store the information
+      </ITEM>
+
+      <ITEM>
+        clobber -  a Boolean switch which indicates whether or not
+        the 'outfile' should be overwritten, if the file already exists;
+        default=False
+        
+      </ITEM>
+    </LIST>
+
+      <PARA>        
+        The command output looks like:
+      </PARA>        
+
+<VERBATIM>
+Model: 1
+apply_rmf(apply_arf((50000.0 * (xsphabs.abs1 * powlaw1d.p1))))
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   abs1.nh      thawed    0.0349312            0       100000 10^22 atoms / cm^2
+   p1.gamma     thawed      1.72895          -10           10
+   p1.ref       frozen            1 -3.40282e+38  3.40282e+38
+   p1.ampl      thawed  4.24936e-05            0  3.40282e+38
+</VERBATIM>
+
+      <PARA>        
+        The behavior of the screen output is determined by the
+        user's $PAGER environment variable setting, which
+        is usually a variant of "more."  To disable paging within
+        show_all() - i.e. print the entire contents, even if it
+        scrolls offscreen - change this setting to "cat" before starting
+        Sherpa: 
+      </PARA>
+
+<VERBATIM>
+unix% setenv PAGER cat
+
+unix% sherpa
+</VERBATIM>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; show_model()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Print the model information for all datasets to the
+	    screen.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; show_model(2, "sherpa.model", True)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Write the model information for dataset id=2 to the file
+	    "sherpa.model", clobbering any existing file with the
+	    same name.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

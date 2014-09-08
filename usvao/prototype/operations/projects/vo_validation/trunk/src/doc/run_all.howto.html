@@ -1,0 +1,98 @@
+<HTML>
+<head>
+<style>
+p.subsection
+{  margin-left: 3em; color: blue }
+p.subsectionb { margin-left: 6em; color: blue}
+p.viewer {margin-left: 9em; color: green}
+p.subsectionc { margin-left: 9em; color: blue}
+p.subd {margin-left: 6em; color: green}
+</style>
+</head>
+<body>
+<script src = 'h.js' language = javascript></script>
+<h3>Running the System:</h4><br>
+
+<h4>Extracting the tarball locally</h4> 
+<p>
+Once you have downloaded the validation system tarball, uncompress
+the system in a directory of your choosing. The directory structure of the
+system should be:
+
+<p class = "subsection">---->validation</font><br>
+<p class  = "subsectionb">----->data <font color = purple>&nbsp; (run time files)</font><br></p>
+<p class  = "subsectionb">----->doc <font color = purple>&nbsp;(html documentation)</font><br></p>
+<p class = "subsectionb">----->HTML<font color =purple>&nbsp;(code to display pages for vresults.pl)</font></p> 
+<p class = "subsectionb">----->SQL <font color = purple>&nbsp;(SQL queries on local mysql database)</font></p> 
+<p class = "subsectionb">----->Table <font color = purple>&nbsp;(Table object/VOTable object)</font></p> 
+<p class = "subsectionb">----->java <font color = purple>&nbsp;(contains code to run validation on all services)</font></p> 
+<p class  = "subsectionb">----->perl <font color = purple>&nbsp; (contains the code to download and parse resources from JHU registry)</font><br></p>
+<p class  = "viewer">----->get_datatypes.pl <font color = purple>(downloads the Cone, SIAP, etc. data from STScI registry)</font><br></p>
+<p class  = "viewer">----->parse_registry_resourcs.pl<font color = purple>&nbsp;(parses the Cone, SIAP, etc. downloaded data and stores in ascii files)</font><br></p>
+<p class  = "viewer">----->updatedb.pl<font color = purple>&nbsp;(updates the mysql validation database with the information in the ascii files)</font><br></p>
+<p class  = "subsectionc">----->Service<font color = purple>&nbsp;(contains modules for perl code)</font><br></p>
+<p class  = "subsectionc">----->Connect<font color = purple>&nbsp;&nbsp;(contains the code to connect to the mysql db)</font><br></p>
+<p class  = "subsectionc">----->DB<font color = purple>&nbsp;(Contains code to write data to the local database)</font><br></p>
+<p class  = "subsectionc">----->Util<font color = purple>&nbsp;(Contains code to parse XML and cleanup)</font><br></p>
+<p class = "subd">----->vresults.pl <font color = purple>&nbsp;(top level code to view validation results)</font></p>
+<p class = "subd">----->vometadata.pl <font color = purple>&nbsp;(gives description of resource)</font></p>
+<p class = "subd">----->run_java.sh<font color = purple>&nbsp;(wrapper to run java validation code and store output to log file)</font></p>
+<p class = "subd">----->log <font color = purple>&nbsp;(a log of the download, parsing, updating and validation)</font></p>
+</p><br>
+
+<h4> Running the tools</h4>
+<b> Step 1 (Downloading data from STScI registry):</b>
+<p>Go to the perl directory and run:<br>
+>get_datatypes.pl<br><br>
+This will download resources of a given type as one big XML and store them in /perl/dump with the name "{type}_res". You should
+have in the end 4 files... a "cone_res", "siap_res","ssa_res",  and "registry_res". Each of these files is a concatenation of registry
+resources of the given type.<br></p>
+
+
+<b>Step 2 (Parsing the concatenated XMLs and storing metadata for each resource in an ascii file)</b>
+<p>In the same perl directory, run:<br>
+>parse_registry_resources.pl<br><br>
+This will parse each {type}_res file and pluck out the metadata for each resource. The metadata is in turn stored in ascii files
+named "{type}_res_for_validation". Each line in these files contains all of the important metadata for a given resource.<br>
+
+
+<hr align="left" noshade>
+        <table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+        <tr align="center" valign="top">   <td width="16%" valign="top"><div align="center" class="style10">
+        <a href="http://www.nsf.gov"><img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0">
+        </a>
+        <a href="http://www.nasa.gov"><img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0">
+        </a>
+        </div></td>
+        <td width="76%"><div align="center">       
+        <p class="style10"> Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> 
+        <br>          under Cooperative Agreement AST0122449 with the Johns Hopkins University 
+        <br>         The NVO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a></p>
+        <p class="style10">This NVO Application is hosted by <a href="#">LocalSiteName</a></p>
+        </div></td>    
+        <td width="8%"><div align="center"><span class="tiny">Member<br>
+        </span>
+        <a href="http://www.ivoa.net">
+        <img src="http://www.us-vo.org/images/ivoa_small.jpg" alt="IVOA HOME" width="68" height="39" border="0" align="top"></a></div></td>
+        <td width="8%"><span class="style4"><span class="tiny">Meet the Developers</span><br>
+        <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border=0></span></td> </tr></table>
+        <hr noshade='noshade' />
+        <p>Hosted by the <a href='http://universe.gsfc.nasa.gov/'>Astrophysics Science Division</a>and the 
+        <a href='http://heasarc.gsfc.nasa.gov/'>High Energy Astrophysics Science Archive Research Center (HEASARC)</a>at
+        <a href='http://www.nasa.gov/'>NASA/</a><a href='http://www.gsfc.nasa.gov/'>GSFC</a>
+        </p><p>HEASARC Director:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/bios/white.html'>Dr. Nicholas E. White</a>,</p>
+        <p>HEASARC Associate Director: Dr. Roger Brissenden,</p><p>Responsible NASA Official:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/nospam/panewman.html'>Phil Newman</a> </p>
+        <p class='tiny'> <a href='/banner.html'>Privacy, Security, Notices</a></p>
+        </div><!-- id='footer' --></body>
+   
+
+
+</p>
+</Body>
+</HTML>
+heasarcdev [41] [mpreciad]:  
+
+</body>
+</HTML>

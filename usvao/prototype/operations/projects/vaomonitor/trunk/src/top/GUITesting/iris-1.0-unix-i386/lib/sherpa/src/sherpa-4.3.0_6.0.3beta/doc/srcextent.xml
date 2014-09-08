@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<cxchelptopics>
+   <ENTRY key="srcextent" context="tools" refkeywords="sherpa extent extended PSF" seealsogroups="stattools">
+   <SYNOPSIS>
+     Determine if a source is extended within a confidence interval.
+    </SYNOPSIS>
+
+   <DESC>
+      <PARA>
+	Calculate the size and associated uncertainty of a photon-count
+	source image or list of source images using the Mexican Hat
+	Optimization (MHO) algorithm (Houck 2007). The uncertainty is
+	a 90% confidence estimate derived from Monte Carlo trials
+	using MARX simulated data.
+      </PARA>
+
+      <PARA>
+	If a point-spread function (PSF) image is supplied, the tool also
+	makes a determination about whether the source is extended within
+	the confidence interval.
+      </PARA>
+
+      <PARA>
+	The MHO algorithm looks for a source approximately centered
+	in the image with approximate coordinates taken from an input
+        region specifier.  It then derives the parameters of the elliptical
+	Gaussian which is most strongly correlated with the source image.
+        The elliptical Gaussian parameters [center position (x,y), 1-sigma
+	semi-axes (a,b) and position angle (theta)] are derived by
+	maximizing the Mexican-Hat wavelet transform.  The tool
+	also computes sqrt((1/2)(a^2+b^2)) as an 'apparent size'
+	estimate which is more robust than the individual
+	semi-major and semi-minor axis values.
+      </PARA>
+
+      <PARA>
+	The tool applies the MHO algorithm to both PSF and source images,
+	and then tests whether the two apparent sizes are consistent
+	given the image statistics. It derives an estimate of source
+	'intrinsic size' as the radius (sigma) of the gaussian
+        that, when convolved with the PSF gaussian,
+        would have the same size as the observed source image.
+      </PARA>
+
+      <PARA>
+	The tool processes the PSF first, if it is present, and uses the
+	result as an initial guess to guide fitting on the source
+	image.  If no PSF is provided, the user must supply an
+	initial guess for the image size in the srcsize parameter.
+        For best results, this initial guess should be within
+        about a factor of three of the actual source size.
+      </PARA>
+
+      <PARA>
+        The PSF and source data may be provided either as event
+        files or images.  Event data are preferred.
+        If using an image, it is necessary to crop the image so the source
+centroid is at the image center to provide appropriate estimates. 
+      </PARA>
+
+      <PARA title="Confidence Limits on the Position Angle">
+	The tool currently does not calculate the confidence limits on
+	the position angle.  They will always be reported as INDEF in
+	the output:
+      </PARA>
+
+<VERBATIM>
+ Source Observed Size: 1.10 &quot; @ PA 16.87 deg at pixel coords 3531.8, 3782.3
+  90% Confidence intervals: (1.04 -- 1.17) @ (INDEF -- INDEF)
+</VERBATIM>
+
+      <PARA>
+        For technical details on how the tool works, please see the documents
+        <EQUATION>
+	  http://cxc.harvard.edu/csc/memos/files/Houck_source_extent.pdf
+	  http://cxc.harvard.edu/csc/memos/files/Houck_intrinsic_size.pdf
+        </EQUATION>
+        </PARA>
+   </DESC>
+
+   <QEXAMPLELIST>
+
+     <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>srcextent
+	   srcfile="acisf00635_000N001_r0001b_regevt3.fits"
+	   outfile="acisf00635_000N001_r0001b_out3.fits"
+	   psffile="acisf00635_000N001_r0001b_psf3.fits"
+	   regfile="acisf00635_000N001_r0001_reg3.fits"
+	 </LINE>
+       </SYNTAX>
+       <DESC>
+	 <PARA>
+	   Calculate the source, PSF, and intrinsic source size from a source
+	   event file, normalized PSF image, and a FITS region file.
+	 </PARA>
+       </DESC>
+     </QEXAMPLE>
+
+     <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>srcextent
+	   srcfile="acisf00635_000N001_r0001b_regevt3.fits"
+	   outfile="acisf00635_000N001_r0001b_out3.fits"
+	   psffile="acisf00635_000N001_r0001b_psf3.fits"
+	   regfile="ellipse.reg"
+	 </LINE>
+       </SYNTAX>
+       <DESC>
+	 <PARA>
+	   Calculate the source, PSF, and intrinsic source size from a source
+	   event file, normalized PSF image, and an ASCII region file.
+	 </PARA>
+       </DESC>
+     </QEXAMPLE>
+
+     <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>srcextent
+	   srcfile="acisf00635_000N001_r0001b_img3.fits"
+	   outfile="acisf00635_000N001_r0001b_out3.fits"
+	   psffile="acisf00635_000N001_r0001b_psf3.fits"
+	 </LINE>
+       </SYNTAX>
+       <DESC>
+	 <PARA>
+	   Calculate the source, PSF, and intrinsic source size from a source
+	   image and a normalized PSF image.
+           With no input regfile, the tool assumes that the source image
+           is exactly centered in the input image.
+	 </PARA>
+       </DESC>
+     </QEXAMPLE>
+
+     <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>srcextent
+	   srcfile="acisf00635_000N001_r0001b_regevt3.fits"
+	   outfile="acisf00635_000N001_r0001b_out3.fits"
+	   psffile="acisf00635_000N001_r0001b_projrays3.fits"
+	   regfile="acisf00635_000N001_r0001_reg3.fits"
+	 </LINE>
+       </SYNTAX>
+       <DESC>
+	 <PARA>
+	   Calculate the source, PSF, and intrinsic source size from a source
+	   event file and a PSF event file.
+	 </PARA>
+       </DESC>
+     </QEXAMPLE>
+
+     <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>srcextent
+	   srcfile="acisf00635_000N001_r0001b_img3.fits"
+	   outfile="acisf00635_000N001_r0001b_out3.fits"
+	   psffile="acisf00635_000N001_r0001b_projrays3.fits"
+	   regfile="acisf00635_000N001_r0001_reg3.fits"
+	 </LINE>
+       </SYNTAX>
+       <DESC>
+	 <PARA>
+	   Calculate the source, PSF, and intrinsic source size from a source
+	   image and a PSF event file.
+	 </PARA>
+       </DESC>
+     </QEXAMPLE>
+
+     <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>srcextent
+           srcsize=35
+	   srcfile="acisf00635_000N001_r0001b_img3.fits"
+	   outfile="acisf00635_000N001_r0001b_out3.fits"
+	 </LINE>
+       </SYNTAX>
+       <DESC>
+	 <PARA>
+	   Calculate the source size from a source image.
+           With no input regfile, the tool assumes that the source image
+           is exactly centered in the input image.
+	 </PARA>
+       </DESC>
+     </QEXAMPLE>
+
+     <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>srcextent
+	   srcfile="acisf00635_000N001_r0001b_regevt3.fits"
+	   outfile="acisf00635_000N001_r0001b_out3.fits"
+	   regfile="ellipse.reg"
+	 </LINE>
+       </SYNTAX>
+       <DESC>
+	 <PARA>
+	   Calculate the source size from a source event file.
+	 </PARA>
+       </DESC>
+     </QEXAMPLE>
+
+     <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>srcextent
+           srcsize=50
+	   srcfile="acisf00635_000N001_r0001b_psf3.fits"
+	   outfile="acisf00635_000N001_r0001b_out3.fits"
+	 </LINE>
+       </SYNTAX>
+       <DESC>
+	 <PARA>
+	   Calculate the PSF size from a PSF image.
+           With no input regfile, the tool assumes that the source image
+           is exactly centered in the input image.
+	 </PARA>
+       </DESC>
+     </QEXAMPLE>
+
+     <QEXAMPLE>
+       <SYNTAX>
+	 <LINE>srcextent
+	   srcfile="acisf00635_000N001_r0001b_regevt3.fits,acisf00635_000N001_r0002b_regevt3.fits"
+	   outfile="acisf00635_000N001_r0001b_out3.fits,acisf00635_000N001_r0002b_out3.fits"
+	   psffile="acisf00635_000N001_r0001b_psf3.fits,acisf00635_000N001_r0002b_psf3.fits"
+	   regfile="acisf00635_000N001_r0001_reg3.fits,acisf00635_000N001_r0002_reg3.fits"
+	 </LINE>
+       </SYNTAX>
+       <DESC>
+	 <PARA>
+	   Calculate the source, PSF, and intrinsic source size for each
+	   source with a stack of source event files, PSF images, and
+	   corresponding region files.
+	 </PARA>
+       </DESC>
+     </QEXAMPLE>
+
+   </QEXAMPLELIST>
+
+   <PARAMLIST>
+     <PARAM name="srcfile" type="file" filetype="input" reqd="yes" stacks="yes">
+       <SYNOPSIS>
+	   Source file, FITS image or FITS event list
+       </SYNOPSIS>
+       <DESC>
+         <PARA>
+	   If a stack of files is used, the same number of files must
+	   be specified in the stack for the srcfile, outfile,
+	   psffile, and regfile parameters.
+         </PARA>
+       </DESC>
+     </PARAM>
+     <PARAM name="outfile" type="file" filetype="input" reqd="yes" stacks="yes">
+       <SYNOPSIS>
+	 Output file, FITS table
+       </SYNOPSIS>
+       <DESC>
+         <PARA>
+	   If a stack of files is used, the same number of files must
+	   be specified in the stack for the srcfile, outfile,
+	   psffile, and regfile parameters.
+         </PARA>
+       </DESC>
+     </PARAM>
+     <PARAM name="psffile" type="file" filetype="input" reqd="no" stacks="yes">
+       <SYNOPSIS>
+	 PSF file, FITS image or FITS event list
+       </SYNOPSIS>
+
+       <DESC>
+	 <PARA>
+	   The Chandra HRMA PSF can be simulated with ChaRT and the
+           instrument effects, including detector pixelization, can be
+           simulated with MARX. See
+           the <HREF link="http://cxc.harvard.edu/chart/">ChaRT
+           website</HREF> for more information.
+	 </PARA>
+
+         <PARA>
+	   If a stack of files is used, the same number of files must
+	   be specified in the stack for the srcfile, outfile,
+	   psffile, and regfile parameters.
+         </PARA>
+       </DESC>
+     </PARAM>
+     <PARAM name="regfile" type="file" filetype="input" reqd="no" stacks="yes">
+       <SYNOPSIS>
+	 Region File, ellipse or circle region, in FITS or ASCII
+       </SYNOPSIS>
+       <DESC>
+         <PARA>
+	   Required for event lists and recommended for image data.
+           When working with image data, if the regfile is omitted,
+           then the source of interest is assumed to be exactly centered
+           in the input image.
+         </PARA>
+
+         <PARA>
+           ASCII-format region files may only contain CIRCLE and
+           ELLIPSE shapes currently.
+         </PARA>
+
+         <PARA>
+	   If a stack of files is used, the same number of files must
+	   be specified in the stack for the srcfile, outfile,
+	   psffile, and regfile parameters.
+         </PARA>
+       </DESC>
+     </PARAM>
+     <PARAM name="shape" type="string" def="gaussian" reqd="no">
+       <SYNOPSIS>
+	 Source shape [gaussian,disk]
+       </SYNOPSIS>
+
+       <DESC>
+	 <PARA>
+	   If the shape is "gaussian" the source axes include a factor
+	   of 1/sqrt(3). If the shape is "disk", the factor is sqrt(2).
+	   Both factors are derived by maximizing the correlation with
+	   the elliptical Mexican Hat function with semi-axes,
+	   a_i; see <HREF link="http://adsabs.harvard.edu/abs/1997ApJ...483..350D">Damiani et al 1997</HREF>.
+ 	 </PARA>
+       </DESC>
+     </PARAM>
+
+     <PARAM name="x0" type="real" def="INDEF" reqd="no">
+       <SYNOPSIS>
+	 Estimate of x-position in sky coordinates
+       </SYNOPSIS>
+     </PARAM>
+
+     <PARAM name="y0" type="real" def="INDEF" reqd="no">
+       <SYNOPSIS>
+	 Estimate of y-position in sky coordinates
+       </SYNOPSIS>
+     </PARAM>
+
+     <PARAM name="srcsize" type="real" def="0" reqd="no">
+       <SYNOPSIS>
+	 Crude estimate of source size in arcseconds.
+       </SYNOPSIS>
+
+       <DESC>
+	 <PARA>
+	   For best results, this initial guess should be within
+           about a factor of three of the actual source size.
+	 </PARA>
+       </DESC>
+     </PARAM>
+     <PARAM name="imgsize" type="real" def="0" reqd="no">
+       <SYNOPSIS>
+	 Size of image in arcseconds.
+       </SYNOPSIS>
+     </PARAM>
+     <PARAM name="binfactor" type="integer" def="0" reqd="no">
+       <SYNOPSIS>
+	 Image binning factor
+       </SYNOPSIS>
+     </PARAM>
+     <PARAM name="mincounts" type="integer" def="15" reqd="no">
+       <SYNOPSIS>
+	 Minimum counts inside calculated ellipse threshold
+       </SYNOPSIS>
+     </PARAM>
+     <PARAM name="minthresh" type="integer" def="6" reqd="no">
+       <SYNOPSIS>
+	 Minimum counts for source file threshold
+       </SYNOPSIS>
+     </PARAM>
+     <PARAM name="clobber" type="boolean" def="no" reqd="no">
+       <SYNOPSIS>
+	 Clobber output file (yes/no)
+       </SYNOPSIS>
+     </PARAM>
+     <PARAM name="verbose" type="integer" def="3" reqd="no">
+       <SYNOPSIS>
+	 Verbosity setting
+       </SYNOPSIS>
+     </PARAM>
+
+   </PARAMLIST>
+
+   <ADESC title="CHANGES IN CIAO 4.3">
+     <PARA>
+       New parameters: "x0" and "y0" provide an estimate of the source
+       position in sky coordinates.
+     </PARA>
+   </ADESC>
+
+   <BUGS>
+     <PARA>
+       See the
+        <HREF link="http://cxc.harvard.edu/ciao/bugs/srcextent.html">bugs page
+          for this tool</HREF>
+        on the CIAO website for an up-to-date listing of known bugs.
+      </PARA>
+   </BUGS>
+   <VERSION>CIAO 4.3</VERSION>
+   <LASTMODIFIED>December 2010</LASTMODIFIED>
+   </ENTRY>
+</cxchelptopics>

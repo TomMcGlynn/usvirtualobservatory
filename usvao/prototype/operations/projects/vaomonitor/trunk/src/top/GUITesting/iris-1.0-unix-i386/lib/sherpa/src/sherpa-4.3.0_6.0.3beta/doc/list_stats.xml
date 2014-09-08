@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="list_stats" refkeywords="list lists show get stat stats statistic statistics " seealsogroups="sh.get sh.stat " displayseealsogroups="" context="info">
+     
+    <SYNOPSIS>
+     List all Sherpa fit statistics.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>list_stats()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       Sherpa includes several different fit statistics that can be
+      used to evaluate how well a model fits a data set.  This
+      function lists all statistics, by name; it accepts no arguments.
+      </PARA>
+      <PARA>
+       Available statistics include
+      </PARA>
+      <LIST>
+      <ITEM>
+	leastsq:   least-squares fitting (chi-square without statistical errors)
+      </ITEM>
+      <ITEM>
+       chi2constvar:  chi-square with constant variance computed
+                         from the counts data.
+      </ITEM>
+      <ITEM>
+       chi2modvar:    chi-square with model amplitude variance.
+      </ITEM>
+      <ITEM>
+       chi2gehrels:   chi-square with gehrels method (Sherpa default).
+      </ITEM>
+      <ITEM>
+       chi2datavar:   chi-square with data variance.
+       </ITEM>
+      <ITEM>
+       chi2xspecvar:  chi-square with data variance (XSPEC-style,
+                         variance = 1.0 if data less than or equal to
+                         0.0).
+      </ITEM>
+      <ITEM>
+       cstat: a maximum likelihood function (XSPEC implementation of Cash)
+      </ITEM>
+      <ITEM>
+       cash: a maximum likelihood function.
+      </ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; list_stats()</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+           ['leastsq',
+	   'chi2constvar',
+	   'chi2modvar',
+	   'cash',
+	   'chi2gehrels',
+	   'chi2datavar',
+	   'chi2xspecvar',
+	   'cstat']
+	  </PARA>
+	  <PARA>
+	   This function returns a list of all Sherpa fit statistics,
+           by name. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

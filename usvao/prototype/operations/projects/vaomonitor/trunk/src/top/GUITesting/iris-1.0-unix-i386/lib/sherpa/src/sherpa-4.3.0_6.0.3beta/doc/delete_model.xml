@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="delete_model" refkeywords=" delete  erase remove model models" seealsogroups="sh.model " displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+      Delete a Sherpa model by model ID
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> delete_model( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The delete_model() function removes a specified model from the
+        list of active models in a Sherpa session, by model ID; the
+        model ID is the same as the ID of the data set to which it is assigned.
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+    </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; delete_model()</LINE>
+          
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            When called with no arguments, delete_model() removes
+	    from the Sherpa session the model assigned to the default
+	    data set.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; show_model()
+
+Model: 1
+apply_rmf(apply_arf((7854.46647487 * bbody.b1)))
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   b1.space     frozen            0            0            1 0 - energy | 1 - wave
+   b1.kT        thawed            1          0.1         1000        keV
+   b1.ampl      thawed            1        1e-20        1e+20           
+
+Model: 2
+apply_rmf(apply_arf((56494.4943719 * powlaw1d.p1)))
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   p1.gamma     thawed            1          -10           10           
+   p1.ref       frozen            1 -3.40282e+38  3.40282e+38           
+   p1.ampl      thawed            1            0  3.40282e+38     
+
+sherpa&gt; delete_model()
+
+sherpa&gt; show_model()
+Model: 2
+apply_rmf(apply_arf((56494.4943719 * powlaw1d.p1)))
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   p1.gamma     thawed            1          -10           10           
+   p1.ref       frozen            1 -3.40282e+38  3.40282e+38           
+   p1.ampl      thawed            1            0  3.40282e+38     
+
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+      <SYNTAX>
+          <LINE>sherpa&gt; delete_model(3)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           If supplied with a data set ID, delete_model() will remove
+           the model assigned to the specified data set.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

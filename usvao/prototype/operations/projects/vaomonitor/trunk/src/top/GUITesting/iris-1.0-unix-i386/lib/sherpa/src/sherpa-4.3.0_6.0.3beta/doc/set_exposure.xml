@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_exposure" refkeywords="set set_exptime set_bexptime time exptime exposure timescale " seealsogroups="sh.set " displayseealsogroups="" context="data">
+
+<SYNOPSIS>
+  Set the exposure time
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_exposure([id], exptime, [bkg_id])</LINE>
+      
+    </SYNTAX>
+
+<DESC>
+  <PARA>
+  	The set_exposure command sets the exposure time for the dataset.
+  	The specified exposure time replaces the current value of the exposure
+	time, which may have been set from the value of the "EXPTIME" header keyword
+	when the dataset was loaded.
+  </PARA>
+  
+  <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")      
+        </ITEM>
+
+  	<ITEM>
+  	  exptime - the exposure time [s]
+  	</ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if setting the background value;
+          default=None
+          
+        </ITEM>
+
+  </LIST>
+</DESC>
+     <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_exposure(10e5)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the exposure time of the default dataset to 10e5 s.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_exposure(2, 38500)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the exposure time for dataset id=2 to 38500 s.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_exposure(1, 10e5, 1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Set the exposure time for the first background of dataset
+	    id=1 to 10e5 s. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

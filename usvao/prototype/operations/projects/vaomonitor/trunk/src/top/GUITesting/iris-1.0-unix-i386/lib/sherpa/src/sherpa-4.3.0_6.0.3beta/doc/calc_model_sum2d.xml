@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="calc_model_sum2d" refkeywords="2d sum summed convolved convolve counts amplitude amplitudes" seealsogroups="sh.data " displayseealsogroups="" context="utilities">
+
+     <SYNOPSIS>
+     Calculate the convolved 2D model amplitudes
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>calc_model_sum2d( [reg=None,id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The calc_model_sum2d command calculates the sum of
+	convolved source 2D model amplitudes.  A region filter can
+	be supplied to restrict the area of the calculation; for
+	information on the CIAO region filtering syntax, refer to 
+        <HREF link="http://cxc.harvard.edu/ciao/ahelp/dmregions.html">"ahelp
+        dmregions"</HREF>.
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  reg - optional region string.  If specified, the total sum
+	  will be calculated inside the region. 
+	</ITEM>
+
+	<ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_model_sum2d()</LINE>
+	  <LINE>sherpa&gt; calc_model_sum2d(id=2)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Calculate the convolved model amplitudes over the entire
+	    default dataset.  Repeat the calculation for dataset id=2.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; calc_model_sum2d("circle(25,25,10)")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    A region string is supplied, so the convolved model
+	    amplitudes for the default dataset are calculated within
+	    the circle.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xspwab" refkeywords="pwab model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+An extension of partial covering fraction absorption into a power-law
+distribution of covering fraction.  XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+An extension of partial covering fraction absorption into a power-law
+distribution of covering fraction as a function of column density,
+built from the wabs code.
+</PARA>
+
+<PARA>
+The reference for this model is Done &amp; Magdziarz 1998 (MNRAS, 298,
+737).
+</PARA>
+
+<PARA>
+     This is a multiplicative model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xspwab Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>nhmin</DATA> 
+  <DATA>minimum equivalent hydrogen column (in units of 1e22
+  atoms/cm2)</DATA>
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>nhmax</DATA> 
+  <DATA>maximum equivalent hydrogen column (in units of 1e22
+  atoms/cm2)</DATA>
+</ROW>
+<ROW> 
+  <DATA>3</DATA> <DATA>beta</DATA> 
+  <DATA>power law index for covering fraction</DATA>
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

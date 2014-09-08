@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="image_source" refkeywords="image images img imager imaging  source model models modeling modelling visualize visualization visualise visualisation" seealsogroups="sh.img sh.model sh.get" displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+      Image the 2-D unconvolved model
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>image_source( [ id, [newframe=False, tile=False]] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The image_source() command sends an image of the 2-D
+       unconvolved model associated with a 2-D data set to ds9. 
+      </PARA>
+
+      <LIST>
+       <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+
+        <ITEM>
+        newframe  - add a new ds9 frame for the model image;
+          default=False
+          
+	  (overwrite the contents of the current frame)
+        </ITEM>
+
+        <ITEM>
+         tile - tile the ds9 frames so that all existing frames are
+         visible; if   
+          False
+          
+	  (the default), only the newly-created frame will be visible
+       </ITEM>
+      </LIST>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; image_source()</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Image the model associated with the default dataset.	    
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; image_source(3)</LINE>
+	  <LINE>sherpa&gt; image_source(2, newframe=True, tile=True)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Image the model for dataset id=3.  Then image the model
+	    for dataset id=2 in a new frame and tile the frames.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

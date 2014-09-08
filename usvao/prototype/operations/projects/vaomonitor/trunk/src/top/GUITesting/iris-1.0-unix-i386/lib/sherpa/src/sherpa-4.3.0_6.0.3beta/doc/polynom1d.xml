@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="polynom1d" refkeywords="polynomial polynom poly model models modeling modelling source composite nested joint " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+1-D polynomial function.  
+</SYNOPSIS>
+	<DESC>
+<PARA>
+A 1-D polynomial of order &lt;= 8:
+</PARA>
+
+<PARA>
+<EQUATION>
+f(x) = sum_(i=0)^8 c_i (x-x_off)^i ,
+</EQUATION>
+</PARA>
+
+<PARA>
+where the coefficients c_i are the parameters
+numbered i+1, and x_off is parameter number 10. 
+</PARA>
+
+<PARA>
+Note that there is a degeneracy in the parameters, so it is
+recommended to set at least one of c_0 or
+x_off to zero and freeze it;
+thawing both may lead to unpredicted results. 
+</PARA>
+
+<PARA>
+Note also that all coefficients except c_0 are
+default frozen, so that the default polynomial model is a constant.
+</PARA>
+
+<TABLE>
+<CAPTION>polynom1d Parameters</CAPTION>
+<ROW> <DATA>Number</DATA> <DATA>Name</DATA> <DATA>Description</DATA> </ROW>
+<ROW> <DATA>1</DATA> <DATA>c0</DATA> <DATA>coefficient c_0</DATA> </ROW>
+<ROW> <DATA>2</DATA> <DATA>c1</DATA> <DATA>coefficient c_1</DATA> </ROW>
+<ROW> <DATA>3</DATA> <DATA>c2</DATA> <DATA>coefficient c_2</DATA> </ROW>
+<ROW> <DATA>4</DATA> <DATA>c3</DATA> <DATA>coefficient c_3</DATA> </ROW>
+<ROW> <DATA>5</DATA> <DATA>c4</DATA> <DATA>coefficient c_4</DATA> </ROW>
+<ROW> <DATA>6</DATA> <DATA>c5</DATA> <DATA>coefficient c_5</DATA> </ROW>
+<ROW> <DATA>7</DATA> <DATA>c6</DATA> <DATA>coefficient c_6</DATA> </ROW>
+<ROW> <DATA>8</DATA> <DATA>c7</DATA> <DATA>coefficient c_7</DATA> </ROW>
+<ROW> <DATA>9</DATA> <DATA>c8</DATA> <DATA>coefficient c_8</DATA> </ROW>
+<ROW> <DATA>10</DATA> <DATA>offset</DATA> <DATA>offset for x x_off</DATA> </ROW>
+</TABLE>
+
+<PARA>
+  The integration of models in Sherpa is controlled by an 
+  integration flag in each model structure.  Refer to <HREF link="http://cxc.harvard.edu/sherpa/ahelp/integrate.html">"ahelp integrate"</HREF> 
+  for information on integrating model components. 
+</PARA>
+
+</DESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

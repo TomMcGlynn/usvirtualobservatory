@@ -1,0 +1,50 @@
+#
+# Author:       Michael Preciado
+#
+# Description:  Validation Url building class for SSA services. This class
+#               builds the complete Validation URL.It is used to provide a 
+#               real time validation test for a given service on the validation 
+#               web interface. 
+#
+#
+#  
+
+package HTML::SSA;
+use Exporter ();
+@ISA = qw(Exporter);
+@ISA = ("HTML::Parent");
+use HTML::Util;
+
+
+use warnings;
+
+sub new 
+{   
+    my ($class) = shift;   
+    my $objectref= {};    
+    bless $objectref, $class;
+    $objectref->initialize(@_);
+    return $objectref;
+}
+sub getvalurl
+{
+    my $child       = shift;
+    my $res         = $child->{res};
+    my @r           =  @$res;
+    my $url         = encode($child->{base});
+    my $randnum     = getrand();    
+    my $base        = "http://registry.euro-vo.org:8080/dalvalidate/SSAValidater?runid=heasarc$randnum&endpoint=$url";
+    my $pos         = "&RA=$r[8]&DEC=$r[9]&format=xml&show=fail&op=Validate";
+    $base          .= $pos;
+    return $base;
+} 
+sub getvoresourceurl
+{
+    my $child = shift;
+    my $url = encode($child->{base});
+    my $base = "http://rofr.ivoa.net/regvalidate/VOResourceValidater?record=&record=&recordURL=$url";
+    my $datastring = "&recordURL=&format=xml&show=fail";
+    $base = $base . $datastring;
+    return $base;
+}
+1;

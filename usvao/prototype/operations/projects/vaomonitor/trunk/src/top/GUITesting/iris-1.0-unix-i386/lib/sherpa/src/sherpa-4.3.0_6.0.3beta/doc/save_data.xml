@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="save_data" refkeywords="ascii pha pha2 phaII spectrum spectra tabular table write output io create save " seealsogroups="sh.save sh.io " displayseealsogroups="" context="saving">
+	<SYNOPSIS>
+      Save a Sherpa data set to an ASCII file.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>save_data( [id,] filename [, fields=None, sep="", comment="#"] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The save_data command saves a dataset to a column-based ASCII
+	file.  Optional arguments allow the user to assign column
+	names, a column separator, or a comment character.
+	This command has no return value.
+      </PARA>
+
+      <PARA>
+	The save_table command can be used to create a FITS format
+	output file
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/save_table.html">"ahelp save_table"</HREF>).
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+	  filename - the output filename, including path
+	</ITEM>
+
+        <ITEM>
+	  fields - names for the output columns
+	</ITEM>
+
+        <ITEM>
+	  sep - the column-separating character; default is a space (" ")
+	</ITEM>
+
+        <ITEM>
+	  comment - character which indicates a comment line; default=#
+	</ITEM>
+      </LIST>
+	</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; save_data("data.dat")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Save dataset 1 as an ASCII file named "data.dat", using
+	    the default settings.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_data("src", "source.ascii", ["x", "y"], "&amp;")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Dataset "src" is written to the file "source.ascii".  The
+	    column names are "x" and "y", and the separator is set to
+	    "&amp;".  (This can be useful, for instance, to create a latex
+	    table from the output.)
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

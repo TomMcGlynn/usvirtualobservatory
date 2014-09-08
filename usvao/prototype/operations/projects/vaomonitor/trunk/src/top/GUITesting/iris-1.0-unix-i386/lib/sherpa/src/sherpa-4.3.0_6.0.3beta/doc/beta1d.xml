@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="beta1d" refkeywords="beta model models modeling modelling source composite nested joint " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+1-D Lorentz model with a varying power law. 
+</SYNOPSIS>
+	<DESC>
+<PARA>
+A 1-D Lorentz model with a varying power law, also known as a 1-D Beta model: 
+</PARA>
+
+<PARA>
+	<EQUATION>
+f(x) = f(r) = A*(1+[(x-xpos)/r_o]^2)^(-3*beta+1/2)
+</EQUATION>
+</PARA>
+
+<TABLE>
+<CAPTION>beta1d Parameters</CAPTION>
+<ROW> <DATA>Number</DATA> <DATA>Name</DATA> <DATA>Description</DATA> </ROW>
+<ROW> <DATA>1</DATA> <DATA>r0</DATA> <DATA>core radius r_o</DATA> </ROW>
+<ROW> <DATA>2</DATA> <DATA>beta</DATA> <DATA>beta index</DATA> </ROW>
+<ROW> <DATA>3</DATA> <DATA>xpos</DATA> <DATA>offset  from x = 0</DATA> </ROW>
+<ROW> <DATA>4</DATA> <DATA>ampl</DATA> <DATA>amplitude A at x = xpos</DATA> </ROW>
+</TABLE>
+
+<PARA>
+  The integration of models in Sherpa is controlled by an 
+  integration flag in each model structure.  Refer to <HREF link="http://cxc.harvard.edu/sherpa/ahelp/integrate.html">"ahelp integrate"</HREF> 
+  for information on integrating model components. 
+</PARA>
+
+</DESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

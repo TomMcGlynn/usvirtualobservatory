@@ -1,0 +1,65 @@
+Running  Validation manually:
+
+*These are very short instructions on how to run
+the validation system manually in case things stop
+running for whatever reason. 
+
+*How things work (Top level):
+-perl scripts download resources from the STScI registry via a cron job (daily)
+-perl scripts parse the resources and store metadata in the MySQL validation
+database (done daily via cron job)
+-/htdocs/vo/validation/run_java.sh  runs daily and validates 300 services per night in
+the aformentioned MySQL validation db.
+-you manually view the results at: http://heasarc.gsfc.nasa.gov//vo/validation/
+ 
+*Quick Start to run everything by hand:
+1) cd to: htdocs/vo/validation/perl
+2) run the following scripts in this order with no options:
+./get_datatypes.pl
+./parse_registry_resources.pl
+3)verify that you now have files of the form {type}_res_for_validation in /www/htdocs/vo/validation/perl/dump
+4) run the following script with no options (you are still in the perl directory here):
+./updatedb.pl
+5)cd to : /www/htdocs/vo/validation/java 
+6) compile the java classes:
+javac *java
+7) run the Test class to validate 300 resources by doing:
+java Test 
+
+That's it. You have:
+a)downloaded vo services and updated our db 
+b)validated 300 services.
+
+To see the results just go to:
+
+http://heasarc.gsfc.nasa.gov/vo/validation/
+
+
+N.B. Minor adjustments that you may want to try...
+Q. 
+How do you change the default number validated per day to something other than 300? 
+A. Change the default number in: /www/htdocs/vo/validation/data/number_to_validate
+
+Q. How do you get more documentation?
+A. Go to:  /www/htdocs/vo/validation/doc
+
+Q. How do you tweak the symbols table  vars used in the programs?
+A. Go to: /www/htdocs/vo/validation/data/startup.pm
+
+Q. Some SIAP and SSA test fail because the Image cannot be found. What
+is the solution here?
+A. See if the RA and DEC needs to be changed such that the respone includes
+URLs to the images. You can manually change the default RA and DECs by using
+the overide file in: /www/htdocs/vo/validation/data/override
+
+
+ 
+
+
+
+
+
+
+
+
+

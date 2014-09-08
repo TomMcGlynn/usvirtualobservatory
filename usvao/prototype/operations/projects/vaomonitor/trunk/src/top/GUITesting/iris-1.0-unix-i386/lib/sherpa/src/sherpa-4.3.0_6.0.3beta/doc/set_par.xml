@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_par" refkeywords="set parameters value initial component estimate guessing model models modeling modelling source src minimum maximum limits limit" seealsogroups="sh.set sh.par " displayseealsogroups="" context="modeling">
+
+    <SYNOPSIS>
+      Set initial values for a model parameter
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_par( par, val=None, min=None, max=None, frozen=None )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The set_par command sets the parameter fields which include
+	starting value, the allowed limits, and whether or
+	not the parameter should be frozen during a fit.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  par - model parameter name and component, e.g. "bb1.kT"
+	</ITEM>
+
+        <ITEM>
+	  val - initial parameter value;
+          default=None
+          
+ 	</ITEM>
+
+        <ITEM>
+	  min - minimum limit;
+          default=None
+          
+ 	</ITEM>
+
+        <ITEM>
+	  max - maximum limit;
+          default=None
+          
+ 	</ITEM>
+
+        <ITEM>
+	  frozen - should the parameter be allowed to vary during the
+	  fit; 
+          default=None
+          
+ 	</ITEM>
+      </LIST>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_par(g.pos, val=15.5)</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The mean position parameter of a gauss1d model "g" is set
+	    to value 15.5.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_par (clus.xpos, val=175, min=20, max=380)</LINE>
+	  <LINE>sherpa&gt; set_par (clus.ypos, val=180, min=20, max=320)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The value and limits are set for a beta2d model named "clus".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+	<QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_par(g.ampl, frozen=True)</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Freeze the amplitude parameter of a gauss1d model "g".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

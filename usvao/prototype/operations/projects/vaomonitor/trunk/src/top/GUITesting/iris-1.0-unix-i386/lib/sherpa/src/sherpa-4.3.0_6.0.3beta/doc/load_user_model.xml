@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_user_model" refkeywords="model models modeling modelling usermodel registermodel userpars parameter par parameters" seealsogroups="sh.io sh.model " displayseealsogroups="" context="modeling">
+
+   <SYNOPSIS>
+     Load a user-defined model
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_user_model( func, modelname, [filename])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The load_user_model command creates a user-defined model from
+	a function that has been defined previously in Sherpa or is
+	supplied in a file. The add_user_pars function can then be used to establish model parameters (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/add_user_pars.html">"ahelp add_user_pars"</HREF>).
+        .
+      </PARA>
+
+      <LIST>
+	<ITEM>
+          func - the function which should be used to create the model
+	</ITEM>	
+	<ITEM>
+          modelname - a name for the new model
+	</ITEM>	
+	<ITEM>
+          filename - (optional) the name of a file, including path,
+          which contains the function ("func").
+	</ITEM>	
+      </LIST>
+      
+      <PARA>
+	  If the function is being loaded from a file, some additional
+	  options are allowed.  A table will accept the arguments to
+	  load_table: ncols, colkeys, dstype 
+          
+          (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_table.html">"ahelp load_table"</HREF>).
+	  An image will accept the argument associated with
+	  load_image: coord 
+          
+          (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_image.html">"ahelp load_image"</HREF>).
+      </PARA>
+
+      <PARA>
+       An alternative to using load_user_model together with
+       add_user_pars is the add_model function, which explicitly
+       defines user models as Python classes for use in Sherpa (see
+       "ahelp add_model").
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_user_model( myline, "ml", )</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Create a model named "ml" from the function "myline",
+	    which has been previously defined in Sherpa.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_user_model( custom, "mymod", "model_file.fits" )</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Create a model named "mymod" from the function "custom"
+	    which is defined in model_file.fits.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_user_model( myline, "ml", "myline.fits[cols SUR_BRI]" )</LINE>
+	  <LINE>sherpa&gt; load_user_model( myline, "ml", "myline.fits", ncols=1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Two similar methods of creating a model named "ml" from
+	    the function "myline" in myline.fits.  The first method
+	    specifies which column in the file should be read, while
+	    the second simply indicates that the first column should
+	    be used. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

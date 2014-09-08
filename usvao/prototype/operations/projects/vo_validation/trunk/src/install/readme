@@ -1,0 +1,25 @@
+Overview:
+This install directory and the build file are used to install the
+validation system into a user's CGI area. A fresh checked out copy of the system must exist
+prior to running the install script.
+
+
+Required:
+It is assumed that the user will:
+a)check out a copy of the system to a local directory
+b)will want a separate directory where the production area code will live ( This will be
+a CGI area on the user's system
+c)have a MySQL db with the appropriate tables and columns in place.(See Google docs
+on what this should look like when first setting this up).
+d)have java and perl running on their server.
+e)have mysqlconnector set up on their server so that java can communicate with the MySQL DB
+
+
+Changes to the build.xml:
+a) Change the basedir path to the directory in which you installed the svn checked out
+version of this system. The user should point to the src directory here. 
+b) Change the outPutDir path to the target directory where you want the production version
+of this system to live (this would be your cgi area). 
+
+Run:
+From the install directory, run: ant -v

@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_quality" refkeywords="set quality flags array arrays " seealsogroups="sh.data sh.set" displayseealsogroups="" context="data">
+	<SYNOPSIS>
+     Apply user-defined quality flags to a data set
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_quality( [id,] val [,bkg_id=None] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The set_quality command applies a user-defined array of quality flags
+        to a data set, overriding any quality flags contained within
+      the PHA file.  An array element set to x &gt;= 1 marks a good
+      channel and an element set to x &lt; 1 marks a bad channel. Bad channels indicated by the quality flags are
+      filtered out using the command ignore_bad.  The quality array
+      associated with a data set can be viewed with the get_quality
+      command, and an array of quality flags can be read from a FITS table file or column-based ASCII file and
+      assigned to a data set with the load_quality command. The set_quality and get_quality 
+     commands require that the data set in question be a PHA data set.
+
+      </PARA>
+
+      <LIST> 
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+	<ITEM>
+	  val - an array defining the quality flag.  Must
+	  be the same length as the input data set. An element set to
+	  x &gt;= 1 marks a good channel and an element set to x &lt; 1 marks a bad channel.
+	</ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if the quality is to be
+          applied to the background data;
+          default=None
+          
+        </ITEM>	
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_quality([1, 1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, 1, -1, -1, ...] )</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The set_quality command is used to apply a user-defined
+           array of quality flags to default data set id=1; the quality
+      	   array contains as many elements as the data array.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; grpsrc=get_quality(1)</LINE>
+          <LINE>sherpa&gt; set_quality("src", grpsrc)</LINE>
+          <LINE>sherpa&gt; set_quality("src", grpsrc, 1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Retrieve the quality array of data set 1 and store it to
+          the variable "grpsrc"; apply this quality to the source and
+          background data arrays in the data set named "src".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

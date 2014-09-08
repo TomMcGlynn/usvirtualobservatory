@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="add_user_pars" refkeywords="model models modeling modelling usermodel registermodel userpars parameter par parameters" seealsogroups="sh.io sh.model " displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+     Add parameters to a user-defined model
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>add_user_pars( modelname, parnames, [parvals, parmins, parmaxs, parunits, parfrozen] )</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+	The add_user_pars command sets up a user-defined model with
+        parameter values which can be use in model definitions.
+	Refer to the load_user_model help file for information on
+        creating a model
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_user_model.html">"ahelp load_user_model"</HREF>)	
+	.
+      </PARA>
+
+      <PARA>
+	Note that all the parameters must be defined at the same time
+	by add_user_pars.  Each time the command is run, it overwrites
+	any previously-defined parameters for the model.  
+      </PARA>
+
+       <LIST>
+	<ITEM>
+          modelname - the name of the model to which the parameters
+          should be added
+	</ITEM>	
+	<ITEM>
+	  parnames - list of names for the new parameters ;
+          default=None
+          
+	</ITEM>	
+	<ITEM>
+	  parvals - list of parameter values; default=0
+	</ITEM>	
+	<ITEM>
+	  parmins - list of minimum values for the parameter ;
+	  default=-3.40282e+38
+	</ITEM>	
+	<ITEM>
+	  parmaxs - list of maximum values for the parameter ;
+	  default=3.40282e+38
+	</ITEM>	
+	<ITEM>
+	  parunits - list of parameter units;
+          default=None
+          
+	</ITEM>	
+	<ITEM>
+	  parfrozen - list of whether the parameters are frozen;
+          default=False
+          
+	  (the parameter is thawed)
+	</ITEM>	
+      </LIST>
+
+      <PARA>
+	The parameters must be specified in the order that the
+	function expects. That is, if the 
+	function has two parameters, pars[0]=slope and
+	pars[1]=y-intercept, then the call to "add_user_pars" must be 
+	["slope", "yint"] (and not ["yint", "slope"]).
+      </PARA>
+
+      <PARA>
+	More information on creating custom models is available on
+	<HREF link="http://cxc.harvard.edu/sherpa/">the Sherpa
+	website</HREF>.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_user_model( myline, "ml", )</LINE>	  
+          <LINE>sherpa&gt; add_user_pars( ml, ["m","b"] )</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Load a user model called "ml" and then add two parameters,
+	    "m" and "b".  The default settings for the parameter values,
+	    units, etc. are used.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; add_user_pars( custom, ["slope"], [30], parunits=["cm/s"], parfrozen=[True] )</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Add a parameter called "slope" to the model "custom".  The
+	    initial parameter value is 30, the units are cm/s, and the
+	    parameter is frozen.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

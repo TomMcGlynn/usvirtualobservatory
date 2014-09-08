@@ -1,0 +1,46 @@
+CDS,ivo://CDS.VizieR/
+LEDAS,  ivo://uk.ac.le.star.tmpledas/
+Caltech,ivo://nvo.caltech
+HEASARC,ivo://nasa.heasarc/   
+IRSA,   ivo://irsa.ipac/
+NRAO,   ivo://nrao.archive/
+Mast,   ivo://mast.stsci/
+NCSA,   ivo://adil.ncsa/
+SAO,    ivo://ads.harvard.edu/
+ANU,    ivo://anusf.anu.au/
+ESO,    ivo://archive.eso.org/
+ESO 2,  ivo://eso.org/
+NOAO 1,   ivo://archive.noao.edu/
+STScI,  ivo://archive.stsci.edu/
+Arecibo,ivo://arecibo.cornell/
+Astronet,   ivo://astronet.ru/
+CADC,   ivo://cadc.nrc.ca/
+CXC,ivo://cxc.harvard.edu/
+USNO,   ivo://fs.usno/
+Inaf,   ivo://ia2.inaf/
+JVO,ivo://jvo/ 
+Keck,   ivo://KeckObs/
+UCLuk,  ivo://mssl.ucl.ac.uk/
+Ned,ivo://ned.ipac/
+NOAO 2,   ivo://nvo.noao.edu/
+Obelix Inaf,   ivo://obelix.lambrate.inaf.it/
+Obs Paris, ivo://obspm.fr/
+Astro-Wise,ivo://omegacen/
+Stsci Opo, ivo://opo.stsci/
+GAVO,   ivo://org.gavo.dc/ 
+RVO,   ivo://rvo.ru/
+SDSS JHU,  ivo://sdss.jhu/
+Starlight,  ivo://starlight.ufsc/
+Euro VO 1,   ivo://stecf.euro-vo/
+ST-ECF, ivo://stecf/
+SVO Amiga, ivo://svo.amiga.iaa.es/
+Uk AC Cam,  ivo://uk.ac.cam.ast/
+VO Paris Gepi,   ivo://voparis-gepi.obspm.fr/
+VO Paris Obspm,  ivo://voparis.obspm/
+ROE,ivo://wfau.roe.ac.uk/
+G-VO,ivo://www.g-vo.org/
+ESAVO,   ivo://esavo/
+Vatican, ivo://vatican/
+VO Sim,  ivo://vo.sim/
+Xcatdb, ivo://xcatdb/
+

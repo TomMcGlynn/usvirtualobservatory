@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="histogram2d" refkeywords="histogram grid bin count frequency graph 2d array" seealsogroups="sh.data " displayseealsogroups="" context="visualization">
+
+    <SYNOPSIS>
+      Create a 2D histogram from a pair of axes and a pair of sample arrays
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>histogram2d( x, y, x_grid, y_grid )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The histogram2d command creates a histogram array from an pair
+	of samples and a pair of axes. 
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  x - array of x values
+	</ITEM>
+
+	<ITEM>
+	  y - array of y values
+	</ITEM>
+
+	<ITEM>
+	  x_grid - array of x bin edges
+	</ITEM>
+
+	<ITEM>
+	  y_grid - array of y bin edges
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; dataspace2d( [216, 261] )</LINE>
+          <LINE>sherpa&gt; x, y = get_axes()</LINE>
+          <LINE>sherpa&gt; n = histogram2d( val0, val1, x, y )</LINE>
+          <LINE>sherpa&gt; set_dep( n )</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    A binned 2D histogram is stored in the blank image created
+	    by the dataspace2d and set_dep commands.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

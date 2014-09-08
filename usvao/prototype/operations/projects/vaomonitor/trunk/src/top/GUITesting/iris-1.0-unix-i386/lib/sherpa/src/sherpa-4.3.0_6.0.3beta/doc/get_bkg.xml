@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_bkg" refkeywords="rmf arf background bkg bknd bkg get return unconvolved get_bkg_arf get_bkg_rmf  get_bkg_model get_bkg_source  get_bkg_unconvolved back background bkg get" seealsogroups="sh.bg sh.get  sh.arf sh.rmf" displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Return the background data, ARF, RMF, or model.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_bkg( [id, bkg_id] )</LINE>
+	<LINE>get_bkg_arf( [id] )</LINE>
+	<LINE>get_bkg_rmf( [id] )</LINE>
+	<LINE>get_bkg_source( [id, bkg_id] )</LINE>
+	<LINE>get_bkg_model( [id, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The get_bkg functions return information characterizing a
+	background associated with a source data set.  The 
+	appropriate functions can be used to
+	return the background data, ARF, RMF, or model data, which
+	can be stored in a variable, printed to the screen, or used
+	directly in another command (see the examples section).
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background to use,
+          e.g. if more than one background is associated with the
+          data; default is the first background data set loaded
+        </ITEM>
+      </LIST>
+
+      <PARA>
+get_bkg
+      </PARA>
+      <PARA>
+       The get_bkg() function returns a variable that grants access to
+       all the information contained in a background associated with a
+       source data set, by data ID and background ID. If no ID is
+       given, then the first background loaded for the default data
+       set is returned. The get_bkg() function can also be used
+       to modify the details of a background data set, e.g. to change
+       units from "energy"  to "wavelength".
+      </PARA>
+      <PARA>
+get_bkg_arf, get_bkg_rmf
+      </PARA>
+      <PARA>
+   	The functions get_bkg_arf() and get_bkg_rmf() return the
+   	first ARF and RMF loaded for the default background
+   	of the specified data set ID.  To retrieve
+   	another ARF or RMF, e.g. if multiple responses are associated
+   	with a given background, the get_arf() and get_rmf() commands
+   	should be used, which allow the user to specify the background
+   	and response IDs. 
+      </PARA>
+
+      <PARA>
+	If the requested data does not exist (e.g. there is no
+	background ARF or RMF loaded), the commands return "None".  
+      </PARA>
+
+      <PARA>
+get_bkg_source, get_bkg_model 
+      </PARA>
+      <PARA>
+      Once a model has been assigned to a background associated with a
+      data set, the get_bkg_source() function can be used to return
+      the parameters and settings defining the unconvolved background
+      model, by data ID and 
+      background ID.  
+      </PARA>
+
+      <PARA>
+      The get_bkg_model() function returns the parameters and settings 
+      defining the convolved model associated with a background data
+      set, by data ID and background ID.
+      </PARA>
+     </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; back1=get_bkg()</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    This command retrieves the first background loaded for the
+	    default data set and stores it as "back1".  The
+	    contents may be printed:
+	  </PARA>
+
+<VERBATIM>
+sherpa&gt; print(back1)
+name           = 3c273_bg.pi
+channel        = Int32[1024]
+counts         = Int32[1024]
+staterror      = None
+syserror       = None
+bin_lo         = None
+bin_hi         = None
+grouping       = Int16[1024]
+quality        = Int16[1024]
+exposure       = 38564.6089269
+backscal       = 1.87253514146e-05
+areascal       = 1.0
+grouped        = True
+subtracted     = False
+units          = energy
+response_ids   = [1]
+background_ids = []
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; print(get_bkg("src",2))</LINE>
+	  <LINE>None</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    This command prints the second background associated with data set
+	    "src"; since there is only one background for that data
+	    set, it returns nothing.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; fake_pha("faked",
+          arf=get_arf(), rmf=get_rmf(), exposure=10000, bkg=get_bkg())</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    In this context, get_bkg() is used to populate the 'bkg' option in
+	    fake_pha() (see <HREF link="http://cxc.harvard.edu/sherpa/ahelp/fake_pha.html">"ahelp fake_pha"</HREF> for more information).
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; b_arf=get_bkg_arf("src")</LINE>
+	  <LINE>sherpa&gt; b_rmf=get_bkg_rmf("src")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA> 
+	    Here, the ARF and RMF for the first background loaded for
+	    data set "src" are stored to the
+	    variables b_arf and b_rmf, respectively.
+            If multiple responses exist for the default background,
+            the first ARF and RMF loaded for that background are returned.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_bkg_source()</LINE>
+	  <LINE>sherpa&gt; get_bkg_source(1, 3)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA> 
+           When called with no arguments,
+           get_bkg_source() returns the unconvolved background
+           model associated with the first background loaded for
+           the default data set.  To return the unconvolved
+           model for a background other than the default, e.g. if more
+           than one is associated with a data set, then both the data
+           ID and background ID must be specified.
+	  </PARA>
+<VERBATIM>
+sherpa&gt;  print(get_bkg_source())
+const1d.constant
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   constant.c0  thawed            1            0  3.40282e+38         
+
+sherpa&gt;  print(get_bkg_source(1, 3))
+const1d.constant3
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   constant3.c0 thawed            1            0  3.40282e+38         
+
+sherpa&gt;  print(get_bkg_source(1, 3))
+const1d.constant3
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   constant3.c0 thawed            1            0  3.40282e+38         
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_bkg_model()</LINE>
+	  <LINE>sherpa&gt; get_bkg_model(1, 3)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA> 
+           When called with no arguments, get_bkg_model() returns the convolved background
+           model associated with the first background loaded for
+           the default data set.  To return the convolved
+           model for a background other than the default, e.g. if more
+           than one is associated with a data set, then both the data
+           ID and background ID must be specified.
+	  </PARA>
+<VERBATIM>
+sherpa&gt;  print(get_bkg_model())
+apply_rmf(apply_arf((56494.4943719 * const1d.constant)))
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   constant.c0  thawed            1            0  3.40282e+38           
+
+sherpa&gt;  print(get_bkg_source(1, 3))
+apply_rmf(apply_arf((56494.4943719 * const1d.constant3)))
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   constant3.c0  thawed            1            0  3.40282e+38           
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

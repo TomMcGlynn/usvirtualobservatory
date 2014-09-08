@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="linebroad" refkeywords="line-broadening line broad model models modeling modelling source composite nested joint " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Line-broadening profile.  
+</SYNOPSIS>
+	<DESC>
+<PARA>
+A line-broadening profile:
+</PARA>
+
+<PARA>
+<EQUATION>
+f(lambda) = (2Ac/pi/lambda/vsin(i)) x ,
+</EQUATION>
+</PARA>
+
+<PARA>
+where
+</PARA>
+
+<PARA>
+<EQUATION>
+x = 1 - [(Delta)lambda c/lambda_rest/vsin(i)]^2 
+</EQUATION>
+</PARA>
+
+<PARA>
+and
+</PARA>
+
+<PARA>
+<EQUATION>
+(Delta)lambda = lambda - lambda_rest.
+</EQUATION>
+</PARA>
+
+<TABLE>
+<CAPTION>linebroad Parameters</CAPTION>
+<ROW> <DATA>Number</DATA> <DATA>Name</DATA> <DATA>Description</DATA> </ROW>
+<ROW> <DATA>1</DATA> <DATA>ampl</DATA> <DATA>amplitude A</DATA> </ROW>
+<ROW> <DATA>2</DATA> <DATA>rest</DATA> <DATA>rest wavelength lambda_rest (A)</DATA> </ROW>
+<ROW> <DATA>3</DATA> <DATA>vsini</DATA> <DATA>rotation velocity vsini (km/s)</DATA> </ROW>
+</TABLE>
+
+<PARA>
+  The integration of models in Sherpa is controlled by an 
+  integration flag in each model structure.  Refer to <HREF link="http://cxc.harvard.edu/sherpa/ahelp/integrate.html">"ahelp integrate"</HREF> 
+  for information on integrating model components. 
+</PARA>
+
+</DESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

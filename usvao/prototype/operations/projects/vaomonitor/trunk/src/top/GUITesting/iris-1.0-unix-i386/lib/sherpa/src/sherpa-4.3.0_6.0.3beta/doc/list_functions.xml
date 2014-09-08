@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="list_functions" refkeywords="show report status state information help list get_functions outfile" seealsogroups="sh.list sh.info " displayseealsogroups="" context="info">
+
+<SYNOPSIS>
+  List all available Sherpa functions
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>list_functions([filename=None] )</LINE>
+      
+    </SYNTAX>
+	<DESC>
+  <PARA>
+    The list_functions command lists all available Sherpa commands.
+    The output may optionally be saved to a file.
+  </PARA>
+
+    <LIST>
+      <ITEM>
+        filename - name of the file in which to store the information
+      </ITEM>
+    </LIST>
+
+      <PARA>        
+        The behavior of the screen output is determined by the
+        user's $PAGER environment variable setting, which
+        is usually a variant of "more."  To disable paging within
+        show_all() - i.e. print the entire contents, even if it
+        scrolls offscreen - change this setting to "cat" before starting
+        Sherpa: 
+      </PARA>
+
+<VERBATIM>
+unix% setenv PAGER cat
+
+unix% sherpa
+</VERBATIM>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; list_functions()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Print all available functions to the screen.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; list_functions("sh_func.txt")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Write the list of functions to the file sh_func.txt.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

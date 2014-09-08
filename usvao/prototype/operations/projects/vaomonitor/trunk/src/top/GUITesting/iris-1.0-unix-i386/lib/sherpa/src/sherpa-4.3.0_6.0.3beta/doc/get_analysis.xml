@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_analysis" refkeywords="get analysis units unit " seealsogroups="sh.get " displayseealsogroups="" context="utilities">
+	<SYNOPSIS>
+       Return the current units setting for a PHA data set
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_analysis( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>    
+      <PARA>
+       The function get_analysis() returns the units which are being
+       used in the analysis of a Sherpa PHA dataset, by data set
+       ID. The possible return values are channel, wavelength, and
+       energy:
+      </PARA>
+ 
+      <PARA> 'channel' or 'chan' or 'bin'</PARA>
+      <PARA> 'energy' or 'ener'</PARA>
+      <PARA> 'wavelength' or 'wave' </PARA>
+
+      <PARA>
+	The units of a data set may be changed with set_analysis().
+      </PARA>
+     
+      <PARA>Arguments:</PARA>
+ 
+       <LIST>  
+        <ITEM>
+          id -  the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+       </LIST> 
+    </DESC>
+   
+   <QEXAMPLELIST>
+     
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_analysis()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            When get_analysis() is called with no arguments, a string 
+	    identifying the units setting of the default dataset is returned.
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_analysis()
+           'channel'
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+       <SYNTAX>
+         <LINE>sherpa&gt; get_analysis(3)</LINE>
+	</SYNTAX>
+       <DESC>
+        <PARA>
+        Here, a string identifying the units setting of data set 3 is returned.
+        </PARA>
+<VERBATIM>
+sherpa&gt; get_analysis(3)
+           'energy'
+</VERBATIM>
+
+       </DESC>
+     </QEXAMPLE>
+
+      <QEXAMPLE>
+       <SYNTAX>
+         <LINE>sherpa&gt; get_analysis("SgrA")</LINE>
+	</SYNTAX>
+        <DESC>
+         <PARA>
+          The string identifying the units used in the analysis of a
+	  data set with string ID "SgrA" is returned.
+        </PARA>
+<VERBATIM>
+sherpa&gt; get_analysis("SgrA")
+           'wavelength'
+</VERBATIM>
+
+       </DESC>
+     </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="pack_pha" refkeywords="pha pha2 phaII spectrum spectra pack PHACrate" seealsogroups="sh.io sh.pha" displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Pack PHA data into a PHACrate
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>pack_pha( [id])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The pack_pha command packs data from a Sherpa data object into
+        a PHACrate.  The crates write_pha command 
+        
+        (<HREF link="http://cxc.harvard.edu/ciao/ahelp/write_pha.html">"ahelp write_pha"</HREF>)
+	can then be used to create an output file containing the data.
+	The commands may be combined into one step, but then the crate
+ 	is hidden and cannot be used for other analysis in the session.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to pack; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+      </LIST>
+
+      <PARA>
+	For more information on what crates are and how to use them,
+	see
+        
+        <HREF link="http://cxc.harvard.edu/ciao/ahelp/crates.html">"ahelp crates"</HREF>
+	.
+      </PARA>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; spec=pack_pha()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Pack the default dataset into a PHACrate named "spec".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; write_pha(pack_pha("src"), "src.pha")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The pack_pha command is combined with write_pha to get
+	    the data from the "src" object and create an output
+	    file. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

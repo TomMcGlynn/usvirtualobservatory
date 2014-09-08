@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsnsa" refkeywords="nsa model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Spectra in the X-ray range (0.05-10 keV) emitted from a hydrogen
+atmosphere of a neutron star.  XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+This model provides the spectra in the X-ray range (0.05-10 keV)
+emitted from a hydrogen atmosphere of a neutron star. There are three
+options: 
+</PARA>
+
+<LIST>
+  <ITEM>
+  nonmagnetized (B &lt; 1e8 - 1e9 G) with a uniform surface (effective)
+  temperature in the range of log T_eff(K) = 5.0-7.0 ;
+  </ITEM>
+
+  <ITEM>
+   a field B = 1e12 G with a uniform surface (effective) temperature
+   in the range of log T_eff(K) = 5.5-6.8 ; 
+   </ITEM>
+
+   <ITEM>
+   a field B = 1e13 G with a uniform surface (effective) temperature
+   in the range of log T_eff(K) = 5.5-6.8 . 
+   </ITEM>
+</LIST>
+
+<PARA>
+The atmosphere is in radiative and hydrostatic equilibrium; sources of
+heat are well below the atmosphere. The Comptonization effects
+significant at T_eff &gt; 3e6 K) are taken into account. The model
+spectra are provided as seen by a distant observer, with allowance for
+the GR effects. The user is advised to keep M_ns and R_ns fixed and
+fit the temperature and the normalization. MagField must be fixed at
+one of 0, 1e12, or 1e13 G. 
+</PARA>
+
+<PARA>
+The values of the effective temperature and radius as measured by a
+distant observer ("values at infinity") are
+</PARA>
+
+<PARA>
+<EQUATION>
+T_eff^Inf = g_r*T_eff
+</EQUATION>
+</PARA>
+
+<PARA>
+<EQUATION>
+R_ns^Inf = R_ns/g_r
+</EQUATION>
+</PARA>
+
+<PARA>
+  where 
+</PARA>
+
+<PARA>
+<EQUATION>
+g_r=(1-2.952*M_ns/R_ns)^(1/2)
+</EQUATION>
+</PARA>
+	<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsnsa Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>logt_eff</DATA> 
+  <DATA>(unredshifted) effective temperature</DATA>
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>m_ns</DATA> 
+  <DATA>neutron star gravitational mass (in units of solar
+  mass)</DATA>  
+</ROW>
+<ROW> 
+  <DATA>3</DATA> <DATA>r_ns</DATA> 
+  <DATA>neutron star radius (in km)</DATA>
+</ROW>
+<ROW> 
+  <DATA>4</DATA> <DATA>magfield</DATA> 
+  <DATA>neutron star magnetic field (0, 1e12, or 1e13
+  G)</DATA>
+</ROW>
+<ROW> 
+  <DATA>5</DATA> <DATA>norm</DATA> 
+  <DATA>K; 1/D^2, where D is the distance of the object in pc.</DATA>
+</ROW>
+</TABLE>
+
+<PARA>
+If you publish results obtained using this model, please reference
+Pavlov et al. (1992, MNRAS 253, 193) and Zavlin et al. (1996, A&amp;A 315,
+141).
+</PARA>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

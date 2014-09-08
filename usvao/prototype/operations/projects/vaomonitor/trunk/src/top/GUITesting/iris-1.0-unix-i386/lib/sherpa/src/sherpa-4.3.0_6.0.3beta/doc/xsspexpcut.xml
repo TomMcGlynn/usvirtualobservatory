@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsspexpcut" refkeywords=" spexpcut model models modeling modelling source composite nested joint xspec" seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Super-exponential cutoff absorption.
+XSpec model.
+</SYNOPSIS>
+	<DESC>
+<PARA>
+A high-energy super-exponential roll-off.
+</PARA>
+
+<PARA>
+<EQUATION>
+M(E) = exp(-(E/E_C)^alpha)
+</EQUATION>
+</PARA>
+
+<PARA>
+useful for fitting gamma-ray spectra of pulsars (see eg Nel &amp; de Jager
+1995).
+</PARA>
+
+<PARA>
+Caveat : the absorption for an energy bin is calculated as the
+arithmetic mean of the function value at the start and end energies of
+the bin. If the energy bins are large this can be inaccurate and the
+energies command should be used to define a finer energy grid on which
+to calculate the model. 
+</PARA>
+
+<PARA>
+     This is a multiplicative model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsspexpcut Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> 
+  <DATA>ecut</DATA> 
+  <DATA>E_C: e-folding energy for the absorption</DATA>
+</ROW>
+<ROW> 
+  <DATA>2</DATA> 
+  <DATA>alpha</DATA> 
+  <DATA>exponent index</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

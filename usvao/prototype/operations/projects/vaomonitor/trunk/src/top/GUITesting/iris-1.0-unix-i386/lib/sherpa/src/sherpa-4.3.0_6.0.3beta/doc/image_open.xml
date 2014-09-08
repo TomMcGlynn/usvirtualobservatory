@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="image_open" refkeywords="open start load ds9 DS9 image images img imager imaging visualize visualization visualise visualisation" seealsogroups="sh.img" displayseealsogroups="" context="visualization">
+	<SYNOPSIS>
+     Open the imager window (i.e., start ds9).
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>image_open()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       Sherpa has an interface to the ds9 imager.  The image_open() function
+      opens the imager window (i.e., starts ds9 if it is not already
+      running). It returns no value and accepts no input arguments.
+       The image_close() function can be used to close the imager
+      window (i.e., exit ds9).
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; image_open()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   The image_open() function opens the imager window (i.e.,
+           starts ds9). 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

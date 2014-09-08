@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="list_data_ids" refkeywords="list lists show get data dataset datasets ID IDS IDs id ids" seealsogroups="sh.io sh.data " displayseealsogroups="" context="info">
+	<SYNOPSIS>
+     List all data set IDs in a Sherpa session.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>list_data_ids()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       Sherpa can contain, and perform fits to, several different data
+       sets in a single Sherpa session.  This function lists all data
+       sets in a Sherpa session, by their IDs; it accepts no
+       arguments. The Sherpa data ID
+       allows the user to easily reference data, model, fit, and
+       plotting information about a data set.  The ID can be a user
+       defined string or integer.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; list_data_ids()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   This function returns a list of all data sets which have
+           been loaded into a Sherpa session, by their IDs.
+	  </PARA>
+          <VERBATIM>
+           sherpa&gt; list_data_ids()
+	         [1, 2, 3, '3C273_pha']
+          </VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

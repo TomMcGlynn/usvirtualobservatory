@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="calc_photon_flux" refkeywords="calc calculate photon photons flux integrate integration unconvolved unconvolve model models" seealsogroups="sh.calc sh.model " displayseealsogroups="" context="utilities">
+	<SYNOPSIS>
+     Calculate the unconvolved model photon flux
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>calc_photon_flux( [lo,hi,id,bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+ <DESC>
+      <PARA>
+       The calc_photon_flux function calculates the unconvolved source
+       or background model photon flux for all or a portion of a
+       source or background data set by data ID or background ID. A
+       subset of the model can be specified by entering the low and
+       high ends of the desired data interval in units of keV for energy
+       data or Angstroms for wavelength data. To calculate the energy
+       flux for an unconvolved source or background model, the
+       function calc_energy_flux can be used by data ID or background ID.
+
+      </PARA>
+	<LIST>
+     <ITEM>
+       lo       - low limit;
+          default=None
+          
+     </ITEM>
+     <ITEM>
+       hi       - high limit;
+          default=None
+          
+     </ITEM>
+     <ITEM>
+       id       - data ID;
+                  if not given, uses the default sherpa id (id=1 by default, see "ahelp get_default_id")
+     </ITEM>
+     <ITEM>
+       bkg_id   -  background data ID
+     </ITEM>
+      </LIST>
+
+      <PARA>
+	    The command ignores any range filters that have been applied to
+	    the dataset. 
+            If calc_photon_flux is called with no
+            arguments, the unconvolved model photon flux
+            will be calculated over the entire data range of the
+            default data set. 
+      </PARA>
+
+      <PARA>
+	The photon flux of an unconvolved
+            background model can be integrated by
+            supplying the corresponding Sherpa-assigned background ID
+            as the argument (e.g. "1" or "2" for the first or second
+            background data set automatically
+            located by Sherpa in the corresponding source data set).
+          </PARA>
+          <PARA>
+            For 1-D data, if:
+          </PARA>
+          <PARA>
+            o) one energy (or wavelength) is given (as opposed to a
+               [lo, hi] interval), then the photon flux of the
+               unconvolved model at
+               that energy (or wavelength) is returned in units of
+               photons/cm^2/sec/keV (or photons/cm^2/sec/A).
+          </PARA>
+          <PARA>
+	    o) an energy or wavelength range is given with the 'lo' and 'hi'
+	       arguments, then the total integrated photon flux over the given
+	       range is returned in units of photons/cm^2/sec.
+	  </PARA>
+	  <PARA>
+	    o) no value or range is specified, then the total integrated photon
+	       flux over the full range of the dataset is returned in units of
+	       photons/cm^2/sec.
+	  </PARA>
+	  <PARA>
+	    For 1-D data, if an instrument model is not used, the units are
+	    assumed to be counts, or counts per bin-width.  See the
+	    Note on Units below.
+	  </PARA>
+	  <PARA>
+	    For 2-D data the total integrated photon flux is carried out over
+	    the entire input image.
+	  </PARA>
+	  <PARA>
+	    Note on Units: In its current incarnation, Sherpa has no explicit
+	    knowledge of data or model units. The units displayed with computed
+	    fluxes are defaults, generally correct for standard analyses of 1-D PHA
+	    energy/wavelength spectra (XSPEC-like analyses). They may be incorrect
+	    for non-standard analyses, or for analyses of 2-D spatial images with
+	    exposure maps, etc. The correct units can be determined by working
+	    backwards from the data, taking into account the exposure time, the
+	    units of the instrument model, the bin units, etc.
+	  </PARA>
+        </DESC>
+     
+    <QEXAMPLELIST>
+          <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_photon_flux()</LINE>
+          
+        </SYNTAX>
+          <DESC>
+          <PARA>
+            When supplied with no arguments, calc_photon_flux will integrate
+            the unconvolved model photon flux over the entire data
+            range of the default data set.  
+          </PARA>
+          </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_photon_flux(bkg_id=1)</LINE>
+          
+        </SYNTAX>
+          <DESC>
+          <PARA>
+           When supplied with a background ID, the photon flux of the
+           unconvolved background model associated
+           with the specified background data set will be integrated
+           over the entire data range. In this example, the first
+           background data set automatically located by
+           Sherpa is used.
+          </PARA>
+          </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_photon_flux(lo=0.1, hi=7.0, "bkg")</LINE>
+          
+        </SYNTAX>
+          <DESC>
+          <PARA>
+           The unconvolved background model photon flux between 0.1
+	   and 7.0 keV is integrated for the background data set with 
+	   user-assigned ID "bkg". (Note that a user-defined
+           string ID cannot be supplied to the "bkg_id" argument.)
+          </PARA>
+          </DESC>
+      </QEXAMPLE>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_photon_flux(1., 15., 1, 2)</LINE>
+          
+        </SYNTAX>
+          <DESC>
+          <PARA>
+           The unconvolved background model photon flux between 1 and
+	   15 Angstroms is integrated
+           for the second background data set automatically loaded by
+	   Sherpa with source data set 1.
+          </PARA>
+          </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

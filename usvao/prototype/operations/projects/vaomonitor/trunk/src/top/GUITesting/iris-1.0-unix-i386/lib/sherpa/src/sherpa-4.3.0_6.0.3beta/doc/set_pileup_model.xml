@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_pileup_model" refkeywords="set expression expressions source src model models modeling modelling composite nested joint component  pile pileup pile-up " seealsogroups="sh.model sh.set " displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+      Set a pileup model to be used in fitting a dataset
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_pileup_model( [id], model] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The set_pileup_model command establishes a pileup model to be
+	used in fitting the data.  There is one pileup model available
+	in Sherpa: jdpileup
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/jdpileup.html">"ahelp jdpileup"</HREF>)
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+           model - the name of the pileup model
+        </ITEM>
+      </LIST>
+
+      <PARA>
+	The pileup parameter values are reported with the source model
+	parameters after a fit: 
+      </PARA>
+
+<VERBATIM>
+     jdp.alpha      0.5
+     jdp.f          1
+     intrin.nh      3.14395
+     power.phoindex   0.621892
+     power.norm     1348.33
+</VERBATIM>
+ 
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_pileup_model(jdpileup.jdp)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    An instance of the pileup model named "jdp" is established
+	    for the default data set.  
+          </PARA>
+
+       </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_pileup_model( 2, mypileup )</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    A previously-established pileup model called "mypileup" is
+	    set for dataset 2.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

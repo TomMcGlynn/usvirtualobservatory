@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xscompst" refkeywords="compst model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Comptonization spectrum after Sunyaev and Titarchuk (1980).
+XSpec model.
+</SYNOPSIS>
+	<DESC>
+<PARA>
+A Comptonization spectrum after Sunyaev and Titarchuk 1980, A&amp;A,
+86, 121. This model is the Comptonization of cool photons on hot
+electrons.
+</PARA>
+
+<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xscompst Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>kt</DATA> <DATA>temperature in keV</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>tau</DATA> <DATA>optical depth</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> <DATA>norm</DATA> <DATA>(N*f)/(4 pi d^2),
+  where N is the total number of photons from the source, d is the
+  distance to the source, and f is the factor
+  z(z+3)y^z/gam(2z+4)/gam(z), where z is the spectral index, y is
+  the injected photon energy in units of the temperature, and gam
+  is the incomplete gamma function.</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

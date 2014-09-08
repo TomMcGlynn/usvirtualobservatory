@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="show_proj" refkeywords="show report status state information results projection proj " seealsogroups="sh.info " displayseealsogroups="" context="info">
+
+    <SYNOPSIS>
+     Display the projection information
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>show_proj([outfile=None, clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+          The show_proj command displays the results of the projection
+          command 
+	  
+          (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/projection.html">"ahelp projection"</HREF>)
+	  .
+      </PARA>
+
+    <LIST>
+       <ITEM>
+        outfile - name of the file in which to store the information
+      </ITEM>
+
+      <ITEM>
+        clobber -  a Boolean switch which indicates whether or not
+        the 'outfile' should be overwritten, if the file already exists;
+        default=False
+        
+      </ITEM>
+    </LIST>
+
+      <PARA>        
+        The command output looks like:
+      </PARA>        
+
+<VERBATIM>
+Projection:Dataset               = 1
+Confidence Method     = projection
+Fitting Method        = neldermead
+Statistic             = cstat
+projection 1-sigma (68.2689%) bounds:
+   Param            Best-Fit  Lower Bound  Upper Bound
+   -----            --------  -----------  -----------
+   abs1.nh         0.0349312   -0.0104857    0.0112408
+   p1.gamma          1.72895   -0.0627158    0.0646065
+   p1.ampl       4.24936e-05 -2.10514e-06  2.28168e-06
+</VERBATIM>
+
+      <PARA>        
+        The behavior of the screen output is determined by the
+        user's $PAGER environment variable setting, which
+        is usually a variant of "more."  To disable paging within
+        show_all() - i.e. print the entire contents, even if it
+        scrolls offscreen - change this setting to "cat" before starting
+        Sherpa: 
+      </PARA>
+
+<VERBATIM>
+unix% setenv PAGER cat
+
+unix% sherpa
+</VERBATIM>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; show_proj()</LINE>
+	  
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Print the projection values for all datasets to the
+	    screen.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; show_proj("sherpa.proj", True)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Write the projection values to the file
+	    "sherpa.proj",  clobbering any existing file with the
+	    same name.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

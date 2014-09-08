@@ -1,0 +1,246 @@
+<HTML>
+ <HEAD>
+   <TITLE>
+     Validation Design
+   </TITLE>
+     <LINK REL="StyleSheet" HREF='http://www.us-vo.org/app_templates/usvo_template.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='../css/styles.css' TYPE="text/css">
+     <LINK REL = "StyleSheet" HREF ='../css/validation.css' TYPE="text/css">
+ </HEAD>
+<Body>
+
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>   
+     <td width="112" height="32" align="center" valign="top">
+        <a href="http://www.us-vo.org" class="nvolink" target="_top">
+          <img src="http://www.usvao.org/documents/Templates/Logos/VAO_logo_100.png" alt="NVO HOME" border="0"/>
+        </a>
+        <span class="nvolink">
+          <a href="http://www.usvao.org/" target="_top">Virtual Astronomical Observatory</a></span>
+     </td>   
+     <td valign="top"><table  width="100%" border="0" cellpadding="0" cellspacing="0">      
+       <tr>       
+         <td width="2" height="30" bgcolor="white"></td>
+         <td width="678" height="39" align="center" valign="middle" 
+         background="http://www.us-vo.org/images/templatestars.jpg" bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+         
+    <span class= \"nvoapptitle\" style= \"background\-repeat: repeat\-y;\">Validation (Documentation)</span></td></tr>
+    </td> 
+    
+   
+    <td bgcolor="white" width="2"></td>     
+    </tr>     
+    <tr>       
+     <td bgcolor="white" width="2"></td>      
+     <td bgcolor="white" width="2"></td>      
+     </tr>      
+     <tr>       
+     <td align="center" valign="top" colspan="3"><table cellspacing="2" cellpadding="0" border="0" width="100%"  style="margin: 0pt;">         
+     <tr>
+     <!-- the local links -->
+  
+     <td  class='navlink'><a href='/cgi-bin/vo/notification/shownote.pl'>VO Service Notices </a></td>
+     <td  class='navlink'><a href='/cgi-bin/vo/monitor/monitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'>NVO Home</a></td>  
+     <td  class='navlink'><a href=http://us-vo.org/feedback/index.cfm>NVO Feedback</a></td> 
+            
+     </tr>       
+     </table></td>
+      </tr>
+      </table></td>
+      <td width = 140 align = center valign = top><a href = "http://www.heasarc.gsfc.nasa.gov">
+      <img src=/vo/datascope//images/nasa_logo.gif width=72 height=60 border=0 alt='NASA home'>
+      </img></a><br><span>Hosted by:</span><br>HEASARC<br> 
+      <br>
+      </td></tr></table>
+
+
+<h4>Validation DB Table Structure</h4>
+<p>There are five tables in the database: Services</b>, Tests</b>, Errors</b>, ErrorCodes, and Test. The following
+is a description of the columns in each table and examples of what populated rows look like internally<br><br>
+
+
+<table width = 900 class = 'tac'>
+
+  <tr class = titleblue><td>There are 10 columns in Services </td><td colspan = 2>&nbsp; An example of a populated row (gingabgd)</td></tr>
+  <tr><td>
+  <table width = 430, class = 'tac' border = 1>
+   <tr class = 'titleblue'><td>Column name</td><td>Description</td><td>Type</td></tr>
+   <tr class = 'greenlnleft'><td>serviceId</td><td>a random number (starting at 1) assigned to each service added to our database. This is the primary
+    key of Services and Tests.</td><td>int</td></tr>
+    <tr class = 'greenlnleft'><td>shortname </td><td>shortname of the service </td><td>string</td></tr>
+    <tr class = 'greenlnleft'><td>serviceURL </td><td> the service URL of the service</td><td>string</td></tr>
+    <tr class = 'greenlnleft'><td>type       </td><td>the service type (cone, siap, etc.)</td><td>string</td></tr>
+    <tr class = 'greenlnleft'><td>ivoid      </td><td>the ivo identifier  </td><td>string</td></tr>
+    <tr class = 'greenlnleft'><td>test_ra  </td><td>right ascension </td><td>floating point</td></tr>
+    <tr class = 'greenlnleft'><td>test_dec</td><td> declination </td><td>floating point</td></tr>
+    <tr class = 'greenlnleft'><td>radius </td><td> search radius.This will be ".3" by default.</td><td>floating point</td></tr>
+    <tr class = 'greenlnleft'><td>role</td><td> The role of this resource. This should be std (standard)</td><td>varchar</td></tr>
+    <tr class = 'greenlnleft'><td>deleted </td><td>Only two values accepted: "yes" or null (default).Users should manually enter "yes" when a service has been deleted.</td><td>varchar</td></tr>
+
+  </table>
+  </td>
+  <td/><td valign = top>
+
+  <table class = 'tac' border = 1 >
+  <tr class = 'greenlnleft'><td>serviceId</td><td>1</td></tr>
+  <tr class = 'greenlnleft'><td>shortname </td><td>GINGABGD </td></tr> 
+  <tr class = 'greenlnleft'><td>serviceURL </td><td>http://heasarc.gsfc.nasa.gov/cgi-bin/vo/cone/coneGet.pl?table=gingabgd&</td></tr>
+  <tr class = 'greenlnleft'><td>type       </td><td>cone</td></tr>
+  <tr class = 'greenlnleft'><td>ivoid      </td><td>ivo://nasa.heasarc/gingabgd  </td></tr>
+  <tr class = 'greenlnleft'><td>test_ra  </td><td>82.200</td></tr>
+  <tr class = 'greenlnleft'><td>test_dec</td><td> -78.79</td></tr>
+  <tr class = 'greenlnleft'><td>radius </td><td>.3</td></tr>
+  <tr class = 'greenlnleft'><td>role </td><td>std</td></tr>
+  <tr class = 'greenlnleft'><td>deleted</td><td>yes</td></tr>
+  </table> <br><br><br><br>
+ </td></tr>
+</table><br><br>
+
+
+<table width = 740  >
+  <tr class = titleblue><td>There are 6 columns in Tests</td><td colspan = 2>&nbsp; An example of a populated row(gingabgd)</td></tr>
+  <tr><td>
+  <table class = tac width  = 430 border = 1 >
+   <tr class = 'titleblue'><td>Column name</td><td>Description</td><td>Type</td></tr>
+   <tr class = greenlnleft ><td>runid </td><td>the primary key</td><td>int</td></tr>
+   <tr class = greenlnleft ><td>serviceId </td><td>the Id assigned in the Services table </td><td>int</td></tr>
+   <tr class = greenlnleft><td>validationstatus</td><td>the status of the validation (pass/fail)</td><td>varchar</td></tr>
+<tr class = greenlnleft><td>type</td><td>the service type (fullname)</td><td>varchar</td></tr>
+   <tr class = greenlnleft><td>time</td><td>the time of the last validation</td><td>varchar</td></tr>
+   <tr class = greenlnleft><td>validatorCode</td><td>a code representing the validator being used.</td><td>varchar</td></tr>
+  </table> </td><td/><td valign = top >
+ 
+  <table class = tac  border =1>
+   <tr class = greenlnleft ><td>runid </td><td>100 </td></tr>
+   <tr class = greenlnleft ><td>serviceId </td><td>1 </td></tr>
+  
+   <tr class = greenlnleft><td>validationstatus</td><td>fail</td></tr>
+   <tr class = greenlnleft><td>type</td><td>cs:ConeSearch</td></tr> 
+   <tr class = greenlnleft><td>time</td><td> Tue Jul 22 17:15:48 EDT 2008 </td></tr>
+   <tr class = greenlnleft><td>validatorCode</td><td>3A</td></tr>
+  </table> </td></tr>
+</table> <br><br>
+
+
+
+
+<table width = 740  >
+   <tr class = titleblue><td>There are 5 columns in Test</td><td colspan = 2>&nbsp; An example of a populated row(gingabgd)</td></tr> 
+    <tr><td>
+    <table class = tac width  = 430 border = 1 >
+    <tr class = 'titleblue'><td>Column name</td><td> Description</td><td>Type</td></tr>
+    <tr class = greenlnleft ><td>type </td><td>the xsitype (this must be associated with the correct Java Class that is to be used for validation)
+      </td><td>varchar(40)</td></tr>
+    <tr class = greenlnleft><td>url</td><td>The validator URL (can be null if none exist yet).</td><td>varchar(190)</td></tr>
+    <tr class = greenlnleft><td>id</td><td>The id assigned to the validator tool (randomly chosen by us)</td><td>varchar(10)</td></tr>
+    <tr class = greenlnleft><td>classmethod</td><td>name of the Java class to use for validation</td><td>varchar(40)</td></tr>
+    <tr class = greenlnleft><td>status</td><td>the status of the validator URL(Active or skip)</td><td>varchar(16)</td></tr>
+  </table> </td><td/><td valign = top >
+  <table class = tac  border =1>
+   <tr class = greenlnleft ><td>type</td><td> sia:SimpleImageAccess</td></tr>
+   <tr class = greenlnleft><td>url</td><td>//nvo.ncsa.uiuc.edu/dalvalidate/SIAValidater?runid= (does not have the http: in front)</td></tr>
+   <tr class = greenlnleft><td>id</td><td>1A</td></tr>
+   <tr class = greenlnleft><td>classmethod</td><td> SIAP </td></tr>
+   <tr class = greenlnleft><td>status</td><td>Active</td></tr>
+  </table> </td></tr>
+</table> <br><br>
+
+
+
+<table  width = 740>
+ <tr class = titleblue><td>There are 3 columns in Errors:</td><td colspan = 2>&nbsp;An example of a populated row (gingabgd):</td></tr>
+ <tr><td>
+   <table class = tac width  = 430 border =1> 
+    <tr class = 'titleblue'><td>Column name</td><td>Description</td><td>Type</td></tr>
+    <tr class = greenlnleft ><td>runid</td><td>the unique Id assigned to the runid field of Tests</td><td>int</td></tr>
+     <tr class = greenlnleft ><td>subtestid</td><td>the unique error Id returned by the validator</td><td>varchar</td></tr>   
+    <tr class = greenlnleft><td>validationResCode</td><td>An integer that references a validation result.</td><td>int</td></tr>
+   </table></td><td/>
+
+  <td valign = top>
+    <table class = tac  border =1>
+    <tr class = greenlnleft ><td>runid </td><td>100 </td></tr>
+    <tr class = greenlnleft ><td>subtestid </td><td>2.2.1c</td></tr>
+
+    <tr class = greenlnleft><td>validationResCode</td><td>100</td></tr>
+</table></td></tr></table> <br><br>
+
+
+
+
+<table  width = 740>
+ <tr class = titleblue><td>There are 2 columns in ErrorCodes:</td><td colspan = 2>&nbsp;An example of a populated row</td></tr>
+ <tr><td>
+   <table class = tac width  = 430 border =1> 
+    <tr class = 'titleblue'><td>Column name</td><td>Description</td><td>Type</td></tr>
+    <tr class = greenlnleft ><td>validationResCode</td><td>a unique integer.</td><td>int</td></tr>
+
+    <tr class = greenlnleft><td>codevalue</td><td>A description of what the validationResCode number means.</td><td>int</td></tr>
+   </table></td><td/>
+
+  <td valign = top>
+    <table class = tac  border =1>
+    <tr class = greenlnleft ><td>validationResCode </td><td>100 </td></tr>
+    <tr class = greenlnleft ><td>codevalue </td><td>The TABLE must contain exactly one FIELD with ucd='ID_MAIN'</td></tr>
+</table></td></tr></table> <br><br>
+
+
+
+
+<h4>Querying the Data(MySQL Query)<br><br>
+
+<p>Basic Querying of Services, Tests, and Errors  is performed by using the uniqueId columns as the primary key ...<br><br>
+
+E.g.</b>Select the validation results of all cone services after a particular time:<br><br>
+
+<font style = "color: blue">select Services.uniqueid, Services.shortname, Services.serviceURl,Services.type, Tests.validationstatus  from s Services, t Tests, where  ta.type  = 'cone' and ta.uniqueid = tb.uniqueid and tb.timestamp_epoch > "{some number}" </font><br><br>
+
+
+E.g.</b> Select the service that was validated most recently <br><br>
+<font style = "color:blue">select Services.uniqueId, Services.shortname, Tests.timestamp_epoch from s Services, t Tests  where s.uniqueid = t.uniqueid order by t.timestamp_epoch</font><br><br>
+
+<font style = "color:green">Determining the next n/30 rows for validation: </font><br><br>
+1)Get the total count of the query and store in var X:&nbsp; <br><br>
+<font style = "color:blue">select count * from Services <br><br></font>
+2)Divide the result X by "30" and store in a variable "Y" <br><br>
+Then:<br><br>
+
+<font style = "color:blue"> SET ROWCOUNT Y <br><br>select Services.uniqueId, Services.shortname, Services.serviceURL, Services.ra, Services.dec, Services.radius,Test.timestamp_epoch where Services.uniqueId = Tests.uniqueID order by Tests.timestamp_epoch
+
+<hr align="left" noshade>
+        <table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+        <tr align="center" valign="top">   <td width="16%" valign="top"><div align="center" class="style10">
+        <a href="http://www.nsf.gov"><img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0">
+        </a>
+        <a href="http://www.nasa.gov"><img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0">
+        </a>
+        </div></td>
+        <td width="76%"><div align="center">       
+        <p class="style10"> Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> 
+        <br>          under Cooperative Agreement AST0122449 with the Johns Hopkins University 
+        <br>         The NVO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a></p>
+        <p class="style10">This NVO Application is hosted by <a href="#">LocalSiteName</a></p>
+        </div></td>    
+        <td width="8%"><div align="center"><span class="tiny">Member<br>
+        </span>
+        <a href="http://www.ivoa.net">
+        <img src="http://www.us-vo.org/images/ivoa_small.jpg" alt="IVOA HOME" width="68" height="39" border="0" align="top"></a></div></td>
+        <td width="8%"><span class="style4"><span class="tiny">Meet the Developers</span><br>
+        <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border=0></span></td> </tr></table>
+        <hr noshade='noshade' />
+        <p>Hosted by the <a href='http://universe.gsfc.nasa.gov/'>Astrophysics Science Division</a>and the 
+        <a href='http://heasarc.gsfc.nasa.gov/'>High Energy Astrophysics Science Archive Research Center (HEASARC)</a>at
+        <a href='http://www.nasa.gov/'>NASA/</a><a href='http://www.gsfc.nasa.gov/'>GSFC</a>
+        </p><p>HEASARC Director:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/bios/white.html'>Dr. Nicholas E. White</a>,</p>
+        <p>HEASARC Associate Director: Dr. Roger Brissenden,</p><p>Responsible NASA Official:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/nospam/panewman.html'>Phil Newman</a> </p>
+        <p class='tiny'> <a href='/banner.html'>Privacy, Security, Notices</a></p>
+        </div><!-- id='footer' --></body>
+   
+
+
+</p>
+</Body>
+</HTML>

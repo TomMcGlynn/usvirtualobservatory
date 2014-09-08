@@ -1,0 +1,203 @@
+<HTML>
+ <HEAD>
+   <TITLE>
+     Validation Design
+   </TITLE>
+     <LINK REL="StyleSheet" HREF='http://www.us-vo.org/app_templates/usvo_template.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/datascope/css/styles.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/monitor/css/tr.css' TYPE="text/css">
+ </HEAD>
+<Body>
+
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>   
+     <td width="112" height="32" align="center" valign="top">
+        <a href="http://www.us-vo.org" class="nvolink" target="_top">
+          <img src="http://www.usvao.org/documents/Templates/Logos/VAO_logo_100.png" alt="NVO HOME" border="0"/>
+        </a>
+        <span class="nvolink">
+          <a href="http://www.us-vo.org/" target="_top">National Virtual Observatory</a></span>
+     </td>   
+     <td valign="top"><table  width="100%" border="0" cellpadding="0" cellspacing="0">      
+       <tr>       
+         <td width="2" height="30" bgcolor="white"></td>
+         <td width="678" height="39" align="center" valign="middle" 
+         background="http://www.us-vo.org/images/templatestars.jpg" bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+         
+    <span class= \"nvoapptitle\" style= \"background\-repeat: repeat\-y;\">Vaomonitor (Documentation)</span></td></tr>
+    </td> 
+    
+   
+    <td bgcolor="white" width="2"></td>     
+    </tr>     
+    <tr>       
+     <td bgcolor="white" width="2"></td>      
+     <td bgcolor="white" width="2"></td>      
+     </tr>      
+     <tr>       
+     <td align="center" valign="top" colspan="3"><table cellspacing="2" cellpadding="0" border="0" width="100%"  style="margin: 0pt;"> 
+  <tr>
+     <!-- the local links -->
+  
+     <td  class='navlink'><a href='/cgi-bin/vo/notification/shownote.pl'>VO Service Notices </a></td>
+     <td  class='navlink'><a href='/cgi-bin/vo/monitor/monitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'>NVO Home</a></td>  
+     <td  class='navlink'><a href=http://us-vo.org/feedback/index.cfm>NVO Feedback</a></td> 
+            
+     </tr>       
+     </table></td>
+      </tr>
+      </table></td>
+      <td width = 140 align = center valign = top><a href = "http://www.heasarc.gsfc.nasa.gov">
+      <img src=/vo/datascope//images/nasa_logo.gif width=72 height=60 border=0 alt='NASA home'>
+      </img></a><br><span>Hosted by:</span><br>HEASARC<br> 
+      <br>
+      </td></tr></table>
+
+<h4>VAOMonitor DB design</h4>
+<p>The Vaomonitor DB consists of 5 tables. They are:
+<ul><li>Services</li>
+<li>Tests</li>
+<li>Testhistory</li>
+<li>Errors</li>
+<li>ErrorCodes</li>
+</ul>
+
+</p>
+<h5>Services</h5>
+<p>The Services table has 6 columns. They are serviceId,name, homeinst (home institution),homeurl,type,and
+displayorder. A brief description of each follows:<br><br>
+<ol><li>serviceId - the primary key used to join the Services and Tests table.<br>
+<li>name - the name of the VO service (E.g. JIRA)<br>
+<li>homeinst- the shortname of the center hosting the service<br>
+<li>homeurl-the url of the home institution<br>
+<li>type-The type of service. The values are one of "Portal Science Sercvices", "Testing", "Legacy Support Services","Legacy
+Science Services", and "System".<br>These values are only used by the vaomonitor home page to group services in a particular way.<br>
+<li>displayorder-this column is only used to order services in a particular way on the vao home page.
+</ol>
+
+</p>
+
+
+
+<h5>Tests</h5>
+<p>The Tests table has 9 columns. They are testid,serviceId, url, response_type,class,testname,deleted, notAvailable,and params.<br>
+A brief description of each follows.<br><br>
+
+<ol><li>testid-a unique id associated with a test for a given service. E.g. The VOInventory Service currently has two unique tests associated<br>
+with it. One test checks that the top level irsa.ipac page is up while the second greps a string from an xml response to an IRSA query<br>
+with positional information.
+<li>serviceId-the primary key used to join the Services and Tests table.
+<li>url-the url we want to test. Most services have a default GET url that will return XML when queried with positional information.<br>
+Services that cannot be queried in this way are assigned specialized Perl tests to ensure that the service is operational.
+<li>response_type-the response type returned by the url listed in the url column. This will be either html or xml.
+
+<li>class-the name of the Perl class used to drive the test.
+<li>testname- a simple human readable test name assigned to the test. This is used by the VAO interactive testing page. We added this <br>column
+so that users will be able to select the type of test they wish to run on a site by selecting it from a drop-down list.
+<li>deleted-the value here is either 'T' or null. If the value is 'T', the test for a given service is invisible in the history
+pages and in the interactive pages. 
+<li>notAvailable-this value is either 'T' or null.This column was created so that the string 'skip' appears in the db table when the test is<br>
+executed. The original idea behind this column was that users would be able to see that this test still exists for a service on the vaomonitor interactive page. <br>
+In addition, the hope was that any service marked as unavailable would eventually be fixed.This should not be confused with the deleted column which makes<br>
+the test invisible in the interactive monitor and in the vao service status history pages.
+<li>params-the values in here are semicolon delimited and are used in grep routines in some of the specialized tests.
+</ol>
+</p>
+
+<h5>Testhistory</h5>
+<p>
+The Testhistory table has 6 columns. They are runid, serviceId,testid,monitorstatus,time and validtest.<br>
+A brief description of each column follows.<br>
+<ol><li>runid- a unique id assiged at runtime to the test being executed. This column is used to join information with the Errors table</li>
+<li>serviceId-the primary key used to join the Services and Tests table</li>
+<li>testid- a unique id associated with a test for a given service. This is the same column as the one in the Tests table.</li>
+<li>monitorstatus-the status of the test. This is either pass, fail, abort or skip.</li>
+<li>time-the timestamp associated with when a test was run</li>
+<li>validtest-this column is used in the automated notification system which mails users when a test has failed or when the service has come back up.<br>
+The value is either 'T' which indicates that this is a valid test (i.e. one we want to evaluate in processing) or null. This column is very important as it<br>
+is updated hourly and is needed for the automated notification system to work. A brief summary of how this column is used and
+updated follows.<br><br>
+</li>
+</ol>
+</p>
+<p>
+The following history is for serviceId 18 (the VO Inventory Service)<br>
+<img src = './validtestcolumn.png'><br><br>
+<ol>
+<li>When a test is executed,we have to find out if the test failed or aborted. If this is the case, we perform a retest
+10 minutes later.</li>
+<li>All retests receive a 'T' in the validtest column.
+<li>Any test that passes the first time(i.e. does not require a retest) also
+receives a 'T' in the validtest column. This approach for marking a<br> valid test is very useful when querying the table 
+and has the added bonus that we can tell right away from looking at the table which lines<br> are to be ignored ( nulls are ignored).</li>
+
+<li>The lines highlighted in green show that of the 2 tests associated with serviceId 18(testid 28 and 40), one aborted (testid 28) and the other passed.<br> This is
+considered an overall failure and the service was retested a few minutes later. Note that a 'T' was added to the validtest column for both <br>testid 28 and testid 40.</li>
+<li>Subsequent hourly testing showed that the service continued to fail. The notification system compares the latest overall *valid* status for a service <br>
+to the previous hour's *valid* status and only sends mail if there is a change.
+<li>The lines highlighted in blue show the next time that both tests passed as a pair and when a notification was <br>
+sent out to the curator.
+</ol>
+</p>
+
+<h5>Errors</h5><p>
+The Errors table has 3 columns. They are runid,subtestid,and monitorResCode. A brief description of each follows.<br>
+<ol>
+<li>
+runid- a unique id assiged at runtime to the test being executed. This column is used to join information with the Tests table.
+<li>subtestid-this is an id that comes from the particular Perl class that is handling a test. An important note here is that these ids do not map 1 to 1 <br>
+with a particular error message.There could be different messages associated with the same subtestid. Another important note here is the difference <br>
+between this column and the one in the validation db Errors table. In the validation db, most of the subtestids comes from the NCSA validators whereas<br>
+in the vaomonitor context,we created our own subtestids.
+<li>monitorResCode -this column joins information with the ErrorCodes table.Each entry is an integer that maps 1 to 1 with an error message in the ErrorCodes<br>
+table. In this table therefore, there can be many identical monitorResCode entries in the monitorResCode column but there will be only one error message<br>
+associated with this number in the ErrorCodes table.
+</ol>
+</p>
+
+
+<h5>Error Codes</h5>
+<p>
+The Error Codes table has 2 columns. They are monitorResCode and description. A brief description of each follows.<br>
+<ol>
+<li>monitorResCode- this is the column that ties this table to the Errors table.
+<li>description-this is the error message associated with a failed or aborted test.Error messages are short and  unlike some very long messages<br>
+in the validation system, they obviously do not need to be truncated.
+</ol>
+</p>
+<p>
+*Information in this table is joined with the Errors and Tests table so that users get the correct error message associated with
+a unique test run.
+</p> 
+ 
+<hr align="left" noshade>
+        <table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+        <tr align="center" valign="top">   <td width="16%" valign="top"><div align="center" class="style10">
+        <a href="http://www.nsf.gov"><img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0">
+        </a>
+        <a href="http://www.nasa.gov"><img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0">
+        </a>
+        </div></td>
+        <td width="76%"><div align="center">       
+        <p class="style10"> Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> 
+        <br>          under Cooperative Agreement AST0122449 with the Johns Hopkins University 
+        <br>         The NVO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a></p>
+        <p class="style10">This NVO Application is hosted by <a href="#">LocalSiteName</a></p>
+        </div></td>    
+        <td width="8%"><div align="center"><span class="tiny">Member<br>
+        </span>
+        <a href="http://www.ivoa.net">
+        <img src="http://www.us-vo.org/images/ivoa_small.jpg" alt="IVOA HOME" width="68" height="39" border="0" align="top"></a></div></td>
+        <td width="8%"><span class="style4"><span class="tiny">Meet the Developers</span><br>
+        <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border=0></span></td> </tr></table>
+        <hr noshade='noshade' />
+        <p>Hosted by the <a href='http://universe.gsfc.nasa.gov/'>Astrophysics Science Division</a>and the 
+        <a href='http://heasarc.gsfc.nasa.gov/'>High Energy Astrophysics Science Archive Research Center (HEASARC)</a>at
+        <a href='http://www.nasa.gov/'>NASA/</a><a href='http://www.gsfc.nasa.gov/'>GSFC</a>
+        </p><p>HEASARC Director:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/bios/white.html'>Dr. Nicholas E. White</a>,</p>
+        <p>HEASARC Associate Director: Dr. Roger Brissenden,</p><p>Responsible NASA Official:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/nospam/panewman.html'>Phil Newman</a> </p>
+        <p class='tiny'> <a href='/banner.html'>Privacy, Security, Notices</a></p>
+        </div><!-- id='footer' --></body>

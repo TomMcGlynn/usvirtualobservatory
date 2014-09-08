@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="fit" refkeywords="fit_bkg bfit run optimize minimize minimum fitting minimization optimization maximum evaluate evaluation simulfit simultaneous" seealsogroups="sh.fit " displayseealsogroups="" context="fitting">
+    <SYNOPSIS>
+     Perform a fit using current optimization method and
+     fit statistic.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>fit( [ id, [otherids], bkg_only=False, outfile="fit.out", clobber=True])</LINE>
+      <LINE>fit_bkg( [ id, [otherids], outfile="fit.out", clobber=True])</LINE>
+	</SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The fit() function fits the defined model(s) to the data set(s)
+        by data ID.  It may be called with no arguments, in which case
+        a fit is done simultaneously on all data sets ready for
+        fitting, i.e., all data sets which have been assigned source
+        models. If the 'bkg_only' argument is changed from the default
+        False to True, only the
+        background data sets ready for fitting will be fit; source
+        data sets ready for fitting will be ignored in this case.
+      </PARA>
+
+      <PARA>
+	If a background file and background responses are defined for
+	the data set which is being fit, the background is
+	automatically fit as well.
+      </PARA>
+
+      <PARA>
+        The fit_bkg() function fits the defined model(s) to the
+        background data set(s) by ID.  It may be called with no
+        arguments, in which case a fit is done simultaneously on all
+        data sets for which the user has defined a model to be fit.  
+      </PARA>
+
+      <LIST>
+       <ITEM>
+        id, otherids - the id(s) of the data set(s) to use; 
+	default is to fit all datasets for which a model has been
+	defined 
+      </ITEM>
+
+      <ITEM>
+        bkg_only -  a Boolean switch to indicate if only background
+        data sets should be fit; 
+        default=False
+        
+       </ITEM>
+
+      <ITEM>
+        outfile - name of the file in which to store all parameter
+        values and fit statistic obtained during the fitting process
+        (e.g., "fit.out") 
+      </ITEM>
+ 
+      <ITEM>
+        clobber -  a Boolean switch which indicates whether or not
+	the 'outfile' should be overwritten, if the file already exists; 
+        default=True
+        
+       </ITEM>
+      </LIST>
+
+      <PARA>
+        The fit is done with the specified optimization method and
+        statistic; the default values are levmar and chi2gehrels,
+        respectively.  The fit proceeds until it converges to within
+        the set tolerance or hits the maximum number of iterations.
+	The resulting best fit parameters and final statistic value
+        are displayed to the user.  The best-fit parameters are
+        accessible with get_fit_results().   
+      </PARA>
+
+      <PARA>
+       If one of the available iterative fitting
+       methods in Sherpa is set for fitting (see "ahelp
+       set_iter_method"), the chosen fit optimization method will be called several times when the fit
+       command is run, until the fit can no longer be improved.  If
+       the iterative fitting method is set to "none" (default),
+       then no iterative fitting is done when the fit command is called; the optimization method is called once, and Sherpa otherwise operates as expected.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; fit("src")</LINE>
+          
+         </SYNTAX>
+        <DESC>
+        <PARA>
+	A single data set can be fit using its data set ID number or string.
+        </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; fit()</LINE>
+	  
+        </SYNTAX>
+          <DESC>
+          <PARA>
+          The fit function called with no arguments will
+          simultaneously fit all data sets to which
+	  models have been assigned.
+        </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; fit(bkg_only=True)</LINE>
+	  
+        </SYNTAX>
+          <DESC>
+          <PARA>
+          The fit function called with the 'bkg_only' argument set to
+        True and no data set ids specified
+         will simultaneously fit all background data sets to which
+	  models have been assigned; no source models ready for
+        fitting will be included in the fit.
+        </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; fit(2, bkg_only=True)</LINE>
+	  
+        </SYNTAX>
+          <DESC>
+          <PARA>
+           In this case, the fit function fits only the background data
+           set(s) associated with data set 2.
+        </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_data("src.pha")</LINE>
+          <LINE>sherpa&gt; load_bkg("bkg.pha")</LINE>
+          <LINE>sherpa&gt; load_bkg_rmf("rmf.fits")</LINE>
+          <LINE>sherpa&gt; load_bkg_arf("arf.fits")</LINE>
+          <LINE>sherpa&gt; set_bkg_model(powlaw1d.p1)</LINE>
+          <LINE>sherpa&gt; fit_bkg()</LINE>
+	</SYNTAX>
+          <DESC>
+          <PARA>
+	    Load source and background spectra.  Define response files
+	    and a model for the background data, then fit it.
+        </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+        <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; fit(3, outfile="fit_info.out", clobber=True)</LINE>
+	  
+        </SYNTAX>
+          <DESC>
+          <PARA>
+	    In this example, data set 3 will be fit, and all the
+	    parameter values and the fit statistic used by the
+	    optimization method will be stored in 
+	    the file "fit_info.out". This file will be overwritten if
+	    it already exists because clobber=True.
+        </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; fit("leg_m1","leg_p1")</LINE>
+          
+        </SYNTAX>
+           <DESC>
+           <PARA>            
+            When multiple data sets are indicated, a simultaneous fit
+            is performed and the statistics value is
+            summed over all the data sets.  For
+            example, one may wish to simultaneously fit a source and
+            background data set, multiple spectral orders of PHA
+            grating data, etc. In this example, the LEG +1 and -1
+            spectral orders of an HRC-S/LETG grating data set are fit
+            simultaneously by data ID:
+	  </PARA>     
+         
+	  <VERBATIM>
+        sherpa&gt; fit("leg_m1","leg_p1")
+	     LevMar:
+	     Initial fit statistic = 21857.8
+	     Final fit statistic   = 6662.04 at function evaluation 52
+	     Data points           = 3162
+	     Degrees of freedom    = 3158
+	     Probability [Q-value] = 9.26899e-252
+	     Reduced statistic     = 2.10958
+	     Change in statistic   = 15195.8
+	     bpow.phoindx1   1           
+	     bpow.breake    0.763347    
+	     bpow.phoindx2   1.79799     
+	     bpow.norm      0.0294637
+ 
+        sherpa&gt; print get_fit_results()
+	     methodname = LevMar
+	     succeeded  = True
+	     parnames   = ('bpow.phoindx1', 'bpow.breake', 'bpow.phoindx2', 'bpow.norm')
+	     parvals    = (1.00000005713, 0.763346621728, 1.79799457922, 0.0294636807334)
+	     covarerr   = None
+	     statval    = 6662.04434909
+	     istatval   = 21857.8439964
+	     dstatval   = 15195.7996473
+	     numpoints  = 3162
+	     dof        = 3158
+	     qval       = 9.26899264507e-252
+	     rstat      = 2.10957705798
+	     message    = relative error between two consecutive
+	     iterates is at most xtol=1.19209e-07
+	     nfev       = 52         
+          </VERBATIM>
+           
+          </DESC>
+	</QEXAMPLE> 
+        </QEXAMPLELIST>
+
+
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,5 @@
+siap,sia:SimpleImageAccess|ivo://ivoa.net/std/SIA
+cone,cs:ConeSearch|ivo://ivoa.net/std/ConeSearch
+registry,vg:Registry|ivo://ivoa.net/std/Registry;vg:Harvest|ivo://ivoa.net/std/Registry;vg:Search|ivo://ivoa.net/std/Registry
+ssa,ssa:SimpleSpectralAccess|ivo://ivoa.net/std/SSA
+tap,tap:TableAccess|ivo://ivoa.net/std/TAP

@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="save_all" refkeywords="script write save record session output store" seealsogroups="sh.save " displayseealsogroups="" context="saving">
+
+    <SYNOPSIS>
+     Save all the information about the current session
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>save_all( [outfile="script.txt",clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The save_all function saves to a text file the settings which
+       define the current Sherpa session, specifically the commands to
+       load data from files, define models with user-specified
+       parameter values, set a filter, and set the fit statistic and 
+       optimization method that were current when "save_all()" was
+       called. The resulting text file can be read into a future
+       Sherpa session to recreate the session.
+      </PARA>
+
+      <PARA>
+	To load the file - here saved as "psf_fit.txt" - into another
+	Sherpa session: 
+      </PARA>
+
+<VERBATIM>
+sherpa&gt; execfile("psf_fit.txt")
+</VERBATIM>
+	<PARA>
+	There is an alternate command, script, which saves every
+	command typed in a Sherpa session; see <HREF link="http://cxc.harvard.edu/sherpa/ahelp/script.html">"ahelp script"</HREF> for
+	information. 
+      </PARA>
+
+      <PARA>
+       Things which are NOT saved by the save_all command:
+      </PARA>
+
+      <LIST>
+      <ITEM>
+       User models are not saved.
+      </ITEM>
+      <ITEM>
+	 If a load command such as load_data, load_pha, or load_ascii
+         was used with optional keywords, these keywords are not
+         saved.   
+      </ITEM>
+      <ITEM>
+	 Any command that is not a known Sherpa command, e.g. Python
+	 statements which may *include* valid Sherpa commands, are not
+	 saved. 
+      </ITEM>
+     </LIST>
+      
+     <PARA>
+      Arguments:
+     </PARA>
+
+     <LIST>
+      <ITEM>
+        outfile - the name of the file to write;
+          default=None
+          
+      </ITEM>
+
+      <ITEM>
+        clobber - Boolean to specify if existing 
+        'outfile' should be overwritten; 
+          default = False
+          
+      </ITEM>
+    </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_all()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	   When the save_all function is called without arguments, the
+ 	settings defining the current Sherpa session (up until the
+ 	point that the command is issued) are printed to
+ 	the screen instead of being written to a file. 
+          </PARA>
+<VERBATIM>
+sherpa&gt; load_pha("data.pi")
+sherpa&gt; notice_id(1,0.1,6.0)
+sherpa&gt; subtract()
+sherpa&gt; set_source(xsphabs.abs1*powlaw1d.p1)
+sherpa&gt; abs1.nH=0.07
+sherpa&gt; freeze(abs1.nH)
+sherpa&gt; set_method("neldermead")
+
+sherpa&gt; save_all()
+load_data(1,"data.pi")
+if (get_data(1).grouped == False):
+        group(1)
+load_arf(1,"data.arf",1)
+load_rmf(1,"data.rmf",1)
+load_bkg(1,"data_bg.pi", bkg_id=1)
+group(1,1)
+load_arf(1,"data.arf",1,1)
+load_rmf(1,"data.rmf",1,1)
+if (get_data(1).subtracted == False):
+        subtract(1)
+notice_id(1,"0.124829999695:6.234200000763")
+
+set_stat("chi2gehrels")
+
+set_method("neldermead")
+
+set_method_opt("iquad", 1)
+set_method_opt("initsimplex", 0)
+set_method_opt("verbose", 0)
+set_method_opt("step", None)
+set_method_opt("finalsimplex", 9)
+set_method_opt("maxfev", None)
+set_method_opt("ftol", 1.19209289551e-07)
+
+eval("xsphabs.abs1")
+abs1.integrate = True
+
+abs1.nH._hard_min = 0.0
+abs1.nH._min = 0.0
+abs1.nH.modelname = "abs1"
+abs1.nH.name = "nH"
+abs1.nH._guessed = False
+.
+.
+[output omitted]
+.
+.
+abs1.nH._max = 100000.0
+abs1.nH.hidden = False
+abs1.nH._hard_max = 3.40282346639e+38
+
+eval("powlaw1d.p1")
+p1.integrate = True
+
+p1.gamma._hard_min = -3.40282346639e+38
+p1.gamma._min = -10.0
+p1.gamma.modelname = "p1"
+p1.gamma.name = "gamma"
+p1.gamma._guessed = False
+p1.gamma._val = 1.0
+.
+.
+[output omitted]
+.
+.
+p1.ampl.fullname = "p1.ampl"
+p1.ampl._max = 3.40282346639e+38
+p1.ampl.hidden = False
+p1.ampl._hard_max = 3.40282346639e+38
+
+set_source(1, (xsphabs.abs1 * powlaw1d.p1))
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_all("session1.txt")</LINE>
+	  
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+           The save_all function is used to save the settings of the
+	   current Sherpa session to the output text file session1.txt; this
+	   file can be used to restore the saved session at a
+	   later time.  The file stores the Sherpa commands to load all 
+	   data and responses, set filters, define source models,
+	   and set all model parameters which were current when the save_all
+	   command was issued. If a file with the same name already exists in the
+	   current working directory, it will not be overwritten since the
+	   'clobber' argument is set to 
+	   False by default.
+          </PARA>
+	</DESC>
+       </QEXAMPLE>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_all("session1.txt", clobber=True)</LINE>
+	  
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+           The save_all function is used to save the settings of the
+	   current Sherpa session to the output text file
+	   session1.txt. If a file with the same name already exists in the
+	   current working directory, it will be overwritten since the
+	   'clobber' argument is set to True.
+          </PARA>
+	</DESC>
+       </QEXAMPLE>
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="image_xpaset" refkeywords="image images img imager imaging xpa xpaset visualize visualization  visualise visualisation" seealsogroups="sh.img " displayseealsogroups="" context="visualization">
+
+    <SYNOPSIS>
+     Send data to ds9 using XPA.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>image_xpaset( arg )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The image_xpaset() function is used to send data to the SAO imager,
+       ds9; it provides a simple, user-friendly interface which
+       is similar to the xpaset command-line tool
+       [http://hea-www.harvard.edu/saord/xpa/programs.html#xpaset] from the
+       XPA package.  A call to the function image_xpaset("file foo.fits") would
+       translate to 'xpaset -p ds9 file foo.fits' on the command line.
+      </PARA>
+
+       <LIST>
+       <ITEM>
+        arg - string value; "arg" in the command-line syntax 'xpaget
+	-p  ds9 arg'.
+       </ITEM>
+      </LIST>
+
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; image_xpaset("file foo.fits")</LINE>
+	  <LINE>sherpa&gt; image_xpaset("frame new")</LINE>
+	  <LINE>sherpa&gt; image_xpaset("grid yes")</LINE>
+	  <LINE>sherpa&gt; image_xpaset("regions foo.reg")</LINE>
+	  <LINE>sherpa&gt; image_xpaset("saveimage jpeg foo.jpg")</LINE>
+	  <LINE>sherpa&gt; image_xpaset("wcs replace file foo.wcs")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The image_xpaset function accepts one string argument, using it as
+	    the command 'xpaset -p ds9 arg'.  For example, to send ds9
+	    an image file to display (foo.fits), one would use "file
+	    foo.fits" as the argument. Likewise, "frame new" will
+	    replace the current frame displayed in ds9 with a new, blank
+	    frame; "regions foo.reg" will load the region
+	    "foo.reg" to the display, and so on.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

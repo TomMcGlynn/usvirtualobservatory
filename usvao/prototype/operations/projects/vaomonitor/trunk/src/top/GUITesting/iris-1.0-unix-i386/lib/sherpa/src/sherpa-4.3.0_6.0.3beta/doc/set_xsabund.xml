@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_xsabund" refkeywords="get_xsabund xspecabund xspec abund abundan abundance angr feld aneb grsa wilm lodd Anders grevesse Feldman Ebihara sauval wilms allen mccray lodders " seealsogroups="sh.set sh.model " displayseealsogroups="" context="modeling">
+
+    <SYNOPSIS>
+      Set XSPEC solar abundance
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_xsabund(abundance)</LINE>
+      <LINE>get_xsabund()</LINE>
+	</SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The set_xsabund command sets the elemental abundance table
+        used in XSpec plasma-code models.  The get_xsabund command
+        returns the current setting. The set_xsabund command accepts
+        user-defined files containing solar abundances, in addition to
+        the options listed in the table below. The input file should be in ASCII format, containing a single
+        column of 30 float-type abundance values, all relative to Hydrogen.
+      </PARA>
+
+      <TABLE>
+	<CAPTION>Available Abundances</CAPTION>
+	<ROW> 
+	  <DATA>Name</DATA>
+	  <DATA>Description</DATA> 
+	</ROW>
+	<ROW> 
+	  <DATA>angr</DATA> <DATA>default value; Anders E. &amp;
+	  Grevesse N. (1989, Geochimica et Cosmochimica Acta 53, 197)</DATA> 
+	</ROW>
+	<ROW> 
+	  <DATA>feld</DATA> <DATA>Feldman U. (1992, Physica
+	  Scripta 46, 202)</DATA> 
+	</ROW>
+	<ROW> 
+	  <DATA>aneb</DATA> <DATA>Anders E. &amp; Ebihara (1982,
+	  Geochimica et Cosmochimica Acta 46, 2363)</DATA> 
+	</ROW>
+	<ROW> 
+	  <DATA>grsa</DATA> <DATA>Grevesse, N. &amp; Sauval,
+	  A.J. (1998, Space Science Reviews 85, 161)</DATA> 
+	</ROW>
+	<ROW> 
+	  <DATA>wilm</DATA> <DATA>Wilms, Allen &amp; McCray
+	  (2000, ApJ 542, 914)</DATA>
+	</ROW><ROW> 
+	  <DATA>lodd</DATA> <DATA>Lodders, K (2003, ApJ
+	  591, 1220)</DATA> 
+	</ROW>
+      </TABLE>
+
+      <PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; print get_xsabund()</LINE>
+	  <LINE>angr</LINE>
+	  <LINE>sherpa&gt; set_xsabund("wilm")</LINE>
+	  <LINE>Solar Abundance Vector set to wilm:  Wilms, J., Allen, A. &amp; McCray, R. ApJ 542 914 (2000) (abundances are set to zero for those elements not included in the paper).</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The current abundance setting is retrieved ("angr", the
+	    default).  It is then changed to "wilm".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_xsabund("myabund.dat")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	     Solar abundances are set with a user-defined ASCII file containing a column of float-type solar abundance values. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+     
+    <ADESC title="Abundance Tables">
+<PARA>
+All abundances are number relative to H.
+</PARA>
+
+<TABLE>
+<CAPTION>Tables for xspecabundan Arguments</CAPTION>
+<ROW> 
+  <DATA>Element</DATA> <DATA>angr</DATA> <DATA>feld</DATA>
+  <DATA>aneb</DATA> <DATA>grsa</DATA> <DATA>wilm</DATA> <DATA>lodd</DATA>
+</ROW> 
+
+<ROW>
+  <DATA>H</DATA> <DATA>1.00e+0</DATA> <DATA>1.00e+0 </DATA> <DATA>1.00e+0 </DATA>
+  <DATA>1.00e+0 </DATA> <DATA>1.00e+0 </DATA>  <DATA>1.00e+0</DATA>
+</ROW>
+<ROW>
+  <DATA>He </DATA> <DATA>9.77e-2 </DATA> <DATA>9.77e-2 </DATA> <DATA>8.01e-2 </DATA>
+  <DATA>8.51e-2 </DATA> <DATA>9.77e-2 </DATA> <DATA>7.92e-2</DATA>
+</ROW>
+<ROW>
+  <DATA>Li </DATA> <DATA>1.45e-11</DATA> <DATA>1.26e-11</DATA> <DATA>2.19e-9 </DATA>
+  <DATA>1.26e-11</DATA> <DATA>0.00    </DATA> <DATA>1.90e-9</DATA>
+</ROW>
+<ROW>
+  <DATA>B  </DATA> <DATA>1.41e-11</DATA> <DATA>2.51e-11</DATA> <DATA>2.87e-11</DATA>
+  <DATA>2.51e-11</DATA> <DATA>0.00    </DATA> <DATA>2.57e-11</DATA>
+</ROW>
+<ROW>
+  <DATA>Be </DATA> <DATA>3.98e-10</DATA> <DATA>3.55e-10</DATA> <DATA>8.82e-10</DATA>
+  <DATA>3.55e-10</DATA> <DATA>0.00    </DATA> <DATA>6.03e-10</DATA>
+</ROW>
+<ROW>
+  <DATA>C  </DATA> <DATA>3.63e-4 </DATA> <DATA>3.98e-4 </DATA> <DATA>4.45e-4 </DATA>
+  <DATA>3.31e-4 </DATA> <DATA>2.40e-4 </DATA> <DATA>2.45e-4</DATA>
+</ROW>
+<ROW>
+  <DATA>N  </DATA> <DATA>1.12e-4 </DATA> <DATA>1.00e-4 </DATA> <DATA>9.12e-5 </DATA>
+  <DATA>8.32e-5 </DATA> <DATA>7.59e-5 </DATA> <DATA>6.76e-5</DATA>
+</ROW>
+<ROW>
+  <DATA>O  </DATA> <DATA>8.51e-4 </DATA> <DATA>8.51e-4 </DATA> <DATA>7.39e-4 </DATA>
+  <DATA>6.76e-4 </DATA> <DATA>4.90e-4 </DATA> <DATA>4.90e-4 </DATA>
+</ROW>
+<ROW>
+  <DATA>F  </DATA> <DATA>3.63e-8 </DATA> <DATA>3.63e-8 </DATA> <DATA>3.10e-8 </DATA>
+  <DATA>3.63e-8 </DATA> <DATA>0.00    </DATA> <DATA>2.88e-8</DATA>
+</ROW>
+<ROW>
+  <DATA>Ne </DATA> <DATA>1.23e-4 </DATA> <DATA>1.29e-4 </DATA> <DATA>1.38e-4 </DATA>
+  <DATA>1.20e-4 </DATA> <DATA>8.71e-5 </DATA> <DATA>7.41e-5</DATA>
+</ROW>
+<ROW>
+  <DATA>Na </DATA> <DATA>2.14e-6 </DATA> <DATA>2.14e-6 </DATA> <DATA>2.10e-6 </DATA>
+  <DATA>2.14e-6 </DATA> <DATA>1.45e-6 </DATA> <DATA>1.99e-6</DATA>
+</ROW>
+<ROW>
+  <DATA>Mg </DATA> <DATA>3.80e-5 </DATA> <DATA>3.80e-5 </DATA> <DATA>3.95e-5 </DATA>
+  <DATA>3.80e-5 </DATA> <DATA>2.51e-5 </DATA> <DATA>3.55e-5</DATA>
+</ROW>
+<ROW>
+  <DATA>Al </DATA> <DATA>2.95e-6 </DATA> <DATA>2.95e-6 </DATA> <DATA>3.12e-6 </DATA>
+  <DATA>2.95e-6 </DATA> <DATA>2.14e-6 </DATA> <DATA>2.88e-6</DATA>
+</ROW>
+<ROW>
+  <DATA>Si </DATA> <DATA>3.55e-5 </DATA> <DATA>3.55e-5 </DATA> <DATA>3.68e-5 </DATA>
+  <DATA>3.55e-5 </DATA> <DATA>1.86e-5 </DATA> <DATA>3.47e-5</DATA>
+</ROW>
+<ROW>
+  <DATA>P  </DATA> <DATA>2.82e-7 </DATA> <DATA>2.82e-7 </DATA> <DATA>3.82e-7 </DATA>
+  <DATA>2.82e-7 </DATA> <DATA>2.63e-7 </DATA> <DATA>2.88e-7</DATA>
+</ROW>
+<ROW>
+  <DATA>S  </DATA> <DATA>1.62e-5 </DATA> <DATA>1.62e-5 </DATA> <DATA>1.89e-5 </DATA>
+  <DATA>2.14e-5 </DATA> <DATA>1.23e-5 </DATA> <DATA>1.55e-5</DATA>
+</ROW>
+<ROW>
+  <DATA>Cl </DATA> <DATA>1.88e-7 </DATA> <DATA>1.88e-7 </DATA> <DATA>1.93e-7 </DATA>
+  <DATA>3.16e-7 </DATA> <DATA>1.32e-7 </DATA> <DATA>1.82e-7</DATA>
+</ROW>
+<ROW>
+  <DATA>Ar </DATA> <DATA>3.63e-6 </DATA> <DATA>4.47e-6 </DATA> <DATA>3.82e-6 </DATA>
+  <DATA>2.51e-6 </DATA> <DATA>2.57e-6 </DATA> <DATA>3.55e-6</DATA>
+</ROW>
+<ROW>
+  <DATA>K  </DATA> <DATA>1.32e-7 </DATA> <DATA>1.32e-7 </DATA> <DATA>1.39e-7 </DATA>
+  <DATA>1.32e-7 </DATA> <DATA>0.00    </DATA> <DATA>1.29e-7</DATA>
+</ROW>
+<ROW>
+  <DATA>Ca </DATA> <DATA>2.29e-6 </DATA> <DATA>2.29e-6 </DATA> <DATA>2.25e-6 </DATA>
+  <DATA>2.29e-6 </DATA> <DATA>1.58e-6 </DATA> <DATA>2.19e-6</DATA>
+</ROW>
+<ROW>
+  <DATA>Sc </DATA> <DATA>1.26e-9 </DATA> <DATA>1.48e-9 </DATA> <DATA>1.24e-9 </DATA>
+  <DATA>1.48e-9 </DATA> <DATA>0.00    </DATA> <DATA>1.17e-9</DATA>
+</ROW>
+<ROW>
+  <DATA>Ti </DATA> <DATA>9.77e-8 </DATA> <DATA>1.05e-7 </DATA> <DATA>8.82e-8 </DATA>
+  <DATA>1.05e-7 </DATA> <DATA>6.46e-8 </DATA> <DATA>8.32e-8 </DATA>
+</ROW>
+<ROW>
+  <DATA>V  </DATA> <DATA>1.00e-8 </DATA> <DATA>1.00e-8 </DATA> <DATA>1.08e-8 </DATA>
+  <DATA>1.00e-8 </DATA> <DATA>0.00    </DATA> <DATA>1.00e-8</DATA>
+</ROW>
+<ROW>
+  <DATA>Cr </DATA> <DATA>4.68e-7 </DATA> <DATA>4.84e-7 </DATA> <DATA>4.93e-7 </DATA>
+  <DATA>4.68e-7 </DATA> <DATA>3.24e-7 </DATA> <DATA>4.47e-7</DATA>
+</ROW>
+<ROW>
+  <DATA>Mn </DATA> <DATA>2.45e-7 </DATA> <DATA>2.45e-7 </DATA> <DATA>3.50e-7 </DATA>
+  <DATA>2.45e-7 </DATA> <DATA>2.19e-7 </DATA> <DATA>3.16e-7</DATA>
+</ROW>
+<ROW>
+  <DATA>Fe </DATA> <DATA>4.68e-5 </DATA> <DATA>3.24e-5 </DATA> <DATA>3.31e-5 </DATA>
+  <DATA>3.16e-5 </DATA> <DATA>2.69e-5 </DATA> <DATA>2.95e-5</DATA>
+</ROW>
+<ROW>
+  <DATA>Co </DATA> <DATA>8.60e-8 </DATA> <DATA>8.60e-8 </DATA> <DATA>8.27e-8 </DATA>
+  <DATA>8.32e-8 </DATA> <DATA>8.32e-8 </DATA> <DATA>8.13e-8</DATA>
+</ROW>
+<ROW>
+  <DATA>Ni </DATA> <DATA>1.78e-6 </DATA> <DATA>1.78e-6 </DATA> <DATA>1.81e-6 </DATA>
+  <DATA>1.78e-6 </DATA> <DATA>1.12e-6 </DATA> <DATA>1.66e-6</DATA>
+</ROW>
+<ROW>
+  <DATA>Cu </DATA> <DATA>1.62e-8 </DATA> <DATA>1.62e-8 </DATA> <DATA>1.89e-8 </DATA>
+  <DATA>1.62e-8 </DATA> <DATA>0.00    </DATA> <DATA>1.82e-8</DATA>
+</ROW>
+<ROW>
+  <DATA>Zn </DATA> <DATA>3.98e-8 </DATA> <DATA>3.98e-8 </DATA> <DATA>4.63e-8 </DATA>
+  <DATA>3.98e-8 </DATA> <DATA>0.00    </DATA> <DATA>4.27e-8</DATA>
+</ROW>
+</TABLE>
+    </ADESC>
+
+ <ADESC title="CHANGES IN CIAO 4.3">
+ <PARA>
+   The set_xsabund command now accepts user-defined files containing
+   solar abundances. 
+ </PARA>  
+</ADESC>
+
+    <BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+    <VERSION>CIAO 4.3</VERSION>
+
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

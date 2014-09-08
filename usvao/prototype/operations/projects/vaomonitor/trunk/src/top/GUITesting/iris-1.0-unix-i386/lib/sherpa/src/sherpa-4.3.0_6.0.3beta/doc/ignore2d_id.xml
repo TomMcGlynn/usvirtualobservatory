@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="ignore2d_id" refkeywords="ignore  include filter exclude wave wavelength energy keV Angstrom bin channel pha  lambda logical image physical wcs world" seealsogroups="sh.filter " displayseealsogroups="" context="filtering">
+
+    <SYNOPSIS>
+     Apply an exclude region filter to 2-D data by data set ID(s).
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>ignore2d_id( ids, [val] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+      Specifies a region mask to be excluded from 2-D data
+      by data set ID, using CIAO region syntax or a region file.
+      </PARA>
+
+      <LIST>
+       <ITEM>
+        id - the id(s) of the data set(s) to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+
+       <ITEM>
+          val - a filter defined by CIAO region syntax or a
+          FITS or ASCII region filename (including path);
+          default=None
+          
+       </ITEM>
+      </LIST>
+
+      <PARA>
+        The filter must be defined in the same coordinate system as
+        the "coord" field of the data structure, which is returned by
+        the get_coord command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/get_coord.html">"ahelp get_coord"</HREF>).
+        For information on the CIAO region filtering syntax, refer to
+        <HREF link="http://cxc.harvard.edu/ciao/ahelp/dmregions.html">"ahelp
+        dmregions"</HREF>.
+      </PARA>
+
+      <PARA>
+	If the region definition on the Sherpa command line contains
+	an arcsec or arcmin symbol, it must be escaped: 
+        \" or \' . The symbols do not need to be escaped if they are in
+        a region file.
+      </PARA>
+
+      <PARA>
+         One-dimensional Data Filtering
+      </PARA>
+ 
+      <PARA>
+        To apply an exclude filter to 1-D data, use the ignore command 
+	(<HREF link="http://cxc.harvard.edu/sherpa/ahelp/ignore.html">"ahelp ignore"</HREF>) 
+or the ignore_id command (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/ignore_id.html">"ahelp ignore_id"</HREF>).
+      </PARA>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; ignore2d_id()</LINE>
+	  
+	</SYNTAX>
+  	 <DESC>
+          <PARA> 
+           When the function ignore2d_id is called with no arguments,
+           the filter will ignore all data points on the
+           grid of the default data set ID. 
+
+          </PARA>
+         </DESC>
+      </QEXAMPLE>
+      
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; ignore2d_id(3, "circle(25,25,5)")</LINE>
+	  <LINE>sherpa&gt; ignore2d_id(3, "circle(259.18823,67.14189,0.01)")</LINE>
+	</SYNTAX>
+  	 <DESC>
+          <PARA> 
+           Supplying a region string in CIAO region syntax, such as "circle(x_center,
+           y_center, radius)" in physical coordinates, will apply the
+           filter to the supplied data set ID(s).  Here, 
+           a circular region is excluded from data set "3".
+          </PARA>
+         </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; ignore2d_id([2,4], "circle(4300,3710,15)")</LINE>
+	  
+	</SYNTAX>
+  	 <DESC>
+          <PARA> 
+           A circular region is excluded from data sets "2" and "4".
+          </PARA>
+         </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; !cat filter.reg</LINE>
+	  <LINE>circle(4070,3940,6)</LINE>
+	  <LINE>sherpa&gt; ignore2d_id("psf", "filter.reg")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The ASCII region file filter.reg is used to filter
+	    the image. In this case we exclude all pixels within the
+	    circle centered at 4070,3940 and with a radius of 6.
+	    The data set specified in this example is "psf".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

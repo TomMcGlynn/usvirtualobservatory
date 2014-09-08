@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="image_psf" refkeywords="image images img imager imaging psf point spread function visualize visualization visualise visualisation" seealsogroups="sh.psf " displayseealsogroups="" context="psfs">
+	<SYNOPSIS>
+     Send a PSF image to the imager (ds9).
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>image_psf( [id, newframe, tile] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+      	The image_psf command sends the 2D PSF data to the imager (ds9) for display.  If a 1D PSF was loaded, use the plot_psf command (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/plot_psf.html">"ahelp plot_psf"</HREF>) instead.  To view the filtered kernel which will be used in the convolution, use the image_kernel command.
+    </PARA>
+
+      <LIST>
+       <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+
+        <ITEM>
+        newframe  - add a new frame;
+          default=False
+          
+        </ITEM>
+
+        <ITEM>
+         tile - tile image frame;
+          default=False
+          
+       </ITEM>
+      </LIST>
+	<PARA title="What is the difference between the PSF and the kernel?">
+	   The point spread function (PSF) is defined by the full (unfiltered) PSF image loaded into Sherpa or the PSF model expression evaluated over the full range of the dataset; both types of PSFs are established with the load_psf() command.  The kernel is the subsection of the PSF image or model which is used to convolve the data.  This subsection is created from the PSF when the size and center of the kernel are defined by the command set_psf().  While the kernel and PSF might be congruent, defining a smaller kernel helps speed the convolution process by restricting the number of points within the PSF that Sherpa must evaluate.
+	 </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; image_psf()</LINE>
+          <LINE>sherpa&gt; image_psf(2)</LINE>
+	  <LINE>sherpa&gt; image_psf(2, True)</LINE>
+	  <LINE>sherpa&gt; image_psf(2, newframe=True, tile=True)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   The function sends image data from a PSF model to the
+           imager, when that model has been defined by data read in
+           from a PSF file.  If no argument is given, the PSF
+           model assigned to the default data set ID is assumed; the
+           PSF data are
+           sent to the current imager frame; and the imager frames are
+           not tiled.  If a different data set ID is given, then data
+           from the PSF model for that data set are displayed.  If the
+           newframe option is set to True, the PSF data are displayed
+           in a new imager frame.  If the tile option is set to True,
+           all imager frames are tiled for display. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+     </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="copy_data" refkeywords="deep copy  cp data id ID ids IDs " seealsogroups="sh.data " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Copy a data set by data ID to a new data ID (deep copy)
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> copy_data( fromid, toid )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The copy_data() function performs a deep copy operation in
+       which one data set is fully copied to another.
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        fromid - the id of the source data set
+
+      </ITEM>
+
+      <ITEM>
+        toid - id of the destination data set
+
+      </ITEM>
+    </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; copy_data(2, "src")</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           The copy_data() function copies one data set to another, by
+           data set ID. Here, the data contained in data set 2 is
+           copied to data set "src".
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; print(get_data(2))
+name           = simple.pi
+channel        = Float64[1024]
+counts         = Float64[1024]
+staterror      = None
+syserror       = None
+bin_lo         = None
+bin_hi         = None
+grouping       = None
+quality        = None
+exposure       = 56494.4943719
+backscal       = 9.36267570731e-05
+areascal       = 1.0
+grouped        = False
+subtracted     = False
+units          = energy
+response_ids   = [1]
+background_ids = [1]
+
+sherpa&gt; print(gete_data("src"))
+name           = 1843.pi
+channel        = Float64[1024]
+counts         = Float64[1024]
+staterror      = None
+syserror       = None
+bin_lo         = None
+bin_hi         = None
+grouping       = None
+quality        = None
+exposure       = 7854.46647487
+backscal       = 0.00085461636003
+areascal       = 1.0
+grouped        = False
+subtracted     = False
+units          = energy
+response_ids   = [1]
+background_ids = []
+
+sherpa&gt; copy_data(2, "src")
+
+sherpa&gt; print(gete_data("src"))
+name           = simple.pi
+channel        = Float64[1024]
+counts         = Float64[1024]
+staterror      = None
+syserror       = None
+bin_lo         = None
+bin_hi         = None
+grouping       = None
+quality        = None
+exposure       = 56494.4943719
+backscal       = 9.36267570731e-05
+areascal       = 1.0
+grouped        = False
+subtracted     = False
+units          = energy
+response_ids   = [1]
+background_ids = [1]
+
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_arf" refkeywords="ancillary auxilliary auxiliary read arf instrument response responses load readarf readfile ARFCrate" seealsogroups="sh.io   sh.arf " displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+      Load a source or background ARF
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_arf( [id], filename|ARFCrate, [resp_id=1], [bkg_id=None] )</LINE>
+	</SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The load_arf command loads an ARF (effective area) from a FITS
+        file or an ARFCrate.  The ARF may be set as the response file
+        for any available source or background dataset.  Additionally,
+        more than one ARF may be associated with a dataset.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+	  filename|ARFCrate - the name of the file (with path) or
+	  ARFCrate which contains the ARF data
+	</ITEM>
+
+        <ITEM>
+	  resp_id - the id of the response, if multiple responses
+	  exist for the dataset; default is id=1
+	</ITEM>
+
+        <ITEM>
+	  bkg_id - the id of the background, if the response is a
+	  background response;
+          default=None
+          
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        The load_bkg_arf command 
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_bkg_arf.html">"ahelp load_bkg_arf"</HREF>)
+	may instead be used to load the background ARF.  It uses the
+        default background and response ids, which is adequate for
+        most simple analysis sessions.  
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_arf("arf.fits")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Load arf.fits and assign it as the first ARF for the
+	    source dataset.  This basic case could also have been done
+	    with the load_bkg_arf command 
+	    
+	    (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_bkg_arf.html">"ahelp load_bkg_arf"</HREF>)	
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+	<QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_arf(1, "source.arf", resp_id=2)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The file source.arf is loaded as the second ARF (the
+	    resp_id is 2) assigned to the dataset with id=1.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_arf("arf.fits", resp_id=1, bkg_id=2)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Load a background response on the second background
+	    (bkg_id=2) of a PHA data set.  The ARF is loaded from a
+	    file and uses the default dataset id.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; arfcr = read_arf("3c273.arf")</LINE>
+          <LINE>sherpa&gt; load_arf(arfcr)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The ARF is read into an ARFCrate (named "arfcr") from the file
+	    3c273.arf.  The ARF is then loaded into Sherpa from the
+	    crate, using the default options.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+     
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

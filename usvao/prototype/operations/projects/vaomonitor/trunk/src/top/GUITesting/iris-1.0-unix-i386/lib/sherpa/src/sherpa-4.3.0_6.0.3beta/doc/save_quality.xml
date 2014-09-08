@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="save_quality" refkeywords="read quality flags array arrays save record store write " seealsogroups="sh.save  sh.data sh.io" displayseealsogroups="" context="saving">
+
+    <SYNOPSIS>
+     Save quality flags to a FITS table or ASCII file
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>save_quality( [id=1], filename, [bkg_id=1,ascii=False,clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	 The save_quality command saves the array of quality flags associated
+	 with a data set to a column in a FITS table file or column-based
+	 ASCII file, by data set id. A quality array element set to x
+      &gt;= 1 marks a good channel and an element set to x &lt; 1 marks a bad channel.
+      </PARA>
+	<LIST>
+        <ITEM>
+          id - the id of the data set to which the quality array
+          has been assigned; if not given, uses the
+          default data set id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+        <ITEM>
+          filename - name of outfile
+        </ITEM>
+        <ITEM>
+          bkd_id - the id of the background data set to use (e.g., bkg_id=1 
+          represents the first background data set loaded in association with
+          the source data set specified in the 'id' argument)
+        </ITEM>
+        <ITEM>
+           ascii - outfile format specification; 
+True to save outfile in ASCII format, False for FITS, default=False
+         </ITEM>
+         <ITEM> 
+            clobber - clobber outfile; default=False (do not clobber if file exists)
+        </ITEM>
+      </LIST>
+      </DESC>
+
+    <QEXAMPLELIST>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_quality("quality.fits")</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            The save_quality function can be called with just a
+            filename, in which case all the default arguments will be used.
+            In this example, the quality array associated
+            with data set id=1 is written to the FITS table file 'quality.fits'.
+          </PARA>
+<VERBATIM>
+ciao% dmlist quality.fits blocks
+--------------------------------------------------------------------------------
+Dataset: quality.fits
+--------------------------------------------------------------------------------
+ 
+     Block Name                          Type         Dimensions
+--------------------------------------------------------------------------------
+Block    1: PRIMARY                        Null        
+Block    2: TABLE                          Table         2 cols x 1024     rows
+	ciao% dmlist quality.fits data
+--------------------------------------------------------------------------------
+Data for Table Block TABLE
+--------------------------------------------------------------------------------
+ 
+ROW    COL1                 COL2
+ 
+     1                  1.0          1
+     2                  2.0          1
+     3                  3.0          1
+     4                  4.0          1
+     5                  5.0          1
+     6                  6.0          1
+     7                  7.0          1
+     8                  8.0          1
+     9                  9.0          1
+     .
+     .
+     .
+[rest of output omitted]
+
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_quality(2, "quality.txt", ascii=True)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           Here, the optional 'ascii' argument is set
+           to True
+           in order to produce an outfile in ASCII format (overriding
+           the default setting ascii=False). The quality array
+           assigned to data set id=2 is written to the text file 'quality.txt'.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_quality(2,"quality_bkg.fits", bkg_id=1, clobber=True)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           The quality array associated with the first
+           background data set loaded for source data set 2 is written
+           to FITS file quality_bkg.fits (note the 'ascii' parameter
+           default is False). 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

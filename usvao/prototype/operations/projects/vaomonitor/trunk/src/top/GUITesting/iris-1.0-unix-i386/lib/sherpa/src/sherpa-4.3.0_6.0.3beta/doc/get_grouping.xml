@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_grouping" refkeywords="get group groups grouped grouping bin bins spectra spectral PHA pha data " seealsogroups="sh.group sh.get " displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+     Obtain the grouping flags from a data set
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_grouping( id [,bkg_id=None] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The get_grouping command returns the array of grouping flags
+	associated with a data set, by data set id. An array element set to 1 marks the
+        beginning of a group and an element set to -1 marks
+        subsequent members of that group. An array of grouping flags
+	can be read from a FITS table file or column-based ASCII file
+	and assigned to a data set with the load_grouping command, and
+        the set_grouping command is used to actually apply a grouping
+        scheme to a data set. The set_grouping and get_grouping
+        commands require that the data set in question be a PHA data set.
+      </PARA>
+
+      <LIST> 
+        <ITEM>
+          id - the id of the data set to use (required); 
+	  default=None
+          
+        </ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if the grouping is to be
+          applied to the background data;
+          default=None
+          
+        </ITEM>	
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_grouping(1)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	     The get_grouping function retrieves the grouping scheme
+      associated with data set id=1 (the data set id is a required argument).
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_grouping(2)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	     Here, an array of grouping flags is read from the ASCII
+	     file 'grouping.txt' and assigned to data set 2 (3c273.pi). The
+	     set_grouping function is used to actually apply the grouping
+	     scheme to data set 2, using the array which is returned
+	     by the get_grouping function. 
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; load_pha(2, "3c273.pi")
+sherpa&gt; load_grouping(2, "grouping.txt")
+sherpa&gt; get_grouping(2)
+
+array([1, -1, -1, -1, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1,..., -1, -1, -1, -1, 1, -1, -1, -1, -
+1, -1, -1, -1])
+
+sherpa&gt; set_grouping(2, get_grouping(2))
+</VERBATIM>
+
+       </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_grouping(2, 1)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The get_grouping function is used to return the array of grouping flags associated with the background of source data set 2 (bkg_id=1 represents the first background data set loaded in association with the source data set id=2).
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

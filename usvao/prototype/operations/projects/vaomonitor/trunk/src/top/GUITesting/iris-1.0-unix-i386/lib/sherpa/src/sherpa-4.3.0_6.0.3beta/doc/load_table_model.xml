@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_table_model" refkeywords="load_ascii read errors ascii load table readascii model models modeling modelling TABLECrate " seealsogroups="sh.io sh.model " displayseealsogroups="" context="modeling">
+
+    <SYNOPSIS>
+      Load data into a table model
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_table_model( modelname, filename|TABLECrate, [ncols=2,colkeys=None,dstype=Data1D] )</LINE>
+      <LINE>load_table_model( modelname, filename|IMAGECrate, [coord="logical"] )</LINE>
+	</SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The load_table_model command reads data from a file or crate
+        and assigns it to an instance of the table model class that can
+        be combined arithmetically with the source model.  The table
+        model stores the y-values from an input data file and returns
+        them as an array when the table model is asked to "calculate"
+        y-values. The model has one parameter, "ampl", the amplitude;
+        the y-values are multiplied by the amplitude.  Additive and 
+	multiplicative XSPEC-style table models are supported by the
+        Sherpa table model using load_table_model. 
+      </PARA>
+      <PARA>
+       The Sherpa table model supports interpolation of data points on
+        the data set grid from the grid supplied from file.  The grids
+        need not be of constant or comparable bin size. If the table
+        model grid is not sorted, Sherpa will sort it in ascending order.
+      </PARA>
+
+      <PARA>
+        The input may be 1D data from a FITS table, ASCII table data,
+        or 2D data from a FITS image file; allowed crates types are
+        TABLECrate and IMAGECrate.  
+      </PARA>
+
+      <LIST>
+        <ITEM> 
+          modelname - the name for the table model
+	</ITEM>
+
+        <ITEM>
+	  filename|TABLECrate|IMAGECrate - the name of the file (with
+	  path) or crate which contains the data
+	</ITEM>
+
+        <ITEM>
+	  ncols (table input) - number of columns to read; default=2
+	</ITEM>
+
+        <ITEM>
+	  colkeys (table input) - list of column names;
+          default=None
+          
+	</ITEM>
+
+        <ITEM>
+	  dstype (table input) - dataset type: Data1D, Data1DInt,
+	  Data2D, Data2DInt; default=Data1D
+	</ITEM>
+	
+        <ITEM>
+	  coord (image input) - the coordinate system: logical, image,
+	  physical, world, or wcs; default=logical
+	</ITEM>
+      </LIST>
+
+      <PARA title="Selecting table columns">
+	The columns to load are specified by a Data Model filter
+	on the filename or the colkeys option of the load_table_model
+	command, as shown in the examples.  Vector columns are
+	separated to form two dstype columns when the file is loaded.
+      </PARA>
+      
+      <PARA>
+	If no columns are specified, the first two columns in the file 
+	are read by default.  If only one column is specified, the
+	dstype is irrelevant.  
+      </PARA>
+
+      <PARA> 
+	The columns must be listed in the order required by the
+	dataset type:    
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  Data1D: x, y,
+          staterror=None, 
+          
+          syserror=None
+          
+	</ITEM>
+
+	<ITEM>
+	  Data1DInt: xlo, xhi, y,
+          staterror=None, 
+          
+          syserror=None
+          
+	</ITEM>
+
+	<ITEM>
+	  Data2D: x0, x1, y, 
+          shape=None, 
+          
+          staterror=None, 
+          
+          syserror=None
+          
+	</ITEM>
+
+	<ITEM>
+	  Data2DInt: x0lo, x1lo, x0hi, x1hi, y,
+          shape=None, 
+          
+          staterror=None, 
+          
+          syserror=None
+          
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_table_model("emap", "expmap.fits")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    A table model named "emap" is created from the exposure
+	    map image in expmap.fits.  The model can be viewed:
+	  </PARA>
+
+<VERBATIM>
+sherpa&gt; print(emap)
+tablemodel.emap
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   emap.ampl    thawed            1     -3.4e+38      3.4e+38
+</VERBATIM>
+
+       </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_table_model("tab", "file.fits", ncols=2)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Create a table model named "tab" by loading the first two
+	    columns of file.fits.
+	  </PARA>
+       </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; imgcr = read_file("psf.img")</LINE>
+          <LINE>sherpa&gt; load_table_model("psfmod", imgcr)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            The image is read into an IMAGECrate (named "imgcr") from
+            source.img.  The crate is then used to create a table
+	    model named "psfmod".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_table_model("tab1", "bhmodel.fits")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            The XSPEC-style table model 'plasma_model.fits' is loaded
+        into Sherpa with the load_table_model command. Both additive and multiplicative
+        XSPEC-style table models are supported using load_table_model. 
+          </PARA>
+<VERBATIM>
+sherpa&gt; load_pha("source.pi")
+sherpa&gt; load_table_model("tab1", "plasma_model.fits")
+sherpa&gt; show_source()
+Model: 1
+xstablemodel.tab1
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   xstbl.log mass thawed     0.977121     0.477121      1.47712           
+   xstbl.log lumin thawed           -1           -2            0           
+   xstbl.inc    thawed          0.5            0            1           
+   xstbl.spin   thawed          0.4            0          0.8           
+   xstbl.log alpha thawed           -2           -2           -1           
+   xstbl.norm   thawed            1            0        1e+24           
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+      
+
+    </QEXAMPLELIST>
+
+
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

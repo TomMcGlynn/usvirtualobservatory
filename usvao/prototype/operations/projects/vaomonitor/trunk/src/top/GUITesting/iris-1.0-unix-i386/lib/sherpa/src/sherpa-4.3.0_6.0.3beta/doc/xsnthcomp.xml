@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsnthcomp" refkeywords=" nthcomp model models modeling modelling source composite nested joint xspec" seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Thermally comptonized continuum.
+XSpec model.
+</SYNOPSIS>
+	<DESC>
+<PARA>
+Nthcomp is a *much* better description of the continuum shape from
+thermal comptonisation than an exponentially cutoff power law, but is
+not that much more complicated in terms of parameters. The high energy
+cutoff is sharper than an exponential, and is parameterized by the
+electron temperature (kT_e). VERY roughly, an exponential rollover
+energy E_c=2-3kT_e but the shape is very different, so it impacts on
+the reflected fraction as well. Another major effect (especially for
+X-ray binaries) is that it incorporates the low energy rollover. The
+hot electrons Compton UPscatter seed photons so there are few photons
+in the scattered spectrum at energies below the typical seed photon
+energies, making it significantly different to a power law below this
+energy. Typically the physical picture is that these seed photons are
+(quasi)blackbody (eg neutron star boundary layer) or disk blackbody in
+shape. Either of these shapes can be selected (input type), both being
+parameterized by a seed photon temperature (kT_bb). Between the low
+and high energy rollovers the shape of the spectrum is set by the
+combination of electron scattering optical depth and electron
+temperature. It is not necessarily a power law, but can be
+parameterized by an asymptotic power law index (Gamma). Details of
+this are given in Zycki, Done &amp; Smith (1999), including a
+self-consistent reflection component which is NOT released here as it
+was written using non-FITS standard files so has significant issues
+with portability. 
+</PARA>
+
+<PARA>
+This is the thermally comptonized continuum model of Zdziarski,
+Johnson &amp; Magdziarz 1996, MNRAS, 283, 193, as extended by Zycki, Done
+&amp; Smith 1999, MNRAS 309, 561. Please reference these papers if you use
+it.  
+</PARA>
+	<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsnthcomp Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> 
+  <DATA>gamma</DATA> 
+  <DATA>asymptotic power-law photon index</DATA>
+</ROW>
+<ROW> 
+  <DATA>2</DATA> 
+  <DATA>kt_e</DATA> 
+  <DATA>electron temperature (high energy rollover)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> 
+  <DATA>kt_bb</DATA> 
+  <DATA>seed photon temperature (low energy rollover)</DATA>
+</ROW>
+<ROW> 
+  <DATA>4</DATA> 
+  <DATA>inp_type</DATA> 
+  <DATA>0 or 1 for blackbody or disk-blackbody seed photons, respectively</DATA>
+</ROW>
+<ROW> 
+  <DATA>5</DATA> 
+  <DATA>redshift</DATA> 
+  <DATA>redshift, z</DATA> 
+</ROW>
+<ROW> 
+  <DATA>6</DATA> 
+  <DATA>norm</DATA> 
+  <DATA>K; normalization, unity at 1 keV for a norm of 1.
+</DATA>
+</ROW>
+
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

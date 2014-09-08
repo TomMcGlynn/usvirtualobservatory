@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="create_model_component" refkeywords="create create_model createparamset model models modeling modelling source " seealsogroups="sh.model " displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+     Create a new model component
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>create_model_component( typename, name )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The create_model_component command is an explicit means of
+	setting and naming a model by type.  It is called implicitly
+	when the  set_source command        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/set_source.html">"ahelp set_source"</HREF>)
+	is used. The model is created with parameters set to the
+	default values.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  typename - the type of model to establish; see 
+	  "ahelp models" for a list of options	  
+	</ITEM>
+
+        <ITEM>
+	  name - the name for the model.  Once assigned, it is in the
+	  local variable scope. 
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        This command is equivalent to "typename.name" when using the
+        default model automatic assignment function; see
+        <HREF link="http://cxc.harvard.edu/sherpa/ahelp/set_model_autoassign_func.html">"ahelp set_model_autoassign_func"</HREF> for more
+        information. 
+      </PARA>
+	</DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; create_model_component("powlaw1d", "p1")</LINE>
+          <LINE>sherpa&gt; list_model_components()</LINE>
+          <LINE>['p1']</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Create an instance of a 1D powerlaw model named "p1".  The
+	    model is established with the default settings:
+	  </PARA>
+
+<VERBATIM>
+sherpa&gt; print(p1)
+powlaw1d.p1
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   p1.gamma     thawed            1          -10           10
+   p1.ref       frozen            1     -3.4e+38      3.4e+38
+   p1.ampl      thawed            1            0      3.4e+38
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; create_model_component("bbody", "bb")</LINE>
+          <LINE>sherpa&gt; list_model_components()</LINE>
+          <LINE>['bb']</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Establish a blackbody model named "bb" with the default settings:
+	  </PARA>
+
+<VERBATIM>
+sherpa&gt; print(bb)
+bbody.bb
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   bb.space     thawed            0            0            1 0 - energy | 1 - wave
+   bb.kT        thawed            1          0.1        1e+03        keV
+   bb.ampl      thawed            1        1e-20        1e+20
+
+sherpa&gt; print(bb.ampl)
+val     = 1
+min     = 1e-20
+default = 1
+max     = 1e+20
+units   =
+frozen  = False
+link    = None
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

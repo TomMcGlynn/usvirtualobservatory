@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="save_arrays" refkeywords="create save write store array arrays " seealsogroups="sh.save sh.io " displayseealsogroups="" context="saving">
+	<SYNOPSIS>
+     Save a list of arrays as columns to a FITS table or ASCII file 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>save_arrays( filename, args, [fields=None,ascii=True,clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The save_arrays() function saves a list of user-specified
+        arrays as columns to a FITS table or ASCII text file, with the
+        option of entering column titles. The arrays
+        supplied to save_arrays() may be read from a column-based
+        text file or FITS table by referencing the data set ID to
+        which the file was assigned when loaded into Sherpa.
+      </PARA>
+
+       <LIST>
+        <ITEM>
+          filename - name of outfile
+        </ITEM>
+        <ITEM>
+	  args - array of column arrays to be written to outfile
+        </ITEM>
+        <ITEM>
+	  fields - array of strings representing the column names;
+           default=None (omit column names)
+        </ITEM>
+        <ITEM>
+           ascii - outfile format specification; True
+          to save outfile in ASCII
+          format, False
+          for FITS, default=True
+          </ITEM>
+          <ITEM> 
+            clobber - clobber outfile;
+            default=False
+            (do not clobber if file exists)
+        </ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_arrays("arrays.txt", [a,b,c])</LINE>
+	  
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+            The save_arrays function can be called with just a filename
+	    and list of arrays, in which case all the default arguments will be used.
+	    In this example, the arrays 'a', 'b' and 'c' are written as
+	    columns to the ASCII file 'arrays.txt'.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_arrays("arrays.fits", [a,b,c], ascii=False)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+            Here, the 'ascii' optional argument is set to False so
+            that arrays 'a', 'b', and 'c' are written to a FITS format
+            file, 'array.fits'.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_arrays("image2_axes.dat",
+          [get_data(2).x0, get_data(2).x1, get_data(2).y], ["Image2 x0
+          array","Image2 x1 array", "Image2 y array"], clobber=False)</LINE>
+	  
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+            In this example, the x0, x1, and y arrays of the image
+            data set 'image2.fits' are written as columns to the text
+            file 'image2_axes.dat'. The arrays are read from 
+            image2.fits with the get_data() function using the argument
+            id=2, since image2.fits is assigned to Sherpa data set
+            id=2. If file image2_axes.dat already exists in the
+            current working directory, it will not be overwrittenm
+            since clobber is set to False.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

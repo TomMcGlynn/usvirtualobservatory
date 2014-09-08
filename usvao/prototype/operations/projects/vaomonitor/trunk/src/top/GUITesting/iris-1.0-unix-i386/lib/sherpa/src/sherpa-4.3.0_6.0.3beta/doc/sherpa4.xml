@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="sherpa" context="sherpa" refkeywords="xspec spectra spectrum source data fit fitting model modeling modelling python" seealsogroups="" displayseealsogroups="">
+
+    <SYNOPSIS>
+      Introduction to Sherpa, the CIAO modeling and fitting package
+    </SYNOPSIS>
+
+    <DESC>
+      <PARA>           
+        The CIAO 4 release includes a new, more powerful version of
+	Sherpa, the CIAO modeling and fitting package.  
+	Sherpa enables the user to construct complex models from
+	simple definitions and fit those models to data, using a
+	variety of statistics and optimization methods.  
+     </PARA>
+
+      <PARA>
+	This document provides an introduction to Sherpa; more
+	information is available on the
+	<HREF link="http://cxc.harvard.edu/sherpa/">Sherpa website</HREF>.
+      </PARA>
+     
+     <PARA>
+       Sherpa is designed for use in a variety of modes: as a
+       user-interactive application and in batch mode.   Sherpa is an
+       importable module for the Python scripting language
+       and is available as a C/C++ library for software developers.
+       In addition, users may write their own Python scripts for use
+       in Sherpa. 
+     </PARA>
+
+     <PARA>       
+       The Sherpa session can be saved into a platform-independent
+       state file.  The session can then be restored at any time.
+     </PARA>
+   </DESC>
+
+   <ADESC title="Starting Sherpa">
+      <PARA>
+        From the CIAO command line, type:
+      </PARA>
+
+     <PARA>
+       <SYNTAX>
+	 <LINE>unix% sherpa [-x|-n|-b|-rcfile|-norcfile] &lt;file&gt;</LINE>
+       </SYNTAX>
+     </PARA>
+
+      <PARA>
+	Any or all of the following options which may be supplied when
+	Sherpa is started:
+      </PARA>
+
+      <LIST> 
+	<ITEM>
+	  -x  : launch Sherpa shell in separate display terminal.
+	</ITEM>
+
+	<ITEM>
+	  -n  : prevents the Sherpa banner from being displayed on
+	  startup.
+	</ITEM>
+
+	<ITEM>
+	  -b  : runs Sherpa in batch mode
+	</ITEM>
+
+	<ITEM>
+	  -rcfile : specify a specific .sherpa.rc file to use; refer
+	  to "ahelp sherparc" for details.  
+	</ITEM>
+
+	<ITEM>
+	  -norcfile :  do not load any .sherpa.rc file; 
+	  overrides "-rcfile" if both are set.
+	</ITEM>
+
+	<ITEM>
+	  &lt;file&gt;: a file of Sherpa commands to run 
+	</ITEM>
+      </LIST>      
+
+      <PARA>        
+        The startup script loads the Sherpa module, as well as the
+        CRATES module, which handles file input and output (
+        <HREF link="http://cxc.harvard.edu/ciao/ahelp/crates.html">"ahelp crates"</HREF>), and the ChIPS module, used for customizing the plots
+        (<HREF link="http://cxc.harvard.edu/chips/ahelp/chips.html">"ahelp chips"</HREF>).  
+      </PARA>
+
+      <PARA>
+	The <HREF link="http://cxc.harvard.edu/sherpa/threads/sherpa_startup/">"Starting
+        Sherpa" thread</HREF> has more details.
+      </PARA>
+
+      <PARA title="The Sherpa Resource File: .sherpa.rc"> 
+	When Sherpa is started, it processes the $HOME/.sherpa.rc
+	resource file.  The resource file defines default behavior for
+      	the Sherpa commands and can be customized to the user's
+      	preferences; refer to <HREF link="http://cxc.harvard.edu/sherpa/ahelp/sherparc.html">"ahelp sherparc"</HREF> for details. 
+      </PARA>
+ 
+      <PARA title="Loading Modules">
+        To import the Sherpa, CRATES, and ChIPS modules in Python
+        without using the "sherpa" startup script:
+      </PARA>
+
+      <PARA>
+	<SYNTAX>
+	  <LINE>from sherpa.astro.ui import *</LINE>
+	  <LINE>from pychips.hlui import *</LINE>
+	  <LINE>from pycrates import *</LINE>
+	</SYNTAX>
+      </PARA>
+
+      <PARA>
+	You may also find it useful to load the
+	<HREF link="http://numpy.scipy.org/">numpy module</HREF>
+      </PARA>
+
+      <PARA>
+	<SYNTAX>
+	  <LINE>import numpy as np</LINE>
+	</SYNTAX>
+      </PARA>
+    </ADESC>
+
+   <ADESC title="Getting Help">
+      <PARA>
+        There are several ways to access the Sherpa help files.          
+      </PARA>
+
+      <PARA title="From the CIAO command line"/>
+
+      <PARA>
+        Syntax, description and examples for a specific
+        command: 
+      </PARA>
+
+      <PARA>
+	<SYNTAX>
+	  <LINE>unix% ahelp &lt;command&gt;</LINE>
+	</SYNTAX>
+      </PARA>
+
+      <PARA title="Within Sherpa">
+        Within the Sherpa application, ahelp or the native Python help
+        system can be used:
+      </PARA>
+
+      <PARA>
+	<SYNTAX>
+	  <LINE>sherpa&gt; ahelp("&lt;command&gt;")</LINE>
+	  <LINE>sherpa&gt; ,ahelp &lt;command&gt;</LINE>
+	  <LINE>sherpa&gt; !ahelp &lt;command&gt;</LINE>
+	  <LINE>sherpa&gt; help &lt;command&gt;</LINE>
+	</SYNTAX>
+      </PARA>
+
+      <PARA>
+	It is also possible to do a wildcard search:
+      </PARA>
+
+      <PARA>
+	<SYNTAX>
+	  <LINE>sherpa&gt; plot* ?</LINE>
+	  <LINE>sherpa&gt; *psf ?</LINE>
+	</SYNTAX>
+      </PARA>
+   </ADESC>
+
+   <ADESC title="CHANGES IN CIAO 4.3">
+     <PARA title="Removal of S-Lang Support">
+       The CXC no longer supports the S-Lang scripting language as of CIAO 4.3. 
+       As a consequence, the Sherpa S-Lang interface has been removed
+       and there is no means of importing Sherpa as a S-Lang module.
+     </PARA>
+
+     <PARA>
+       Users may contact the 
+       <HREF link="http://cxc.harvard.edu/helpdesk/">CXC HelpDesk</HREF> for 
+       assistance in transitioning to Python.
+     </PARA>
+   </ADESC>
+
+   <BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+   <VERSION>CIAO 4.3</VERSION>
+   <LASTMODIFIED>December 2010</LASTMODIFIED>
+ </ENTRY></cxchelptopics>

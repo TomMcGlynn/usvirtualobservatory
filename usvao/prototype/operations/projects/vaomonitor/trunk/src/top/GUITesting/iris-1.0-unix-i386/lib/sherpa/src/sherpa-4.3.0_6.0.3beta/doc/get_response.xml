@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_response" refkeywords="arf instrument rmf data response get" seealsogroups=" sh.rmf sh.get sh.arf " displayseealsogroups="" context="modeling">
+
+
+<SYNOPSIS>
+      Get the associated instrument response model of a PHA data set by data ID
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_response([id,bkg_id])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The get_response command returns the instrument response model
+        associated with a PHA data set, by data set ID or background
+        data set ID.  The returned instrument model can be used to
+        define complex convolved model expressions in Sherpa. For
+        example, the instrument
+        model can be used within the Sherpa model expressions of the 
+	set_full_model and set_bkg_full_model commands, which are used
+        for explicitly 
+	convolving a source or background model with an associated
+        response (see "ahelp set_full_model").
+      </PARA>
+  
+      <LIST>
+        <ITEM>
+	 id -  the ID of the data set; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+	<ITEM>
+	 bkg_id - the ID of the background data set; if not given,
+	 uses the default background data set id (id=1, bkg_id=1) 
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_pha("soure.pi")</LINE>
+          <LINE>sherpa&gt; load_arf("source.arf")</LINE>
+          <LINE>sherpa&gt; load_rmf("source.rmf")</LINE>
+	  <LINE>sherpa&gt; rsp = get_response()</LINE>
+	  <LINE>sherpa&gt; set_full_model(rsp(powlaw1d.pl))</LINE>	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Obtain the instrument response model for data set
+	1 and convolve it with the source model for this data set, a
+	1-D powerlaw named "pl". Note that the get_arf() and get_rmf()
+	commands can be used in a similar way, producing equivalent results: 
+	  </PARA>
+<VERBATIM>
+sherpa&gt; load_pha("soure.pi")
+sherpa&gt; load_arf("source.arf")
+sherpa&gt; load_rmf("source.rmf")
+sherpa&gt; arf = get_arf()
+sherpa&gt; rmf = get_rmf()
+sherpa&gt; set_full_model(rmf(arf(powlaw1d.pl)))
+sherpa&gt; show_model()
+Model: 1
+apply_rmf(apply_arf((49429.2334679 * powlaw1d.p1)))
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   p1.gamma     thawed            1          -10           10           
+   p1.ref       frozen            1 -3.40282e+38  3.40282e+38           
+   p1.ampl      thawed            1            0  3.40282e+38           
+     
+	</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_pha("soure.pi")</LINE>
+          <LINE>sherpa&gt; load_bkg("back.pi")</LINE>
+	  <LINE>sherpa&gt; rsp = get_response()</LINE>
+	  <LINE>sherpa&gt; bkg_rsp = get_response(bkg_id=1)</LINE>
+	  <LINE>sherpa&gt; bkg_scale = get_exposure()*get_backscal()/get_exposure(bkg_id=1)/get_backscal(bkg_id=1)</LINE>
+          <LINE>sherpa&gt; set_full_model(rsp(xsphabs.abs1*powlaw1d.p1+bkg_scale*abs1*powlaw1d.p2))</LINE>
+	  <LINE>sherpa&gt; set_bkg_full_model(bkg_rsp(abs1*p2))</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>   
+	 The complete convolved model for the source is set, which includes
+         a corresponding background component scaled
+        by the source-to-background exposure and backscale
+        ratios. The function
+        set_bkg_full_model is then used to define the complete
+        convolved background model. This series of commands allows the
+        source and background components to be fitted simultaneously.
+	(Note that it was not necessary to call load_arf/load_rmf and load_bkg_arf/load_bkg_rmf
+        in this example; this is because the associated source and background response filenames
+        were read from the headers of the source and background spectral files, and automatically
+        loaded into the Sherpa session with load_pha and load_bkg.) 
+         </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+          <SYNTAX>
+          <LINE>sherpa&gt; rsp = get_response("src")</LINE>
+          <LINE>sherpa&gt; set_full_model("src","rsp(bbody.bb+powlaw1d.pl)+gauss1d.line1+gauss1d.line2")</LINE>
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            The complete convolved model for data set "src" is built
+        from four different 
+            model components plus an instrument response.  The
+        black-body and power-law model components  are
+            convolved with the response, whereas the Gaussian model
+        components are not convolved with the response.  Note that in
+        this instance the model components which are convolved
+        with the response are in energy space, while the unconvolved
+        components are in channel space.  The use of set_full_model
+        in this way is especially useful in the context where a
+        separate background spectrum is not available, e.g., to model
+        the instrumental background emission contributing to a diffuse
+        source which covers the entire field of view of the
+        observation. The set_bkg_full_model function ought to be used
+        where a separate background file is available (see "ahelp
+        set_full model" for examples).
+         </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      
+    </QEXAMPLELIST>
+        <BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

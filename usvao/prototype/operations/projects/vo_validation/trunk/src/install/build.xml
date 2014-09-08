@@ -1,0 +1,30 @@
+<project name="simpleCompile" default="deploy" basedir="/www/htdocs/vo/usvao_svn/validation/trunk/src/">
+  <property name="sourceDir" value="${basedir}/topleveldir/"/>
+  <property name="outputDir" value="/www/htdocs/vo/validation_test3"/>
+  <property name ="perl"     value = "${outputDir}/perl"/>
+   <target name="compile">
+   </target>
+   <target name="deploy" depends="init">
+    <copy  todir  = "${outputDir}">
+     <fileset dir = "${sourceDir}"/>
+   </copy>
+   <copy todir = "${outputDir}/perl">
+    <fileset dir = "${basedir}/perl"/>	
+   </copy>
+   <copy todir = "${outputDir}/java">
+   <fileset dir = "${basedir}/java"/>
+   </copy>
+   <copy todir = "${outputDir}/data">
+   <fileset dir = "${basedir}/data"/>
+   </copy>
+   <copy todir = "${outputDir}/css">
+   <fileset dir = "${basedir}/css"/>
+   </copy>
+   <copy todir = "${outputDir}/doc">
+    <fileset dir = "${basedir}/doc"/>
+   </copy>
+   </target>
+   <target name = 'init'>
+      <echo message="Creating new directories in target area"/>
+   </target>
+</project>

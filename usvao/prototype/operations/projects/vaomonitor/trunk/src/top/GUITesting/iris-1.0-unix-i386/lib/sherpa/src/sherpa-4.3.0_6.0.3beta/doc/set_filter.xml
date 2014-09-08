@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_filter" refkeywords="set filter filters bin bins PHA pha data  filter flags array arrays" seealsogroups="sh.set  sh.data" displayseealsogroups="" context="filtering">
+
+<SYNOPSIS>
+     Apply user-defined filter to a data set
+  
+  </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_filter( [id,] val [,bkg_id=None, ignore=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The set_filter command applies a user-defined array of filter flags
+        to a data set, overriding any filter contained within the PHA
+        file. If the 'ignore' keyword argument is set to 'False'
+      (default), an element in a
+        filter array set to a value of 1 or greater marks a 'good' bin
+        and an element set to
+        less than 1 marks a 'bad' bin; the opposite holds if the
+        ignore flag is set to 'True'. To filter a data set with an
+        array contained in a FITS table, column-based ASCII table, or
+        FITS image, use the load_filter command (see "ahelp load_filter").
+      </PARA>
+
+      <LIST> 
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+	<ITEM>
+	  val - an array defining the filter, which must be
+	  the same length as the input data set. An element set to
+	  x &gt;= 1 marks a good bin and an element set to x &lt; 1 marks a bad bin.
+	</ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if the filter is to be
+          applied to the background data;
+          default=None
+        </ITEM>	
+        <ITEM>
+           ignore - True/False Boolean switch to indicate which
+       elements in a filter array should be used to filter the associated data set; default is False
+       </ITEM>
+
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_filter([1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, ...] )</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	   The set_filter command is used to apply a user-defined
+	   array of filter flags to default data set id=1; the filter
+         array contains as many elements as the data array. Since the
+          'ignore' argument is set to 'False'
+            by default, only the elements in the
+            filter array containing values of 1 will be
+            retained in the corresponding places in the data set. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; c=[0,0,1,1,0,1]</LINE>
+          <LINE>sherpa&gt; set_filter(2, c, bkg_id=1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The 6-element array of filter flags stored in variable 'c' is
+	    applied to the background of data set 2 with the
+        set_filter command. The filtered background data array contains the values
+        corresponding only to the third, fourth, and sixth elements of the original 6-element data array.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+       <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; f=[0,1,1,1,0,1]</LINE>
+          <LINE>sherpa&gt; set_filter(f, ignore=True)</LINE>
+          <LINE>sherpa&gt; print(get_filter())</LINE>
+          <LINE>0.0000,4.0000</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The 6-element array of filter flags stored in variable 'f' is
+	    applied to data set 1 with the set_filter command, using an
+            'ignore' setting of 'True'. The filtered data array contains the values
+        corresponding only to the first and fifth elements of the original 6-element data array.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+             <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; c=[0,0,1,1,0,1]</LINE>
+          <LINE>sherpa&gt; set_filter(c, ignore=False)</LINE>
+      	  <LINE>sherpa&gt; print(get_filter())</LINE>
+          <LINE>2.0000,3.0000,5.0000</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The 6-element array of filter flags stored in variable 'c' is
+	    applied to data set 1 with the set_filter command, using the 
+            'ignore' setting of 'False'. The filtered data array
+             contains the values corresponding only to the third, fourth, and sixth elements of the original 6-element data array.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

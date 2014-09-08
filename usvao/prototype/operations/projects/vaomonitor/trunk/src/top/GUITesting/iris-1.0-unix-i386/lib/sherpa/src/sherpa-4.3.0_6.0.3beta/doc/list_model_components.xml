@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="list_model_components" refkeywords="list lists get show model models components" seealsogroups="sh.models sh.list" displayseealsogroups="" context="models">
+	<SYNOPSIS>
+     List all models established in a Sherpa session.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>list_model_components()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       Sherpa allows users to construct arbitrarily complex models
+      from model components (e.g., Gaussians, Lorentzians, XSPEC
+      models, etc.).  This function returns a list of the user-defined
+      names of all model
+      components that have been established in a Sherpa session (including
+      model components that have been established but not yet assigned to
+      a model expression to be fit to a data set). The
+      list_model_components() function accepts no arguments.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; list_model_components()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   This function returns the user-defined names of model components
+           established during a Sherpa session:
+	  </PARA>
+          <VERBATIM>
+            sherpa&gt; set_model(2, xswabs.abs1*powerlaw1d.p1)
+            sherpa&gt; set_model(4, bbody.b1 + powlaw1d.p1)
+            sherpa&gt; set_model("model3", gauss1d.g1)
+            
+            sherpa&gt; list_model_components()
+            ['p1', 'abs1', 'g1', 'b1']
+          </VERBATIM>
+          <PARA>
+           In this example, set_model() is used to assign model
+           expressions to data sets 2 and 4, as well as to set
+           "model3" to the gauss1d model (to be fit to data set 3 at a
+           later time). 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

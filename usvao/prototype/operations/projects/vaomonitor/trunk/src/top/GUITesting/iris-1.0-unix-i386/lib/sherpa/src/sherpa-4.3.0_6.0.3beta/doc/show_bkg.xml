@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="show_bkg" refkeywords="show bkg background data dataset information settings" seealsogroups="" displayseealsogroups="" context="info">
+	<SYNOPSIS>
+     Display PHA background data set information
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>show_bkg([id=None, bkg_id=None, outfile=None, clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+          The show_bkg() function displays the details of the PHA
+	  background data sets which have been loaded into Sherpa, by data set
+	  ID. Numerous pieces of information are returned, including
+	  any filters which may have been applied to
+	  the data, the grouping settings, mission-specific header
+	  keywords, the details of any associated instrument responses
+	  files (ARF, RMF), to name a few.  This information can be saved to a
+	  text file by specifying a filename in the 'outfile' argument.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+         id - the id of the source data set to use; default is to show
+         information for all available data sets.
+        </ITEM>
+
+	<ITEM>
+          bkg_id - the id of the background data set to use (e.g., bkg_id=1 
+          represents the first background data set loaded in association with
+          the source data set specified in the 'id' argument); default
+          is bkg_id=1 for id=1.
+        </ITEM>
+
+        <ITEM>
+         outfile - name of the file to which to save the output of the
+         function
+        </ITEM>
+
+	<ITEM>
+	  clobber - a Boolean switch which indicates whether or not the 'outfile' should be overwritten, if the file already exists; default=False
+
+        </ITEM>
+	</LIST>
+
+       <PARA>        
+        The command output looks like:
+      </PARA>        
+
+<VERBATIM>
+Background Data Set: 1:1
+Filter: 0.1248-12.4100 Energy (keV)
+Noticed Channels: 1-1024
+meta           = 
+ object        = 3C 273
+ obs_id        = 459
+ mission       = AXAF
+ telescope     = CHANDRA
+ instrument    = ACIS
+ detector      = ACIS-56789
+ grating       = HETG
+name           = 3c273_bg.pi
+channel        = Float64[1024]
+counts         = Float64[1024]
+staterror      = None
+syserror       = None
+bin_lo         = None
+bin_hi         = None
+grouping       = Int16[1024]
+quality        = Int16[1024]
+exposure       = 38564.6089269
+backscal       = 1.87253514146e-05
+areascal       = 1.0
+grouped        = True
+subtracted     = False
+units          = energy
+rate           = True
+plot_fac       = 0
+response_ids   = [1]
+background_ids = []
+
+Background RMF Data Set: 1:1
+meta     = 
+ telescope     = CHANDRA
+ instrument    = ACIS
+name     = 3c273.rmf
+detchans = 1024
+energ_lo = Float64[1090]
+energ_hi = Float64[1090]
+n_grp    = Int16[1090]
+f_chan   = UInt32[2002]
+n_chan   = UInt32[2002]
+matrix   = Float64[61834]
+offset   = 1
+e_min    = Float64[1024]
+e_max    = Float64[1024]
+
+Background ARF Data Set: 1:1
+meta     = 
+ telescope     = CHANDRA
+ instrument    = ACIS
+ grating       = HETG
+ detector      = ACIS-7
+name     = 3c273.arf
+energ_lo = Float64[1090]
+energ_hi = Float64[1090]
+specresp = Float64[1090]
+bin_lo   = None
+bin_hi   = None
+exposure = 38564.1414549
+</VERBATIM>
+	<PARA>        
+        The behavior of the screen output is determined by the
+        user's $PAGER environment variable setting, which
+        is usually a variant of "more." If PAGER is not found,
+        '/usr/bin/more' is attempted before error. To disable paging within
+        show_bkg() - i.e. print the entire contents, even if it
+        scrolls offscreen - change this setting to "cat" before starting
+        Sherpa: 
+      </PARA>
+
+<VERBATIM>
+unix% setenv PAGER cat
+
+unix% sherpa
+</VERBATIM>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; show_bkg()</LINE>
+	  
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The function show_bkg() can be called with no arguments,
+	    in which case the details of all available background data
+	    sets will be displayed. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+ 
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; show_bkg(3, 1)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The data set id arguments are used to specify that the first
+	    background data set loaded in association with source data
+	    set 3 should be displayed (id=3, bkg_id=1). If only the
+	    source data set id "3" had been entered, without
+	    specifying a background id, all background data
+	    sets associated with data set 3 would be returned.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; show_bkg(3, "sherpa.bkg", True)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	   Here, the outfile argument is used to store information
+	   pertaining to 
+	   all background data sets loaded for source data set 3 in
+	   the file 'sherpa.bkg'. This file will be
+	   overwritten if it already exists in the current working
+	   directory, since 'clobber' is set to True.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+ 
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

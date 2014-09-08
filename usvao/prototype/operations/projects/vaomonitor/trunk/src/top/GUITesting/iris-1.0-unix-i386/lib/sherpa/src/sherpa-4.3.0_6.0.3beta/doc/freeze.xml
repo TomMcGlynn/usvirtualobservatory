@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="freeze" refkeywords="parameter parameters par pars model models modeling modelling fix unthaw" seealsogroups="sh.par " displayseealsogroups="" context="modeling">
+
+    <SYNOPSIS>
+    Freeze model parameters, so they do not vary during a fit.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>freeze([parameter], [[parameters]])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+      Given one or more model parameters, freeze each model parameter
+      at its current value.  The frozen parameters are not varied
+      during a fit.  (If an argument is a model, then all the model
+      parameters of that model are frozen.)
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  parameter(s) - model parameters to freeze for the fit
+	</ITEM>
+      </LIST>
+	<PARA>
+      The freeze function must be given at least one argument.
+      That argument must be a model or a model parameter.   The
+      function can be given an indefinite number of models and/or model
+      parameters as arguments.  If a model is an argument, all the
+      parameters of that model are frozen at their current values.
+      </PARA>
+   
+      <PARA>      
+      To unfreeze model parameter values 
+      and allow them to vary, the command thaw 
+      (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/thaw.html">"ahelp thaw"</HREF>)
+      is used.
+	</PARA>
+   </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; freeze(g.ampl)</LINE>
+	  
+        </SYNTAX>
+	<DESC>
+          <PARA>	  
+          The model parameter "ampl" of model "g" is frozen at
+          its current value. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; freeze(g.ampl, g.fwhm)</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	  Both model parameters "ampl" and "fwhm" of model "g"
+	  are frozen at their current values.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+  
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; freeze(g)</LINE> 
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	  All model parameters specified in model "g" are frozen
+	  at their current values.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

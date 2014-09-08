@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="unlink" refkeywords="parameter component model modeling modelling source linkparam unlinkparam" seealsogroups="sh.par " displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+      Remove a link between model parameters
+
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>unlink( par )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The unlink command removes a link between two model
+        parameters.  
+      </PARA>
+
+      <LIST>
+	<ITEM>
+          par - the model parameter to unlink
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	When a link is removed between two model parameters, the 
+	parameter value is set to that of the parameter to which it
+	had been linked.   When a link is removed between a model
+	parameter and a model stack, the parameter is set to the
+	value it had before that link was established.
+      </PARA>
+
+      <PARA>
+	A link between two model parameters is established using the
+	link command 
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/link.html">"ahelp link"</HREF>).
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_source(gauss1d.g1 + gauss1d.g2)</LINE>
+          <LINE>sherpa&gt; link(g1.ampl, 0.5*g2.ampl)</LINE>
+          <LINE>sherpa&gt; show_model()</LINE>
+          <LINE>...</LINE>
+          <LINE>   g1.ampl      linked          0.5    expr: (0.5 * g2.ampl)</LINE>
+          <LINE/>
+          <LINE>sherpa&gt; unlink(g1.ampl)</LINE>
+          <LINE>sherpa&gt; show_model()</LINE>
+          <LINE>...</LINE>
+          <LINE>   g1.ampl      thawed            1     -3.4e+38      3.4e+38</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Link the amplitudes of two Gaussian models, then remove
+	    the link.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; link(modelc.3, 2*modeld.3 - modele.3)</LINE>
+          <LINE>sherpa&gt; unlink(modelc.3)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Create a link to a model expression, then remove the link.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

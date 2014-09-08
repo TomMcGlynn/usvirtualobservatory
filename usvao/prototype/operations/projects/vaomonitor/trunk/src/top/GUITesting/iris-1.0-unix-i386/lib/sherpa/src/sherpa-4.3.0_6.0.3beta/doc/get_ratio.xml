@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_ratio" refkeywords=" ratio model data get get_ratio_contour get_ratio_image get_ratio_plot" seealsogroups="sh.data sh.get sh.model" displayseealsogroups="" context="visualization">
+	<SYNOPSIS>
+     Return information on the ratio of data and model.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_ratio_contour( [id] )</LINE>
+	<LINE>get_ratio_image( [id] )</LINE>
+	<LINE>get_ratio_plot( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <LIST>
+        <ITEM>
+          id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+      </LIST>
+
+      <PARA>
+	get_ratio_contour: 
+      </PARA>
+      
+      <PARA>
+	When a 2-D model is assigned to a data set,
+      a contour plot of the ratio between the data and model can be
+      created.  This 
+      function returns a variable listing all the information that
+      went into making that plot--title, axis labels, data arrays,
+      contour levels and other plot preferences.
+      </PARA>
+
+      <PARA>
+	get_ratio_image: 
+      </PARA>
+      
+      <PARA>
+       When a 2-D model is assigned to a data set, an image of
+      the ratio between the data and model can be created.  This
+      function returns a variable containing the image of that ratio.
+      </PARA>
+
+      <PARA>
+	get_ratio_plot: 
+      </PARA>
+      
+      <PARA>
+       When a 1-D model is assigned to a data set, a plot of
+      the ratio between the data and model can be created.  This
+      function returns a variable listing all the information that
+      went into making that plot--title, axis labels, data arrays,
+      error bars and other plot preferences.
+      </PARA>
+     </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_ratio_contour()</LINE>
+          <LINE>sherpa&gt; get_ratio_contour(1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   This function returns a variable listing all information
+           that went into making a contour plot of the ratio of data
+           and model.  If no argument is given, then the default data
+           set ID is assumed.  If an argument is given, then
+           information about the ratio contour plot that goes with
+           that data set is returned.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_ratio_image()</LINE>
+          <LINE>sherpa&gt; get_ratio_image(1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   This function returns a variable containing the image of
+           the ratio of the data and model.  If no argument is given, 
+           then the default data
+           set ID is assumed.  If an argument is given, then
+	   the image of the ratio for that data set is returned.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_ratio_plot()</LINE>
+          <LINE>sherpa&gt; get_ratio_plot(1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   This function returns a variable listing all information
+           that went into making a plot of the ratio of data
+           and model.  If no argument is given, then the default data
+           set ID is assumed.  If an argument is given, then
+           information about the ratio plot that goes with
+           that data set is returned.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+     </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

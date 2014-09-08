@@ -1,0 +1,3 @@
+DirectoryIndex /vo/notification/shownote.pl
+Options +ExecCGI
+AddHandler cgi-script .pl .cgi .js

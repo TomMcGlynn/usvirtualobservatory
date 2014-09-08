@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_bkg" refkeywords="read back background errors load pha pha2 phaII spectrum spectra " seealsogroups="sh.io " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Load a PHA background spectrum
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_bkg( [id], filename|PHACrate, [use_errors=False], [bkg_id=None] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The load_bkg command loads a PHA background spectrum from a FITS
+        file or a PHACrate and assigns it to a source id.  The
+	background dataset if its source id is reassigned to a new
+	dataset.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+	  filename|PHACrate - the name of the file (with path) or
+	  PHACrate which contains the PHA data
+	</ITEM>
+
+        <ITEM>
+	  use_errors - read the statistical errors from the PHA file?
+          default=False
+          
+	</ITEM>
+
+        <ITEM>
+	  bkg_id - the id of the background, if the response is a
+	  background response;
+          default=None
+          
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        If the input PHA file contains grouping information, the data
+        are automatically grouped.  Sherpa also reads any quality
+        information, allowing the user to filter out bad channels.
+      </PARA>
+
+      <PARA title="Loading Background Responses">
+        If the header keywords of the PHA file contain ARF and RMF
+        information, the files are automatically read in and assigned
+        as the background responses.  Background response files may
+        also be loaded manually with the load_bkg_arf 
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_bkg_arf.html">"ahelp load_bkg_arf"</HREF>)
+	and load_bkg_rmf
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_bkg_rmf.html">"ahelp load_bkg_rmf"</HREF>)
+	commands.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_bkg("back.pha")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    A background spectrum is loaded from the file back.pha and
+	    assigned to the default dataset.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_bkg("src", "3c273_bkg.pi", use_errors="True", bkg_id="bkg")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Read the background spectrum from 3c273_bkg.pi, give it
+	    the id "bkg", and assign it to the dataset "src".  The
+	    errors are read from the file as well.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; backcr = read_pha("back.pi")</LINE>
+	  <LINE>sherpa&gt; load_bkg(backcr)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            The background PHA file is read into a PHACrate (named
+	    "backcr") from back.pi.  The background is then loaded
+	    into Sherpa from the crate, using the default options.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

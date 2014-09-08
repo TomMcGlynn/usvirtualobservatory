@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="show_conf" refkeywords="show report status state information results confidence " seealsogroups="sh.info " displayseealsogroups="" context="info">
+
+    <SYNOPSIS>
+     Display the confidence information
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>show_conf([outfile=None, clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+          The show_conf command displays the results of the last run
+	  of the confidence command (see <HREF link="http://cxc.harvard.edu/sherpa/ahelp/conf.html">"ahelp conf"</HREF>), which
+          may be saved to a file via the 'outfile' argument. The
+	  output consists of the best-fit model parameter values and
+	  associated confidence limits calculated for one or more
+	  data sets, using the confidence parameter estimation method
+	  and the chosen fit optimization method and statistic.
+      </PARA>
+
+      <LIST>
+       <ITEM>
+        outfile - name of the file in which to store the information
+      </ITEM>
+
+      <ITEM>
+        clobber -  a Boolean switch which indicates whether or not
+        the 'outfile' should be overwritten, if the file already exists;
+        default=False
+        
+      </ITEM>
+    </LIST>
+	<PARA>        
+        The command output looks like:
+      </PARA>        
+
+<VERBATIM>
+sherpa&gt; show_conf()
+
+Confidence:Dataset               = 1, 2
+Confidence Method     = confidence
+Fitting Method        = levmar
+Statistic             = chi2gehrels
+confidence 1-sigma (68.2689%) bounds:
+   Param            Best-Fit  Lower Bound  Upper Bound
+   -----            --------  -----------  -----------
+   p1.gamma          2.15852   -0.0827856    0.0834106
+   p1.ampl        0.00022484 -1.48256e-05  1.48256e-05
+</VERBATIM>
+	<PARA>        
+        The behavior of the screen output is determined by the
+        user's $PAGER environment variable setting, which
+        is usually a variant of "more."  To disable paging within
+        show_all() - i.e. print the entire contents, even if it
+        scrolls offscreen - change this setting to "cat" before starting
+        Sherpa:
+      </PARA>
+
+<VERBATIM>
+unix% setenv PAGER cat
+
+unix% sherpa
+</VERBATIM>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; show_conf()</LINE>
+	  
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Print to the screen the model parameter confidence values
+	    resulting from the last run of the confidence command (which may
+	    have been run for one or multiple data sets).
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; show_conf("sherpa.conf", True)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Write the model parameter confidence values to the file "sherpa.conf", clobbering any existing file with the same name.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

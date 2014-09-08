@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="plot_bkg" refkeywords="plot_bkg_chisqr plot_bkg_delchi plot_bkg_fit plot_bkg_fit_delchi plot_bkg_fit_resid plot_bkg_model plot_bkg_ratio plot_bkg_resid plot_bkg_source plot_bkg_unconvolved back background bkg plot plotting " seealsogroups="sh.bg sh.plot " displayseealsogroups="" context="plotting">
+	<SYNOPSIS>
+     Plot information about background data
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>plot_bkg( [id], [bkg_id=None, replot=False, overplot=False] )</LINE>
+      <LINE>plot_bkg_chisqr ( [id], [bkg_id=None, replot=False, overplot=False] )</LINE>
+      <LINE>plot_bkg_delchi ( [id], [bkg_id=None, replot=False, overplot=False] )</LINE>
+      <LINE>plot_bkg_fit ( [id], [bkg_id=None, replot=False, overplot=False] )</LINE>
+      <LINE>plot_bkg_fit_delchi ( [id], [bkg_id=None, replot=False, overplot=False] )</LINE>
+      <LINE>plot_bkg_fit_resid ( [id], [bkg_id=None, replot=False, overplot=False] )</LINE>
+      <LINE>plot_bkg_model ( [id], [bkg_id=None, replot=False, overplot=False] )</LINE>
+      <LINE>plot_bkg_ratio ( [id], [bkg_id=None, replot=False, overplot=False] )</LINE>
+      <LINE>plot_bkg_resid ( [id], [bkg_id=None, replot=False, overplot=False] )</LINE>
+      <LINE>plot_bkg_source ( [id], [lo=None, hi=None, bkg_id=None, replot=False, overplot=False] )</LINE>      
+      <LINE>plot_bkg_unconvolved ( [id], [lo=None, hi=None, bkg_id=None, replot=False, overplot=False] )</LINE>      
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+	There are a number of commands to plot information about the
+	background data:
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  plot_bkg - background counts
+	</ITEM>
+	<ITEM>
+	  plot_bkg_chisqr - background chi squared contributions
+	</ITEM>
+	<ITEM>
+	  plot_bkg_delchi - background delta chi (residuals divided by background uncertainties)
+	</ITEM>
+	<ITEM>
+	  plot_bkg_fit - background counts with fitted background model
+	</ITEM>
+	<ITEM>
+	  plot_bkg_fit_delchi - background fit and background delta chi
+	</ITEM>
+	<ITEM>
+	  plot_bkg_fit_resid - background fit and background residuals
+	</ITEM>
+	<ITEM>
+	  plot_bkg_model - convolved background model
+	</ITEM>
+	<ITEM>
+	  plot_bkg_ratio - background ratio (background measured counts divided
+       by background predicted counts)
+	</ITEM>
+	<ITEM>
+	  plot_bkg_resid - background residuals (measured background counts minus predicted background counts)
+	</ITEM>
+	<ITEM>
+	  plot_bkg_source - unconvolved source model; may also be called as plot_bkg_unconvolved
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	The commands take the following options:
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background to use, e.g. if more 
+          than one background is associated with the data; default is
+          the first background dataset
+	</ITEM>
+
+        <ITEM>
+          lo - lower bound of the desired plotting range;
+          default=None 
+          
+      </ITEM>
+
+       <ITEM>
+        hi - high bound of the desired plotting range;
+        default= None 
+          
+      </ITEM>
+
+        <ITEM>
+          lo - (plot_bkg_source only) lower limit of the plot in the
+          same units as the data 
+          (energy [keV] or wavelength [A]);
+          default=None, 
+          
+          which uses the value from the response file (ENERG_LO)
+        </ITEM>
+
+        <ITEM>
+          hi - (plot_bkg_source only) upper limit of the plot in the
+          same units as the data 
+          (energy [keV] or wavelength [A]);
+          default=None, 
+          
+          which uses the value from the response file (ENERG_HI)
+        </ITEM>
+
+        <ITEM>
+          overplot  - should the new plot be overlaid in the plotting window?
+          False (default)=clear the window, True=overplot on any existing plots
+          
+        </ITEM>
+      </LIST>
+
+      <PARA>
+        The plot is displayed in a ChIPS plotting window.  If there is
+        no plotting window open, one is created.  If a plotting window
+        exists, the overplot parameter value determines whether the
+        new plot is overlaid on any existing plots in the window or if
+        the window is cleared before the plot is drawn. 
+      </PARA>
+
+      <PARA>
+        ChIPS commands may be used within Sherpa to modify plot
+        characteristics and create hardcopies; refer to the <HREF link="http://cxc.harvard.edu/chips/">ChIPS website</HREF> for
+        information. 
+      </PARA>
+
+      <PARA title="Plotting Multiple Objects">
+	To plot multiple Sherpa objects - e.g. data, model, fit,
+	residuals - in a single window, use
+	the <HREF link="http://cxc.harvard.edu/sherpa/ahelp/plot.html">plot command</HREF>.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; plot_bkg()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Plot the first background set (if there is more than one)
+	    associated with the default dataset.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; plot_bkg("src", "bg2", overplot=True)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Plot the background "bg2" associated with dataset "src",
+	    overlaying it on any existing plots. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

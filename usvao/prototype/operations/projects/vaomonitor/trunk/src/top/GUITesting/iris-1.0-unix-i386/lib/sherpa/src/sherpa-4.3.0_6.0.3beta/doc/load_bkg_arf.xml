@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_bkg_arf" refkeywords="ancillary auxilliary auxiliary read back background  arf instrument response responses load readarf readfile ARFCrate" seealsogroups="sh.io sh.arf" displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Load a background ARF
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_bkg_arf( [id], filename|ARFCrate )</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+        The load_bkg_arf command loads an ARF (effective area) from a
+	FITS file or an ARFCrate.  The ARF is assigned as the
+	default response id for the default background id of the
+	specified source dataset; i.e. for most simple analyses, this
+	command will assign the ARF as the first response of the first
+	background dataset associated with the id.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+	  filename|ARFCrate - the name of the file (with path) or
+	  ARFCrate which contains the ARF data
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        The load_bkg command 
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_bkg.html">"ahelp load_bkg"</HREF>)
+	may instead be used to load the background ARF.  It allows the
+        user to specify the background and response ids, in addition
+        to the source dataset id.
+      </PARA>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_bkg_arf("back.arf")</LINE>
+	  <LINE>sherpa&gt; load_bkg_arf(1, "back.arf")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Load the ARF from the file "back.arf" and assign it as the
+	    background ARF for the default dataset. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; arfcr = read_arf("3c273.arf")</LINE>
+          <LINE>sherpa&gt; load_bkg_arf("src", arfcr)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The ARF is read into an ARFCrate (named "arfcr") from the file
+	    3c273.arf.  The ARF is then loaded into Sherpa from the
+	    crate and assigned to the background of data id "src".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

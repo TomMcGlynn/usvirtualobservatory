@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="delete_bkg_model" refkeywords="back background bkg delete remove model models modeling modelling source " seealsogroups="sh.model sh.bg" displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+     Delete a background model
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>delete_bkg_model( [id, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The delete_bkg_model command deletes a background model from
+	the stack.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background with the model to be
+          deleted; default is the first background dataset
+        </ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; delete_bkg_model()</LINE>
+	  <LINE>sherpa&gt; delete_bkg_model(1)</LINE>
+	  <LINE>sherpa&gt; delete_bkg_model(1, 1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    These commands are equivalent ways of deleting the
+	    background model for the default background associated with
+	    the default source dataset.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; delete_bkg_model(bkg_id="bkg")</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Delete the model associated with the background "bkg".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; delete_bkg_model("src", 2)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Delete the model for the second background of the dataset "src".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

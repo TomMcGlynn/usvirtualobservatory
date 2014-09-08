@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_arf" refkeywords="ancillary auxilliary auxiliary arf instrument response responses get " seealsogroups="sh.arf sh.get " displayseealsogroups="" context="data">
+   
+    <SYNOPSIS>
+     Return a source or background ARF by data set ID
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_arf( [id, resp_id, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The get_arf command returns the ARF data loaded in association with the
+        specified source or background data set, by source,
+      background, or response data set ID.  The response ID
+      denotes which response(s) in the source or background(s) data
+      set(s) to return, in the event that more than one response has
+      been loaded in association with a particular data set.  The
+      background ID denotes which
+	background(s) response(s) in the source data set to
+      return. The data returned by get_arf may be printed to the screen or 
+	stored in a variable, e.g. to be used in another command for
+      explicitly defining a response in a model expression (see "ahelp
+      set_full_model" and "ahelp get_response").
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the data set to use; if not given, uses the default data set id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+          resp_id - the id of the ARF to use, e.g. if more than one is
+          associated with the data; default is the first ARF
+        </ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background to use, e.g. if more than
+          one background is associated with the data; default is the
+          first background data set  
+        </ITEM>
+      </LIST>
+
+      <PARA>
+	If the requested ARF does not exist (e.g. there is no
+	ARF loaded), the command returns "None".  
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; arf1=get_arf()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Get the first ARF loaded in association with default data
+      set 1 and store
+	    it as "arf1".  The contents may be printed:
+	  </PARA>
+
+<VERBATIM>
+sherpa&gt; print(arf1)
+name     = 3c273.arf
+energ_lo = Float64[1090]
+energ_hi = Float64[1090]
+specresp = Float64[1090]
+bin_lo   = None
+bin_hi   = None
+exposure = 38570.6924812
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; print(get_arf("src",2))</LINE>
+	  <LINE>None</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Print the second ARF associated with the data set "src".
+	    There is only one ARF for that data set, so the command
+	    returns "None". 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; fake_pha("faked", arf=get_arf(), rmf=get_rmf(), exposure=10000, bkg=get_bkg())</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The get_arf command is used to populate the 'arf' argument in
+	    fake_pha for faking a data set using a specified
+	    instrument response.
+            
+            (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/fake_pha.html">"ahelp fake_pha"</HREF>).
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; arf = get_arf()</LINE>
+	  <LINE>sherpa&gt; rmf = get_rmf()</LINE>
+          <LINE>sherpa&gt; set_full_model(rmf(arf(xsphabs.abs1*powlaw1d.p1)))</LINE>
+	</SYNTAX>
+	<DESC>
+         <PARA>
+	  The 'instrument' version of the ARF data set associated with
+	  default data set id=1 is stored in variable 'arf', and used
+	  in the model expression of the set_full_model command for
+	  explicitly defining the instrument response. The multiplication
+          with the exposure time is implicit in the model expression
+	  (see also "ahelp get_response").
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+  
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

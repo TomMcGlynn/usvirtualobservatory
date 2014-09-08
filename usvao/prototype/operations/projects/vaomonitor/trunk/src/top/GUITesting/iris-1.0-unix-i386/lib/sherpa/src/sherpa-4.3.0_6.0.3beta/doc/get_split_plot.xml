@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_split_plot" refkeywords="   get split plot attributes multiple  " seealsogroups="sh.get sh.plot " displayseealsogroups="" context="plotting">
+	<SYNOPSIS>
+     Return plot attributes for multiple plots
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_split_plot()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The get_split_plot command returns a split plot object which
+	holds references to various plot preferences and data arrays.
+	The attributes of the multi-plot display include:
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  rows - number of rows of plots; default = 2
+	</ITEM>
+
+	<ITEM>
+          cols - number of columns of plots; default = 1
+	</ITEM>
+
+	<ITEM>
+	  plot_prefs   - dictionary of plotting preferences
+	</ITEM>
+       </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; sp=get_split_plot()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Return a split plot object and store it in the variable "sp".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

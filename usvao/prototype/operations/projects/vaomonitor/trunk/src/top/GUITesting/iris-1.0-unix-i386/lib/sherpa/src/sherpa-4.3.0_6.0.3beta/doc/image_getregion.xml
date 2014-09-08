@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="image_getregion" refkeywords="image images img imager imaging region regions visualize visualization visualise visualisation" seealsogroups="sh.img sh.get " displayseealsogroups="" context="visualization">
+
+    <SYNOPSIS>
+     Returns a region description from ds9.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>image_getregion()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+      Returns a region description from the imager - by default, ds9.
+      The image_getregion() function accepts no arguments and returns as
+      a string a description of all regions drawn in the current frame. 
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; reg = image_getregion()</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   A description of the current region is returned, and
+           assigned to a variable.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

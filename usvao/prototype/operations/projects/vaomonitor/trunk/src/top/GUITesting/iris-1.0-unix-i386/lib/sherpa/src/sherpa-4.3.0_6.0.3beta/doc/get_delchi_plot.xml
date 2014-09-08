@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_delchi_plot" refkeywords="get delchi deltachi DELCHI DELTACHI plot plotting plots " seealsogroups="sh.get sh.plot" displayseealsogroups="" context="statistics">
+
+    <SYNOPSIS>
+      Return the data and preferences defining a delta chi plot
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_delchi_plot( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The get_delchi_plot() command returns the data and preferences
+        which define a plot of the delta chi of a data set in a Sherpa
+        session (delta chi --&gt; data-minus-model residuals divided by dataset
+        uncertainties). Once a model is assigned
+        to a loaded data set, this command can be used to list the
+        x, y, x error, and y error data arrays used in the delta chi plot
+        created with plot_delchi() or plot(), in addition to the
+        values for the x label, y label, title, and other
+        plotting preferences. The information returned by
+        get_delchi_plot() may be stored in a variable, or printed to
+        the screen, as shown in the examples section.
+      </PARA>
+      <PARA>
+       Arguments:
+      </PARA>
+
+      <LIST>
+	<ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+      </LIST>
+         
+     </DESC>   
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_delchi_plot())</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            When called with no arguments within the print() command,
+            get_delchi_plot() returns the data and preferences associated
+            with the delta chi plot of the default data set 1 (using the
+            model assigned to data set 1).
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; print(get_delchi_plot())
+x      = [  1.0950e-02   2.1900e-02   3.6500e-02 ...,   1.4914e+01 1.4928e+01 1.4943e+01]
+y      = [  0.       0.       0.     ...,   1.0216   0.4305  16.2691]
+yerr   = [ 1.  1.  1. ...,  1.  1.  1.]
+xerr   = [ 0.0073  0.0146  0.0146 ...,  0.0146  0.0146  0.0146]
+xlabel = Energy (keV)
+ylabel = Sigma
+title  = Sigma Residuals of source.pi
+plot_prefs = {'symbolfill': False, 'errstyle': 'line', 'yerrorbars': True, 'xaxis': True, 'symbolstyle': 2, 'linestyle': 0, 'xerrorbars': True, 'symbolsize': 3}
+
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+
+        <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; delta_chi_plot=get_delchi_plot(2)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            This command stores to the variable "delta_chi_plot" the data
+	    and preferences defining the plot of the delta chi of data set
+	    4 (using its associated model). The contents may be printed
+	    with 'print(delta_chi_plot)'.
+          </PARA>
+        </DESC>
+        </QEXAMPLE>
+		   <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_delchi_plot().plot_prefs</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+           This command lists the library of plotting preferences
+           available for get_delchi_plot(), and can be
+           used to modify the plot settings:
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_delchi_plot().plot_prefs
+           
+{'errstyle': 'line',
+ 'linestyle': 0,
+ 'symbolfill': False,
+ 'symbolsize': 3,
+ 'symbolstyle': 2,
+ 'xaxis': True,
+ 'xerrorbars': True,
+ 'yerrorbars': True}
+
+sherpa&gt; get_delchi_plot().plot_prefs["linestyle"]=3
+            
+</VERBATIM>
+
+        </DESC>
+        </QEXAMPLE>
+   </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_dims" refkeywords="  length array x-grid x-length x get dimensionality dimensions" seealsogroups="sh.data sh.get " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Return the length of the x-dimension of a data set 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_dims( [id, filter=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+         The get_dims() function returns the dimensional
+	 length of the x-grid of a 1-D data set, by data id.  If a data
+	 filter has been applied to the data set in question,
+	 e.g. ignore() or notice(), the length of either the
+	 filtered or unfiltered x-grid may be returned by setting the
+	 'filter' argument to 
+	 True or False
+	 
+	 . If set to 
+	 True
+	 
+	 , the array returned by get_dims() will be filtered, i.e. the
+	 array will be shorter in length than the unfiltered array
+	 (not padded with zeros).
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+
+      <ITEM>
+        filter - apply an established data filter to the data set
+	before returning results?
+	default=False 
+        
+      </ITEM>
+    </LIST>
+    </DESC>
+     
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_dims()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           When called with no arguments, get_dims() returns 
+           the length of the x-dimension of the default data set.
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_dims()
+          (1024,)
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_dims(3)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           If a data set ID is supplied to get_dims(), the unfiltered 
+	   x-dimension length of the specified data set is returned,
+	   unless the 'filter' argument is set to 
+	   True
+	   
+	   .
+          </PARA>
+<VERBATIM>
+sherpa&gt; notice()
+sherpa&gt; get_dims(3)
+           (46,)
+sherpa&gt; notice(0,6)
+sherpa&gt; get_dims(3, filter=True)
+           (44,)              
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

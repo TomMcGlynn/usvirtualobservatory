@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_grouping" refkeywords="set group groups grouped grouping bin bins spectra spectral PHA pha data " seealsogroups="sh.group sh.set " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+     Apply user-defined grouping to a dataset
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_grouping( [id,] val [,bkg_id=None] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The set_grouping command applies a user-defined grouping
+        scheme to the dataset, overriding any grouping contained
+        within the PHA file.
+      </PARA>
+
+      <LIST> 
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+	<ITEM>
+	  val - an array defining the grouping or quality.  Must
+	  be the same length as the input data set. An element set to
+	  1 marks the beginning of a group and an element set to -1
+	  marks subsequent members of that group.
+	</ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if the grouping is to be
+          applied to the background data;
+          default=None
+          
+        </ITEM>	
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_grouping([1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, ...] )</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    A grouping array is applied to dataset 1.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; grpsrc=get_data().grouping</LINE>
+          <LINE>sherpa&gt; set_grouping("src", grpsrc)</LINE>
+          <LINE>sherpa&gt; set_grouping("src", grpsrc, 1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Retrieve the grouping object of dataset 1 as "grpsrc".
+	    Apply this grouping to the source and background of the
+	    "src" dataset.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xstbvarabs" refkeywords=" ism tbvarabs model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Calculates the absorption of X-rays by the ISM, allowing user to vary
+all abundances, depletion factors, and grain properties.
+XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+The Tuebingen-Boulder ISM absorption model. This model calculates the
+cross-section for X-ray absorption by the ISM as the sum of the
+cross-sections for X-ray absorption due to the gas-phase ISM, the
+grain-phase ISM, and the molecules in the ISM. In the grain-phase ISM,
+the effect of shielding by the grains is accounted for, but is
+extremely small. In the molecular contribution to the ISM
+cross-section, only molecular hydrogen is considered. In the gas-phase
+ISM,
+the cross-section is the sum of the photoionization cross-sections of
+the different elements, weighted by abundance and taking into account
+depletion onto grains. In addition to the updates to the
+photoionization cross-sections, the gas-phase cross-section differs
+from previous values as a result of updates to the ISM
+abundances. Details of updates to the photoionization cross-sections
+as well as to abundances can be found in Wilms, Allen and McCray
+(2000, ApJ 542, 914). This model allows the user to vary the molecular
+hydrogen column, the grain distribution parameters, and the abundances
+and grain depletions. 
+</PARA>
+
+<PARA>
+     This is a multiplicative model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xstbvarabs Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>nh</DATA> <DATA>equivalent
+  hydrogen column (in units of 10^22 atoms/cm^2)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2-18</DATA> <DATA>(element)</DATA> <DATA>columns
+  of He, C, N, O, Ne, Na, Mg, Al, Si, S, Cl, Ar, Ca, Cr, Fe, Co, Ni
+  (in units of 10^22 atoms/cm^2)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>19</DATA> <DATA>h2</DATA> <DATA>molecular
+  hydrogen column (in units of 10^22 atoms/cm^2)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>20</DATA> <DATA>rho</DATA> <DATA>grain density
+  (in gm/cm^3)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>21</DATA> <DATA>amin</DATA> <DATA>grain minimum
+  size (in microns)</DATA>
+</ROW>
+<ROW> 
+  <DATA>22</DATA> <DATA>amax</DATA> <DATA>grain maximum
+  size (in microns)</DATA>
+</ROW>
+<ROW> 
+  <DATA>23</DATA> <DATA>pl</DATA> <DATA>power law index
+  of grain sizes</DATA>
+</ROW>
+<ROW> 
+  <DATA>24-41</DATA> <DATA>(element)_dep</DATA>
+  <DATA>e.g. "si_dep"; grain depletion fractions of He, C, N, O, Ne,
+  Na, Mg, Al, Si, S, Cl, Ar, Ca, Cr, Fe, Co, Ni</DATA> 
+</ROW>
+<ROW> 
+  <DATA>42</DATA> <DATA>redshift</DATA> <DATA>redshift,
+  z</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

@@ -1,0 +1,17 @@
+<project name="simpleCompile" default="dist" basedir="/www/htdocs/vo/usvao_svn/vo_operations_vaohome/trunk/src/">
+  <property name="sourceDir" value="${basedir}/top/"/>
+  <property name="outputDir" value="/www/htdocs/vo/vo_ops_3"/>
+   <target name = "dist"  depends = "init">
+      <echo message = "Installing Vao Ops VAOhome System"/>
+     <copy  todir  = "${outputDir}">
+        <fileset dir = "${sourceDir}"/>
+     </copy>
+     <copy todir = "${outputDir}/install">
+        <fileset dir = "${basedir}/install"/>
+     </copy>
+   </target>
+   <target name = 'init'>
+      <echo message="Creating new installation directory"/>
+      <mkdir dir = "${outputDir}"/>
+   </target>
+</project>

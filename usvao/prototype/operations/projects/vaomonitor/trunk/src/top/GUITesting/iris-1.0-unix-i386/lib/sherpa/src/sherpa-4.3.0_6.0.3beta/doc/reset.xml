@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="reset" refkeywords="clear initial model minimize minimization component all" seealsogroups="sh.model " displayseealsogroups="" context="modeling">
+
+    <SYNOPSIS>
+     Reset model parameter values after a fit
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>reset(model)</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The reset command restores the parameter values after fitting
+	to the default value set by "guess" or to the user-defined
+	default.   The get_model command may be used as the argument
+	instead of explicitly listing the current source model. 
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  model - the model component or expression to reset
+	</ITEM>
+      </LIST>
+
+      <PARA> 
+	If the user set initial model values or soft limits -
+	e.g. either with the "set_par" command or by turning on
+	parameter prompting (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/paramprompt.html">"ahelp paramprompt"</HREF>) - reset will restore
+	these values and limits even after the guess command has been
+	used or a fit was done.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_source("powlaw1d.pl")</LINE>
+          <LINE>sherpa&gt; fit()</LINE>
+          <LINE>sherpa&gt; reset(pl)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Set a source model, fit the data, then reset the model
+	    parameters to the pre-fit values.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_source("powlaw1d.pl*beta1d.b")</LINE>
+          <LINE>sherpa&gt; fit()</LINE>
+          <LINE>sherpa&gt; reset(b)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Set a complex source model, fit the data, then reset one
+	    of the model components to the pre-fit values.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_source("powlaw1d.pl*beta1d.b")</LINE>
+          <LINE>sherpa&gt; fit()</LINE>
+          <LINE>sherpa&gt; reset(get_model())</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The get_model command is used as the argument to reset.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+     </QEXAMPLELIST>
+
+    
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

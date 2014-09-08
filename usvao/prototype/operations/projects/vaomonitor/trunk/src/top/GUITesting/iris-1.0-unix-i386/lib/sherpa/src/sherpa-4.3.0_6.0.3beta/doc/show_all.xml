@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="show_all" refkeywords="show report status state information results all" seealsogroups="sh.info" displayseealsogroups="" context="info">
+
+    <SYNOPSIS>
+      Reports the current state of the Sherpa session
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>show_all([id, outfile=None, clobber=False])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The show_all() command returns information about the
+	current Sherpa session.  This includes source and background data and response files
+	that have been loaded, the current statistic and optimization
+	method, and models that have been defined. The current
+	parameter values for the models are included, as well as 
+	information on the most recent fit.  Model values and fit 
+	statistics are updated each time a new fit is run.
+      </PARA>        
+
+    <LIST>
+        <ITEM>
+          id - the id of the dataset to use; default
+          is to show information for all available datasets.
+        </ITEM>
+
+      <ITEM>
+        outfile - name of the file in which to store the information
+      </ITEM>
+
+      <ITEM>
+        clobber -  a Boolean switch which indicates whether or not
+        the 'outfile' should be overwritten, if the file already exists;
+        default=False
+        
+      </ITEM>
+    </LIST>
+	<PARA>        
+        The behavior of the screen output is determined by the
+        user's $PAGER environment variable setting, which
+        is usually a variant of "more."  To disable paging within
+        show_all() - i.e. print the entire contents, even if it
+        scrolls offscreen - change this setting to "cat" before starting
+        Sherpa: 
+      </PARA>
+
+<VERBATIM>
+unix% setenv PAGER cat
+
+unix% sherpa
+</VERBATIM>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; show_all()</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Print the current state of the Sherpa session.  This
+	    session has spectral data with ARF and RMF loaded.  The
+	    model parameter values reflect the most recent fit.
+	  </PARA>
+
+<VERBATIM>
+Data Set: 1
+Filter: 0.0080-14.9431 Energy (keV)
+Noticed Channels: 1-1024
+name           = source.pi
+channel        = Float64[1024]
+counts         = Float64[1024]
+staterror      = None
+syserror       = None
+bin_lo         = None
+bin_hi         = None
+grouping       = None
+quality        = None
+exposure       = 49429.2334679
+backscal       = 1.87253514146e-05
+areascal       = 1.0
+grouped        = False
+subtracted     = False
+units          = energy
+rate           = True
+plot_fac       = 0
+response_ids   = [1]
+background_ids = [1]
+
+RMF Data Set: 1:1
+name     = source.rmf
+detchans = 1024
+energ_lo = Float64[1090]
+energ_hi = Float64[1090]
+n_grp    = UInt64[1090]
+f_chan   = UInt32[1090]
+n_chan   = UInt32[1090]
+matrix   = Float64[572598]
+offset   = 1
+e_min    = Float64[1024]
+e_max    = Float64[1024]
+
+ARF Data Set: 1:1
+name     = source.arf
+energ_lo = Float64[1090]
+energ_hi = Float64[1090]
+specresp = Float64[1090]
+bin_lo   = None
+bin_hi   = None
+exposure = 49470.9477594
+
+Background Data Set: 1:1
+Filter: 1-1024 Channel
+Noticed Channels: 1-1024
+name           = back.pi
+channel        = Float64[1024]
+counts         = Float64[1024]
+staterror      = None
+syserror       = None
+bin_lo         = None
+bin_hi         = None
+grouping       = None
+quality        = None
+exposure       = 49429.2334679
+backscal       = 2.69645060371e-05
+areascal       = 1.0
+grouped        = False
+subtracted     = False
+units          = channel
+rate           = True
+plot_fac       = 0
+response_ids   = []
+background_ids = []
+
+Model: 1
+apply_rmf(apply_arf((49429.2334679 * (powlaw1d.p1 * xswabs.abs1))))
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   p1.gamma     thawed      1.12513          -10           10           
+   p1.ref       frozen            1 -3.40282e+38  3.40282e+38           
+   p1.ampl      thawed  0.000237949            0  3.40282e+38           
+   abs1.nH      thawed     0.215526            0       100000 10^22 atoms / cm^2
+
+Optimization Method: LevMar
+name    = levmar
+ftol    = 1.19209289551e-07
+xtol    = 1.19209289551e-07
+gtol    = 1.19209289551e-07
+maxfev  = None
+epsfcn  = 1.19209289551e-07
+factor  = 100.0
+verbose = 0
+
+Statistic: Chi2Gehrels
+Chi Squared with Gehrels variance
+
+Fit:Dataset               = 1
+Method                = levmar
+Statistic             = chi2gehrels
+Initial fit statistic = 5.63992e+10
+Final fit statistic   = 1327.28 at function evaluation 66
+Data points           = 1024
+Degrees of freedom    = 1021
+Probability [Q-value] = 2.60145e-10
+Reduced statistic     = 1.29998
+Change in statistic   = 5.63992e+10
+   p1.gamma       1.12513     
+   p1.ampl        0.000237949 
+   abs1.nH        0.215526      
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; show_all(2, "sherpa.all", True)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Write the information for dataset id=2 to the file
+	    "sherpa.all", clobbering any existing file with the same
+	    name.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

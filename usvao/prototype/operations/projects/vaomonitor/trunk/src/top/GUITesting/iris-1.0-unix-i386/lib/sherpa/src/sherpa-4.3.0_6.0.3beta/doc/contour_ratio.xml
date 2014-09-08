@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="contour_ratio" refkeywords="contour contours plot plots ratio ratios data model models  chips ChIPS image images img imager imaging visualize visualization visualise visualisation" seealsogroups="sh.contour sh.img sh.model sh.data" displayseealsogroups="" context="visualization">
+
+    <SYNOPSIS>
+     Open a contour plot of a data-to-model ratio in ChIPS 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>contour_ratio( [ id, [replot=False,overcontour=False]] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+          The contour_ratio function opens in ChIPS a contour plot of the 
+          ratio of a data set, i.e. the data set divided by data set
+          model, by data set ID. If no data set ID is specified,
+          the default data set will be used.  To
+          plot contours of a data set, model, fit, fit residuals, or
+          psf, use the contour function.
+      </PARA>
+
+       <PARA>
+        Arguments:
+       </PARA>
+       <LIST>
+       <ITEM>
+         id -  Sherpa data set ID; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+
+       <ITEM>
+         replot - Send cached data arrays to ChIPS; 
+          default=False
+          
+       </ITEM>
+
+       <ITEM>
+         overcontour - Contour data without clearing previous plot; 
+          default=False
+          
+       </ITEM>
+
+       </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; contour_ratio()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            The contour_ratio function can be called with no arguments,
+            in which case a contour plot of the data-to-model ratio is
+            made for the default data set loaded in the Sherpa session,
+            with the default settings.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; contour_ratio(3, overcontour=False)</LINE>
+          
+        </SYNTAX>
+         <DESC>
+          <PARA>
+            Here, the contour_ratio function clears the previous plot
+            and sends a contour of the data-to-model ratio for data
+            set 3 to ChIPS.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; contour_ratio(replot=True, overcontour=True)</LINE>
+          
+        </SYNTAX>
+         <DESC>
+          <PARA>
+            This command sends a cached contour plot of the
+            data-to-model ratio for data set 1 to ChIPS,
+            without clearing the previous plot.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xspcfabs" refkeywords="pcfabs model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Partial covering fraction absorption.
+XSpec model.
+</SYNOPSIS>
+<DESC>
+<PARA>
+A partial covering fraction absorption.
+</PARA>
+
+<PARA>
+<EQUATION>
+M(E) = CvrFract exp(-nH*sigma(E)) + (1-CvrFract)
+</EQUATION>
+</PARA>
+
+<PARA>
+where sigma(E) is the photo-electric cross-section, NOT including
+Thomson scattering.
+</PARA>
+
+<PARA>
+     This is a multiplicative model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xspcfabs Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>nh</DATA> <DATA>equivalent
+  hydrogen column (in units of 10^22 atoms/cm^2</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>cvrfract</DATA> <DATA>covering
+  fraction (0 &lt; CvrFract &lt;= 1.) (dimensionless)</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

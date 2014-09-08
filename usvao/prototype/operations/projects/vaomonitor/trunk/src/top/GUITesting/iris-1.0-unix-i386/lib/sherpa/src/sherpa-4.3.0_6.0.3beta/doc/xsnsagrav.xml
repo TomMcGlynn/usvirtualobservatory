@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsnsagrav" refkeywords="nsagrav model models modeling modelling source composite nested joint xspec" seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+NS H atmosphere model for different g.
+XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+  This model provides the spectra emitted from a nonmagnetic hydrogen
+  atmosphere of a neutron star with surface gravitational acceleration
+  g ranging from 1e13 to 1e15 cm/s^2, allowed by equations of state for
+  the neutron star matter (the nsa model gives the spectra calculated
+  for g=2.43e14 cm/s^2). The uniform surface (effective) temperature is
+  in the range of Log T_eff(K) = 5.5 - 6.5. The atmosphere is in
+  radiative and hydrostatic equilibrium; sources of heat are well
+  below the atmosphere. The radiative force and electron heat
+  conduction are included in the models, but they are of no importance
+  in the specified ranges of T_eff and g. The model spectra are
+  provided as seen by a distant observer, with allowance for the GR
+  effects.
+</PARA> 
+
+<PARA>
+  The neutron star mass M and radius R determine the redshift parameter,
+</PARA>
+
+<PARA>
+<EQUATION>
+  g_rr=[1-2.952*M/R]^0.5
+</EQUATION>
+</PARA>
+
+<PARA>
+  and the gravitational acceleration at the surface,
+</PARA>
+
+<PARA>
+<EQUATION>
+g=1.33e16*M/R^2/gr cm/s^2,
+</EQUATION>
+</PARA>
+
+<PARA>
+  where M is in units of solar mass, and R is in km. 
+</PARA>
+
+<PARA>
+  The allowed domain in the M-R plane corresponds to gr^2 &gt; 1/3 and
+  1e13 &lt; g &lt; 1e15 cm/s^2. If chosen M and R values correspond to
+  g_r or/and g values outside the allowed domain, then the code sets
+  the latter to be the closest limiting values (e.g., if one chooses
+  M=2, R=8, then the code will use g_r=3^-1/2=0.578 instead of
+  g_r=0.512 corresponding to the M and R chosen), which would lead to
+  unphysical results.  
+</PARA>
+
+<PARA>
+  The values of the effective temperature and radius as measured by a
+  distant observer ("values at infinity") are: 
+</PARA>
+
+<PARA>
+<EQUATION>
+T^Inf = g_r*T_eff
+</EQUATION>
+</PARA>
+	<PARA>
+<EQUATION>
+R^Inf = R/g_r
+</EQUATION>
+</PARA>
+
+<PARA>
+  The nsagrav model may be useful for putting constraints on M and R
+  from spectral fits to thermal emission detected from neutron stars,
+  provided the quality of the observational data are good enough to
+  warrant a detailed analysis. The parameters M and R can be fixed at
+  specific values or allowed to vary within a reasonable range (see
+  the note above). For example, one can run spectral fits on a M-R
+  grid (using the steppar command) within the allowed parameter domain
+  (see above). 
+</PARA>
+
+<PARA>
+  Please send your comments/questions (if any) to Slava Zavlin
+  (vyacheslav.zavlin@msfc.nasa.gov) and/or George Pavlov
+  (pavlov@astro.psu.edu). If you publish results obtained using this
+  model please reference Zavlin et al. (1996, A&amp;A 315, 141).
+</PARA> 
+
+<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsnsagrav Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> 
+  <DATA>logt_eff</DATA> 
+  <DATA>(unredshifted) effective temperature</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> 
+  <DATA>nsmass</DATA> 
+  <DATA>neutron star gravitational mass (in units of Solar mass)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> 
+  <DATA>nsrad</DATA> 
+  <DATA>"true" neutron star radius (km)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>4</DATA> 
+  <DATA>norm</DATA> 
+  <DATA>K; 1/D2 where D is the distance to the object in pc</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

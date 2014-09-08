@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_model_autoassign_func" refkeywords="model models modeling modelling parameter par parameters" seealsogroups="sh.model " displayseealsogroups="" context="modeling">
+
+     <SYNOPSIS>
+       Define a method for storing model identifiers
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_model_autoassign_func( func=None )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The set_model_autoassign_func defines a method for storing
+	model identifiers initialized by model definition into the
+	current Python namespace. 
+	(This is an advanced function which the general Sherpa user
+	will not need.)
+      </PARA>
+
+      <PARA>
+	The default assignment function in Sherpa first renames a
+	model component to include the model type and user-defined
+	identifier.  It then updates the '__main__' module's
+	dictionary with the model identifier as the key and the model
+	instance as the value.  Similarly, it updates the
+	'__builtin__' module's dictionary just like '__main__' for
+	compatibility with IPython.  The function pointer signature
+	accepts two required arguments, a string identifier and Sherpa
+	model instance. 
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_model_autoassign_func(myassignfunc)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The command is called with a user-defined function pointer
+	    named "myassignfunc".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

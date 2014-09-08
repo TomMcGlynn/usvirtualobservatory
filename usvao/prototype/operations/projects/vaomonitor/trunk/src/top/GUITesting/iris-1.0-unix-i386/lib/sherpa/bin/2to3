@@ -1,0 +1,6 @@
+#!/data/scialg/staff/brefsdal/VAOPython/iris_build_src/Linux/INSTALL/bin/python2.6
+from lib2to3.main import main
+import sys
+import os
+
+sys.exit(main("lib2to3.fixes"))

@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="contour" refkeywords="contour contours plot plots chips image images img imager imaging data visualize visualization visualise  visualisation" seealsogroups="sh.contour sh.img sh.data" displayseealsogroups="" context="visualization">
+	<SYNOPSIS>
+     Open a contour plot in ChIPS
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>contour(contour1, [id1] ... [contourn, idn])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+          The contour() function opens contour plots in ChIPS to allow
+	  the user to visualize contours of a data set,
+	  model, fit, fit residuals, data-to-model ratio, or PSF, by 
+	  dataset id.  
+      </PARA>
+ 
+      <LIST>
+        <ITEM>
+          contour1 ... contourn - the type of contour ('data', 'fit', etc.)
+	</ITEM>
+
+        <ITEM>
+          id1 ... idn - the id of the dataset to use for each contour;
+          if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id") 
+	</ITEM>
+      </LIST>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; contour( "data", 3)</LINE>
+          
+        </SYNTAX>
+         <DESC>
+          <PARA>
+           A contour plot of data set 3 is visualized in ChIPS with this command.
+          </PARA>
+         </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>      
+       <SYNTAX>
+	  <LINE>sherpa&gt; contour( "data", "model", "fit", "resid" )</LINE>
+          
+       </SYNTAX>
+        <DESC>
+          <PARA>
+           Here, a combination contour plot displays the data, model,
+           fit, and fit residuals of the default data set in separate
+           tiles of the ChIPS display, all to the same scale.  
+          </PARA>
+        </DESC>
+        </QEXAMPLE>
+        <QEXAMPLE>
+        <SYNTAX>   
+          <LINE>sherpa&gt; contour( "data", "bkg", "model", "bkg") </LINE>
+          
+ 	</SYNTAX>
+         <DESC>
+          <PARA>
+           Contour plots of background data set "bkg" and its assigned
+           model are sent to ChIPS for visualization.
+          </PARA>
+         </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,138 @@
+<HTML>
+ <HEAD>
+   <TITLE>
+     Validation Design
+   </TITLE>
+     <LINK REL="StyleSheet" HREF='http://www.us-vo.org/app_templates/usvo_template.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/datascope/css/styles.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/monitor/css/tr.css' TYPE="text/css">
+ </HEAD>
+<Body>
+
+ <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>   
+     <td width="112" height="32" align="center" valign="top">
+        <a href="http://www.us-vo.org" class="nvolink" target="_top">
+          <img src="http://www.usvao.org/documents/Templates/Logos/VAO_logo_100.png" alt="NVO HOME" border="0"/>
+        </a>
+        <span class="nvolink">
+          <a href="http://www.us-vo.org/" target="_top">National Virtual Observatory</a></span>
+</td>   
+<td valign="top"><table  width="100%" border="0" cellpadding="0" cellspacing="0">      
+<tr>       
+<td width="2" height="30" bgcolor="white"></td>
+<td width="678" height="39" align="center" valign="middle" 
+background="http://www.us-vo.org/images/templatestars.jpg" bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+
+<span class= \"nvoapptitle\" style= \"background\-repeat: repeat\-y;\">External Monitor DB Design (Documentation)</span></td></tr>
+</td> 
+
+
+    </tr>     
+    <tr>       
+     <td bgcolor="white" width="2"></td>      
+     <td bgcolor="white" width="2"></td>      
+     </tr>      
+     <tr>       
+     <td align="center" valign="top" colspan="3"><table cellspacing="2" cellpadding="0" border="0" width="100%"  style="margin: 0pt;"> 
+  <tr>
+     <!-- the local links -->
+  
+     <td  class='navlink'><a href='/cgi-bin/vo/notification/shownote.pl'>VO Service Notices </a></td>
+     <td  class='navlink'><a href='/cgi-bin/vo/monitor/monitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'>NVO Home</a></td>  
+     <td  class='navlink'><a href=http://us-vo.org/feedback/index.cfm>NVO Feedback</a></td> 
+            
+     </tr>       
+     </table></td>
+      </tr>
+      </table></td>
+      <td width = 140 align = center valign = top><a href = "http://www.heasarc.gsfc.nasa.gov">
+      <img src=/vo/datascope//images/nasa_logo.gif width=72 height=60 border=0 alt='NASA home'>
+      </img></a><br><span>Hosted by:</span><br>HEASARC<br>    <br>
+      </td></tr></table>
+
+
+
+<h4 class="TML">ExternalMonitor DB design</h4>
+<p>The ExternalMonitor</span> DB consists of 5 tables. They are:</p>
+<ul>
+<li> Services </li>
+<li> Tests </li>
+<li> Testhistory </li>
+<li> Errors </li>
+<li> ErrorCodes</li>
+</ul>
+<p>&nbsp;</p>
+<h5> Services</h5>
+<p>The Services table has 9 columns. They are serviceId,name, homeinst (home institution),authid,homeurl,type,displayorder,cadence, and vao_services. A brief description of each
+follows:</p>
+<p>&nbsp;</p>
+<ol>
+<li> serviceId - the primary key used to join the Services and Tests table. </li>
+<li> name - the name of the VO <em>Center </em>(E.g. Castor) </li>
+<li> homeinst- the shortname of the center hosting the service </li>
+<li> authid-the authority id of the service </li>
+<li> homeurl-the url of the home institution </li>
+<li> type-The type of service. There is only one value currently set to "External". These values are
+only used by the vaomonitor home page to group services in a particular way. </li>
+<li> displayorder-this column is only used to order services in a particular way on the vao home page. </li>
+<li> cadence-an integer from 1-24 that is used to set the number of times a test should be executed in a 24 hour time window. </li>
+<li> vao_services-an integer that is either a 0 or 1. This column is used by the vaomonitor interactive page to highlight VAO center names in green. </li>
+</ol>
+<p>&nbsp;</p>
+<h5>Tests</h5>
+<p>The Tests table has 9 columns. They are testid,serviceId, url, response_type,class,testname,deleted, notAvailable,and params.A brief description of each follows.</p>
+<p>&nbsp;</p>
+<ol>
+<li> testid-a unique id associated with a test for a given Center. E.g. Our SVO entry currently has four unique tests associated with it. Two tests try to match on specific strings
+in the XML response while the others perform slightly deeper checks. </li>
+<li> serviceId-the primary key used to join the Services and Tests table. </li>
+<li> url-the url we want to test. Most services have a default GET url that will return XML when queried with positional information. Services that cannot be queried in this way are
+tested using specialized Perl tests. </li>
+<li> response_type-the response type returned by the url listed in the url column. This will be either html or xml. </li>
+<li> class-the name of the Perl class used to drive the test. </li>
+<li> testname- a simple human readable test name assigned to the test. This is used by the Interactive testing page. We added this column so that users will be able to select the
+type of test they wish to run on a site by selecting it from a drop-down list. </li>
+<li> deleted-the value here is either 'T' or null. If the value is 'T', the test for a given service is invisible in the history pages and in the interactive pages. </li>
+<li> notAvailable-this value is either 'T' or null.This column was created so that the string 'skip' appears in the db table when the test is executed. The original idea behind this
+column was that users would be able to see that this test still exists for a service on the vaomonitor interactive page. In addition, the hope was that any service marked as
+unavailable would eventually be fixed.This should not be confused with the deleted column which makes the test invisible in the interactive monitor and in the vao service status
+history pages. </li>
+<li> params-the values in here are semicolon delimited and are used in grep routines in some of the specialized tests. </li>
+</ol>
+<p>&nbsp;</p>
+<h5>Testhistory</h5>
+<p>The Testhistory table has 6 columns. They are runid, serviceId,testid,monitorstatus,time and validtest. A brief description of each column follows.</p>
+<p>&nbsp;</p>
+<ol>
+<li> runid- a unique id assiged at runtime to the test being executed. This column is used to join information with the Errors table </li>
+<li> serviceId-the primary key used to join the Services and Tests table </li>
+<li> testid- a unique id associated with a test for a given service. This is the same column as the one in the Tests table. </li>
+<li> monitorstatus-the status of the test. This is either pass, fail, abort or skip. </li>
+<li> time-the timestamp associated with when a test was run </li>
+<li> validtest-this column is currently not being used but was left in just in case we want to perform retests on services immediately after they fail. This would be similar to what
+we do in the VAOMonitor. </li>
+</ol>
+<p>&nbsp;</p>
+<h5>Errors</h5>
+<p>The Errors table has 3 columns. They are runid,subtestid,and monitorResCode. A brief description of each follows.</p>
+<p>&nbsp;</p>
+<ol>
+<li> runid- a unique id assiged at runtime to the test being executed. This column is used to join information with the Tests table. </li>
+<li> subtestid-this is an id that comes from the particular Perl class that is handling a test. An important note here is that these ids do not map 1 to 1 with a particular error
+message.There could be different messages associated with the same subtestid. Another important note here is the difference between this column and the one in the validation db
+Errors table. In the validation db, most of the subtestids comes from the NCSA validators whereas in the vaomonitor context,we created our own subtestids. </li>
+<li> monitorResCode -this column joins information with the Error Codes table.Each entry is an integer that maps 1 to 1 with an error message in the Error Codes table. In this table
+therefore, there can be many identical monitorResCode entries in the monitorResCode column but there will be only one error message associated with this number in the Error Codes
+table. </li>
+</ol>
+<p>&nbsp;</p>
+<h5>Error_Codes</h5>
+<p>The Error Codes table has 2 columns. They are monitorResCode and description. A brief description of each follows.</p>
+<ol>
+<li> monitorResCode- this is the column that ties this table to the Errors table. </li>
+<li> description-this is the error message associated with a failed or aborted test.Error messages are short and unlike some very long messages in the validation system, they
+obviously do not need to be truncated. </li>
+</ol>
+<p>*Information in this table is joined with the Errors and Tests table so that users get the correct error message associated with a unique test run.</p>

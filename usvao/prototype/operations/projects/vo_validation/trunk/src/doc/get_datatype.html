@@ -1,0 +1,78 @@
+<HTML>
+
+
+
+<BODY>
+<script language = "javascript" src = "h.js"></script>
+ <h4>Retrieving data from the registry (Slurp)</h4>
+
+
+
+<p>
+
+The first step is to retrieve the registry information from the STScI registry.
+To do this we use the <b>get_datatype.pl</b> program which slurps services from the STScI registry 
+by datatype. <br> The tool:<br><br>
+
+a)reads in the datatypes listed in the local file "downloadtypes".<br>
+b)uses the queries that "downloadtypes" contains to download each data type from the registry<br><br>
+
+
+You can see what this file contains <a href = "./downloadtypes">here</a>.<br>
+<br>
+
+The program loops over the data in the above file,runs the queries and dumps the data into 
+discreet files with the naming convention "{type}_res":<br><br>
+
+
+Each file above contains a concatenated list of resources. The resources in each file are described by the file name (E.g. con_res contains Cone resources).
+
+It is important to note that these files contains raw xml data. Another step which is handled by the parse_registry_resources.pl program is required to extract the metadata from each raw xml.
+
+<h4>Manually running get_datatypes.pl</h4>
+
+<p>
+The data download from the registry can be run manually. The syntax for running this program on the command line
+is:<br><br>
+
+./get_datatypes.pl  (this returns all recognized types defined in the downloadtypes file...dumping everything to distinct files).<br>
+
+./get_datatypes.pl -t {type}  (enter a recognized type: cone, siap, etc.)<br>
+
+<hr align="left" noshade>
+        <table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+        <tr align="center" valign="top">   <td width="16%" valign="top"><div align="center" class="style10">
+        <a href="http://www.nsf.gov"><img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0">
+        </a>
+        <a href="http://www.nasa.gov"><img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0">
+        </a>
+        </div></td>
+        <td width="76%"><div align="center">       
+        <p class="style10"> Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> 
+        <br>          under Cooperative Agreement AST0122449 with the Johns Hopkins University 
+        <br>         The NVO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a></p>
+        <p class="style10">This NVO Application is hosted by <a href="#">LocalSiteName</a></p>
+        </div></td>    
+        <td width="8%"><div align="center"><span class="tiny">Member<br>
+        </span>
+        <a href="http://www.ivoa.net">
+        <img src="http://www.us-vo.org/images/ivoa_small.jpg" alt="IVOA HOME" width="68" height="39" border="0" align="top"></a></div></td>
+        <td width="8%"><span class="style4"><span class="tiny">Meet the Developers</span><br>
+        <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border=0></span></td> </tr></table>
+        <hr noshade='noshade' />
+        <p>Hosted by the <a href='http://universe.gsfc.nasa.gov/'>Astrophysics Science Division</a>and the 
+        <a href='http://heasarc.gsfc.nasa.gov/'>High Energy Astrophysics Science Archive Research Center (HEASARC)</a>at
+        <a href='http://www.nasa.gov/'>NASA/</a><a href='http://www.gsfc.nasa.gov/'>GSFC</a>
+        </p><p>HEASARC Director:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/bios/white.html'>Dr. Nicholas E. White</a>,</p>
+        <p>HEASARC Associate Director: Dr. Roger Brissenden,</p><p>Responsible NASA Official:
+        <a href='http://heasarc.gsfc.nasa.gov/docs/nospam/panewman.html'>Phil Newman</a> </p>
+        <p class='tiny'> <a href='/banner.html'>Privacy, Security, Notices</a></p>
+        </div><!-- id='footer' --></body>
+   
+
+
+</p>
+</Body>
+</HTML>
+

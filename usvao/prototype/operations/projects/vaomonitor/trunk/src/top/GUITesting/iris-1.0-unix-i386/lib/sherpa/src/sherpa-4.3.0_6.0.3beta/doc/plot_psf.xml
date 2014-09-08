@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="plot_psf" refkeywords="plot plotting psf" seealsogroups="sh.psf " displayseealsogroups="" context="psfs">
+
+<SYNOPSIS>
+  Plot the PSF
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>plot_psf( [id], [replot=False, overplot=False] )</LINE>
+      
+    </SYNTAX>
+	<DESC>
+  <PARA>
+    The plot_psf command plots the PSF associated with a dataset.  To plot the filtered kernel which will be used in the convolution, use the plot_kernel command.
+
+  </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+          replot - should the cached arrays be used in the plot?
+          
+            False (default)=do the calculation, True=redisplay the
+            existing values
+	</ITEM>
+
+        <ITEM>
+          overplot  - should the new plot be overlaid in the plotting window?
+          False (default)=clear the window, True=overplot on any existing plots
+          
+        </ITEM>
+      </LIST>
+
+      <PARA>
+        The plot is displayed in a ChIPS plotting window.  If there is
+        no plotting window open, one is created.  If a plotting window
+        exists, the overplot parameter value determines whether the
+        new plot is overlaid on any existing plots in the window or if
+        the window is cleared before the plot is drawn. 
+      </PARA>
+
+      <PARA>
+        ChIPS commands may be used within Sherpa to modify plot
+        characteristics and create hardcopies; refer to the <HREF link="http://cxc.harvard.edu/chips/">ChIPS website</HREF> for
+        information. 
+      </PARA>
+
+      <PARA title="Plotting Multiple Objects">
+	To plot multiple Sherpa objects - e.g. data, model, fit,
+	residuals - in a single window, use
+	the <HREF link="http://cxc.harvard.edu/sherpa/ahelp/plot.html">plot command</HREF>.
+      </PARA>
+
+<PARA title="What is the difference between the PSF and the kernel?">
+	   The point spread function (PSF) is defined by the full (unfiltered) PSF image loaded into Sherpa or the PSF model expression evaluated over the full range of the dataset; both types of PSFs are established with the load_psf() command.  The kernel is the subsection of the PSF image or model which is used to convolve the data.  This subsection is created from the PSF when the size and center of the kernel are defined by the command set_psf().  While the kernel and PSF might be congruent, defining a smaller kernel helps speed the convolution process by restricting the number of points within the PSF that Sherpa must evaluate.
+	 </PARA>
+</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; plot_psf()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Plot the PSF for the default dataset.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; plot_psf("src", overplot=True)</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Plot the PSF for the "src" dataset, overlaying on any
+	    existing plots. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

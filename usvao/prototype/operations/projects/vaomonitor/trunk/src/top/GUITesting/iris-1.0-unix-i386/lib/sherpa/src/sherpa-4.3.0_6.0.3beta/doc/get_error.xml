@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_error" refkeywords=" get return  error errors counts statistical systematic quadrature " seealsogroups="sh.get  sh.data " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Return the total errors on the counts of a data set 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_error( [id, filter=False, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The get_error() function returns the total errors (statistical
+       plus systematic in quadrature) on the counts in a source or
+       background data set, by data id or bkg_id. If a
+       data filter has been applied to the data set in question,
+       e.g. ignore() or notice(), the counts error array for
+       either the filtered or unfiltered data set may be returned by
+       setting the 'filter' argument to 'True' or 'False'.  If set to
+       'True', the error array returned by get_error() will be filtered, i.e.
+       the array will be shorter in length than the
+       unfiltered array (not padded with zeros).
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+      <ITEM>
+        filter - apply an established data filter to the data set
+        before returning results? ;
+        default=False 
+        
+      </ITEM>
+      <ITEM>
+        bkg_id -  the id of the background to use,
+        e.g. if more than one background is associated with the
+        data; default is the first background data set loaded
+      </ITEM>
+    </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_error()</LINE>
+          
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    When called with no arguments, the get_error() function
+            returns the counts error array of the unfiltered default data
+            set.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; get_error()
+
+array([  1.8660254 ,   1.8660254 ,   1.8660254 ,   1.8660254 ,
+         1.8660254 ,   1.8660254 ,   1.8660254 ,   1.8660254 ,
+. . . . . ,  2.32287566,   2.6583124 ,   2.6583124 ,   2.32287566,
+         1.8660254 ,   2.93649167,   2.32287566,  18.25543393])
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE> 
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_error(1, filter=True)</LINE>
+          
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	   If a data set ID is supplied to get_error(), the unfiltered
+           counts error array of the specified data set is
+           returned, unless the 'filter' argument is set to 'True'.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; notice()
+sherpa&gt; get_error().size
+           1024
+sherpa&gt; ignore(10,15)
+sherpa&gt; get_error(filter=True).size
+           684
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE> 
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_error(1, bkg_id=1)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           To return the counts error array of a background
+           associated with a data set, the background ID must be specified
+           along with the data set ID. Here, the error array of the
+           first background loaded for data set 1 is returned by get_error().
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_error(1, 1)         
+array([ 1.8660254 ,  1.8660254 ,  1.8660254 ,  1.8660254 ,  1.8660254 ,
+        1.8660254 ,  1.8660254 ,  1.8660254 ,  1.8660254 ,  1.8660254
+        , . . . . . , 
+        2.32287566,  1.8660254 ,  1.8660254 ,  1.8660254 ,  1.8660254 ,
+        1.8660254 ,  2.32287566,  1.8660254 ,  9.76070773])
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

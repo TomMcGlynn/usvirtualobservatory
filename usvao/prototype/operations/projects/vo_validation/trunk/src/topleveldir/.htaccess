@@ -1,0 +1,3 @@
+Options +ExecCGI 
+DirectoryIndex ./vresults.pl
+AddHandler cgi-script .pl .cgi

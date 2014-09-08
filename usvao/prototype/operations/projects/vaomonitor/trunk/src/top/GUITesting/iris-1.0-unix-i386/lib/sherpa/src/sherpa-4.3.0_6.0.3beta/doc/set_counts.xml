@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_counts" refkeywords="set counts set_dep dependent " seealsogroups="sh.set " displayseealsogroups="" context="data">
+
+<SYNOPSIS>
+  Set the dependent variable (e.g. counts) of a dataset
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_dep([id], val, [bkg_id])</LINE>
+      <LINE>set_counts([id]; val, [bkg_id])</LINE>
+	</SYNTAX>
+
+<DESC>
+  <PARA>
+  	The set_dep command sets the dependent variable (e.g. counts)
+  	of a dataset.  The command may also be called as set_counts.
+  	The value may be an array or  a single value to be repeated
+  	for every bin. 
+  </PARA>
+  
+  <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")      
+        </ITEM>
+
+  	<ITEM>
+  	 val - array or scalar values
+  	</ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if setting the background value;
+          default=None
+          
+        </ITEM>
+  </LIST>
+</DESC>
+       
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_counts(1,1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the counts in dataset id=1 to a value of 1.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_dep("src",[1,2,3,...])</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the dependent variable in dataset "src" with the values in the array.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_dep([1,2,3,...], bkg_id=1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Use an array to set the values in the first background
+	    associated with the default dataset.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

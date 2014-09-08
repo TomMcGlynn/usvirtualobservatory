@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="image_resid" refkeywords="image images img imager imaging residual residuals delchi visualize visualization visualise visualisation" seealsogroups="sh.img " displayseealsogroups="" context="visualization">
+
+    <SYNOPSIS>
+     Send image of the residuals (i.e., data - model) to ds9.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>image_resid( [ id, [newframe=False, tile=False]] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       Sends an image of the residuals to the imager--by default, ds9.
+       The data set is a 2-D data set.  The residuals are of the model
+       subtracted from the data.  
+      </PARA>
+
+      <LIST>
+       <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+
+        <ITEM>
+        newframe  - add a new frame; 
+          default=False
+          
+        </ITEM>
+
+        <ITEM>
+         tile - tile image frame; 
+          default=False
+          
+       </ITEM>
+      </LIST>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; image_resid()</LINE>
+	  <LINE>sherpa&gt; image_resid(1)</LINE>
+	  <LINE>sherpa&gt; image_resid(1, newframe=True, tile=False)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The image_resid function can be called with no arguments,
+	    in which case an image of the residuals associated with the
+	    default data set is sent to ds9.  By default, the
+	    image is sent to the same frame and the frames are not
+	    tiled.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="leastsq" refkeywords="chi chi2 chisquare leastsquare least-square leastsquares least-squares least  variance sigma stat stats statistics statistic xspecvar" seealsogroups="sh.stat " displayseealsogroups="" context="statistics">
+	<SYNOPSIS>
+      Chi-square statistic with variance set to 1. 
+    </SYNOPSIS>
+
+    <DESC>
+      <PARA>
+	The leastsq statistic is equivalent to chi2constvar
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/chi2constvar.html">"ahelp chi2constvar"</HREF>),
+	except the variance is always set to 1.  
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_stat("leastsq")</LINE>
+	  <LINE>sherpa&gt; show_stat()</LINE>
+	  <LINE/>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Set the fitting statistic and then confirm the new value.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+    
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

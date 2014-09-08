@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_fit" refkeywords=" get fit model plot contour results get_fit_plot get_fit_contour get_fit_results get_bkg_fit_results  " seealsogroups="sh.get " displayseealsogroups="" context="fitting">
+	<SYNOPSIS>
+     Return model fit information associated with a Sherpa data set.
+    </SYNOPSIS>
+    
+    <SYNTAX>  
+      <LINE>get_fit_plot([id])</LINE>
+	<LINE>get_fit_contour([id])</LINE>
+	<LINE>get_fit_results()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the
+        default dataset id (id=1 by default, see "ahelp get_default_id"). 
+      </ITEM>
+    </LIST>
+
+      <PARA>
+get_fit_plot
+      </PARA>
+      <PARA>
+      The get_fit_plot() function returns the data and preferences
+      defining the 'dataplot' and 'modelplot' which together
+      produce the plot of a model fit to a dataset. Once a model is
+      assigned to a data set, this command can be used to list the x,
+      y, x error, and y error data arrays used in the data and model
+      plots, in addition to the values for the x label, y label, units,
+      title, and other plotting preferences (such as linestyle,
+      linethickness, etc.). The information returned by get_fit_plot()
+      may be stored in a variable, or printed to the screen, as shown
+      in the examples section.  The source data, the model assigned to
+      the data, and the fit of the model to the data can be
+      visualized with plot_data(), plot_model(), and plot_fit(), respectively.
+      </PARA>
+
+      <PARA>
+get_fit_contour
+      </PARA>
+      <PARA>
+       The get_fit_contour() function returns the data and settings
+       defining the 2-D 'datacontour' and 'modelcontour' plots which
+       together produce the contour plot of the model fit
+       to a 2-D data set. The fit contour plot can be visualized with
+       the contour_fit() function. Once a 2-D model is assigned to
+       a 2-D data set, this command can be used
+       to list the x0, x1, and y data arrays used in the
+       2-D fit contour plot created with contour_fit(),
+       in addition to the values for the x0 label, x1 label, title, and
+       other plotting preferences.  When called with no arguments, the
+       fit contour associated with the default data set loaded in the Sherpa
+       session will be returned. The
+       information returned by get_fit_contour() may be stored in a
+       variable, or printed to the screen, as shown in the examples section.
+      </PARA>      
+
+      <PARA>
+get_fit_results
+      </PARA>
+      <PARA>
+         The get_fit_results() function returns the results from the
+	 most recent fit, either source or background, in the Sherpa
+	 session. This function accepts no arguments.  
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_fit_plot())</LINE>
+	  <LINE>sherpa&gt; print(get_fit_plot(2))</LINE>
+	  <LINE>sherpa&gt; print(get_fit_plot("src"))</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	  When called with no arguments from within the print command,
+	  the data and preferences defining the plot of the model fit
+	  to the default data set loaded in the
+	  Sherpa session is returned.  The user can also
+	  specify a data set ID to view the model fit for that data set.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; print(get_fit_plot(2))
+dataplot   = simple.pi
+x      = [ 0.0967  0.2336  0.292  ...,  9.4389  9.6506  9.8404]
+y      = [ 0.0006  0.0002  0.0067 ...,  0.0005  0.0005  0.0006]
+yerr   = [ 0.0014  0.0034  0.0077 ...,  0.001   0.0016  0.0012]
+xerr   = [ 0.1825  0.0876  0.0292 ...,  0.2482  0.1752  0.2044]
+xlabel = Energy (keV)
+ylabel = Counts/sec/keV
+title  = simple.pi
+plot_prefs = {'errstyle': 'line', 'symbolfill': False, 'symbolstyle': 4, 'linestyle': 0, 'symbolsize': 3, 'yerrorbars': True}
+
+modelplot  = Model
+x      = [ 0.0967  0.2336  0.292  ...,  9.4389  9.6506  9.8404]
+y      = [  9.8950e-05   1.0043e-03   4.1455e-03 ...,   1.3467e-05   1.0891e-05
+   8.4900e-06]
+yerr   = None
+xerr   = [ 0.1825  0.0876  0.0292 ...,  0.2482  0.1752  0.2044]
+xlabel = Energy (keV)
+ylabel = Counts/sec/keV
+title  = Model
+plot_prefs = {'symbolstyle': 0, 'linethickness': 3, 'linestyle': 1, 'linecolor': 'red'}
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+	<QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_fit_contour())</LINE>
+	  <LINE>sherpa&gt; print(get_fit_contour(4))</LINE>
+	  <LINE>sherpa&gt; print(get_fit_contour("src"))</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	  When called with no arguments from within the print command,
+	  the fit contour data associated with the default data set
+	  loaded in the Sherpa session is returned.  The user
+	  can also specify a data set ID to view the data and settings
+	  defining the contour plot of a 2-D model fit to that data set.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; contour_fit(4)
+sherpa&gt; print(get_fit_contour(4))
+datacontour = image.fits
+x0     = [   1.    2.    3. ...,  259.  260.  261.]
+x1     = [   1.    1.    1. ...,  216.  216.  216.]
+y      = [ 0.  0.  0. ...,  0.  0.  0.]
+xlabel = x0 (pixels)
+ylabel = x1 (pixels)
+title  = image.fits
+levels = None
+contour_prefs = {}
+
+modelcontour = Model
+x0     = [   1.    2.    3. ...,  259.  260.  261.]
+x1     = [   1.    1.    1. ...,  216.  216.  216.]
+y      = [  0.0000e+00  -1.1733e-05  -1.7269e-05 ...,  -4.2121e-07  -4.2984e-07
+  -4.3841e-07]
+xlabel = x0 (pixels)
+ylabel = x1 (pixels)
+title  = Model
+levels = None
+contour_prefs = {'color': 'red', 'style': None, 'thickness': 3}
+	sherpa&gt; fit_contour=get_fit_contour(4)
+
+This command stores to the variable "fit_contour" the data and
+preferences defining the contour plot of the model fit 
+to 2-D data set 4. The contents may be printed with 'print(fit_contour)'.
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+       <SYNTAX>
+         <LINE>sherpa&gt; print(get_fit_results())</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   This function accepts no arguments, and will always return
+	   the fit results associated with the most recent fit in a
+	   Sherpa session.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; print(get_fit_results())
+datasets   = (6,)
+methodname = levmar
+statname   = chi2gehrels
+succeeded  = True
+parnames   = ('p1.gamma', 'p1.ampl')
+parvals    = (1.3876399720188146, 1.9303021425484831e-05)
+covarerr   = None
+statval    = 670.920704836
+istatval   = 684.408012448
+dstatval   = 13.4873076119
+numpoints  = 1024
+dof        = 1022
+qval       = 1.0
+rstat      = 0.656478184771
+message    = both actual and predicted relative reductions in the sum of squares are at most ftol=1.19209e-07
+nfev       = 13
+	succeeded = boolean of fit success
+          parnames  = list of thawed parameter names
+          parvals   = list of thawed parameter values
+          statval   = statistic value
+          numpoints = number of points on grid
+          dof       = degrees of freedom
+          qval      = probability                Note: N/A for Cash,CStat
+          rstat     = reduced statistic value    Note: N/A for Cash,CStat
+          message   = message from optimization method
+          nfev      = number of function evalutions
+	sherpa&gt; print get_fit_results().format()
+          Statistic value = statval at function evaluation nfev
+          Data points = numpoints
+          Degrees of freedom = dof
+          Probability [Q-value] = qval
+          Reduced statistic  = rstat
+
+</VERBATIM>    
+	</DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

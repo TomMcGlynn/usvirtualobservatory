@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="erfc" refkeywords="error model models modeling modelling " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+A 1-D complementary error function. 
+</SYNOPSIS>
+	<DESC>
+<PARA>
+<EQUATION>
+f(x) = A erfc[(x-x_0)/sigma]
+</EQUATION>
+</PARA>
+
+<PARA>
+where
+</PARA>   
+
+<PARA>
+<EQUATION>
+erfc(y)=(2/sqrt(pi)) Int_y^Inf (exp(-t^2)) dt
+</EQUATION>
+</PARA>
+
+<TABLE>
+<CAPTION>erfc Parameters</CAPTION>
+<ROW> <DATA>Number</DATA> <DATA>Name</DATA> <DATA>Description</DATA> </ROW>
+<ROW> <DATA>1</DATA> <DATA>ampl</DATA> <DATA>amplitude A</DATA> </ROW>
+<ROW> <DATA>2</DATA> <DATA>offset</DATA> <DATA>offset x_off</DATA> </ROW>
+<ROW> <DATA>3</DATA> <DATA>sigma</DATA> <DATA>scaling factor sigma</DATA> </ROW>
+</TABLE>
+<PARA>
+erfc is related to erf, a 1-D error function:  
+</PARA>
+<VERBATIM>
+	erfc(y) = 1 - erf(y)
+</VERBATIM>
+
+<PARA>
+  The integration of models in Sherpa is controlled by an 
+  integration flag in each model structure.  Refer to <HREF link="http://cxc.harvard.edu/sherpa/ahelp/integrate.html">"ahelp integrate"</HREF> 
+  for information on integrating model components. 
+</PARA>
+
+</DESC>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

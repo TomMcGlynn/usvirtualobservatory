@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="guess" refkeywords="parameter value initial initialize initialise component estimate guessing set range ranges min minimum max maximum" seealsogroups="sh.par " displayseealsogroups="" context="modeling">
+
+<SYNOPSIS>
+  Estimate initial parameter values and ranges
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>guess([id], model, [limits=True,] [values=True])</LINE>
+      
+    </SYNTAX>
+
+<DESC>
+    <PARA>
+      The guess command estimates initial parameter values and the
+      minimum and maximum range values based on the input data.
+      For spectral fitting, an appropriate response should be defined
+      before running guess.
+    </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+           model - initialize the values of this model component
+        </ITEM>
+
+        <ITEM>
+	   limits - guess the parameter limits?
+         
+            True (default)=yes, False=no
+	</ITEM>
+
+        <ITEM>
+	   values - guess the initial parameter values?
+         
+            True (default)=yes, False=no
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	By default, both the parameter values and the limits are
+	guessed.  This can be restricted to one or the other by
+	changing the "limits" or "values" option.
+      </PARA>
+   
+</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_model("src", powlaw1d.p1)</LINE>
+          <LINE>sherpa&gt; guess("src", p1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Set a model for the dataset "src", then guess the initial
+	    parameter values of p1.
+         </PARA>
+<VERBATIM>
+sherpa&gt; set_model("src", powlaw1d.p1)
+sherpa&gt; show_source("src")
+Model: src
+powlaw1d.p1
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   p1.gamma     thawed            1          -10           10
+   p1.ref       frozen            1 -3.40282e+38  3.40282e+38
+   p1.ampl      thawed            1            0  3.40282e+38
+
+sherpa&gt; guess("src", p1)
+sherpa&gt; show_source("src")
+Model: src
+powlaw1d.p1
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   p1.gamma     thawed            1          -10           10
+   p1.ref       frozen            1 -3.40282e+38  3.40282e+38
+   p1.ampl      thawed  0.000150152  1.50152e-06    0.0150152
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_model(powlaw1d.p1*gauss1d.g1)</LINE>
+          <LINE>sherpa&gt; guess(p1)</LINE>
+          <LINE>sherpa&gt; guess(g1)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Establish a model for the default dataset, then run guess on each
+	    component separately.
+         </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_source(powlaw1d.p1*gauss1d.g1)</LINE>
+          <LINE>sherpa&gt; guess(p1, limits=False)</LINE>
+          <LINE>sherpa&gt; guess(g1, values=False)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Set the source model for the default dataset.   Guess is
+	    run to determine the values of the model component "p1"
+	    and the limits of the model component "g1".
+         </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

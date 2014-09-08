@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="unpack_data" refkeywords="ascii pha pha2 phaII spectrum spectra tabular FITS table unpack TABLECrate PHACrate " seealsogroups="sh.io sh.data" displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Unpack a table data, ASCII data, or a spectrum from a crate
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>unpack_data( filename|crate, [options] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The unpack_data command unpacks tabular data from a FITS file
+        or a column-based text file into a Sherpa data object.  It may
+        also be used to unpack spectral data from a PHA FITS file.
+      </PARA>
+
+      <PARA>
+	If a filename is provided as input, a crate is created but
+	hidden and cannot be used for other analysis in the session. 
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  filename - the name of the file (with path) or crate which
+	  contains the data 
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        If the filetype is known, file-specific options may be
+        included in the unpack_data command.  They are:
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  unpack_pha: use_errors
+	</ITEM>
+
+	<ITEM>
+	  unpack_table: ncols, colkeys, and dstype
+	</ITEM>
+
+	<ITEM>
+	  unpack_ascii: ncols, colkeys, sep, comment, and dstype
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        Refer to the individual command ahelp files for specifics on
+        the options.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; filt = unpack_data("data.filtered")</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Unpack data from the file "data.filtered", using the
+            default settings.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; src = unpack_data("data.txt", ncols=3)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Unpack the first three columns of data.txt.  This example
+ 	    could also have been done using the unpack_ascii command.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; phacr = read_pha("3c273.pha")</LINE>
+          <LINE>sherpa&gt; phadata = unpack_data(phacr)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The spectrum is read into an PHACrate (named "phacr") from
+            the file  3c273.pha.  The data is then unpacked into
+            Sherpa from the crate; this example could also have been
+            done using the unpack_pha command.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; rprof = unpack_data("rprofile_mid.fits[cols RMID,SUR_BRI,SUR_BRI_ERR]")</LINE>
+	  <LINE>sherpa&gt; rprof = unpack_data("rprofile_mid.fits", colkeys=["RMID","SUR_BRI","SUR_BRI_ERR"])</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    These commands are equivalent ways of creating a data
+	    object called "rprof" from the RMID, SUR_BRI, and
+	    SUR_BRI_ERR columns of rprofile_mid.fits, a radial profile
+	    for which the midpoint of the annular regions has been
+	    calculated.  This example could also have been done using
+            the unpack_table command. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

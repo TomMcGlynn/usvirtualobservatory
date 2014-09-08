@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_bkg_scale" refkeywords=" get background scale scaling factor set_full_model set_bkg_full_model backscal " seealsogroups="sh.get " displayseealsogroups="" context="data">
+	
+
+    <SYNOPSIS>
+     Returns the complete background scaling factor 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_bkg_scale( [id] )</LINE>
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The get_bkg_scale() function  - not to be confused with the
+      get_backscal() function - returns the value of the coefficient
+      which is used to scale background counts during background
+      subtraction of a source spectrum or a simultaneous fit of source
+      and background spectra (get_backscal() returns the value
+      associated with the OGIP PHA header keyword BACKSCAL, which is
+      only one component of the complete scaling factor).  The
+      complete scaling factor used to scale the background counts in
+      these cases consists of the product of the source-to-background
+      exposure and backscal (extraction region area) ratios:
+     </PARA>
+
+     <PARA>
+Background-subtracted spectrum (cts/s) = SOURCE_COUNTS/SOURCE_EXPOSURE - BGD_COUNTS/BGD_EXPOSURE/BGD_BACKSCAL*SOURCE_BACKSCAL. 
+   </PARA>
+
+     <PARA>
+Background scale factor = (SOURCE_EXPOSURE/BACKGROUND_EXPOSURE)*(SOURCE_BACKSCAL/BACKGROUND_BACKSCAL) 
+     </PARA>
+  
+    <PARA>
+     This function is useful for manually defining a complete source-plus-background model expression with the set_full_model() and
+     set_bkg_full_model() functions, where the background scale factor
+     is not automatically entered for the user (as is done by
+     the set_model()/set_bkg_model() functions normally used for
+     setting source and background models).
+    </PARA>
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+     </LIST>
+    </DESC>
+ 
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_bkg_scale()</LINE>
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            When called with no arguments, get_bkg_scale() returns the 
+	    product of the ratios of the source-to-background spatial 
+	    extraction region areas (backscal) and exposure times in
+	    the default data set (id=1). The exposure and backscal
+            values used in the calculation of the background scale factor
+            may be checked with the get_exposure() and get_backscal() functions.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; get_bkg_scale()
+0.293520462273
+
+sherpa&gt; manual_bkg_scale_check = get_exposure()*get_backscal()/get_exposure(bkg_id=1)/get_backscal(bkg_id=1)
+
+sherpa&gt; print manual_bkg_scale_check 
+0.293520462273
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+       <QEXAMPLE>
+         <SYNTAX>
+	  <LINE>sherpa&gt; rsp = get_response()</LINE>
+          <LINE>sherpa&gt; bkg_rsp = get_response(bkg_id=1)</LINE>
+          <LINE>sherpa&gt; bkg_scale = get_bkg_scale()</LINE>
+	  <LINE>sherpa&gt; set_full_model(rsp(xsphabs.abs1*powlaw1d.p1) + bkg_scale*bkg_rsp(abs1*powlaw1d.p2))</LINE>
+          <LINE>sherpa&gt; set_bkg_full_model(bkg_rsp(abs1*p2))</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The complete convolved model for the source is set, which includes
+         a corresponding background component scaled
+        by the source-to-background exposure and backscal
+        ratios, returned by the get_bkg_scale() function. The function
+        set_bkg_full_model is then used to define the complete
+        convolved background model. This series of commands allows the
+        source and background components to be fitted simultaneously
+        (compare with a background fit using set_source and
+        set_bkg_source, by calling  'print get_model()' and 'print get_bkg_model()'). 
+         </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

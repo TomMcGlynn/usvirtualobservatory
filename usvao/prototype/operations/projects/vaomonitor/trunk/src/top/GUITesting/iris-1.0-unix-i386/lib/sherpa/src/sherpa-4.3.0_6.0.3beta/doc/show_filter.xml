@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="show_filter" refkeywords="show report status state information results filter filtering range" seealsogroups="sh.filter sh.info " displayseealsogroups="" context="filtering">
+
+<SYNOPSIS>
+  Display the filters applied to a dataset
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>show_filter([id, outfile=None, clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+          The show_filter command displays the filters which are
+          currently applied to the data.
+      </PARA>
+
+    <LIST>
+        <ITEM>
+          id - the id of the dataset to use; default
+          is to show filter information for all available datasets.
+        </ITEM>
+
+      <ITEM>
+        outfile - name of the file in which to store the information
+      </ITEM>
+
+      <ITEM>
+        clobber -  a Boolean switch which indicates whether or not
+        the 'outfile' should be overwritten, if the file already exists;
+        default=False
+        
+      </ITEM>
+    </LIST>
+
+      <PARA>        
+        The command output looks like:
+      </PARA>        
+
+<VERBATIM>
+Data Set Filter: 1
+0.2993-7.0007 Energy (keV)
+</VERBATIM>
+
+      <PARA>
+        The behavior of the screen output is determined by the
+        user's $PAGER environment variable setting, which
+        is usually a variant of "more."  To disable paging within
+        show_all() - i.e. print the entire contents, even if it
+        scrolls offscreen - change this setting to "cat" before starting
+        Sherpa:
+      </PARA>
+
+<VERBATIM>
+unix% setenv PAGER cat
+
+unix% sherpa
+</VERBATIM>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; show_filter()</LINE>
+	  
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Print the filter information to the screen for all datasets.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; show_filter(2, "sherpa.filter", True)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Write the filter information for dataset id=2 to the file
+	    "sherpa.filter", clobbering any existing file with the
+	    same name.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

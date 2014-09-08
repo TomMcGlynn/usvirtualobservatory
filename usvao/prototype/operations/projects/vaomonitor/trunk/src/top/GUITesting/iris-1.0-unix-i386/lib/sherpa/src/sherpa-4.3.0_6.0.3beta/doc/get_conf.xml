@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_conf" refkeywords="get_conf get_conf_results get_conf_opt confidence get covar covariance interval " seealsogroups="sh.conf sh.get " displayseealsogroups="" context="confidence">
+	<SYNOPSIS>
+     Return information regarding the confidence method.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_conf()</LINE>
+	<LINE>get_conf_results()</LINE>
+	<LINE>get_conf_opt( [name] )</LINE>
+      
+    </SYNTAX>
+	<DESC>
+      <PARA>
+get_conf
+      </PARA>
+
+      <PARA>
+	The get_conf command returns the list of current settings
+	defining the confidence estimation method (see <HREF link="http://cxc.harvard.edu/sherpa/ahelp/conf.html">"ahelp conf"</HREF>); these settings may be modified by the user. This
+	function accepts no arguments. The returned information
+	includes: 
+
+      </PARA>
+
+      <LIST>
+       <ITEM>sigma - to get 1, 2, or 3-sigma limits</ITEM>
+        <ITEM>eps - precision of resulting limits</ITEM>
+        <ITEM>maxiters- maximum number of tries to bracket desired limits, before returning</ITEM>
+        <ITEM>remin - if during search, a new
+        fit statistic is found that is smaller than original best fit,
+        the difference between new and original statistics must be
+        greater than this value</ITEM>
+      </LIST>
+
+      <PARA>
+	The full list of options is described in the "get_conf_opt"
+	section, below.
+      </PARA>
+	<PARA>
+get_conf_results
+      </PARA>
+
+      <PARA>
+	The get_conf_results command accesses results from the last
+	run of the confidence command. The function accepts no
+        arguments. The results include the following attributes:
+       </PARA>
+
+      <LIST>
+       <ITEM>datasets - Data sets in fit</ITEM>
+       <ITEM>methodname - Estimation method name</ITEM>
+       <ITEM>fitname  - Fitting method name</ITEM>
+       <ITEM>statname - Statistic name</ITEM>
+       <ITEM>sigma    - Change in statistic</ITEM>
+       <ITEM>percent  - % confidence interval corresponding to sigma</ITEM>
+       <ITEM>parnames - Model parameter names</ITEM>
+       <ITEM>parvals  - Model parameter fit values</ITEM>
+       <ITEM>parmins  - Model parameter minimum values</ITEM>
+       <ITEM>parmaxes - Model parameter maximum values</ITEM>
+       <ITEM>warnings - Warning messages</ITEM>
+      </LIST>
+
+      <PARA>
+get_conf_opt
+      </PARA>
+
+      <PARA>
+	The get_conf_opt command returns the value of a confidence option by
+        name. If the name isn't specified, it returns a dictionary of
+        all options that govern how confidence is run.
+       </PARA>
+ 
+      <LIST>
+       <ITEM>eps - precision of resulting limits, default=0.01</ITEM>
+       <ITEM>fast - the fit optimization method is automatically
+       switched to a faster option to reduce the time per fit; default=True
+       </ITEM>
+       <ITEM>max_rstat - maximum possible value of the reduced statistic, default=3</ITEM>
+        <ITEM>maxfits - maximum number of tries to fit the parameter space, default=5</ITEM>
+        <ITEM>maxiters- maximum number of tries to bracket desired limits, before returning, default=200</ITEM>
+       <ITEM>openinterval - how the confidence function should behave when it cannot locate the root within the open interval; see "ahelp conf" for a detailed explanation; default=False</ITEM>
+	<ITEM>parallel - switch which allows confidence to be run as a
+       parallel process; default=True</ITEM>
+        <ITEM>remin - if during search, a new
+        fit statistic is found that is smaller than original best fit,
+        the difference between new and original statistics must be
+        greater than this value, default=0.01</ITEM>
+        <ITEM>sigma - to get 1, 2, or 3-sigma limits, default=1</ITEM>
+        <ITEM>soft_limits - a switch which allows the search to go all
+         the way out to the hard parameter limits; if switched on, the
+         search will be restricted to occur within the soft limits,
+         which can be changed by the user, default=False</ITEM>
+        <ITEM>tol - tolerance for the fit, default=0.20000000000000001</ITEM>
+        <ITEM>verbose - print information to the screen?; default=False</ITEM>
+      </LIST>
+     </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_conf()</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Return a variable listing all of the settings that govern how
+            the confidence method calculates confidence limits.
+            Sample output is:
+	  </PARA>
+<VERBATIM>
+sherpa&gt; print(get_conf())
+name         = confidence
+verbose      = False
+openinterval = False
+max_rstat    = 3
+maxiters     = 200
+soft_limits  = False
+eps          = 0.01
+fast         = True
+maxfits      = 5
+remin        = 0.01
+tol          = 0.2
+sigma        = 1
+parallel     = True
+
+sherpa&gt; set_conf_opt("maxiters",300)
+
+sherpa&gt; print(get_conf())
+name         = confidence
+verbose      = False
+openinterval = False
+max_rstat    = 3
+maxiters     = 300
+soft_limits  = False
+eps          = 0.01
+fast         = True
+maxfits      = 5
+remin        = 0.01
+tol          = 0.2
+sigma        = 1
+parallel     = True
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_conf_results()</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Return a variable listing all of the results from the last
+            run of the confidence command. Sample output is:
+	  </PARA>
+<VERBATIM>
+sherpa-&gt; print(get_conf_results())
+datasets   = (1,)
+methodname = confidence
+fitname    = levmar
+statname   = chi2gehrels
+sigma      = 1
+percent    = 68.2689492137
+parnames   = ('p1.gamma', 'p1.ampl')
+parvals    = (2.1585155113403327, 0.00022484014787994827)
+parmins    = (-0.082785567348122591, -1.4825550342799376e-05)
+parmaxes   = (0.083410634144100104, 1.4825550342799376e-05)
+nfits      = 13
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_conf_opt()</LINE>
+	  <LINE>sherpa&gt; get_conf_opt("sigma")</LINE>
+	  <LINE>1</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    When called without a specific option name, the
+	    get_conf_opt command returns the dictionary of all options
+	    that govern how confidence is run. If an option name such as
+	    "sigma" is specified, it returns the value of the sigma
+	    option, which is "1" in this example. Sample output of
+            get_conf_opt() is:
+	  </PARA>
+<VERBATIM>
+sherpa&gt; print(get_conf_opt())
+{'verbose': False, 'openinterval': False, 'max_rstat': 3, 'maxiters': 200, 'soft_limits': False, 'eps': 0.01, 'fast': True, 'maxfits': 5, 'remin': 0.01, 'tol': 0.20000000000000001, 'sigma': 1, 'parallel': True}
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+     </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

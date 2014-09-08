@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_specresp" refkeywords=" get spectral response effective area cm2 cm^2" seealsogroups="sh.get  sh.data" displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Return the effective area of a PHA spectrum 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_specresp([id, filter=False, bkg_id])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The get_specresp() function returns the effective area array 
+	of a PHA source or background spectrum, by data set ID or
+	background ID (bkg_id).  The effective area has units of cm^2.
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+
+       <ITEM>
+	filter  -  apply an established data filter to the data set
+        before returning results;
+        default=False 
+                 
+      </ITEM>
+
+      <ITEM>
+	bkg_id  - the id of the background to use,
+        e.g. if more than one background is associated with the
+        data; default is the first background data set loaded   
+      </ITEM>
+    </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+        <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_specresp()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+            When called with no arguments, the get_specresp() function
+            returns the effective area array of the unfiltered default data
+            set.
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_specresp()
+           
+array([  2.46003189e+01,   2.46003189e+01,   2.46003189e+01,
+         2.46003189e+01,   2.46003189e+01,   2.46003189e+01,
+         2.46003189e+01,   2.46003189e+01,   2.46003189e+01,
+. . . . ., 
+         1.00000000e+00,   1.00000000e+00,   1.00000000e+00,
+         1.00000000e+00])
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE> 
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_specresp(1, bkg_id=1)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           To return the effective area of a background
+           associated with a data set, the background ID must be specified
+           along with the data set ID. Here, the effective area array of
+           the first background loaded for data set 1 is
+           returned by get_specresp().
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_specresp(1, 1)  
+
+array([  24.60031891,   24.60031891,   24.60031891,   24.60031891,
+         24.60031891,   24.60031891,   24.60031891,   24.60031891,
+         24.60031891,   24.60031891,   24.60031891,   24.60031891,
+. . . . .,      
+         11.07425496,   10.85468429,   10.63558233,   10.41627978,
+         10.19827679,    9.98038954,    9.76504485,    9.55377735,
+          9.34527298,    9.14399513,    8.97895669,    8.82890079])
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_specresp(1, filter=True)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           If a data set ID is supplied to get_specresp(), the unfiltered
+           effective area array of the specified data set is
+           returned, unless the 'filter' argument is set to 'True'.
+          </PARA>
+<VERBATIM>
+sherpa&gt; notice()
+sherpa&gt; get_specresp().size
+           1024
+sherpa&gt; ignore(10,15)
+sherpa&gt; get_specresp(filter=True).size
+           684
+</VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_multi_arfs" refkeywords="multi multiple ancillary auxilliary auxiliary read arf instrument response responses load readarf readfile" seealsogroups="sh.io   sh.arf " displayseealsogroups="" context="data">
+
+<SYNOPSIS>
+  Load multiple ARFs
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_multi_arfs( [id], filenames, resp_ids)</LINE>
+	</SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The load_multi_arfs command loads multiples ARFs (effective
+        areas) from FITS files and assigns them response ids.  More
+        than one ARF may be associated with a single dataset.  
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+	  filename - a list of the files (with path) which contain
+	  the ARF data 
+	</ITEM>
+
+        <ITEM>
+	  resp_id - a list containing a response id for each file loaded
+	</ITEM>
+      </LIST>
+</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_multi_arfs(["source1.arf", "source2.arf"], [1,2])</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The ARF files source1.arf and source2.arf are loaded as
+	    responses 1 and 2 for the default dataset.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

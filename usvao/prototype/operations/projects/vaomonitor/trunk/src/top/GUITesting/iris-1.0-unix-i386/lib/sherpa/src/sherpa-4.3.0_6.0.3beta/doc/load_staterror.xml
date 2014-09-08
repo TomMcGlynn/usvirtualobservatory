@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_staterror" refkeywords=" errors error backerrors statistical staterr staterrors staterror  read errors load" seealsogroups="sh.io " displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+       Load statistical errors
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_staterror( [id=1], filename, [bkg_id], [options] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The load_staterror command loads a user-input statistical error array
+      from a FITS table or column-based text file for 1D data, or an
+      error map from a FITS image for 2D data. The source
+        dataset must be loaded before the statistical errors can be
+        associated with it.  The get_staterror command is available for 
+	accessing the array(s) of statistical error values.
+      </PARA>
+
+      <PARA>
+	Statistical errors are added in quadrature with systematic
+	errors (if specified) to produce an overall error estimate in
+	each data bin. If the statistical errors are not loaded, it is
+	assumed that they are zero. 
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+	<ITEM>
+          bkg_id - the id of the background, if the errors are for a
+          background dataset;
+          default=None
+          
+        </ITEM>
+ 
+	<ITEM>
+          filename - the name of the FITS or column-based ASCII file
+          (with path) which contains the error data
+ 	</ITEM>
+
+	<ITEM>
+          options - optional arguments.  The allowed options depend on
+          the file type. 
+ 	</ITEM>
+      </LIST>
+
+      <PARA>
+	Options for a FITS file: 
+          [ncols=2,colkeys=None]
+          
+      </PARA>
+
+      <LIST>  
+        <ITEM>
+	  ncols - number of columns to read; default=2
+	</ITEM>
+
+        <ITEM>
+	  colkeys - list of column names;
+          default=None
+          
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	Options for an ASCII file:
+          [ncols=2, colkeys=None, sep=" ", comment='#']
+          
+      </PARA>
+      
+      <LIST>
+        <ITEM>
+	  ncols - number of columns to read; default=2
+	</ITEM>
+
+        <ITEM>
+	  colkeys - list of column names;
+          default=None
+          
+	</ITEM>
+
+        <ITEM>
+	  sep - the column-separating character; default is a space (" ")
+	</ITEM>
+
+        <ITEM>
+	  comment - character which indicates a comment line; default=#
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_data("src", "3c273.pi")</LINE>
+          <LINE>sherpa&gt; load_staterror("src", "3c273.pi[cols channel,stat_err]")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            A spectrum is loaded from the file 3c273.pi with data id "src".
+	    The statistical errors for the dataset are then loaded from the same input file by specifying the columns "channel" and "staterrs".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_staterror("staterror.txt", bkg_id=1)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Statistical errors for the background with bkg_id=1 of the
+	    default dataset are read from the first two columns (the
+	    default) of the ASCII file staterror.txt.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_image(3, "src_image.fits")</LINE>
+          <LINE>sherpa&gt; load_staterror(3, "staterror_img.fits")</LINE>
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Source image data is loaded into the Sherpa session
+        and assigned to data set ID 3 with the load_image command.
+        The statistical errors map associated with the source image is
+        loaded for data set 3 with the load_staterror command.
+          </PARA>
+<VERBATIM>
+sherpa&gt; load_image(3, "src_image.fits")
+sherpa&gt; load_staterror(3, "staterror_img.fits")
+
+sherpa&gt; show_data(3)
+Data Set: 1
+Filter:
+name = src_image.fits
+x0 = Float64[56376]
+x1 = Float64[56376]
+y = Float64[56376]
+shape = (216, 261)
+staterror = Float64[56376]
+syserror = None
+sky = physical
+crval = [ 3798.5 4019.5]
+crpix = [ 0.5 0.5]
+cdelt = [ 2. 2.]
+eqpos = world
+crval = [ 278.386 -10.5899]
+crpix = [ 4096.5 4096.5]
+cdelt = [-0.0001 0.0001]
+crota = 0
+epoch = 2000
+equinox = 2000
+coord = logical
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

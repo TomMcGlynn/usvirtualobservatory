@@ -1,0 +1,4 @@
+<FilesMatch  "\.(js)$">
+AddDefaultCharset UTF-8
+DefaultLanguage en-US
+</FilesMatch>

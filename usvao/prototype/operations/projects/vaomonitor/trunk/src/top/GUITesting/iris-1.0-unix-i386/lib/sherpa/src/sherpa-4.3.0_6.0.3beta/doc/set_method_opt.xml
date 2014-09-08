@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_method_opt" refkeywords="set minimization minimize optimization optimize method    annealing likelihood converge convergence " seealsogroups="sh.method sh.set " displayseealsogroups="" context="methods">
+
+    <SYNOPSIS>
+      Set the options of the chosen optimization method
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_method_opt( optname, val )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The set_method_opt command sets the options for the chosen
+        optimization method.  Refer to the ahelp file for each method
+        for a complete description of the options (e.g. <HREF link="http://cxc.harvard.edu/sherpa/ahelp/levmar.html">"ahelp levmar"</HREF>).
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          optname - optimization method option name
+        </ITEM>
+
+        <ITEM>
+          val - value for the option
+        </ITEM>
+      </LIST>
+
+      <PARA>
+	A list of the available options for each
+        method is returned by the get_method_opt command         
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/get_method.html">"ahelp get_method_opt"</HREF>), e.g.
+      </PARA>
+<VERBATIM>
+sherpa&gt; get_method_name()
+levmar
+
+sherpa&gt; get_method_opt()
+{'epsfcn': 1.1920928955078125e-07,
+ 'factor': 100.0,
+ 'ftol': 1.1920928955078125e-07,
+ 'gtol': 1.1920928955078125e-07,
+ 'maxfev': None,
+ 'verbose': 0,
+ 'xtol': 1.1920928955078125e-07}
+</VERBATIM>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_method("levmar")</LINE>
+	  <LINE>sherpa&gt; set_method_opt("maxfev",750)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Set the "maxfev" option (maximum number of function
+	    evaluations) in the levmar method to 750.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_method ("neldermead")</LINE>
+	  <LINE>sherpa&gt; set_method_opt ("maxfev", 2000)</LINE>
+	  <LINE>sherpa&gt; set_method_opt ("verbose", 1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The optimization method is set to neldermead.  The
+	    "maxfev" is set to 2000 and the verbosity is set to 1.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

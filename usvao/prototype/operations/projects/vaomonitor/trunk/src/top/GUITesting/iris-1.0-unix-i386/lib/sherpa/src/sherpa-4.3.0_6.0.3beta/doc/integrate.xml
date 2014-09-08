@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="integrate" refkeywords="integration integral normalization multiplicative additive multiply add histogram binned" seealsogroups="sh.model " displayseealsogroups="" context="modeling">
+
+<SYNOPSIS>
+Controlling the integration of model components
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>modelname.integrate=False</LINE>
+      <LINE>modelname.integrate=True</LINE>
+	</SYNTAX>
+
+<DESC>
+  <PARA>
+    The integration of models in CIAO4 Sherpa is controlled by an
+    integration flag in each model structure.  There is no longer an
+    "integrate" command as there was in CIAO 3.4.
+  </PARA>
+  
+  <PARA>
+    Sherpa source and background models are integrated over bins in
+    energy-space or wavelength-space before being folded through an
+    instrument, or over bins in counts-space if no instrument model is
+    specified.   If integration is turned off, then the model values
+    at the entered data points are used for non-binned data.  For
+    binned data, the model values at the left side of the bin are used
+    in the fitting.   Changing the integration status of a model
+    component will have no affect if the data are not binned.
+  </PARA>
+
+  <PARA>
+    There is no control from Sherpa over the integration setting
+    of XSPEC source models.  Additionally, there is no
+    integration setting for instrument models. 
+  </PARA>
+
+  <PARA>
+    Certain combinations of additive/integrated and
+    multiplicative/non-integrated model components are not allowed -
+    such as by adding two model components with different integration
+    settings - as they can not produce meaningful results.  Sherpa
+    will issue a warning when it detects an unacceptable combination.
+  </PARA>
+
+  <PARA title="Why do the model units change when integrate is turned on/off?">
+    In general, the relevant parameters of a model (e.g., positions,
+    radii, amplitudes) match up with the COORD setting. If you are
+    working in image coordinates, model parameters will also refer to
+    image coordinates.  This can change, however, if you change the
+    integrate setting of the model. 
+  </PARA>
+
+  <PARA>
+    If you create a model, e.g. a  beta2d model, and turn integration
+    off, you will get the model value at a
+    point (x,y).  In that case, the units are just "counts" since the
+    rest of the beta2d expression is unitless (see <HREF link="http://cxc.harvard.edu/sherpa/ahelp/beta2d.html">"ahelp beta2d"</HREF> for details). 
+  </PARA>
+
+  <PARA>
+    When you turn integrate on, you are telling Sherpa to bin up the
+    model values for you.  Sherpa evaluates the model at (x_lo, y_lo)
+    and (x_hi, y_hi), and bins it so that you get all the counts that
+    happened in that bin, not just at some particular point in data
+    space.  Since the bin size is being taken into account, the value
+    really means "counts/bin" or "counts/pixel", not simply "counts".  
+  </PARA>
+
+  <PARA>
+     To see the difference that integrate makes, use the image_model
+     command to display the model values in ds9.  Change the integrate
+     setting and image the model again to see how the values change.
+  </PARA>
+</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_model(xsphabs.abs1*powlaw1d.p1)</LINE>
+          <LINE>sherpa&gt; p1.integrate</LINE>
+          <LINE>True</LINE>
+          <LINE>sherpa&gt; p1.integrate=False</LINE>
+          <LINE>sherpa&gt; p1.integrate</LINE>
+          <LINE>False</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Define a model and turn off the integration for the "p1"
+	    component. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

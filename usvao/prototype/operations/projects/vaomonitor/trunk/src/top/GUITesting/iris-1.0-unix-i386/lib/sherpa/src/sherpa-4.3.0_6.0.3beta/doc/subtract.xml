@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="subtract" refkeywords="subtraction background back bkg backscale backscal rescale rescaling" seealsogroups="sh.bg " displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+      Perform background subtraction
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>subtract( id )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The subtract command performs a channel-by-channel background
+	subtraction on the data.  In Sherpa, the subtract command must
+	be issued to perfom  background subtraction; it is not done
+	automatically as it is in XSpec.  
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to subtract; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+      </LIST>
+
+      <PARA>
+	Background subtraction can only be performed when data and
+	background are of the same length.  If the data and background
+	are ungrouped, both must have same number of channels.  If
+	they are grouped, data and background can start with different
+	numbers of channels, but must have the same number of groups
+	after grouping. 
+      </PARA>
+
+      <PARA>
+	The equation for the subtraction is: 
+      </PARA>
+
+<VERBATIM>                
+src_counts - bg_counts * (src_exposure * src_backscal)
+                         -----------------------------
+                          (bg_exposure * bg_backscal)
+</VERBATIM>
+	<PARA>
+	where src_exposure and bg_exposure are the source and
+	background exposure times, and src_backscal and bg_backscal
+	are the source and background backscales.  The backscale, read
+	from the BACKSCAL header keyword, is the ratio of data
+	extraction area to total detector area.  
+      </PARA>
+
+      <PARA>
+	The "subtracted" field of the source dataset is updated to
+	indicate that the data are background-subtracted, as shown in
+	the examples. 
+      </PARA>
+
+      <PARA>
+	To undo background subtraction, use the unsubtract command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/unsubtract.html">"ahelp unsubtract"</HREF>). 
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; subtract()</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Subtract the background of the default dataset.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+	<QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; subtract("src")</LINE>
+	  <LINE>sherpa&gt; get_data("src").subtracted</LINE>
+	  <LINE>True</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   Subtract background counts for dataset "src".  The "subtracted" 
+	   field of the source data object is updated to show that the dataset 
+	   has been background-subtracted.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

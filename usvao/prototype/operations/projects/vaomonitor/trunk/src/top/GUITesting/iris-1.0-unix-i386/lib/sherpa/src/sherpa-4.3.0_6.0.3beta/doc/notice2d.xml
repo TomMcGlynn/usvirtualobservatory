@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="notice2d" refkeywords="notice include filter exclude wave wavelength energy keV Angstrom bin channel pha  lambda logical image physical wcs world" seealsogroups="sh.filter " displayseealsogroups="" context="filtering">
+
+    <SYNOPSIS>
+      Apply an include filter to all 2D datasets
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>notice2d( [val] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The notice2d command specifies the region of 2D data to be
+	included in the analysis.  The filter is applied to all
+	available dataset ids; to operate on specific ids, use the
+	notice2d_id command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/notice2d_id.html">"ahelp notice2d_id"</HREF>).
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  val - a filter defined by CIAO region syntax or a
+	  FITS or ASCII region filename (including path);
+	  default=None
+	  
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        The filter must be defined in the same coordinate system as
+        the "coord" field of the data structure, which is returned by
+        the get_coord command 
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/get_coord.html">"ahelp get_coord"</HREF>).
+        For information on the CIAO region filtering syntax, refer to
+        <HREF link="http://cxc.harvard.edu/ciao/ahelp/dmregions.html">"ahelp
+        dmregions"</HREF>. 
+      </PARA>
+
+      <PARA>
+        If the region definition on the Sherpa command line contains
+        an arcsec or arcmin symbol, it must be escaped: \" or \' .
+        The symbols do not need to be escaped if they are in a region
+        file.  
+      </PARA>
+
+      <PARA>
+	If no filter is supplied, all data points in all datasets are
+	included.  Noticing the entire set is a method of clearing
+	any filters that have been applied.  
+      </PARA>   
+
+      <PARA title="One-dimensional Data Filtering">
+        To apply an include filter to 1D data, use the notice command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/notice.html">"ahelp notice"</HREF>)
+	or the notice_id command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/notice_id.html">"ahelp notice_id"</HREF>).
+      </PARA>
+
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; notice2d()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    When the command is called without any filter, all data 
+	    points in all sets are included. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; notice2d("circle(275,275,50)")</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    A circular region defined in logical (image) coordinates
+	    is used to filter the data.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; notice2d("box(3900.5,4120,189,188,0)+circle(4069,4250,20)")</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Filter the data with a complex region (a rectangular plus a
+	    circle) in physical coordinates. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; notice2d("/data/src.reg")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Filter the data with the region stored in
+	    /data/src.reg. In this case, it is a circular region
+	    defined in WCS decimal coordinates:
+	  </PARA>
+
+<VERBATIM>
+sherpa&gt; !cat /data/src.reg
+# Region file format: DS9 version 4.0
+# Filename:
+fk5
+circle(278.38973,-10.569072,51.998083")
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; notice2d("circle(18:33:33.468,-10:34:08.66,42.6351\")")</LINE>
+	  <LINE>sherpa&gt; notice2d("wcs.reg")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    These commands are two equivalent ways of filtering the
+	    data with a region defined in WCS sexagesimal
+	    coordinates.  The region file contains:
+	  </PARA>
+
+<VERBATIM>
+sherpa&gt; !cat ~/src_wcs.reg
+circle(18:33:33.468,-10:34:08.66,42.6351")
+</VERBATIM>
+
+          <PARA>
+	    Note that the arcsec symbol must be escaped on the Sherpa
+	    command line (\"), but does not need to be escaped when the
+	    region is given in a file.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+     
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

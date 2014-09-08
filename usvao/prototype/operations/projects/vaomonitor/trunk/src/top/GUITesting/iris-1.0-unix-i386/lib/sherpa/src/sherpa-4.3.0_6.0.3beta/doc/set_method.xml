@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_method" refkeywords="set minimization minimize optimization optimize method  annealing likelihood converge convergence " seealsogroups="sh.method sh.set " displayseealsogroups="" context="methods">
+
+    <SYNOPSIS>
+      Set the optimization method
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_method( meth )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The set_method command sets the optimization method to be used
+        in fitting.  
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  meth - the optimization method
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	Available methods are returned by the list_methods command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/list_methods.html">"ahelp list_methods"</HREF>).
+	There is a help file for each method, e.g.
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/levmar.html">"ahelp levmar"</HREF>).
+      </PARA>
+	<TABLE>
+      <ROW>
+        <DATA>Method</DATA>
+        <DATA>Description</DATA>
+      </ROW>  
+
+      <ROW>
+        <DATA>levmar</DATA> 
+	<DATA>
+	  The Levenberg-Marquardt method is an interface to the
+	  MINPACK subroutine lmdif to find the local minimum of
+	  nonlinear least squares functions of several variables by a
+	  modification of the Levenberg-Marquardt algorithm
+	  (J.J. More, "The Levenberg Marquardt algorithm:
+	  implementation and theory," in Lecture Notes in Mathematics
+	  630: Numerical Analysis, G.A. Watson (Ed.), Springer-Verlag:
+	  Berlin, 1978, pp.105-116). 
+        </DATA>
+      </ROW>
+
+      <ROW>
+        <DATA>moncar</DATA> 
+	<DATA>
+	  The implementation of the moncar method is based on the
+	  paper by Storn, R. and Price, K. "Differential Evolution: A
+	  Simple and Efficient Adaptive Scheme for Global Optimization
+	  over Continuous Spaces." J. Global Optimization 11, 341-359,
+	  1997. 
+	</DATA>
+      </ROW>
+
+      <ROW>
+        <DATA>neldermead</DATA> 
+	<DATA>
+	  The implementation of the Nelder Mead Simplex direct search
+	  is based on the paper: Jeffrey C. Lagarias, James A. Reeds, 
+	  Margaret H. Wright, Paul E. Wright "Convergence Properties
+	  of the Nelder-Mead Simplex Algorithm in Low Dimensions",
+	  SIAM Journal on Optimization,Vol. 9, No. 1 (1998), pages
+	  112-147. 
+	</DATA>
+      </ROW>
+
+      <ROW>
+        <DATA>simplex</DATA> 
+	<DATA>same as the neldermead method</DATA>
+      </ROW>
+      </TABLE>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_method("neldermead")</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Set the optimization method as the Nelder Mead simplex.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; set_method("moncar")</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The optimization method is set to "moncar".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

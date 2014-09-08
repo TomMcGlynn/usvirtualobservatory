@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="levmar" refkeywords="minimization minimize optimization optimize method levmar Levenberg-Marquardt Levenberg Marquardt LMdif likelihood converge convergence" seealsogroups="sh.method " displayseealsogroups="" context="methods">
+
+<SYNOPSIS>
+Levenberg-Marquardt optimization method
+</SYNOPSIS>
+
+<DESC>
+  <PARA>
+    The Levenberg-Marquardt method is an interface to the MINPACK
+    subroutine lmdif to find the local minimum of nonlinear least
+    squares functions of several variables by a modification of the
+    Levenberg-Marquardt algorithm (J.J. More, "The Levenberg Marquardt
+    algorithm: implementation and theory," in Lecture Notes in
+    Mathematics 630: Numerical Analysis, G.A. Watson (Ed.),
+    Springer-Verlag: Berlin, 1978, pp.105-116). 
+  </PARA>
+
+  <LIST>
+    <CAPTION>Method Options</CAPTION>
+
+  <ITEM>
+    ftol - the relative error desired in the sum of squares;
+    default is sqrt( DBL_EPSILON ) ~ 1.19209289551e-07, where
+    DBL_EPSILON is the smallest number x such that 1.0 != 1.0 + x. 
+    The conditions are satisfied when both the actual and predicted
+    relative reductions in the sum of squares are, at most, ftol. 
+  </ITEM>
+
+  <ITEM>
+    xtol - the relative error desired in the approximate solution;
+    default is sqrt( DBL_EPSILON ) ~ 1.19209289551e-07, where
+    DBL_EPSILON is the smallest number x such that 1.0 != 1.0 + x.
+    The conditions are satisfied when the relative error between two
+    consecutive iterates is, at most, xtol
+  </ITEM>
+
+  <ITEM>
+    gtol - the orthogonality desired between the function vector and
+    the columns of the jacobian; default is sqrt( DBL_EPSILON ) ~
+    1.19209289551e-07, where DBL_EPSILON is the smallest number x such
+    that 1.0 != 1.0 + x.   The conditions are satisfied when the
+    cosine of the angle between fvec and any column of the jacobian is,
+    at most, gtol in absolute value. 
+  </ITEM>
+
+  <ITEM>
+    maxfev - the maximum number of function evaluation; default 
+    is 1024 * n (number of free parameters).
+  </ITEM>
+
+  <ITEM>
+    epsfcn - used in determining a suitable step length for the
+    forward-difference approximation; default is sqrt( DBL_EPSILON ) ~
+    1.19209289551e-07, where DBL_EPSILON is the smallest number x such
+    that 1.0 != 1.0 + x.  This approximation assumes that the relative
+    errors in the functions are of the order of epsfcn.  If epsfcn is
+    less than the machine precision, it is assumed that the relative
+    errors in the functions are of the order of the machine precision.
+  </ITEM>
+
+  <ITEM>
+    factor - used in determining the initial step bound; default is
+    100.  The initial step bound is set to the product of factor and
+    the euclidean norm of diag*x if nonzero, or else to factor itself.
+    In most cases, factor should be from the interval (.1,100.).
+  </ITEM>
+
+  <ITEM>
+    verbose - the amount of information to print about the fit
+    progress.  Default is 0 (no output).
+  </ITEM>
+  </LIST>
+</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_method("levmar")</LINE>
+          <LINE>sherpa&gt; get_method_name()</LINE>
+          <LINE>'levmar'</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            Set the optimization method and then confirm the new value.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+    
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

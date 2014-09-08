@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="show_bkg_model" refkeywords="show bkg background source convolved model information settings parameters parameter " seealsogroups="sh.bg sh.info sh.model" displayseealsogroups="" context="info">
+
+    <SYNOPSIS>
+     Display the background convolved model 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>show_bkg_model([id=None, bkg_id=None, outfile=None, clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+          The show_bkg_model() function displays the details of the
+	  convolved source models assigned to PHA
+	  background data sets which have been loaded into Sherpa, by data set
+	  ID. For each model, the equation
+	  defining the model convolution, with ARF and RMF instrument
+	  responses, is shown, along with the current parameter values
+	  (including minimum and maximum values), 
+	  parameter type (thawed or frozen), and units. 
+	  This information can be saved in a
+	  text file by specifying a filename in the 'outfile' argument.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+         id - the id of the source data set to use; default is to show
+         information for all available data sets.
+        </ITEM>
+
+	<ITEM>
+          bkg_id - the id of the background data set to use (e.g., bkg_id=1 
+          represents the first background data set loaded in association with
+          the source data set specified in the 'id' argument); default
+          is bkg_id=1 for id=1.
+        </ITEM>
+
+        <ITEM>
+         outfile - name of the file to which to save the output of the
+         function
+        </ITEM>
+
+	<ITEM>
+	  clobber - a Boolean switch which indicates whether or not the 'outfile' should be overwritten, if the file already exists; default=False
+
+        </ITEM>
+	</LIST>
+
+       <PARA>        
+        The command output looks like:
+      </PARA>        
+
+<VERBATIM>
+Background Model: 1:1
+apply_rmf(apply_arf((38564.6089269 * const1d.c1)))
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   c1.c0        thawed            1            0  3.40282e+38           
+
+Background Model: 2:1
+apply_rmf(apply_arf((38564.6089269 * const1d.c2)))
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   c2.c0        thawed            1            0  3.40282e+38                         
+</VERBATIM>
+	<PARA>        
+        The behavior of the screen output is determined by the
+        user's $PAGER environment variable setting, which
+        is usually a variant of "more." If PAGER is not found,
+        '/usr/bin/more' is attempted before error. To disable paging within
+        show_bkg_model() - i.e. print the entire contents, even if it
+        scrolls offscreen - change this setting to "cat" before starting
+        Sherpa: 
+      </PARA>
+
+<VERBATIM>
+unix% setenv PAGER cat
+
+unix% sherpa
+</VERBATIM>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; show_bkg_model()</LINE>
+	  
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The function show_bkg_model() can be called with no arguments,
+	    in which case the details of all convolved
+	    background models assigned to background data sets will be displayed. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+ 
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; show_bkg_model(2, 1)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The data set id arguments are used to specify that the
+	    convolved model assigned to the first
+	    background data set loaded in association with source data
+	    set 2 should be displayed (id=2, bkg_id=1). If only the
+	    source data set id "2" had been entered, without
+	    specifying a background id, all convolved background 
+	    models associated with data set 2 would be returned.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; show_bkg_model(2, "con_model.bkg", True)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	   Here, the outfile argument is used to save the convolved
+	   model information for all background data sets loaded with source data set 2 in
+	   the file 'con_model.bkg'. This file will be
+	   overwritten if it already exists in the current working
+	   directory, since 'clobber' is set to True.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+ 
+    </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

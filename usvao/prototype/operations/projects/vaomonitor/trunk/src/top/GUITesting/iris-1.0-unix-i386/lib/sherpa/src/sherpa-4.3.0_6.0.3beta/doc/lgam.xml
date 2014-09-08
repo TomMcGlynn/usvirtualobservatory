@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="lgam" refkeywords="cephes utility function math " seealsogroups="sh.calc " displayseealsogroups="" context="utilities">
+
+     <SYNOPSIS>
+     Calculate the log of the Gamma function
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>lgam(z)</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+        Calculate the CEPHES function, lgam, in the range [0 &lt;= z
+        &lt;= MAXLGM].  The function returns the base e (2.718...)
+        logarithm of the absolute value of the Gamma function of the
+        argument (scalar or array).  
+      </PARA>
+
+      <PARA>
+	For arguments greater than 13, the logarithm of the Gamma
+	function is approximated by the logarithmic version of
+	Stirling's formula using a polynomial approximation of degree
+	4. Arguments between -33 and +33 are reduced by recurrence to
+	the interval [2,3] of a rational approximation. The cosecant
+	reflection formula is employed for arguments less than -33. 
+      </PARA>
+
+      <PARA>
+	Arguments greater than MAXLGM return MAXNUM and an error
+	message.  MAXLGM = 2.035093e36 for DEC arithmetic or
+	2.556348e305 for IEEE arithmetic. 
+      </PARA>
+
+<TABLE>
+<CAPTION>Relative error:</CAPTION>
+<ROW>
+<DATA>arithmetic</DATA>
+<DATA>domain</DATA>
+<DATA># trials</DATA>
+<DATA>peak</DATA>
+<DATA>rms</DATA>
+</ROW>
+
+<ROW>
+<DATA>DEC</DATA>
+<DATA>0, 3</DATA>
+<DATA>7000</DATA>
+<DATA>5.2e-17</DATA>
+<DATA>1.3e-17</DATA>
+</ROW>
+
+<ROW>
+<DATA>DEC</DATA>
+<DATA>2.718, 2.035e36</DATA>
+<DATA>5000</DATA>
+<DATA>3.9e-17</DATA>
+<DATA>9.9e-18</DATA>
+</ROW>
+
+<ROW>
+<DATA>IEEE</DATA>
+<DATA>0, 3</DATA>
+<DATA>28000</DATA>
+<DATA>5.4e-16</DATA>
+<DATA>1.1e-16</DATA>
+</ROW>
+
+<ROW>
+<DATA>IEEE</DATA>
+<DATA>2.718, 2.556e305</DATA>
+<DATA>40000</DATA>
+<DATA>3.5e-16</DATA>
+<DATA>8.3e-17</DATA>
+</ROW>
+</TABLE>
+
+      <PARA>
+	The error criterion was relative when the function magnitude 
+	was greater than one but absolute when it was less than one.
+      </PARA>
+
+      <PARA>
+	The following test used the relative error criterion, though 
+	at certain points the relative error could be much higher than 
+	indicated.
+      </PARA>
+ 
+<TABLE>
+<ROW>
+<DATA>arithmetic</DATA>
+<DATA>domain</DATA>
+<DATA># trials</DATA>
+<DATA>peak</DATA>
+<DATA>rms</DATA>
+</ROW>
+
+<ROW>
+<DATA>IEEE</DATA>
+<DATA>-200, -4</DATA>
+<DATA>10000</DATA>
+<DATA>4.8e-16</DATA>
+<DATA>1.3e-16</DATA>
+</ROW>
+</TABLE>
+
+      <PARA title="Reference">
+	Cephes Math Library Release 2.0:  April, 1987.
+	Copyright 1985, 1987 by Stephen L. Moshier.
+	Direct inquiries to 30 Frost Street, Cambridge, MA 02140.
+      </PARA>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; lgam(3.14)</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	  Calculate the lgam of 3.14.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; lgam([3.14,2.71])</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	  Calculate the lgam of the array [3.14,2.71].
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="list_iter_methods" refkeywords="list lists show get method methods opt optimization iterative iteration fit fitting primini sigmarej sigma-rejection " seealsogroups="sh.method sh.list sh.fit" displayseealsogroups="" context="methods">
+
+
+    <SYNOPSIS>
+      List all Sherpa iterative fitting methods.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>list_iter_methods()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       Sherpa includes multiple iterative fitting methods 
+       for fitting models to data.  The list_iter_methods command lists these
+       available methods, by name; it accepts no arguments. 
+        
+      </PARA>
+      <PARA>
+       The essence of an iterative fitting method is that the chosen fit
+        optimization method can be called several times, until some
+        criterion is met. The fit statistic and optimization methods are 
+        selected independently of the iterative fitting method. If the
+      current iterative fitting method is set to the default value of
+      'none', then the optimization method is called only once when
+      "fit()" is called.  
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; list_iter_methods()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+           ['none', 'primini', 'sigmarej']
+          </PARA>
+          <PARA>
+	   The list_iter_methods() function lists the names of all
+           iterative fitting methods available in Sherpa.  Note that
+           the default value for the current iterative fitting method is
+          'none'.
+         </PARA>	 
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

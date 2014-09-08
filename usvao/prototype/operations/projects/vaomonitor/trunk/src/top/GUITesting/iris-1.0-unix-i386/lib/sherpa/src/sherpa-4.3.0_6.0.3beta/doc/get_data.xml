@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_data" refkeywords="data dataset model " seealsogroups="sh.get sh.data " displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+    Return details of a Sherpa data set by ID.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_data([id])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The get_data() function returns a variable that grants
+       access to all the information contained in a data set by data
+       ID. If no ID is given,
+       then the default data set loaded in the Sherpa session is
+       returned.  The get_data() function can also be used to modify
+       the details of a data set, e.g. to change units from "energy"
+       to "wavelength" in a PHA grating data set, to subtract or unsubtract
+       background data, to set the grouping of a PHA data set, among
+       other options.
+      </PARA>
+
+    <LIST>
+      <ITEM>
+       id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+    </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_data()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   For example, data that had been read from a simple ASCII file has
+           the following information (in this case it is the default
+           data set, which has data id=1):
+	  </PARA>
+	  <VERBATIM>
+	  sherpa&gt; print get_data()
+          name      = foo.dat
+          x         = Float64[124]
+          y         = Float64[124]
+          staterror = None
+          syserror  = None	  
+	  </VERBATIM>
+	<VERBATIM>
+	  sherpa&gt; print get_data(1)
+          name      = foo.dat
+          x         = Float64[124]
+          y         = Float64[124]
+          staterror = None
+          syserror  = None	  
+	  </VERBATIM>
+	  
+        </DESC>
+       </QEXAMPLE>
+
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_data("src")</LINE>
+	  
+	</SYNTAX>
+	  <DESC>
+          <PARA>
+	  The data read from a PHA file, on the other hand, has more
+	  complex information, including arrays for
+	  grouping and quality flags as well as the data (here the
+	  data set has been assigned id="src"):
+	  </PARA>
+
+	  <VERBATIM>
+	  sherpa&gt; print get_data("src")
+	  name           = s0_mar24_bin.pha
+	  channel        = Int16[512]
+	  counts         = Int32[512]
+	  staterror      = None
+	  syserror       = None
+	  bin_lo         = None
+	  bin_hi         = None
+	  grouping       = Int16[512]
+	  quality        = Int16[512]
+	  exposure       = 33483.25
+	  backscal       = 0.044189453125
+	  areascal       = 1.0
+	  grouped        = True
+	  subtracted     = False
+	  units          = energy
+	  response_ids   = [1]
+	  background_ids = []
+	  </VERBATIM>
+	</DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_data(3).units = "wavelength"</LINE>
+	  
+	</SYNTAX>
+	  <DESC>
+          <PARA>
+           The get_data() function can be used to modify the details
+           of a data set; the command in this example sets the 'units'
+           field of the PHA grating data set 3 to "wavelength".
+          </PARA>
+
+          <VERBATIM>
+      sherpa&gt; print get_data(3)
+      name           = 460_leg_m1_bin10.pha
+	  channel        = Int16[16384]
+	  counts         = Int16[16384]
+	  staterror      = None
+	  syserror       = None
+	  bin_lo         = Float64[16384]
+	  bin_hi         = Float64[16384]
+	  grouping       = Int16[16384]
+	  quality        = Int16[16384]
+	  exposure       = 39939.2745006
+	  backscal       = 1.0
+	  areascal       = 1.0
+	  grouped        = True
+	  subtracted     = False
+	  units          = energy
+	  response_ids   = [1, 2, 3]
+	  background_ids = [1, 2]
+
+      sherpa&gt; get_data(3).units = "wavelength"
+
+      sherpa&gt; print get_data(3).units
+      wavelength
+          </VERBATIM>
+	</DESC>
+       </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

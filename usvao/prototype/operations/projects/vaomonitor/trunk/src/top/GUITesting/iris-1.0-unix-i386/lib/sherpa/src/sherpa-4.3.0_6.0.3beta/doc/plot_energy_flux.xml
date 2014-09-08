@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="plot_energy_flux" context="plotting" refkeywords="draw display plot plotting flux energy distribution" seealsogroups="sh.plot sh.energy sh.flux ">
+
+    <SYNOPSIS>
+     Plot the calculated energy flux distribution
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>plot_energy_flux( [lo=None], [hi=None, id=1, num=7500, bins=75, correlated=False,  recalc=True, overplot=False,numcores] )</LINE>
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The plot_energy_flux command plots the calculated energy flux distribution,
+       which is the flux distribution for the model component accounting for the errors
+       on the model parameters.
+      </PARA>
+
+      <PARA>
+	The sample_energy_flux() command can be used to return an array of flux values
+	drawn from this distribution.
+      </PARA>
+     
+      <PARA>
+       The plot_energy_flux command is
+       parallelized to make use of multi-core systems (i.e., laptops or
+       desktops with 2 or 4 cores) to provide 
+       significant improvements in efficiency compared to previous
+       releases of Sherpa; the 'numcores' argument may be used to
+       specify how the cores should be used when the command is run.
+       </PARA>
+
+      <LIST>
+	<CAPTION>Function arguments</CAPTION>
+	<ITEM>
+          lo - lower photon bound; the default value of
+	  None
+	  means that the lower limit if the instrument model (ARF and RMF) should be used.
+	</ITEM>
+	<ITEM>
+          hi - upper photon bound; the default value of
+	  None
+	  means that the upper limit if the instrument model (ARF and RMF) should be used.
+       </ITEM>
+
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+	<ITEM>
+	  num - number of samples used in the distribution (the default value is 7500)
+	</ITEM>
+
+	<ITEM>
+	  bins - number of bins used to bin the distribution into a histogram (bins=75 by default)
+	</ITEM>
+
+	<ITEM>
+	  correlated - whether to use a multi- or uni-variate distribution to sample the parameter values.
+	  The default value of 
+	  False
+	  means use a uni-variate distribution,
+	  whilst
+	  True
+	  means use a multi-variate distribution.
+	</ITEM>
+
+
+
+	<ITEM>
+          recalc - should the arrays be recomputed for the plot?
+	  The default value of 
+          True
+	  means that the plot values will be re-computed, otherwise
+	  the previously-plotted values will be re-used.
+        </ITEM>
+
+        <ITEM>
+          overplot - should the new plot be overlaid in the plotting window?
+	  If 
+          False,
+	  which is the default value, then the plot window will be cleared before
+	  creating the plot, otherwise the data will be added to the existing
+	  plot.
+        </ITEM>
+	<ITEM>
+         numcores - number of cores to use in parallelization; default
+         is to use all cores available (2 or 4)
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        The plot is displayed in a ChIPS plotting window. If there is
+        no plotting window open, one is created.  If a plotting window
+        exists, the overplot parameter value determines whether the
+        new plot is overlaid on any existing plots in the window or if
+        the window is cleared before the plot is drawn. 
+      </PARA>
+
+      <PARA>
+        ChIPS commands may be used within Sherpa to modify plot
+        characteristics and create hardcopies; refer to the <HREF link="http://cxc.harvard.edu/chips/">ChIPS website</HREF> for
+        information. 
+      </PARA>
+
+      <PARA title="Plotting Multiple Objects">
+	To plot multiple Sherpa objects - e.g. data, model, fit,
+	residuals - in a single window, use
+	the <HREF link="http://cxc.harvard.edu/sherpa/ahelp/plot.html">plot command</HREF>.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; plot_energy_flux()</LINE>
+
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Plot the energy flux distribution for the default dataset.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; plot_energy_flux(0.5, 7)</LINE>
+
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Plot the energy flux distribution for the default dataset, between 0.5 and 7.0 keV.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; plot_energy_flux(id="src")</LINE>
+	  <LINE>sherpa&gt; plot_energy_flux(0.5, 7, id="src", overplot=True)</LINE>
+	  <LINE>sherpa&gt; set_histogram(["line.color", "blue"])</LINE>
+
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Plot the energy flux distribution the "src" dataset,
+	    using the full energy range, and then overplot the 0.5 to 7 keV
+	    distribution as the blue histogram.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+  <ADESC title="CHANGES IN CIAO 4.3">
+   <PARA>
+    The plot_energy_flux command has a new argument 'numcores' to specify
+   how many cores on a user's system should be utilized when the command is run.
+   </PARA>
+  </ADESC>
+   <BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+   <VERSION>CIAO 4.3</VERSION>
+   <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

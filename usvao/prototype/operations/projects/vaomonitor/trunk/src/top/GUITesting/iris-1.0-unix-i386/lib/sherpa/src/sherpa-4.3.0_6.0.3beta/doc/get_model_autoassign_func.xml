@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_model_autoassign_func" refkeywords="model models modeling modelling parameter par parameters" seealsogroups="sh.model " displayseealsogroups="" context="modeling">
+
+     <SYNOPSIS>
+       Return the method for storing model identifiers
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_model_autoassign_func()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The get_model_autoassign_func returns a function pointer for
+	the method of storing
+	model identifiers initialized by model definition into the
+	current Python namespace. 
+	(This is an advanced function which the general Sherpa user
+	will not need.)
+      </PARA>
+
+      <PARA>
+	Refer to the set_model_autoassign_func command for more
+	information (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/set_model_autoassign_func.html">"ahelp set_model_autoassign_func"</HREF>).
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; modfunc=get_model_autoassign_func()</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The command is called with a user-defined function pointer
+	    named "myassignfunc".
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

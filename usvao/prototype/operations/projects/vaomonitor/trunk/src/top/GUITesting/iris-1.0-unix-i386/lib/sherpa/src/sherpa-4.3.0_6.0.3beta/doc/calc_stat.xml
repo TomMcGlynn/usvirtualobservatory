@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="calc_stat" refkeywords="calc calculate stat statistic statistics fit model models" seealsogroups="sh.calc sh.fit  sh.model " displayseealsogroups="" context="utilities">
+	<SYNOPSIS>
+     Calculate the fit statistic by data set ID
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>calc_stat( [ id, [otherids]] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The function calc_stat returns the value of the fit statistic
+       for the data set ID(s) specified; the data set ID(s) supplied
+       to calc_stat must be ready for fitting, i.e. it has been
+       assigned a model to be fit.  The calc_stat function can be
+       called with no arguments, in which
+        case the fit statistic for the default data set ready for fitting
+       will be returned.  If multiple data set IDs are given, then the
+       simultaneous fit statistic is
+       calculated for those data sets.  The fit statistic value
+       returned by calc_stat represents the initial fit statistic, which
+       matches the "istatval" value returned by get_fit_results.
+      </PARA> 
+	<LIST>
+        <ITEM>
+          id, otherids - the id(s) of the dataset(s) to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id");
+          otherids=None
+          
+        </ITEM>
+      </LIST>
+    
+          <PARA>
+	    Below are the fit statistics available in Sherpa:
+	  </PARA>
+
+	  <TABLE>
+	    <ROW>
+              <DATA>chi2constvar</DATA>
+	      <DATA>chi^2 with constant variance computed from the counts data.</DATA>
+	    </ROW>
+	    <ROW>
+	      <DATA>chi2modvar</DATA>
+	      <DATA>chi^2 with model amplitude variance.</DATA>
+	    </ROW>
+	    <ROW>
+	      <DATA>chi2gehrels</DATA>
+	      <DATA>chi^2 with gehrels method (default).</DATA>
+	    </ROW>
+	    <ROW>
+	      <DATA>chi2datavar</DATA>
+	      <DATA>chi^2 with data variance.</DATA>
+	    </ROW>
+	    <ROW>
+	      <DATA>chi2xspecvar</DATA>
+	      <DATA>chi^2 with data variance (XSPEC-style, variance = 1.0
+		if data less than or equal to 0.0)</DATA>
+	    </ROW>
+	    <ROW>
+	      <DATA>cstat</DATA>
+	      <DATA>CStat - A maximum likelihood function (XSPEC implementation
+		        of Cash).</DATA>
+	    </ROW>
+	    <ROW>
+	      <DATA>cash</DATA>
+	      <DATA>Cash  - A maximum likelihood function.</DATA>
+	    </ROW>
+	  </TABLE>
+        </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_stat()</LINE>
+	  
+        </SYNTAX>
+          <DESC>
+          <PARA>
+           When called with no arguments, calc_stat() returns the fit
+           statistic for the default data set, if it has been assigned a
+           model to be fit.  
+          </PARA>
+          </DESC>
+      </QEXAMPLE>
+       
+      <QEXAMPLE>
+         <SYNTAX> 
+	  <LINE>sherpa&gt; calc_stat(1)</LINE>
+	  
+          <LINE>sherpa&gt; calc_stat("src")</LINE>
+	  
+         </SYNTAX>
+          <DESC>
+          <PARA>
+           Supplying a specific data set ID to calc_stat - such as "1"
+           or a the string "src" - will return the initial fit
+           statistic for only that data set. 
+          </PARA>
+          </DESC>
+       </QEXAMPLE>
+       
+       <QEXAMPLE> 
+         <SYNTAX>
+	  <LINE>sherpa&gt; calc_stat(1,2)</LINE>
+	  
+          <LINE>sherpa&gt; calc_stat("src", "bkg")</LINE>
+          
+	</SYNTAX>
+           <DESC>
+          <PARA>
+           When supplied with multiple data set IDs, calc_stat
+           returns the intial fit statistic produced by the
+           simultaneous fit on those data sets.
+          </PARA>
+          </DESC>
+       </QEXAMPLE>
+ </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

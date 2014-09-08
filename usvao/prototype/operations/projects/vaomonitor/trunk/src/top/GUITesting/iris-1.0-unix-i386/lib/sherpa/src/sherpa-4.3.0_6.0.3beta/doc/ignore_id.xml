@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="ignore_id" refkeywords="ignore  include filter exclude wave wavelength energy keV Angstrom bin channel pha  lambda logical image physical wcs world" seealsogroups="sh.filter " displayseealsogroups="" context="filtering">
+
+    <SYNOPSIS>
+      Apply an exclude filter to 1-D data by data set ID
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>ignore_id( ids, [lo,hi] )</LINE>
+      <LINE>ignore_id( ids, expr )</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+	Specifies a portion of data to be excluded 
+	from the 1-D data set(s) supplied by ID.  To
+	operate on all data sets without having to list the IDs, use
+	the ignore command 
+	(<HREF link="http://cxc.harvard.edu/sherpa/ahelp/ignore.html">"ahelp ignore"</HREF>).  
+      </PARA>
+
+      <LIST>
+       <ITEM>
+          ids - a list of ids of the data sets to filter;
+          default=None
+          
+        </ITEM>
+
+        <ITEM>
+          lo: lower bound of the filter;
+          default=None
+          
+        </ITEM>
+
+        <ITEM>
+          hi: upper bound of the filter;
+          default=None
+          
+        </ITEM>
+
+	<ITEM>
+	  expr: a filter expression to ignore an intersection of
+	  filters, e.g. "0.1:5, 6:7".  Range filtering allows ":#" and
+	  "#:", which excludes an open-ended range of data up to or
+	  beginning at the given value (#), respectively.
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        The units for the limits are determined by the "units" field
+        of the data structure: channels, energy (keV), or wavelength
+        (angstrom).  The value can be obtained by using the
+        get_analysis command
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/get_analysis.html">"ahelp get_analysis"</HREF>).
+      </PARA>
+	<PARA>
+        If the data is binned and the endpoint of the interval falls
+	within a bin, the entire bin is included in the filter.
+      </PARA>
+
+      <PARA>
+      Two-dimensional Data Filtering
+      </PARA>
+ 
+      <PARA>
+        To apply an exclude filter to 2D data, use the ignore2d
+	command (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/ignore2d.html">"ahelp ignore2d"</HREF>) or the 
+        ignore2d_id command (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/ignore2d_id.html">"ahelp ignore2d_id"</HREF>).
+      </PARA>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; ignore_id()</LINE>
+          
+        </SYNTAX>
+          <DESC>
+            <PARA>  
+            When the function ignore_id is called with no arguments, the
+            filter will ignore all data points on the grid of the default
+            data set ID.
+            </PARA>
+          </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; ignore_id(2, "0.1:5, 6:7")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Ignore the bins in dataset id=2 between 0.1 and 5 keV and
+	    between 6 and 7 keV. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; ignore_id(2, 0.1, 6.0)</LINE>
+	  
+        </SYNTAX>
+          <DESC>
+            <PARA>  
+            Supplying an interval will apply a filter to all
+            the specified data set IDs.  Here, all data points above
+            the value 0.1 and below the value 0.6 are excluded in the
+            data set "2". 
+            </PARA>
+          </DESC>
+      </QEXAMPLE>
+	<QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; ignore_id("bkg", 0.1, None)</LINE>
+	  
+	</SYNTAX>
+          <DESC>
+            <PARA>  
+            All data points above the value 0.1 are excluded in the
+            data set "bkg". 
+            </PARA>
+          </DESC>
+      </QEXAMPLE>
+
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; ignore_id([2,4], None, 6.0)</LINE>
+          	  
+	</SYNTAX>
+          <DESC>
+            <PARA>  
+            All data points below the value 6.0 are ignored in data
+            sets "2" and "4".
+            </PARA>
+          </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

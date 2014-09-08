@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsmeka" refkeywords="meka model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Mewe-Gronenschild-Kaastra thermal plasma (1992).
+XSpec model.
+</SYNOPSIS>
+	<DESC>
+<PARA>
+An emission spectrum from hot diffuse gas based on the model
+calculations of Mewe and Gronenschild (as amended by Kaastra). The
+model includes line emissions from several elements.
+</PARA>
+
+<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsmeka Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>kt</DATA> <DATA>plasma temperature
+  in keV</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>nh</DATA> <DATA>hydrogen density
+  in cm^-3</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> <DATA>abundanc</DATA> <DATA>metal
+  abundances (He fixed at cosmic). The elements included are C, N, O,
+  Ne, Na, Mg, Al, Si, S, Ar, Ca, Fe, Ni. Abundances are set by the
+  set_xsabund command.</DATA> 
+</ROW>
+<ROW> 
+  <DATA>4</DATA> <DATA>redshift</DATA> <DATA>redshift,
+  z</DATA> 
+</ROW>
+<ROW> 
+  <DATA>5</DATA> <DATA>norm</DATA> <DATA>10^-14 / (4 pi
+  (D_A*(1+z))^2) Int n_e n_H dV, where D_A is the angular size
+  distance to the source (cm), n_e is the electron density (cm^-3),
+  and n_H is the hydrogen density (cm^-3)</DATA>
+</ROW>
+</TABLE>
+
+<PARA>
+The references for this model are:
+</PARA>
+
+<LIST>
+<ITEM>
+  Mewe, R., Gronenschild, E.H.B.M., and van den Oord, G.H.J. 1985,
+  A&amp;AS, 62, 197
+</ITEM>
+<ITEM>
+  Mewe, R., Lemen, J.R., and van den Oord, G.H.J. 1986, A&amp;AS, 65,
+  511
+</ITEM>
+<ITEM>
+  Kaastra, J.S. 1992, An X-Ray Spectral Code for Optically Thin
+  Plasmas (Internal SRON-Leiden Report, updated version 2.0)
+</ITEM>
+</LIST>
+
+<PARA>
+Similar credit may also be given for the adopted ionization balance:
+</PARA>
+
+<LIST>
+<ITEM>
+  Arnaud, M., and Rothenflug, M. 1985, A&amp;AS, 60, 425
+</ITEM>
+<ITEM>
+  Arnaud, M., and Raymond, J, 1992, ApJ, 398, 394
+</ITEM>
+</LIST>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

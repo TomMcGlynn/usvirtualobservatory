@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_areascal" refkeywords="get fractional  pixel area source background bkg bkgnd" seealsogroups="sh.get   " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Return the source or background pixel fractional area scale
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_areascal( [id, bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The get_areascal() function returns the pixel area scaling
+        factor for a source or background data set by data set ID or
+        background ID. The fractional area scale is normally set to "1" pixel
+        in spectral analysis, and the ARF is used to scale the
+        data. The set_areascal() function may be used to change the
+        fractional area scale of a source or background data set.
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+
+      <ITEM>
+        bkg_id - the id of the background to use
+ 
+     </ITEM>
+    </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_areascal()</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           When called with no arguments, get_areascal() returns the 
+	   pixel fractional area of the source in the default data set.
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; get_areascal()
+1.0
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_areascal(id=2, bkg_id=1)</LINE>
+          
+        </SYNTAX>
+        <DESC>
+          <PARA>
+           To return the fractional area scale for a background
+           associated with a source data set, the data set ID and background
+           ID must be supplied to get_areascal().
+          </PARA>
+
+<VERBATIM>
+sherpa&gt; get_areascal(2, 1)
+1.0
+</VERBATIM>
+<VERBATIM>
+sherpa&gt; get_areascal(2, 1);
+1.0
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xscompps" refkeywords="compps model models modeling modelling source composite nested joint xspec" seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Comptonization, Poutanen and Svenson.
+XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+  Comptonization spectra computed for different geometries using exact
+  numerical solution of the radiative transfer equation. The
+  computational "iterative scattering method" is similar to the
+  standard Lambda-iteration and is described in Poutanen J., Svensson
+  R., 1996, ApJ, 470, 249 (PS96).  The Compton scattering kernel is
+  the exact one as derived by Jones F. C., 1968, Phys. Rev., 167, 1159
+  (see PS96 for references). 
+</PARA>
+
+<PARA> 
+  Comptonization spectra depend on the geometry (slab, sphere,
+  hemisphere, cylinder), Thomson optical depth tau, parameters of the
+  electron  distribution, spectral distribution of soft seed photons,
+  the way seed  soft photons are injected to the electron cloud, and
+  the inclination  angle of the observer. 
+</PARA>
+
+<PARA> 
+  The resulting spectrum is reflected from the cool medium according
+  to the  computational method of Magdziarz &amp; Zdziarski (1995)
+  (see reflect, pexrav,  pexriv models). rel_refl is the solid angle
+  of the cold material visible  from the Comptonizing source (in units
+  2 pi), other parameters determine the abundances and ionization
+  state of reflecting material (Fe_ab_re, Me_ab, xi, Tdisk). The
+  reflected spectrum is smeared out by rotation of  the disk due to
+  special and general relativistic effects using  "diskline"-type
+  kernel (with parameters Betor10, Rin, Rout). 
+</PARA>
+
+<PARA> 
+  Electron distribution function can be Maxwellian, power-law, cutoff
+  Maxwellian, or hybrid (with low temperature Maxwellian plus a
+  power-law tail). 
+</PARA>
+
+<PARA> 
+  Possible geometries include plane-parallel slab, cylinder (described
+  by  the height-to-radius ratio H/R), sphere, or hemisphere. By
+  default the lower boundary of the "cloud" (not for spherical
+  geometry) is fully absorbive (e.g. cold disk). However, by varying
+  covering factor parameter cov_fac, it may be made transparent for
+  radiation. In that case, photons from the "upper" cloud can also be
+  upscattered in the "lower" cloud below the disk. This geometry is
+  that for an accretion disk with cold cloudlets in the central plane
+  (Zdziarski, Poutanen, et al. 1998, MNRAS, 301, 435).  For cylinder
+  and hemisphere geometries, an approximate solution is obtained by
+  averaging specific intensities over horizontal layers (see
+  PS96). For slab and sphere geometries, no approximation is made. 
+</PARA>
+
+<PARA> 
+  The seed photons can be injected to the electron cloud either
+  isotropically  and homogeneously through out the cloud, or at the
+  bottom of the slab, cylinder, hemisphere or center of the sphere (or
+  from the central plane of the slab if cov_frac ne 1). For the
+  sphere, there exist a possibility (IGEOM=-5) for photon injection
+  according to the eigenfunction of the diffusion equation sin
+  (pi*tau'/tau)/(pi*tau'/tau), where tau' is the optical depth
+  measured from the center (see Sunyaev &amp; Titarchuk 1980). 
+</PARA>
+
+<PARA> 
+  Seed photons can be blackbody (bbodyrad) for Tbb&gt;0 or multicolor
+  disk (diskbb) for  Tbb&lt;0. The normalization of the model also
+  follows those models: (1) Tbb&gt;0,  K = (RKM)**2 /(D10)**2, where
+  D10 is the distance in units of 10 kpc and RKM is the source radius
+  in km; (2) Tbb&lt;0 K = (RKM)**2 /(D10)**2 cos(theta), where theta
+  is the inclination angle. 
+</PARA>
+
+<PARA> 
+  Thomson optical depth of the cloud is not always good parameter to
+  fit.  Instead the Compton parameter y=4 * tau * Theta (where Theta=
+  Te (keV) / 511 ) can be used. Parameter y is directly related to the
+  spectral index  and therefore is much more stable in fitting
+  procedure. The fitting can be done taking 6th parameter negative,
+  and optical depth then can be obtained via tau= y/(4* Te / 511). 
+</PARA>
+
+<PARA> 
+  The region of parameter space where the numerical method produces
+  reasonable results is constrained as follows : 1) Electron
+  temperature Te &gt; 10 keV; 2) Thomson optical depth tau &lt; 1.5
+  for slab geometry and tau &lt; 3, for other geometries. 
+</PARA>
+
+<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xscompps Parameters</CAPTION>
+<ROW> 
+  <DATA>1</DATA> 
+  <DATA>kte</DATA> 
+  <DATA>electron temperature in keV</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> 
+  <DATA>eleindex</DATA> 
+  <DATA>electron power-law index [ N(gamma)=gamma^-p ]</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> 
+  <DATA>gmin</DATA> 
+  <DATA>minimum Lorentz factor gamma</DATA> 
+</ROW>
+<ROW> 
+  <DATA>4</DATA> 
+  <DATA>gmax</DATA> 
+  <DATA>maximum Lorentz factor gamma</DATA> 
+</ROW>
+<ROW> 
+  <DATA>5</DATA> 
+  <DATA>ktbb</DATA> 
+  <DATA>temperature of soft photons: ktbb&gt;0 = blackbody, ktbb&lt;0 = multicolor disk with inner disk temperature ktbb </DATA> 
+</ROW>
+<ROW> 
+  <DATA>6</DATA> 
+  <DATA>tauy</DATA> 
+  <DATA>if &gt; 0 : tau, vertical optical depth of the corona; if &lt; 0 : y = 4*Theta*tau; limits: for the slab geometry - tau &lt; 1, if say tau~2 increase MAXTAU to 50 for sphere - tau &lt; 3</DATA> 
+</ROW>
+<ROW> 
+  <DATA>7</DATA> 
+  <DATA>geom</DATA> 
+  <DATA>0 - approximate treatment of radiative transfer using escape probability for a sphere (very fast method); 1 - slab; 2 - cylinder; 3 - hemisphere; 4,5 - sphere input photons at the bottom of the slab, cylinder, hemisphere or center of the sphere (or from the central plane of the slab if cov_fact not 1). if &lt; 0 then geometry defined by |geom| and sources of incident photons are isotropic and homogeneous. -5 - sphere with the source of photons distributed according to the eigenfunction of the diffusion equation f(tau')=sim(pi*tau'/tau)/(pi*tau'/tau) where tau' varies between 0 and tau.</DATA> 
+</ROW>
+<ROW> 
+  <DATA>8</DATA> 
+  <DATA>hrcyl</DATA> 
+  <DATA>H/R for cylinder geometry only</DATA> 
+</ROW>
+<ROW> 
+  <DATA>9</DATA> 
+  <DATA>cosincl</DATA> 
+  <DATA>cosine of inclination angle (if &lt; 0 then only blackbody)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>10</DATA> 
+  <DATA>cov_frac</DATA> 
+  <DATA>covering factor of cold clouds; if geom =+/- 4,5 then cov_fac is dummy</DATA> 
+</ROW>
+<ROW> 
+  <DATA>11</DATA> 
+  <DATA>rel_refl</DATA> 
+  <DATA>amount of reflection Omega/(2*pi) (if R &lt; 0 then only reflection component)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>12</DATA> 
+  <DATA>fe_ab_re</DATA> 
+  <DATA>iron abundance in units of solar</DATA> 
+</ROW>
+<ROW> 
+  <DATA>13</DATA> 
+  <DATA>me_ab</DATA> 
+  <DATA>abundance of heavy elements in units of solar</DATA> 
+</ROW>
+<ROW> 
+  <DATA>14</DATA> 
+  <DATA>xi</DATA> 
+  <DATA>disk ionization parameter L/(nR^2)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>15</DATA> 
+  <DATA>tdisk</DATA> 
+  <DATA>disk temperature for reflection in K</DATA> 
+</ROW>
+<ROW> 
+  <DATA>16</DATA> 
+  <DATA>betor10</DATA> 
+  <DATA>reflection emissivity law (r^beta); if beta=-10 then non-rotating disk; if beta=10  then 1.-sqrt(6./rg))/rg**3</DATA> 
+</ROW>
+<ROW> 
+  <DATA>17</DATA> 
+  <DATA>rin</DATA> 
+  <DATA>inner radius of the disk (Schwarzschild units)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>18</DATA> 
+  <DATA>rout</DATA> 
+  <DATA>outer radius of the disk</DATA> 
+</ROW>
+<ROW> 
+  <DATA>19</DATA> 
+  <DATA>redshift</DATA> 
+  <DATA>redshift, z</DATA> 
+</ROW>
+<ROW> 
+  <DATA>20</DATA> 
+  <DATA>norm</DATA> 
+  <DATA>Normalization</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

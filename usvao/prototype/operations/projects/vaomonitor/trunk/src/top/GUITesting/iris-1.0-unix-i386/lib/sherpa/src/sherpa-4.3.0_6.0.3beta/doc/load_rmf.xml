@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_rmf" refkeywords="read rmf instrument response responses load readrmf readfile RMFCrate" seealsogroups="sh.io sh.rmf " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+     Load a source or background RMF
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_rmf( [id], filename|RMFCrate, [resp_id=1], [bkg_id=None] )</LINE>
+	</SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The load_rmf command loads an RMF from a FITS file or an
+        RMFCrate.  The RMF may be set as the response file for any
+        available source or background dataset.  Additionally, 
+        more than one RMF may be associated with a dataset.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+	  filename|RMFCrate - the name of the file (with path) or
+	  RMFCrate which contains the RMF data
+	</ITEM>
+
+        <ITEM>
+	  resp_id - the id of the response, if multiple responses
+	  exist for the dataset; default is id=1
+	</ITEM>
+
+        <ITEM>
+	  bkg_id - the id of the background, if the response is a
+	  background response;
+          default=None
+          
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        The load_bkg_rmf command 
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_bkg_rmf.html">"ahelp load_bkg_rmf"</HREF>)
+	may instead be used to load the background RMF.  It uses the
+        default background and response ids, which is adequate for
+        most simple analysis sessions.  
+      </PARA>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_rmf("rmf.fits")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Load rmf.fits and assign it as the first RMF for the
+	    source dataset.  This basic case could also have been done
+	    with the load_bkg_rmf command 
+	    
+	    (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/load_bkg_rmf.html">"ahelp load_bkg_rmf"</HREF>)	
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+	<QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_rmf(1, "source.rmf", resp_id=2)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The file source.rmf is loaded as the second RMF (the
+	    resp_id is 2) assigned to the dataset with id=1.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_rmf("rmf.fits", resp_id=1, bkg_id=2)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Load a background response on the second background
+	    (bkg_id=2) of a PHA data set.  The RMF is loaded from a
+	    file and uses the default dataset id.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; rmfcr = read_rmf("3c273.rmf")</LINE>
+          <LINE>sherpa&gt; load_rmf(rmfcr)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The RMF is read into an RMFCrate (named "rmfcr") from the file
+	    3c273.rmf.  The RMF is then loaded into Sherpa from the
+	    crate, using the default options.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

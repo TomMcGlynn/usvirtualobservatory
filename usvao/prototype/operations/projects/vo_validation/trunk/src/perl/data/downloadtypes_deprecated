@@ -1,0 +1,5 @@
+cone|ConeSearch|cone_deprecated_res|"http://vao.stsci.edu/directory/RegistryAdmin.asmx/DSQueryRegistry?predicate= [@status]=1 and validationLevel = 1 and  xsi_type = 'vs:CatalogService' and contains(*, 'STANDARDID*ivo://ivoa.net/std/ConeSearch')"
+siap|SIA|siap_deprecated_res|"http://vao.stsci.edu/directory/RegistryAdmin.asmx/DSQueryRegistry?predicate= [@status]=1 and validationLevel = 1 and xsi_type = 'vs:CatalogService' and contains(*, 'STANDARDID*ivo://ivoa.net/std/SIA')"
+registry|Registry|registry_deprecated_res|"http://vao.stsci.edu/directory/RegistryAdmin.asmx/DSQueryRegistry?predicate= [@status]=1 and validationLevel = 1 and  xsi_type = 'vg:Registry'"
+ssa|SSA|ssa_deprecated_res|"http://vao.stsci.edu/directory/RegistryAdmin.asmx/DSQueryRegistry?predicate= [@status]=1 and validationLevel = 1 and xsi_type = 'vs:CatalogService' and contains(*, 'STANDARDID*ivo://ivoa.net/std/SSA')"
+tap|TAP|tap_deprecated_res|"http://vao.stsci.edu/directory/RegistryAdmin.asmx/DSQueryRegistry?predicate= [@status]=1 and validationLevel = 1 and xsi_type = 'vs:CatalogService' and contains(*, 'STANDARDID*ivo://ivoa.net/std/TAP')"

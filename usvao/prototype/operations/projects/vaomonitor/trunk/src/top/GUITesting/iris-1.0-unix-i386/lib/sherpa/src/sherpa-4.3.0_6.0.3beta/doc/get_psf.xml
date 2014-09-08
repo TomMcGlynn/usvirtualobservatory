@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_psf" refkeywords=" get_psf_plot get_psf_image get_psf_contour psf PSF get model plot image contour" seealsogroups="sh.psf  sh.get " displayseealsogroups="" context="psfs">
+	<SYNOPSIS>
+     Return PSF model data and plot, image, and contour preferences.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_psf( [id] )</LINE>
+	<LINE>get_psf_plot( [id] )</LINE>
+	<LINE>get_psf_image( [id] )</LINE>
+	<LINE>get_psf_contour( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <LIST>
+        <ITEM>
+          id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+      </LIST>
+
+<PARA title="What is the difference between the PSF and the kernel?">
+	   The point spread function (PSF) is defined by the full (unfiltered) PSF image loaded into Sherpa or the PSF model expression evaluated over the full range of the dataset; both types of PSFs are established with the load_psf() command.  The kernel is the subsection of the PSF image or model which is used to convolve the data.  This subsection is created from the PSF when the size and center of the kernel are defined by the command set_psf().  While the kernel and PSF might be congruent, defining a smaller kernel helps speed the convolution process by restricting the number of points within the PSF that Sherpa must evaluate.
+	 </PARA>
+
+      <PARA>
+get_psf
+      </PARA>
+      <PARA>
+        The get_psf() function returns the parameter values and
+	settings defining a PSF model assigned to a data set, by data set ID.
+      </PARA>
+   
+      <PARA>
+get_psf_plot 
+      </PARA>
+      <PARA>
+       A Sherpa PSF model can contain data read from a file, or can be
+       a function that calculates a PSF. If the PSF model has been
+       assigned to a data set, then get_psf_plot() returns the data
+       and preferences defining the PSF plot calculated from the PSF
+       model and visualized with plot_psf(). 
+      </PARA>
+
+      <PARA>
+get_psf_image
+      </PARA>
+      <PARA>
+       A Sherpa PSF model can be defined with data read from a 2-D
+       image, or can be calculated from a model function. If either
+       type of PSF model has been assigned to a 2-D data set, then the 
+       image_psf() function evaluates the model (that has been set as
+       the PSF) over the source data array, and sends the PSF
+       image to the imager (ds9) for display. The get_psf_image()
+       function returns a variable containing the data and settings 
+       characterizing the image of the PSF visualized with image_psf().
+      </PARA>
+      
+      <PARA>
+get_psf_contour
+      </PARA>
+      <PARA>
+	The get_psf_contour() function returns a variable containing
+	the data and preferences defining the contour plot of the PSF
+	visualized with contour_psf()
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_psf()</LINE>
+          <LINE>sherpa&gt; get_psf(2)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   When called with no arguments, the get_psf() function
+	   returns the parameter values and settings for the PSF model
+	   assigned to the default data set.  If a data set ID
+	   is specified, the PSF model assigned to that data set will
+	   be returned.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; load_image(1, "center_box_0.25pix.fits")
+sherpa&gt; load_psf("psf", "psf_f1_norm_0.25pix.fits")
+sherpa&gt; notice2d_id(1, "BOX(88.16875,75.8625,70.416667,68.508334)")
+sherpa&gt; set_psf(psf)
+sherpa&gt; set_source(gauss2d.g1 + const2d.c1)
+sherpa&gt; psf.size=[72, 72]
+sherpa&gt; psf.center= [128, 129]
+
+sherpa&gt; print(get_psf())
+psfmodel.psf
+   Param        Type          Value          Min          Max      Units
+   -----        ----          -----          ---          ---      -----
+   psf.size0    frozen           72            1           72           
+   psf.size1    frozen           72            1           72           
+   psf.center0  frozen          128            0          128           
+   psf.center1  frozen          129            0          129           
+   psf.radial   frozen            0            0            1           
+   psf.norm     frozen            1            0            1      
+</VERBATIM>
+
+     </DESC>
+    </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_psf_plot()</LINE>
+          <LINE>sherpa&gt; get_psf_plot("src")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   If a PSF model contains data read in from a PSF      
+	   file, or calculated with a PSF function, the
+	   get_psf_plot() function returns the data and
+	   preferences defining a PSF plot which can be created with
+	   plot_psf().  If no
+	   argument is given, then the PSF model assigned
+           to the default data set is assumed.  If a data set
+	   ID is specified, then the plot data belonging to the PSF model
+           assigned to that data set is returned.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; print(get_psf_plot())
+PSF frac: 0.991270796001
+x      = [  1.0000e+00   2.0000e+00   3.0000e+00 ...,   5.1820e+03   5.1830e+03
+   5.1840e+03]
+y      = [  7.6365e-07   1.6777e-06   7.0964e-07 ...,   4.9221e-07   4.3923e-07
+   1.0823e-06]
+yerr   = None
+xerr   = None
+xlabel = None
+ylabel = PSF data
+title  = psf_f1_norm_0.25pix.fits
+plot_prefs = {'errstyle': 'line', 'symbolfill': False, 'symbolstyle':
+4, 'linestyle': 0, 'symbolsize': 3, 'yerrorbars': True}
+
+sherpa&gt; get_psf_plot().plot_prefs
+PSF frac: 0.991270796001
+            
+{'errstyle': 'line',
+ 'linestyle': 0,
+ 'symbolfill': False,
+ 'symbolsize': 3,
+ 'symbolstyle': 4,
+ 'yerrorbars': True}
+  
+sherpa&gt; get_psf_plot().plot_prefs["linestyle"]=3
+
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_psf_image()</LINE>
+          <LINE>sherpa&gt; get_psf_image(2)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   When called with no arguments, the get_psf_image() function
+	   returns the data and settings defining the PSF image produced
+	   with image_psf(), using the PSF model assigned to default
+	   dataset. If a data set ID is specified, the PSF image 
+	   corresponding to that data set will
+	   be returned.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; image_psf()
+
+sherpa&gt; print(get_psf_image())  
+PSF frac: 0.991270796001
+name   = PSF_Data
+y      = [[  7.6365e-07   1.6777e-06   7.0964e-07 ...,   3.6620e-07   4.2709e-07
+    1.2908e-06]
+ [  5.0448e-07   1.1551e-06   6.6760e-07 ...,   3.5132e-07   5.2898e-07
+    1.0603e-06]
+ [  1.5065e-06   1.9085e-06   1.6145e-07 ...,   6.0550e-07   1.0842e-06
+    1.6097e-06]
+ ..., 
+ [  1.6771e-07   3.0185e-07   1.5670e-06 ...,   8.7316e-07   2.3804e-07
+    2.2776e-07]
+ [  3.6587e-07   1.8109e-08   3.4516e-08 ...,   7.9327e-07   1.4121e-06
+    7.3247e-07]
+ [  3.2451e-07   1.1731e-08   4.3682e-07 ...,   4.9221e-07   4.3923e-07
+    1.0823e-06]]
+eqpos  = world
+ crval    = [ 248.6211   70.531 ]
+ crpix    = [ 4096.5  4096.5]
+ cdelt    = [-0.0001  0.0001]
+ crota    = 0
+ epoch    = 2000
+ equinox  = 2000
+sky    = physical
+ crval    = [ 4064.5  4026.5]
+ crpix    = [ 0.5  0.5]
+ cdelt    = [ 0.25  0.25]
+  
+</VERBATIM>
+
+     </DESC>
+    </QEXAMPLE>
+    <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_psf_contour()</LINE>
+          <LINE>sherpa&gt; get_psf_contour(2)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   When called with no arguments, the get_psf_contour() function
+	   returns the data and settings defining the PSF contour plot produced
+	   with contour_psf(), using the PSF model assigned to default
+	   dataset. If a data set ID is specified, the PSF
+	   contour plot corresponding to that data set will
+	   be returned.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; contour_psf()
+
+sherpa&gt; print(get_psf_contour())  
+PSF frac: 0.991270796001
+x0     = [  1.   2.   3. ...,  70.  71.  72.]
+x1     = [  1.   1.   1. ...,  72.  72.  72.]
+y      = [  7.6365e-07   1.6777e-06   7.0964e-07 ...,   4.9221e-07   4.3923e-07
+   1.0823e-06]
+xlabel = x0
+ylabel = x1
+title  = PSF Data: psf_f1_norm_0.25pix.fits
+levels = None
+contour_prefs = {}
+</VERBATIM>
+
+     </DESC>
+    </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

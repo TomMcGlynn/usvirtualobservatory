@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="set_staterror" refkeywords="set set_errors set_berrors errors error backerrors statistical staterr staterrors staterror" seealsogroups="sh.set " displayseealsogroups="" context="data">
+
+<SYNOPSIS>
+  Set the statistical errors
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>set_staterror([id], val, [fractional,] [bkg_id])</LINE>
+      
+    </SYNTAX>
+
+<DESC>
+  <PARA>
+  	The set_staterror command sets the statistical errors for a dataset.
+  	  	The error value may be an array or a single value to be repeated for
+    every bin.  Setting the fractional argument uses the scalar
+    value as the fractional portion of the dependent array as the errors.
+  </PARA>
+  
+  <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")      
+        </ITEM>
+
+  	<ITEM>
+  	  val - array or scalar error values
+  	</ITEM>
+
+  	<ITEM>
+  	  fractional - use a fractional portion of the dependent array as the error?
+          default=False
+          .
+          May be set to
+          True
+          ,
+          only if the "val" is a scalar.
+  	</ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if setting the background value;
+          default=None
+          
+        </ITEM>
+  </LIST>
+
+    <PARA>
+      Sherpa reads in the grouping flags from file and turns on
+      grouping by default, if possible.  The errors will be grouped if
+      grouping is on.
+    </PARA>
+</DESC>
+  
+      <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_staterror([0.040, 0.039, 0.041, ...])</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the staterrors to an array of error values.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_staterror(2, 0.04)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+			Set the statistical errors for dataset id=2 to 0.04 for all bins.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_staterror(0.05, fractional=True)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Use a fractional portion (0.05) of the dependent array as
+	    the errors for the default dataset. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

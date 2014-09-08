@@ -1,0 +1,6 @@
+DirectoryIndex /vo/validation/vresults.pl
+Options ExecCGI FollowSymLinks
+AddHandler cgi-script pl cgi
+RewriteEngine On
+RewriteRule (.*) /docs/service_temporarily_down.html
+

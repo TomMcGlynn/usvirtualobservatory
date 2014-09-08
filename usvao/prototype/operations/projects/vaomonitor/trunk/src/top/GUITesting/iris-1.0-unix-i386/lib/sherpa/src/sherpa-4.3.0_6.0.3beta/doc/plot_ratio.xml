@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="plot_ratio" refkeywords="plot plotting ratio ratios " seealsogroups="sh.plot " displayseealsogroups="" context="plotting">
+
+    <SYNOPSIS>
+     Plot the (data/model) ratio 
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>plot_ratio( [id], [replot=False, overplot=False] )</LINE> 
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+       The plot_ratio command plots the ratio of dataset divided by
+       model (data/model).
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+          replot - should the cached arrays be used in the plot?
+          
+            False (default)=do the calculation, True=redisplay the
+            existing values
+	</ITEM>
+
+        <ITEM>
+          overplot  - should the new plot be overlaid in the plotting window?
+          False (default)=clear the window, True=overplot on any existing plots
+          
+        </ITEM>
+      </LIST>
+
+      <PARA>
+        The plot is displayed in a ChIPS plotting window. If there is
+        no plotting window open, one is created.  If a plotting window
+        exists, the overplot parameter value determines whether the
+        new plot is overlaid on any existing plots in the window or if
+        the window is cleared before the plot is drawn. 
+      </PARA>
+
+      <PARA>
+        ChIPS commands may be used within Sherpa to modify plot
+        characteristics and create hardcopies; refer to the <HREF link="http://cxc.harvard.edu/chips/">ChIPS website</HREF> for
+        information. 
+      </PARA>
+
+      <PARA title="Plotting Multiple Objects">
+	To plot multiple Sherpa objects - e.g. data, model, fit,
+	residuals - in a single window, use
+	the <HREF link="http://cxc.harvard.edu/sherpa/ahelp/plot.html">plot command</HREF>.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; plot_ratio()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Plot the ratio for the default dataset.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; plot_ratio("src", overplot=True)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Plot the ratio for the "src" dataset, overlaying on any
+	    existing plots.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+     
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

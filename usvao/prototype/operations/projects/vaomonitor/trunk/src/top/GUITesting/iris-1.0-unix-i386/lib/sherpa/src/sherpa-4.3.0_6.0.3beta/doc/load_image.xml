@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_image" refkeywords="read image images img readimage readfile load IMAGECrate" seealsogroups="sh.io sh.img " displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+     Load an image
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_image( [id], filename|IMAGECrate, [coord="logical"] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The load_image command loads an image from a FITS file or an
+        IMAGECrate and assigns it to a source id. 
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+	  filename|PHACrate - the name of the file (with path) or
+	  PHACrate which contains the PHA data
+	</ITEM>
+
+        <ITEM>
+	  coord - the coordinate system: logical, image, physical,
+	  world, or wcs; default=logical
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_image("img.fits")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Load an image from the file img.fits using the default id
+	    (1) and coordinate system (logical).
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_image("psf", "psf.fits", coord="world")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    An image is read from the file psf.fits with world
+	    coordinate system and given data id "psf".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+	<QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; imgcr = read_file("source.img")</LINE>
+          <LINE>sherpa&gt; load_image(imgcr)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            The image is read into an IMAGECrate (named "imgcr") from
+	    source.img.  The image is then loaded into Sherpa from the
+	    crate, using the default options. 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

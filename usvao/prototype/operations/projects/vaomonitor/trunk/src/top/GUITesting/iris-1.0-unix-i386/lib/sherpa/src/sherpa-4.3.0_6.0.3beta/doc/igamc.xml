@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="igamc" refkeywords="cephes utility function math " seealsogroups="sh.calc " displayseealsogroups="" context="utilities">
+
+     <SYNOPSIS>
+     Calculate the compliment of the incomplete Gamma function (upper)
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>igamc(a,x)</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+	Calculate the CEPHES function, igamc, in the range [a &gt; 0;
+	x &gt; 0].  The function is defined as
+      </PARA>
+	<PARA>
+The function, igamc, is defined by
+</PARA>
+
+<VERBATIM>
+igamc(a,x) = 1 - igam(a,x)
+
+           = 1/sqrt(a) Int_(x)^(Inf) e^(-t) t^(a-1) dt
+</VERBATIM>
+	<PARA>
+	In this implementation, both arguments must be positive. 
+	The integral is evaluated by either a power series or
+	continued fraction expansion, depending on the relative
+	values of a and x. Arguments can be in scalar or array form.
+      </PARA>
+
+      <PARA title="Accuracy">
+	Tested at random a, x.
+      </PARA>
+
+<TABLE>
+<CAPTION> a  x  Relative error:</CAPTION>
+<ROW>
+<DATA>arithmetic</DATA>
+<DATA>domain</DATA>
+<DATA>domain</DATA>
+<DATA># trials</DATA>
+<DATA>peak</DATA>
+<DATA>rms</DATA>
+</ROW>
+
+<ROW>
+<DATA>IEEE</DATA>
+<DATA>0.5,100</DATA>
+<DATA>0,100</DATA>
+<DATA>200000</DATA>
+<DATA>1.9e-14</DATA>
+<DATA>1.7e-15</DATA>
+</ROW>
+
+<ROW>
+<DATA>IEEE</DATA>
+<DATA>0.01,0.5</DATA>
+<DATA>0,100</DATA>
+<DATA>200000</DATA>
+<DATA>1.4e-13</DATA>
+<DATA>1.6e-15</DATA>
+</ROW>
+
+</TABLE>
+
+       <PARA title="Reference">
+	 Cephes Math Library Release 2.0:  April, 1987.
+	 Copyright 1985, 1987 by Stephen L. Moshier.
+	 Direct inquiries to 30 Frost Street, Cambridge, MA 02140.
+       </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; igamc(1,2)</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	    Calculate igamc with a=1, x=2.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; igamc([1,2],[2,3])</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	    Calculate igamc with a=[1,2], x=[2,3] .
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

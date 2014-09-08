@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="save_resid" refkeywords="delchi chi square squared create save write store resid residual residuals " seealsogroups="sh.save sh.io sh.model " displayseealsogroups="" context="saving">
+
+    <SYNOPSIS>
+     Save the simple data-model difference residuals
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>save_resid( [id=1], filename, [bkg_id=1,ascii=False,clobber=False] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The save_resid() function saves the 1D or 2D  data-minus-model
+        counts residuals to a FITS table or ASCII file (1D) or to
+        a FITS Image (2D).
+	Note that the ASCII option is not supported for
+        2-dimensional data sets, so the optional parameter 'ascii'
+        should be set to 'False' in this case.  
+       </PARA>
+
+      <PARA>
+	The source model used
+        is the one which has been assigned to the data set set
+        specified in the 'id' argument (or the 'bkg_id'
+        argument in the case of a background data set, in which case
+        'id' must also be specified).  The model will respect any data filters
+        in place, and models from associated PHA spectra will also
+        respect the data grouping settings.
+      </PARA>
+
+       <LIST>
+        <ITEM>
+          id - the id of the data set to which a source model
+	  model has been assigned; if not given, uses the
+	  default data set id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+        <ITEM>
+          filename - name of outfile
+        </ITEM>
+        <ITEM>
+          bkd_id - the id of the background data set to use (e.g., bkg_id=1 
+	  represents the first background data set loaded in association with
+          the source data set specified in the 'id' argument)
+        </ITEM>
+        <ITEM>
+           ascii - outfile format specification; True
+          to save outfile in ASCII
+          format, False
+          for FITS, default=False
+          </ITEM>
+          <ITEM> 
+            clobber - clobber outfile;
+            default=False
+            (do not clobber if file exists)
+        </ITEM>
+      </LIST>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_resid("resid.fits")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            The save_resid() function can be called with just a
+	    filename, in which case all the default arguments will be used.
+	    In this example, the simple data-minus-model counts residuals array associated
+	    with data set id=1 is written to
+	    the FITS file 'resid.fits'.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_resid(2, "resid.txt", ascii=True)</LINE>
+	  
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+           Here, the optional 'ascii' argument is set
+           to True
+           in order to produce an outfile in ASCII format (overriding
+           the default setting ascii=False). The data-minus-model counts residuals array
+           assigned to data set id=2 is written to the ASCII file 'resid.txt'.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_resid(2,"resid.fits", bkg_id=1, clobber=True)</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+           The data-minus-model counts residuals associated with the first
+           background data set loaded for source data set 2 is written
+           to FITS file 'resid.fits' (note the 'ascii' parameter
+           default is False). 
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+	</QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xssresc" refkeywords="sresc model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Synchrotron radiation from escape-limited electron distribution.
+XSpec model.
+</SYNOPSIS>
+
+<DESC>
+<PARA>
+The synchrotron spectrum from an electron distribution limited by
+particle escape above some energy. The electrons are shock-accelerated
+in a Sedov blast wave encountering a constant-density medium
+containing a uniform magnetic field. The model includes variations in
+electron acceleration efficiency with shock obliquity, and post-shock
+radiative and adiabatic losses, as described in Reynolds, S.P., ApJ
+493, 357 1998. This is a highly specific, detailed model for a fairly
+narrow set of conditions.  See also Reynolds, S.P., ApJL 459, L13
+1996. Note that the radio spectral index and flux can be obtained from
+<HREF link="http://www.mrao.cam.ac.uk/surveys/snrs/">Green's Catalogue
+of Galactic Supernova Remnants</HREF>.
+</PARA>
+
+<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xssresc Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>alpha</DATA> <DATA>radio spectral
+  index; flux proportional to frequency^(-alpha)</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>rolloff</DATA> <DATA>approximately
+  the frequency (Hz) at which the flux has dropped by a factor of 10
+  below straight power law extrapolation from radio frequencies</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> <DATA>norm</DATA> <DATA>normalization, 1
+  GHz flux (Jy)</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

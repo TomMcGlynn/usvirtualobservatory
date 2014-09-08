@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_method" refkeywords="optimization optimize method   annealing  get_method_opt  get_method_name " seealsogroups="sh.get " displayseealsogroups="" context="methods">
+	<SYNOPSIS>
+      Return information on the optimization method
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_method( [name] )</LINE>
+	<LINE>get_method_opt( [optname] )</LINE>
+	<LINE>get_method_name()</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The get_method commands return information about the
+	optimization methods: 
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  get_method - a reference to an object containing the
+          requested optimization method, including name and options.
+          If unspecified, the current method is returned.    
+        </ITEM>
+
+        <ITEM>
+	  get_method_opt - the value of the requested option for
+          the current optimization method.  If unspecified, a
+          dictionary of all options for the method are returned. 
+	  Refer to the ahelp file for each method for a complete
+	  description of the options, e.g. "ahelp levmar".
+        </ITEM>
+
+        <ITEM>
+	  get_method_name - the name of the current optimization
+	  method. 
+        </ITEM>
+      </LIST>
+
+      <PARA>
+        Available statistics are returned by the list_methods command        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/list_methods.html">"ahelp list_methods"</HREF>).
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; print(get_method_name())</LINE>
+	  <LINE>levmar</LINE>
+	  <LINE>sherpa&gt; print(get_method())</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Get the name of the current optimization method, the get
+	    retrieve the method and print it to the screen.  The
+	    output for this example is: 
+	  </PARA>
+
+<VERBATIM>
+name    = levmar
+ftol    = 1.19209289551e-07
+xtol    = 1.19209289551e-07
+gtol    = 1.19209289551e-07
+maxfev  = None
+epsfcn  = 1.19209289551e-07
+factor  = 100.0
+verbose = 0
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_method("neldermead"))</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Print the neldermead method.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; set_method("simplex")</LINE>
+          <LINE>sherpa&gt; simopt=get_method_opt()</LINE>
+          <LINE>sherpa&gt; get_method_opt("scale")</LINE>
+          <LINE>3.0</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Set the method to simplex, then retrieve all the options for
+	    that method.  Finally, retrieve the value of the scale,
+	    which is 3.0.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_quality" refkeywords="read quality flags load array arrays " seealsogroups="sh.io sh.data" displayseealsogroups="" context="data">
+
+    <SYNOPSIS>
+     Load quality flags from a FITS table or ASCII file
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_quality( [id=1], filename, [bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The load_quality command reads an array of quality flags from a FITS
+        table file
+	or column-based ASCII file and assigns it to a PHA data set,
+	specified by data set ID.  The second column of the
+	supplied table is read as the quality array. Use the get_quality
+	command to view the array of quality flags associated with a
+        data set, and the set_quality command to apply such an array to
+        a data set.
+      </PARA>
+
+      <LIST>
+       <ITEM>
+         id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+       <ITEM>
+         filename - name of FITS table file or column-based ASCII file
+      containing a quality array in the second column
+       </ITEM>
+        <ITEM>
+           bkd_id - the id of the background data set to use (e.g., bkg_id=1 
+           represents the first background data set loaded in association with
+           the source data set specified in the 'id' argument)
+        </ITEM>
+      </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_quality("quality.txt")</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            The load_quality command can be called with just a filename and path
+	    argument, in which case the array of quality flags is assigned to data
+	    set id=1. Here, 'quality.txt' is read as a column-based
+	    ASCII table; the second column of that table is defined as
+	    the quality array for data set 1. The
+	    set_quality function is used to actually apply
+	    the quality flags to data set 1, using the array
+            which is returned by the get_quality function. The
+      set_quality and get_quality functions require that the data set in question be a PHA data set.
+
+	  </PARA>
+
+<VERBATIM>
+sherpa&gt; load_pha("3c273.pi")
+sherpa&gt; load_quality("quality.txt")
+sherpa&gt; get_quality(1)
+
+array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+
+sherpa&gt; set_quality(1, get_quality())
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+	<SYNTAX>  
+          <LINE>sherpa&gt; load_quality("quality.fits")</LINE> 
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            In this case, 'quality.fits' is read as a FITS table; the
+	second column of that table is defined as the filter array for data set 1.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+	<SYNTAX>  
+          <LINE>sherpa&gt; load_quality(2, "quality.dat")</LINE>
+          
+        </SYNTAX>  
+	<DESC>
+          <PARA>
+            The file 'quality.dat' is read as a column-based ASCII table; the
+	second column of that table is defined as the quality array for data set 2.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+	
+      <QEXAMPLE>
+	<SYNTAX>  
+	  <LINE>sherpa&gt; load_quality(2, "quality.dat", bkg_id=1)</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            The file 'quality.dat' is read as a column-based ASCII table; the
+	    second column of that table is defined as the quality array
+     	    for the background associated with data set 2.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+	</QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

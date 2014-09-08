@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="incbet" refkeywords="cephes utility function math " seealsogroups="sh.calc " displayseealsogroups="" context="utilities">
+
+     <SYNOPSIS>
+     Calculate the incomplete Beta function
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>incbet(a,b,x)</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+        Calculate the CEPHES function, incbet, in the range [a &gt; 0;
+	b &gt; 0; 0 &lt;= x &lt;= 1] .  The function returns
+	incomplete beta integral of the arguments (scalar or array
+	based), evaluated from zero to x.
+      </PARA>
+
+      <PARA>
+	The function is defined as
+      </PARA>
+
+      <PARA>
+<EQUATION>
+sqrt(a+b)/[sqrt(a)sqrt(b)] Int_(0)^(x) t^(a-1) (1-t)^(b-1) dt
+</EQUATION>
+      </PARA>
+	<PARA>
+	The domain of definition is 0 &lt;= x &lt;= 1.  In this 
+	implementation a and b are restricted to positive values.
+	The integral from x to 1 may be obtained by the symmetry
+	relation
+      </PARA>
+
+<VERBATIM>
+    1 - incbet( a, b, x )  =  incbet( b, a, 1-x ).
+</VERBATIM>
+
+       <PARA>
+	 The integral is evaluated by a continued fraction expansion
+	 or, when b*x is small, by a power series.
+       </PARA>
+
+       <PARA title="Accuracy">
+	 Tested at uniformly distributed random points (a,b,x) with a
+	 and b in "domain" and x between 0 and 1. 
+       </PARA>
+
+<TABLE>
+<CAPTION>Relative error</CAPTION>
+
+<ROW>
+<DATA>arithmetic</DATA>
+<DATA>domain</DATA>
+<DATA># trials</DATA>
+<DATA>peak</DATA>
+<DATA>rms</DATA>
+</ROW>
+
+<ROW>
+<DATA>IEEE</DATA>
+<DATA>0,5</DATA>
+<DATA>10000</DATA>
+<DATA>6.9e-15</DATA>
+<DATA>4.5e-16</DATA>
+</ROW>
+
+<ROW>
+<DATA>IEEE</DATA>
+<DATA>0,85</DATA>
+<DATA>250000</DATA>
+<DATA>2.2e-13</DATA>
+<DATA>1.7e-14</DATA>
+</ROW>
+
+<ROW>
+<DATA>IEEE</DATA>
+<DATA>0,1000</DATA>
+<DATA>30000</DATA>
+<DATA>5.3e-12</DATA>
+<DATA>6.3e-13</DATA>
+</ROW>
+
+<ROW>
+<DATA>IEEE</DATA>
+<DATA>0,10000</DATA>
+<DATA>250000</DATA>
+<DATA>9.3e-11</DATA>
+<DATA>7.1e-12</DATA>
+</ROW>
+
+<ROW>
+<DATA>IEEE</DATA>
+<DATA>0,100000</DATA>
+<DATA>10000</DATA>
+<DATA>8.7e-10</DATA>
+<DATA>4.8e-11</DATA>
+</ROW>
+</TABLE>
+
+       <PARA>
+	 Outputs smaller than the IEEE gradual underflow threshold
+	 were excluded from these statistics. 
+       </PARA>
+
+       <PARA title="Reference">
+	 Cephes Math Library Release 2.0:  April, 1987.
+	 Copyright 1985, 1987 by Stephen L. Moshier.
+	 Direct inquiries to 30 Frost Street, Cambridge, MA 02140.
+       </PARA>
+	</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; incbet(0.3,0.6,0.5)</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	  Calculate incbet with a=0.3, b=0.6, x=0.5 .
+	  </PARA>
+	</DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; incbet([0.3],[0.6],[0.5])</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	  Calculate incbet with a=[0.3], b=[0.6], x=[0.5] .
+	  </PARA>
+	</DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

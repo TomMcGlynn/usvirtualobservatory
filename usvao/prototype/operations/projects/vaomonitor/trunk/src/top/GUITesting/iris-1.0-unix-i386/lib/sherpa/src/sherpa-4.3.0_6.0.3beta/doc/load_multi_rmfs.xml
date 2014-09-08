@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_multi_rmfs" refkeywords="multi multiple read rmf instrument response responses load readrmf readfile " seealsogroups="sh.io sh.rmf " displayseealsogroups="" context="data">
+
+<SYNOPSIS>
+  Load multiple RMFs
+</SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_multi_rmfs( [id], filenames, resp_ids)</LINE>
+	</SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The load_multi_rmfs command loads multiple RMFs from FITS
+        files and assigns them response ids.  More
+        than one RMF may be associated with a single dataset.  
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+	  filename - a list of the files (with path) which contain
+	  the RMF data 
+	</ITEM>
+
+        <ITEM>
+	  resp_id - a list containing a response id for each file loaded
+	</ITEM>
+      </LIST>
+</DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_multi_rmfs(["source1.rmf", "source2.rmf"], [1,2])</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The RMF files source1.rmf and source2.rmf are loaded as
+	    responses 1 and 2 for the default dataset.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

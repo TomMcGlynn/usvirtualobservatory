@@ -1,0 +1,25 @@
+<project name="simpleCompile" default="dist" basedir="/www/htdocs/vo/usvao_svn/notification/trunk/src/">
+  <property name="sourceDir" value="${basedir}/topleveldir/"/>
+  <property name="outputDir" value="/www/htdocs/vo/notification_3"/>
+  <property name ="perl"     value = "${outputDir}/perl"/>
+   <target name = "dist"  depends = "init">
+      <echo message = "Installing System"/>
+     <copy  todir  = "${outputDir}">
+        <fileset dir = "${sourceDir}"/>
+     </copy>
+     <copy todir = "${outputDir}/css">
+       <fileset dir = "${basedir}/css"/>
+     </copy>
+     <copy todir = "${outputDir}/data">
+      <fileset dir = "${basedir}/data"/>
+     </copy>
+     <copy todir = "${outputDir}/install">
+    <fileset dir = "${basedir}/install"/>
+     </copy>
+    <chmod file = "${outputDir}/*.pl" perm = "ugo+rx"/>
+   </target>
+   <target name = 'init'>
+      <echo message="Creating new installation directory"/>
+      <mkdir dir = "${outputDir}"/>
+   </target>
+</project>

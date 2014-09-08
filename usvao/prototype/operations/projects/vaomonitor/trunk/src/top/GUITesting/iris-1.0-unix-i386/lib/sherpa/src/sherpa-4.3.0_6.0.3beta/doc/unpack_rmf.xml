@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="unpack_rmf" refkeywords="read rmf instrument response responses unpack RMFCrate" seealsogroups="sh.io sh.rmf" displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Unpack an RMF from a crate
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>unpack_rmf( filename|RMFCrate )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The unpack_rmf command unpacks an RMF from a FITS file or an
+        RMFCrate into a Sherpa data object.  
+      </PARA>
+
+      <PARA>
+	If a filename is provided as input, a crate is created but
+	hidden and cannot be used for other analysis in the session. 
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  filename|RMFCrate - the name of the file (with path) or
+	  RMFCrate which contains the RMF data
+	</ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; rmf1 = unpack_rmf("rmf.fits")</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Unpack the RMF into the object "rmf1".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; rmfcr = read_rmf("3c273.rmf")</LINE>
+          <LINE>sherpa&gt; rmfdata = unpack_rmf(rmfcr)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The RMF is read into an RMFCrate (named "rmfcr") from the file
+	    3c273.rmf.  The RMF is then unpacked into Sherpa from the
+	    crate.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

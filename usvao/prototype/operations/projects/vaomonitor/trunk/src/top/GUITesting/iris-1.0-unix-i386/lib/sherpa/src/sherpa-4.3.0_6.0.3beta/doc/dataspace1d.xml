@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="dataspace1d" refkeywords="dataspace simulate sim blank empty grid gridded" seealsogroups="sh.data sh.io" displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Create a blank 1D dataset
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>dataspace1d( start, stop, [step=1, numbins, id, bkg_id=None, dstype=Data1DInt] )</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+	The dataspace1d command creates a blank 1D integrated dataset
+	with the specified grid.  Alternatively, it can be used to
+	create a PHA background data set.    To create 2D data, use
+	the dataspace2d command 
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/dataspace2d.html">"ahelp dataspace2d"</HREF>).	
+      </PARA>
+
+      <LIST>
+	<ITEM>
+	  start - the minimum value for the grid
+	</ITEM>
+
+	<ITEM>
+	  stop - the maximum value for the grid
+	</ITEM>
+
+	<ITEM>
+	  step - the step size between grid points (default=1); an
+	  alternative is to specify the number of bins.
+	</ITEM>
+
+	<ITEM>
+	  numbins - the number of bins to create
+	  (default=None); 
+	  an alternative is to specify the step size.
+	</ITEM>
+
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id").
+        </ITEM>
+
+        <ITEM>
+          bkg_id - the id of the background, if creating background
+          data; default is the first background associated with the id
+        </ITEM>
+
+        <ITEM>
+          dstype - dataset type: Data1D, Data1DInt (the default), or DataPHA
+        </ITEM>
+      </LIST>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; dataspace1d(0.1,10,0.1)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Create a blank dataset over the range 0.1:10 with a step
+	    size of 0.1
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; dataspace1d(0.1,10,numbins=200)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Create a blank dataset with 200 bins over the range
+	    0.1:10.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; dataspace1d(1, 5, dstype=Data1D)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Create a dataset with dstype=Data1D over the range 1:5;
+	    the default step size is used.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; dataspace1d(0.1, 10, 0.01, dstype=DataPHA)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Create a blank PHA dataset over the range 0.1 to 10 with a
+	    step size of 0.01. The id defaults to 1.
+	  </PARA>
+	</DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; dataspace1d(0.1, 10, 0.01, id=2, dstype=DataPHA)</LINE>
+	  <LINE>sherpa&gt; dataspace1d(0.1, 10, 0.01, id=1, bkg_id=1, dstype=DataPHA)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Here we create a blank PHA for dataset id 2 and also
+	    create an associated background dataset for it, with a background id of 1.
+	  </PARA>
+	</DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+
+</ENTRY></cxchelptopics>

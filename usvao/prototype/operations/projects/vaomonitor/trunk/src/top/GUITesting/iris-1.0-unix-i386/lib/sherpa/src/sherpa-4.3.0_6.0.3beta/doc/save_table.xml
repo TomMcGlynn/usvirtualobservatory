@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="save_table" refkeywords="tabular FITS table write output io create save " seealsogroups="sh.save sh.io " displayseealsogroups="" context="saving">
+	<SYNOPSIS>
+      Save a Sherpa data set to a FITS or ASCII file.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>save_table( [id,] filename )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The save_table command saves a dataset to a FITS or
+	column-based ASCII file.  DM ASCII syntax is used to indicate
+	that the output should be ASCII (<HREF link="http://cxc.harvard.edu/ciao/ahelp/dmascii.html">"ahelp dmascii"</HREF>).
+	This command has no return value.
+      </PARA>
+
+      <LIST>
+        <ITEM>
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+        </ITEM>
+
+        <ITEM>
+	  filename - the output filename, including path
+	</ITEM>
+      </LIST>
+
+      <PARA>
+	There are several other save commands available: save_image
+	and save_pha are recommended for those datatypes, while
+	save_data allows the user to specify additional output options   
+	when saving to an ASCII file (column names, comment character,
+	and separator).
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_table("data.fits")</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Dataset 1 is saved to a FITS file named "data.fits".
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; save_table(2, "output.dat[opt kernel=text/simple]")</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    The DM ASCII syntax is used with save_table to write
+	    dataset 2 to a text file.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

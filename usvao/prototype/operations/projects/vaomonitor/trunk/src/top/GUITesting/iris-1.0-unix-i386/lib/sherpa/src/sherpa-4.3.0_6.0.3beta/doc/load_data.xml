@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_data" refkeywords=" read errors load " seealsogroups="sh.io sh.data " displayseealsogroups="" context="data">
+	<SYNOPSIS>
+      Load 1D data from a file
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_data( [id], filename, [options] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+        The load_data command is a filetype-independent method of
+        loading 1D data from a file (e.g. if the file-specific load
+        command is unknown or if the filetype is unknown).  It tries
+        to load the file in the following order:  load_pha,
+        load_table, and load_ascii.   
+      </PARA>
+
+      <LIST>
+        <ITEM> 
+          id - the id of the dataset to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+
+        <ITEM>
+	  filename - the name of the file (with path) which contains
+	  the data 
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        If the filetype is known, file-specific options may be
+        included in the load_data command.  They are:
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  load_pha: use_errors
+	</ITEM>
+
+	<ITEM>
+	  load_table: ncols, colkeys, and dstype
+	</ITEM>
+
+	<ITEM>
+	  load_ascii: ncols, colkeys, sep, comment, and dstype
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        Refer to the individual command ahelp files for specifics on
+        the options.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_data("data.filtered")</LINE>
+          
+ 	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Using the default settings, load a data file into Sherpa.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_data("src", "data.txt", ncols=3)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+	    Load the first three columns of data.txt, using the
+	    dataset id "src".  This example could also have been done
+	    using the load_ascii command.
+          </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_data("src", "source.pha")</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Data is loaded from the file source.pha with data id
+	    "src".   This example could also have been done
+	    using the load_pha command.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; load_data("rprofile_mid.fits[cols RMID,SUR_BRI,SUR_BRI_ERR]")</LINE>
+	  <LINE>sherpa&gt; load_data("rprofile_mid.fits", colkeys=["RMID","SUR_BRI","SUR_BRI_ERR"])</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    These commands are equivalent ways of loading x=RMID,
+	    y=SUR_BRI, and staterror=SUR_BRI_ERR from
+	    rprofile_mid.fits, a radial profile for which the midpoint
+	    of the annular regions has been calculated.   This example
+	    could also have been done using the load_table command.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

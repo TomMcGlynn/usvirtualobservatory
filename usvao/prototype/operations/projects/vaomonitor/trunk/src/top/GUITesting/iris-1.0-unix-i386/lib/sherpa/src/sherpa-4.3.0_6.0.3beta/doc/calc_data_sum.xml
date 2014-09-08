@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="calc_data_sum" refkeywords="sum summed data counts calc calculate" seealsogroups="sh.data " displayseealsogroups="" context="utilities">
+	<SYNOPSIS>
+     Calculate the sum of observed data counts
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>calc_data_sum( [lo,hi,id,bkg_id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       The calc_data_sum function calculates the sum of observed data
+       counts in all or a portion of a source or background
+       data set by data ID or background ID.
+       A subset of the data can be specified
+       by entering the low and high ends of the desired data interval
+       in units of keV for energy data or angstroms for wavelength
+       data.  Calc_data_sum accepts binned, unbinned,
+       background-subtracted and unsubtracted data.
+      </PARA>
+   
+    <LIST>
+     <ITEM>
+       lo       - low limit;
+          default=None
+          
+     </ITEM>
+     <ITEM>
+       hi       - high limit;
+          default=None
+          
+     </ITEM>
+     <ITEM>
+       id       - data ID;
+                  if not given, uses the default sherpa id (id=1 by default, see "ahelp get_default_id")
+     </ITEM>
+     <ITEM>
+       bkg_id   -  background data ID
+     </ITEM>
+      </LIST>
+
+          <PARA>
+	    The command ignores any range filters that have been
+	    applied to the dataset. 
+	    If calc_data_sum is called with no
+            arguments, the observed counts will be
+            summed over the entire data range of the default data
+            set. 
+      </PARA>
+
+      <PARA>
+	The counts in any background data set can be summed
+            by supplying the background ID as the argument. It is
+            possible to supply background-subtracted source data to
+            calc_data_sum; the raw counts sum can be found by calling 
+	    "unsubtract()" before "calc_data_sum()".
+	  </PARA>
+	  
+	  <PARA>
+	    For 1-D data, if
+	  </PARA>
+	  <PARA>
+            o) a single energy, wavelength, or bin number is
+	    given (as opposed to a [lo, hi] interval), then the
+	    sum of data counts in the bin associated with that value
+	    is returned.
+          </PARA>
+	  <PARA>
+	    o) an energy or wavelength range is given with the 'lo' and 'hi'
+	    arguments, then the total summed data counts for the given range is
+	    returned.
+	  </PARA>
+	  <PARA>
+	    o) no value or range is specified, then the total summed data counts
+	    for the full range of the data set is returned.
+	  </PARA>
+	  <PARA>
+	    For 2-D data, the summation is carried out over the entire input image.
+	  </PARA>
+       
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_data_sum()</LINE>
+	  
+        </SYNTAX>
+          <DESC>
+            <PARA>
+             When supplied with no arguments, calc_data_sum will sum
+             the observed data counts over the entire data range of the
+             default data set.
+            </PARA>
+          </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_data_sum(id=3)</LINE>
+	  
+        </SYNTAX>
+          <DESC>
+            <PARA>
+             Here, data set "3" is specified, so the total summed counts
+             of the entire data range of data set 3 will be returned.
+            </PARA>
+          </DESC>
+      </QEXAMPLE>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_data_sum(10.0, id=4)</LINE>
+	  
+        </SYNTAX>
+          <DESC>
+            <PARA>
+             The total observed counts in the bin(s) corresponding to
+             10.0 keV in data set 4 are summed.
+            </PARA>
+          </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_data_sum(bkg_id=1)</LINE>
+	  
+        </SYNTAX>
+          <DESC>
+            <PARA>
+             When supplied with a background ID, the total observed
+             background counts
+             in the entire data range of the specified background data
+             set will be summed. In this example, the first background
+             data set automatically located by Sherpa is used.
+            </PARA>
+          </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_data_sum(lo=0.1,
+          hi=7.0, "bkg")</LINE>
+	  
+        </SYNTAX>
+          <DESC>
+            <PARA>
+             The total observed background counts between 0.1 and 7.0 keV are summed for the
+	     background data set with user-assigned ID "bkg". (Note
+	     that a user-defined string ID cannot be supplied to the
+	     "bkg_id" argument)
+            </PARA>
+          </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_data_sum(id=2,bkg_id=1)</LINE>
+	  
+        </SYNTAX>
+          <DESC>
+            <PARA>
+	      The total number of counts in background component
+	      number 1 of data id 2.
+            </PARA>
+          </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; calc_data_sum(1.0, 15.0,id=1, bkg_id=2)</LINE>
+          
+       </SYNTAX>
+          <DESC>
+            <PARA>
+             The total observed background counts between 1 and 15 angstroms are
+             summed in the second background data set automatically
+             loaded by Sherpa with source data set 1.
+            </PARA>
+          </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

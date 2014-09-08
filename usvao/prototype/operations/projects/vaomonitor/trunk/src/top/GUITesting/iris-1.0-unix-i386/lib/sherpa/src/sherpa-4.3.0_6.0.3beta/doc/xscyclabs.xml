@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xscyclabs" refkeywords="cyclabs model models modeling modelling source composite nested joint xspec " seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Cyclotron absorption line.
+XSpec model.
+</SYNOPSIS>
+	<DESC>
+<PARA>
+A cyclotron absorption line as used in pulsar spectra. See Mihara et
+al. Nature 1990 or Makishima et al. PASJ 1990.
+</PARA>
+
+<PARA>
+<EQUATION>
+M(E) = exp(-depth0 (width0 * E/e0)^2/[(E-e0)^2 + width0^2] + depth2(width2 E/(2 e0))^2/((E-2e0)^2 + width2^2))
+</EQUATION>
+</PARA>
+
+<PARA>
+     This is a multiplicative model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xscyclabs Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> <DATA>depth0</DATA> <DATA>depth of the
+  fundamental</DATA> 
+</ROW>
+<ROW> 
+  <DATA>2</DATA> <DATA>e0</DATA> <DATA>cyclotron
+  energy</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> <DATA>width0</DATA> <DATA>width of the
+  fundamental</DATA> 
+</ROW>
+<ROW> 
+  <DATA>4</DATA> <DATA>depth2</DATA> <DATA>depth of the
+  2nd harmonic</DATA> 
+</ROW>
+<ROW> 
+  <DATA>5</DATA> <DATA>width2</DATA> <DATA>width of the
+  2nd harmonic</DATA> 
+</ROW>
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

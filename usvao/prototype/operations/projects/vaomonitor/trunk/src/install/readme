@@ -1,0 +1,11 @@
+This install directory and the build file are *only* used to install the
+vaomonitor system (directories/files,etc.) *after* a user  has checked
+out a copy of the system from the svn repoistory. Therefore, this directory
+and its contents are not part of the production system's environment and
+can be safely deleted once the system has been installed in your cgi area.
+
+Required:
+*Changes to the build.xml required by user:
+ Change the outputDir value to "{yourpath}/validation" in the build.xml file
+
+*The system requires java and a mysql database.

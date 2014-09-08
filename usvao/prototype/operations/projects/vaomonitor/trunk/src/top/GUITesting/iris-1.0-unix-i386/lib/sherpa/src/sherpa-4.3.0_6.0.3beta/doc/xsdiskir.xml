@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="xsdiskir" refkeywords="diskir  model models modeling modelling source composite nested joint xspec" seealsogroups="sh.models " displayseealsogroups="" context="models">
+
+<SYNOPSIS>
+Irradiated inner and outer disk.
+XSpec model.
+</SYNOPSIS>
+	<DESC>
+<PARA>
+The inner disk can be irradiated by the Compton tail. This can
+substantially change the inner disk temperature structure from that
+expected from an unilluminated disk in the limit where the ratio of
+luminosity in the tail to that in the disk, Lc/Ld&gt;&gt;1. This is
+generally the case in the low/hard state of accreting black holes, and
+neglecting this effect leads to an underestimate of the inner disk
+radius (Gierlinski, Done &amp; Page 2008a MNRAS, 388, 753). 
+</PARA>
+
+<PARA>
+The irradiated inner disk and Compton tail can illuminate the rest of
+the disk, and a fraction f_out of the bolometric flux is thermalized
+to the local blackbody temperature at each radius. This reprocessed
+flux generally dominates the optical and UV bandpass of LMXBs
+(Gierlinski, Done &amp; Page 2008b MNRAS, submitted).  
+</PARA>
+
+<PARA>
+     This is an additive model component.
+   </PARA>
+
+<TABLE>
+<CAPTION>xsdiskir Parameters</CAPTION>
+<ROW> 
+  <DATA>Number</DATA>
+  <DATA>Name</DATA>
+  <DATA>Description</DATA> 
+</ROW>
+<ROW> 
+  <DATA>1</DATA> 
+  <DATA>kt_disk</DATA> 
+  <DATA>innermost temperature of the UNILLUMINATED disk</DATA>
+</ROW>
+<ROW> 
+  <DATA>2</DATA> 
+  <DATA>gamma</DATA> 
+  <DATA>asymptotic power-law photon index</DATA> 
+</ROW>
+<ROW> 
+  <DATA>3</DATA> 
+  <DATA>kt_e</DATA> 
+  <DATA>electon temperature (high energy rollover)</DATA>
+</ROW>
+<ROW> 
+  <DATA>4</DATA> 
+  <DATA>lcld</DATA> 
+  <DATA>Lc/Ld, ratio of luminosity in the Compton tail to that of the UNILLUMINATED disk</DATA>
+</ROW>
+<ROW> 
+  <DATA>5</DATA> 
+  <DATA>fin</DATA> 
+  <DATA>fraction of luminosity in the Compton tail which is thermalized in the inner disk (generally fix at 0.1 as appropriate for an albedo of 0.3 and solid angle of 0.3)</DATA>
+</ROW>
+<ROW> 
+  <DATA>6</DATA> 
+  <DATA>rirr</DATA> 
+  <DATA>radius of the Compton illuminated disk in terms of the inner disk radius</DATA>
+</ROW>
+<ROW> 
+  <DATA>7</DATA> 
+  <DATA>fout</DATA> 
+  <DATA>fraction of bolometric flux which is thermalized in the outer disk</DATA>
+</ROW>
+<ROW> 
+  <DATA>8</DATA> 
+  <DATA>logrout</DATA> 
+  <DATA>log10 of the outer disk radius in terms of the inner disk radius</DATA>
+</ROW>
+<ROW> 
+  <DATA>9</DATA> 
+  <DATA>norm</DATA> 
+  <DATA>K; as in xsdiskbb</DATA>
+</ROW>
+
+</TABLE>
+
+<PARA title="XSpec version">
+     This information is taken from the
+     <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/manual/manual.html">XSpec
+     User's Guide</HREF>.
+     Version 12.6.0.h of the XSpec
+     models is supplied with CIAO 4.3.
+   </PARA>
+</DESC>
+
+<BUGS>
+     <PARA>
+       For a list of known bugs and issues with the XSPEC models, please visit
+       the <HREF link="http://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/bugs.html">XSPEC bugs page</HREF>.
+     </PARA>
+   </BUGS>
+
+<VERSION>CIAO 4.3</VERSION>
+
+<LASTMODIFIED>December 2010</LASTMODIFIED>
+	</ENTRY></cxchelptopics>

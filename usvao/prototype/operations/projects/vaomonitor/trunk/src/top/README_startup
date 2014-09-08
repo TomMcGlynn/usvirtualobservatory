@@ -1,0 +1,76 @@
+#
+#
+# The vaomonitor code uses a startup file that
+# is not included with this installation. This file
+# therefore describes what the content needs to be
+# in order to run the system. The user should feel
+# free to modify the startup file as he sees fit.
+#
+#
+#
+#
+#####################################
+#   Global variable definitions     #
+#####################################
+#
+#
+# $::cssA          - the css file containing classes for the vaomonitor software.
+#
+# $::cssB          - the css files containing classes for the vaomonitor sw.
+#
+# $::valcode       - the vaomonitor cgi web interface. 
+#
+# $::pw            - the password used to connect to the vaomonitor db 
+#
+# $::db            - the database name. Should be "vaomonitor"
+#
+# $::opsdb         - name of the operations db. This should be called vao_operations
+#
+# $::opspw         - '<your pw for the operations db>';
+#
+# $::user          - the username used to connect to the validation 
+#                    database
+#
+# $notificationdir - top level notification system directory
+#        
+# $server          - this is the machine name. E.g. "heasarc". This is only used if the
+#                    user needs to have a test area,say, "heasarc.gsfc.nasa.gov"
+#                    and a development area "heasarcdev.gsfc.nasa.gov". In this case,
+#                    you could write "http://$::server.gsfc.nasa.gov" and add a switch
+#                    that either sets $::server to "heasarc" or to "heasarcdev".
+# 
+# $::hosts_file_val - deprecated 
+#
+
+
+package data::startup;
+{
+   
+    $::cssA            = "./css/validation.css";
+    $::cssB            = "./css/styles.css";
+    $::valcode         = "./vaodb.pl";	  
+    $::pw              = '<the pw to access the vaomonitor db>';
+    $::db              = "vaomonitor";
+    $::opsdb           = "vao_operations";
+    $::opspw           = '<the pw to access the vao operations db>';
+    $::user            = '<the username associated with this file>';
+    $::notificationdir = "vo/notification/";
+    $::server          = "heasarc";
+    $::hosts_file_val    = "/tmp.shared/vo/vaomonitor/vohostnames";
+
+
+     
+    BEGIN
+    {
+	
+	my $www = 'www';
+	@::libs = ("<path to cgi bin directory system code>"
+		   "<path to perl libraries>",
+		   "<top level notification system directory>",
+                  );
+        unshift(@INC,@::libs);
+	
+    }
+
+}
+1;

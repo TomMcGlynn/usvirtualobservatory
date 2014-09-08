@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="load_filter" refkeywords="read filter flags load array arrays " seealsogroups="sh.io  sh.data" displayseealsogroups="" context="filtering">
+    
+    <SYNOPSIS>
+     Load filter from a FITS table or ASCII file
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>load_filter( [id=1,] filename [,bkg_id], [ignore=False, ncols=2] )</LINE>
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+	The load_filter command reads filter information from a
+        user-input file and assigns it to a 1-D or 2-D data set. For
+	filtering 1-D data sets, the load_filter command reads
+        a filter array from a FITS table file or column-based ASCII file and
+        assigns it to a 1-D data set, specified by data set ID; the
+        second column of the
+	supplied table is read as the filter array.  If the
+        'ignore' keyword argument is set to 'False' (default), an element in a
+        filter array set to a value of 1 or greater marks a 'good' bin
+        and an element set to
+        less than 1 marks a 'bad' bin; the opposite holds if the
+        ignore flag is set to 'True'. This is the equivalent of using
+        the  notice/ignore commands to apply a filter, e.g.,
+        'notice(get_filter())'. To filter a data set explicitly with
+        a filter array such as 'c=[0,0,1,1,0,1]', use the set_filter
+        command, e.g., 'set_filter(c)'. 
+      </PARA>
+      <PARA>
+	For assigning a 2-D filter to a 2-D data set, a FITS image
+        containing 1s and 0s should be input to load_filter, to indicate which
+        pixels should be ignored/noticed (turned off/on).  The filter
+        image should match the source image in shape and number of
+        pixels. To apply the filter read from a FITS image to a 2-D data
+        set, the ignore flag should be set to 'True' or 'False', depending
+       on how the filter information should be used (if set to 'True',
+      the pixels in the 2-D data set corresponding to those marked by 1s in the filter image will be ignored). 
+       </PARA>
+
+
+
+      <LIST>
+       <ITEM>
+         id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+       <ITEM>
+         filename - name of FITS table file or column-based ASCII file
+      containing a filter array in the second column
+       </ITEM>
+        <ITEM>
+           bkd_id - the id of the background data set to use (e.g., bkg_id=1 
+           represents the first background data set loaded in association with
+           the source data set specified in the 'id' argument)
+        </ITEM>
+	 <ITEM>
+           ignore - True/False Boolean switch to indicate which
+       elements in a filter array (or pixels in a filter image) should
+       be used to filter the associated data set; default is False
+       </ITEM>
+        <ITEM>
+           ncols - number of columns to read from a column-based filter file; default=2
+        </ITEM>
+      </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; load_filter("filter.txt")</LINE>
+	  <LINE>sherpa&gt; get_filter()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            The load_filter command can be called with just a filename and path
+	    argument, in which case the filter is assigned to default data
+	    set id=1.  Since the 'ignore' argument is set to 'False'
+            by default, only the elements in the
+            filter array containing values of 1 or greater will be
+            retained in the corresponding places in the data set. Here,
+            'filter.txt' is read as a column-based
+	    ASCII table; two columns are read by default, and the
+          second column of that table is defined as
+	    the filter array for data set 1.  The get_filter function
+	    returns the x-axis elements of the data array with the assigned filter
+	    applied - i.e., missing the elements which were flagged
+	    as 'bad' by the filter array (set to less than 1).
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+	<SYNTAX>  
+          <LINE>sherpa&gt; load_filter(2, "filter.fits")</LINE> 
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            In this case, 'filter.fits' is read as a FITS table; the
+	second column of that table is defined as the filter array for data set 2.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+	<SYNTAX>  
+          <LINE>sherpa&gt; load_filter(4, "filter.dat")</LINE>
+          
+        </SYNTAX>  
+	<DESC>
+          <PARA>
+            The file 'filter.dat' is read as a column-based ASCII table; the
+	second column of that table is defined as the filter array for data set 4.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+	
+      <QEXAMPLE>
+	<SYNTAX>  
+	  <LINE>sherpa&gt; load_filter(4, "filter.dat", bkg_id=1)</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            The file 'filter.dat' is read as a column-based ASCII table; the
+	    second column of that table is defined as the filter array
+     	    for the background associated with data set 4.  
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+	<SYNTAX>  
+	  <LINE>sherpa&gt; load_filter("filter_image.fits", ignore=True)</LINE>
+
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            The filter file 'filter_image.fits' is read as a FITS
+	image. Pixels in image data set 1 corresponding to
+	those with a value of 1 in the filter image are ignored in the
+	analysis.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+      <QEXAMPLE>
+	<SYNTAX>  
+	  <LINE>sherpa&gt; load_filter("filter_image.fits")</LINE>
+
+	</SYNTAX>
+	<DESC>
+          <PARA>
+            The filter file 'filter_image.fits' is read as a FITS
+	image. Pixels in image data set 1 corresponding to
+	those with a value of 0 in the filter image are ignored in the
+	analysis, since the ignore flag is set to 'False' by default.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE> 
+     </QEXAMPLELIST>
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

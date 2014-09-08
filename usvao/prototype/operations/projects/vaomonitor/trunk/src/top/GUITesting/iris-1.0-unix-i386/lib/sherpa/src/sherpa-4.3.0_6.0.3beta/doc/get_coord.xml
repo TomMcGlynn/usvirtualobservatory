@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_coord" refkeywords="get coord coords coordinate coordinates wcs " seealsogroups="sh.get " displayseealsogroups="" context="data">
+
+   <SYNOPSIS>
+     Return the coordinate system of an image
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_coord( [id] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The get_coord() command returns a string identifying the
+	coordinate system of an image loaded in a Sherpa session, by
+	data set ID.  The possible string values are 'logical',
+	'physical', 'world', 'image' (same as logical), and 'wcs'
+	(same as world).  The set_coord() command can be used
+        to change the coordinate system of an image.
+
+      </PARA>
+ 
+      <LIST>
+	<ITEM>
+          id - the id of the 2-dimensional data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+	</ITEM>
+      </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; get_coord()</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+           When called with no arguments, the get_coord() command
+           returns the coordinate system of the default data set 1.
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_coord()
+          'logical'
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+	<SYNTAX>
+          <LINE>sherpa&gt; get_coord(3)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+           A string identifying the coordinate system of data set 3 is returned.
+          </PARA>
+<VERBATIM>
+sherpa&gt; get_coord(3)
+          'world'
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+      
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

@@ -1,0 +1,75 @@
+#This is a short description of the VO service deprecation/undeprecation procdeure
+#
+#
+#
+##################################
+#    HOW TO DEMOTE SERVICES      #
+#                                #
+##################################
+
+
+1. GET LIST OF SERVICES TO BE DEMOTED
+
+Run: 
+./get_list_to_deprecate.pl
+
+Outputs: 2 files, file.out and file.xls (excel)
+
+
+2. RUN VALIDATORS ON ABOVE LIST
+
+Run:
+./validatelist.pl 
+
+Outputs: none, all results are stored in database
+
+3. RERUN (1)
+
+4.CREATE EXCEL SPREADSHEET (POST LIST ON WIKI and EXCLUDE SOME SERVICES)
+-Manually create an excel spreadsheet following new format. 
+-Put an x in column 24 to note the services that should be deprecated.
+
+5. Extract list of services to deprecate from excel spreadsheet using
+"parse_excel.pl". The list will be dumped to screen.Store this in
+a file and proceed to step 6.
+
+6.SEND EMAIL TO CURATORS
+
+Run: 
+./get_regemail.cmdline.pl -l {file created in step 5}
+
+output: a series of emails gets sent to the curators notifying
+them of the impending deprecation of their services.
+
+
+6. WAIT 1 WEEK AND SEND REGISTRY MANAGER LIST TO BE DEPRECATED
+
+
+
+##################################
+#  HOW TO UNDEPRECATE SERVICES   #
+#                                #
+##################################
+	
+1. Retrieve list of deprecated services from Registry.
+Run:
+./get_registry_deprecated.pl -t {siap|cone}
+
+output: Cone.list, Siap.list
+
+
+2.Run Validation checks on the above list
+./validatelist.pl
+
+output: stored in mysql db
+
+3. Query the local mysql db for any services that
+have passed validation in the last 3 hours. 
+
+note: part 3 assumes that you just ran the script in
+part 2. That way you are sure to catch anything that
+passed in the last 3 hours.
+
+The output to this script will be in:
+
+list_to_undeprecate.{year}{mon}{day}

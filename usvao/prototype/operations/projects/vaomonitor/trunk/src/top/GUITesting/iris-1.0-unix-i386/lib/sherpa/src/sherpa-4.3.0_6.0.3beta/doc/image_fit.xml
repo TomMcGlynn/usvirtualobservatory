@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="image_fit" refkeywords="image images img imager imaging fit fitting visualize visualization visualise visualisation" seealsogroups="sh.img sh.fit " displayseealsogroups="" context="visualization">
+	<SYNOPSIS>
+     Send image of the fit results to ds9.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>image_fit( [ id, [newframe=False, tile=False, deleteframes=True]] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       Sends the fit results of 2-D image data to the imager--by
+       default, ds9.  The images shown are data, model,
+       and residuals, by default each in a different tile of the display.
+      </PARA>
+
+      <LIST>
+       <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+       </ITEM>
+
+        <ITEM>
+        newframe  - add a new frame;
+          default=False
+          
+        </ITEM>
+
+        <ITEM>
+         tile - tile image frame; 
+          default=False
+          
+       </ITEM>
+
+       <ITEM>
+         deleteframes - delete preexisting frames; 
+          default=True
+          
+       </ITEM>
+      </LIST>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; image_fit()</LINE>
+	  <LINE>sherpa&gt; image_fit(1)</LINE>
+	  <LINE>sherpa&gt; image_fit(1, newframe=True, tile=False, deleteframes=True)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    The image_fit function can be called with no arguments, in
+	    which case fit results associated with the default data set
+	    are sent to ds9.  By default, images of the data,
+	    model and residuals are sent to three new frames, and the
+	    frames are tiled for display.  
+	    The parameter "deleteframes" indicates whether or not any 
+	    preexisting frames should be deleted before three new
+	    frames - containing data, model and residuals - are
+	    created. 
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

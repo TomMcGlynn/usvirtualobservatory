@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_source" refkeywords="get get_source_plot get_source_image get_source_contour source model models unconvolved " seealsogroups="sh.get  sh.model" displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+     Return the unconvolved model associated with a Sherpa data set ID.
+    </SYNOPSIS>
+    
+    <SYNTAX>
+      <LINE>get_source([id])</LINE>
+	<LINE>get_source_plot([id, lo, hi])</LINE>
+	<LINE>get_source_image([id])</LINE>
+	<LINE>get_source_contour([id])</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+ <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+
+       <ITEM>
+        lo - low bound of the desired plotting range; 
+        default=None 
+          
+      </ITEM>
+
+       <ITEM>
+        hi - high bound of the desired plotting range;
+        default= None 
+          
+      </ITEM>
+ 
+      </LIST>
+
+      <PARA>
+get_source
+      </PARA>
+      <PARA>
+      The get_source() function returns the parameter values and settings
+      for an unconvolved model associated with a given data set ID.  If no ID is
+      given, then the unconvolved model assigned to the default data set
+      loaded in the Sherpa session is returned.  
+      </PARA>
+
+      <PARA>
+get_source_plot
+      </PARA>
+      <PARA>
+      The get_source_plot() function returns the data and preferences
+      defining a plot of a 1-D unconvolved source model associated with a
+      data set. Once a model is assigned to a data set, this command can be used
+      to list the x and y data arrays used in the
+      source model plot created with plot_source() or plot(),
+      in addition to the values for the x label, y label, units,
+      title, and other plotting preferences (such as linestyle,
+      linethickness, etc.). The information returned by get_source_plot()
+      may be stored in a variable, or printed to the screen, as shown
+      in the examples section.
+      </PARA>
+
+      <PARA>
+get_source_image
+      </PARA>
+      <PARA>
+       The get_source_image() function returns the image array
+       defining a plot of a 2-D unconvolved source model associated
+       with a 2-D data set. The model image can be visualized in ds9 with
+       the image_source() function.  When called with no arguments,
+       the model image array associated with the default data set
+       loaded in the Sherpa session will be returned.
+      </PARA>      
+      <PARA>
+get_source_contour
+      </PARA>
+      <PARA>
+       The get_source_contour() function returns the data and settings
+       defining a contour plot of a 2-D unconvolved source model associated
+       with a 2-D data set. The model contour plot can be visualized with
+       the contour_source() function. Once a 2-D model is assigned to
+       a 2-D data set, this command can be used
+       to list the x0, x1, and y data arrays used in the
+       2-D model contour plot created with contour_source(),
+       in addition to the values for the x0 label, x1 label, title, and
+       other plotting preferences.  When called with no arguments, the
+       model data associated with the default data set loaded in the Sherpa
+       session will be returned. The
+       information returned by get_source_contour() may be stored in a variable, or
+       printed to the screen, as shown in the examples section.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_source())</LINE>
+	  <LINE>sherpa&gt; print(get_source(2))</LINE>
+	  <LINE>sherpa&gt; print(get_source("src"))</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	  When called with no arguments from within the print command,
+	  the model associated with the default data set loaded in the
+	  Sherpa session is returned.  The user can also specify a data set ID
+          to view the parameter settings for the model associated with that data set.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; set_model( xsphabs.abs1 * xszphabs.zabs1 * powlaw1d.p1 )
+sherpa&gt; print(get_source())
+	  ((xsphabs[abs1] * xszphabs[zabs1]) * powlaw1d[p1])
+	  Param          Type          Value          Min          Max      Units
+	  -----          ----          -----          ---          ---      -----
+	  abs1.nh        thawed            1            0       100000 10^22 atoms / cm^2
+	  zabs1.nh       thawed            1            0       100000 10^22 atoms / cm^2
+	  zabs1.redshift frozen            0            0           10
+	  p1.gamma       thawed            1          -10           10
+	  p1.ref         frozen            1      -1e+120       1e+120
+	  p1.ampl        thawed            1            0       1e+120          
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_source_plot())</LINE>
+	  <LINE>sherpa&gt; print(get_source_plot(2))</LINE>
+	  <LINE>sherpa&gt; print(get_source_plot("src"))</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	  When called with no arguments from within the print command,
+	  the data and settings defining the plot of the model
+	  associated with the default data set loaded in the
+	  Sherpa session is returned.  The user can also
+	  specify a data set ID to view the model data and settings
+	  for that data set.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; print(get_source_plot(2))
+x = [ 0.30000001  0.31 0.31999999 0.3300000 . . . . 10.97000027 10.97999954  10.98999977]
+flux= [0.2608447   0.26798434  0.27503966  0.28201114 . . . . 0.0020627 0.0020459  0.00202923]
+y = [2.60844450e-03   2.67984088e-03   2.75040220e-03   2.82010867e-03
+. . . . . 2.07968163e-05   2.06254908e-05 2.04594448e-05]
+xlabel = Energy (keV)
+ylabel = Photons/sec/keV/cm^2
+units  = energy
+title  = Source Model of 1843.pi
+plot_prefs = {'symbolstyle': 0, 'linethickness': 3, 'linestyle': 1, 'linecolor': 'red'}
+
+sherpa&gt; model_plot_flux=get_source_plot(2, lo=1.5, hi=2.0).flux
+
+This command stores to the variable "model_plot_flux" the unconvolved
+model flux values defining the plot of the source model assigned to data
+set 2, between 1.5 and 2.0 keV. The contents may be printed with 'print(model_plot_flux)'.
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_source_image())</LINE>
+	  <LINE>sherpa&gt; print(get_source_image(4))</LINE>
+	  <LINE>sherpa&gt; print(get_source_image("src"))</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	  When called with no arguments from within the print command,
+	  the model image array associated with the default data set loaded in the
+	  Sherpa session is returned.  The user can also specify a data set ID
+          to view the image array for the model associated with that data set.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; set_model(4, "bbody.b4")
+sherpa&gt; image_source(4)
+sherpa&gt; print(get_source_image(4))
+name   = Source
+y      = [[ 0.     -0.6931 -1.0986 ..., -5.5568 -5.5607 -5.5645]
+ [ 0.6931  0.     -0.4055 ..., -4.8637 -4.8675 -4.8714]
+ [ 1.0986  0.4055  0.     ..., -4.4582 -4.4621 -4.4659]
+ ..., 
+ [ 5.366   4.6728  4.2674 ..., -0.1909 -0.1947 -0.1985]
+ [ 5.3706  4.6775  4.272  ..., -0.1862 -0.19   -0.1939]
+ [ 5.3753  4.6821  4.2767 ..., -0.1815 -0.1854 -0.1892]]
+eqpos  = &lt;pytransform.Transform;  proxy of &lt; Swig Object of type 'Transform *' at 0x96b4820 &lt;  &lt;
+sky    = &lt;pytransform.WCSTANTransform; proxy of  &lt;Swig Object of type 'WCSTANTransform *' at 0x96cb138&lt; &lt;	
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+        <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_source_contour())</LINE>
+	  <LINE>sherpa&gt; print(get_source_contour(5))</LINE>
+	  <LINE>sherpa&gt; print(get_source_contour("src"))</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	  When called with no arguments from within the print command,
+	  the 2-D model contour data associated with the default data set loaded in the
+	  Sherpa session is returned.  The user can also specify a data set ID
+          to view the data defining the contour plot of a 2-D model
+	  associated with that data set.
+	  </PARA>
+<VERBATIM>
+sherpa&gt; set_model(5, "bbody.b5")
+sherpa&gt; contour_source(5)
+sherpa&gt; print(get_source_contour(5))
+x0     = [   1.    2.    3. ...,  259.  260.  261.]
+x1     = [   1.    1.    1. ...,  216.  216.  216.]
+y      = [ 0.     -0.6322 -1.0535 ..., -0.     -0.     -0.    ]
+xlabel = x0 (pixels)
+ylabel = x1 (pixels)
+title  = Source
+levels = None
+contour_prefs = {'color': 'red', 'style': None, 'thickness': 3}
+
+sherpa&gt; model_contour=get_source_contour(5)
+
+This command stores to the variable "model_contour" the data and
+preferences defining the contour plot of the 2-D unconvolved source
+model assigned to 2-D data set 5. The contents may be printed with 'print(model_contour)'.
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

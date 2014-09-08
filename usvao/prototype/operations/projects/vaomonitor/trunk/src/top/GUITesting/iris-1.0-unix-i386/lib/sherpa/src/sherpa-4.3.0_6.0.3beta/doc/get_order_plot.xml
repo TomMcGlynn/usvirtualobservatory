@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_order_plot" refkeywords="get spectral orders plot grating " seealsogroups="sh.get  sh.model " displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+     Return the data and preferences defining a plot of model spectral
+     orders
+   </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE> get_order_plot( [id, orders] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+        The get_order_plot() function returns the data and preferences
+        defining a 1-D plot of a convolved source model, by data set
+        ID and spectral order; such a plot is created with
+        plot_order().  Once a model is assigned
+        to a loaded PHA data set, this command can be used to list the
+        x, y, x error, and y error data arrays used in the model order
+        plot
+        created with plot_order(), in addition to the
+        values for the x label, y label, title, and other
+        plotting preferences. The information returned by
+        get_order_plot() may be stored in a variable, or printed to
+        the screen, as shown in the examples section.
+
+      </PARA>
+ 
+    <LIST>
+      <ITEM>
+        id - the id of the data set to use; if not given, uses the default dataset id (id=1 by default, see "ahelp get_default_id")
+      </ITEM>
+
+      <ITEM>
+        orders - array of spectral orders to be plotted; default=1st order
+      </ITEM>
+    </LIST>
+    </DESC>
+	<QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_order_plot())</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+           When called with no arguments from within the print
+           command, get_order_plot() returns the data and preferences
+           characterizing the most recent model order plot produced with plot_order().
+          </PARA>
+<VERBATIM>
+sherpa&gt; print(get_order_plot())
+xlo    = [[  7.3000e-03   1.4600e-02   2.9200e-02 ...,   9.9426e+00   9.9572e+00
+    9.9718e+00]]
+xhi    = [[ 0.0146  0.0292  0.0438 ...,  9.9572  9.9718  9.9864]]
+y      = [[ 0.      0.      0.     ...,  0.9077  0.8883  0.8693]]
+xlabel = Energy (keV)
+ylabel = Counts/sec/keV
+title  = Model Orders [1]
+histo_prefs = {'linethickness': 2, 'linecolor': '0xaaaaea'}
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; print(get_order_plot(id=1, orders=[2,3]))</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+           If supplied with a data set ID and order number(s),
+	   get_order_plot() returns the data and preferences which would
+           characterize the corresponding 1-D model order plot
+	   produced with plot_order().
+          </PARA>
+<VERBATIM>
+sherpa&gt; print(get_order_plot(1, [2,3]))
+xlo    = [[  1.0000e+00   2.0000e+00   3.0000e+00 ...,   8.1900e+03   8.1910e+03
+    8.1920e+03]
+ [  1.0000e+00   2.0000e+00   3.0000e+00 ...,   8.1900e+03   8.1910e+03
+    8.1920e+03]]
+xhi    = [[  2.0000e+00   3.0000e+00   4.0000e+00 ...,   8.1910e+03   8.1920e+03
+    8.1930e+03]
+ [  2.0000e+00   3.0000e+00   4.0000e+00 ...,   8.1910e+03   8.1920e+03
+    8.1930e+03]]
+y      = [[ 0.0001  0.0001  0.0001 ...,  0.0025  0.0025  0.0025]
+ [ 0.0001  0.0001  0.0001 ...,  0.0025  0.0025  0.0025]]
+xlabel = Channel
+ylabel = Counts/sec
+title  = Model Orders [2, 3]
+histo_prefs = {'linethickness': 2, 'linecolor': '0xaaaaea'}
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+       <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt;
+          order2_plot=get_order_plot(4, 2)</LINE>
+	</SYNTAX>
+        <DESC>
+          <PARA>
+            This command stores to the variable "order2_plot" the data
+            and preferences defining the model plot of the second
+            order of data set 4 (using its associated model). The
+            contents may be printed with 'print(order2_plot)'.
+          </PARA>
+        </DESC>
+        </QEXAMPLE>
+
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

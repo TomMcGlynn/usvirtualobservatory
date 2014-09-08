@@ -1,0 +1,44 @@
+The HEASARC has continued validating all Cone and SIAP services in the VO registry. 
+To date, there are 6530 Cone and SIAP services that we are testing.Of these 2915 services
+(approximately 45%)  have passed validation, 3502 services (approximately 54.2%) have
+failed, and only 38 (.58%) were aborted. Aborted tests are the result of communication
+issues with the server and these issues are being resolved. Failed tests on the other
+hand are due to existing issues with services that do not agree in one way or another
+with existing VO specifications.
+
+As part of this effort, we have also sent reports to various centers summarizing the results
+of our validation tests on their sites. There are a total of 43 centers whose services we 
+have validated. As of the end of October,  we have sent 19 messages to 19 centers and 
+received 12  responses from 12 centers. Responses have been relatively quick and curators 
+have been eager to implement fixes. Subsequent retesting of services at each host institution
+have for the most part shown a substantial decrease in the failure rate of Cone and SIAP services.
+
+Among the various data centers, not including CDS,LEDAS or HEASARC, we have noted that there are
+a few specific error types that occur with relative frequency. These include:
+
+The TABLE must contain exactly one FIELD with ucd='ID_MAIN'.
+The POS_EQ_DEC_MAIN column must have datatype='double'.
+The TABLE must contain exactly one FIELD with ucd='POS_EQ_DEC_MAIN'.
+The TABLE must contain exactly one FIELD or PARAM with ucd='POS_EQ_RA_MAIN'.
+Apparent Communication Error.
+
+Apparent Communication Errors appear to be transient in nature. The service may
+have been unavailable at the time validtion was performed. Re-validating the
+service at a future point may show that the service is indeed valid.
+
+
+Among the 3 primary centers, there seems to be a similar trend. The most
+common errors are:
+
+The TABLE must contain exactly one FIELD with ucd='ID_MAIN'.(all three centers)
+The ID_MAIN column must have datatype='char'. (only heasarc and ledas)
+The ID_MAIN column must have a string-appropriate arraysize (recommend '*'). (Only ledas)
+The POS_EQ_RA_MAIN column must have datatype='double'. (only cds and ledas)
+Error message must appear in an INFO or PARAM with name='Error' in required location (only CDS)
+
+
+
+So far there are only 3 centers that are 100% compliant - SVO Amiga, Harvard
+ADS and the Vatican. However, Each of these centers hosts only one service so the validation
+statistics were only marginally improved once these services were fixed.
+

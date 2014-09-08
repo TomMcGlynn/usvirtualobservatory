@@ -1,0 +1,3 @@
+DirectoryIndex /vo/vaomonitor/vaomonitor.pl
+Options +ExecCGI
+AddHandler cgi-script .pl .java

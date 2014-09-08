@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="image_setregion" refkeywords="image images img imager imaging region regions visualize visualization visualise visualisation" seealsogroups="sh.img sh.set " displayseealsogroups="" context="visualization">
+
+    <SYNOPSIS>
+     Sends a region description to ds9, where it is drawn in
+     the current frame.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>image_setregion(reg)</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+       A region description is sent to the imager (ds9 by default),
+       where it is drawn in the current frame.  There is no return value.
+      </PARA>
+
+       <LIST>
+       <ITEM>
+        reg - region description in CIAO region syntax
+       </ITEM>
+       </LIST>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; reg = "circle(4300,3710,15)"</LINE>
+	  
+          <LINE>sherpa&gt; image_setregion(reg)</LINE>
+	  
+	</SYNTAX>
+	<DESC>
+          <PARA>
+           If "reg" is a string defining a region in CIAO region
+           syntax, then the region is drawn in the current frame of
+           ds9.  In this example, a circular region with center
+           coordinates (4300, 3710) and radius=15 is drawn.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

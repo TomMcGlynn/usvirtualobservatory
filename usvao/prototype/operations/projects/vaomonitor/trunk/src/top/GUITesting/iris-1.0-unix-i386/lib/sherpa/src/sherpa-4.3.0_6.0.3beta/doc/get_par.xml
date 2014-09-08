@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="get_par" refkeywords=" get model par parameter " seealsogroups="sh.model sh.get sh.set " displayseealsogroups="" context="modeling">
+	<SYNOPSIS>
+    Returns a model parameter.
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>get_par( par )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+      <PARA>
+      This function returns a model parameter when given the name of a
+      model parameter.  The variable returned gives access to all
+      information about a model parameter, and allows attributes of
+      the parameter to be changed.  (These attributes include name,
+      value, minimum, maximum and units.)
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; get_par("g1.fwhm")</LINE>
+          
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	   This function returns a variable that gives access to all
+           the attributes of a parameter.  The argument given is the
+           name of the parameter.
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+	<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>

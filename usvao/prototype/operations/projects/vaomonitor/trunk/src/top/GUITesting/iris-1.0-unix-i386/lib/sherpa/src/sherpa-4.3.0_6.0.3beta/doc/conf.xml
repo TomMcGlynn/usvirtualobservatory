@@ -1,0 +1,312 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="conf" refkeywords="confidence region error interval uncertainty parameter statistic statistics sigma goodness " seealsogroups="sh.conf " displayseealsogroups="" context="confidence">
+
+    <SYNOPSIS>
+      Estimate confidence intervals for selected thawed parameters
+      based on confidence method
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>conf([id], [otherids], [parameters], [numcores] )</LINE>
+      
+    </SYNTAX>
+
+    <DESC>
+
+      <PARA>
+         The confidence command computes confidence interval bounds
+	 for the specified model parameters in the dataset.  A given
+         parameter's value is varied along a grid of values while the
+         values of all the other thawed parameters are allowed to
+         float to new best-fit values.  The function may be called
+	 as "confidence" or simply "conf".
+      </PARA>
+
+      <PARA>
+	The confidence command differs from covariance
+        
+        (<HREF link="http://cxc.harvard.edu/sherpa/ahelp/covariance.html">"ahelp covariance"</HREF>)
+	in that all other thawed parameters are allowed to float to
+        new best-fit values, instead of being fixed to the initial
+        best-fit values.  While confidence is more general
+        (e.g. allowing the user to examine the parameter space away
+        from the best-fit point), it is in the strictest sense no more
+        accurate than covariance for determining confidence
+        intervals. 
+      </PARA>
+      
+      <PARA>
+       The computationally intensive confidence function is
+       parallelized to make use of multi-core systems (i.e., laptops or
+       desktops with 2 or 4 cores) to provide 
+       significant improvements in efficiency compared to previous
+       releases of Sherpa; the 'numcores' argument may be used to
+       specify how the cores should be used when confidence is run.
+       </PARA>
+
+      <LIST>
+
+        <ITEM>
+	  id, otherids - the id(s) of the dataset(s) to use; default
+	  is all thawed parameters for all datasets which have a model
+	  defined; 
+          otherids=None
+          
+	</ITEM>
+
+        <ITEM>
+	  parameters - model parameters on which confidence should be
+	  run; default is all thawed parameters
+	</ITEM>
+
+	<ITEM>
+         numcores - number of cores to use in parallelization; default
+         is to use all cores available (2 or 4)
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        When running on multiple ids and parameters, the arguments may
+        be given in any order (see the examples); any argument that is
+        not defined as a model parameter is assumed to be a data id.
+      </PARA>
+
+      <PARA>
+        To control the number of sigma used for the limits (i.e. the
+        change in statistic), set the value of get_conf.sigma
+	
+	(<HREF link="http://cxc.harvard.edu/sherpa/ahelp/get_conf.html">"ahelp get_conf"</HREF>).
+	The default setting is to calculate +/- 1 sigma limits.
+      </PARA>
+
+      <PARA>
+        Because confidence estimates intervals for each parameter
+        independently, the relationship between sigma and 
+        the change in statistic value delta_S can be particularly
+        simple: sigma = the square root of delta_S for statistics
+        sampled from the chi-square distribution and for the Cash
+        statistic, and is approximately equal to the square root of (2
+        * delta_S) for fits based on the general log-likelihood.  
+      </PARA>
+
+      <PARA title="Output of the confidence function">
+        The confidence function is a replacement for projection.
+	The confidence EstMethod class uses the same infrastructure as
+	the equivalent projection class, so there should be no
+	interface changes (with the exception of the additional
+	options: verbose and openinterval). However, the underlying
+	algorithm used is very different than projection. In the
+	paragraphs to follow, a description of the algorithm used in
+	confidence shall be given. 
+      </PARA>
+
+      <PARA>
+	The resulting output/answer from the confidence function is
+	basically a 1-dimensional root in the translated coordinate
+	system (translated by the value of the statistic at the
+	minimum plus sigma^2).  The Taylor series expansion of the
+	multi-dimensional function at the minimum is: 
+      </PARA> 
+
+<VERBATIM>
+                                       T        T 
+   f( x + dx ) ~  f( x ) + grad( f(x) )  dx + dx  Hessian( f(x) ) dx  + ...
+</VERBATIM>
+
+      <PARA>
+	Where x is understood to be the n-dimensional vector
+	representing the free parameters to be fitted and the
+	super-script 'T' is the transpose of the row-vector. At or
+	near the minimum, the gradient of the function is zero or
+	negligible, respectively. So the leading term of the expansion
+	is quadratic.  The best root finding algorithm for a curve
+	which is approximately parabolic is Muller's method.  Muller's
+	method is a generalization of the secant method: the secant
+	method is an iterative root finding method that approximates
+	the function by a straight line through two points, whereas
+	Muller's method is an iterative root finding method that
+	approxmiates the function by a quadratic polynomial through
+	three points. 
+      </PARA>
+
+      <PARA>
+	Three data points are the minimum input to Muller's root
+	finding method. The first point to be submitted to the
+	Muller's root finding method is the point at the minimum. To
+	strategically choose the other two data points, the confidence
+	function uses the output from covariance as the second data
+	point. To generate the third data points for the input to
+	Muller's root finding method, the secant root finding method
+	is used since it only requires two data points to generate the
+	next best approximation of the root. 
+      </PARA>
+
+	  <PARA>
+	    However, there are cases where confidence cannot locate
+	    the root even though the root is bracketed within an
+	    interval (perhaps due to the bad resolution of the
+	    data). In such cases, when the option openinterval is set
+	    to False, the default, the confidence function will print
+	    a warning message about not able to find the root within
+	    the set tolerance and the function will return the average
+	    of the open interval which brackets the root.  If the
+	    option openinterval is set to True then confidence will
+	    print the minimal open interval which brackets the root
+	    (not to be confused with the lower and upper bound of the
+	    confidence interval). The most accurate thing to do is to
+	    return an open interval where the root is
+	    localized/bracketed rather then the average of the open
+	    interval (since the average of the interval is not a root
+	    within the specified tolerance). 
+	  </PARA>
+
+	  <PARA>
+	    For a description of the secant method, see Numerical
+	    Recipes in Fortran, 2nd edition, 1986, Press et al.,
+	    p. 347 
+	  </PARA>
+
+	  <PARA>
+	    Muller, David E., "A Method for Solving Algebraic
+	    Equations Using an Automatic Computer," MTAC, 10 (1956),
+	    208-215. 
+      </PARA>
+
+      <PARA title="Accuracy of confidence intervals">
+        An estimated confidence interval is accurate if and only if:
+      </PARA>
+
+      <LIST>
+        <ITEM>
+	  the chi-square or logL surface in parameter space is
+	  approximately shaped like a multi-dimensional paraboloid,
+	  and
+	</ITEM>
+
+	<ITEM>
+	  the best-fit point is sufficiently far (~3 sigma) from
+	  parameter space boundaries.
+	</ITEM>
+      </LIST>
+
+      <PARA>
+        One may determine if these conditions hold, for example, by
+        plotting the fit statistic as a function of each parameter's
+        values (the curve should approximate a parabola) and by
+        examining contour plots of the fit statistics made by varying
+        the values of two parameters at a time (the contours should be
+        elliptical, and parameter space boundaries should be no closer
+        than approximately 3 sigma from the best-fit point).  The
+	int_proj
+	
+	(<HREF link="http://cxc.harvard.edu/sherpa/ahelp/int_proj.html">"ahelp int_proj"</HREF>).
+	and reg_proj
+	
+	(<HREF link="http://cxc.harvard.edu/sherpa/ahelp/reg_proj.html">"ahelp reg_proj"</HREF>).
+	can be used to create the contours.
+      </PARA>
+
+      <PARA>
+        If either of the conditions given above does not hold, then
+        the output from confidence may be meaningless except to give
+        an idea of the scale of the confidence intervals. To
+        accurately determine the confidence intervals, one would have
+        to reparameterize the model, or use Monte Carlo simulations or
+        Bayesian methods.  
+      </PARA>
+
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; conf()</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Run confidence on the default dataset(s), calculating
+	    limits for all thawed parameters of all data sets for
+	    which the user has defined a model to be fit.  The output
+	    for one data set with two model parameters looks like:
+	  </PARA>
+
+<VERBATIM>
+p1.gamma lower bound:   -0.0779263
+p1.ampl lower bound:    -1.35974e-05
+p1.ampl upper bound:    1.35974e-05
+p1.gamma upper bound:   0.0785513
+Dataset               = 1
+Confidence Method     = confidence
+Fitting Method        = levmar
+Statistic             = chi2gehrels
+confidence 1-sigma (68.2689%) bounds:
+   Param            Best-Fit  Lower Bound  Upper Bound
+   -----            --------  -----------  -----------
+   p1.gamma          2.09056   -0.0779263    0.0785513
+   p1.ampl       0.000210697 -1.35974e-05  1.35974e-05
+</VERBATIM>
+
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; conf(2, pl1.gamma)</LINE>
+	</SYNTAX>
+	<DESC>
+          <PARA>
+	    Compute parameter limits for the model parameter pl1.gamma,
+	    which is assigned to dataset 2.  The output is:
+	  </PARA>
+
+<VERBATIM>
+WARNING: New minimum statistic found while computing confidence limits
+WARNING: New best-fit parameters:
+Method                = levmar
+Statistic             = chi2gehrels
+Initial fit statistic = 2.09666
+Final fit statistic   = 1.94547 at function evaluation 30
+Data points           = 7
+Degrees of freedom    = 4
+Probability [Q-value] = 0.745788
+Reduced statistic     = 0.486367
+Change in statistic   = 0.151189
+   abs1.nH        0.948597
+   pl1.gamma      1.913
+   pl1.ampl       2.9285e-05
+pl1.gamma lower bound:  -1.02113
+pl1.gamma upper bound:  1.2016
+Dataset               = 2
+Confidence Method     = confidence
+Fitting Method        = levmar
+Statistic             = chi2gehrels
+confidence 1-sigma (68.2689%) bounds:
+   Param            Best-Fit  Lower Bound  Upper Bound
+   -----            --------  -----------  -----------
+   pl1.gamma           1.913     -1.02113       1.2016
+</VERBATIM>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+  <ADESC title="CHANGES IN CIAO 4.3">
+   <PARA>
+    The confidence function has a new argument 'numcores' to specify
+   how many cores on a user's system should be utilized when the
+   computationally intensive command is run.
+   </PARA>
+  </ADESC>
+
+
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+
+  </ENTRY></cxchelptopics>

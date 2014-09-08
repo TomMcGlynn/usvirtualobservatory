@@ -1,0 +1,63 @@
+#!/bin/sh
+
+# Copyright 2011 Smithsonian Astrophysical Observatory
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#     http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+# Currently, Sherpa is hardcoded in Specview -- this should change to use
+# a properties file.  For now, start java in the lib/sherpa directory
+#cd lib/sherpa
+
+#  Find where this script is located.
+
+bindir=$( cd -P "$( dirname "$0" )" && pwd )
+if [ -h "$0" ]; then
+    bindir=$( cd -P "$( dirname "`readlink -n "$0"`" )" && pwd )
+fi
+
+
+spv_dir=\"$bindir/lib/spv\"
+
+# Set locations of acceptable jar files (relative to this script).
+iris_jar=\"$bindir/lib/spv/specview.jar\"
+
+JAVA=`which java`
+
+# Java args
+args=" -Xms256m -Xmx1024m -Djsamp.localhost=localhost"
+
+# Mac-specific items.
+if test -x /usr/bin/sw_vers && /usr/bin/sw_vers | grep -q 'OS.X'; then
+
+    MACJAVA="/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Commands/java"
+
+    if test ! -f "$MACJAVA"; then
+	echo 1>&2 "Can't find Java 1.6 $MACJAVA"
+	exit 1
+    fi
+
+    JAVA=$MACJAVA
+
+    args="$args -Xdock:name=\"Iris\""
+
+    # Set Mac application name.
+    args="$args -Dcom.apple.mrj.application.apple.menu.about.name=Iris"
+fi
+
+# Add the Sherpa flag
+appArgs="-s\"$bindir/lib/sherpa\" $*"
+
+#  Run iris.
+cmd="$JAVA $args -classpath $spv_dir -jar $iris_jar $appArgs > \"$bindir/lib/spv/iris.log\" 2>&1"
+#echo "$cmd"
+eval "$cmd"

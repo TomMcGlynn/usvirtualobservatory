@@ -1,0 +1,3 @@
+#!/data/scialg/staff/brefsdal/VAOPython/iris_build_src/Linux/INSTALL/bin/python
+import sherpa_samp.mtypes
+sherpa_samp.mtypes.main()

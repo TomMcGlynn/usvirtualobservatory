@@ -1,0 +1,315 @@
+<HTML>
+
+  <HEAD><TITLE></TITLE>
+     <LINK REL="StyleSheet" HREF='http://www.us-vo.org/app_templates/usvo_template.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/datascope/css/styles.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/support/css/volib.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/support/css/annot.css' TYPE="text/css">
+     <LINK REL="StyleSheet" HREF='/vo/monitor/css/annot.css' TYPE="text/css">  
+<style>
+p.subsection
+{  margin-left: 3em; color: blue }
+p.subsectionb { margin-left: 6em; color: blue}
+p.viewer {margin-left: 9em; color: green}
+p.subsectionc { margin-left: 9em; color: blue}
+p.subd {margin-left: 6em; color: green}
+</style>
+</head>
+<body>
+
+  </HEAD>
+  
+  <BODY id = 'gentop' ><a href='#content' title='Skip navigation'> </a>
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" id = gen>
+  <tr>   
+     <td width="112" height="32" align="center" valign="top">
+        <a href="http://www.us-vo.org" class="nvolink" target="_top">
+          <img src="http://www.usvao.org/mgmt/logos/VAO_logo_100.png" alt="NVO HOME" border="0"/>
+        </a>
+        <span class="nvolink">
+          <a href="http://www.us-vo.org/" target="_top">National Virtual Observatory</a></span>
+     </td>   
+     <td valign="top"><table  width="100%" border="0" cellpadding="0" cellspacing="0">      
+       <tr>       
+         <td width="2" height="30" bgcolor="white"></td>
+         <td width="678" height="39" align="center" valign="middle" 
+         background="http://www.us-vo.org/images/templatestars.jpg" bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+   Selenium Configuration for VO tests
+
+    <span class= "nvoapptitle" style= "background-repeat: repeat-y;>Selenium<\/span></td></tr>;
+    </td>
+    
+    
+    <td bgcolor="white" width="2"></td>     
+    </tr>     
+    <tr>       
+     <td bgcolor="white" width="2"></td>      
+     <td bgcolor="white" width="2"></td>      
+     </tr>      
+     <tr>       
+     <td align="center" valign="top" colspan="3"><table cellspacing="2" cellpadding="0" border="0" width="100%"  style="margin: 0pt;">         
+     <tr>
+     <!-- the local links -->
+  
+     <td  class='navlink'><a href='/vo/notification/addnote.html'>VO Service Notes </a></td>
+     <td  class='navlink'><a href='../monitor/monitor.pl'>VO Monitor </a></td>
+     <td  class='navlink'><a href='http://us-vo.org' title='NVO Home page'>NVO Home</a></td>  
+     <td  class='navlink'><a href=http://us-vo.org/feedback/index.cfm>NVO Feedback</a></td> 
+            
+     </tr>       
+     </table></td>
+      </tr>
+      </table></td>
+   <td width = 140 align = center valign = top><a href = "http://www.heasarc.gsfc.nasa.gov">
+      <img src=/vo/datascope//images/nasa_logo.gif width=72 height=60 border=0 alt='NASA home'>
+      </img></a><br><span>Hosted by:</span><br>HEASARC<br> 
+      <br>
+      </td></tr></table>
+
+
+
+<p>
+
+This document describes how to create a Selenium test in Perl. It assumes that the following exists:<br><br>
+A) A virtual frame buffer is up and running in the background <br>
+B) a wrapper script exists for setting up the environment and driving the selenium test.  <br>
+
+
+
+<h3>Contents</h3>
+
+<p><a href = '/selenium/selenium_default/doc/user.html#setup'>Suggested Preliminary Setup</a><br>
+<p><a href = '/selenium/selenium_default/doc/user.html#creating'>Creating a Selenium Test</a><br>
+<p><a href = '/selenium/selenium_default/doc/user.html#step'>Step by step example of how to build and execute a selenium test</a><br>
+<p><a href = '/selenium/selenium_default/doc/user.html#issues'>Issues</a>
+<br><br>
+
+<a name= "setup">
+<h3>Suggested Preliminary Setup</h3>
+
+<p>
+
+Create:<br>
+A) a local Selenium directory<br>
+B) a test suite subdirectory called Modules under the Selenium directory<br>
+C) a custom profiles directory in parallel with the Modules directory (required)<br>
+D)a log directory for catching any errors in parallel with the Modules directory (required)<br><br>
+Your local directory structure should therefore look like this:<br>
+
+<p class = "subsection">---->selenium</font></p>
+<p class = "subsectionb">----->Modules<font color =purple>&nbsp;(contains code for each individual Selenium test)</font></p>
+<p class = "subsectionb">----->logs<font color =purple>&nbsp;(contains a log of each Selenium test)</font></p>
+<p class = "subsectionb">----->customprofiles<font color =purple>&nbsp;(contains a firefox profile for each Selenium test)</font></p>
+
+
+
+<p>
+Use:<br>
+
+A)The wrapper script at:<br>
+<br>
+
+/software/jira/software2/projects/selenium/trunk/src/run_selenium
+.
+<br><br>
+
+Verify that:<br>
+A) the virtual frame buffer is up and running:<br><br>
+ps -ef | grep p Xvfb <br><br>
+
+You should see "software/jira/usvo/projects/web_test/bin/Xvfb" <br><br>
+
+
+
+</p>
+<a name = "creating"><h3>Creating a Selenium Test</h3>
+<p>
+
+Selenium tests can be created in one of two ways. Users
+can either create a test via the Selenium IDE browser
+add-on or they may create a Selenium 
+test directly in the language of their choice. However, the Selenium IDE add-on
+has a feature that exports a test automatically into a user's
+preffered language. This can be much easier than building the test 
+manually. <br>
+
+<br>
+Building a Test Using IDE<br>
+A) Download the Selenium IDE Firefox add-on.<br>
+B) Record the test using the IDE add-on<br>
+C) Optional: Play the test at this point by just using the add-on. The test will rerun from the beginning automatically<br>
+D) Save the test<br><br>
+
+For more information on Selenium IDE and how to use it, please
+consult the Selenium website <a href = 'http://seleniumhq.org/projects/ide/'>here</a>
+<br><br>
+Building a Test in a specific Language<br>
+A)Export the test that was built using IDE.<br>
+B)Once the test is exported into one of the available languages,
+this code represents the actual test. Store this in the test suite directory.<br>
+C) Tweak the test so that it is ready to be used by a wrapper script.
+
+<br>
+E.g. <br>
+A test has been created for the  VOCLI service.It has been exported into
+Perl and can now be stored under:<br><br>
+
+/selenium/Modules/VOCLI.pm<br><br>
+
+<a name = 'step'>
+<h3>Step by step example of how to build and execute a Test</h3>
+<p>
+
+<br>
+
+<b>The Scenario</b><br>
+<p>A. You want to build a test for the VOCLI service using the Selenium framework<br>
+B. You have a local area for testing as described above <br>
+C.You know that the VO software suite is described at: us-vo.org  <br><br>
+
+
+<b>Building</b><br><br>
+A.Go to the us-vo.org site at: "http://us-vo.org/" and select Selenium IDE from the
+drop down list (You have to have this add on installed of course).<br>
+B. Start recording the test<br>
+C. At the url mentioned above, click on VOCLI -> "VODirectory" -> "Submit".Your
+selections will get recorded in the Selenium IDE window <br>
+D. Stop recording the test.<br>
+E. Click on File->Export Test Case As->Perl-Selenium RC<br>
+F. Save the file somewhere.<br>
+G. The contents of this file contains the test. You should store this test in 
+the Modules subdirectory as this will be driven by the selenium wrapper script. The test
+should at this stage, look like:<br><br>
+
+use strict;
+use warnings; <br>
+use Time::HiRes qw(sleep);<br>
+use Test::WWW::Selenium;<br>
+use Test::More "no_plan";<br>
+use Test::Exception;<br>
+
+my $sel = Test::WWW::Selenium->new( host => "localhost",<br> 
+                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; port => 4444, <br>
+                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; browser => "*chrome",<br> 
+                                   <font color = green>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; browser_url => "http://www.us-vo.org/" );<br>
+
+$sel->open_ok("/");<br>
+$sel->click_ok("//img[\@alt='voclient']");<br>
+$sel->wait_for_page_to_load_ok("30000");<br>
+$sel->click_ok("link=VODirectory");<br>
+$sel->wait_for_page_to_load_ok("30000");<br>
+$sel->select_frame_ok("i2");<br>
+$sel->select_frame_ok("query");<br>
+$sel->click_ok("//input[\@value='Submit']";</font><br><br><br>
+
+<font color=  green>*The area highlighted in green represents the core test piece</font><br>
+<font color = green>*The area highlighted in black represents what is needed to run the test</font><br>
+<font style = "color: blue">The next step is to fix this test so that it can execute properly. Change this test so that the test looks like:</font><br><br>
+package Modules::VOCLI;<br>
+
+use Exporter ();<br>
+@ISA = qw(Exporter);<br>
+@EXPORT = qw (test);<br>
+
+use warnings;<br>
+
+
+sub test<br>
+{<br>
+    my ($port, $debug) = @_;<br>
+    my $sel = WWW::Selenium->new( host => "localhost", <br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;port => "$port", <br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;browser => "*firefox2 /usr1/local/firefox-2_hold/firefox-bin",<br>
+                                        <font color = green>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;browser_url => "http://us-vo.org/", );</font><br>
+    my @array;<br>
+    eval<br>
+    { <br>
+        $sel->start;<br>
+        $$::session_id = $sel->{session_id};<br>
+        <font color = "green">$sel->open("/");<br>
+	$sel->click("//img[\@alt='voclient']");<br>
+	$sel->wait_for_page_to_load("30000");<br>
+        $sel->click("link=VODirectory");<br>
+        $sel->wait_for_page_to_load("30000");<br>
+        $sel->select_frame("i2");<br>
+        $sel->select_frame("query");<br>
+        $sel->click("//input[\@value='Submit']");<br></font>      
+        $sel->stop;<br>
+        
+    };<br>
+ 
+    print "\nEnd of Test Errors: $@\n\n" if $debug;<br>
+    if ($@)     <br>
+    {   <br>
+        return "failed";<br>
+    }<br>
+<br>
+
+<font color = green>*The area highlighted in green represents the core  test piece</font><br>
+
+
+
+<br>
+See the annotated example of the preceding script: <a href = '/selenium/selenium_default/doc/VOCLI.pm'>VOCLI.pm</a> 
+<br><br>
+
+
+<b>Executing</b><br>
+
+<br>
+
+A.To run your test, you will need the following input flags:<br><br>
+<font color = red> -H:</font>  the host id of the site you are testing  (required)<br><br>
+<font color = red> -u:</font> the target url minus the host url piece.(required)<br><br>
+<font color = red>-l: </font> the log directory where you want the selenium logs for the tests to be stored(required)<br><br>
+<font  color = red> -c: </font> the directory where you want the customprofiles stored (required)<br><br>
+<font color = red > -f: </font>the module (test) to be run. If your test is called VIM.pm, you would enter "-f VIM" on the command line.(required)<br><br>
+<font color = red> -m: </font> multiwindow mode. Running in this mode is recommended when using frames. Otherwise tests may crash (optional)<br><br>
+B.From your selenium working area, if you want the log and custom profile stored in your current directory, you would run:<br><br>
+
+<font color = blue>/software/jira/software2/projects/selenium/trunk/src/run_selenium -H 'us-vo.org' -u "/" -f VIM  -l . -c . </font><br><br>
+
+
+N.B.<br>
+If the Selenium test fails, you can do a quick retest by adding the "--debug" flag. This will show you if there are any major issues
+with the test<br><br>
+
+<font color = blue>/software/jira/software2/projects/selenium/trunk/src/run_selenium -H 'us-vo.org' -u "/" -f VIM  -l . -c . --debug </font><br><br>
+
+
+If there is nothing helpful in the response when using the "--debug" flag, you will have to comb through the log file to
+determine where the problem lies</p>
+
+
+
+
+<a name = 'issues'>
+<h3>ISSUES</h3>
+<p> There are several known bugs and issues with Selenium. <br><br>
+A) Firefox 2 and Selenium RC are compatible. Firefox 3 and other flavors of FireFox are not
+always compatible. <br><br>
+
+
+B)Occasionally Selenium tests die in a bad way and tests are not always cleaned up. The user is left with zombie processes that need
+to be removed manually. One way to handle this is to create a log
+of  each Selenium test session and later see if the log contains the string
+"Cannot run program "kill"". If this line exists, the user will have to build
+a tool that removes the hanging process. This is why it's important to retain
+the process id and session id.<br><br>
+
+N.B. after some improvements, we have no longer noted any failures. The solution was to force Selenium to operate in singleWindow mode.
+This mode ensures greater stability for Selenium tests but does not guarantee desired results
+when running tests with frames. To run tests that use frames, you should use the "-m" option.
+<br><br>
+
+
+</p>
+</BODY>
+
+
+
+
+
+
+</HTML>

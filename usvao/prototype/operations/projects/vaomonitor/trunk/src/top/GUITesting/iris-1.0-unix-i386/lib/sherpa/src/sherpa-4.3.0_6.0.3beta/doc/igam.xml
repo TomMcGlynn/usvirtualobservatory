@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE cxchelptopics SYSTEM "CXCHelp.dtd">
+<!--
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This is a generated file.  DO NOT EDIT!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
+<cxchelptopics><ENTRY pkg="sherpa" key="igam" refkeywords="cephes utility function math " seealsogroups="sh.calc " displayseealsogroups="" context="utilities">
+
+     <SYNOPSIS>
+     Calculate the incomplete Gamma function (lower)
+    </SYNOPSIS>
+
+    <SYNTAX>
+      <LINE>igam(a,x)</LINE>
+	</SYNTAX>
+
+    <DESC>
+      <PARA>
+	Calculate the CEPHES function, igam, in the range [a &gt; 0; x
+	&gt; 0].  The function is defined by
+      </PARA>
+
+      <PARA>
+<EQUATION>
+igam(a,x) = 1/sqrt(a) Int_(0)^(x) e^(-t) t^(a-1) dt
+</EQUATION>
+      </PARA>
+	<PARA>
+	In this implementation, both arguments must be positive. The
+	integral is evaluated by either a power series or continued
+	fraction expansion, depending on the relative values of a and
+	x. Arguments can be in scalar or array form. 
+      </PARA>
+
+<TABLE>
+<CAPTION>Relative error:</CAPTION>
+<ROW>
+<DATA>arithmetic</DATA>
+<DATA>domain</DATA>
+<DATA># trials</DATA>
+<DATA>peak</DATA>
+<DATA>rms</DATA>
+</ROW>
+
+<ROW>
+<DATA>IEEE</DATA>
+<DATA>0,30</DATA>
+<DATA>200000</DATA>
+<DATA>3.6e-14</DATA>
+<DATA>2.9e-15</DATA>
+</ROW>
+
+<ROW>
+<DATA>IEEE</DATA>
+<DATA>0,100</DATA>
+<DATA>300000</DATA>
+<DATA>9.9e-14</DATA>
+<DATA>1.5e-14</DATA>
+</ROW>
+
+</TABLE>
+
+      <PARA title="Reference">
+	Cephes Math Library Release 2.0:  April, 1987.
+	Copyright 1985, 1987 by Stephen L. Moshier.
+	Direct inquiries to 30 Frost Street, Cambridge, MA 02140.
+      </PARA>
+    </DESC>
+
+    <QEXAMPLELIST>
+      <QEXAMPLE>
+        <SYNTAX>
+          <LINE>sherpa&gt; igam(1,2)</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	    Calculate the igam of a=1, x=2 .
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+
+      <QEXAMPLE>
+        <SYNTAX>
+	  <LINE>sherpa&gt; igam([1,2],[2,3])</LINE>
+	</SYNTAX>
+	<DESC>
+	  <PARA>
+	    Calculate the igam of a=[1,2], x=[2,3] .
+	  </PARA>
+        </DESC>
+      </QEXAMPLE>
+    </QEXAMPLELIST>
+
+<BUGS>
+     <PARA>
+        See the
+        <HREF link="http://cxc.harvard.edu/sherpa/bugs/">bugs pages
+        on the Sherpa website</HREF> for an up-to-date listing of known bugs.
+     </PARA>
+   </BUGS>
+    <VERSION>CIAO 4.3</VERSION>
+    <LASTMODIFIED>December 2010</LASTMODIFIED>
+</ENTRY></cxchelptopics>
