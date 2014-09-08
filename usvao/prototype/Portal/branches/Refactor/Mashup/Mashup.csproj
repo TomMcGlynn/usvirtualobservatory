@@ -1,0 +1,1227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B0C99A3F-AB09-4984-B1C7-F95E8D169F31}</ProjectGuid>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mashup</RootNamespace>
+    <AssemblyName>Mashup</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <newfilesearch>OnLoad</newfilesearch>
+    <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Clients\Designer\Containers\app\view\AstroViewContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\CaomDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ChartContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ColorPickerContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\FacetChooserContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\FilterContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\GenericDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\CatalogDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\LayerChooserContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\MinMaxSliderContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\SiaDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\StprDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\TopBarContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\AstroViewContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\CaomDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\CatalogDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\ChartContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\ColorPickerContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\FacetChooserContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\FilterContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\GenericDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\LayerChooserContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\MinMaxSliderContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\SiaDetailsContainer.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\TopBarContainer.js" />
+    <Content Include="Clients\Designer\Exports\app\view\ui\UploadOptionsForm.js" />
+    <Content Include="Clients\Designer\Exports\app\view\UploadOptionsForm.js" />
+    <Content Include="Clients\Portal\MastHelp.html" />
+    <Content Include="Clients\Shared\custom\Generic.js" />
+    <Content Include="Clients\Shared\data\DecimalHistogram.js" />
+    <Content Include="Clients\Shared\flashplayer.swf" />
+    <Content Include="Clients\Shared\gui\custom\Hstpr.js" />
+    <Content Include="Clients\Shared\gui\custom\Stpr.js" />
+    <Content Include="Clients\Shared\gui\custom\Siap.js" />
+    <Content Include="Clients\Shared\gui\DetailsWindow.js" />
+    <Content Include="Clients\Shared\help\astroview.png" />
+    <Content Include="Clients\Shared\help\details_popup.png" />
+    <Content Include="Clients\Shared\help\filtered_search.png" />
+    <Content Include="Clients\Shared\help\m57_Results.png" />
+    <Content Include="Clients\Shared\help\search.png" />
+    <Content Include="Clients\Shared\help\startup.png" />
+    <Content Include="Clients\Shared\img\loading1.gif" />
+    <Content Include="Clients\Shared\img\question.gif" />
+    <Content Include="Clients\Shared\util\Constants.js" />
+    <Content Include="Clients\Shared\util\Searches.js" />
+    <Content Include="Clients\Shared\util\Wcs.js" />
+    <Content Include="MashupTest.asmx" />
+    <Content Include="Mashup.asmx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Clients\Hlsp\Hlsp.html" />
+    <Content Include="Clients\Hlsp\Hlsp.js" />
+    <Content Include="Clients\Galex\Galex.html" />
+    <Content Include="Clients\Galex\Galex.js" />
+    <Content Include="Clients\VOT\VOT.html" />
+    <Content Include="Clients\VOT\SearchField.js" />
+    <Content Include="Clients\VOT\SearchBox.js" />
+    <Content Include="Clients\Layout\Border.html" />
+    <Content Include="Clients\Layout\Border.js" />
+    <Content Include="Clients\Layout\Layout.html" />
+    <Content Include="Clients\Layout\Layout.js" />
+    <Content Include="Clients\Layout\Columns.html" />
+    <Content Include="Clients\VOT\xml-grid.js" />
+    <Content Include="Clients\VOT\XML Grid Example.html" />
+    <Content Include="Clients\NameResolver\MainViewport.js" />
+    <Content Include="Clients\NameResolver\MainViewport.ui.js" />
+    <Content Include="Clients\NameResolver\NameResolver.html" />
+    <Content Include="Clients\NameResolver\SearchForm.js" />
+    <Content Include="Clients\NameResolver\SearchForm.ui.js" />
+    <Content Include="Clients\NameResolver\xds_index.html" />
+    <Content Include="Clients\NameResolver\xds_index.js" />
+    <Content Include="Clients\Proxy\MemoryProxy.js" />
+    <Content Include="Clients\Proxy\MemoryProxy.html" />
+    <Content Include="Clients\Proxy\PagingMemoryProxy.js" />
+    <Content Include="Clients\Proxy\states.js" />
+    <Content Include="Clients\VOT\TestPanelPage.js" />
+    <Content Include="Clients\VOT\customStyles.css" />
+    <Content Include="Clients\VOT\TestFilters.js" />
+    <Content Include="Clients\Shared\data\BufferedStore.js" />
+    <Content Include="Clients\Shared\data\BufferedStoreOld.js" />
+    <Content Include="Clients\Shared\data\StoreProxy.js" />
+    <Content Include="Clients\Shared\filters\FilterTest.js" />
+    <Content Include="Clients\Shared\practice\MyBase.js" />
+    <Content Include="Clients\Shared\practice\MySub.js" />
+    <Content Include="Clients\Shared\InitializeJavaScript.js" />
+    <Content Include="Clients\Shared\InitializeLocal.js" />
+    <Content Include="Clients\VOT\TestIS.js" />
+    <Content Include="Clients\VOT\buffer-grid.html" />
+    <Content Include="Clients\VOT\buffer-grid.js" />
+    <Content Include="Clients\Shared\grid\MvpPagingScroller.js" />
+    <Content Include="Clients\Shared\data\Histogram.js" />
+    <Content Include="Clients\Shared\filters\FacetFilterPanel.js" />
+    <Content Include="Clients\Shared\grid\MvpGrid.js" />
+    <Content Include="Clients\swfobject\index_dynamic.html" />
+    <Content Include="Clients\swfobject\index.html" />
+    <Content Include="Clients\swfobject\swfobject.js" />
+    <Content Include="Clients\swfobject\src\swfobject.js" />
+    <Content Include="Clients\Shared\util\NameResolverModel.js" />
+    <Content Include="Clients\Shared\util\SearchBox.js" />
+    <Content Include="Clients\pagebus\pagebus.js" />
+    <Content Include="Clients\pagebus\pagebusAstroView.js" />
+    <Content Include="Clients\Shared\util\MashupQuery.js" />
+    <Content Include="Clients\Shared\grid\FacetedGridHelper.js" />
+    <Content Include="Clients\Qfan\array-grid_EJ4.html" />
+    <Content Include="Clients\Qfan\array-grid_EJ4.js" />
+    <Content Include="Clients\Qfan\array-grid_EJ4_access.html" />
+    <Content Include="Clients\Qfan\array-grid_EJ4_vao1.html" />
+    <Content Include="Clients\Qfan\array-grid_EJ4_vao2.html" />
+    <Content Include="Clients\Qfan\array-grid_EJ4_vao4.html" />
+    <Content Include="Clients\Qfan\FilterRow.css" />
+    <Content Include="Clients\Qfan\filterrow4.js" />
+    <Content Include="Clients\Shared\util\Util.js" />
+    <Content Include="Config\AdaptorsConfig.json" />
+    <Content Include="Config\ColumnsConfig.json" />
+    <Content Include="Clients\Portal\customStyles.css" />
+    <Content Include="Clients\Portal\Demo.html" />
+    <Content Include="Clients\Portal\DemoApp.js" />
+    <Content Include="Clients\Portal\DemoStyled.HTML" />
+    <Content Include="Clients\Portal\DetailsPanelDS.js" />
+    <Content Include="Clients\Portal\DetailsPanelGeneric.js" />
+    <Content Include="Clients\Portal\DetailsPanelInv.js" />
+    <Content Include="Clients\Portal\DetailsPanelInv2.js" />
+    <Content Include="Clients\Portal\filterrow4.js" />
+    <Content Include="Clients\Portal\Layout.js" />
+    <Content Include="Clients\Portal\Portal.js" />
+    <Content Include="Clients\Portal\SearchHelpPlaceholder.html" />
+    <Content Include="Clients\Portal\Viewport.js" />
+    <Content Include="Clients\Portal\data\images\VAO_logo_100.png" />
+    <Content Include="Clients\Portal\DataDiscovery.html" />
+    <Content Include="Temp\Empty.txt" />
+    <Content Include="Logs\Empty.txt" />
+    <Content Include="Clients\Shared\InitializeAnalytics.js" />
+    <Content Include="Clients\Galex\GalexVot.html" />
+    <Content Include="Clients\Galex\GalexVot.js" />
+    <Content Include="Clients\Shared\util\Exporter.js" />
+    <Content Include="Clients\Shared\gui\SaveAsPanel.js" />
+    <Content Include="Clients\Hla\Hla.html" />
+    <Content Include="Clients\Hla\Hla.js" />
+    <Content Include="Clients\Hla\HlaOrig.js" />
+    <Content Include="Clients\Portal\data\images\MAST_logo.png" />
+    <Content Include="Clients\Portal\DetailsPanelHLSP.js" />
+    <Content Include="Clients\Designer\Exports\app\view\ExportToWindow.js" />
+    <Content Include="Clients\Designer\Exports\app\view\ui\ExportToWindow.js" />
+    <Content Include="Clients\UploadTest\UploadTest.html" />
+    <Content Include="Clients\UploadTest\UploadTest.js" />
+    <Content Include="Clients\Shared\util\Uploader.js" />
+    <Content Include="Clients\Shared\checkplayer.js" />
+    <Content Include="Clients\Shared\flensed.js" />
+    <Content Include="Clients\Shared\flXHR.js" />
+    <Content Include="Clients\Shared\json2.js" />
+    <Content Include="Clients\Shared\samp.js" />
+    <Content Include="Clients\Shared\swfobject.js" />
+    <Content Include="Clients\Shared\util\SampManager.js" />
+    <Content Include="Clients\Shared\custom\Caom.js" />
+    <Content Include="Clients\Designer\Exports\app\store\ActionStore.js" />
+    <Content Include="Clients\Designer\Exports\app\store\FormatStore.js" />
+    <Content Include="Clients\Designer\Exports\app\store\WhichColumnsStore.js" />
+    <Content Include="Clients\Designer\Exports\app\view\ExportToWindowCombos.js" />
+    <Content Include="Clients\Designer\Exports\app\view\ui\ExportToWindowCombos.js" />
+    <Content Include="Clients\Portal\data-view.css" />
+    <Content Include="Clients\AstroView\AstroView.swf" />
+    <Content Include="Clients\AstroView\AC_OETags.js" />
+    <Content Include="Clients\AstroView\swfobject.js" />
+    <Content Include="Clients\AstroView\playerProductInstall.swf" />
+    <Content Include="Clients\Desktop\AccordionWindow.js" />
+    <Content Include="Clients\Desktop\App.js" />
+    <Content Include="Clients\Desktop\BogusMenuModule.js" />
+    <Content Include="Clients\Desktop\BogusModule.js" />
+    <Content Include="Clients\Desktop\DataDiscovery.html" />
+    <Content Include="Clients\Desktop\DemoApp.js" />
+    <Content Include="Clients\Desktop\GridWindow.js" />
+    <Content Include="Clients\Desktop\Notepad.js" />
+    <Content Include="Clients\Desktop\Portal.html" />
+    <Content Include="Clients\Desktop\Settings.js" />
+    <Content Include="Clients\Desktop\SystemStatus.js" />
+    <Content Include="Clients\Desktop\TabWindow.js" />
+    <Content Include="Clients\Desktop\VideoWindow.js" />
+    <Content Include="Clients\Desktop\WallpaperModel.js" />
+    <Content Include="Clients\Desktop\allClasses.js" />
+    <Content Include="Clients\Desktop\classes.js" />
+    <Content Include="Clients\Desktop\data-view.css" />
+    <Content Include="Clients\Desktop\desktop.html" />
+    <Content Include="Clients\Desktop\newClasses.js" />
+    <Content Include="Clients\Desktop\uxClasses.js" />
+    <Content Include="Clients\Desktop\css\desktop.css" />
+    <Content Include="Clients\Portal\Version.js" />
+    <Content Include="Clients\Qfan\hlsp_layout1.html" />
+    <Content Include="Clients\Qfan\hlsp_layout1.js" />
+    <Content Include="Clients\Qfan\search_button_5c.gif" />
+    <Content Include="Clients\Desktop\images\accordian.gif" />
+    <Content Include="Clients\Desktop\images\accordionLarge.png" />
+    <Content Include="Clients\Desktop\images\bogus.png" />
+    <Content Include="Clients\Desktop\images\chart48x48.png" />
+    <Content Include="Clients\Desktop\images\desktop.gif" />
+    <Content Include="Clients\Desktop\images\desktop3.jpg" />
+    <Content Include="Clients\Desktop\images\gears.gif" />
+    <Content Include="Clients\Desktop\images\gears.png" />
+    <Content Include="Clients\Desktop\images\grid.png" />
+    <Content Include="Clients\Desktop\images\grid32x32.gif" />
+    <Content Include="Clients\Desktop\images\grid48x48.gif" />
+    <Content Include="Clients\Desktop\images\grid48x48.png" />
+    <Content Include="Clients\Desktop\images\gridLarge.png" />
+    <Content Include="Clients\Desktop\images\hatch.gif" />
+    <Content Include="Clients\Desktop\images\hd-bg.gif" />
+    <Content Include="Clients\Desktop\images\hd-tb-bg.gif" />
+    <Content Include="Clients\Desktop\images\icon_padlock.png" />
+    <Content Include="Clients\Desktop\images\icons-bg.png" />
+    <Content Include="Clients\Desktop\images\im32x32.gif" />
+    <Content Include="Clients\Desktop\images\im48x48.gif" />
+    <Content Include="Clients\Desktop\images\im48x48.png" />
+    <Content Include="Clients\Desktop\images\launcher-bg.gif" />
+    <Content Include="Clients\Desktop\images\launcher-btn.gif" />
+    <Content Include="Clients\Desktop\images\logout.gif" />
+    <Content Include="Clients\Desktop\images\logout.png" />
+    <Content Include="Clients\Desktop\images\member.gif" />
+    <Content Include="Clients\Desktop\images\member.png" />
+    <Content Include="Clients\Desktop\images\notepadLarge.png" />
+    <Content Include="Clients\Desktop\images\powered-by-ext-js.png" />
+    <Content Include="Clients\Desktop\images\s.gif" />
+    <Content Include="Clients\Desktop\images\statusLarge.png" />
+    <Content Include="Clients\Desktop\images\tabs.gif" />
+    <Content Include="Clients\Desktop\images\winbar-bg.gif" />
+    <Content Include="Clients\Desktop\images\winbar-btn.gif" />
+    <Content Include="Clients\Desktop\images\windows-bg.gif" />
+    <Content Include="Clients\Desktop\images\taskbar\sencha.gif" />
+    <Content Include="Clients\Desktop\images\taskbar\black\item-over.gif" />
+    <Content Include="Clients\Desktop\images\taskbar\black\scroll-left.gif" />
+    <Content Include="Clients\Desktop\images\taskbar\black\scroll-right.gif" />
+    <Content Include="Clients\Desktop\images\taskbar\black\start-menu-left-corners.png" />
+    <Content Include="Clients\Desktop\images\taskbar\black\start-menu-left-right.png" />
+    <Content Include="Clients\Desktop\images\taskbar\black\start-menu-right-corners.png" />
+    <Content Include="Clients\Desktop\images\taskbar\black\start-menu-right.png" />
+    <Content Include="Clients\Desktop\images\taskbar\black\start-menu-top-bottom.png" />
+    <Content Include="Clients\Desktop\images\taskbar\black\startbutton-icon.gif" />
+    <Content Include="Clients\Desktop\images\taskbar\black\startbutton.gif" />
+    <Content Include="Clients\Desktop\images\taskbar\black\taskbar-split-h.gif" />
+    <Content Include="Clients\Desktop\images\taskbar\black\taskbar-start-panel-bg.gif" />
+    <Content Include="Clients\Desktop\images\taskbar\black\taskbutton.gif" />
+    <Content Include="Clients\Desktop\images\taskbar\black\taskbuttons-panel-bg.gif" />
+    <Content Include="Clients\Shared\util\TableUtils.js" />
+    <Content Include="Clients\Designer\Exports\app\store\RadiusUnits.js" />
+    <Content Include="Clients\Designer\Exports\app\view\VaoPositionSearchPanel.js" />
+    <Content Include="Clients\Designer\Exports\app\view\ui\VaoPositionSearchPanel.js" />
+    <Content Include="Clients\Shared\util\Coords.js" />
+    <Content Include="Clients\Shared\custom\FullSearch.js" />
+    <Content Include="Clients\Shared\img\palette.png" />
+    <Content Include="Clients\Shared\img\folder.png" />
+    <Content Include="Clients\Shared\img\galaxy.png" />
+    <Content Include="Clients\Shared\img\starlist.png" />
+    <Content Include="Clients\Shared\img\grid.png" />
+    <Content Include="Clients\Portal\data\images\invalid_line.gif" />
+    <Content Include="Clients\Portal\data\images\ElPortal.jpg" />
+    <Content Include="Clients\Designer\Containers\app\view\NedSedDetails.js" />
+    <Content Include="Clients\Designer\Containers\app\view\ui\NedSedDetails.js" />
+    <Content Include="Clients\AstroView\assets\images\0_0.PNG" />
+    <Content Include="Clients\AstroView\assets\images\0_1.PNG" />
+    <Content Include="Clients\AstroView\assets\images\1_0.PNG" />
+    <Content Include="Clients\AstroView\assets\images\1_1.PNG" />
+    <Content Include="Clients\AstroView\assets\images\NE.png" />
+    <Content Include="Clients\AstroView\assets\images\NW.png" />
+    <Content Include="Clients\AstroView\assets\images\SE.png" />
+    <Content Include="Clients\AstroView\assets\images\SW.png" />
+    <Content Include="Clients\AstroView\assets\images\camera.png" />
+    <Content Include="Clients\AstroView\assets\images\fullscreen.png" />
+    <Content Include="Clients\AstroView\assets\images\letitstop.png" />
+    <Content Include="Clients\AstroView\assets\images\map_all.PNG" />
+    <Content Include="Clients\AstroView\assets\images\zoom_down.gif" />
+    <Content Include="Clients\AstroView\assets\images\zoom_thumb.gif" />
+    <Content Include="Clients\AstroView\assets\images\zoom_up.gif" />
+    <Content Include="Clients\AstroView\assets\data\surveys.txt" />
+    <Content Include="Clients\Shared\custom\Hst.js" />
+    <Content Include="Clients\Designer\Containers\app\view\PressReleaseContainer.js" />
+    <Content Include="Clients\Desktop\data\images\ElPortal.jpg" />
+    <Content Include="Clients\Desktop\data\images\MAST_logo.png" />
+    <Content Include="Clients\Desktop\data\images\MAST_logox.png" />
+    <Content Include="Clients\Desktop\data\images\mastlogo.gif" />
+    <Content Include="Clients\Desktop\data\images\VAO_logo_100.png" />
+    <Content Include="Clients\Desktop\data\wallpapers\Blue-Sencha.jpg" />
+    <Content Include="Clients\Desktop\data\wallpapers\blue.jpg" />
+    <Content Include="Clients\Desktop\data\wallpapers\Dark-Sencha.jpg" />
+    <Content Include="Clients\Desktop\data\wallpapers\desk.jpg" />
+    <Content Include="Clients\Desktop\data\wallpapers\desktop.jpg" />
+    <Content Include="Clients\Desktop\data\wallpapers\desktop2.jpg" />
+    <Content Include="Clients\Desktop\data\wallpapers\ext.gif" />
+    <Content Include="Clients\Desktop\data\wallpapers\shiny.gif" />
+    <Content Include="Clients\Desktop\data\wallpapers\sky.jpg" />
+    <Content Include="Clients\Desktop\data\wallpapers\Wood-Sencha.jpg" />
+    <Content Include="Clients\Desktop\wallpapers\Blue-Sencha.jpg" />
+    <Content Include="Clients\Desktop\wallpapers\blue.jpg" />
+    <Content Include="Clients\Desktop\wallpapers\Dark-Sencha.jpg" />
+    <Content Include="Clients\Desktop\wallpapers\desk.jpg" />
+    <Content Include="Clients\Desktop\wallpapers\desktop.jpg" />
+    <Content Include="Clients\Desktop\wallpapers\desktop2.jpg" />
+    <Content Include="Clients\Desktop\wallpapers\ext.gif" />
+    <Content Include="Clients\Desktop\wallpapers\shiny.gif" />
+    <Content Include="Clients\Desktop\wallpapers\sky.jpg" />
+    <Content Include="Clients\Desktop\wallpapers\Wood-Sencha.jpg" />
+    <Content Include="Clients\Three\astroview\DiamondGeometry.js" />
+    <Content Include="Clients\Three\build\Three.js" />
+    <Content Include="Clients\Three\build\custom\ThreeCanvas.js" />
+    <Content Include="Clients\Three\build\custom\ThreeDOM.js" />
+    <Content Include="Clients\Three\build\custom\ThreeExtras.js" />
+    <Content Include="Clients\Three\build\custom\ThreeSVG.js" />
+    <Content Include="Clients\Three\build\custom\ThreeWebGL.js" />
+    <Content Include="Clients\Three\examples\canvas_camera_orthographic.html" />
+    <Content Include="Clients\Three\examples\canvas_camera_orthographic2.html" />
+    <Content Include="Clients\Three\examples\canvas_geometry_birds.html" />
+    <Content Include="Clients\Three\examples\canvas_geometry_cube.html" />
+    <Content Include="Clients\Three\examples\canvas_geometry_earth.html" />
+    <Content Include="Clients\Three\examples\canvas_geometry_hierarchy.html" />
+    <Content Include="Clients\Three\examples\canvas_geometry_panorama.html" />
+    <Content Include="Clients\Three\examples\canvas_geometry_panorama_fisheye.html" />
+    <Content Include="Clients\Three\examples\canvas_geometry_terrain.html" />
+    <Content Include="Clients\Three\examples\canvas_geometry_text.html" />
+    <Content Include="Clients\Three\examples\canvas_interactive_cubes.html" />
+    <Content Include="Clients\Three\examples\canvas_interactive_cubes_tween.html" />
+    <Content Include="Clients\Three\examples\canvas_interactive_particles.html" />
+    <Content Include="Clients\Three\examples\canvas_interactive_voxelpainter.html" />
+    <Content Include="Clients\Three\examples\canvas_lights_pointlights.html" />
+    <Content Include="Clients\Three\examples\canvas_lights_pointlights_smooth.html" />
+    <Content Include="Clients\Three\examples\canvas_lines.html" />
+    <Content Include="Clients\Three\examples\canvas_lines_sphere.html" />
+    <Content Include="Clients\Three\examples\canvas_materials.html" />
+    <Content Include="Clients\Three\examples\canvas_materials_depth.html" />
+    <Content Include="Clients\Three\examples\canvas_materials_normal.html" />
+    <Content Include="Clients\Three\examples\canvas_materials_reflection.html" />
+    <Content Include="Clients\Three\examples\canvas_materials_video.html" />
+    <Content Include="Clients\Three\examples\canvas_particles.html" />
+    <Content Include="Clients\Three\examples\canvas_particles_floor.html" />
+    <Content Include="Clients\Three\examples\canvas_particles_random.html" />
+    <Content Include="Clients\Three\examples\canvas_particles_shapes.html" />
+    <Content Include="Clients\Three\examples\canvas_particles_sprites.html" />
+    <Content Include="Clients\Three\examples\canvas_particles_waves.html" />
+    <Content Include="Clients\Three\examples\canvas_performance.html" />
+    <Content Include="Clients\Three\examples\canvas_sandbox.html" />
+    <Content Include="Clients\Three\examples\index.html" />
+    <Content Include="Clients\Three\examples\misc_camera_fly.html" />
+    <Content Include="Clients\Three\examples\misc_camera_path.html" />
+    <Content Include="Clients\Three\examples\misc_camera_roll.html" />
+    <Content Include="Clients\Three\examples\misc_camera_trackball.html" />
+    <Content Include="Clients\Three\examples\misc_lights_test.html" />
+    <Content Include="Clients\Three\examples\misc_lookat.html" />
+    <Content Include="Clients\Three\examples\misc_materials_multimaterials.html" />
+    <Content Include="Clients\Three\examples\misc_sound.html" />
+    <Content Include="Clients\Three\examples\misc_ubiquity_test.html" />
+    <Content Include="Clients\Three\examples\webgl_animation_skinning.html" />
+    <Content Include="Clients\Three\examples\webgl_camera.html" />
+    <Content Include="Clients\Three\examples\webgl_custom_attributes.html" />
+    <Content Include="Clients\Three\examples\webgl_custom_attributes_lines.html" />
+    <Content Include="Clients\Three\examples\webgl_custom_attributes_particles.html" />
+    <Content Include="Clients\Three\examples\webgl_custom_attributes_particles2.html" />
+    <Content Include="Clients\Three\examples\webgl_custom_attributes_particles3.html" />
+    <Content Include="Clients\Three\examples\webgl_geometries.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_colors.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_colors_blender.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_dynamic.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_extrude.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_hierarchy.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_hierarchy2.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_large_mesh.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_minecraft.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_minecraft_ao.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_shapes.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_subdivison.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_terrain.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_terrain_fog.html" />
+    <Content Include="Clients\Three\examples\webgl_geometry_text.html" />
+    <Content Include="Clients\Three\examples\webgl_hdr.html" />
+    <Content Include="Clients\Three\examples\webgl_interactive_cubes.html" />
+    <Content Include="Clients\Three\examples\webgl_interactive_draggablecubes.html" />
+    <Content Include="Clients\Three\examples\webgl_interactive_voxelpainter.html" />
+    <Content Include="Clients\Three\examples\webgl_kinect.html" />
+    <Content Include="Clients\Three\examples\webgl_lensflares.html" />
+    <Content Include="Clients\Three\examples\webgl_lights_pointlights.html" />
+    <Content Include="Clients\Three\examples\webgl_lights_pointlights2.html" />
+    <Content Include="Clients\Three\examples\webgl_lines_colors.html" />
+    <Content Include="Clients\Three\examples\webgl_lines_cubes.html" />
+    <Content Include="Clients\Three\examples\webgl_lines_sphere.html" />
+    <Content Include="Clients\Three\examples\webgl_lines_splines.html" />
+    <Content Include="Clients\Three\examples\webgl_loader_collada.html" />
+    <Content Include="Clients\Three\examples\webgl_loader_ctm.html" />
+    <Content Include="Clients\Three\examples\webgl_loader_ctm_materials.html" />
+    <Content Include="Clients\Three\examples\webgl_loader_json_blender.html" />
+    <Content Include="Clients\Three\examples\webgl_loader_json_objconverter.html" />
+    <Content Include="Clients\Three\examples\webgl_loader_scene.html" />
+    <Content Include="Clients\Three\examples\webgl_loader_scene_blender.html" />
+    <Content Include="Clients\Three\examples\webgl_loader_utf8.html" />
+    <Content Include="Clients\Three\examples\webgl_lod.html" />
+    <Content Include="Clients\Three\examples\webgl_materials.html" />
+    <Content Include="Clients\Three\examples\webgl_materials2.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_cars.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_cars_anaglyph.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_cars_camaro.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_cars_camaro_crosseyed.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_cars_parallaxbarrier.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_cubemap.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_cubemap_balls_reflection.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_cubemap_balls_reflection_anaglyph.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_cubemap_balls_refraction.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_cubemap_balls_refraction_crosseyed.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_cubemap_dynamic.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_cubemap_escher.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_cubemap_refraction.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_grass.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_normalmap.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_normalmap2.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_shaders.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_shaders_fresnel.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_skin.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_texture_filters.html" />
+    <Content Include="Clients\Three\examples\webgl_materials_video.html" />
+    <Content Include="Clients\Three\examples\webgl_morphtargets.html" />
+    <Content Include="Clients\Three\examples\webgl_morphtargets_horse.html" />
+    <Content Include="Clients\Three\examples\webgl_multiple_canvases_circle.html" />
+    <Content Include="Clients\Three\examples\webgl_multiple_canvases_complex.html" />
+    <Content Include="Clients\Three\examples\webgl_multiple_canvases_grid.html" />
+    <Content Include="Clients\Three\examples\webgl_panorama_equirectangular.html" />
+    <Content Include="Clients\Three\examples\webgl_particles_billboards.html" />
+    <Content Include="Clients\Three\examples\webgl_particles_billboards_colors.html" />
+    <Content Include="Clients\Three\examples\webgl_particles_dynamic.html" />
+    <Content Include="Clients\Three\examples\webgl_particles_random.html" />
+    <Content Include="Clients\Three\examples\webgl_particles_shapes.html" />
+    <Content Include="Clients\Three\examples\webgl_particles_sprites.html" />
+    <Content Include="Clients\Three\examples\webgl_performance.html" />
+    <Content Include="Clients\Three\examples\webgl_postprocessing.html" />
+    <Content Include="Clients\Three\examples\webgl_postprocessing_dof.html" />
+    <Content Include="Clients\Three\examples\webgl_ribbons.html" />
+    <Content Include="Clients\Three\examples\webgl_rtt.html" />
+    <Content Include="Clients\Three\examples\webgl_sandbox.html" />
+    <Content Include="Clients\Three\examples\webgl_shader.html" />
+    <Content Include="Clients\Three\examples\webgl_shader2.html" />
+    <Content Include="Clients\Three\examples\webgl_shader_lava.html" />
+    <Content Include="Clients\Three\examples\webgl_shading_physical.html" />
+    <Content Include="Clients\Three\examples\webgl_shadowmap.html" />
+    <Content Include="Clients\Three\examples\webgl_sprites.html" />
+    <Content Include="Clients\Three\examples\webgl_terrain_dynamic.html" />
+    <Content Include="Clients\Three\examples\webgl_test_memory.html" />
+    <Content Include="Clients\Three\examples\webgl_trackballcamera_earth.html" />
+    <Content Include="Clients\Three\examples\webgl_trails.html" />
+    <Content Include="Clients\Three\examples\ctm\camaro\camaro.js" />
+    <Content Include="Clients\Three\examples\ctm\camaro\car-ao.png" />
+    <Content Include="Clients\Three\examples\ctm\camaro\plane-ao-256.png" />
+    <Content Include="Clients\Three\examples\fonts\gentilis_bold.typeface.js" />
+    <Content Include="Clients\Three\examples\fonts\gentilis_regular.typeface.js" />
+    <Content Include="Clients\Three\examples\fonts\helvetiker_bold.typeface.js" />
+    <Content Include="Clients\Three\examples\fonts\helvetiker_regular.typeface.js" />
+    <Content Include="Clients\Three\examples\fonts\optimer_bold.typeface.js" />
+    <Content Include="Clients\Three\examples\fonts\optimer_regular.typeface.js" />
+    <Content Include="Clients\Three\examples\fonts\droid\droid_sans_bold.typeface.js" />
+    <Content Include="Clients\Three\examples\fonts\droid\droid_sans_mono_regular.typeface.js" />
+    <Content Include="Clients\Three\examples\fonts\droid\droid_sans_regular.typeface.js" />
+    <Content Include="Clients\Three\examples\fonts\droid\droid_serif_bold.typeface.js" />
+    <Content Include="Clients\Three\examples\fonts\droid\droid_serif_regular.typeface.js" />
+    <Content Include="Clients\Three\examples\js\AudioObject.js" />
+    <Content Include="Clients\Three\examples\js\Car.js" />
+    <Content Include="Clients\Three\examples\js\DAT.GUI.min.js" />
+    <Content Include="Clients\Three\examples\js\Detector.js" />
+    <Content Include="Clients\Three\examples\js\ImprovedNoise.js" />
+    <Content Include="Clients\Three\examples\js\PRNG.js" />
+    <Content Include="Clients\Three\examples\js\ShaderExtras.js" />
+    <Content Include="Clients\Three\examples\js\ShaderSkin.js" />
+    <Content Include="Clients\Three\examples\js\ShaderTerrain.js" />
+    <Content Include="Clients\Three\examples\js\SimplexNoise.js" />
+    <Content Include="Clients\Three\examples\js\Sparks.js" />
+    <Content Include="Clients\Three\examples\js\Stats.js" />
+    <Content Include="Clients\Three\examples\js\Tween.js" />
+    <Content Include="Clients\Three\examples\js\ctm\CTMLoader.js" />
+    <Content Include="Clients\Three\examples\js\ctm\CTMWorker.js" />
+    <Content Include="Clients\Three\examples\js\ctm\ctm.js" />
+    <Content Include="Clients\Three\examples\js\ctm\lzma.js" />
+    <Content Include="Clients\Three\examples\js\postprocessing\BloomPass.js" />
+    <Content Include="Clients\Three\examples\js\postprocessing\DotScreenPass.js" />
+    <Content Include="Clients\Three\examples\js\postprocessing\EffectComposer.js" />
+    <Content Include="Clients\Three\examples\js\postprocessing\FilmPass.js" />
+    <Content Include="Clients\Three\examples\js\postprocessing\MaskPass.js" />
+    <Content Include="Clients\Three\examples\js\postprocessing\RenderPass.js" />
+    <Content Include="Clients\Three\examples\js\postprocessing\SavePass.js" />
+    <Content Include="Clients\Three\examples\js\postprocessing\ShaderPass.js" />
+    <Content Include="Clients\Three\examples\js\postprocessing\TexturePass.js" />
+    <Content Include="Clients\Three\examples\models\monster.jpg" />
+    <Content Include="Clients\Three\examples\models\animated\flamingo.js" />
+    <Content Include="Clients\Three\examples\models\animated\horse.js" />
+    <Content Include="Clients\Three\examples\models\animated\parrot.js" />
+    <Content Include="Clients\Three\examples\models\animated\sittingBox.js" />
+    <Content Include="Clients\Three\examples\models\animated\stork.js" />
+    <Content Include="Clients\Three\examples\models\animated\monster\monster.jpg" />
+    <Content Include="Clients\Three\examples\models\animated\monster\monster.js" />
+    <Content Include="Clients\Three\examples\obj\Bird.js" />
+    <Content Include="Clients\Three\examples\obj\Qrcode.js" />
+    <Content Include="Clients\Three\examples\obj\Suzanne.js" />
+    <Content Include="Clients\Three\examples\obj\WaltHeadLo.js" />
+    <Content Include="Clients\Three\examples\obj\terrain.js" />
+    <Content Include="Clients\Three\examples\scenes\test_scene.js" />
+    <Content Include="Clients\Three\examples\textures\2294472375_24a3b8ef46_o.jpg" />
+    <Content Include="Clients\Three\examples\textures\758px-Canestra_di_frutta_%28Caravaggio%29.jpg" />
+    <Content Include="Clients\Three\examples\textures\ash_uvgrid01.jpg" />
+    <Content Include="Clients\Three\examples\textures\disturb.jpg" />
+    <Content Include="Clients\Three\examples\textures\envmap.png" />
+    <Content Include="Clients\Three\examples\textures\land_ocean_ice_cloud_2048.jpg" />
+    <Content Include="Clients\Three\examples\textures\lensflare0.png" />
+    <Content Include="Clients\Three\examples\textures\lensflare1.png" />
+    <Content Include="Clients\Three\examples\textures\lensflare2.jpg" />
+    <Content Include="Clients\Three\examples\textures\memorial.png" />
+    <Content Include="Clients\Three\examples\textures\metal.jpg" />
+    <Content Include="Clients\Three\examples\textures\shadow.png" />
+    <Content Include="Clients\Three\examples\textures\shadowAlpha.png" />
+    <Content Include="Clients\Three\examples\textures\sprite0.jpg" />
+    <Content Include="Clients\Three\examples\textures\sprite0.png" />
+    <Content Include="Clients\Three\examples\textures\sprite1.jpg" />
+    <Content Include="Clients\Three\examples\textures\sprite1.png" />
+    <Content Include="Clients\Three\examples\textures\sprite2.png" />
+    <Content Include="Clients\Three\examples\textures\square-outline-textured.png" />
+    <Content Include="Clients\Three\examples\textures\square-outline.png" />
+    <Content Include="Clients\Three\examples\textures\water.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Bridge2\negx.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Bridge2\negy.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Bridge2\negz.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Bridge2\posx.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Bridge2\posy.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Bridge2\posz.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Escher\nx.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Escher\ny.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Escher\nz.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Escher\px.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Escher\py.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Escher\pz.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Park2\negx.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Park2\negy.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Park2\negz.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Park2\posx.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Park2\posy.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Park2\posz.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Park3Med\nx.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Park3Med\ny.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Park3Med\nz.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Park3Med\px.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Park3Med\py.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\Park3Med\pz.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\SwedishRoyalCastle\nx.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\SwedishRoyalCastle\ny.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\SwedishRoyalCastle\nz.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\SwedishRoyalCastle\px.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\SwedishRoyalCastle\py.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\SwedishRoyalCastle\pz.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\pisa\nx.png" />
+    <Content Include="Clients\Three\examples\textures\cube\pisa\ny.png" />
+    <Content Include="Clients\Three\examples\textures\cube\pisa\nz.png" />
+    <Content Include="Clients\Three\examples\textures\cube\pisa\px.png" />
+    <Content Include="Clients\Three\examples\textures\cube\pisa\py.png" />
+    <Content Include="Clients\Three\examples\textures\cube\pisa\pz.png" />
+    <Content Include="Clients\Three\examples\textures\cube\skybox\nx.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\skybox\ny.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\skybox\nz.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\skybox\px.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\skybox\py.jpg" />
+    <Content Include="Clients\Three\examples\textures\cube\skybox\pz.jpg" />
+    <Content Include="Clients\Three\examples\textures\lava\cloud.png" />
+    <Content Include="Clients\Three\examples\textures\lava\lavatile.jpg" />
+    <Content Include="Clients\Three\examples\textures\lensflare\hexangle.png" />
+    <Content Include="Clients\Three\examples\textures\lensflare\lensflare0.png" />
+    <Content Include="Clients\Three\examples\textures\lensflare\lensflare1.png" />
+    <Content Include="Clients\Three\examples\textures\lensflare\lensflare2.png" />
+    <Content Include="Clients\Three\examples\textures\lensflare\lensflare3.png" />
+    <Content Include="Clients\Three\examples\textures\minecraft\dirt.png" />
+    <Content Include="Clients\Three\examples\textures\minecraft\grass.png" />
+    <Content Include="Clients\Three\examples\textures\minecraft\grass_dirt.png" />
+    <Content Include="Clients\Three\examples\textures\normal\ninja\ao.jpg" />
+    <Content Include="Clients\Three\examples\textures\normal\ninja\displacement.jpg" />
+    <Content Include="Clients\Three\examples\textures\normal\ninja\normal.jpg" />
+    <Content Include="Clients\Three\examples\textures\patterns\bright_squares256.png" />
+    <Content Include="Clients\Three\examples\textures\planets\earth_atmos_2048.jpg" />
+    <Content Include="Clients\Three\examples\textures\planets\earth_clouds_1024.png" />
+    <Content Include="Clients\Three\examples\textures\planets\earth_normal_2048.jpg" />
+    <Content Include="Clients\Three\examples\textures\planets\earth_specular_2048.jpg" />
+    <Content Include="Clients\Three\examples\textures\planets\moon_1024.jpg" />
+    <Content Include="Clients\Three\examples\textures\sprites\ball.png" />
+    <Content Include="Clients\Three\examples\textures\sprites\circle.png" />
+    <Content Include="Clients\Three\examples\textures\sprites\disc.png" />
+    <Content Include="Clients\Three\examples\textures\sprites\snowflake1.png" />
+    <Content Include="Clients\Three\examples\textures\sprites\snowflake2.png" />
+    <Content Include="Clients\Three\examples\textures\sprites\snowflake3.png" />
+    <Content Include="Clients\Three\examples\textures\sprites\snowflake4.png" />
+    <Content Include="Clients\Three\examples\textures\sprites\snowflake5.png" />
+    <Content Include="Clients\Three\examples\textures\sprites\spark1.png" />
+    <Content Include="Clients\Three\examples\textures\terrain\backgrounddetailed6.jpg" />
+    <Content Include="Clients\Three\examples\textures\terrain\grasslight-big-nm.jpg" />
+    <Content Include="Clients\Three\examples\textures\terrain\grasslight-big.jpg" />
+    <Content Include="Clients\Three\gui\index.html" />
+    <Content Include="Clients\Three\gui\js\Code.Templates.js" />
+    <Content Include="Clients\Three\gui\js\Code.js" />
+    <Content Include="Clients\Three\gui\js\UI.Toolbar.js" />
+    <Content Include="Clients\Three\gui\js\UI.Viewport.js" />
+    <Content Include="Clients\Three\gui\js\UI.js" />
+    <Content Include="Clients\Three\gui\js\libs\signals.min.js" />
+    <Content Include="Clients\Three\src\Three.js" />
+    <Content Include="Clients\Three\src\cameras\Camera.js" />
+    <Content Include="Clients\Three\src\cameras\OrthographicCamera.js" />
+    <Content Include="Clients\Three\src\cameras\PerspectiveCamera.js" />
+    <Content Include="Clients\Three\src\core\Clock.js" />
+    <Content Include="Clients\Three\src\core\Color.js" />
+    <Content Include="Clients\Three\src\core\Edge.js" />
+    <Content Include="Clients\Three\src\core\Face3.js" />
+    <Content Include="Clients\Three\src\core\Face4.js" />
+    <Content Include="Clients\Three\src\core\Frustum.js" />
+    <Content Include="Clients\Three\src\core\Geometry.js" />
+    <Content Include="Clients\Three\src\core\Math.js" />
+    <Content Include="Clients\Three\src\core\Matrix3.js" />
+    <Content Include="Clients\Three\src\core\Matrix4.js" />
+    <Content Include="Clients\Three\src\core\Object3D.js" />
+    <Content Include="Clients\Three\src\core\Projector.js" />
+    <Content Include="Clients\Three\src\core\Quaternion.js" />
+    <Content Include="Clients\Three\src\core\Ray.js" />
+    <Content Include="Clients\Three\src\core\Rectangle.js" />
+    <Content Include="Clients\Three\src\core\Spline.js" />
+    <Content Include="Clients\Three\src\core\UV.js" />
+    <Content Include="Clients\Three\src\core\Vector2.js" />
+    <Content Include="Clients\Three\src\core\Vector3.js" />
+    <Content Include="Clients\Three\src\core\Vector4.js" />
+    <Content Include="Clients\Three\src\core\Vertex.js" />
+    <Content Include="Clients\Three\src\extras\ColorUtils.js" />
+    <Content Include="Clients\Three\src\extras\GeometryUtils.js" />
+    <Content Include="Clients\Three\src\extras\ImageUtils.js" />
+    <Content Include="Clients\Three\src\extras\SceneUtils.js" />
+    <Content Include="Clients\Three\src\extras\ShaderUtils.js" />
+    <Content Include="Clients\Three\src\extras\animation\Animation.js" />
+    <Content Include="Clients\Three\src\extras\animation\AnimationHandler.js" />
+    <Content Include="Clients\Three\src\extras\animation\AnimationMorphTarget.js" />
+    <Content Include="Clients\Three\src\extras\animation\KeyFrameAnimation.js" />
+    <Content Include="Clients\Three\src\extras\cameras\CombinedCamera.js" />
+    <Content Include="Clients\Three\src\extras\cameras\CubeCamera.js" />
+    <Content Include="Clients\Three\src\extras\cameras\FirstPersonCamera.js" />
+    <Content Include="Clients\Three\src\extras\cameras\FlyCamera.js" />
+    <Content Include="Clients\Three\src\extras\cameras\PathCamera.js" />
+    <Content Include="Clients\Three\src\extras\cameras\RollCamera.js" />
+    <Content Include="Clients\Three\src\extras\cameras\TrackballCamera.js" />
+    <Content Include="Clients\Three\src\extras\controls\FirstPersonControls.js" />
+    <Content Include="Clients\Three\src\extras\controls\FlyControls.js" />
+    <Content Include="Clients\Three\src\extras\controls\PathControls.js" />
+    <Content Include="Clients\Three\src\extras\controls\RollControls.js" />
+    <Content Include="Clients\Three\src\extras\controls\TrackballControls.js" />
+    <Content Include="Clients\Three\src\extras\core\BufferGeometry.js" />
+    <Content Include="Clients\Three\src\extras\core\Curve.js" />
+    <Content Include="Clients\Three\src\extras\core\CurvePath.js" />
+    <Content Include="Clients\Three\src\extras\core\Gyroscope.js" />
+    <Content Include="Clients\Three\src\extras\core\Path.js" />
+    <Content Include="Clients\Three\src\extras\core\Shape.js" />
+    <Content Include="Clients\Three\src\extras\core\TextPath.js" />
+    <Content Include="Clients\Three\src\extras\geometries\CubeGeometry.js" />
+    <Content Include="Clients\Three\src\extras\geometries\CylinderGeometry.js" />
+    <Content Include="Clients\Three\src\extras\geometries\ExtrudeGeometry.js" />
+    <Content Include="Clients\Three\src\extras\geometries\IcosahedronGeometry.js" />
+    <Content Include="Clients\Three\src\extras\geometries\LatheGeometry.js" />
+    <Content Include="Clients\Three\src\extras\geometries\OctahedronGeometry.js" />
+    <Content Include="Clients\Three\src\extras\geometries\PlaneGeometry.js" />
+    <Content Include="Clients\Three\src\extras\geometries\SphereGeometry.js" />
+    <Content Include="Clients\Three\src\extras\geometries\TextGeometry.js" />
+    <Content Include="Clients\Three\src\extras\geometries\TorusGeometry.js" />
+    <Content Include="Clients\Three\src\extras\geometries\TorusKnotGeometry.js" />
+    <Content Include="Clients\Three\src\extras\helpers\AxisHelper.js" />
+    <Content Include="Clients\Three\src\extras\helpers\CameraHelper.js" />
+    <Content Include="Clients\Three\src\extras\loaders\BinaryLoader.js" />
+    <Content Include="Clients\Three\src\extras\loaders\ColladaLoader.js" />
+    <Content Include="Clients\Three\src\extras\loaders\JSONLoader.js" />
+    <Content Include="Clients\Three\src\extras\loaders\Loader.js" />
+    <Content Include="Clients\Three\src\extras\loaders\SceneLoader.js" />
+    <Content Include="Clients\Three\src\extras\loaders\UTF8Loader.js" />
+    <Content Include="Clients\Three\src\extras\modifiers\SubdivisionModifier.js" />
+    <Content Include="Clients\Three\src\extras\objects\LensFlare.js" />
+    <Content Include="Clients\Three\src\extras\objects\MarchingCubes.js" />
+    <Content Include="Clients\Three\src\extras\plugins\LensFlarePlugin.js" />
+    <Content Include="Clients\Three\src\extras\plugins\ShadowMapPlugin.js" />
+    <Content Include="Clients\Three\src\extras\plugins\SpritePlugin.js" />
+    <Content Include="Clients\Three\src\extras\renderers\AnaglyphWebGLRenderer.js" />
+    <Content Include="Clients\Three\src\extras\renderers\CrosseyedWebGLRenderer.js" />
+    <Content Include="Clients\Three\src\extras\renderers\ParallaxBarrierWebGLRenderer.js" />
+    <Content Include="Clients\Three\src\extras\shaders\ShaderFlares.js" />
+    <Content Include="Clients\Three\src\extras\shaders\ShaderSprite.js" />
+    <Content Include="Clients\Three\src\lights\AmbientLight.js" />
+    <Content Include="Clients\Three\src\lights\DirectionalLight.js" />
+    <Content Include="Clients\Three\src\lights\Light.js" />
+    <Content Include="Clients\Three\src\lights\PointLight.js" />
+    <Content Include="Clients\Three\src\lights\SpotLight.js" />
+    <Content Include="Clients\Three\src\materials\LineBasicMaterial.js" />
+    <Content Include="Clients\Three\src\materials\Material.js" />
+    <Content Include="Clients\Three\src\materials\MeshBasicMaterial.js" />
+    <Content Include="Clients\Three\src\materials\MeshDepthMaterial.js" />
+    <Content Include="Clients\Three\src\materials\MeshFaceMaterial.js" />
+    <Content Include="Clients\Three\src\materials\MeshLambertMaterial.js" />
+    <Content Include="Clients\Three\src\materials\MeshNormalMaterial.js" />
+    <Content Include="Clients\Three\src\materials\MeshPhongMaterial.js" />
+    <Content Include="Clients\Three\src\materials\MeshShaderMaterial.js" />
+    <Content Include="Clients\Three\src\materials\ParticleBasicMaterial.js" />
+    <Content Include="Clients\Three\src\materials\ParticleCanvasMaterial.js" />
+    <Content Include="Clients\Three\src\materials\ParticleDOMMaterial.js" />
+    <Content Include="Clients\Three\src\materials\ShaderMaterial.js" />
+    <Content Include="Clients\Three\src\objects\Bone.js" />
+    <Content Include="Clients\Three\src\objects\LOD.js" />
+    <Content Include="Clients\Three\src\objects\Line.js" />
+    <Content Include="Clients\Three\src\objects\Mesh.js" />
+    <Content Include="Clients\Three\src\objects\MorphAnimMesh.js" />
+    <Content Include="Clients\Three\src\objects\Particle.js" />
+    <Content Include="Clients\Three\src\objects\ParticleSystem.js" />
+    <Content Include="Clients\Three\src\objects\Ribbon.js" />
+    <Content Include="Clients\Three\src\objects\SkinnedMesh.js" />
+    <Content Include="Clients\Three\src\objects\Sprite.js" />
+    <Content Include="Clients\Three\src\renderers\CanvasRenderer.js" />
+    <Content Include="Clients\Three\src\renderers\DOMRenderer.js" />
+    <Content Include="Clients\Three\src\renderers\SVGRenderer.js" />
+    <Content Include="Clients\Three\src\renderers\WebGLRenderTarget.js" />
+    <Content Include="Clients\Three\src\renderers\WebGLRenderTargetCube.js" />
+    <Content Include="Clients\Three\src\renderers\WebGLRenderer.js" />
+    <Content Include="Clients\Three\src\renderers\WebGLShaders.js" />
+    <Content Include="Clients\Three\src\renderers\renderables\RenderableFace3.js" />
+    <Content Include="Clients\Three\src\renderers\renderables\RenderableFace4.js" />
+    <Content Include="Clients\Three\src\renderers\renderables\RenderableLine.js" />
+    <Content Include="Clients\Three\src\renderers\renderables\RenderableObject.js" />
+    <Content Include="Clients\Three\src\renderers\renderables\RenderableParticle.js" />
+    <Content Include="Clients\Three\src\renderers\renderables\RenderableVertex.js" />
+    <Content Include="Clients\Three\src\scenes\Fog.js" />
+    <Content Include="Clients\Three\src\scenes\FogExp2.js" />
+    <Content Include="Clients\Three\src\scenes\Scene.js" />
+    <Content Include="Clients\Three\src\textures\DataTexture.js" />
+    <Content Include="Clients\Three\src\textures\Texture.js" />
+    <Content Include="Clients\Three\utils\externs_common.js" />
+    <Content Include="Clients\Three\utils\externs_extras.js" />
+    <Content Include="Clients\Three\astroview\cube.html" />
+    <Content Include="Clients\Three\astroview\diamond.html" />
+    <Content Include="Clients\Three\astroview\CameraController.js" />
+    <Content Include="Clients\Three\astroview\DiamondMesh.js" />
+    <Content Include="Clients\Three\astroview\FootprintLayer.js" />
+    <Content Include="Clients\Three\astroview\textures\TOAST_0_0.PNG" />
+    <Content Include="Clients\Three\astroview\textures\TOAST_0_1.PNG" />
+    <Content Include="Clients\Three\astroview\textures\TOAST_1_0.PNG" />
+    <Content Include="Clients\Three\astroview\textures\TOAST_1_1.PNG" />
+    <Content Include="Clients\Three\astroview\textures\TOAST_ALL.PNG" />
+    <Content Include="Clients\Three\astroview\textures\Diamond.png" />
+    <Content Include="Clients\Three\astroview\textures\ipad.png" />
+    <Content Include="Clients\Shared\context\Context.js" />
+    <Content Include="Clients\Shared\context\Manager.js" />
+    <Content Include="Clients\Shared\gui\GridView.js" />
+    <Content Include="Clients\Shared\gui\PortalBorderContainer.js" />
+    <Content Include="Clients\Shared\search\SearchContext.js" />
+    <Content Include="Clients\Shared\search\SearchParams.js" />
+    <Content Include="Clients\Shared\search\receivers\ExtjsReceiver.js" />
+    <Content Include="Clients\Shared\search\receivers\SantaXmlReceiver.js" />
+    <Content Include="Clients\Shared\util\ExtBugWorkarounds.js" />
+    <Content Include="Clients\Mast\MastNamespace.js" />
+    <Content Include="Clients\Mast\Portal.html" />
+    <Content Include="Clients\Mast\Portal.js" />
+    <Content Include="Clients\Mast\PortalCustomStyles.css" />
+    <Content Include="Clients\Mast\Version.js" />
+    <Content Include="Clients\Mast\view\AboutPanel.js" />
+    <Content Include="Clients\Mast\view\MastTopBar.js" />
+    <Content Include="Clients\Mast\data\html\MastHelp.html" />
+    <Content Include="Clients\Mast\data\images\ElPortal.jpg" />
+    <Content Include="Clients\Mast\data\images\invalid_line.gif" />
+    <Content Include="Clients\Mast\data\images\MAST_logo.png" />
+    <Content Include="Clients\Mast\data\images\VAO_logo_100.png" />
+    <Content Include="Clients\Shared\gui\AvItems.js" />
+    <Content Include="Clients\Shared\gui\StatusItems.js" />
+    <Content Include="Clients\Shared\gui\TitleItems.js" />
+    <Content Include="Clients\Three\astroview\CatalogLayer.js" />
+    <Content Include="Clients\Shared\gui\RefreshToolbar.js" />
+    <Content Include="Clients\Three\perspective\jsgl.js" />
+    <Content Include="Clients\Three\perspective\perspective.html" />
+    <Content Include="Clients\Three\perspective\images\nyt_nov5.jpg" />
+    <Content Include="Clients\Three\perspective\images\nyt_nov5_small.jpg" />
+    <Content Include="Clients\Three\astroview\textures\circle.png" />
+    <Content Include="Clients\Three\astroview\textures\square.png" />
+    <Content Include="Clients\Three\astroview\DiamondSphere.js" />
+    <Content Include="Clients\Three\astroview\ImageLayer.js" />
+    <Content Include="Clients\Three\astroview\Stats.js" />
+    <Content Include="Clients\Shared\gui\FacetedGridView.js" />
+    <Content Include="Clients\Shared\gui\FilterView.js" />
+    <Content Include="Clients\Shared\gui\ResultViewPanel.js" />
+    <Content Include="Clients\Shared\data\Columns.js" />
+    <Content Include="Clients\Three\astroview\AstroBasicView.js" />
+    <Content Include="Clients\Three\astroview\AstroviewLayer.js" />
+    <Content Include="Clients\Shared\gui\custom\DataScope.js" />
+    <Content Include="Clients\Three\astroview\textures\LionTest.png" />
+    <Content Include="Clients\Three\astroview\AstroViewThree.html" />
+    <Content Include="Clients\Three\astroview\AstroViewExtWindow.html" />
+    <Content Include="Clients\Three\astroview\AstroViewExtContainer.html" />
+    <Content Include="Clients\AstroView\AstroBasicView.js" />
+    <Content Include="Clients\AstroView\AstroViewExtContainer.html" />
+    <Content Include="Clients\AstroView\AstroViewExtWindow.html" />
+    <Content Include="Clients\AstroView\AstroviewLayer.js" />
+    <Content Include="Clients\AstroView\AstroViewThree.html" />
+    <Content Include="Clients\AstroView\CameraController.js" />
+    <Content Include="Clients\AstroView\CatalogLayer.js" />
+    <Content Include="Clients\AstroView\cube.html" />
+    <Content Include="Clients\AstroView\DiamondGeometry.js" />
+    <Content Include="Clients\AstroView\DiamondMesh.js" />
+    <Content Include="Clients\AstroView\DiamondSphere.js" />
+    <Content Include="Clients\AstroView\FootprintLayer.js" />
+    <Content Include="Clients\AstroView\ImageLayer.js" />
+    <Content Include="Clients\AstroView\Stats.js" />
+    <Content Include="Clients\AstroView\textures\circle.png" />
+    <Content Include="Clients\AstroView\textures\Diamond.png" />
+    <Content Include="Clients\AstroView\textures\ipad.png" />
+    <Content Include="Clients\AstroView\textures\LionTest.png" />
+    <Content Include="Clients\AstroView\textures\square.png" />
+    <Content Include="Clients\AstroView\textures\TOAST_0_0.PNG" />
+    <Content Include="Clients\AstroView\textures\TOAST_0_1.PNG" />
+    <Content Include="Clients\AstroView\textures\TOAST_1_0.PNG" />
+    <Content Include="Clients\AstroView\textures\TOAST_1_1.PNG" />
+    <Content Include="Clients\AstroView\textures\TOAST_ALL.PNG" />
+    <Content Include="Clients\AstroView\AstroViewFlash.html" />
+    <Content Include="Clients\AstroView\AstroView.js" />
+    <Content Include="Clients\Mast\data-view.css" />
+    <Content Include="Clients\Shared\gui\custom\Caom.js" />
+    <Content Include="Clients\Shared\gui\AlbumView.js" />
+    <Content Include="Clients\Shared\data\AstroStore.js" />
+    <Content Include="Clients\Shared\gui\AvAdaptor.js" />
+    <Content Include="Clients\Portal\data\images\VAO_logo_200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MashupTest.asmx.cs">
+      <DependentUpon>MashupTest.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Mashup.asmx.cs">
+      <DependentUpon>Mashup.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Adaptors\SqlServer.cs" />
+    <Compile Include="Adaptors\Votable.cs" />
+    <Compile Include="Adaptors\Csv.cs" />
+    <Compile Include="Adaptors\Datascope.cs" />
+    <Compile Include="Adaptors\HttpProxy.cs" />
+    <Compile Include="Adaptors\IAsyncAdaptor.cs" />
+    <Compile Include="Adaptors\ISyncAdaptor.cs" />
+    <Compile Include="Adaptors\Exporter.cs" />
+    <Compile Include="Config\AdaptorsConfig.cs" />
+    <Compile Include="Config\ColumnsConfig.cs" />
+    <Compile Include="MashupRequest.cs" />
+    <Compile Include="MashupResponse.cs" />
+    <Compile Include="MashupResponseData.cs" />
+    <Compile Include="MashupCache.cs" />
+    <Compile Include="Adaptors\Download.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JsonFx.Json\JsonFx.Json.csproj">
+      <Project>{ABA23F14-7E47-43FE-A3E7-1FF97840C3FB}</Project>
+      <Name>JsonFx.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{BEC86334-6BA5-4594-838B-C77A4FDB7FB3}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VOTLib\VOTLib.csproj">
+      <Project>{4E3C1001-3AB5-4659-BDCE-13ED677D79FD}</Project>
+      <Name>VOTLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\log4net\log4net.csproj">
+      <Project>{FA2E72F6-D583-4B7D-A934-8553A54D7021}</Project>
+      <Name>log4net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExcelLibrary\ExcelLibrary.csproj">
+      <Project>{0716F257-72DD-41EF-8E79-54BA388E3AB1}</Project>
+      <Name>ExcelLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LumenWorks.Framework.IO\LumenWorks.Framework.IO.csproj">
+      <Project>{E3B83D68-C90C-4874-8E5F-DEC8D038BC7C}</Project>
+      <Name>LumenWorks.Framework.IO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349C5851-65DF-11DA-9384-00065B846F21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>19591</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+    <MonoDevelop>
+      <Properties VerifyCodeBehindFields="true" VerifyCodeBehindEvents="true">
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="true" />
+        <WebDeployTargets>
+          <Target Name="">
+            <FileCopier Handler="MonoDevelop.Deployment.LocalFileCopyHandler" TargetDirectory="/Volumes/d$/web/Portal/Mashup" ctype="LocalFileCopyConfiguration" />
+          </Target>
+        </WebDeployTargets>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_Data\GalexSiapVotable.xml" />
+    <None Include="App_Data\CaomConeVotable.xml" />
+    <None Include="Clients\Designer\Projects\AstroViewContainer.xds" />
+    <None Include="Clients\Designer\Projects\ChartContainer.xds" />
+    <None Include="Clients\Designer\Projects\ColorPickerContainer.xds" />
+    <None Include="Clients\Designer\Projects\FacetChooserContainer.xds" />
+    <None Include="Clients\Designer\Projects\FilterContainer.xds" />
+    <None Include="Clients\Designer\Projects\GenericDetailsContainer.xds" />
+    <None Include="Clients\Designer\Projects\LayerChooserContainer.xds" />
+    <None Include="Clients\Designer\Projects\SiaDetailsContainer.xds" />
+    <None Include="Clients\Designer\Projects\TopBarContainer.xds" />
+    <None Include="Clients\Designer\Projects\UploadOptionsForm.xds" />
+    <None Include="Clients\Shared\help\portal_demo.flv" />
+    <None Include="Clients\VOT\VOT.js" />
+    <None Include="Clients\VOT\MainPanel.js" />
+    <None Include="Clients\VOT\MainPanel.ui.js" />
+    <None Include="Clients\Layout\Columns.js" />
+    <None Include="Clients\VOT\TestPanel.js" />
+    <None Include="Clients\VOT\query.xml" />
+    <None Include="Clients\VOT\sheldon.xml" />
+    <None Include="Clients\NameResolver\NameResolver.xds" />
+    <None Include="Clients\NameResolver\xds_includeOrder.txt" />
+    <None Include="Clients\Scroll\Scroll.html">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Scroll\Scroll.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\VOT\m101-voInventory.xml" />
+    <None Include="Clients\Proxy\Proxy.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Proxy\PagingMemory.html">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Proxy\Proxy.html">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\VOT\VOIResponse.json" />
+    <None Include="Clients\VOT\VOIResponseLarge.json" />
+    <None Include="Clients\VOT\VOIResponseSmall.json" />
+    <None Include="Adaptors\HttpProxy.cs">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Adaptors\IAsyncAdaptor.cs">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Adaptors\ISyncAdaptor.cs">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\swfobject\expressInstall.swf" />
+    <None Include="Clients\swfobject\test.swf" />
+    <None Include="Clients\swfobject\src\expressInstall.as" />
+    <None Include="Clients\swfobject\src\expressInstall.fla" />
+    <None Include="AdaptorsConfig.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="ColumnsConfig.json">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Qfan\mashup_hlsp.txt" />
+    <None Include="Clients\Qfan\mashup_hlsp_numberNdate.txt" />
+    <None Include="Clients\Qfan\Projects.js" />
+    <None Include="Clients\Portal\data\wholeregistry-extjs.json" />
+    <None Include="Clients\Portal\data\wholeregistry-sample-extjs.json" />
+    <None Include="Clients\Portal\data\wholeregistry-trimmed-extjs.json" />
+    <None Include="Clients\Portal\data\wholeregistryvotable.xml" />
+    <None Include="Clients\Designer\Projects\ExportWindow.xds" />
+    <None Include="Clients\Shared\flXHR.swf" />
+    <None Include="Clients\Shared\flXHR.vbs" />
+    <None Include="Clients\Shared\updateplayer.swf" />
+    <None Include="Clients\Designer\Projects\ExportWindowCombos.xds" />
+    <None Include="Clients\Portal\data\Full_Search_M101-2.xml" />
+    <None Include="Clients\Portal\data\test.csv" />
+    <None Include="Clients\MashupClients.komodoproject" />
+    <None Include="Clients\Designer\Projects\CaomDetailsContainer.xds" />
+    <None Include="Clients\Designer\Projects\CatalogDetailsContainer.xds" />
+    <None Include="Clients\Desktop\images\taskbar\sencha.ico" />
+    <None Include="Logs\Mashup.20111026.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Designer\Projects\VaoPositionSearch.xds" />
+    <None Include="Clients\Designer\Projects\NedSedDetails.xds" />
+    <None Include="Clients\Portal\loading1.gif">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2011_12_15.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2011_12_16.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2011_12_22.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2011_12_23.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\assets\images\0_0.bmp" />
+    <None Include="Clients\Shared\flashplayer.swf" />
+    <None Include="Logs\Mashup_2012_01_04.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2012_01_06.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Desktop\data\images\invalid_line.gif">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Shared\util\Wcs.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Three\LICENSE" />
+    <None Include="Clients\Three\README.md" />
+    <None Include="Clients\Three\REVISION" />
+    <None Include="Clients\Three\doc\changelog.rst" />
+    <None Include="Clients\Three\doc\conf.py" />
+    <None Include="Clients\Three\doc\index.rst" />
+    <None Include="Clients\Three\doc\make.bat" />
+    <None Include="Clients\Three\doc\tutorial.rst" />
+    <None Include="Clients\Three\doc\api\THREE.rst" />
+    <None Include="Clients\Three\doc\api\cameras\Camera.rst" />
+    <None Include="Clients\Three\doc\api\cameras\OrthographicCamera.rst" />
+    <None Include="Clients\Three\doc\api\cameras\PerspectiveCamera.rst" />
+    <None Include="Clients\Three\doc\api\cameras\index.rst" />
+    <None Include="Clients\Three\doc\api\core\Clock.rst" />
+    <None Include="Clients\Three\doc\api\core\Color.rst" />
+    <None Include="Clients\Three\doc\api\core\Edge.rst" />
+    <None Include="Clients\Three\doc\api\core\Face3.rst" />
+    <None Include="Clients\Three\doc\api\core\Face4.rst" />
+    <None Include="Clients\Three\doc\api\core\Geometry.rst" />
+    <None Include="Clients\Three\doc\api\core\Math.rst" />
+    <None Include="Clients\Three\doc\api\core\Matrix3.rst" />
+    <None Include="Clients\Three\doc\api\core\Matrix4.rst" />
+    <None Include="Clients\Three\doc\api\core\Object3D.rst" />
+    <None Include="Clients\Three\doc\api\core\Projector.rst" />
+    <None Include="Clients\Three\doc\api\core\Quaternion.rst" />
+    <None Include="Clients\Three\doc\api\core\Ray.rst" />
+    <None Include="Clients\Three\doc\api\core\Rectangle.rst" />
+    <None Include="Clients\Three\doc\api\core\Spline.rst" />
+    <None Include="Clients\Three\doc\api\core\UV.rst" />
+    <None Include="Clients\Three\doc\api\core\Vector2.rst" />
+    <None Include="Clients\Three\doc\api\core\Vector3.rst" />
+    <None Include="Clients\Three\doc\api\core\Vector4.rst" />
+    <None Include="Clients\Three\doc\api\core\Vertex.rst" />
+    <None Include="Clients\Three\doc\api\core\index.rst" />
+    <None Include="Clients\Three\doc\api\extras\core\Curve.rst" />
+    <None Include="Clients\Three\doc\api\extras\core\CurvePath.rst" />
+    <None Include="Clients\Three\doc\api\extras\core\Path.rst" />
+    <None Include="Clients\Three\doc\api\extras\core\Shape.rst" />
+    <None Include="Clients\Three\doc\api\extras\core\TextPath.rst" />
+    <None Include="Clients\Three\doc\api\extras\core\index.rst" />
+    <None Include="Clients\Three\doc\api\lights\AmbientLight.rst" />
+    <None Include="Clients\Three\doc\api\lights\DirectionalLight.rst" />
+    <None Include="Clients\Three\doc\api\lights\Light.rst" />
+    <None Include="Clients\Three\doc\api\lights\PointLight.rst" />
+    <None Include="Clients\Three\doc\api\lights\SpotLight.rst" />
+    <None Include="Clients\Three\doc\api\lights\index.rst" />
+    <None Include="Clients\Three\examples\ctm\LeePerry.ctm" />
+    <None Include="Clients\Three\examples\ctm\WaltHead.ctm" />
+    <None Include="Clients\Three\examples\ctm\ben.ctm" />
+    <None Include="Clients\Three\examples\ctm\hand.ctm" />
+    <None Include="Clients\Three\examples\ctm\camaro\camaro.ctm" />
+    <None Include="Clients\Three\examples\fonts\LICENSE" />
+    <None Include="Clients\Three\examples\fonts\droid\NOTICE" />
+    <None Include="Clients\Three\examples\fonts\droid\README.txt" />
+    <None Include="Clients\Three\examples\js\ctm\license\OpenCTM.txt" />
+    <None Include="Clients\Three\examples\js\ctm\license\js-lzma.txt" />
+    <None Include="Clients\Three\examples\js\ctm\license\js-openctm.txt" />
+    <None Include="Clients\Three\examples\models\monster.dae" />
+    <None Include="Clients\Three\examples\models\skin_and_morph.dae" />
+    <None Include="Clients\Three\examples\models\animated\monster\monster.blend" />
+    <None Include="Clients\Three\examples\sounds\358232_j_s_song.mp3" />
+    <None Include="Clients\Three\examples\sounds\358232_j_s_song.ogg" />
+    <None Include="Clients\Three\examples\sounds\376737_Skullbeatz___Bad_Cat_Maste.mp3" />
+    <None Include="Clients\Three\examples\sounds\376737_Skullbeatz___Bad_Cat_Maste.ogg" />
+    <None Include="Clients\Three\examples\sounds\readme.txt" />
+    <None Include="Clients\Three\examples\textures\ash_uvgrid01.nfo" />
+    <None Include="Clients\Three\examples\textures\kinect.nfo" />
+    <None Include="Clients\Three\examples\textures\kinect.webm" />
+    <None Include="Clients\Three\examples\textures\sintel.mp4" />
+    <None Include="Clients\Three\examples\textures\sintel.ogv" />
+    <None Include="Clients\Three\examples\textures\cube\Bridge2\readme.txt" />
+    <None Include="Clients\Three\examples\textures\cube\Park2\readme.txt" />
+    <None Include="Clients\Three\examples\textures\cube\Park3Med\readme.txt" />
+    <None Include="Clients\Three\examples\textures\cube\SwedishRoyalCastle\readme.txt" />
+    <None Include="Clients\Three\examples\textures\lensflare\LICENSE.txt" />
+    <None Include="Clients\Three\examples\textures\minecraft\painterlypack.txt" />
+    <None Include="Clients\Three\examples\textures\normal\ninja\displacement.txt" />
+    <None Include="Clients\Three\examples\textures\patterns\readme.txt" />
+    <None Include="Clients\Three\examples\textures\terrain\readme.txt" />
+    <None Include="Clients\Three\examples\utf8\ben.utf8" />
+    <None Include="Clients\Three\examples\utf8\hand.utf8" />
+    <None Include="Clients\Three\gui\files\inconsolata.woff" />
+    <None Include="Clients\Three\utils\build.bat" />
+    <None Include="Clients\Three\utils\build.py" />
+    <None Include="Clients\Three\utils\build.sh" />
+    <None Include="Clients\Three\utils\build.xml" />
+    <None Include="Clients\Three\utils\build_all.bat" />
+    <None Include="Clients\Three\utils\build_all.sh" />
+    <None Include="Clients\Three\utils\compiler\COPYING" />
+    <None Include="Clients\Three\utils\compiler\README" />
+    <None Include="Clients\Three\utils\compiler\compiler.jar" />
+    <None Include="Clients\Three\utils\exporters\blender\README.md" />
+    <None Include="Clients\Three\utils\exporters\blender\2.60\scripts\addons\io_mesh_threejs\__init__.py" />
+    <None Include="Clients\Three\utils\exporters\blender\2.60\scripts\addons\io_mesh_threejs\export_threejs.py" />
+    <None Include="Clients\Three\utils\exporters\blender\2.60\scripts\addons\io_mesh_threejs\import_threejs.py" />
+    <None Include="Clients\Three\utils\exporters\ctm\LICENSE.txt" />
+    <None Include="Clients\Three\utils\exporters\ctm\join_ctm.py" />
+    <None Include="Clients\Three\utils\exporters\fbx\convert_fbx_three.py" />
+    <None Include="Clients\Three\utils\exporters\fbx\modules\readme.txt" />
+    <None Include="Clients\Three\utils\exporters\fbx\modules\win\Python26_x86\FbxCommon.py" />
+    <None Include="Clients\Three\utils\exporters\fbx\modules\win\Python26_x86\FbxCommon.pyc" />
+    <None Include="Clients\Three\utils\exporters\fbx\modules\win\Python26_x86\fbx.pyd" />
+    <None Include="Clients\Three\utils\exporters\fbx\modules\win\Python26_x86\sip.pyd" />
+    <None Include="Clients\Three\utils\exporters\max\ThreeJSExporter.ms" />
+    <None Include="Clients\Three\utils\exporters\obj\convert_obj_three.py" />
+    <None Include="Clients\Three\utils\exporters\obj\split_obj.py" />
+    <None Include="Clients\Three\utils\exporters\utf8\README" />
+    <None Include="Clients\Three\utils\exporters\utf8\build.bat" />
+    <None Include="Clients\Three\utils\exporters\utf8\mesh.h" />
+    <None Include="Clients\Three\utils\exporters\utf8\objcompress" />
+    <None Include="Clients\Three\utils\exporters\utf8\objcompress.cc" />
+    <None Include="Clients\Designer\Projects\MinMaxSliderContainer.xds" />
+    <None Include="Clients\Three\astroview\Rayy.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Three\astroview\FootprintLine.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2012_02_16.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Designer\Containers\app\view\AstroViewContainerThree.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\Designer\Containers\app\view\ui\AstroViewContainerThree.js">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2012_02_17.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2012_02_18.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2012_02_20.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Logs\Mashup_2012_02_21.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Clients\AstroView\go" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
+</Project>

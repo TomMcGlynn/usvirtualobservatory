@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>AstroViewContainer</title>
+    <script src="../../Shared/InitializeJavaScript.js"></script>
+	<script src="../../swfobject/swfobject.js"></script>
+	<script src="../build/Three.js"></script>
+	
+	<script src="AstroBasicView.js"></script>
+	<script src="Stats.js"></script>
+	<script src="DiamondSphere.js"></script>
+	<script src="DiamondMesh.js"></script>
+	<script src="DiamondGeometry.js"></script>
+	<script src="CameraController.js"></script>
+	<script src="AstroViewLayer.js"></script>
+	<script src="FootprintLayer.js"></script>
+	<script src="CatalogLayer.js"></script>
+    
+	<style>
+		.astroview .x-container {background:red}
+	</style>
+	
+    <!-- Start this application. -->
+    <script type="text/javascript">
+	    Ext.require('Mvpc.view.AstroViewContainerThree');
+	  
+		Ext.onReady(function() {
+		    loadAstroView();  
+		});
+		
+		function loadAstroView()
+		{
+			var avc = Ext.create('Mvpc.view.AstroViewContainerThree', { rendertype: 'webgl' });
+			var win = Ext.widget('window', {
+				title: "AstroView",
+				layout: 'fit',
+				width: 1200,
+				height: 600,
+				x: 20,
+				y: 20,
+				resizable: true,
+				items:[avc]
+			});
+			win.show();
+		};
+
+	</script>
+
+</head>
+
+</html>

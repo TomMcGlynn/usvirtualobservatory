@@ -1,0 +1,12 @@
+cat \
+AstroBasicView.js \
+AstroviewLayer.js \
+CameraController.js \
+CatalogLayer.js \
+DiamondGeometry.js \
+DiamondMesh.js \
+DiamondSphere.js \
+FootprintLayer.js \
+ImageLayer.js \
+Stats.js \
+> AstroView.js

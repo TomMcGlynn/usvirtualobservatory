@@ -1,0 +1,41 @@
+{
+    "name": "GenericDetailsContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.2",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen5330",
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoRender": true,
+                "height": null,
+                "margin": null,
+                "minHeight": null,
+                "minWidth": null,
+                "width": null,
+                "autoScroll": true,
+                "layout": "anchor",
+                "designer|userClassName": "GenericDetailsContainer"
+            }
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

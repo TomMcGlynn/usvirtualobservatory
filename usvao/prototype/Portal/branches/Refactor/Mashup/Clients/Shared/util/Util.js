@@ -1,0 +1,198 @@
+Ext.require('Mvp.data.Histogram');
+Ext.require('Mvp.data.DecimalHistogram');
+
+Ext.define('Mvp.util.Util', {
+    statics: {
+        createLink: function (link, text) {
+            var linkText = (text) ? text : link;
+            var htmlLink = '<a target="_blank" href="' + link + '">' + linkText + '</a>';
+            return htmlLink;
+        },
+
+        createLinkIf: function (link, text) {
+            var retVal = link;
+            if (Mvp.util.Util.isUrl(link)) {
+                retVal = Mvp.util.Util.createLink(link, text);
+            }
+            return retVal;
+        },
+
+        createImageLink: function (link, imageSrc, title, width, height) {
+            var linkTitle = (title) ? title : link;
+            var html = '<a href="' + link + '" target="_blank" title="' + linkTitle + '"><img src="' + imageSrc +
+            ((width) ? ('" width="' + width) : '') +
+            ((height) ? ('" height="' + height) : '') +
+            '" alt="' + linkTitle + '" /></a>';
+            return html;
+        },
+
+        isUrl: function (url) {
+            isUrl = false;
+            if (Ext.isString(url)) {
+                isUrl = url.match('^https?:\/\/');
+            }
+            return isUrl;
+        },
+
+        isFtpUrl: function (url) {
+            isUrl = false;
+            if (Ext.isString(url)) {
+                isUrl = url.match('^ftps?:\/\/');
+            }
+            return isUrl;
+        },
+
+        /**
+        * This method creates a new object whose attributes are the subset of given object's attributes
+        * that start with the given prefix followed by a period.  The new attributes have the prefix and
+        * period stripped off.
+        * Arguments:
+        * object:  The object from which to extract the prefixed attributes
+        * prefix:  A string containing the prefix to look for
+         
+        * 
+        * So this line of code:
+        * var cc = Mvp.util.Util.extractByPrefix({cc.a": "aval", "cc.b": "bval", "ccc": "cval", "vot.a": "votaval"}, 'cc');
+        * would create an object called cc that contained:
+        * {a: "aval", b: "bval}    (no cval because the ccc attribute has no period)
+        */
+        extractByPrefix: function (object, prefix) {
+            var extracted = {};
+            Ext.Object.each(object, function (key, value, myself) {
+                var re = prefix + '\.';
+                if (key.match(re)) {
+                    var shortName = key.replace(re, '');
+                    extracted[shortName] = value;
+                }
+            });
+
+            return extracted;
+        },
+
+        numberValidator: function (val) {
+            if (Ext.Number.from(val, -1) >= 0) {
+                return true;
+            } else {
+                return 'Value must be a non-negative number.';
+            }
+        },
+
+        filenameCreator: function (startingTitle, extension) {
+            // drop all non-word characters, then remove all duplicate, trailing and leading underscores
+            var title = startingTitle.trim().replace(/\W+/g, '_').replace(/_+/g, '_').replace(/(^_|_$|nbsp)/g, '');
+
+            // Duplicate labels are common, so try and remove them
+            var tokens = title.split('_');
+            var testToken;
+            for (var i = 0; i <= tokens.length; i++) {
+                testToken = tokens[i];
+                if (testToken) {
+                    for (var j = i + 1; j <= tokens.length; j++) {
+                        if (tokens[j] && testToken.toLowerCase() == tokens[j].toLowerCase()) {
+                            tokens.splice(j, 1);
+                        }
+                    }
+                }
+            }
+            title = tokens.join('_') + '.' + extension;
+            return title;
+
+        },
+
+        decimalHistogram: function (store, property, min, max, nBuckets, ignoreValue) {
+            var histogram = new Array(nBuckets);
+            for (var i = 0; i < nBuckets; i++) histogram[i] = 0;
+            var bucketSize = (max - min) / nBuckets;
+            var items = store.items;
+            var nItems = items.length;
+
+            if (items && Ext.isArray(items)) {
+                var i = items.length;
+                while (i--) {
+                    var record = items[i];
+                    var value = record.get(property);
+                    if (ignoreValue != value) {
+                        var b = Math.floor((value - min) / bucketSize)
+                        histogram[b]++;
+                    }
+                }
+            }
+            var hist = [],
+            maxCount = 0;
+            for (var i = 0; i < nBuckets; i++) {
+                var r = histogram[i];
+                hist.push({ bucket: min + i * bucketSize, ratio: r });
+                if (r > maxCount) maxCount = r;
+            }
+            var s = Ext.create('Ext.data.Store', { extend: 'Mvp.data.DecimalHistogram', fields: ['ratio', 'bucket'], data: hist });
+            return {
+                store: s,
+                max: maxCount
+            };
+        },
+
+        // This is supposed to generate a histogram of the contents of a column of data
+        // in the specified mixed collection.
+        histogram: function (mixedCollection, property, separator) {
+            var items = mixedCollection.items;
+            var hist = {};
+            hist._numEntries = 0;
+            if (items && Ext.isArray(items)) {
+                var i = items.length;
+                while (i--) {
+                    var record = items[i];
+                    var value = record.get(property);
+                    if (value) {
+                        var stringVal = value.toString();
+                        var keys = [stringVal];
+                        if (separator) {
+                            keys = stringVal.split(separator);
+                        }
+                        var k = keys.length;
+                        while (k--) {
+                            var key = keys[k];
+                            if (key != '') {
+                                var histEntry = hist[key];
+                                if (!histEntry) {
+                                    hist._numEntries++;
+                                    hist[key] = { key: key, count: 1 };
+                                } else {
+                                    histEntry.count++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return hist;
+        },
+
+        histogramToArray: function (histogram) {
+            var histArray = new Array(histogram._numEntries);
+            var i = 0;
+            for (property in histogram) {
+                if (property.charAt(0) !== '_') {
+                    histArray[i++] = histogram[property];
+                }
+            }
+            return histArray;
+        },
+
+        histogramArrayToStore: function (histArray) {
+            var store = Ext.create('Ext.data.Store', {
+                model: 'Mvp.data.Histogram'
+            });
+            store.add(histArray);
+            return store;
+        },
+
+        logicalSort: function (a, b) {      
+        // sorts in ascending alphabetical/numeric order - standard array .sort() sorts lexicographically, which gets numbers wrong
+            var ta = typeof a, tb = typeof b;
+            if ((ta.key == 'string') && (tb.key == 'string')) return (a.key.toLowerCase() > b.key.toLowerCase());
+            var na = Number(a.key), nb = Number(b.key)
+            if ((na == a.key) && (nb == b.key)) return na - nb;
+            return a.key > b.key;
+        }
+    },
+})

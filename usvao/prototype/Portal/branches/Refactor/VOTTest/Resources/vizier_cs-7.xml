@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.ivoa.net/xml/VOTable/v1.1"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.1 http://www.ivoa.net/xml/VOTable/v1.1">
+ <DESCRIPTION>
+   VizieR Astronomical Server vizier.u-strasbg.fr 	2011-06-26T22:08:55 [V1.80]
+   Explanations and Statistics of UCDs:			See LINK below
+   In case of problem, please report to:	question@simbad.u-strasbg.fr
+ </DESCRIPTION>
+<!-- VOTable description at http://www.ivoa.net/Documents/latest/VOT.html -->
+
+<DEFINITIONS>
+  <COOSYS ID="J2000" system="eq_FK5" equinox="J2000"/>
+</DEFINITIONS>
+
+
+<!--
+Execution Reports
+ -->
+<INFO ID="Ref" name="-ref" value="VOTx14386"/>
+<INFO ID="MaxTuples" name="-out.max" value="50000"/>
+<INFO ID="Target" name="-c" value="210.802270+54.348950,rm=12."/>
+
+<RESOURCE ID="yCat_40410151" name="J/A+AS/41/151">
+  <DESCRIPTION>1415MHz Survey of Bright Galaxies (Hummel, 1980)</DESCRIPTION>
+  <COOSYS ID="B1950" system="eq_FK4" equinox="B1950"/>
+  <TABLE ID="J_A_AS_41_151_table3" name="J/A+AS/41/151/table3">
+    <DESCRIPTION>Results of the radio continuum survey</DESCRIPTION>
+    <!-- Definitions of GROUPs and FIELDs -->
+    <FIELD name="_r" ucd="POS_ANG_DIST_GENERAL" datatype="double" width="7" precision="5" unit="deg"><!-- ucd="pos.angDistance" -->
+      <DESCRIPTION>Distance from center (RAB1950=14 01 26.4, DEB1950=+54 35 19)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="_RAJ2000" ucd="POS_EQ_RA_MAIN" ref="J2000" datatype="double" width="8" precision="4" unit="deg"><!-- ucd="pos.eq.ra;meta.main" -->
+      <DESCRIPTION>Right ascension (FK5) Equinox=J2000. (computed by VizieR, not part of the original data)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="_DEJ2000" ucd="POS_EQ_DEC_MAIN" ref="J2000" datatype="double" width="8" precision="4" unit="deg"><!-- ucd="pos.eq.dec;meta.main" -->
+      <DESCRIPTION>Declination (FK5) Equinox=J2000. (computed by VizieR, not part of the original data)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="recno" ucd="RECORD" datatype="int" width="8"><!-- ucd="meta.record" -->
+      <DESCRIPTION>Record number within the original table (starting from 1)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Name" ucd="ID_MAIN" datatype="char" arraysize="8*"><!-- ucd="meta.id;meta.main" -->
+      <DESCRIPTION>Galaxy name [datatype=char]</DESCRIPTION>
+    </FIELD>
+    <FIELD name="RType" ucd="MORPH_TYPE" datatype="char" arraysize="4"><!-- ucd="src.morph.type" -->
+      <DESCRIPTION>Revised morphological type (as in RC2)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="RAB1950" ucd="POS_EQ_RA" ref="B1950" datatype="char" arraysize="10" unit="&quot;h:m:s&quot;"><!-- ucd="pos.eq.ra" -->
+      <DESCRIPTION>Right ascension (B1950)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="DEB1950" ucd="POS_EQ_DEC" ref="B1950" datatype="char" arraysize="9" unit="&quot;d:m:s&quot;"><!-- ucd="pos.eq.dec" -->
+      <DESCRIPTION>Declination (B1950)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="L" ucd="SPECT_LUM-CLASS" datatype="unsignedByte" width="1"><!-- ucd="src.class.luminosity" -->
+      <DESCRIPTION>? Luminisity class (as in RC2)</DESCRIPTION>
+      <VALUES null=" " />
+    </FIELD>
+    <FIELD name="BTmag" ucd="PHOT_INT-MAG_B" datatype="float" width="5" precision="2" unit="mag"><!-- ucd="phot.mag;em.opt.B" -->
+      <DESCRIPTION>? Optical magnitude, B^0^_T_ (or m_c_ if n_BTmag=*)</DESCRIPTION>
+      <VALUES null=" " />
+    </FIELD>
+    <FIELD name="n_BTmag" ucd="NOTE" datatype="char" arraysize="1"><!-- ucd="meta.note" -->
+      <DESCRIPTION>[*] * when m_c_ instead of BTmag</DESCRIPTION>
+    </FIELD>
+    <FIELD name="B-V" ucd="PHOT_CI_B-V" datatype="float" width="5" precision="2" unit="mag"><!-- ucd="phot.color;em.opt.B;em.opt.V" -->
+      <DESCRIPTION>? Corrected face-on (B-V)^0^_T_ colour index (as in RC2)</DESCRIPTION>
+      <VALUES null=" " />
+    </FIELD>
+    <FIELD name="D0" ucd="POS_ANG_DIST_GENERAL" datatype="float" width="5" precision="1" unit="arcmin"><!-- ucd="pos.angDistance" -->
+      <DESCRIPTION>Distance to optical galaxy center</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Dist" ucd="PHYS_DISTANCE_TRUE" datatype="float" width="4" precision="1" unit="Mpc"><!-- ucd="pos.distance" -->
+      <DESCRIPTION>? Distance derived form radial velocities using H=100km/s/Mpc</DESCRIPTION>
+      <VALUES null=" " />
+    </FIELD>
+    <FIELD name="n_Dist" ucd="NOTE" datatype="char" arraysize="1"><!-- ucd="meta.note" -->
+      <DESCRIPTION>[*?] Note on radial velocities used (1)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Date" ucd="OBS_ID" datatype="char" arraysize="7*"><!-- ucd="meta.id;obs" -->
+      <DESCRIPTION>Code for observation (2)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="l_Scen" ucd="CODE_LIMIT" datatype="char" arraysize="1"><!-- ucd="meta.code.error" -->
+      <DESCRIPTION>Limit flag on Scen</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Scen" ucd="PHOT_FLUX_RADIO_1.4G" datatype="int" width="5" unit="mJy"><!-- ucd="phot.flux.density;em.radio.750-1500MHz" -->
+      <DESCRIPTION>? Flux density of the central source at 1415MHz</DESCRIPTION>
+      <VALUES null=" " />
+    </FIELD>
+    <FIELD name="l_Stot" ucd="CODE_LIMIT" datatype="char" arraysize="1"><!-- ucd="meta.code.error" -->
+      <DESCRIPTION>Limit flag on Stot</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Stot" ucd="PHOT_FLUX_RADIO_1.6G" datatype="int" width="6" unit="mJy"><!-- ucd="phot.flux.density;em.radio.1500-3000MHz" -->
+      <DESCRIPTION>? Flux density of the galaxy at 1514MHz</DESCRIPTION>
+      <VALUES null=" " />
+    </FIELD>
+    <FIELD name="Dr" ucd="EXTENSION_RAD" datatype="float" width="5" precision="1" unit="arcmin"><!-- ucd="phys.angSize;src" -->
+      <DESCRIPTION>? Radio extent along major axis</DESCRIPTION>
+      <VALUES null=" " />
+    </FIELD>
+    <FIELD name="RClass" ucd="CLASS_STRUCT" datatype="char" arraysize="3"><!-- ucd="src.class.struct" -->
+      <DESCRIPTION>Radio classification (3)</DESCRIPTION>
+    </FIELD>
+    <FIELD name="BTMAG" ucd="PHOT_ABS-MAG_BAND" datatype="float" width="5" precision="1" unit="mag"><!-- ucd="phys.magAbs;em.opt" -->
+      <DESCRIPTION>? Absolute magnitude, from BTmag and Dist</DESCRIPTION>
+      <VALUES null=" " />
+    </FIELD>
+    <FIELD name="l_logPcen" ucd="CODE_LIMIT" datatype="char" arraysize="1"><!-- ucd="meta.code.error" -->
+      <DESCRIPTION>Limit flag on logPcen</DESCRIPTION>
+    </FIELD>
+    <FIELD name="logPcen" ucd="PHOT_FLUX_RADIO_1.4G" datatype="float" width="4" precision="1" unit="[W/Hz]"><!-- ucd="phot.flux.density;em.radio.750-1500MHz" -->
+      <DESCRIPTION>? logarithm of the radio power of the central source at 1415MHz</DESCRIPTION>
+      <VALUES null=" " />
+    </FIELD>
+    <FIELD name="l_logPStot" ucd="CODE_LIMIT" datatype="char" arraysize="1"><!-- ucd="meta.code.error" -->
+      <DESCRIPTION>Limit flag on logPStot</DESCRIPTION>
+    </FIELD>
+    <FIELD name="logPStot" ucd="PHOT_FLUX_RADIO_1.4G" datatype="float" width="4" precision="1" unit="[W/Hz]"><!-- ucd="phot.flux.density;em.radio.750-1500MHz" -->
+      <DESCRIPTION>? logarithm of the total radio power at 1415MHz</DESCRIPTION>
+      <VALUES null=" " />
+    </FIELD>
+    <FIELD name="l_R" ucd="CODE_LIMIT" datatype="char" arraysize="1"><!-- ucd="meta.code.error" -->
+      <DESCRIPTION>Limit flag on R</DESCRIPTION>
+    </FIELD>
+    <FIELD name="R" ucd="PHOT_FLUX_RATIO" datatype="float" width="7" precision="1"><!-- ucd="phot.flux;arith.ratio" -->
+      <DESCRIPTION>? Ratio of radio to optical luminosity, R=Stot/(10exp[-(B^0^_T_-12.5)/2.5])</DESCRIPTION>
+      <VALUES null=" " />
+    </FIELD>
+    <FIELD name="Tb" ucd="PHYS_TEMP_MISC" datatype="float" width="5" precision="1" unit="K"><!-- ucd="phys.temperature" -->
+      <DESCRIPTION>? Average brigthness temperature of the extended components</DESCRIPTION>
+      <VALUES null=" " />
+    </FIELD>
+    <FIELD name="n_Name" ucd="NOTE" datatype="char" arraysize="1"><!-- ucd="meta.note" -->
+      <DESCRIPTION>[*] note detailed in notes.dat file</DESCRIPTION>
+    </FIELD>
+    <FIELD name="Notes" ucd="NOTE" datatype="char" arraysize="5*"><!-- ucd="meta.note" -->
+      <DESCRIPTION>[N *] Notes (4)</DESCRIPTION>
+    </FIELD>
+<DATA><TABLEDATA>
+<TR><TD>0.00545</TD><TD>210.8081</TD><TD>+54.3532</TD><TD>394</TD><TD>NGC 5457</TD><TD>SX 6</TD><TD>14 01 27.8</TD><TD>+54 35 34</TD><TD>1</TD><TD>7.96</TD><TD></TD><TD>0.40</TD><TD>28.2</TD><TD>5.1</TD><TD></TD><TD>24</TD><TD>&lt;</TD><TD>10</TD><TD></TD><TD>850</TD><TD>16.0</TD><TD>E</TD><TD>-20.6</TD><TD>&lt;</TD><TD>19.5</TD><TD></TD><TD>21.4</TD><TD></TD><TD>13.0</TD><TD>0.8</TD><TD>*</TD><TD></TD></TR>
+</TABLEDATA></DATA>
+</TABLE>
+</RESOURCE>
+</VOTABLE>
