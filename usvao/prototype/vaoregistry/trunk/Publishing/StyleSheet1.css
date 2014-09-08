@@ -1,0 +1,25 @@
+﻿body {
+}
+
+.maintab
+{
+    width: 85%;
+    height: 400px;
+    min-width: 85%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: Gray;
+    padding: 10px 10px 10px 10px;
+}
+
+.selecttab
+{
+    margin: 10px 0px 0px 10px;
+    background-color: #cccccc;
+    border-right: 1px solid Gray;
+    border-left: 1px solid Gray;
+    border-top: 1px solid Gray;
+    padding: 5px 5px 1px 5px;
+    text-decoration: none;
+    color: Black;
+}

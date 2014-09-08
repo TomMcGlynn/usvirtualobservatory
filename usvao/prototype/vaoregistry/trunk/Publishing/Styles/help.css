@@ -1,0 +1,109 @@
+﻿
+#helpcontent
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+#helpcontent p
+{
+    margin: 5px 5px 15px 15px;
+}
+
+#helpcontent ul
+{
+    list-style-type: circle;
+}
+
+#helpcontent li
+{
+    margin: 5px 5px 5px 25px;
+}
+
+
+#helpcontent h1, h2, h3, h4, h5, h6
+{
+    font-variant: small-caps;
+    text-transform: none;
+    font-weight: bold;
+}
+
+#helpcontent h1
+{
+    font-size: 2em;
+}
+
+#helpcontent h2
+{
+    font-size: 1.5em;
+}
+
+#helpcontent h3
+{
+    font-size: 1.2em;
+}
+
+#helpcontent ul
+{
+     text-transform: none;
+     margin: 10px 10px 10px 30px;
+     padding: 0px;
+}
+
+#helpcontent ul li
+{
+     text-transform: none;
+}
+
+#helpcontent a
+{
+    color: inherit;
+}
+
+
+
+#toc
+{
+    margin-right: 20px;
+}
+
+#toc h1, h2, h3, h4
+{
+    font-variant: small-caps;
+    text-transform: none;
+    font-weight: bold;
+    margin: 0px;
+}
+
+#toc h1
+{
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#toc h2
+{
+    font-size: 1.5em;
+}
+
+#toc ol li
+{
+     font-variant: small-caps;
+     text-transform: none;
+     margin-left: 20px;
+     list-style-type:decimal;
+}
+
+#toc ol ol li
+{
+     font-variant: small-caps;
+     text-transform: none;
+     margin-left: 20px;
+     list-style-type: lower-alpha;
+}
+
+#toc a
+{
+    color: inherit;
+}

@@ -1,0 +1,1 @@
+<%@ WebService Language="C#" CodeBehind="managereg.asmx.cs" Class="Publishing.RegistryManagement" %>

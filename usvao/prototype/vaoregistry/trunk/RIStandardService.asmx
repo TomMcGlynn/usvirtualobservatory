@@ -1,0 +1,1 @@
+<%@ WebService Language="c#" Codebehind="RIStandardService.asmx.cs" Class="registryInterface.RIStandardService" %>

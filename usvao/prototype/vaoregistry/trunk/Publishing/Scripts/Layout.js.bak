@@ -1,0 +1,578 @@
+
+var resourceManagementURL = "resourcemanagement.html?debug";
+var loginURL = "login.html?debug";
+
+checkLoginInfo = function () {
+    Ext.Ajax.request({
+        url: 'login.aspx?action=isloggedin',
+        method: 'GET',
+        success: function (result, request) {
+            var json = Ext.decode(result.responseText);
+            if (json && json.success == true) {
+                //Ext.getCmp('buttonLogin').hide();
+                Ext.getCmp('labelUserName').setValue('logged in as user ' + json.details);
+            }
+            else {
+                Ext.Msg.alert('Login. ', 'Not logged in', function (btn, text) {
+                    if (btn == 'ok')
+                        window.location = loginURL;
+                });
+            }
+        },
+        failure: function (result, request) {
+            Ext.Msg.alert('Could not determine login information. ', result.responseText, function (btn, text) {
+                if (btn == 'ok')
+                    window.location = loginURL;
+            });
+        }
+    })
+};
+
+Ext.define('PublishingWizard.Layout', {
+    extend: 'Ext.panel.Panel',
+    //extend: 'Ext.Viewport',
+
+    statics: {},
+
+    constructor: function (config) {
+        var me = this;
+
+        // Apply mandatory config items.       
+        Ext.apply(config, {
+            border: 0,
+            layout: 'fit',
+            name: 'centerViewport',
+            id: 'centerViewport',
+            defaults: {
+                autoScroll: 'true',
+                autoHeight: 'true',
+                layout: 'fit'
+            },
+            items: [
+            {
+                xtype: 'form',
+                id: 'formPanel',
+                border: 0,
+                waitMsgTarget: true,
+                url: './TestPublishResource.aspx',
+                method: 'GET',
+                fieldDefaults: {
+                    labelWidth: 100,
+                    width: 400,
+                    msgTarget: 'side'
+                },
+
+                // configure how to read the XML data
+                reader: Ext.create('Ext.data.reader.Xml', {
+                    model: 'PublishingWizard.Resource',
+                    record: 'ri:Resource',
+                    successProperty: '@success'
+                }),
+
+                listeners: {
+                    exception: function (proxy, response, operation) {
+                    }
+                },
+
+
+                items: [
+                    {
+                        xtype: 'panel',
+                        id: 'titlePanel',
+                        autoScroll: false,
+                        border: 0,
+                        margin: 0,
+                        layout: 'hbox',
+                        defaults: { border: 0, height: 50 },
+                        items: [{ width: 20, autoEl: { tag: 'div'} },
+                            { width: 100, autoEl: { tag: 'img', src: 'scripts/data/images/VAO_logo_100.png', alt: 'VAO Logo'} },
+                            { width: 80, autoEl: { tag: 'div'} },
+                            { autoEl: { tag: 'h1', html: 'VAO Registry Publishing'} },
+                            { width: 200, autoEl: { tag: 'div'} },
+                            {
+                                xtype: 'displayfield',
+                                fieldLabel: '',
+                                id: 'labelUserName',
+                                value: '',
+                                width: 200
+                            },
+                            {
+                                xtype: 'button',
+                                text: 'login',
+                                id: 'buttonLogin',
+                                handler: function () {
+                                    window.location = loginURL;
+                                }
+                            },
+                            {
+                                xtype: 'button',
+                                text: 'logout',
+                                id: 'buttonLogout',
+                                handler: function () {
+                                    Ext.Ajax.request({
+                                        url: 'login.aspx?action=logout',
+                                        method: 'GET',
+                                        success: function (result, request) {
+                                            Ext.Msg.alert('Success', 'Logged out successfully', function (btn, text) {
+                                                if (btn == 'ok') {
+                                                    window.location = loginURL;
+                                                }
+                                            });
+                                        },
+                                        failure: function (result, request) {
+                                            Ext.Msg.alert('Logout Failed', result.responseText);
+                                        }
+                                    })
+                                }
+                            }]
+                    },
+                    {
+                        xtype: 'fieldset',
+                        id: 'generalFieldSet',
+                        title: 'General Information',
+                        defaultType: 'textfield',
+                        defaults: { width: 400 },
+                        items: [{
+                            id: 'title',
+                            fieldLabel: '* Title',
+                            emptyText: 'Resource Title for Searching',
+                            name: 'title',
+                            allowBlank: false,
+                            listeners: { 'change': function (field, newVal, oldVal) { setDOMUniqueTag(newVal, oldVal, resourceDOM, 'title'); } }
+                        },
+                        {
+                            id: 'shortName',
+                            fieldLabel: '* shortName',
+                            emptyText: 'Shortened Resource Title for Searching',
+                            name: 'shortName',
+                            allowBlank: false,
+                            listeners: { 'change': function (field, newVal, oldVal) { setDOMUniqueTag(newVal, oldVal, resourceDOM, 'shortName'); } }
+                        },
+                        {
+                            id: 'identifier',
+                            fieldLabel: '* IVOA Identifier',
+                            emptyText: 'Unique Identifier. This cannot be changed later.',
+                            name: 'identifier',
+                            allowBlank: false,
+                            listeners: { 'change': function (field, newVal, oldVal) { setDOMUniqueTag(newVal, oldVal, resourceDOM, 'identifier'); } }
+                        },
+                        {
+                            id: 'content/description',
+                            fieldLabel: '* Description',
+                            emptyText: '',
+                            name: 'content/description',
+                            xtype: 'textareafield',
+                            height: 200,
+                            allowBlank: false,
+                            listeners: { 'change': function (field, newVal, oldVal) { setDOMDescription(newVal, oldVal, resourceDOM); } }
+                        }] //general fieldset items
+                    },
+                {
+                    xtype: 'fieldset',
+                    id: 'curationFieldSet',
+                    title: 'curation Information',
+                    defaultType: 'textfield',
+                    autoScroll: true,
+                    defaults: { width: 500 },
+                    items: [{
+                        xtype: 'combo',
+                        id: 'publisherInfo',
+                        store: storePublisherInfo,
+                        displayField: 'title',
+                        valueField: 'identifier',
+                        hiddenName: 'identifier',
+                        queryMode: 'remote', //change this to 'local' to preload / 'remote' to not?
+                        fieldLabel: 'Publisher',
+                        name: 'publisherInfo',
+                        autoselect: true,
+                        data: 'all',
+                        width: 500,
+                        listeners: { 'change': function (field, newVal, oldVal) { setDOMPublisher(newVal, oldVal, resourceDOM, field.rawValue); } }
+                    },
+                    {
+                        id: 'version',
+                        fieldLabel: 'Version #',
+                        emptyText: 'Freetext version number for resource itself',
+                        name: 'version',
+                        listeners: { 'change': function (field, newVal, oldVal) { setDOMVersion(newVal, oldVal, resourceDOM); } }
+                    },
+                        {
+                            xtype: 'fieldset',
+                            id: 'creatorFieldSet',
+                            name: 'creatorFieldSet',
+                            title: 'Creators',
+                            defaultType: 'textfield',
+                            autoheight: true,
+                            defaults: {
+                                width: 400
+                            },
+                            items: [{
+                                xtype: 'fieldset',
+                                name: 'creatorSubSet',
+                                defaultType: 'textfield',
+                                autoheight: true,
+                                defaults: {
+                                    width: 320
+                                },
+                                items: [{
+                                    name: 'name',
+                                    fieldLabel: 'Name',
+                                    emptyText: 'Personal Name or Organization',
+                                    xtype: 'textfield',
+                                    listeners: { 'change': function (field, newVal, oldVal) { setDOMCreator(field, newVal, oldVal, resourceDOM); } }
+                                },
+                                    {
+                                        name: 'logo',
+                                        fieldLabel: 'Logo',
+                                        emptyText: 'Optional URL of a logo for displaying with your resources',
+                                        xtype: 'textfield',
+                                        listeners: { 'change': function (field, newVal, oldVal) { setDOMCreator(field, newVal, oldVal, resourceDOM); } }
+                                    },
+                                    {
+                                        name: 'delete',
+                                        xtype: 'button',
+                                        text: 'Delete this creator',
+                                        disabled: true,
+                                        handler: function () { deleteContainerAndXml(this); }
+                                    }]
+                            },
+                            {
+                                name: 'add',
+                                xtype: 'button',
+                                text: 'Add new creator',
+                                handler: function () { fillCreator(addContainerAndXml(this)); }
+                            }]
+                        },
+                        {
+                            xtype: 'fieldset',
+                            id: 'contributorFieldSet',
+                            name: 'contributorFieldSet',
+                            title: 'Contributors',
+                            defaultType: 'textfield',
+                            autoheight: true,
+                            width: 500,
+                            items: [{
+                                xtype: 'fieldset',
+                                id: 'contributorSubSet',
+                                name: 'contributorSubSet',
+                                defaultType: 'textfield',
+                                autoheight: true,
+                                width: 400,
+                                defaults: { width: 320 },
+                                items: [{
+                                    name: 'name',
+                                    fieldLabel: 'Name',
+                                    emptyText: 'Other person or organisation contributing to this resource',
+                                    xtype: 'textfield',
+                                    listeners: { 'change': function (field, newVal, oldVal) { setDOMArrayValue(field, newVal, oldVal, resourceDOM.getElementsByTagName('curation')[0], 'contributor'); } }
+
+                                },
+                                   {
+                                       name: 'delete',
+                                       xtype: 'button',
+                                       text: 'Delete this contributor',
+                                       disabled: true,
+                                       handler: function () { deleteContainerAndXml(this); }
+                                   }]
+                            },
+                           {
+                               name: 'add',
+                               xtype: 'button',
+                               text: 'Add new contributor',
+                               handler: function () { fillContributor(addContainerAndXml(this)); }
+                           }] //contributorfieldset items
+                        }] //curationfieldsetitems
+                },
+                   {
+                       xtype: 'fieldset',
+                       id: 'contentFieldSet',
+                       name: 'contentFieldSet',
+                       title: 'Content Information',
+                       defaultType: 'textfield',
+                       defaults: { width: 500 },
+                       items: [
+                        {
+                            id: 'referenceURL',
+                            fieldLabel: '* Reference URL',
+                            emptyText: 'URL for more information',
+                            name: 'referenceURL',
+                            allowBlank: false,
+                            listeners: { 'change': function (field, newVal, oldVal) { setDOMUniqueTag(newVal, oldVal, resourceDOM, 'referenceURL'); } }
+                        },
+                        {
+                            xtype: 'fieldset',
+                            id: 'typeFieldSet',
+                            name: 'typeFieldSet',
+                            title: 'Content Types',
+                            autoheight: true,
+                            width: 500,
+                            items: [{
+                                xtype: 'fieldset',
+                                name: 'typeSubSet',
+                                items: [{
+                                    xtype: 'combo',
+                                    width: 400,
+                                    displayField: 'description',
+                                    queryMode: 'local',
+                                    valueField: 'tag',
+                                    hiddenName: 'tag',
+                                    fieldLabel: 'Type',
+                                    name: 'contentType',
+                                    autoselect: true,
+                                    store: storeContentTypes,
+                                    selectOnFocus: true,
+                                    typeAhead: true,
+                                    listeners: { 'change': function (field, newVal, oldVal) { setDOMArrayValue(field, newVal, oldVal, resourceDOM.getElementsByTagName('content')[0], 'type'); } }
+                                },
+                                {
+                                    name: 'delete',
+                                    xtype: 'button',
+                                    text: 'Delete this content type',
+                                    disabled: true,
+                                    handler: function () { deleteContainerAndXml(this); }
+                                }]
+                            }, //contenttype subset
+                            {
+                            name: 'add',
+                            xtype: 'button',
+                            text: 'Add new content type',
+                            handler: function () { fillContentType(addContainerAndXml(this)); }
+                        }] //type fieldset items
+                    },
+                    {
+                        xtype: 'fieldset',
+                        id: 'contentLevelFieldSet',
+                        name: 'contentLevelFieldSet',
+                        title: 'Levels of Content',
+                        autoheight: true,
+                        width: 500,
+                        items: [{
+                            xtype: 'fieldset',
+                            name: 'contentLevelSubSet',
+                            items: [{
+                                xtype: 'combo',
+                                width: 400,
+                                displayField: 'description',
+                                queryMode: 'local',
+                                valueField: 'tag',
+                                hiddenName: 'tag',
+                                fieldLabel: 'Level of Content',
+                                name: 'contentLevel',
+                                autoselect: true,
+                                store: storeContentLevels,
+                                selectOnFocus: true,
+                                typeAhead: true,
+                                listeners: { 'change': function (field, newVal, oldVal) { setDOMArrayValue(field, newVal, oldVal, resourceDOM.getElementsByTagName('content')[0]); } }
+                            },
+                            {
+                                name: 'delete',
+                                xtype: 'button',
+                                text: 'Delete this content level',
+                                disabled: true,
+                                handler: function () { deleteContainerAndXml(this); }
+                            }] //content level subset items
+                        },
+                            {
+                                name: 'add',
+                                xtype: 'button',
+                                text: 'Add new content level',
+                                handler: function () { fillContentLevel(addContainerAndXml(this)); }
+                            }] //content level fieldset items
+                    },
+                        {
+                            xtype: 'fieldset',
+                            id: 'subjectFieldSet',
+                            name: 'subjectFieldSet',
+                            title: 'Subjects',
+                            defaultType: 'textfield',
+                            autoheight: true,
+                            items: [{
+                                xtype: 'fieldset',
+                                name: 'subjectSubSet',
+                                defaultType: 'textfield',
+                                autoheight: true,
+                                width: 500,
+                                items: [{
+                                    name: 'subject',
+                                    width: 400,
+                                    fieldLabel: 'Subject',
+                                    emptyText: 'Freetext subject of this resource',
+                                    xtype: 'textfield',
+                                    listeners: { 'change': function (field, newVal, oldVal) { setDOMArrayValue(field, newVal, oldVal, resourceDOM.getElementsByTagName('content')[0]); } }
+                                },
+                                {
+                                    name: 'delete',
+                                    xtype: 'button',
+                                    text: 'Delete this subject',
+                                    disabled: true,
+                                    handler: function () { deleteContainerAndXml(this); }
+                                }]
+                            },
+                           {
+                               name: 'add',
+                               xtype: 'button',
+                               text: 'Add new subject',
+                               handler: function () { fillSubject(addContainerAndXml(this)); }
+                           }] //subjectfieldset items
+                        }] //content fieldset items.
+                   },
+                   {
+                       xtype: 'fieldset',
+                       id: 'coneSearchGroupFieldSet',
+                       title: 'Cone Search Services',
+                       defaults: { width: 500 },
+                       items: [
+                       {
+                           xtype: 'fieldset',
+                           id: 'coneSearchFieldSet',
+                           name: 'coneSearchFieldSet',
+                           title: 'Cone Search Capability',
+                           defaultType: 'textfield',
+                           autoheight: true,
+                           items: [{
+                               xtype: 'fieldset',
+                               name: 'coneSearchSubSet',
+                               defaultType: 'textfield',
+                               title: 'Interfaces to This Cone Search Service',
+                               autoheight: true,
+                               width: 500,
+                               items: [{
+                                   name: 'accessURL',
+                                   width: 400,
+                                   fieldLabel: 'Access URL',
+                                   emptyText: 'URL for cone search access to this resource',
+                                   listeners: { 'change': function (field, newVal, oldVal) { setCapabilityComponentValue(field, oldVal, newVal) } }
+                               },
+							   {
+                                        xtype: 'combo',
+                                        width: 400,
+                                        displayField: 'description',
+                                        queryMode: 'local',
+                                        valueField: 'tag',
+                                        hiddenName: 'tag',
+                                        fieldLabel: 'Type of URL',
+                                        name: 'accessURLUse',
+                                        autoselect: true,
+                                        store: storeUrlTypes,
+                                        selectOnFocus: true,
+                                        typeAhead: true,
+                                        listeners: { 'change': function (field, newVal, oldVal) { setDOMArrayValue(field, newVal, oldVal, resourceDOM.getElementsByTagName('coverage')[0]); } }
+                                },
+                                {
+                                    name: 'delete',
+                                    xtype: 'button',
+                                    text: 'Delete this Interface',
+                                    disabled: true,
+                                    handler: function () { deleteContainerAndXml(this); }
+                                }]
+                           },
+                            {
+                                name: 'add',
+                                xtype: 'button',
+                                text: 'Add new Interface to this Cone Search Service',
+                                handler: function () { fillInterface(addInterfaceAndXml(this), null); }
+                            }] //csfieldset items
+                       }
+                       ] //conesearchgroupfieldset
+                   },
+                    {
+                        xtype: 'fieldset',
+                        id: 'coverageFieldSet',
+                        title: 'Service Data Coverage (All Optional)',
+                        defaults: { width: 600 },
+                        items: [
+                            {
+                                xtype: 'fieldset',
+                                id: 'wavebandFieldSet',
+                                name: 'wavebandFieldSet',
+                                title: 'Wavebands of data served by this resource',
+                                autoheight: true,
+                                items: [{
+                                    xtype: 'fieldset',
+                                    name: 'wavebandSubSet',
+                                    autoheight: true,
+                                    items: [{
+                                        xtype: 'combo',
+                                        width: 400,
+                                        displayField: 'description',
+                                        queryMode: 'local',
+                                        valueField: 'tag',
+                                        hiddenName: 'tag',
+                                        fieldLabel: 'Waveband',
+                                        name: 'waveband',
+                                        autoselect: true,
+                                        store: storeWavebands,
+                                        selectOnFocus: true,
+                                        typeAhead: true,
+                                        listeners: { 'change': function (field, newVal, oldVal) { setDOMArrayValue(field, newVal, oldVal, resourceDOM.getElementsByTagName('coverage')[0]); } }
+                                    },
+                                {
+                                    name: 'delete',
+                                    xtype: 'button',
+                                    text: 'Delete this waveband',
+                                    disabled: true,
+                                    handler: function () { deleteContainerAndXml(this); }
+                                }]
+                                },
+                           {
+                               name: 'add',
+                               xtype: 'button',
+                               text: 'Add new waveband',
+                               handler: function () { fillWaveband(addContainerAndXml(this)); }
+                           }] //waveband items
+                            }] //coverage items
+                    },
+                    {
+                        xtype: 'panel',
+                        id: 'errorPanel',
+                        name: 'errorPanel',
+                        bodyPadding: 5,
+                        border: 0,
+                        width: 500
+                    }], //formpanel items
+
+                buttons: [
+                {
+                    text: "CANCEL",
+                    id: 'buttonCancel',
+                    handler: function () { window.location = resourceManagementURL; }
+                },
+                {
+                    text: 'PREV',
+                    disabled: true,
+                    autoHeight: true,
+                    formBind: true,
+                    id: 'buttonPrev',
+                    handler: function () { prevPage(); }
+                },
+                {
+                    text: 'NEXT',
+                    disabled: true,
+                    autoHeight: true,
+                    formBind: true,
+                    id: 'buttonNext',
+                    handler: function () { nextPage(); }
+                },
+                {
+                    text: 'SUBMIT',
+                    disabled: true,
+                    autoHeight: true,
+                    formBind: true,
+                    id: 'buttonSubmitResource',
+                    handler: function () { submitResource(); }
+                }] //formpanel buttons
+            }] //centerpanel items
+        }); //viewport
+
+        // Apply defaults for config.       
+        Ext.applyIf(config, {
+            width: 1100,
+            autoScroll: true
+        });
+
+        this.callParent([config]);
+
+        this.centerPanel = Ext.getCmp('centerViewport');
+        checkLoginInfo();
+    }
+});

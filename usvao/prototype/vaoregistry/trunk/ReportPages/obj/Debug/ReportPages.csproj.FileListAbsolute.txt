@@ -1,0 +1,14 @@
+C:\projects\registry\ReportPages\bin\ReportPages.dll
+C:\projects\registry\ReportPages\bin\ReportPages.pdb
+C:\projects\registry\ReportPages\obj\Debug\ResolveAssemblyReference.cache
+C:\projects\registry\ReportPages\obj\Debug\ReportPages.dll
+C:\projects\registry\ReportPages\obj\Debug\ReportPages.pdb
+C:\projects\registry\ReportPages\bin\registry.dll
+C:\projects\registry\ReportPages\bin\registry.pdb
+C:\projects\vaoregistry\ReportPages\obj\Debug\ResolveAssemblyReference.cache
+C:\projects\vaoregistry\ReportPages\obj\Debug\ReportPages.pdb
+C:\projects\vaoregistry\ReportPages\bin\ReportPages.dll
+C:\projects\vaoregistry\ReportPages\bin\ReportPages.pdb
+C:\projects\vaoregistry\ReportPages\bin\registry.dll
+C:\projects\vaoregistry\ReportPages\bin\registry.pdb
+C:\projects\vaoregistry\ReportPages\obj\Debug\ReportPages.dll

@@ -1,0 +1,349 @@
+body {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 90%;
+	color: #000;
+	background-color: #fff;
+	margin-top: 10px;
+	padding: 0;
+}
+
+/* busy cursor */
+.busy {
+	cursor: progress;
+}
+
+/* Links */
+a {
+	color: #00F;
+}
+
+a:link {
+	/* color: #494; */
+	text-decoration: none;
+}
+a:visited{
+	/* color: #040; */
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+	color: #000;
+}
+
+/* Form */
+
+input.submit {
+	color: #c00;
+}
+input.reset {
+	color: #00c;
+}
+
+.searchnote {
+	font-size: 80%;
+	font-weight: normal;
+	line-height: 115%;
+	color: gray;
+	margin: 0 0 1em 0;
+	padding: 0 0;
+}
+
+#output {
+	clear: both;
+}
+
+/* headings and paragraphs */
+
+h2 {
+	text-align: left;
+	font-style: italic;
+	color: #666;
+	clear: both;
+	font-size: 120%;
+}
+
+h3 {
+	padding: 0;
+	text-align: left;
+	display: inline;
+	font-size: 100%;
+}
+
+p { text-indent: 0px; }
+
+/* "button box" display */
+
+.bbox {
+	border: 1px solid #bca;
+	color: #494;
+	padding: 0 3px 0 3px;
+	background-color: #dec;
+	text-align: center;
+}
+.bbox:hover {
+	border-color: #271;
+	background-color: #9d8;
+	color: #000;
+	cursor: pointer;
+}
+
+/* VOTable */
+
+td.fieldparam {
+	vertical-align: top;
+	padding: 0 1em 0 0;
+}
+
+table.parameters {
+	border: 1px solid #ccc;
+	font-size: 90%;
+}
+
+table.parameters th {
+	color: #fff;
+	background-color: #036;
+	border: 1px solid #ccc;
+	margin: 0 0;
+	padding: 0.1em 0.2em;
+}
+
+table.parameters tr:hover {
+	background-color: #ffb;
+}
+
+table.fields {
+	border: 1px solid #ccc;
+	font-size: 90%;
+}
+
+table.fields th {
+	color: #fff;
+	background-color: #036;
+	border: 1px solid #ccc;
+	margin: 0 0;
+	padding: 0.1em 0.2em;
+}
+
+table.fields tr:hover {
+	background-color: #ffb;
+}
+
+table.fields tr.separator {
+	background-color: #ddd;
+	font-style: italic;
+}
+
+table.data {
+	clear: both;
+	border: 1px solid #ccc;
+	font-size: 90%;
+	table-layout: fixed;
+}
+
+tr.odd {
+	background-color: #eee;
+}
+
+table.data tr:hover {
+	background-color: #ffb;
+}
+
+table.data tr.selectedimage {
+	background-color: #bda;
+}
+
+table.data tr.selectedimage:hover {
+	background-color: #9d8;
+}
+
+table.data th {
+	color: #fff;
+	background-color: #036;
+	border: 1px solid #036;
+	margin: 0 0;
+	padding: 0.1em 0.8em;
+	cursor: pointer;
+}
+
+table.data th.desc {
+    width: 30em;
+}
+
+table.data th.unsortable {
+	cursor: default;
+}
+
+table.data th.midwidth {
+	width: 12em;
+}	
+
+table.data th.selwidth { width: 5em; }
+
+table.data th.smallwidth {
+	width: 2em;
+}
+
+table.data th:hover {
+	background-color: #369;
+}
+
+table.data td {
+	white-space: nowrap;
+	text-align: left;
+    vertical-align: top;
+}
+
+table.data td.center {
+	white-space: nowrap;
+	text-align: center;
+    vertical-align: top;
+}
+
+table.data td.title {
+	white-space: normal;
+	text-align: left;
+}
+
+table.data td.wrappable {
+	white-space: normal;
+	text-align: left;
+    vertical-align: top;
+}
+
+table.data td.desc {
+	white-space: nowrap;
+	text-align: left;
+    vertical-align: top;
+    width: 60em;
+}
+
+table.data td.midwidth {
+	width: 12em;
+}
+
+table.data td.selwidth { width: 5em; }
+
+table.data td.smallwidth {
+	width: 2em;
+}
+
+th.ascending {
+	background-image: url(../images/asc.png);
+	background-position: 100% 50%;
+	background-repeat: no-repeat;
+	width: 12em;
+}
+
+th.descending {
+	background-image: url(../images/desc.png);
+	background-position: 100% 50%;
+	background-repeat: no-repeat;
+	width: 12em;
+}
+
+/* save buttons */
+div.saveResultsButtons 
+{
+	float: left;
+	clear: both;
+	height: 2.8em;
+	margin: 0.5em 0 0.5em 0;
+	padding: 0.3em 0 0.3em 0;
+	text-align: left;
+}
+
+/* paging buttons */
+
+div.buttons {
+	clear: both;
+	width: 100%;
+	height: 1.8em;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	margin: 0.5em 0 0.5em 0;
+	padding: 0.3em 0 0.3em 0;
+	text-align: center;
+	font-size: 90%;
+}
+
+div.buttons div.pagelabel {
+	float: left;
+	padding: 0.3em 0 0 0;
+	margin: 0 0;
+	height: 0;
+}
+
+div.buttons div.pageLengthControl {
+}
+
+div.buttons a {
+	text-decoration: none;
+}
+div.buttons a:link {
+	color: #494;
+}
+div.buttons a:visited {
+	color: #494;
+}
+div.buttons a:hover {
+	color: #000;
+}
+
+div.buttons div.pagebuttons {
+	float: right;
+	padding: 0.3em 0 0 0;
+	margin: 0 0;
+	height: 0;
+}
+
+div.buttons span.button {
+	display: inline;
+	margin: 0 0;
+}
+
+div.buttons span.button.inactive {
+	color: #bbb;
+	text-decoration: none;
+	cursor: default;
+}
+
+.rev, .rrev {
+	padding: 2px 2px 2px 26px;
+	background-position: 0% 50%;
+	background-repeat: no-repeat;
+	text-align: left;
+}
+
+.fwd, .ffwd {
+	padding: 2px 26px 2px 2px;
+	background-position: 100% 50%;
+	background-repeat: no-repeat;
+	text-align: right;
+}
+
+.rrev { background-image: url(../images/afirst.gif); }
+.rev { background-image: url(../images/aprev.gif); }
+.fwd { background-image: url(../images/anext.gif); }
+.ffwd { background-image: url(../images/alast.gif); }
+
+.rrev:hover { background-image: url(../images/afirst_hl.gif); }
+.rev:hover { background-image: url(../images/aprev_hl.gif); }
+.fwd:hover { background-image: url(../images/anext_hl.gif); }
+.ffwd:hover { background-image: url(../images/alast_hl.gif); }
+
+.rrev.inactive { background-image: url(../images/afirst_in.gif); }
+.rev.inactive { background-image: url(../images/aprev_in.gif); }
+.fwd.inactive { background-image: url(../images/anext_in.gif); }
+.ffwd.inactive { background-image: url(../images/alast_in.gif); }
+
+@media print {
+	div.pagebuttons {
+		display: none;
+	}
+	div.pageLengthControl {
+		display: none;
+	}
+	div.saveResultsButtons {
+		display: none;
+	}
+}

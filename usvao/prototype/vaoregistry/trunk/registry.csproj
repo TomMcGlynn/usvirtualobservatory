@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{030B00DA-2C47-40CC-B064-973EAD48B728}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>registry</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>registry</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/registry/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.5.9.10348, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NUnit\DotNet\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web">
+      <Name>System.Web</Name>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Name>System.Web.Services</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="altVOTable-1_1.cs" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ConeSearch-v1_0_VOResource-v1_0_VORegistry-v1_0_VOStandard-v0_1_VODataService-v1_0_SSA-v0_1_SkyNode-v0_2_SIA-v1_0_stc_v1_30_xlink_RegistryInterface.cs" />
+    <Compile Include="contact.aspx.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FAQ.aspx.cs">
+      <DependentUpon>FAQ.aspx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="getRecord.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Harvester.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="keywordsearch.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagedAuthority.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NVORegInt.asmx.cs" />
+    <Compile Include="OAI-PMH.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="oai.aspx.cs">
+      <DependentUpon>oai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="oai_dc_simpledc20021212.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjectMaker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="projects.aspx.cs">
+      <DependentUpon>projects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Publish.aspx.cs">
+      <DependentUpon>Publish.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QueryRegistry.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="querytest.aspx.cs">
+      <DependentUpon>querytest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registry.asmx.cs">
+      <DependentUpon>Registry.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RegistryAdmin.asmx.cs">
+      <DependentUpon>RegistryAdmin.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RegistryTest.cs" />
+    <Compile Include="regsupportmessages.cs" />
+    <Compile Include="Resource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="riserver.cs" />
+    <Compile Include="RIStandardService.asmx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RIWebService.asmx.cs" />
+    <Compile Include="riws.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="savexml.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="search.aspx.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ServiceCone.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceSimpleImageAccess.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceSkyNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimpleResource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SkyNodeType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="STOAI.asmx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Summary.aspx.cs">
+      <DependentUpon>Summary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="top.aspx.cs">
+      <DependentUpon>top.aspx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UpdateRegistry.aspx.cs">
+      <DependentUpon>UpdateRegistry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VOResourceParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VOR_XML.cs" />
+    <Content Include="apptemplate.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="bot.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="contact.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Develop.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="down.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="FAQ.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="getRecord.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Global.asax">
+    </Content>
+    <Content Include="help.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="help\clients.aspx" />
+    <Content Include="help\gutter.aspx" />
+    <Content Include="help\help.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="help\OAI.aspx" />
+    <Content Include="images\hst.gif" />
+    <Content Include="images\stars.jpg" />
+    <Content Include="JS\filter.js" />
+    <Content Include="JS\fsm.js" />
+    <Content Include="JS\multiStart.js" />
+    <Content Include="JS\params.js" />
+    <Content Include="JS\query.js" />
+    <Content Include="JS\sarissa.js" />
+    <Content Include="JS\statemanager.js" />
+    <Content Include="JS\styles.css" />
+    <Content Include="JS\regview.css" />
+    <Content Include="JS\regview.js" />
+    <Content Include="JS\regview.xsl" />
+    <Content Include="KeywordSearch.aspx" />
+    <Content Include="NVORegInt.asmx" />
+    <Content Include="makegutter.aspx" />
+    <Content Include="oai.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="projects.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Publish.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="publishdown.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="QueryRegistry.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="querytest.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Registry.asmx">
+    </Content>
+    <Content Include="RegistryAdmin.asmx">
+    </Content>
+    <Content Include="RIStandardService.asmx" />
+    <Content Include="riws.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="savexml.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="VORTemplate\hst.gif" />
+    <Content Include="VORTemplate\stars.jpg" />
+    <Content Include="xpublish.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="xsl\RegistryResults_vot3.xsl" />
+    <Content Include="xsl\RegistryResults_vot_orig.xsl" />
+    <Content Include="RIWebService.asmx">
+    </Content>
+    <Content Include="search.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Styles.css" />
+    <Content Include="Summary.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="top.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="UpdateRegistry.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="VOform.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="votable.xsl" />
+    <Content Include="images\afirst.gif" />
+    <Content Include="images\afirst_hl.gif" />
+    <Content Include="images\afirst_in.gif" />
+    <Content Include="images\alast.gif" />
+    <Content Include="images\alast_hl.gif" />
+    <Content Include="images\alast_in.gif" />
+    <Content Include="images\anext.gif" />
+    <Content Include="images\anext_hl.gif" />
+    <Content Include="images\anext_in.gif" />
+    <Content Include="images\aprev.gif" />
+    <Content Include="images\aprev_hl.gif" />
+    <Content Include="images\aprev_in.gif" />
+    <Content Include="images\asc.png" />
+    <Content Include="images\desc.png" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="web\SkyFooter.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="web\SkyHeader.aspx" />
+    <Content Include="web\styles.css" />
+    <EmbeddedResource Include="Global.asax.resx">
+      <DependentUpon>Global.asax.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="oai.aspx.resx">
+      <DependentUpon>oai.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Publish.aspx.resx">
+      <DependentUpon>Publish.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QueryRegistry.aspx.resx">
+      <DependentUpon>QueryRegistry.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registry.asmx.resx">
+      <DependentUpon>Registry.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistryAdmin.asmx.resx">
+      <DependentUpon>RegistryAdmin.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="STOAI.asmx.resx">
+      <DependentUpon>STOAI.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Summary.aspx.resx">
+      <DependentUpon>Summary.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="top.aspx.resx">
+      <DependentUpon>top.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateRegistry.aspx.resx">
+      <DependentUpon>UpdateRegistry.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="registry.vsdisco" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

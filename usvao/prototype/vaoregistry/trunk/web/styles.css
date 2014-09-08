@@ -1,0 +1,439 @@
+
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	padding: 0px;
+
+}
+
+.style2 
+{
+	font-size: 14px; 
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.style4 
+{
+	font-size: 16px; 
+	font-family: Arial, Helvetica, sans-serif; 
+	color: #1C376C; 
+}
+
+.style6 
+{
+	font-size: 16px; 
+	font-family: Arial, Helvetica, sans-serif; 
+	color: #FFFFFF; 
+	text-decoration: underline;
+}
+
+
+.home
+{
+	font-size: 12px; 
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FF0000;
+	font-style: italic;
+}
+
+
+.students 
+{
+	font-size: 12px; 
+	font-family: Arial, Helvetica, sans-serif; 
+	color: #FF5500;
+	font-style: italic;
+
+}
+
+.teachers
+{
+	font-size: 12px; 
+	font-family: Arial, Helvetica, sans-serif;
+	color: #932525;
+	font-style: italic;
+
+}
+
+.informalsci
+{
+	font-size: 12px; 
+	font-family: Arial, Helvetica, sans-serif;
+	color: #A87600;
+	font-weight: bold;
+	font-style: italic;
+
+}
+
+.amateurs
+{
+	font-size: 12px; 
+	font-family: Arial, Helvetica, sans-serif;
+	color: #7D1A8C;
+	font-weight: bold;
+	font-style: italic;
+
+}
+
+
+
+
+
+.code { 
+font-size: 10pt; 
+font-family: Courier, Fixed;
+}
+
+
+.small {font-size: 8pt}
+
+.tiny {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 7pt
+}
+
+.hi,a.hi:visited,a.hi:link,.subhi,a.subhi:visited,a.subhi:link { color:white; font-size:8pt; font-weight: bold; text-align:left; text-decoration: none; }
+
+.lo,.sublo  { font-size:8pt; font-weight: bold; text-align:left; }
+
+.menu { background: #6ba5d7; font-size:8pt; font-weight: bold; text-align:center; }
+.menuadvanced {background: #6ba5d7; font-size:10pt; font-weight: bold; text-align:top; }
+.nvobar { background: #000000; font-size:8pt; text-align:center; }
+a.sublo:link,a.sublo:visited, a.lo:link,a.lo:visited,a.menu:link,a.menu:visited  { color: #FFffff; text-decoration: none; target="top"; } 
+a.sublo:hover,a.subhi:hover,a.menu:hover , a.lo:hover , a.hi.hover, a.menulink:hover { background: #ff9999; color: #3333FF; text-decoration: none; } 
+
+.kids
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 16pt
+}
+.kidsheader
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: x-large
+}
+
+.kidscaption
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 16pt;
+    COLOR: #550b4f;
+    FONT-STYLE: italic;
+    FONT-WEIGHT: bold;
+
+
+}
+
+.menulink
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    COLOR: #0000fe;
+    LINE-HEIGHT: 20px;
+    FONT-FAMILY: Verdana, Palladio, Helvetica,sans-serif;
+    TEXT-DECORATION: none;
+}
+.menuheadlink
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 13pt;
+    COLOR: white;
+    Background : #004080;
+    FONT-FAMILY: Times New Roman, Times;
+    TEXT-DECORATION: none;
+    Text-Align: Left;
+}
+.menuheadlink A:hover
+{
+    COLOR: #fe0000
+    background: lightblue;
+}
+
+
+
+A
+{
+    COLOR: #0000fe;
+    FONT-FAMILY: verdana,helvetica,sans-serif;
+    text-decoration: underline;
+
+
+}
+
+
+
+.title { 
+    COLOR: #00337d;
+    BACKGROUND-COLOR: #DDDDDD;
+    FONT-FAMILY: verdana,helvetica,sans-serif;
+    FONT-SIZE: 18pt;
+    FONT-WEIGHT: bold;
+} 
+
+img {
+
+margin: 0px;
+} 
+
+
+
+.MenuBox {
+    BACKGROUND-COLOR: #F7FFFF;
+    border-top: 1px solid lightblue;
+    border-left: 1px solid lightblue;
+    border-right: 1px solid lightblue;
+    border-bottom: 1px solid lightblue;
+}
+.tablemenu {
+    BACKGROUND-COLOR: #FFFFCC;
+}
+
+
+P {
+    COLOR: #000000;
+    FONT-FAMILY: verdana,helvetica,sans-serif;
+    FONT-SIZE:10pt;
+}
+
+
+TABLE {
+    border-width: 0px;
+    padding: 0px;    
+    margin-bottom: 0px;
+}
+
+TD
+{
+    COLOR: #000000;
+    FONT-FAMILY: verdana,helvetica,sans-serif;
+    FONT-SIZE:10pt;
+
+    cellpadding: 0px;
+    margin-bottom: 0px;
+
+}
+
+H1
+{
+    FONT-FAMILY: verdana,helvetica,sans-serif;
+    FONT-SIZE: 16pt
+}
+H2
+{
+    COLOR: #000000;
+    FONT-SIZE: 13pt;
+    FONT-FAMILY: verdana,helvetica,sans-serif;
+}
+H3
+{
+    COLOR: #000000;
+    FONT-FAMILY: verdana,helvetica,sans-serif;
+    FONT-SIZE: 12pt
+}
+H4
+{
+    COLOR: #000000;
+    FONT-FAMILY: verdana,helvetica,sans-serif;
+    FONT-SIZE: 11pt;
+}
+H5
+{
+    COLOR: #000000;
+    FONT-FAMILY: verdana,helvetica,sans-serif;
+    FONT-SIZE: 11pt;
+}
+H6
+{
+    COLOR: #000000;
+    FONT-FAMILY: verdana,helvetica,sans-serif;
+    FONT-SIZE: 11pt;
+}
+
+SPAN
+{
+    COLOR: #000000;
+    FONT-FAMILY: verdana,helvetica,sans-serif
+}
+EM
+{
+    COLOR: #c40d23;
+    FONT-WEIGHT: 800
+}
+
+.sml
+{
+    FONT-SIZE: 8pt
+}
+.med
+{
+    FONT-SIZE: 10pt
+}
+.lrg
+{
+    FONT-SIZE: 12pt
+}
+
+
+.thi
+{
+    FONT-FAMILY:Times New Roman;
+    FONT-SIZE: 14pt;
+    COLOR: #CDE5AD;
+    font-weight:bold;
+}
+.tlo
+{
+    FONT-FAMILY:Times New Roman;
+    FONT-SIZE: 13pt;
+    COLOR: #CDE5AD;
+    font-weight:bold;
+}
+.s
+{
+    BACKGROUND-COLOR: #552255;
+    COLOR: #ddddff
+}
+.t
+{
+    BACKGROUND-COLOR: #333366;
+    COLOR: #ddddff
+}
+.b
+{
+    BACKGROUND-COLOR: #000060;
+    COLOR: #ddddff
+}
+.h
+{
+    BACKGROUND-COLOR: #006060;
+    COLOR: #ddddff
+}
+.tsml
+{
+    BACKGROUND-COLOR: #333366;
+    COLOR: #ddddff;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT:normal;
+}
+.bsml
+{
+    BACKGROUND-COLOR: #000060;
+    COLOR: #ddddff;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT:normal;
+}
+.hsml
+{
+    BACKGROUND-COLOR: #006060;
+    COLOR: #ddddff;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT:normal;
+}
+
+.title
+{
+    COLOR: #000000;
+    FONT-FAMILY: verdana,helvetica,sans-serif;
+    FONT-SIZE: 16pt
+}
+
+.caption
+{
+    COLOR: #550b4f;
+    FONT-WEIGHT: bold;
+    FONT-STYLE: italic;
+}
+
+.bodytext
+{
+font-family:Verdana;
+font-weight:normal;
+font-size:10pt;
+color:#C3C3C3;
+}
+.midbodytext
+{
+font-size:8pt;
+}
+.smallbodytext
+{
+font-size:7pt;
+}
+
+.imgborder
+{
+	border-right: #cde5ad 1px solid;
+	border-top: #cde5ad 1px solid;
+	border-left: #cde5ad 1px solid;
+	border-bottom: #cde5ad 1px solid;
+}
+
+.imgnoborder
+{
+    BORDER-RIGHT: 0px ;
+    BORDER-TOP: 0px ;
+    BORDER-LEFT: 0px solid;
+    BORDER-BOTTOM: 0px solid
+}
+
+.button	{color:#000000; background:#d5d5d5;}
+th	  { font-size: 9pt; font-weight:bold; text-align: center; }
+
+.question
+{
+background-color: #F4BF3A;
+color: black;
+}
+
+.exercise
+{
+background-color: #EEAEEE;
+color: black;
+}
+
+.navibutton
+{
+	font-size: 12px; 
+	font-family: Arial, Helvetica, sans-serif; 
+	color: #000000; 
+	text-decoration: none;
+}
+
+.navibutton A:hover
+{
+	color: #000000;
+}
+
+.searchbar
+{
+	font-size: 14px; 
+	font-family: Arial, Helvetica, sans-serif; 
+	color: #000000; 
+	text-decoration: none;
+}
+.center 
+{ 
+	text-align: center; 
+} 
+.banner
+{
+	color: Navy;
+	font-size: 16pt;
+	font-family:Verdana,Arial,sans-serif;
+	font-weight:bolder;
+}
+.textSearch
+{
+	color: Navy;
+}
+.MenuBox 
+{
+	color:Navy;
+    border-top: 2px solid Navy;
+    border-left: 2px solid Navy;
+    border-right: 1px solid Navy;
+    border-bottom: 1px solid Navy;
+}

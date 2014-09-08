@@ -1,0 +1,1243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="registry.contact" Collapsed="true">
+    <Position X="25.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>contact.aspx.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAQAAAAAAAIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.Global" Collapsed="true">
+    <Position X="21.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Global.asax.cs</FileName>
+      <HashCode>AAAAAAAAAAAAACAAAAEAAAACAAAAAUCIBQAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.Harvester" Collapsed="true">
+    <Position X="23.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Harvester.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAACAAAAACAAAACAAAAAAAAAAAAQAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.ListColumns" Collapsed="true">
+    <Position X="20" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ListColumns.aspx.cs</FileName>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAACAAAAAAQAAAAAAAIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.ManagedAuthority" Collapsed="true">
+    <Position X="3" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ManagedAuthority.cs</FileName>
+      <HashCode>AgAAABAAAAAAAAQAAAAAQIAAAEAAAAAAAAAAAAACAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.ObjectMaker" Collapsed="true">
+    <Position X="27" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ObjectMaker.cs</FileName>
+      <HashCode>AAAAAAAAEBAAAAAAAAACAAAAAAAABAAAAAAAAiAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.projects" Collapsed="true">
+    <Position X="35.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>projects.aspx.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAQAAAAAAAIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.Publish" Collapsed="true">
+    <Position X="20" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Publish.aspx.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAQAAAACAAIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.QueryRegistry" Collapsed="true">
+    <Position X="21.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>QueryRegistry.aspx.cs</FileName>
+      <HashCode>AAKAAAAAAAFAEABDAACAAEwCgAAAQAYBAAACAAOAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.Registry" Collapsed="true">
+    <Position X="14.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Registry.asmx.cs</FileName>
+      <HashCode>IAAEAIAAACIAAAAYACCAAAISAEAAACACAAAABIAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.RegistryAdmin" Collapsed="true">
+    <Position X="13.5" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>RegistryAdmin.asmx.cs</FileName>
+      <HashCode>AAAAgAAAECJAAAAIABCAAAACAEAAhEBgAQEAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.DBResource" Collapsed="true">
+    <Position X="4" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Resource.cs</FileName>
+      <HashCode>AgUMUAKFBEggAkRAwMhAQIAAKEAAQYAAAQQAYAAQAFA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.ResourceRelation" Collapsed="true">
+    <Position X="20" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Resource.cs</FileName>
+      <HashCode>AgAAAAAAAAAAAAYAAAgAQIAABAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.ResourceInterface" Collapsed="true">
+    <Position X="32.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Resource.cs</FileName>
+      <HashCode>AoAAAIAAAAAAAAQAAAAAQYAAgAABAAAAAAAAAAAAABA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.InterfaceParam" Collapsed="true">
+    <Position X="32.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Resource.cs</FileName>
+      <HashCode>AoAEAAAAAAAgAAQAIAAAQIAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.search" Collapsed="true">
+    <Position X="23.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>search.aspx.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAQAAAAAAAIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.SearchRegistry" Collapsed="true">
+    <Position X="25.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SearchRegistry.aspx.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAQAAAAAAAIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.ServiceCone" Collapsed="true">
+    <Position X="0.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ServiceCone.cs</FileName>
+      <HashCode>AwAAAAAAAAAAAAQAIAAAQIAAAEAAAAAAAABAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.ServiceSimpleImageAccess" Collapsed="true">
+    <Position X="5.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ServiceSimpleImageAccess.cs</FileName>
+      <HashCode>AgDAAAAAAgAAAASBIACARoAAAEgAAAAAAABAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.ServiceSkyNode" Collapsed="true">
+    <Position X="7.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ServiceSkyNode.cs</FileName>
+      <HashCode>AgAABAAAAEAAAAQAIAAIQIAAAEAAAAAAAACAAAAAgAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.SimpleResource" Collapsed="true">
+    <Position X="28.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SimpleResource.cs</FileName>
+      <HashCode>IAAIBAAFAEgoAEAAKMggAAAAiEgARIABEQAAQAAQAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.SQLHelper" Collapsed="true">
+    <Position X="21.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SQLHelper.cs</FileName>
+      <HashCode>AAFAABgAAMU0AAAASAAcQEGpkUAAggBQoAaBAjAQBCc=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.STOAI" Collapsed="true">
+    <Position X="23.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>STOAI.asmx.cs</FileName>
+      <HashCode>AIAAAABAACAQAAAIAEDCAAACAAAgAAwAAAAAAAEAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.Summary" Collapsed="true">
+    <Position X="27" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Summary.aspx.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAQAABACAAIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.Testing" Collapsed="true">
+    <Position X="15.75" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Testing.asmx.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAkAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.UpdateRegistry" Collapsed="true">
+    <Position X="20" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UpdateRegistry.aspx.cs</FileName>
+      <HashCode>AAAAAACAAAIAAAAAAAAAAAACAAAAAAUBAAAAAEIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.VOResourceParser" Collapsed="true">
+    <Position X="27" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResourceParser.cs</FileName>
+      <HashCode>iAEEACEEEAIxCAQIQMIAISwEg2DIgAkAWIWoyAAYouA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.votxslt" Collapsed="true">
+    <Position X="30.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>votxslt.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAEAAAAAEAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai.OAIPMHtype" Collapsed="true">
+    <Position X="25.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AAAAAIAAAAAACAAAAAAAAACAAAAAACAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai.requestType" Collapsed="true">
+    <Position X="28.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>EAAAAAIAAAAQAAAAACQAAAAAAAAAAABABAAgAACAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai.ListRecordsType" Collapsed="true">
+    <Position X="23.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>EAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai.recordType" Collapsed="true">
+    <Position X="23.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AAQAAAQAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai.headerType" Collapsed="true">
+    <Position X="25.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AAQIAAAAAAAAAAAAAABAAgAAAAAAAABAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai.resumptionTokenType" Collapsed="true">
+    <Position X="21.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAACAAAAAAAEAAAAAgAAAAAAQ=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai.ListIdentifiersType" Collapsed="true">
+    <Position X="21.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>EAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai.GetRecordType" Collapsed="true">
+    <Position X="20" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai.setType" Collapsed="true">
+    <Position X="27" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAIAAABAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai.ListSetsType" Collapsed="true">
+    <Position X="25.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>EAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai.metadataFormatType" Collapsed="true">
+    <Position X="34" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAgBAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai.IdentifyType" Collapsed="true">
+    <Position X="27" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAQAIAAIAAAAAAAAAAAAAAAwAEAAAiA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai.OAIPMHerrorType" Collapsed="true">
+    <Position X="23.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="nvo.oai.oai" Collapsed="true">
+    <Position X="20" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>oai.aspx.cs</FileName>
+      <HashCode>KCAAAEAAAAAAAAAAAAAAAAACAAAAAAQACAAAAgIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai_dc.oai_dcType" Collapsed="true">
+    <Position X="21.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>oai_dc_simpledc20021212.cs</FileName>
+      <HashCode>AAAgAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="oai_dc.elementType" Collapsed="true">
+    <Position X="30.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>oai_dc_simpledc20021212.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAQAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Capability" Collapsed="true">
+    <Position X="3" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.OSNCapRestriction" Collapsed="true">
+    <Position X="3" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.OSNCapability" Collapsed="true">
+    <Position X="3" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAABAAAAEAAAAAAIAAIAAAAAAAAAAAAAACAAAAAgAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.CSCapRestriction" Collapsed="true">
+    <Position X="5.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.ConeSearchCapability" Collapsed="true">
+    <Position X="5.25" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAIAAAAAAAAIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.SIACapRestriction" Collapsed="true">
+    <Position X="0.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.SIACapability" Collapsed="true">
+    <Position X="0.75" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAEgAAAgAAACAAAAAAAAkAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.SkySize" Collapsed="true">
+    <Position X="30.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.ImageSize" Collapsed="true">
+    <Position X="28.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Interface" Collapsed="true">
+    <Position X="4" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.AccessURL" Collapsed="true">
+    <Position X="20" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAABAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.WebBrowser" Collapsed="true">
+    <Position X="0.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.GLUService" Collapsed="true">
+    <Position X="3" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.WebService" Collapsed="true">
+    <Position X="5.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.ParamHTTP" Collapsed="true">
+    <Position X="7.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAQAAAAAAAgAAAAAAAAAAABA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Param" Collapsed="true">
+    <Position X="30.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAEAgAAAAAgAAAAIAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.DataType" Collapsed="true">
+    <Position X="25.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Format" Collapsed="true">
+    <Position X="34" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Relationship" Collapsed="true">
+    <Position X="27" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.ResourceName" Collapsed="true">
+    <Position X="34" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Source" Collapsed="true">
+    <Position X="32.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Content" Collapsed="true">
+    <Position X="30.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAIAIAAQAACAAAABAAEAAEEAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Resource" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAQCAAAAQAAAAAAAAAAAAAAARAQAAABAAACABEAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Curation" Collapsed="true">
+    <Position X="20" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAACAAAAQAAAAAAAAAAAgAAAAQAAAAAAAAAQAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Creator" Collapsed="true">
+    <Position X="35.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Date" Collapsed="true">
+    <Position X="27" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Contact" Collapsed="true">
+    <Position X="27" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAIEAAAAAAAAAACAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Organisation" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Service" Collapsed="true">
+    <Position X="6.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.SkyService" Collapsed="true">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAgIAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Coverage" Collapsed="true">
+    <Position X="34" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAACAIAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Spatial" Collapsed="true">
+    <Position X="35.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AACAAAAAAAAAAAAAAAECCCAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Region" Collapsed="true">
+    <Position X="13" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.CircleRegion" Collapsed="true">
+    <Position X="10.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAgAAAAACAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Position" Collapsed="true">
+    <Position X="34" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.AllSky" Collapsed="true">
+    <Position X="13" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.CoordRange" Collapsed="true">
+    <Position X="15.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.AngleRange" Collapsed="true">
+    <Position X="23.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Spectral" Collapsed="true">
+    <Position X="20" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAIAAAAAAAAAAACICAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.WavelengthRange" Collapsed="true">
+    <Position X="32.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Temporal" Collapsed="true">
+    <Position X="35.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAiACAAAAAAAAAAAAAAAAAAACE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.TabularSkyService" Collapsed="true">
+    <Position X="5.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Table" Collapsed="true">
+    <Position X="30.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAABAAQAAEAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.OpenSkyNode" Collapsed="true">
+    <Position X="3.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.ConeSearch" Collapsed="true">
+    <Position X="5.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.SimpleImageAccess" Collapsed="true">
+    <Position X="7.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Registry" Collapsed="true">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.DataCollection" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAgICAAAgAAAAAAAAAAAAAAAiAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.vr0_10.Authority" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.SkyNodeType" Collapsed="true">
+    <Position X="15.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SkyNodeType.cs</FileName>
+      <HashCode>AAAABAAAAEAAAAAAIAAIAAAAAAAAAAAAAACAAAAAgAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.VODescription" Collapsed="true">
+    <Position X="23.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.ResourceType" Collapsed="true">
+    <Position X="13" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AASAAKAAAAAAAEAAAIAAAAAARAQAQIAAAQAAQEAAAAQ=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.IdentifierType" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAIAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.AccessURLType" Collapsed="true">
+    <Position X="21.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAABAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.InterfaceType" Collapsed="true">
+    <Position X="34" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.MaxImageSize" Collapsed="true">
+    <Position X="30.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.MaxImageExtent" Collapsed="true">
+    <Position X="28.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.MaxQueryRegionSize" Collapsed="true">
+    <Position X="32.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.CapabilityType" Collapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAgAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.ConeSearchType" Collapsed="true">
+    <Position X="10.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAgAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.SimpleImageAccessType" Collapsed="true">
+    <Position X="13" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAgAAAAABIAAAIAAQAAAAgAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.NameReferenceType" Collapsed="true">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAQAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.CreatorType" Collapsed="true">
+    <Position X="17.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.DateType" Collapsed="true">
+    <Position X="28.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.ContactType" Collapsed="true">
+    <Position X="28.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAAAAAAAAAAAAAQAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.CurationType" Collapsed="true">
+    <Position X="21.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>IAAABAAAAAAAAAAACAAAAAAAAAAAAAABEAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.ResourceReferenceType" Collapsed="true">
+    <Position X="35.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAABAAAgAEAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.RelatedResourceType" Collapsed="true">
+    <Position X="25.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAABAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.SourceType" Collapsed="true">
+    <Position X="34" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.SummaryType" Collapsed="true">
+    <Position X="28.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAABAgAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.LogicalIdentifierType" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.AuthorityType" Collapsed="true">
+    <Position X="10.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.OrganisationType" Collapsed="true">
+    <Position X="13" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.ProjectType" Collapsed="true">
+    <Position X="13" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.ServiceType" Collapsed="true">
+    <Position X="15.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.RegistryType" Collapsed="true">
+    <Position X="15.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.VOResource" Collapsed="true">
+    <Position X="25.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.VOTABLE" Collapsed="true">
+    <Position X="28.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAQAACAAAAAAgAAAAAAAAAAAAAAAAAACAAAgBAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.COOSYS" Collapsed="true">
+    <Position X="32.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAgACAAAAAAAAACAAAAAAAAAAAAAAQAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.PARAM" Collapsed="true">
+    <Position X="32.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAFACAAAABggAAAQAAAAIAAAAAEAGAAAAAQAAAAIAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.VALUES" Collapsed="true">
+    <Position X="21.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAQABAAAAAAgBAAIAAAAAAAAAABAAAAAAAAAAAAABA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.MIN" Collapsed="true">
+    <Position X="35.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAACAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.MAX" Collapsed="true">
+    <Position X="27" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAACAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.OPTION" Collapsed="true">
+    <Position X="28.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEACAAAAAAAAAAEAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.LINK" Collapsed="true">
+    <Position X="35.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AIAABAAAwAAAgAAAAAAAAAAAAAAAECAAAAAgQAAAAEA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.INFO" Collapsed="true">
+    <Position X="30.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAEACAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.RESOURCE" Collapsed="true">
+    <Position X="30.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAACAAAAAAgBAAAAAAAAAAAEAFAAAAAAAgBAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.TABLE" Collapsed="true">
+    <Position X="32.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAACACAAAAgAAAAAAAAAAAAAAEAEAAABAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.FIELD" Collapsed="true">
+    <Position X="32.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAFACAAAAAggAAAQAAQAIAAAAAFAEAAAAAQAAAAIAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.DATA" Collapsed="true">
+    <Position X="23.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.DATATABLEFORMATTABLEDATA" Collapsed="true">
+    <Position X="10.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.TD" Collapsed="true">
+    <Position X="34" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.TABLEFORMATType" Collapsed="true">
+    <Position X="9.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.StreamTABLEFORMATType" Collapsed="true">
+    <Position X="8.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.STREAM" Collapsed="true">
+    <Position X="25.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAhAoAAAAAgQAAAgAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="net.ivoa.DATATABLEFORMATFITS" Collapsed="true">
+    <Position X="8.5" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registry.voplot.forward" Collapsed="true">
+    <Position X="35.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>voplot\forward.aspx.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAQAAAAAAAIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="oai.verbType" Collapsed="true">
+    <Position X="23.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AIAAAABAAAAQAAAAAEAAAAAAAAAgAAAAAAAAAAEAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="oai.statusType" Collapsed="true">
+    <Position X="30.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="oai.IdentifyTypeProtocolVersion" Collapsed="true">
+    <Position X="23.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="oai.deletedRecordType" Collapsed="true">
+    <Position X="34" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AAAAAAAAAAAAABAAAAAAIAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="oai.granularityType" Collapsed="true">
+    <Position X="20" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAABAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="oai.OAIPMHerrorcodeType" Collapsed="true">
+    <Position X="34" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OAI-PMH.cs</FileName>
+      <HashCode>BAAAAAAAAQFAACAAAAAAAAABAAAEAABAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="oai_dc.ItemsChoiceType" Collapsed="true">
+    <Position X="30.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>oai_dc_simpledc20021212.cs</FileName>
+      <HashCode>AAAAAAAAQAQAAAoAIAgACAiAAAARAABAAAAAAQAAgAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.vr0_10.ImageServiceType" Collapsed="true">
+    <Position X="27" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAgAAAAAAAAAgAAAAAEAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.vr0_10.AccessURLUse" Collapsed="true">
+    <Position X="21.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAEAAAACAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.vr0_10.ScalarDataType" Collapsed="true">
+    <Position X="28.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>ABADAAABQAAIAAAAACAAAAAAAAADAAAQAAAAQAAAAgA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.vr0_10.HTTPQueryType" Collapsed="true">
+    <Position X="21.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAIAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.vr0_10.RelationshipType" Collapsed="true">
+    <Position X="20" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAEAAAABAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.vr0_10.Type" Collapsed="true">
+    <Position X="20" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>BAAAAAQAAAAAEAEAiEAAiBABAEAgAAAAQAKgFAAACAQ=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.vr0_10.ContentLevel" Collapsed="true">
+    <Position X="25.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAgAAAAAAAAAgAABAACAAAAAAIAIABAAACAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.vr0_10.ResourceStatus" Collapsed="true">
+    <Position X="21.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAIAAAAAg=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.vr0_10.CoordFrame" Collapsed="true">
+    <Position X="28.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>CAAAABAEAAAAAAAABAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.vr0_10.Waveband" Collapsed="true">
+    <Position X="27" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAIEAAAQACAKAAAIAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.vr0_10.Rights" Collapsed="true">
+    <Position X="27" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>SIA-v0_7_ConeSearch-v0_3_OpenSkyNode-v0_1_VORegistry-v0_3_VODataService-v0_5_VOResource-v0_10.cs</FileName>
+      <HashCode>AAAAJAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.AccessURLTypeUse" Collapsed="true">
+    <Position X="20" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAEAAAACAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.InvocationType" Collapsed="true">
+    <Position X="28.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AEAACAAgAAAAAAgAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.ImageServiceType" Collapsed="true">
+    <Position X="25.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAgAAAAAAAAAgAAAAAEAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.RelationshipType" Collapsed="true">
+    <Position X="35.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAEAAAABAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.categoryType" Collapsed="true">
+    <Position X="23.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>BIAAAAAAAAAAEAEAiEAAiBABAEAgAAAAQAKgFAAACAQ=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.ContentLevelType" Collapsed="true">
+    <Position X="27" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAgAAAAAAAAAgAABAACAAAAAAIAIABAAACAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.ResourceTypeStatus" Collapsed="true">
+    <Position X="25.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAIAAAAAg=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.COOSYSSystem" Collapsed="true">
+    <Position X="30.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>CAAAAAAAEIAAAIAAAAAAAAAAAAAAAAAAAAAAAARA4AA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.yesno" Collapsed="true">
+    <Position X="28.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.VALUESType" Collapsed="true">
+    <Position X="21.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.LINKContentrole" Collapsed="true">
+    <Position X="32.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>ABAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.dataType" Collapsed="true">
+    <Position X="32.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>ABADAAABQAAIAAAAACAAAAAAAAADAAAQAAAAQAAAAgA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.FIELDType" Collapsed="true">
+    <Position X="35.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAABAAAEAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.STREAMType" Collapsed="true">
+    <Position X="35.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.STREAMActuate" Collapsed="true">
+    <Position X="32.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AQAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAQCAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.STREAMEncoding" Collapsed="true">
+    <Position X="34" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AQAAAAAAAAEAAAAAACAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.RESOURCEType" Collapsed="true">
+    <Position X="23.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAgAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="net.ivoa.VOTABLEVersion" Collapsed="true">
+    <Position X="25.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VOResource-v0_9_VOCommunity-v0_2_VORegistry-v0_2_SIA-v0_6_ConeSearch-v0_2_VODataServiceCoverage_VOTable.cs</FileName>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+</ClassDiagram>

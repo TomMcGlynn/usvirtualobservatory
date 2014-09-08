@@ -1,0 +1,315 @@
+﻿//because the schema is so complicated and we may need to create subforms, I'm starting off doing this by hand.
+//This is lots of unnecessary typing, I think, and what of it can be eliminated should.
+//In many cases, we're going to have to add 'if the DOM is missing this tag entirely', as well.
+
+
+function fillFormData(formPanel, resourceDOM, newResource) {
+    this.formPanel = formPanel;
+    //form.load: i currently doubt we can get it all into a model here.
+
+    var genfieldset = formPanel.items.get('generalFieldSet');
+
+    var elValue = resourceDOM.getElementsByTagName('title')[0].textContent;
+    if (elValue != null && elValue != '')
+        genfieldset.items.get('title').setValue(elValue);
+
+    elValue = resourceDOM.getElementsByTagName('shortName')[0].textContent;
+    if (elValue != null && elValue != '')
+        genfieldset.items.get('shortName').setValue(elValue);
+
+    if (!newResource) {
+        elValue = resourceDOM.getElementsByTagName('identifier')[0].textContent;
+        if (elValue != null && elValue != '') {
+            genfieldset.items.get('identifier').setValue(elValue);
+            genfieldset.items.get('identifier').disable();
+        }
+    }
+
+    var content = resourceDOM.getElementsByTagName('content')[0];
+    elValue = content.getElementsByTagName('description')[0].textContent;
+    if (elValue != null && elValue != '')
+        genfieldset.items.get('content/description').setValue(elValue);
+
+    //curation tab
+    var curationfieldset = formPanel.items.get('curationFieldSet');
+    var curation = resourceDOM.getElementsByTagName('curation')[0];
+    var elAttribute = '';
+
+    //tdower todo: wrangle the store here?
+    elValue = curation.getElementsByTagName('publisher')[0].textContent;
+    //get attribute id: set dropdown if it exists
+    if (curation.getElementsByTagName('publisher')[0].attributes["ivo-id"] != undefined ) {
+        elAttribute = curation.getElementsByTagName('publisher')[0].attributes["ivo-id"].textContent;
+        if( elAttribute.length > 0 )
+            curationfieldset.items.get('publisherInfo').setValue(elAttribute);
+    }
+    if (curation.getElementsByTagName('version').length > 0)
+        curationfieldset.items.get('version').setValue(curation.getElementsByTagName('version').textContent);
+
+    populateSection(Ext.getCmp('creatorFieldSet'), curation.getElementsByTagName('creator'), fillCreator);
+    populateSection(Ext.getCmp('contributorFieldSet'), curation.getElementsByTagName('contributor'), fillContributor);
+
+    //content tab
+    var contentfieldset = formPanel.items.get('contentFieldSet');
+    if (content.getElementsByTagName('referenceURL').length > 0)
+        contentfieldset.items.get('referenceURL').setValue(content.getElementsByTagName('referenceURL')[0].textContent);
+
+    populateSection(Ext.getCmp('subjectFieldSet'), content.getElementsByTagName('subject'), fillSubject);
+    populateSection(Ext.getCmp('typeFieldSet'), content.getElementsByTagName('type'), fillContentType);
+    populateSection(Ext.getCmp('contentLevelFieldSet'), content.getElementsByTagName('contentLevel'), fillContentLevel);
+
+    var coverage = resourceDOM.getElementsByTagName('coverage')[0];
+    populateSection(Ext.getCmp('wavebandFieldSet'), coverage.getElementsByTagName('waveband'), fillWaveband);
+
+    var capabilities = resourceDOM.getElementsByTagName('capability');
+    var csgroup = Ext.getCmp('coneSearchGroupFieldSet');
+    var csindex = 0;
+    for (var i = 0; i < capabilities.length; ++i) {
+        if (capabilities[i].attributes["standardID"] != undefined &&
+            capabilities[i].attributes["standardID"].textContent.toUpperCase().indexOf('CONESEARCH') > -1) {
+            fillConeSearch(csgroup.query('fieldset[name=coneSearchFieldSet]')[csindex++], capabilities[i]);
+        }
+    }
+}
+
+//assumes subcontainer is a field set.
+function populateSection(container, elements, fillFunction) {
+    subcontainer = container.query('fieldset')[0];
+    for (i = 0; i < elements.length; ++i) {
+        if (i > 0)  //no need to clone the first record, it's in the form as default. 
+            subcontainer = cloneFormContainer(container);
+        if (subcontainer != undefined)
+            fillFunction(subcontainer, i);
+    }
+}
+
+
+//tdower: note we have to make sure these don't fill from the top-level DOM in the case of complex nested forms for services.
+//Also there may be bugs on the form side with not using fieldsets, or nested levels of them in the same case. this will require debugging.
+function fillCreator(subcontainer, index) {
+    var elements = resourceDOM.getElementsByTagName('curation')[0].getElementsByTagName('creator');
+    index = getIndex( elements, index);
+    if (index >= 0 && index < elements.length) {
+        subcontainer.query('textfield[name=name]')[0].setValue(elements[index].getElementsByTagName('name')[0].textContent);
+        if (elements[index].getElementsByTagName('logo').length > 0)
+            subcontainer.query('textfield[name=logo]')[0].setValue(elements[index].getElementsByTagName('logo')[0].textContent);
+    }//tdower test logo[0]/logo[index]
+}
+
+function fillContributor(subcontainer, index) {
+    var elements = resourceDOM.getElementsByTagName('curation')[0].getElementsByTagName('contributor');
+    index = getIndex( elements, index);
+    if (index >= 0 && index < elements.length) {
+        subcontainer.query('textfield[name=name]')[0].setValue(elements[index].textContent);
+    }
+}
+
+function fillSubject(subcontainer, index) {
+    var elements = resourceDOM.getElementsByTagName('content')[0].getElementsByTagName('subject');
+    index = getIndex( elements, index);
+    if (index >= 0 && index < elements.length) {
+        subcontainer.query('textfield[name=subject]')[0].setValue(elements[index].textContent);
+    }
+}
+
+function fillContentType(subcontainer, index) {
+    var elements = resourceDOM.getElementsByTagName('content')[0].getElementsByTagName('type');
+    index = getIndex( elements, index);
+    if (index >= 0 && index < elements.length) {
+        subcontainer.query('textfield[name=contentType]')[0].setValue(elements[index].textContent);
+    }
+}
+
+function fillContentLevel(subcontainer, index) {
+    var elements = resourceDOM.getElementsByTagName('content')[0].getElementsByTagName('contentLevel');
+    index = getIndex(elements, index);
+    if (index >= 0 && index < elements.length) {
+        subcontainer.query('textfield[name=contentLevel]')[0].setValue(elements[index].textContent);
+    }
+}
+
+function fillWaveband(subcontainer, index) {
+    var elements = resourceDOM.getElementsByTagName('coverage')[0].getElementsByTagName('waveband');
+    index = getIndex(elements, index);
+    if (index >= 0 && index < elements.length) {
+        subcontainer.query('textfield[name=waveband]')[0].setValue(elements[index].textContent);
+    }
+}
+
+function getCapability(type, isFirst) {
+    var currentCapability = null;
+    var capabilities = resourceDOM.getElementsByTagName('capability');
+    for (var i = 0; i < capabilities.length; ++i) {
+        if (capabilities[i].attributes["standardID"] != undefined &&
+            capabilities[i].attributes["standardID"].textContent.toUpperCase().indexOf(type.toUpperCase() > -1)) {
+            currentCapability = capabilities[i];
+            if (isFirst != null && isFirst == true)
+                return currentCapability;
+        }
+    }
+    return currentCapability;
+}
+
+function getStandardInterface(capability, isFirst) {
+    var currentInterface = null;
+    var interfaces = capability.getElementsByTagName('interface');
+    for (var i = 0; i < interfaces.length; ++i) {
+        if (interfaces[i].attributes["role"] != undefined &&
+            interfaces[i].attributes["role"].textContent.toUpperCase().indexOf('STD' > -1)) {
+            currentInterface = interfaces[i];
+            if (isFirst != null && isFirst == true)
+                return currentInterface;
+        }
+    }
+    return currentInterface;
+}
+
+function fillConeSearch(container, capability) {
+    if (capability != null) {
+        if (container == null) {
+            container = getFirstCapability('coneSearch', true)
+        }
+
+        var subcontainers = container.query('fieldset'); //subsets which are interfaces
+        var interfaces = capability.getElementsByTagName('interface');
+        for (var i = 0; i < interfaces.length; ++i) {
+            if (subcontainers.length < i) { //clone interface subcontainers as necessary
+                var clonedNode = subcontainers[0].cloneNode(true);
+                subcontainers[0].parentNode.insertBefore(clonedNode, subcontainers[subcontainers.length - 1].nextSibling);
+            }
+            fillInterface(subcontainers[i], interfaces[i]);
+            //other, non-interface data here.
+        }
+    }
+}
+
+
+function fillInterface(subcontainer, interface) {
+    if (interface == null) {
+        var tag = subcontainer.name.substring(0, subcontainer.name.indexOf('SubSet'));
+        interface = getStandardInterface(getCapability(tag, true), true);
+    }
+    subcontainer.query('textfield[name=accessURL]')[0].setValue(interface.getElementsByTagName('accessURL')[0].textContent);
+    subcontainer.query('textfield[name=use]')[0].setValue(interface.getElementsByTagName('accessURL')[0].attributes["use"].Value);
+}
+
+
+function getIndex(elements, index) {
+    if (index == undefined) 
+        return elements.length - 1;
+    else 
+        return index;
+}
+
+
+function cloneFormContainer(container) {
+    var newcontainer = undefined;
+    if (container != undefined) {
+        var sampleSubContainer = container.query('fieldset')[0];
+        if (sampleSubContainer != undefined) {
+            newcontainer = sampleSubContainer.cloneConfig();
+            container.items.add(newcontainer);
+            var deleteButtons = newcontainer.query('button[name=delete]');
+            if (deleteButtons != undefined && deleteButtons.length > 0)
+                deleteButtons[0].enable();
+
+            var addButtons = container.query('button[name=add]');
+            if (addButtons != undefined && addButtons.length > 0) { //move add button to bottom of items list
+                container.items.remove(addButtons[0]);
+            }
+
+            container.items.add(addButtons[0]);
+            container.doLayout();
+        }
+    }
+    return newcontainer;
+}
+
+function deleteContainerAndXml(deletebutton) {
+    var subcontainer = deletebutton.up('fieldset');
+    if (subcontainer != undefined) {
+
+        //which index (for DOM element) is this?
+        var fieldsetlist = this.formPanel.query('fieldset[name=' + subcontainer.name + ']');
+        var index = -1;
+        for (i = 0; i < fieldsetlist.length && index < 0; ++i) {
+        var deletebuttons = fieldsetlist[i].query('button[name=delete]');
+            if (deletebuttons[0] == deletebutton)
+                index = i;
+        }
+
+        //tdower: this may not work later for various testQueries inside cone/SIA because they have different parents but the same tagname
+        if (index >= 0) {
+            var tag = subcontainer.name.substring(0, subcontainer.name.indexOf('SubSet'));
+            var taggedElements = resourceDOM.getElementsByTagName(tag);
+            if (taggedElements.length > index) {
+                taggedElements[index].parentNode.removeChild(taggedElements[index]);
+
+                var container = Ext.getCmp(subcontainer.getEl().up('fieldset').id);
+                container.remove(subcontainer);
+                container.doLayout();
+            }
+        }
+    }
+}
+
+function addContainerAndXml(addbutton) {
+    var newContainer = undefined;
+     var maincontainer = addbutton.up('fieldset');
+    if (maincontainer != undefined) {
+        var tag = maincontainer.name.substring(0, maincontainer.name.indexOf('FieldSet'));
+        var taggedElements = resourceDOM.getElementsByTagName(tag);
+        newContainer = cloneFormContainer(maincontainer);
+
+        var clonedNode = taggedElements[0].cloneNode(true);
+        taggedElements[0].parentNode.insertBefore(clonedNode, taggedElements[taggedElements.length - 1].nextSibling);
+        //tdower note we are adding information into the DOM here without filling in the form itself. this is messy.
+        //fix by using a callback to fill in the info? clear it?
+    }
+    return newContainer;
+}
+
+function addInterfaceAndXml(addbutton) {
+    var maincontainer = addbutton.up('fieldset');
+    if (maincontainer != undefined) {
+        var capabilityType = maincontainer.name.substring(0, maincontainer.name.indexOf('FieldSet'));
+        var newContainer = cloneFormContainer(maincontainer);
+
+        var currentCapability = null;
+        var capabilities = resourceDOM.getElementsByTagName('capability');
+        for (var i = 0; i < capabilities.length; ++i) {
+            if (capabilities[i].attributes["standardID"] != undefined &&
+                capabilities[i].attributes["standardID"].textContent.toUpperCase().indexOf(capabilityType.toUpperCase() > -1)) {
+                currentCapability = capabilities[i];
+                break;
+            }
+        }
+        var oldinterface = getStandardInterface(currentCapability, true);
+        var clonedNode = oldinterface.cloneNode(true);
+        oldinterface.parentNode.insertBefore(clonedNode, oldinterface.nextSibling);
+        return newContainer;
+    }
+    return null;
+}
+
+function addConeSearch(addbutton) {
+    if (formPages.indexOf(Ext.getCmp('coneSearchGroupFieldSet')) == -1)
+        formPages.push(Ext.getCmp('coneSearchGroupFieldSet'));
+    addCoverageForm();
+}
+
+function addSIA(addbutton) {
+    addCoverageForm();
+}
+
+function addSSA(addbutton) {
+    addCoverageForm();
+}
+
+function addService(addbutton) {
+    addCoverageForm();
+}
+
+function addWebPage(addbutton) {
+    addCoverageForm();
+}

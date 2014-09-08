@@ -1,0 +1,1928 @@
+﻿<html   xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:xf="http://www.w3.org/2002/xforms"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:xsi="http://www.w3.org/1999/XMLSchema-instance"
+   xmlns:ev="http://www.w3.org/2001/xml-events"
+   xmlns:oai="http://www.openarchives.org/OAI/2.0/"
+   xmlns:r1="http://www.ivoa.net/xml/RegistryInterface/v1.0" 
+   xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+   xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1"
+   xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0"
+   xmlns:rs="http://www.stsci.edu/registrysupport">
+  <head>
+    <script type="text/javascript" src="js/prototype.js"></script>
+    <script type="text/javascript" src="js/prototip.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/publishtip.css"/>
+    <title>STScI Registry Publishing </title>
+    <link href="http://www.us-vo.org/app_templates/usvo_template.css" type="text/css" rel="stylesheet"/>
+    <style type="text/css">
+      .section	{MARGIN-TOP: 2px; MARGIN-BOTTOM: 2px; BACKGROUND-COLOR:#DDDDDD;}
+      .searchbox	{WIDTH: 85px;}
+      .nvoapptitle  { color: #243a6d;
+      font-weight: bolder; font-size: 14pt;
+      text-align: center; margin-left: 2px; margin-right: 2px; }
+      p 		{MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px;}
+
+      #header	{POSITION: absolute; TOP:  0px; LEFT:  2px;}
+      #search	{POSITION: absolute; TOP: 26px; LEFT:648px; WIDTH:160PX;}
+      #navibar	{MARGIN-TOP: 0px;POSITION: absolute; TOP: 96px; LEFT:154px;
+      WIDTH: 450px; PADDING:0px }
+      #menubar	{POSITION: absolute; TOP: 96px; LEFT:  0px; WIDTH: 132px;
+      PADDING:4px; BACKGROUND-COLOR:#EEEEEE;}
+
+      #features	{POSITION: absolute; TOP:128px; LEFT:646px; WIDTH: 132px;}
+      #main		{POSITION: absolute; TOP:128px; LEFT:153px; WIDTH: 641px;
+      PADDING:8px;}
+      .th           {font-weight:800; background-color:#DDDDEF;}
+      .td           {background-color:#EEEEEE;}
+      p,tr,td,dt,dd {FONT-WEIGHT: normal; FONT-SIZE: 9pt; FONT-STYLE: normal; }
+    </style>
+    <link rel="stylesheet" type="text/css" href="./js/regview.css"/>
+    <link rel="stylesheet" type="text/css" href="./js/styles.css"/>
+    <style type="text/css">
+      h1,h2,h3,h4,h5,h6,p, body, tr, td, ul, li {FONT-FAMILY: arial,helvetica,sans-serif}
+
+      UNKNOWN {
+      BACKGROUND-COLOR: white; MARGIN: 0.12in; WORD-SPACING: 1em; COLOR: black; LETTER-SPACING: 0.1em
+      }
+      H1 {
+      FONT-WEIGHT: 700; FONT-SIZE: 18pt; COLOR: #003366; FONT-STYLE: normal;
+      }
+      H1.custom {
+      FONT-WEIGHT: normal; FONT-SIZE: 36pt; FONT-STYLE: normal;
+      }
+      H1.custom2 {
+      FONT-WEIGHT: normal; FONT-SIZE: 42pt; FONT-STYLE: normal;
+      }
+      H1.custom3 {
+      FONT-WEIGHT: normal; FONT-SIZE: 6pt; FONT-STYLE: normal;
+      }
+      H2 {
+      FONT-WEIGHT: 700; FONT-SIZE: 16pt; COLOR: #003366; FONT-STYLE: normal;
+      }
+      H3 {
+      FONT-WEIGHT: 700; FONT-SIZE: 14pt; COLOR: #003366; FONT-STYLE: normal;
+      }
+      H4 {
+      FONT-WEIGHT: 700; FONT-SIZE: 12pt; COLOR: #003366; FONT-STYLE: normal;
+      }
+      H5 {
+      FONT-WEIGHT: 700; FONT-SIZE: 10pt; COLOR: #003366; FONT-STYLE: normal;
+      }
+      H6 {
+      FONT-WEIGHT: 700; FONT-SIZE: 8pt; COLOR: #003366; FONT-STYLE: normal;
+      }
+      DIV {
+      FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-STYLE: normal;
+      }
+      SPAN {
+      FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-STYLE: normal;
+      }
+      P,TR, TD {
+      FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-STYLE: normal;
+      }
+      HR {
+      COLOR: #ffcc00
+      }
+
+      LI {
+      MARGIN-TOP:0px;  MARGIN-BOTTOM:0px;
+      }
+      UL, P {
+      MARGIN-TOP:4px;  MARGIN-BOTTOM:4px;
+      }
+      H3, H4 {
+      MARGIN-TOP:8px;  MARGIN-BOTTOM:6px;
+      }
+      .tiny		{FONT-SIZE: 7pt;}
+      .tinylink	{FONT-SIZE: 7pt; COLOR:#aaaaff;}
+      .navlink	{MARGIN-TOP: 0px; MARGIN-BOTTOM: 1px; FONT-SIZE:9pt;
+      BACKGROUND-COLOR:#6ba5d7; text-align: center}
+      .navlink A	{ TEXT-DECORATION:none;COLOR:#FFFFFF;}
+      .navlink A:hover { BACKGROUND-COLOR:#6ba5d7; TEXT-DECORATION:none; COLOR: #99FFCC; }
+      .helplink	{MARGIN-TOP: 0px; MARGIN-BOTTOM: 1px; FONT-SIZE:9pt;
+      BACKGROUND-COLOR:#24386d; text-align: center}
+      .helplink A	{TEXT-DECORATION:none;COLOR:#FFFFFF;}
+      .helplink A:hover { COLOR: #99FFCC; }
+      .nvolink	{MARGIN-TOP: 0px; MARGIN-BOTTOM: 1px; FONT-SIZE:9pt;
+      PADDING-LEFT: 2px;
+      PADDING-RIGHT: 2px; }
+      .nvolink A	{TEXT-DECORATION:none;COLOR:#6ba5d7;}
+      .nvolink A:hover { COLOR: #99FFCC; }
+      .nvolinktiny A {FONT-SIZE:7PT;}
+      .section	{MARGIN-TOP: 2px; MARGIN-BOTTOM: 2px; BACKGROUND-COLOR:#DDDDDD;}
+      .searchbox	{WIDTH: 85px;}
+      .nvoapptitle  { color: #24386d;
+      font-weight: bolder; font-size: 14pt;
+      text-align: center; margin-left: 2px; margin-right: 2px; }
+      p 		{MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px;}
+
+      #header	{POSITION: absolute; TOP:  0px; LEFT:  2px;}
+      #search	{POSITION: absolute; TOP: 26px; LEFT:648px; WIDTH:160PX;}
+      #navibar	{MARGIN-TOP: 0px;POSITION: absolute; TOP: 96px; LEFT:154px;
+      WIDTH: 450px; PADDING:0px }
+      #menubar	{POSITION: absolute; TOP: 96px; LEFT:  0px; WIDTH: 132px;
+      PADDING:4px; BACKGROUND-COLOR:#EEEEEE;}
+
+      #features	{POSITION: absolute; TOP:128px; LEFT:646px; WIDTH: 132px;}
+      #main		{POSITION: absolute; TOP:128px; LEFT:153px; WIDTH: 641px;
+      PADDING:8px;}
+      .th           {font-weight:800; background-color:#DDDDEF;}
+      .td           {background-color:#EEEEEE;}
+      P,TR,TD,DT,DD {FONT-WEIGHT: normal; FONT-SIZE: 9pt; FONT-STYLE: normal; }
+    </style>
+    <style type="text/css">
+      @namespace xf url("http://www.w3.org/2002/xforms");
+      xf|input, xf|secret, xf|select1, xf|textarea {
+      display: table-row;
+      }
+
+      xf|input:disabled, xf|select1:disabled, xf|select:disabled, xf|textarea:disabled {
+      display: none;
+      }
+
+      xf|hint { width: 350px; }
+
+      xf|input > xf|label, xf|secret > xf|label,
+      xf|select > xf|label, xf|select1 > xf|label,
+      xf|textarea > xf|label, xf|output
+      {
+      display: table-cell;
+      align: left;
+      vertical-align: top;
+      font-family: Ariel, Helvetica, sans-serif;
+      font-size: small;
+      width: 350px;
+      }
+
+      .large-textarea textarea {
+      font-family: Courier, sans-serif;
+      height: 10em;
+      width: 300px;
+      }
+
+      th.section { background-color: grey; }
+
+      xf|repeat .xf-repeat-item
+      {
+      display: table-cell;
+      border-bottom: thin solid lightgrey
+      }
+
+      <!--*:required::after { content: "*"; color:red; }-->
+
+      *:required {
+      color:firebrick;
+      }
+
+      *:invalid  {
+      background-color: firebrick;
+      }
+    </style>
+  </head>
+  <body>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="112" height="32" align="center" valign="top">
+          <a
+href="http://www.us-vo.org" class="nvolink" target="_top">
+            <img
+        src="./images/VAO_logo_100.png" border="0"/>
+          </a>
+          <span class="nvolink">
+            <a
+href="http://www.usvao.org/" target="_top">Virtual Astronomical Observatory</a>
+          </span>
+        </td>
+        <td valign="top">
+          <table  width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="2" height="30" bgcolor="white"></td>
+              <td width="678" height="39" align="center"
+                        valign="middle"
+                        background="images/stars.jpg"
+                        bgcolor="#CFE5FC"  class="nvoapptitle" style="background-repeat: repeat-y;">
+                <span class="nvoapptitle" style="background-repeat: repeat-y;">VAO Directory</span>
+              </td>
+              <td bgcolor="white" width="2"></td>
+            </tr>
+            <tr>
+              <td bgcolor="white" width="2"></td>
+              <td bgcolor="white" width="2"></td>
+            </tr>
+            <tr>
+              <td align="center" valign="top" colspan="3">
+                <table cellspacing="2" cellpadding="0" border="0" width="100%"
+                style="margin: 0pt;">
+                  <tr>
+                    <!-- the local links -->
+                    <td class="navlink">
+                      <a href="http://heasarc.gsfc.nasa.gov/vo/portal/">Portal Home</a>
+                    </td>
+                    <td class="navlink">
+                      <a href="keywordsearch.aspx">Search</a>
+                    </td>
+                    <td class="navlink">
+                      <a href="publishdown.aspx">Publish</a>
+                    </td>
+                    <td class="navlink">
+                      <a href="riws.aspx">Developers</a>
+                    </td>
+                    <td class="navlink">
+                      <a href="helpnew.aspx">Help</a>
+                    </td>
+                    <td class="helplink">
+                      <a href="contactus.aspx">Contact Us</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td width="140" align="center" valign="top">
+          <!-- local logo and link -->
+          <span class="tiny">Hosted By</span>
+          <br/>
+          <a href="http://www.stsci.edu">
+            <img height="54"
+         src="images/hst.gif"
+         alt="STScI Home" border="0"/>
+          </a>
+          <br />
+          <span class="nvolink">
+            <span class="tiny">
+              <a
+            href="http://www.stsci.edu">
+                Space Telescope<br/> Science
+                Institute
+              </a>
+            </span>
+          </span>
+        </td>
+      </tr>
+
+    </table>
+    <table>
+      <tr>
+        <td width="42"></td>
+        <td>
+
+          <xf:model id="navigation">
+            <xf:instance id="Response">
+              <dummy xmlns="">
+              </dummy>
+            </xf:instance>
+
+            <xf:instance id="PublishResponse">
+              <dummy xmlns="">
+              </dummy>
+            </xf:instance>
+
+            <xf:instance id="statedata" xmlns="">
+              <data>
+                <returncode>-1</returncode>
+                <success></success>
+                <failure></failure>
+                <publishreturncode>-1</publishreturncode>
+                <loggedin></loggedin>
+                <noauthority></noauthority>
+                <resourcesuccess></resourcesuccess>
+                <resourcefailure></resourcefailure>
+                <myexistingresourcesreturncode></myexistingresourcesreturncode>
+                <mypendingresourcesreturncode></mypendingresourcesreturncode>
+                <myresourcesexist></myresourcesexist>
+                <currentresourcetype></currentresourcetype>
+                <currentTab>basic</currentTab>
+                <caseBasic></caseBasic>
+                <caseCuration></caseCuration>
+                <caseContent></caseContent>
+                <caseSpecial></caseSpecial>
+                <hideuntiltypeselection></hideuntiltypeselection>
+                <showtypeselection></showtypeselection>
+                <typeConeSearch></typeConeSearch>
+                <typeSIA></typeSIA>
+                <typeSpectral></typeSpectral>
+                <typeVRService></typeVRService>
+                <typeDataService></typeDataService>
+                <usesDAL></usesDAL>
+                <caseAskDAL></caseAskDAL>
+                <typeAuthorityNew></typeAuthorityNew>
+                <typeBaseResource></typeBaseResource>
+                <typeBasicService></typeBasicService>
+                <typeCollection></typeCollection>
+                <noxforms></noxforms>
+              </data>
+            </xf:instance>
+
+            <xf:instance id="empty">
+              <data xmlns="">
+              </data>
+            </xf:instance>
+
+            <xf:submission id="Logout"
+                  method="post"
+                  ref="instance('empty')"
+                  replace="instance"
+                  instance="empty"
+                  omit-xml-declaration="yes"
+                  action="http://tdower.stsci.edu/vor10/managereg.asmx/Logout" />
+
+            <xf:submission id="CanPublishNew"
+                  method="post"
+                  ref="instance('empty')"
+                  replace="instance"
+                  instance="PublishResponse"
+                  omit-xml-declaration="yes"
+                  action="http://tdower.stsci.edu/vor10/managereg.asmx/CanPublishNew" />
+
+            <xf:instance id="AuthorityResponse">
+              <dummy xmlns="">
+              </dummy>
+            </xf:instance>
+            <xf:submission id="GetAuthorityList"
+                  method="post"
+                  ref="instance('empty')"
+                  replace="instance"
+                  instance="AuthorityResponse"
+                  omit-xml-declaration="yes"
+                  action="http://tdower.stsci.edu/vor10/managereg.asmx/GetAuthorityList" />
+
+            <xf:instance id="MyExistingResourcesResponse">
+              <dummy xmlns="">
+              </dummy>
+            </xf:instance>
+            <xf:submission id="GetMyExistingResources"
+                  method="post"
+                  ref="instance('empty')"
+                  replace="instance"
+                  instance="MyExistingResourcesResponse"
+                  omit-xml-declaration="yes"
+                  action="http://tdower.stsci.edu/vor10/managereg.asmx/GetMyExistingResources" />
+
+            <xf:instance id="MyPendingResourcesResponse">
+              <dummy xmlns="">
+              </dummy>
+            </xf:instance>
+            <xf:submission id="GetMyPendingResources"
+                  method="post"
+                  ref="instance('empty')"
+                  replace="instance"
+                  instance="MyPendingResourcesResponse"
+                  omit-xml-declaration="yes"
+                  action="http://tdower.stsci.edu/vor10/managereg.asmx/GetMyPendingResources" />
+
+            <xf:instance id="IVOIDResponse">
+              <dummy xmlns="">
+              </dummy>
+            </xf:instance>
+            <xf:submission id="GetIVOIDOrgList"
+                  method="post"
+                  ref="instance('empty')"
+                  replace="instance"
+                  instance="IVOIDResponse"
+                  omit-xml-declaration="yes"
+                  action="http://tdower.stsci.edu/vor10/managereg.asmx/GetIVOIDOrgList" />
+
+
+            <xf:instance id="IVOIDPlainResponse">
+              <dummy xmlns="">
+              </dummy>
+            </xf:instance>
+            <xf:submission id="GetIVOIDPlainResourceList"
+                  method="post"
+                  ref="instance('empty')"
+                  replace="instance"
+                  instance="IVOIDPlainResponse"
+                  omit-xml-declaration="yes"
+                  action="http://tdower.stsci.edu/vor10/managereg.asmx/GetIVOIDPlainResourceList" />
+
+            <xf:bind id="return" nodeset="instance('statedata')//returncode"/>
+            <xf:bind nodeset="instance('statedata')//success" relevant="instance('statedata')//returncode = '0'" />
+            <xf:bind nodeset="instance('statedata')//failure" relevant="not(instance('statedata')//returncode = '0')" />
+            <xf:bind id="resourcereturn" nodeset="instance('statedata')//publishreturncode" />
+            <xf:bind nodeset="instance('statedata')//loggedin" relevant="instance('statedata')//publishreturncode = '1' or instance('statedata')//publishreturncode = '0'" />
+            <xf:bind nodeset="instance('statedata')//noauthority" relevant="instance('statedata')//publishreturncode = '1'" />
+            <xf:bind nodeset="instance('statedata')//resourcesuccess" relevant="instance('statedata')//publishreturncode = '0'" />
+            <xf:bind nodeset="instance('statedata')//resourcefailure" relevant="not(instance('statedata')//publishreturncode = '0') and not(instance('statedata')//publishreturncode = '1')" />
+            <xf:bind nodeset="instance('statedata')//myresourcesexist" relevant="instance('statedata')//myexistingresourcesreturncode = '0' or instance('statedata')//mypendingresourcesreturncode = '0'" />
+            <xf:bind nodeset="instance('statedata')//hideuntiltypeselection" relevant="instance('statedata')//currentresourcetype = 'vg:Authority' or instance('statedata')//publishreturncode = '1'" />
+            <xf:bind nodeset="instance('statedata')//showtypeselection" relevant="not(instance('statedata')//currentresourcetype = 'vg:Authority' or instance('statedata')//publishreturncode = '1')" />
+            <xf:bind nodeset="instance('statedata')//typeVRService" relevant="instance('statedata')//currentresourcetype = 'vr:Service'" />
+            <xf:bind nodeset="instance('statedata')//typeDataService" relevant="instance('statedata')//currentresourcetype = 'vs:DataService' and instance('statedata')//usesDAL = string('')" />
+            <xf:bind nodeset="instance('statedata')//typeConeSearch" relevant="instance('statedata')//currentresourcetype = 'vs:DataService' and instance('statedata')//usesDAL = string('csc')" />
+            <xf:bind nodeset="instance('statedata')//typeSIA" relevant="instance('statedata')//currentresourcetype = 'vs:DataService' and instance('statedata')//usesDAL = string('sia')" />
+            <xf:bind nodeset="instance('statedata')//typeSpectral" relevant="instance('statedata')//currentresourcetype = 'vs:DataService' and instance('statedata')//usesDAL = string('ssa')" />
+            <xf:bind nodeset="instance('statedata')//caseAskDAL" relevant="instance('statedata')//currentresourcetype = 'vs:DataService'" />
+            <xf:bind nodeset="instance('statedata')//typeAuthorityNew" relevant="instance('statedata')//currentresourcetype = 'vg:AuthorityNEW'" />
+            <xf:bind nodeset="instance('statedata')//typeBaseResource" relevant="instance('statedata')//currentresourcetype = 'vr:Organisation'" />
+            <xf:bind nodeset="instance('statedata')//typeBasicService" relevant="instance('statedata')//currentresourcetype = 'vr:Service'" />
+            <xf:bind nodeset="instance('statedata')//typeCollection" relevant="instance('statedata')//currentresourcetype = 'vs:DataCollection'" />
+            <xf:bind nodeset="instance('statedata')//caseBasic" relevant="instance('statedata')//currentTab = 'basic'" />
+            <xf:bind nodeset="instance('statedata')//caseCuration" relevant="instance('statedata')//currentTab = 'curation'" />
+            <xf:bind nodeset="instance('statedata')//caseContent" relevant="instance('statedata')//currentTab = 'content'" />
+            <xf:bind nodeset="instance('statedata')//caseSpecial" relevant="instance('statedata')//currentTab = 'special'" />
+            <xf:bind nodeset="instance('statedata')//noxforms" relevant="false()" />
+          </xf:model>
+
+          <xf:model id="authorityresourceform" schema="VOResource10.xsd">
+            <xf:instance id="workingAuthority" src="exampleAuthority.xml">
+            </xf:instance>
+
+            <xf:instance id="PostAuthorityResponse">
+              <dummy xmlns=""></dummy>
+            </xf:instance>
+
+            <xf:instance id="poststatedata" xmlns="">
+              <data>
+                <returncode>-1</returncode>
+                <success></success>
+                <failure></failure>
+              </data>
+            </xf:instance>
+
+            <xf:submission id="PostAuthorityResource"
+            method="post"
+            ref="instance('workingAuthority')"
+            replace="instance"
+            instance="PostAuthorityResponse"
+            omit-xml-declaration="yes"
+            action="http://tdower.stsci.edu/vor10/managereg.asmx/PostAuthorityResourceAndAssociateUser" />
+
+            <xf:instance id="repeatcontrollers">
+              <data xmlns="">
+                <insertcreator></insertcreator>
+                <deletecreator></deletecreator>
+                <insertcontrib></insertcontrib>
+                <deletecontrib></deletecontrib>
+                <insertdate></insertdate>
+                <deletedate></deletedate>
+                <insertcontact></insertcontact>
+                <deletecontact></deletecontact>
+                <insertsubject></insertsubject>
+                <deletesubject></deletesubject>
+                <inserttype></inserttype>
+                <deletetype></deletetype>
+                <insertcontentlevel></insertcontentlevel>
+                <deletecontentlevel></deletecontentlevel>
+                <insertrelationship></insertrelationship>
+                <deleterelationship></deleterelationship>
+                <showpublisherid>0</showpublisherid>
+              </data>
+            </xf:instance>
+
+            <xf:bind nodeset="instance('poststatedata')//success" relevant="instance('poststatedata')//returncode = '0'" />
+            <xf:bind nodeset="instance('poststatedata')//failure" relevant="not(instance('poststatedata')//returncode = '0')" />
+
+            <xf:bind id="title" nodeset="instance('workingAuthority')//r1:title" required="true()" type="xsd:token"/>
+            <xf:bind id="shortName" nodeset="instance('workingAuthority')//r1:shortName" required="false()" type="vr:ShortName"/>
+            <xf:bind id="identifier" nodeset="instance('workingAuthority')//r1:identifier" required="true()" type="xsd:token"/>
+            <xf:bind id="status" nodeset="instance('workingAuthority')/@status" required="true()" type="xsd:token"/>
+
+            <xf:bind id="publisher" nodeset="instance('workingAuthority')//r1:curation/r1:publisher" required="true()" type="xsd:token"/>
+            <xf:bind id="publisherid" nodeset="instance('workingAuthority')//r1:curation/r1:publisher/@ivo-id" required="false()"/>
+            <xf:bind nodeset="instance('workingAuthority')//r1:curation/r1:publisher/@ivo-id" relevant="instance('repeatcontrollers')//showpublisherid = '1'"/>
+            <xf:bind id="version" nodeset="instance('workingAuthority')//r1:curation/r1:version" required="false()" type="xsd:token"/>
+
+            <xf:bind id="description" nodeset="instance('workingAuthority')//r1:content/r1:description" required="true()" type="xsd:token"/>
+            <xf:bind id="source" nodeset="instance('workingAuthority')//r1:content/r1:source" required="false()" type="xsd:token"/>
+            <xf:bind id="sourceformat" nodeset="instance('workingAuthority')//r1:content/r1:source/@format" relevant="string-length(instance('workingAuthority')//r1:content/r1:source) &gt; 0" required="false()" type="xsd:string"/>
+            <xf:bind id="referenceURL" nodeset="instance('workingAuthority')//r1:content/r1:referenceURL" required="true()" type="xsd:anyURI"/>
+
+
+            <xf:bind nodeset="instance('workingAuthority')//r1:curation/r1:creator[1]"
+                          relevant="false()"/>
+            <xf:bind nodeset="instance('workingAuthority')//r1:curation/r1:creator/r1:name"
+              required="true()"/>
+            <xf:bind nodeset="instance('workingAuthority')//r1:curation/r1:creator[1]/r1:name/@ivo-id"
+                          relevant="false()"/>
+            <xf:bind nodeset="instance('repeatcontrollers')//deletecreator" relevant="count(instance('workingAuthority')//r1:curation/r1:creator) > 1"/>
+
+            <xf:bind nodeset="instance('workingAuthority')//r1:curation/r1:contributor[1]"
+                          relevant="false()"/>
+            <xf:bind nodeset="instance('workingAuthority')//r1:curation/r1:contributor[1]/@ivo-id"
+                          relevant="false()"/>
+            <xf:bind nodeset="instance('repeatcontrollers')//deletecontrib" relevant="count(instance('workingAuthority')//r1:curation/r1:contributor) > 1"/>
+
+            <xf:bind nodeset="instance('workingAuthority')//r1:curation/r1:date[1]"
+                          relevant="false()"/>
+            <xf:bind nodeset="instance('workingAuthority')//r1:curation/r1:date[1]/@role"
+              relevant="false()"/>
+            <xf:bind nodeset="instance('workingAuthority')//r1:curation/r1:date"
+                          required="true()"/>
+            <xf:bind nodeset="instance('workingAuthority')//r1:curation/r1:date/@role"
+                          required="true()"/>
+            <xf:bind nodeset="instance('repeatcontrollers')//deletedate" relevant="count(instance('workingAuthority')//r1:curation/r1:date) > 1"/>
+
+            <xf:bind nodeset="instance('workingAuthority')//r1:curation/r1:contact/r1:name"
+                  required="true()"/>
+
+            <xf:bind nodeset="instance('repeatcontrollers')//deletecontact" relevant="count(instance('workingAuthority')//r1:curation/r1:contact) > 1"/>
+            <xf:bind nodeset="instance('repeatcontrollers')//deletesubject" relevant="count(instance('workingAuthority')//r1:content/r1:subject) > 1"/>
+            <xf:bind nodeset="instance('workingAuthority')//r1:content/r1:subject[1]" required="true()"/>
+
+            <xf:bind nodeset="instance('workingAuthority')//r1:content/r1:type"
+                          type="vr:Type"/>
+            <xf:bind nodeset="instance('repeatcontrollers')//deletetype" relevant="count(instance('workingAuthority')//r1:content/r1:type) > 1"/>
+
+            <xf:bind nodeset="instance('workingAuthority')//r1:content/r1:contentLevel"
+                          type="vr:ContentLevel"/>
+            <xf:bind nodeset="instance('repeatcontrollers')//deletecontentlevel" relevant="count(instance('workingAuthority')//r1:content/r1:contentLevel) > 1"/>
+
+            <xf:bind nodeset="instance('workingAuthority')//r1:content/r1:relationship[1]"
+                          relevant="false()"/>
+            <xf:bind nodeset="instance('workingAuthority')//r1:content/r1:relationship[1]/r1:relationshipType"
+                          relevant="false()"/>
+            <xf:bind nodeset="instance('workingAuthority')//r1:content/r1:relationship[1]/r1:relatedResource/@ivo-id"
+                          relevant="false()"/>
+            <xf:bind nodeset="instance('workingAuthority')//r1:content/r1:relationship/r1:relatedResource/@ivo-id"
+                          type="vr:IdentifierURI"/>
+            <xf:bind nodeset="instance('workingAuthority')//r1:content/r1:relationship/r1:relationshipType"
+              required="true()"/>
+            <xf:bind nodeset="instance('repeatcontrollers')//deleterelationship" relevant="count(instance('workingAuthority')//r1:content/r1:relationship) > 1"/>
+
+          </xf:model>
+
+          <xf:model id="modelXmlResource">
+            <xf:instance id="xmlResource">
+              <data xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <file xsi:type="xsd:base64Binary"></file>
+              </data>
+            </xf:instance>
+            <xf:instance id="response">
+              <data xmlns="">
+              </data>
+            </xf:instance>
+            <xf:submission id="submitXmlResource"
+                  action="http://tdower.stsci.edu/vor10/managereg.asmx/SubmitXMLResource"
+                  ref="instance('xmlResource')"
+                  replace="instance"
+                  instance="response"
+                  omit-xml-declaration="yes"
+                  method="post"/>
+          </xf:model>
+
+          <xf:action ev:event="xforms-ready" model="navigation">
+            <xf:send submission="GetIVOIDOrgList" model="navigation"/>
+            <xf:send submission="GetIVOIDPlainResourceList" model="navigation"/>
+            <xf:send submission="GetAuthorityList" model="navigation"/>
+            <xf:send submission="CanPublishNew" model="navigation"/>
+            <xf:send submission="GetMyExistingResources" model="navigation"/>
+            <xf:send submission="GetMyPendingResources" model="navigation"/>
+            <xf:rebuild/>
+          </xf:action>
+
+          <xf:action ev:event="xforms-submit-done" model="navigation">
+            <xf:setvalue ref="instance('statedata')//returncode" value="instance('Response')//rs:returncode" model="navigation"/>
+            <xf:setvalue ref="instance('statedata')//publishreturncode" value="instance('PublishResponse')//rs:returncode" model="navigation"/>
+            <xf:setvalue ref="instance('statedata')//myexistingresourcesreturncode" value="instance('MyExistingResourcesResponse')//rs:returncode" model="navigation"/>
+            <xf:setvalue ref="instance('statedata')//mypendingresourcesreturncode" value="instance('MyPendingResourcesResponse')//rs:returncode" model="navigation"/>
+          </xf:action>
+
+          <xf:action ev:event="xforms-submit-done" model="authorityresourceform">
+            <xf:setvalue ref="instance('poststatedata')//returncode" value="instance('PostAuthorityResponse')//rs:returncode" model="authorityresourceform"/>
+          </xf:action>
+
+
+          <xf:group ref="instance('statedata')//noxforms">
+            <h2>This page requires XForms browser support.</h2>
+            <p>
+              If you can see this message, your web browser does support xforms.
+              Most web browsers now have XForms support natively or through plugins.
+            </p>
+            <p>
+              The plugin for Firefox 2.x can be
+              downloaded from mozilla.org <a href="https://addons.mozilla.org/en-US/firefox/addon/824" target="new">here</a>.
+            </p>
+            <table height="1000">
+              <tr>
+                <td></td>
+              </tr>
+            </table>
+          </xf:group>
+
+          <xf:group ref="instance('statedata')//loggedin">
+            <table>
+              <tr>
+                <td width="95%"></td>
+                <td>
+                  <xf:trigger>
+                    <xf:label>Logout</xf:label>
+                    <xf:action ev:event="DOMActivate">
+                      <xf:send submission="Logout"/>
+                      <xf:load resource="http://tdower.stsci.edu/vor10/login.xhtml"
+                               ev:event="DOMActivate" show="replace" />
+                    </xf:action>
+                  </xf:trigger>
+                </td>
+              </tr>
+            </table>
+          </xf:group>
+
+          <xf:group ref="instance('statedata')//noauthority">
+            <h2>STScI Registry Publishing Project/Division Creation</h2>
+            <p>
+              In order to publish to the registry, you will need to be associated with
+              at least one project or division of an organisation. This will serve as an Authority
+              record for all of your resources.<br/>
+            </p>
+            <p>
+              <p>
+                Please enter the details of your resource below.<br/>
+                Invalid entries will become highlighted.
+              </p>
+              <p>Items in red are required. Items in blue are recommended</p>
+            </p>
+          </xf:group>
+
+          <xf:group model="navigation" ref="instance('statedata')//resourcefailure">
+            <h2>STScI Registry Publishing Interface</h2>
+
+            <p>Please log in to publish new resources to the STScI Registry.</p>
+            <center>
+              <xf:trigger>
+                <xf:label>Login</xf:label>
+                <xf:action ev:event="DOMActivate">
+                  <xf:load resource="http://tdower.stsci.edu/vor10/login.xhtml"
+                           ev:event="DOMActivate" show="replace" />
+                </xf:action>
+              </xf:trigger>
+            </center>
+          </xf:group>
+
+          <xf:group model="navigation" ref="instance('statedata')//resourcesuccess">
+
+            <h2>STScI Publishing: New Resource Creation</h2>
+
+            <xf:group ref="instance('statedata')//myresourcesexist">
+              <table>
+                <tr>
+                  <th class="section" align="left" colspan="3">Existing Resources</th>
+                </tr>
+                <tr>
+                  <td>You have pending and/or existing resources.</td>
+                  <td width="100"></td>
+                  <td>
+                    <xf:trigger>
+                      <xf:label>Edit/Finalize Resources</xf:label>
+                      <xf:action ev:event="DOMActivate">
+                        <xf:load resource="http://tdower.stsci.edu/vor10/editfinalizeresources.xhtml"
+                                 ev:event="DOMActivate" show="replace" />
+                      </xf:action>
+                    </xf:trigger>
+                  </td>
+                </tr>
+              </table>
+              <br/>
+            </xf:group>
+            
+            <xf:group ref="instance('statedata')//showtypeselection">
+              <table>
+                <tr>
+                  <th class="section" align="left" colspan="3">Create New Resource from Form</th>
+                </tr>
+                <tr>
+                  <td>
+                    <xf:select1 ref="instance('statedata')//currentresourcetype" selection="closed" appearance="minimal">
+                      <xf:label>What kind of resource would you like to create?</xf:label>
+                      <xf:item>
+                        <xf:label>an organisation</xf:label>
+                        <xf:value>vr:Organisation</xf:value>
+                      </xf:item>
+                      <xf:item>
+                        <xf:label>an archive or collection of data</xf:label>
+                        <xf:value>vs:DataCollection</xf:value>
+                      </xf:item>
+                      <xf:item>
+                        <xf:label>a project or division of an organisation</xf:label>
+                        <xf:value>vg:AuthorityNEW</xf:value>
+                      </xf:item>
+                      <xf:item>
+                        <xf:label>a service that accesses data</xf:label>
+                        <xf:value>vs:DataService</xf:value>
+                      </xf:item>
+                      <xf:item>
+                        <xf:label>some other type of service</xf:label>
+                        <xf:value>vr:Service</xf:value>
+                      </xf:item>
+                    </xf:select1>
+                  </td>
+                </tr>
+              </table>
+              <br/>
+              <br/>
+              <center>
+                <xf:group ref="instance('statedata')//caseAskDAL">
+                  <table align="center">
+                    <tr>
+                      <td>
+                        Will your service support one of these standard protocols?<br/>
+                        <xf:select1 appearance="full" ref="instance('statedata')//usesDAL">
+                          <xf:item>
+                            <xf:value>csc</xf:value>
+                            <xf:label>Simple Cone Search</xf:label>
+                          </xf:item>
+                          <xf:item>
+                            <xf:value>sia</xf:value>
+                            <xf:label>Simple Image Access (SIA)</xf:label>
+                          </xf:item>
+                          <xf:item>
+                            <xf:value>ssa</xf:value>
+                            <xf:label>Simple Spectral Access (SSA)</xf:label>
+                          </xf:item>
+                        </xf:select1>
+                      </td>
+                    </tr>
+                  </table>
+                  <xf:trigger ref="instance('statedata')//typeConeSearch">
+                    <xf:label>Create New Resource</xf:label>
+                    <xf:action ev:event="DOMActivate">
+                      <xf:load resource="http://tdower.stsci.edu/vor10/createconesearch.xhtml"
+                               ev:event="DOMActivate" show="replace" />
+                    </xf:action>
+                  </xf:trigger>
+                  <xf:trigger ref="instance('statedata')//typeSIA">
+                    <xf:label>Create New Resource</xf:label>
+                    <xf:action ev:event="DOMActivate">
+                      <xf:load resource="http://tdower.stsci.edu/vor10/createsiaservice.xhtml"
+                               ev:event="DOMActivate" show="replace" />
+                    </xf:action>
+                  </xf:trigger>
+                  <xf:trigger ref="instance('statedata')//typeSpectral">
+                    <xf:label>Create New Resource</xf:label>
+                    <xf:action ev:event="DOMActivate">
+                      <xf:load resource="http://tdower.stsci.edu/vor10/createssaservice.xhtml"
+                               ev:event="DOMActivate" show="replace" />
+                    </xf:action>
+                  </xf:trigger>
+                  <xf:trigger ref="instance('statedata')//typeDataService">
+                    <xf:label>Create New Resource</xf:label>
+                    <xf:action ev:event="DOMActivate">
+                      <xf:load resource="http://tdower.stsci.edu/vor10/createdataservice.xhtml"
+                               ev:event="DOMActivate" show="replace" />
+                    </xf:action>
+                  </xf:trigger>
+                </xf:group>
+                <xf:trigger ref="instance('statedata')//typeBasicService">
+                  <xf:label>Create New Resource</xf:label>
+                  <xf:action ev:event="DOMActivate">
+                    <xf:load resource="http://tdower.stsci.edu/vor10/createbasicservice.xhtml"
+                             ev:event="DOMActivate" show="replace" />
+                  </xf:action>
+                </xf:trigger>
+                <xf:trigger ref="instance('statedata')//typeCollection">
+                  <xf:label>Create New Resource</xf:label>
+                  <xf:action ev:event="DOMActivate">
+                    <xf:load resource="http://tdower.stsci.edu/vor10/createdatacollection.xhtml"
+                             ev:event="DOMActivate" show="replace" />
+                  </xf:action>
+                </xf:trigger>
+                <xf:trigger ref="instance('statedata')//typeAuthorityNew">
+                  <xf:label>Create New Resource</xf:label>
+                  <xf:action ev:event="DOMActivate">
+                    <xf:load resource="http://tdower.stsci.edu/vor10/createauthority.xhtml"
+                             ev:event="DOMActivate" show="replace" />
+                  </xf:action>
+                </xf:trigger>
+                <xf:trigger ref="instance('statedata')//typeBaseResource">
+                  <xf:label>Create New Resource</xf:label>
+                  <xf:action ev:event="DOMActivate">
+                    <xf:load resource="http://tdower.stsci.edu/vor10/createbaseresource.xhtml"
+                             ev:event="DOMActivate" show="replace" />
+                  </xf:action>
+                </xf:trigger>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+              </center>
+              <table>
+                <tr>
+                  <th class="section" align="left" colspan="3" width="625">Direct Resource Upload</th>
+                </tr>
+                <tr>
+                  <td>
+                    <xf:upload ref="file" model="modelXmlResource">
+                      <xf:label>Upload XML Resource </xf:label>
+                    </xf:upload>
+                    <xf:submit model="modelXmlResource" submission="submitXmlResource">
+                      <xf:label>Submit</xf:label>
+                    </xf:submit>
+                  </td>
+                </tr>
+              </table>
+              <center>
+                <table>
+                  <tr>
+                    <td>
+                      <xf:output model="modelXmlResource" value="if( instance('response')//rs:returncode = '0', 
+									'Resource Uploaded Successfully!', instance('response')//rs:message)">
+                        <xf:label> </xf:label>
+                      </xf:output>
+                    </td>
+                  </tr>
+                </table>
+                      <br/>
+                      <xf:trigger model="modelXmlResource">
+                        <xf:label>Edit and Finalize Resources</xf:label>
+                        <xf:action ev:event="DOMActivate">
+                          <xf:load resource="http://tdower.stsci.edu/vor10/editfinalizeresources.xhtml"
+                                   ev:event="DOMActivate" show="replace" />
+                        </xf:action>
+                      </xf:trigger>
+              </center>
+            </xf:group>
+          </xf:group>
+
+          <xf:group ref="instance('statedata')//hideuntiltypeselection">
+            <xf:group model="navigation" ref="instance('statedata')//loggedin">
+              <br/>
+              <table align="center" width="725" border="0" cellpadding="3" cellspacing="0">
+                <tr>
+                  <xf:group model="navigation" ref="instance('statedata')//caseBasic">
+                    <td maxwidth="120" align="left" bgcolor="#bbbbbb">
+                      <xf:trigger appearance="minimal">
+                        <xf:label>Basic Info</xf:label>
+                        <xf:action ev:event="DOMActivate">
+                          <xf:setvalue ref="instance('statedata')//currentTab" value="string('basic')"/>
+                        </xf:action>
+                      </xf:trigger>
+                    </td>
+                    <td width="3" bgcolor="white"> </td>
+                    <td maxwidth="120" align="left" bgcolor="#dddddd">
+                      <xf:trigger appearance="minimal">
+                        <xf:label>Curation</xf:label>
+                        <xf:action ev:event="DOMActivate">
+                          <xf:setvalue  ref="instance('statedata')//currentTab" value="string('curation')"/>
+                        </xf:action>
+                      </xf:trigger>
+                    </td>
+                    <td width="3" bgcolor="white"> </td>
+                    <td maxwidth="120" align="left" bgcolor="#dddddd">
+                      <xf:trigger appearance="minimal">
+                        <xf:label>Content</xf:label>
+                        <xf:action ev:event="DOMActivate">
+                          <xf:setvalue  ref="instance('statedata')//currentTab" value="string('content')"/>
+                        </xf:action>
+                      </xf:trigger>
+                    </td>
+                  </xf:group>
+                  <xf:group model="navigation" ref="instance('statedata')//caseCuration">
+                    <td maxwidth="120" align="left" bgcolor="#dddddd">
+                      <xf:trigger appearance="minimal">
+                        <xf:label>Basic Info</xf:label>
+                        <xf:action ev:event="DOMActivate">
+                          <xf:setvalue  ref="instance('statedata')//currentTab" value="string('basic')"/>
+                        </xf:action>
+                      </xf:trigger>
+                    </td>
+                    <td width="3" bgcolor="white"> </td>
+                    <td maxwidth="120" align="left" bgcolor="#bbbbbb">
+                      <xf:trigger appearance="minimal">
+                        <xf:label>Curation</xf:label>
+                        <xf:action ev:event="DOMActivate">
+                          <xf:setvalue  ref="instance('statedata')//currentTab" value="string('curation')"/>
+                        </xf:action>
+                      </xf:trigger>
+                    </td>
+                    <td width="3" bgcolor="white"> </td>
+                    <td maxwidth="120" align="left" bgcolor="#dddddd">
+                      <xf:trigger appearance="minimal">
+                        <xf:label>Content</xf:label>
+                        <xf:action ev:event="DOMActivate">
+                          <xf:setvalue  ref="instance('statedata')//currentTab" value="string('content')"/>
+                        </xf:action>
+                      </xf:trigger>
+                    </td>
+                  </xf:group>
+                  <xf:group model="navigation" ref="instance('statedata')//caseContent">
+                    <td maxwidth="120" align="left" bgcolor="#dddddd">
+                      <xf:trigger appearance="minimal">
+                        <xf:label>Basic Info</xf:label>
+                        <xf:action ev:event="DOMActivate">
+                          <xf:setvalue  ref="instance('statedata')//currentTab" value="string('basic')"/>
+                        </xf:action>
+                      </xf:trigger>
+                    </td>
+                    <td width="3" bgcolor="white"> </td>
+                    <td maxwidth="120" align="left" bgcolor="#dddddd">
+                      <xf:trigger appearance="minimal">
+                        <xf:label>Curation</xf:label>
+                        <xf:action ev:event="DOMActivate">
+                          <xf:setvalue  ref="instance('statedata')//currentTab" value="string('curation')"/>
+                        </xf:action>
+                      </xf:trigger>
+                    </td>
+                    <td width="3" bgcolor="white"> </td>
+                    <td maxwidth="120" align="left" bgcolor="#bbbbbb">
+                      <xf:trigger appearance="minimal">
+                        <xf:label>Content</xf:label>
+                        <xf:action ev:event="DOMActivate">
+                          <xf:setvalue  ref="instance('statedata')//currentTab" value="string('content')"/>
+                        </xf:action>
+                      </xf:trigger>
+                    </td>
+                  </xf:group>
+                  <td bgcolor="white" colspan="5"> </td>
+                </tr>
+              </table>
+            </xf:group>
+
+            <xf:group model="navigation" ref="instance('statedata')//loggedin">
+              <table align="center" width="100%" bgcolor="#bbbbbb" border="0" cellpadding="1" cellspacing="1">
+                <tr>
+                  <td>
+                    <xf:group model="navigation" ref="instance('statedata')//caseBasic">
+                      <table align="center" width="100%" bgcolor="white" cellpadding="5" cellspacing="5">
+                        <tr>
+                          <td>
+                            <table border="0" cellpadding="0" cellspacing="0" class="xfhelptable">
+                              <tr>
+                                <td>
+                                  <xf:input bind="title">
+                                    <xf:label>Title: </xf:label>
+                                  </xf:input>
+                                </td>
+                                <td style="padding-left: 1em">
+                                  <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 'The full name given to the resource', {title: 'Title', offset: {x:64, y:-20} });" />
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table border="0" cellpadding="0" cellspacing="0" class="xfhelptable">
+                              <tr>
+                                <td>
+                                  <xf:input bind="shortName">
+                                      <xf:label>
+                                        <font color="navy">Short Name: </font></xf:label>
+                                  </xf:input>
+                                </td>
+                                <td style="padding-left: 1em">
+                                  <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 'Short Name: A short name or abbreviation given to the resource.
+                              This name will be used where brief annotations for
+                              the resource name are required.  Applications may
+                              use to refer to this resource in a compact display.
+                              One word or a few letters is recommended.  No more
+                              than sixteen characters are allowed.', {title: 'Short Name', offset: {x:64, y:-20} });" />
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table border="0" cellpadding="0" cellspacing="0" class="xfhelptable">
+                              <tr>
+                                <td>
+                                  <xf:input bind="identifier">
+                                    <xf:label>Resource Key: </xf:label>
+                                  </xf:input>
+                                </td>
+                                <td style="padding-left: 1em">
+                                  <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 'Resource Key will become part of the
+                                           resource\'s IVOA ID, an unambiguous reference to the resource conforming to the IVOA 
+                                           standard for identifiers. If your resource key does not create a unique identifier, you will get an error message
+                                           when you submit your resource, and you may try another.', 
+                                           {title: 'Resource Key', offset: {x:64, y:-20} });" />
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </xf:group>
+
+                    <xf:group model="navigation" ref="instance('statedata')//caseCuration">
+                      <table align="center" width="100%" bgcolor="white" cellpadding="5" cellspacing="5">
+                        <tr>
+                          <td>
+                            <table align="center" width="100%" bgcolor="white" cellpadding="0" cellspacing="0">
+                              <tr>
+                                <td>
+                                  <table border="0" cellpadding="0" cellspacing="0" class="xfhelptable">
+                                    <tr>
+                                      <td>
+                                        <xf:input bind="publisher">
+                                          <xf:label>Publisher: </xf:label>
+                                        </xf:input>
+                                      </td>
+                                      <td style="padding-left: 1em">
+                                        <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 'Entity (e.g. person or organisation) responsible for making the
+                            resource available.', {title: 'Publisher', offset: {x:64, y:-20} });" />
+                                      </td>
+                                      <td style="padding-left: 1em">
+                                        <xf:trigger appearance="minimal">
+                                          <img src="./images/ivoid.gif"/>
+                                          <xf:action ev:event="DOMActivate">
+                                            <xf:setvalue model="authorityresourceform" ref="instance('repeatcontrollers')//showpublisherid" value="string('1')" />
+                                          </xf:action>
+                                        </xf:trigger>
+                                      </td>
+                                    </tr>
+                                      <tr>
+                                        <td>
+                                    <xf:group bind="publisherid">
+                                          <xf:select1 bind="publisherid"  appearance="minimal">
+                                            <xf:label>Publisher ID: </xf:label>
+                                        <xf:itemset model="navigation" nodeset="instance('AuthorityResponse')//rs:ResourceInfo">
+                                              <xf:label ref="rs:title"/>
+                                              <xf:value ref="rs:ivoId"/>
+                                            </xf:itemset>
+                                          </xf:select1>
+                                    </xf:group>
+                                        </td>
+                                        <td style="padding-left: 1em">
+                                          <xf:group bind="publisherid">
+                                            <xf:trigger appearance="minimal">
+                                              <img src="./images/x.gif"/>
+                                              <xf:action ev:event="DOMActivate">
+                                                <xf:setvalue model="authorityresourceform" ref="instance('repeatcontrollers')//showpublisherid" value="string('0')" />
+                                              </xf:action>
+                                            </xf:trigger>
+                                          </xf:group>
+                                        </td>
+                                        <td style="padding-left: 1em">
+                                          <xf:group bind="publisherid">
+                                            <xf:trigger appearance="minimal">
+                                              <img src="./images/delete.gif"/>
+                                              <xf:action ev:event="DOMActivate">
+                                                <xf:setvalue bind="publisherid" value="" />
+                                              </xf:action>
+                                            </xf:trigger>
+                                          </xf:group>
+                                        </td>
+                                      </tr>
+                                    <tr>
+                                      <td>
+                                  <br/>
+                                        <xf:input bind="version">
+                                          <xf:label>Version: </xf:label>
+                                        </xf:input>
+                                      </td>
+                                      <td style="padding-left: 1em">
+                                        <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 'Label associated with creation or availablilty of a version of a resource.', {title: 'Version', offset: {x:64, y:-20} });" />
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <br/>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <hr/>
+                                  <table>
+                                    <tr>
+                                      <td>Creators</td>
+                                      <td style="padding-left: 1em">
+                                        <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 'Creator: The entity (e.g. person or organisation) primarily responsible for creating the content or constitution of the resource.',
+                                                {title: 'Creator', offset: {x:64, y:-20} });" />
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <table>
+                                    <tr>
+                                      <td>
+                                        <xf:repeat model="authorityresourceform" nodeset="instance('workingAuthority')//r1:curation/r1:creator" id="create">
+                                          <xf:group ref=".">
+                                            <table>
+                                              <tr>
+                                                <td>
+                                                  <xf:input ref="./r1:name">
+                                                    <xf:label>Name: </xf:label>
+                                                  </xf:input>
+                                                </td>
+                                                <td style="padding-left: 1em">
+                                                  <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 'The entity (e.g. person 
+                                                     or organisation) primarily responsible for creating the content or 
+                                                     constitution of the resource.',
+                                                     {title: 'Creator Name', offset: {x:64, y:-20} });" />
+                                                </td>
+                                                <!--td style="padding-left: 1em">
+                                                  <xf:trigger appearance="minimal">
+                                                    <img src="./images/ivoid.gif"/>
+                                                    <xf:action ev:event="DOMActivate">
+                                                  <xf:setvalue ref="./r1:name/@ivo-id" value="" />
+                                                    </xf:action>
+                                                  </xf:trigger>
+                                                </td-->
+                                              </tr>
+                                                <tr>
+                                                  <td>
+                                                  <xf:select1 ref="./r1:name/@ivo-id" appearance="minimal">
+                                                      <xf:label>IVO ID: </xf:label>
+                                                    <xf:itemset model="navigation" nodeset="instance('IVOIDPlainResponse')//rs:ResourceInfo">
+                                                      <xf:label ref="rs:title"/>
+                                                      <xf:value ref="rs:ivoId"/>
+                                                    </xf:itemset>
+                                                  </xf:select1>
+                                              </td>
+                                              <td style="padding-left: 1em">
+                                                  <xf:trigger appearance="minimal">
+                                                    <img src="./images/delete.gif"/>
+                                                    <xf:action ev:event="DOMActivate">
+                                                      <xf:setvalue ref="./r1:name/@ivo-id" value="" />
+                                                    </xf:action>
+                                                  </xf:trigger>
+                                                  </td>
+                                                </tr>
+                                              <tr>
+                                                <td>
+                                                  <xf:input ref="./r1:logo">
+                                                    <xf:label>Logo: </xf:label>
+                                                  </xf:input>
+                                                </td>
+                                                <td style="padding-left: 1em">
+                                                  <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 'URL pointing to a graphical logo, which may be used to help identify the information source.',
+                                                     {title: 'Logo', offset: {x:64, y:-20} });" />
+                                                </td>
+                                              </tr>
+                                            </table>
+                                          </xf:group>
+                                        </xf:repeat>
+                                      </td>
+                                      <td></td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                            <table  bgcolor="white">
+                              <tr>
+                                <td>
+                                  <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//insertcreator">
+                                    <xf:label>Insert New Creator</xf:label>
+                                    <xf:insert model="authorityresourceform" nodeset="instance('workingAuthority')//r1:curation/r1:creator"
+                                               origin="instance('workingAuthority')//r1:curation/r1:creator[1]" at="last()" position="after" ev:event="DOMActivate"/>
+                                  </xf:trigger>
+                                </td>
+                                <td>
+                                  <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//deletecreator">
+                                    <xf:label>Delete Last Creator</xf:label>
+                                    <xf:setindex repeat="create" index="count(instance('workingAuthority')//r1:curation/r1:creator)" ev:event="DOMActivate"></xf:setindex>
+                                    <xf:delete model="authorityresourceform" nodeset="instance('workingAuthority')//r1:curation/r1:creator" at="index('create')" ev:event="DOMActivate"/>
+                                  </xf:trigger>
+                                </td>
+                              </tr>
+                            </table>
+                            <hr/>
+                            <br/>
+                            <table bgcolor="white" border="0" cellpadding="0" cellspacing="0" class="xfhelptable">
+                              <tr>
+                                <td>Contributors</td>
+                                <td style="padding-left: 1em">
+                                  <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 
+                                             'Entity responsible for contributions to the content of the resource.', 
+                                             {title: 'Contributor', offset: {x:64, y:-20} });" />
+                                </td>
+                              </tr>
+                            </table>
+                            <table>
+                              <tr>
+                                <td>
+                                  <xf:repeat model="authorityresourceform" nodeset="instance('workingAuthority')//r1:curation/r1:contributor" id="contrib">
+                                    <xf:group ref=".">
+                                      <table>
+                                        <tr>
+                                          <td>
+                                            <xf:input ref=".">
+                                              <xf:label>Name: </xf:label>
+                                            </xf:input>
+                                          </td>
+                                          <td style="padding-left: 1em">
+                                            <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 
+                                             'Entity responsible for contributions to the content of the resource.', 
+                                             {title: 'Contributor Name', offset: {x:64, y:-20} });" />
+                                          </td>
+                                          <!--td style="padding-left: 1em">
+                                            <xf:trigger appearance="minimal">
+                                              <img src="./images/ivoid.gif"/-->
+                                              <!--xf:action ev:event="DOMActivate">
+                                            <xf:setvalue model="newauthform" ref="instance('repeatcontrollers')//showpublisherid" value="string('1')" />
+                                          </xf:action-->
+                                            <!--/xf:trigger>
+                                          </td-->
+                                        </tr>
+                                    <tr>
+                                          <td>
+                                        <xf:select1 ref="./@ivo-id" appearance="minimal">
+                                              <xf:label>IVO ID: </xf:label>
+                                          <xf:itemset model="navigation" nodeset="instance('IVOIDPlainResponse')//rs:ResourceInfo">
+                                            <xf:label ref="rs:title"/>
+                                            <xf:value ref="rs:ivoId"/>
+                                          </xf:itemset>
+                                        </xf:select1>
+                                      </td>
+                                      <td style="padding-left: 1em">
+                                        <xf:trigger appearance="minimal">
+                                          <img src="./images/delete.gif"/>
+                                          <xf:action ev:event="DOMActivate">
+                                            <xf:setvalue ref="./@ivo-id" value="" />
+                                          </xf:action>
+                                        </xf:trigger>
+                                          </td>
+                                    </tr>
+                                      </table>
+                                    </xf:group>
+                                  </xf:repeat>
+                                </td>
+                                <td></td>
+                              </tr>
+                            </table>
+                            <table>
+                              <tr>
+                                <td>
+                                  <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//insertcontrib">
+                                    <xf:label>Insert New Contributor</xf:label>
+                                    <xf:insert model="authorityresourceform" nodeset="instance('workingAuthority')//r1:curation/r1:contributor" 
+                                               origin="instance('workingAuthority')//r1:curation/r1:contributor[1]" at="last()" position="after" ev:event="DOMActivate"/>
+                                  </xf:trigger>
+                                </td>
+                                <td>
+                                  <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//deletecontrib">
+                                    <xf:label>Delete Last Contributor</xf:label>
+                                    <xf:setindex repeat="contrib" index="count(instance('workingAuthority')//r1:curation/r1:contributor)" ev:event="DOMActivate"></xf:setindex>
+                                    <xf:delete model="authorityresourceform" nodeset="instance('workingAuthority')//r1:curation/r1:contributor" at="index('contrib')" ev:event="DOMActivate"/>
+                                  </xf:trigger>
+                                </td>
+                              </tr>
+                            </table>
+                            <hr/>
+                            <!--div title="dates" style="padding: 0px; margin: 0px">
+                <table border="0" cellpadding="0" cellspacing="0" class="xfhelptable">
+                  <tr>
+                    <td width="300" bgcolor="lightgrey" colspan="3">Important Dates</td>
+                    <td style="padding-left: 1em">
+                      <img src="./images/help-small.gif" alt="help" onclick="var w=window.open('', 'Date', 'height=150,width=250,status=no,toolbar=no,scrollbars=yes,menubar=no,location=no,dependent=yes'); 
+                                var d = w.document; d.write('Date: Date associated with an event in the life cycle of the resource.This will typically be associated with the creation or availability (i.e., most recent release or version) of the resource. Use the role attribute to clarify.');
+                                return false;"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <xf:repeat model="authorityresourceform" nodeset="instance('workingAuthority')//r1:curation/r1:date" id="date">
+                        <xf:group ref=".">
+                          <table>
+                            <tr>
+                              <td>
+                        <xf:input ref=".">
+                          <xf:label>
+                            Date:
+                          </xf:label>
+                          <xf:hint>
+                            Date associated with an event in the life cycle of the resource.This will typically be associated with the creation or availability (i.e., most recent release or version) of the resource. Use the role attribute to clarify.
+                          </xf:hint>
+                        </xf:input>
+                              </td>
+                              <td style="padding-left: 1em">
+                                <img src="./images/help-small.gif" alt="help" onclick="var w=window.open('', 'Date', 'height=150,width=250,status=no,toolbar=no,scrollbars=yes,menubar=no,location=no,dependent=yes'); 
+                                var d = w.document; d.write('Date associated with an event in the life cycle of the resource.This will typically be associated with the creation or availability (i.e., most recent release or version) of the resource. Use the role attribute to clarify.');
+                                return false;"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                        <xf:input ref="./@role">
+                          <xf:label>Role: </xf:label>
+                          <xf:hint>
+                            A string indicating what the date refers to.While this vocabulary is uncontrolled, recognized strings include "creation", indicating the date that the resource itself was created, and "updated", indicating when the resource was updated last. The default value, "representative", means that the date is a rough representation of the time coverage of the resource. Note that this date refers to the resource; dates describing the metadata description of the vr:Resource are handled by the "created" and "updated" attributes of the Resource element.
+                          </xf:hint>
+                        </xf:input>
+                          </td>
+                              <td style="padding-left: 1em">
+                                <img src="./images/help-small.gif" alt="help" onclick="var w=window.open('', 'Date', 'height=150,width=250,status=no,toolbar=no,scrollbars=yes,menubar=no,location=no,dependent=yes'); 
+                                var d = w.document; d.write('Date Role: A string indicating what the date refers to. While this vocabulary is uncontrolled, recognized strings include creation, indicating the date that the resource itself was created, and updated, indicating when the resource was updated last. The default value, representative, means that the date is a rough representation of the time coverage of the resource. Note that this date refers to the resource; dates describing the metadata description of the vr:Resource are handled by the created and updated attributes of the Resource element.');
+                                return false;"/>
+                              </td>
+                            </tr>
+                      </table>
+                        </xf:group>
+                      </xf:repeat>
+                    </td>
+                  </tr>
+                </table>
+                <table>
+                  <tr>
+                    <td>
+                      <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//insertdate">
+                        <xf:label>Insert New Date</xf:label>
+                        <xf:insert model="authorityresourceform" nodeset="instance('workingAuthority')//r1:curation/r1:date" at="last()" position="after" ev:event="DOMActivate"/>
+                      </xf:trigger>
+                    </td>
+                    <td>
+                      <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//deletedate">
+                        <xf:label>Delete Last Date</xf:label>
+                        <xf:setindex repeat="date" index="count(instance('workingAuthority')//r1:curation/r1:date)" ev:event="DOMActivate"></xf:setindex>
+                        <xf:delete model="authorityresourceform" nodeset="instance('workingAuthority')//r1:curation/r1:date" at="index('date')" ev:event="DOMActivate"/>
+                      </xf:trigger>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <br/-->
+                            <table border="0" cellpadding="0" cellspacing="0" class="xfhelptable">
+                              <tr>
+                                <td>Contacts</td>
+                                <td style="padding-left: 1em">
+                                  <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 
+                                             'Information that can be used for contacting someone with regard to this resource.', 
+                                             {title: 'Contact', offset: {x:64, y:-20} });" />
+                                </td>
+                              </tr>
+                            </table>
+                            <table>
+                              <tr>
+                                <td>
+                                  <xf:repeat model="authorityresourceform" nodeset="instance('workingAuthority')//r1:curation/r1:contact" id="contact">
+                                    <xf:group ref=".">
+                                      <table>
+                                        <tr>
+                                          <td>
+                                            <xf:input ref="./r1:name" required="true()">
+                                              <xf:label>
+                                                Name:
+                                              </xf:label>
+                                            </xf:input>
+                                          </td>
+                                          <td style="padding-left: 1em">
+                                            <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 
+                                             'The name or title of the contact person.', 
+                                             {title: 'Contact Name', offset: {x:64, y:-20} });" />
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <xf:input ref="./r1:address">
+                                              <xf:label>
+                                                Address:
+                                              </xf:label>
+                                            </xf:input>
+                                          </td>
+                                          <td style="padding-left: 1em">
+                                            <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 
+                                             'Contact mailing address. All components of the mailing address are given in one
+                                    string, e.g. 3700 San Martin Drive, Baltimore, MD 21218 USA', 
+                                             {title: 'Contact Address', offset: {x:64, y:-20} });" />
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <xf:input ref="./r1:email">
+                                          <xf:label>
+                                            <font color="navy">Email: </font></xf:label>
+                                            </xf:input>
+                                          </td>
+                                          <td style="padding-left: 1em">
+                                            <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 
+                                             'Contact email address.', 
+                                             {title: 'Contact Email', offset: {x:64, y:-20} });" />
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <xf:input ref="./r1:telephone">
+                                              <xf:label>Telephone: </xf:label>
+                                            </xf:input>
+                                          </td>
+                                          <td style="padding-left: 1em">
+                                            <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 'Complete international dialing codes should be given, e.g. +1-410-338-1234.', {title: 'Contact Telephone', offset: {x:64, y:-20} });" />
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </xf:group>
+                                  </xf:repeat>
+                                </td>
+                                <td></td>
+                              </tr>
+                            </table>
+                            <table>
+                              <tr>
+                                <td>
+                                  <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//insertcontact">
+                                    <xf:label>Insert New Contact</xf:label>
+                                    <xf:insert model="authorityresourceform" nodeset="instance('workingAuthority')//r1:curation/r1:contact" at="index('contact')" position="after" ev:event="DOMActivate"/>
+                                  </xf:trigger>
+                                </td>
+                                <td>
+                                  <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//deletecontact">
+                                    <xf:label>Delete Last Contact</xf:label>
+                                    <xf:setindex repeat="contact" index="count(instance('workingAuthority')//r1:curation/r1:contact)" ev:event="DOMActivate"></xf:setindex>
+                                    <xf:delete model="authorityresourceform" nodeset="instance('workingAuthority')//r1:curation/r1:contact" at="index('contact')" ev:event="DOMActivate"/>
+                                  </xf:trigger>
+                                </td>
+                              </tr>
+                            </table>
+                            <!--hr/-->
+                          </td>
+                        </tr>
+                      </table>
+                    </xf:group>
+
+                    <xf:group model="navigation" ref="instance('statedata')//caseContent">
+                      <table align="center" width="100%" bgcolor="white" cellpadding="5" cellspacing="5">
+                        <tr>
+                          <td>
+                            <table border="0" cellpadding="0" cellspacing="0" class="xfhelptable">
+                              <tr>
+                                <td>
+                                  <xf:textarea class="large-textarea" bind="description">
+                                    <xf:label>Description: </xf:label>
+                                  </xf:textarea>
+                                </td>
+                                <td valign="top" style="padding-left: 1em">
+                                  <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 'An account of the nature of the resource. The description may include but is not limited to an abstract, table of contents, 
+                                           reference to a graphical representation of content or a free-text account 
+                                           of the content.', {title: 'Description', offset: {x:64, y:-20} });" />
+                                </td>
+                              </tr>
+                              <!--div title="source" style="padding: 0px; margin: 0px">
+                  <tr>
+                    <td>
+                      <xf:input bind="source">
+                        <xf:label>Source: </xf:label>
+                        <xf:hint>
+                          a bibliographic reference from which the present resource is derived or extracted.This is intended to point to an article in the published literature. An ADS Bibcode is recommended as a value when available.
+                        </xf:hint>
+                      </xf:input>
+                    </td>
+                    <td style="padding-left: 1em">
+                      <img src="./images/help-small.gif" alt="help" onclick="var w=window.open('', 'Version', 'height=150,width=250,status=no,toolbar=no,scrollbars=yes,menubar=no,location=no,dependent=yes'); 
+                                var d = w.document; d.write('Source: a bibliographic reference from which the present resource is derived or extracted.This is intended to point to an article in the published literature. An ADS Bibcode is recommended as a value when available.');
+                                return false;"/>
+                    </td>
+                  </tr>
+                </div-->
+                              <!--div title="sourceformat" style="padding: 0px; margin: 0px">
+                  <tr>
+                    <td>
+                      <xf:input bind="sourceformat">
+                        <xf:label>Source Format: </xf:label>
+                        <xf:hint>
+                          The reference format. Recognized values include "bibcode", refering to a standard astronomical bibcode bibcode (http://cdsweb.u-strasbg.fr/simbad/refcode.html).
+                        </xf:hint>
+                      </xf:input>
+                    </td>
+                    <td style="padding-left: 1em">
+                      <xf:group model="authorityresourceform" bind="sourceformat">
+                        <img src="./images/help-small.gif" alt="help" onclick="var w=window.open('', 'Version', 'height=150,width=250,status=no,toolbar=no,scrollbars=yes,menubar=no,location=no,dependent=yes'); 
+                        var d = w.document; d.write('Source Format: The reference format. Recognized values include \'bibcode\', refefring to a standard astronomical bibcode bibcode - http://cdsweb.u-strasbg.fr/simbad/refcode.html.');
+                        return false;"/>
+                      </xf:group>
+                    </td>
+                  </tr>
+                </div-->
+                              <tr>
+                                <td>
+                                  <xf:input bind="referenceURL">
+                                    <xf:label>Reference URL: </xf:label>
+                                  </xf:input>
+                                </td>
+                                <td style="padding-left: 1em">
+                                  <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 'URL pointing to a human-readable document describing this resource.', 
+                                           {title: 'Reference URL', offset: {x:64, y:-20} });" />
+                                </td>
+                              </tr>
+                            </table>
+                            <br/>
+                            <!--div title="types" style="padding: 0px; margin: 0px">
+                  <table>
+                  <tr>
+                    <td width="300" bgcolor="lightgrey" colspan="4">Content Types</td>
+                    <td style="padding-left: 1em">
+                      <img src="./images/help-small.gif" alt="help" onclick="var w=window.open('', 'Identifier', 'height=150,width=250,status=no,toolbar=no,scrollbars=yes,menubar=no,location=no,dependent=yes'); 
+                                var d = w.document; d.write('Type: Nature or genre of the content of the resource.');
+                                return false;"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <xf:repeat model="authorityresourceform" nodeset="instance('workingAuthority')//r1:content/r1:type" id="type">
+                        <xf:select1 ref="."  appearance="minimal">
+                          <xf:label>Type:</xf:label>
+                          <xf:item>
+                            <xf:label></xf:label>
+                            <xf:value></xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Other</xf:label>
+                            <xf:value>Other</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Archive</xf:label>
+                            <xf:value>Archive</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Bibliography</xf:label>
+                            <xf:value>Bibliography</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Catalog</xf:label>
+                            <xf:value>Catalog</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Journal</xf:label>
+                            <xf:value>Journal</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Library</xf:label>
+                            <xf:value>Library</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Simulation</xf:label>
+                            <xf:value>Simulation</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Survey</xf:label>
+                            <xf:value>Survey</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Transformation</xf:label>
+                            <xf:value>Transformation</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Education</xf:label>
+                            <xf:value>Education</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Outreach</xf:label>
+                            <xf:value>Outreach</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>EPOResource</xf:label>
+                            <xf:value>EPOResource</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Animation</xf:label>
+                            <xf:value>Animation</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Artwork</xf:label>
+                            <xf:value>Artwork</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Background</xf:label>
+                            <xf:value>Background</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>BasicData</xf:label>
+                            <xf:value>BasicData</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Historical</xf:label>
+                            <xf:value>Historical</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Photographic</xf:label>
+                            <xf:value>Photographic</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Press</xf:label>
+                            <xf:value>Press</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Organisation</xf:label>
+                            <xf:value>Organisation</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Project</xf:label>
+                            <xf:value>Project</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Registry</xf:label>
+                            <xf:value>Registry</xf:value>
+                          </xf:item>
+                          <xf:hint>Nature or genre of the content of the resource</xf:hint>
+                        </xf:select1>
+                      </xf:repeat>
+                    </td>
+                  </tr>
+                  </table>
+                </div-->
+                            <!--div title="type" style="padding: 0px; margin: 0px">
+                <table>
+                  <tr>
+                    <td>
+                      <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//inserttype">
+                        <xf:label>Insert New Type</xf:label>
+                        <xf:insert model="authorityresourceform" nodeset="instance('workingAuthority')//r1:content/r1:type" at="index('type')" position="after" ev:event="DOMActivate"/>
+                      </xf:trigger>
+                    </td>
+                    <td>
+                      <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//deletetype">
+                        <xf:label>Delete Last Type</xf:label>
+                        <xf:setindex repeat="type" index="count(instance('workingAuthority')//r1:content/r1:type)" ev:event="DOMActivate"></xf:setindex>
+                        <xf:delete model="authorityresourceform" nodeset="instance('workingAuthority')//r1:content/r1:type" at="index('type')" ev:event="DOMActivate"/>
+                      </xf:trigger>
+                    </td>
+                  </tr>
+                </table>
+              <br/>
+                <table border="0" cellpadding="0" cellspacing="0" class="xfhelptable">
+                  <tr>
+                    <td width="300" bgcolor="lightgrey" colspan="4">Content Levels</td>
+                    <td style="padding-left: 1em">
+                                      <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 'Description of the content level or intended audience.',                                           
+                                           {title: 'Content Level', offset: {x:64, y:-20} });" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <xf:repeat model="authorityresourceform" nodeset="instance('workingAuthority')//r1:content/r1:contentLevel" id="level">
+                        <xf:select1 ref="."  appearance="minimal">
+                          <xf:label>Content Level:</xf:label>
+                          <xf:item>
+                            <xf:label>General</xf:label>
+                            <xf:value>General</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Elementary Education</xf:label>
+                            <xf:value>Elementary Education</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Middle School Education</xf:label>
+                            <xf:value>Middle School Education</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Secondary Education</xf:label>
+                            <xf:value>Secondary Education</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Community College</xf:label>
+                            <xf:value>Community College</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>University</xf:label>
+                            <xf:value>University</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Research</xf:label>
+                            <xf:value>Research</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Amateur</xf:label>
+                            <xf:value>Amateur</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>Informal Education</xf:label>
+                            <xf:value>Informal Education</xf:value>
+                          </xf:item>
+                        </xf:select1>
+                      </xf:repeat>
+                    </td>
+                  </tr>
+                </table>
+              </div-->
+                            <!--br/>
+              <div title="resource relationships" style="padding: 0px; margin: 0px">
+                <table border="0" cellpadding="0" cellspacing="0" class="xfhelptable">
+                  <tr>
+                    <td width="300" bgcolor="lightgrey" colspan="4">Resource Relationships</td>
+                    <td style="padding-left: 1em">
+                      <img src="./images/help-small.gif" alt="help" onclick="var w=window.open('', 'Identifier', 'height=150,width=250,status=no,toolbar=no,scrollbars=yes,menubar=no,location=no,dependent=yes'); 
+                                var d = w.document; d.write('Resource Relationship: A description of the relationship between one resource and one or more other resources.');
+                                return false;"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <xf:repeat model="authorityresourceform" nodeset="instance('workingAuthority')//r1:content/r1:relationship" id="relationship">
+                        <xf:group ref=".">
+                          <table>
+                            <tr>
+                              <td>
+                        <xf:select1 ref="./r1:relationshipType"  appearance="minimal">
+                          <xf:label>Relationship Type:</xf:label>
+                          <xf:hint>The named type of relationship.</xf:hint>
+                          <xf:item>
+                            <xf:label>mirror-of</xf:label>
+                            <xf:value>mirror-of</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>service-for</xf:label>
+                            <xf:value>service-for</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>derived-from</xf:label>
+                            <xf:value>derived-from</xf:value>
+                          </xf:item>
+                          <xf:item>
+                            <xf:label>related-to</xf:label>
+                            <xf:value>related-to</xf:value>
+                          </xf:item>
+                        </xf:select1>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                        <xf:input ref="./r1:relatedResource">
+                          <xf:label>Related Resource:</xf:label>
+                          <xf:hint>Related Resource: the name of the resource this resource is related to.</xf:hint>
+                        </xf:input>
+                              </td>
+                              <td style="padding-left: 1em">
+                                <img src="./images/help-small.gif" alt="help" onclick="var w=window.open('', 'Rights', 'height=150,width=250,status=no,toolbar=no,scrollbars=yes,menubar=no,location=no,dependent=yes'); 
+                                var d = w.document; d.write('Related Resource: the name of the resource this resource is related to.');
+                                return false;"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                        <xf:input ref="./r1:relatedResource/@ivo-id">
+                          <xf:label>Related Resource IVO ID:</xf:label>
+                          <xf:hint>IVO ID: The URI form of the IVOA identifier for the resource referred to.</xf:hint>
+                        </xf:input>
+                              </td>
+                              <td style="padding-left: 1em">
+                                <img src="./images/help-small.gif" alt="help" onclick="var w=window.open('', 'Rights', 'height=150,width=250,status=no,toolbar=no,scrollbars=yes,menubar=no,location=no,dependent=yes'); 
+                                var d = w.document; d.write('Related Resource IVO ID: The URI form of the IVOA identifier for the resource referred to.');
+                                return false;"/>
+                              </td>
+                            </tr>
+                          </table>
+                        </xf:group>
+                      </xf:repeat>
+                    </td>
+                  </tr>
+                </table>
+                <table>
+                  <tr>
+                    <td>
+                      <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//insertrelationship">
+                        <xf:label>Insert New Relationship</xf:label>
+                        <xf:insert model="authorityresourceform" nodeset="instance('workingAuthority')//r1:content/r1:relationship" at="last()" position="after" ev:event="DOMActivate"/>
+                      </xf:trigger>
+                    </td>
+                    <td>
+                      <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//deleterelationship">
+                        <xf:label>Delete Last Relationship</xf:label>
+                        <xf:setindex repeat="relationship" index="count(instance('workingAuthority')//r1:content/r1:relationship)" ev:event="DOMActivate"></xf:setindex>
+                        <xf:delete model="authorityresourceform" nodeset="instance('workingAuthority')//r1:content/r1:relationship" at="index('relationship')" ev:event="DOMActivate"/>
+                      </xf:trigger>
+                    </td>
+                  </tr>
+                </table>
+              </div-->
+                            <hr/>
+                            <table align="center" width="100%">
+                              <tr>
+                                <td>
+                                  <table border="0" cellpadding="0" cellspacing="0" class="xfhelptable">
+                                    <tr>
+                                      <td>Subjects</td>
+                                      <td style="padding-left: 1em">
+                                        <img src="./images/help-small.gif" alt="help" onmouseover="new Tip(this, 'List of topics, object types, or other descriptive keywords about the resource. 
+                                                 Terms for Subject should be drawn from the IAU Astronomy Thesaurus \n(http://msowww.anu.edu.au/\nlibrary/thesaurus/)',
+                                           {title: 'Subject', offset: {x:64, y:-20} });" />
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <br/>
+                                  <table>
+                                    <tr>
+                                      <td>
+                                        <xf:repeat model="authorityresourceform" nodeset="instance('workingAuthority')//r1:content/r1:subject" id="subject">
+                                          <xf:input ref=".">
+                                            <xf:label>Subject: </xf:label>
+                                          </xf:input>
+                                        </xf:repeat>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                            <br/>
+                            <table>
+                              <tr>
+                                <td>
+                                  <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//insertsubject">
+                                    <xf:label>Insert New Subject</xf:label>
+                                    <xf:insert model="authorityresourceform" nodeset="instance('workingAuthority')//r1:content/r1:subject" at="index('subject')" position="after" ev:event="DOMActivate"/>
+                                  </xf:trigger>
+                                </td>
+                                <td>
+                                  <xf:trigger model="authorityresourceform" ref="instance('repeatcontrollers')//deletesubject">
+                                    <xf:label>Delete Last Subject</xf:label>
+                                    <xf:setindex repeat="subject" index="count(instance('workingAuthority')//r1:content/r1:subject)" ev:event="DOMActivate"></xf:setindex>
+                                    <xf:delete model="authorityresourceform" nodeset="instance('workingAuthority')//r1:content/r1:subject" at="index('subject')" ev:event="DOMActivate"/>
+                                  </xf:trigger>
+                                </td>
+                              </tr>
+                            </table>
+
+                          </td>
+                        </tr>
+                      </table>
+                    </xf:group>
+                  </td>
+                </tr>
+              </table>
+              <br/>
+
+              <xf:group ref="instance('poststatedata')//failure" model="authorityresourceform">
+                        <center>
+                          <xf:trigger>
+                            <xf:label>Submit</xf:label>
+                            <xf:action ev:event="DOMActivate">
+                              <xf:send submission="PostAuthorityResource"/>
+                              <xf:toggle case="submittedAuth"/>
+                            </xf:action>
+                          </xf:trigger>
+                        </center>
+              </xf:group>
+                 <xf:switch>
+                        <xf:case id="firstrun">
+                        </xf:case>
+                        <xf:case id="submittedAuth">
+                          <br/>
+                          <xf:group ref="instance('poststatedata')//failure" model="authorityresourceform">
+                            <center>
+                              <table border="0" bgcolor="lightsteelblue">
+                                <xf:output model="authorityresourceform" value="if( instance('PostAuthorityResponse')//rs:returncode = '0', 
+									'', 
+									instance('PostAuthorityResponse')//rs:message)">
+                                  <xf:label> </xf:label>
+                                </xf:output>
+                              </table>
+                            </center>
+                          </xf:group>
+
+                          <xf:group ref="instance('poststatedata')//success" model="authorityresourceform">
+                            <center>
+                              <br/>Authority record successfully created!<br/>
+                              <xf:trigger>
+                                <xf:label>Continue</xf:label>
+                                <xf:load resource="http://tdower.stsci.edu/vor10/recordstartpage.xhtml"
+                                         ev:event="DOMActivate" show="replace" />
+                              </xf:trigger>
+                            </center>
+                          </xf:group>
+
+                        </xf:case>
+                      </xf:switch>
+                 <br/>
+            
+                 <xf:action ev:observer="PostAuthorityResource" ev:event="xforms-submit-error">
+                   <xf:message level="modal">
+                     Cannot submit form. Have you completed all tabs?
+                   </xf:message>
+                 </xf:action>
+          </xf:group>
+         </xf:group>
+        </td>
+        <td width="97"></td>
+      </tr>
+    </table>
+    <br />
+    <hr align="left" noshade=""/>
+    <table width="100%"  border="0" align="center" cellpadding="4" cellspacing="0">
+      <tr align="center" valign="top">
+
+        <td width="16%" valign="top">
+          <div align="center" class="style10">
+            <a href="http://www.nsf.gov">
+              <img src="http://www.us-vo.org/images/nsf_logo.gif" alt="NSF HOME" width="50" height="50" border="0"/>
+            </a>
+            <a href="http://www.nasa.gov">
+              <img src="http://www.us-vo.org/images/nasa_logo_sm.gif" alt="NASA HOME" width="50" height="47" border="0"/>
+            </a>
+          </div>
+        </td>
+        <td width="76%">
+          <div align="center">
+            <p class="style10">
+              Developed with the support of the <a href="http://www.nsf.gov">National Science Foundation</a> <br/>
+
+              under Cooperative Agreement AST0122449 with the Johns Hopkins University <br/>
+              The VAO is a member of the <a href="http://www.ivoa.net">International Virtual Observatory Alliance</a>
+            </p>
+            <p class="style10">
+              This VAO Application is hosted by the <a href="http://www.stsci.edu">Space Telescope Science Institute</a>
+            </p>
+          </div>
+        </td>
+        <td width="8%">
+          <div align="center">
+            <span class="tiny">
+              Member<br/>
+            </span>
+            <a href="http://www.ivoa.net">
+              <img src="images/ivoa_small.jpg" alt="ivoa logo" width="68" height="39" border="0" align="top"/>
+            </a>
+          </div>
+        </td>
+
+        <td width="8%">
+          <span class="style4">
+            <span class="tiny"><a href="contactus.aspx">Meet the Developers</a></span>
+            <br/>
+            <img src="http://www.us-vo.org/images/bee_hammer.gif" alt="MEET THE DEVELOPERS" width="50" border="0"/>
+          </span>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+
