@@ -1,0 +1,103 @@
+ VOView LIbrary Package
+ Version 2.0
+ May 2011
+ 
+VOView is a utility for viewing large tables in the VOTABLE format within a 
+Web browser. It is optimized for handling tables ranging in size from 1000 
+to 100,000 rows. It does this by using XSLT to reformat a table in XML format 
+into the HTML format requested by the user. The primary use of VOView within 
+the VAO is as a library for web applications to display tables and select rows 
+from those tables.
+
+This package can be utilized in two different ways, either as a standalone 
+javascript package, or as a server service installed on a server.  The first 
+method requires less overhead and installation configuration, but is limited in 
+its functionality, most notably in terms of accessing external URLs.  The second 
+method gives the user full functionality, but of course requires a server and a 
+more involved installation procedure.
+
+Package Location
+
+The code for the VOView JavaScript library is contained in the file voview_pkg.js, 
+located in this distribution in the directory src/javascript .  As can be seen in 
+the usage examples (see below), a few other JavaScript libraries must included 
+when using VOView.  These are located in the same directory.  There is also a 
+stylesheet file for use with VOView, located at src/html/voview.css .
+
+Build Purpose and Procedure
+
+The purpose of the build procedure is to install the VOView library, including 
+needed ancillary files, on a Web server.  The procedure also reassembles the 
+voview_pgk.js file from its constituent parts, though this is of limited interest 
+to anyone not doing development on the package.  The build procedure uses ant, and 
+the build.xml file is located in the top-level directory of the distribution.  The 
+properties and filters at the top of the file can be customized as needed for your 
+server configuration.  The most important values to consider are proj_root, 
+dest_root, dest_cgi and PROXY_URL.
+
+Proxy Server
+
+In order to access VOTABLEs using URLs not local to the server, you will need to use 
+a proxy server.  Such a server is provided with the distribution at src/cgi/prox.pl, 
+and is installed by default.  Some checks are implemented in the script to help 
+prevent it from being used by applications not local to the server, but this is not 
+a guarantee the script is secure.
+
+Examples
+
+Examples are available demonstrating how to use VOView within an HTML page.  The 
+example files have the pattern src/html/voview_*.html .  These files are also used 
+for running the VOView unit tests (see below).  Note that if you wish to use the 
+example files without running the build procedure (which installs the examples on 
+the server) you'll need to modify the paths to the javascript and style files to 
+point to the locations where you have placed these files.  There are also example 
+files for using just the VOTABLE filtering capability of VOView.  These have the 
+pattern src/html/filter_*.html .  
+
+Unit Test
+
+Unit tests are provided for the VOView package which perform tests for Firefox, 
+Internet Explorer, and Safari.  The tests are based on the JUnit testing environment, 
+and the source files are available in src/java/net/ivoa/voview/tests .  The tests 
+use the selenium package to drive the web browsers.  Thus a selenium server must be 
+running in order for the unit tests to complete successfully.  The necessary jar 
+files for using selenium are available under the lib directory.  JUnit is not 
+included in the distribution.  An example Perl script, suitable for use on a UNIX 
+system, which will set up and start the server environment, and run the tests, is 
+included in the distribution at test/runTests.pl .
+
+Google Project
+
+A Google code project is maintained for VOView.  There you can find more information 
+on the project design, and links to the svn repository for VOView.  There are also 
+links to a forum for discussions and questions about the package.  The URL is 
+https://code.google.com/p/voview/ .
+
+Api Documentation
+
+The API for the VOView package is documented using the jsdoc utility for harvesting 
+and formatting in-line comments.  The top-level page for the documentation can be 
+found at docs/jsdoc/index.html .  The build procedure also installs the 
+documentation on the server under the directory ${dest_root}/jsdoc .
+
+Features
+
+The following features are available in the current version of the VOView GUI 
+display:
+
+- Paging of the rows of the table, with pull down menu to select the number of rows
+  per page.
+
+- Control of column arrangement and display via a seperate widget.
+
+- Arrangement of displayed columns via drag and drop.
+
+- Filtering of rows based on column values.  Filter expressions can be entered for 
+each column at the top of the table.
+
+- Sorting of table by column values.  First click sorts the column in descending 
+order.  Second click sorts the column in ascending order.
+
+- Row selection, including buttons for selecting all rows and unselecting all rows.
+  This feature is enabled via the API, and the list of selected rows can also be 
+ returned via an API.

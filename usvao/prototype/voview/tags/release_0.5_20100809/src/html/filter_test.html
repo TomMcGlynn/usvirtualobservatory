@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+Example of how to use the filter package of VOView to do a simple sorting and selecting of 
+a VOTABLE.  Note the JavaScript packages that must be included, sarissa-compressed.js and 
+filter_pkg.js .  An HTML form is used to input the location of the VOTABLE and the selection 
+parameters.
+ -->
+ <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<script type="text/javascript" src="@JS_PATH@sarissa.js"></script>
+		<script type="text/javascript" src="@JS_PATH@filter_pkg.js"></script>
+		<script type="text/javascript">
+/**
+ * This function gets called when the filtered VOTABLE is available to the JavaScript 
+ * application.  All it does is display the XML as text in the HTML page. Its argument 
+ * is that DOM object of the filtered VOTABLE.
+ */
+			function renderTable(filteredDOM){
+				/**
+				 * Turned the DOM into a string so it can be displayed, 
+				 * and prettify it a little bit.
+				 */
+				var xmlstring = (new XMLSerializer()).serializeToString(filteredDOM);
+				xmlstring = xmlstring.replace(/<\/TR>/gi,"</TR>\n\t");
+				xmlstring = xmlstring.replace(/</g,"&lt;");
+				xmlstring = xmlstring.replace(/>/g,"&gt;");
+				/**
+				 * Display the filtered VOTABLE.
+				 */
+				document.getElementById("output").innerHTML = xmlstring;
+			}
+
+/**
+ * This function gets called when the searchForm form is submitted.  The 
+ * form is just a convenient mechanism for getting the inputs for the filtering 
+ * process.
+ */
+			function filterTable(form){
+				/**
+				 * Create a filter object.  Input function above as the function 
+				 * to be called when the filtered VOTABLE is ready.
+				 */
+				var filterObj = new voviewFilter({filterCallBack: renderTable});
+				/**
+				 * Set the column to use for sorting the table, as well as the 
+				 * sorting direction.  Use the values entered in the submitted form.
+				 */
+				filterObj.setSortColumn({column: form.sort_column.value, 
+					                     direction: form.sort_order.value});
+                /**
+                 * Set the range of rows to be returned in the filtered table using 
+                 * inputs from the submitted form.  The range corresponds to the rows 
+                 * in the table after sorting.
+                 */
+				filterObj.setRowRange({firstRow: form.first_row.value, 
+					                   lastRow: form.last_row.value});
+                /**
+                 * Initiate the downloading and the filtering of the VOTABLE.  Inputs 
+                 * is the URL of a server is to use to obtain the VOTABLE.
+                 */
+				filterObj.start({votableURL: form.query_string.value});
+				
+				return false;
+			}
+		</script>
+	</head>
+	<body>
+		<form method="get" name="searchForm" onsubmit="return filterTable(this)" action="">
+		<table>
+			<tr>
+    			<td>Url:</td>
+    			<td><input name="query_string" id="sterm" size="100" maxlength="500" value="example_input.xml" type="text"/></td>
+  		  	</tr>
+  		  	<tr>
+  		  		<td>Sort Column:</td>
+  		  		<td><input name="sort_column" id="sortcol" size="25" maxlength="50" value="hardness_ratio_1" type="text"/></td>
+  		  	</tr>
+  		  	<tr>
+  		  		<td>Sort Order:</td>
+  		  		<td>
+  		  			<select name="sort_order" id="sortdir" >
+						<option value="ascending">ascending</option>
+						<option value="descending">descending</option>
+					</select>
+				</td>
+  		  	</tr>
+  		  	<tr>
+  		  		<td>First Row</td>
+  		  		<td><input name="first_row" id="begin_row" size="6" maxlength="8" value="1" type="text"/></td>
+  		  	</tr>
+  		  	<tr>
+  		  		<td>Last Row</td>
+  		  		<td><input name="last_row" id="end_row" size="6" maxlength="8" value="10" type="text"/></td>
+  		  	</tr>
+  		  	<tr>
+  		  		<td><input type="submit" class="submit" name=".submit" value="Process" /></td>
+  		  	</tr>
+		</table>
+		</form>
+		<pre id="output">
+			Table should appear here.
+		</pre>
+	</body>
+</html>
