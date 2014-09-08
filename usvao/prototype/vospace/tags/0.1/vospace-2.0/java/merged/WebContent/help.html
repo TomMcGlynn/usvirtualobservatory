@@ -1,0 +1,68 @@
+<h1>VOSpace user guide</h1>
+<p>At the welcome screen you see the OAuth authentication dialog in a popup window. This allows user to get the oauth credentials for this session. Description of oauth can be found in the following tab.</p>
+
+<div id="oauthDesc" dojoType="dijit.TitlePane" open="false" title="OAuth description">
+    <ul>
+    	<li>OAuth specification: <a target="_blank" href="http://oauth.net/">http://oauth.net/</a></li>
+    	<li>OAuth opensource libraries: <a target="_blank" href="http://code.google.com/p/oauth/">http://code.google.com/p/oauth/</a></li>
+    </ul>
+    
+    <h2>Terms</h2>
+    <p><b>Client</b>: a user having Protected Resources he wants to share, and credentials in the application storing the Protected Resources.</p>
+	<p><b>Service provider</b>: an application storing the Protected Resources and being able to authenticate the user using the credentials</p>
+	<p><b>Consumer</b>: an application being given the access to the Protected Resources.</p>
+    <h2>Workflow</h2>
+	<p> The Client doesn’t want to give his credentials to the Consumer, but wants to allow it to use his Protected Resources for a specified period of time, with some limitations.</p>
+	<h3>Step 1: obtaining the consumer key and secret</h3>
+	<p>The Consumer should register itself at a Service Provider and get a Consumer Key and a Consumer Secret. Ones identify the Consumer application.<br/>
+	In our case:<br/>
+	<pre>Consumer Key: sclient
+Consumer Secret: ssecret</pre></p>
+	<h3>Step 2: requesting a Request Token and Token Secret</h3>
+	<p>The Consumer requests the Request Token and Token Secret from the Service Provider, providing the Consumer Key and a HMAC-SHA1 signature calculated from Consumer Key, Consumer Secret and additional fields.</p>
+	<h3>Step 3: user authorization and Token approval</h3>
+	<p>The Client is being redirected to the Service Provider web page where he’d be authenticated using his credentials. After he’ll be asked if the consumer (known from the Consumer Key) is authorized to access his Protected Resources and with what limitations.</p>
+	<h3>Step 4: exchanging the Request Token to the Access Token</h3>
+	<p>The Client notifies the Consumer it’s authorized to use the data. The Consumer exchanges the Request Token to the Access Token (with the same Token Secret) at the Service Provider.</p>
+	<h3>Step 5: using the Protected Resource</h3>
+	<p>The Consumer is making a queries to the Service Provider’s Protected Resource using the Consumer Key, Access Token and signing the messages using the Secrets.</p>
+</div>
+
+<p>The OAuth handshake procedure steps are hidden from the user in the application. The only step user has to do is to authenticate himself at the Service Provider (Step 3). The user enters his login and password and presses the Authenticate button, validating the obtained request token. After user should press the Continue button, indicating that he finished the authentication process and the Token obtained by the application is valid.</p>
+
+<p>The main tab contains two panels: the data tree panel and jobs panel.</p>
+
+<h2>Data tree</h2>
+<p>In the data tree you see the tree structure of files in the data storage. Currently we use <a target="_blank" href="http://swift.openstack.org/">Openstack Swift</a>.</p>
+<p>The node content is <b>only reloaded when you expand it</b>. To make something to a node, right-click it to display the context menu.</p>
+
+<h3>Context menu description</h3>
+
+<p><i>Node metadata</i>: shows the node metadata (if the node has it) and allows to edit it. <b>Note:</b> it's not a simple WYSIWUG edit. Specification of node edit rules are <a target="_blank" href="http://www.ivoa.net/Documents/VOSpace/20101112/WD-VOSpace-2.0-20101112.html#sec5_3_2">here</a> ("The operation is the union of existing values and new ones.")</p>
+<p><i>Create new node</i>: create a new node in the storage. To create a folder, use the default ContainerNode type. Any other will create the leaf node. (<a target="_blank" href="http://www.ivoa.net/Documents/VOSpace/20101112/WD-VOSpace-2.0-20101112.html#sec5_2_1">specification</a>)</p>
+<p><i>Delete node</i>: currently you can't delete a non-empty container node.</p>
+<p><i>Transfers</i>: menu for creating the new transfer jobs with the selected node.</p>
+<p>
+	<ul><i>Pull From VO</i>: download a file from the storage job. (<a target="_blank" href="http://www.ivoa.net/Documents/VOSpace/20101112/WD-VOSpace-2.0-20101112.html#sec5_4_3">specification</a>)</ul>
+	<ul><i>Push To VO</i>: upload a file to the storage job. (<a target="_blank" href="http://www.ivoa.net/Documents/VOSpace/20101112/WD-VOSpace-2.0-20101112.html#sec5_4_1">specification</a>)</ul>
+	<ul><i>Pull To VO from another VO</i>: download a file to local VO from another VO. Creates the pullToVo (<a target="_blank" href="http://www.ivoa.net/Documents/VOSpace/20101112/WD-VOSpace-2.0-20101112.html#sec5_4_2">specification</a>) job in local VO and pullFromVo (<a target="_blank" href="http://www.ivoa.net/Documents/VOSpace/20101112/WD-VOSpace-2.0-20101112.html#sec5_4_3">specification</a>) job in remote VO.</ul>
+	<ul><i>Push From VO to another VO</i>: upload a file from local VO to another VO. Creates the pushFromVo (<a target="_blank" href="http://www.ivoa.net/Documents/VOSpace/20101112/WD-VOSpace-2.0-20101112.html#sec5_4_4">specification</a>) job in local VO and pushToVo (<a target="_blank" href="http://www.ivoa.net/Documents/VOSpace/20101112/WD-VOSpace-2.0-20101112.html#sec5_4_1">specification</a>) job in remote VO.</ul>
+	<ul><i>Pull To VO from URL</i>: download a file from URL. Creates the pullToVo (<a target="_blank" href="http://www.ivoa.net/Documents/VOSpace/20101112/WD-VOSpace-2.0-20101112.html#sec5_4_2">specification</a>) job in local VO.</ul>
+	<ul><i>Push From VO to URL</i>: upload a file to URL. Creates the pushFromVo (<a target="_blank" href="http://www.ivoa.net/Documents/VOSpace/20101112/WD-VOSpace-2.0-20101112.html#sec5_4_4">specification</a>) job in local VO.</ul>
+</p>
+
+<p>Creating the outer VO transfers will show the dialog allowing user to authenticate in another VO using the OAuth. The obtained credentials will be stored during this session in the client application (you can see it in Authentication tab).</p>
+<p>On first task submission to the outer VO, the remote OAuth authorization page will be opened in another window. Authorize the user in it and click the appeared Continue button in the dialog. When using the same VO for the second time, the authentication tokens obtained previously will be used automatically.</p>
+<p>For now you should enter the path in remote observatory by hand in the Path field (f.e. /container1/dir1/file1.bin)</p>
+
+<h2>Jobs</h2>
+<p>Shows the list of transfer jobs created by the current user.</p>
+<h3>Context menu description</h3>
+<p><i>Update</i>: reload the list from database</p>
+<p><i>Download results</i>: download the file to the browser for pullFromVo tasks</p>
+<p><i>Show job description</i>: show the transfer endpoint and its type</p>
+<p><i>Show job ID</i>: show the job ID (to copy to clipboard)</p>
+
+
+<h2>Authentication tab</h2>
+<p>Shows the obtained OAuth user tokens and authorization status in external observatories (made for debugging purposes)</p>

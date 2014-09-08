@@ -1,0 +1,15 @@
+<table>
+	<tr>
+		<td><label for="name"> Node name: </label></td>
+		<td><input dojoType="dijit.form.TextBox" id="dlgNodeName" type="text" style="width: 30em;" name="nodeName"></td>
+	</tr>
+	<tr>
+		<td colspan="2"><textarea dojoType="dijit.form.Textarea"
+			id="newNodeContent" name="nodeContent" style="width: 500px;"></textarea></td>
+	</tr>
+	<tr>
+		<td align="center" colspan="2">
+		<button dojoType="dijit.form.Button" type="submit" onClick="return dijit.byId('newNodeDialog').isValid();">OK</button>
+		</td>
+	</tr>
+</table>

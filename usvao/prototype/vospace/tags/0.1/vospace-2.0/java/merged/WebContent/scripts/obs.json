@@ -1,0 +1,8 @@
+{
+  identifier:"id",
+  label: "name",
+  items: [
+       {id:"vo1", name: "VO 1 (dimm.pha.jhu.edu:8081/vospace-2.0)", url: "http://dimm.pha.jhu.edu:8081/vospace-2.0", key:"sclient", secret: "ssecret"}, 
+       {id:"vo2", name: "VO 2 (dimm.pha.jhu.edu:8080/vospace-2.0)", url: "http://dimm.pha.jhu.edu:8080/vospace-2.0", key:"sclient", secret: "ssecret"}
+  ]
+}

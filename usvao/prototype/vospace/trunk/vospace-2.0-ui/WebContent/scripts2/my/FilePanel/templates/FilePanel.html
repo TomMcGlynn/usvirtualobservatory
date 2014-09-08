@@ -1,0 +1,80 @@
+<div>
+	<div class="dijitHidden">
+		<span data-dojo-type="dijit.Tooltip" data-dojo-attach-point="userLimitTooltip"></span>
+		
+		<!-- New folder dialog -->
+		<div data-dojo-type="dijit.Dialog" data-dojo-attach-point="mkdirDialog" title="Create new folder">
+			<table>
+				<tr>
+					<td><label for="name"> Folder name: </label></td>
+					<td><input dojoType="dijit.form.ValidationTextBox" required="true" regExp="[A-Za-z0-9-_~\.]+" trim="true" data-dojo-attach-point="newNodeName" type="text" style="width: 500px;"></td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2">
+						<button dojoType="dijit.form.Button" type="submit" data-dojo-attach-event="onClick:_mkdir">Create</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<!-- New file dialog -->
+		<div data-dojo-type="dijit.Dialog" data-dojo-attach-point="mkfileDialog" title="Create new file">
+			<table>
+				<tr>
+					<td><label for="name"> File name: </label></td>
+					<td><input dojoType="dijit.form.ValidationTextBox" required="true" regExp="[A-Za-z0-9-_~\.]+" trim="true" data-dojo-attach-point="newNodeName" type="text" style="width: 500px;"></td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2">
+						<button dojoType="dijit.form.Button" type="submit" data-dojo-attach-event="onClick:_mkfile">Create</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<!-- VOSpaces synchronization dialog -->
+		<div data-dojo-type="dijit.Dialog" data-dojo-attach-point="syncDialog" title="Synchronization setup">
+			<div dojoType="dijit.form.TextBox" type="hidden" data-dojo-attach-point="syncContainer"></div>
+			<div data-dojo-attach-point="syncManager"></div>
+			<center>
+				<button dojoType="dijit.form.Button" type="submit" data-dojo-attach-event="onClick:_sync">Submit sync scheme</button>
+				<button dojoType="dijit.form.Button" type="submit">Cancel</button>
+			</center>
+		</div>
+
+		<!-- Transfer from URL dialog -->
+		<div data-dojo-type="dijit.Dialog" data-dojo-attach-point="transferUrlDialog" title="Transfer URL">
+			<div dojoType="dijit.form.TextBox" type="hidden" data-dojo-attach-point="transferNode"></div>
+            <input type="text" required="true" regExp="(https?|ftp)://[A-Za-z0-9-_]+\.[A-Za-z0-9-_%&~\?\/\.=]+" trim="true" data-dojo-attach-point="urlInput" style="width: 380px;" dojoType="dijit.form.ValidationTextBox"/>
+			<center>
+				<button dojoType="dijit.form.Button" type="submit" data-dojo-attach-event="onClick:_pullToVo">Create the transfer</button>
+				<button dojoType="dijit.form.Button" type="submit">Cancel</button>
+			</center>
+		</div>
+
+	</div><!-- hidden div -->
+	
+	<!-- Toolbar -->
+	<div data-dojo-attach-point="toolbar" data-dojo-type="dijit.Toolbar">
+		<select data-dojo-attach-point="loginSelect" data-dojo-type="dijit.form.Select">
+			${!vospacesSelect}
+		</select>
+		<select data-dojo-attach-point="pathSelect" data-dojo-type="dijit.form.Select">
+			<option value="">Location: /</option>
+		</select>
+		<button data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-point="refreshButton" data-dojo-attach-event="onClick:_refresh">Refresh
+		</button>
+		<button data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-point="mkfileButton" data-dojo-attach-event="onClick:_mkfileDialog">Create file...
+		</button>
+		<button data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-point="mkdirButton" data-dojo-attach-event="onClick:_mkdirDialog">Create folder...
+		</button>
+		<button data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-point="transfButton" data-dojo-attach-event="onClick:_showTransfDialog">Transfers...
+		</button>
+		<span dojoType="dijit.ProgressBar" style="width:300px" data-dojo-attach-point="userLimitBar"/>
+	</div>
+
+	<!-- Main panel -->
+	<span data-dojo-attach-point="grid" style="height: 90%">
+	</span>
+
+</div>

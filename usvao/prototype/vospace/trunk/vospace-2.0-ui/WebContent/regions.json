@@ -1,0 +1,20 @@
+[
+	{
+		"id":"dimm.pha.jhu.edu",
+		"default":true,
+		"url":"http://dimm.pha.jhu.edu:8081/vospace-2.0",
+		"display":"dimm.pha.jhu.edu"
+	},
+	{
+		"id":"zinc27.pha.jhu.edu",
+		"default":false,
+		"url":"http://zinc27.pha.jhu.edu/vospace-2.0",
+		"display":"zinc27.pha.jhu.edu"
+	},
+	{
+		"id":"zinc25.pha.jhu.edu",
+		"default":false,
+		"url":"http://zinc25.pha.jhu.edu/vospace-2.0",
+		"display":"zinc25.pha.jhu.edu"
+	}
+]

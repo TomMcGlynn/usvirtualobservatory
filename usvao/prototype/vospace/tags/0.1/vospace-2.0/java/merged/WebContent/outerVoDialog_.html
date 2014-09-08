@@ -1,0 +1,11 @@
+<form id="voForm">
+	<div dojoType="dojo.data.ItemFileReadStore" jsId="obsStore" urlPreventCache="true" url="scripts/obs.json"></div>
+	<input dojoType="dijit.form.Select" store="obsStore" searchAttr="name" name="voSelect" id="voSelect"></input>
+	<center>
+	<button id="authButton1" dojoType="dijit.form.Button" onClick="makeTransfer">Create the transfer</button>
+	<div id="authButton2"></div>
+	<br/><br/>
+	Path: <div id="pathInput" dojoType="dijit.form.TextBox"></div>
+	</center>
+</form>
+
