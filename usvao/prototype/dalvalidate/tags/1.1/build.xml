@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<project name="cone build file" default="jar" basedir=".">
+
+    <property name="htmlSuffix" value=""/>
+<!--    <property name="htmlSuffix" value="-nvo"/> -->
+<!--    <property name="htmlSuffix" value="-esa"/> -->
+
+    <property name="build" value="${basedir}/build"/>    
+    <property name="classes" value="${build}/classes"/>    
+    <property name="tclasses" value="${build}/tclasses"/>    
+    <property name="dist" value="${basedir}/dist"/>
+    <property name="lib" value="${basedir}/lib"/>
+    <property name="web" value="${basedir}/web"/>
+    <property name="bweb" value="${build}/web"/>
+    <property name="conf" value="${basedir}/conf"/>
+    <property name="doc" value="${basedir}/doc"/>
+    <property name="src" value="${basedir}/src"/>
+    <property name="jsrc" value="${src}/java"/>
+    <property name="xsrc" value="${src}/xsl"/>
+    <property name="tests" value="${basedir}/tests"/>
+    <property name="data" value="${basedir}/data"/>
+    <property name="build.sysclasspath" value="last"/>
+    <property environment="env"/>
+    <property name="web_deploy" value="${env.WEB_DEPLOY}"/>
+
+    <!-- 
+      -  Servlet-support:
+      -    It's best to compile this code against the servlet-api.jar
+      -    for the servlet engine you are using.  If the servlet engine 
+      -    is not available, you can obtain the servlet-api.jar file, 
+      -    save it in the lib directory, and replace this property with
+      -    the commented-out version below it.
+      -->
+    <property name="catalina.servletjar" 
+              value="${env.CATALINA_HOME}/common/lib/servlet-api.jar"/>
+
+    <!--
+      -  a locally installed servlet-api.jar file
+    <property name="catalina.servletjar" 
+              value="${lib}/servlet-api.jar"/>
+      -->
+
+    <condition property="catalina.available">
+      <and>
+        <available file="${catalina.servletjar}"/>
+      </and>
+    </condition>
+
+    <!--
+      -  to optimize, set this to false 
+      -->
+    <property name="doDebug" value="true" />
+
+    <target name="mkdirs">
+        <mkdir dir="${classes}"/>
+        <mkdir dir="${tclasses}"/>
+        <mkdir dir="${bweb}"/>
+        <mkdir dir="${dist}"/>
+        <mkdir dir="${doc}/japi"/>
+    </target>
+    <target name="clean">
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+        <delete dir="${doc}/japi"/>
+    </target>
+    <target name="noWebapps" unless="catalina.available" >
+      <echo>Servlet Jar not available (${catalina.servletjar})</echo>
+      <echo>Webapp classes will not be built.</echo>
+    </target>
+    <target name="init" depends="mkdirs,noWebapps"/>
+
+
+    <target name="compile" depends="compileCore,compileWebapps"/>
+
+    <target name="compileCore" depends="init">
+        <echo>building core source</echo>
+        <javac destdir="${classes}" debug="${doDebug}" 
+               classpath="${lib}/junx.jar" includeAntRuntime="false" >
+          <src path="${src}/java"/>
+          <exclude name="org/nvo/service/validation/webapp/*.java"/>
+          <exclude name="org/nvo/conesearch/**/*.java"/>
+          <exclude name="org/nvo/sia/**/*.java"/>
+          <exclude name="org/nvo/ssa/**/*.java"/>
+          <exclude name="org/nvo/sla/**/*.java"/>
+        </javac>
+    </target>
+
+    <target name="compileWebapps" depends="compileCore" 
+            if="catalina.available">
+        <echo>building webapp source</echo>
+<!--        <echo>Servlet jar: ${catalina.servletjar}</echo>  -->
+        <javac destdir="${classes}" debug="${doDebug}" 
+               classpath="${classes}:${lib}/junx.jar:${catalina.servletjar}"
+               includeAntRuntime="false">
+          <src path="${src}/java"/>
+          <include name="org/nvo/service/validation/webapp/*.java"/>
+          <include name="org/nvo/conesearch/validate/*.java"/>
+          <include name="org/nvo/sia/validate/*.java"/>
+          <include name="org/nvo/ssa/validate/*.java"/>
+          <include name="org/nvo/sla/validate/*.java"/>
+        </javac>
+    </target>
+
+    <target name="compileTests" depends="classes">
+        <echo>building tests</echo>
+        <javac destdir="${tclasses}" debug="${doDebug}"
+               classpath="${classes}:${lib}/junx.jar:${catalina.servletjar}"
+               includeAntRuntime="false" srcdir="${tests}">
+        </javac>
+    </target>
+
+    <target name="classes" depends="compile">
+        <copy todir="${classes}/org/nvo/service/validation/app">
+          <fileset dir="${xsrc}/valtests">
+             <filename name="checkConeSearch*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/presentation">
+             <filename name="Results-ConeSearch-*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/valtests">
+             <filename name="AppValidateConeSearch.xml"/>
+          </fileset>
+        </copy>
+        <copy todir="${classes}/org/nvo/conesearch/validate">
+          <fileset dir="${xsrc}/valtests">
+             <filename name="checkConeSearch*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/presentation">
+             <filename name="Results-ConeSearch-*.xsl"/>
+          </fileset>
+        </copy>
+        <copy todir="${classes}/org/nvo/sia/validate">
+          <fileset dir="${xsrc}/valtests">
+             <filename name="checkSIA*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/presentation">
+             <filename name="Results-SIA-*.xsl"/>
+          </fileset>
+        </copy>
+        <copy todir="${classes}/org/nvo/ssa/validate">
+          <fileset dir="${xsrc}/valtests">
+             <filename name="checkSSA*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/presentation">
+             <filename name="Results-SSA-*.xsl"/>
+          </fileset>
+        </copy>
+        <copy todir="${classes}/org/nvo/sla/validate">
+          <fileset dir="${xsrc}/valtests">
+             <filename name="checkSLA*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/presentation">
+             <filename name="Results-SLA-*.xsl"/>
+          </fileset>
+        </copy>
+
+        <copy file="${conf}/WebAppValidateConeSearch.xml" 
+              tofile="${classes}/org/nvo/conesearch/validate/config.xml"/>
+        <copy file="${conf}/WebAppValidateSIA.xml" 
+              tofile="${classes}/org/nvo/sia/validate/config.xml"/>
+        <copy file="${conf}/WebAppValidateSSA.xml" 
+              tofile="${classes}/org/nvo/ssa/validate/config.xml"/>
+        <copy file="${conf}/WebAppValidateSLA.xml" 
+              tofile="${classes}/org/nvo/sla/validate/config.xml"/>
+
+        <copy file="${classes}/org/nvo/conesearch/validate/Results-ConeSearch-html${htmlSuffix}.xsl" 
+              tofile="${classes}/org/nvo/conesearch/validate/Results-ConeSearch-html.xsl" overwrite="true"/>
+        <copy file="${classes}/org/nvo/sia/validate/Results-SIA-html${htmlSuffix}.xsl" 
+              tofile="${classes}/org/nvo/sia/validate/Results-SIA-html.xsl" overwrite="true"/>
+        <copy file="${classes}/org/nvo/ssa/validate/Results-SSA-html${htmlSuffix}.xsl" 
+              tofile="${classes}/org/nvo/ssa/validate/Results-SSA-html.xsl" overwrite="true"/>
+        <copy file="${classes}/org/nvo/sla/validate/Results-SLA-html${htmlSuffix}.xsl" 
+              tofile="${classes}/org/nvo/sla/validate/Results-SLA-html.xsl" overwrite="true"/>
+    </target>
+
+    <target name="jar" depends="compile,classes">
+        <jar destfile="${build}/dalvalidate.jar" basedir="${classes}" />
+    </target>
+
+    <target name="doc" depends="init">
+        <javadoc packagenames="*" destdir="${doc}/japi"
+                 sourcepath="${src}/java" breakiterator="yes"/>
+    </target>
+
+    <target name="war" depends="jar">
+<!--        <copy todir="${web}">
+          <fileset dir="${xsrc}/presentation">
+             <filename name="ResultsFrag-Harvest-*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/presentation">
+             <filename name="SummaryFrag-Harvest-*.xsl"/>
+          </fileset>
+        </copy> -->
+        <copy todir="${bweb}">
+          <fileset dir="${web}"/>
+        </copy>
+
+        <copy file="${bweb}/csvalidate${htmlSuffix}.html" 
+              tofile="${bweb}/csvalidate.html" overwrite="true"/>
+        <copy file="${bweb}/siavalidate${htmlSuffix}.html" 
+              tofile="${bweb}/siavalidate.html" overwrite="true"/>
+        <copy file="${bweb}/ssavalidate${htmlSuffix}.html" 
+              tofile="${bweb}/ssavalidate.html" overwrite="true"/>
+        <copy file="${bweb}/slavalidate${htmlSuffix}.html" 
+              tofile="${bweb}/slavalidate.html" overwrite="true"/>
+
+        <war destfile="${dist}/dalvalidate.war" webxml="${conf}/web.xml">
+            <fileset dir="${bweb}"/>
+            <lib file="${build}/dalvalidate.jar"/>
+            <lib file="${lib}/junx.jar"/>
+        </war>
+    </target>
+
+</project>

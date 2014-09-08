@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<project name="cone build file" default="jar" basedir=".">
+
+    <property name="classes" value="${basedir}/classes"/>    
+    <property name="tclasses" value="${basedir}/tclasses"/>    
+    <property name="dist" value="${basedir}/dist"/>
+    <property name="lib" value="${basedir}/lib"/>
+    <property name="web" value="${basedir}/web"/>
+    <property name="conf" value="${basedir}/conf"/>
+    <property name="doc" value="${basedir}/doc"/>
+    <property name="src" value="${basedir}/src"/>
+    <property name="jsrc" value="${src}/java"/>
+    <property name="xsrc" value="${src}/xsl"/>
+    <property name="tests" value="${basedir}/tests"/>
+    <property name="data" value="${basedir}/data"/>
+    <property name="build.sysclasspath" value="last"/>
+    <property environment="env"/>
+    <property name="web_deploy" value="${env.WEB_DEPLOY}"/>
+
+    <!-- 
+      -  Servlet-support:
+      -    It's best to compile this code against the servlet-api.jar
+      -    for the servlet engine you are using.  If the servlet engine 
+      -    is not available, you can obtain the servlet-api.jar file, 
+      -    save it in the lib directory, and replace this property with
+      -    the commented-out version below it.
+      -->
+    <property name="catalina.servletjar" 
+              value="${env.CATALINA_HOME}/common/lib/servlet-api.jar"/>
+
+    <!--
+      -  a locally installed servlet-api.jar file
+    <property name="catalina.servletjar" 
+              value="${lib}/servlet-api.jar"/>
+      -->
+
+    <condition property="catalina.available">
+      <and>
+        <available file="${catalina.servletjar}"/>
+      </and>
+    </condition>
+
+    <!--
+      -  to optimize, set this to false 
+      -->
+    <property name="doDebug" value="true" />
+
+    <target name="mkdirs">
+        <mkdir dir="${classes}"/>
+        <mkdir dir="${tclasses}"/>
+        <mkdir dir="${lib}"/>
+        <mkdir dir="${dist}"/>
+        <mkdir dir="${doc}/japi"/>
+    </target>
+    <target name="noWebapps" unless="catalina.available" >
+      <echo>Servlet Jar not available (${catalina.servletjar})</echo>
+      <echo>Webapp classes will not be built.</echo>
+    </target>
+    <target name="init" depends="mkdirs,noWebapps"/>
+
+
+    <target name="compile" depends="compileCore,compileWebapps"/>
+
+    <target name="compileCore" depends="init">
+        <echo>building core source</echo>
+        <javac destdir="${classes}" debug="${doDebug}" 
+               classpath="${lib}/junx.jar" includeAntRuntime="false" >
+          <src path="${src}/java"/>
+          <exclude name="org/nvo/service/validation/webapp/*.java"/>
+          <exclude name="org/nvo/conesearch/**/*.java"/>
+          <exclude name="org/nvo/sia/**/*.java"/>
+        </javac>
+    </target>
+
+    <target name="compileWebapps" depends="compileCore" 
+            if="catalina.available">
+        <echo>building webapp source</echo>
+<!--        <echo>Servlet jar: ${catalina.servletjar}</echo>  -->
+        <javac destdir="${classes}" debug="${doDebug}" 
+               classpath="${classes}:${lib}/junx.jar:${catalina.servletjar}"
+               includeAntRuntime="false">
+          <src path="${src}/java"/>
+          <include name="org/nvo/service/validation/webapp/*.java"/>
+          <include name="org/nvo/conesearch/validate/*.java"/>
+          <include name="org/nvo/sia/validate/*.java"/>
+        </javac>
+    </target>
+
+    <target name="compileTests" depends="classes">
+        <echo>building tests</echo>
+        <javac destdir="${tclasses}" debug="${doDebug}"
+               classpath="${classes}:${lib}/junx.jar:${catalina.servletjar}"
+               includeAntRuntime="false" srcdir="${tests}">
+        </javac>
+    </target>
+
+    <target name="classes" depends="compile">
+        <copy todir="${classes}/org/nvo/service/validation/app">
+          <fileset dir="${xsrc}/valtests">
+             <filename name="checkConeSearch*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/presentation">
+             <filename name="Results-ConeSearch-*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/valtests">
+             <filename name="AppValidateConeSearch.xml"/>
+          </fileset>
+        </copy>
+        <copy todir="${classes}/org/nvo/conesearch/validate">
+          <fileset dir="${xsrc}/valtests">
+             <filename name="checkConeSearch*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/presentation">
+             <filename name="Results-ConeSearch-*.xsl"/>
+          </fileset>
+        </copy>
+        <copy todir="${classes}/org/nvo/sia/validate">
+          <fileset dir="${xsrc}/valtests">
+             <filename name="checkSIA*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/presentation">
+             <filename name="Results-SIA-*.xsl"/>
+          </fileset>
+        </copy>
+        <copy file="${conf}/WebAppValidateConeSearch.xml" 
+              tofile="${classes}/org/nvo/conesearch/validate/config.xml"/>
+        <copy file="${conf}/WebAppValidateSIA.xml" 
+              tofile="${classes}/org/nvo/sia/validate/config.xml"/>
+    </target>
+
+    <target name="jar" depends="compile,classes">
+        <jar destfile="${lib}/dalvalidate.jar" basedir="${classes}" />
+    </target>
+
+    <target name="doc" depends="init">
+        <javadoc packagenames="*" destdir="${doc}/japi"
+                 sourcepath="${src}/java" breakiterator="yes"/>
+    </target>
+
+    <target name="war" depends="">
+        <copy todir="${web}">
+          <fileset dir="${xsrc}/presentation">
+             <filename name="ResultsFrag-Harvest-*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/presentation">
+             <filename name="SummaryFrag-Harvest-*.xsl"/>
+          </fileset>
+        </copy>
+        <war destfile="${dist}/dalvalidate.war" webxml="${conf}/web.xml">
+            <fileset dir="${web}"/>
+            <lib dir="${lib}">
+                 <include name="dalvalidate.jar"/>
+                 <include name="junx.jar"/>
+            </lib>
+        </war>
+    </target>
+
+</project>
