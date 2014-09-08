@@ -1,0 +1,92 @@
+﻿<appSettings>
+  <add key="Mast.Name.Lookup"   
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.HttpProxy, Mashup&quot;,
+       &quot;url&quot; : &quot;http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=[INPUT]&quot;,}"/>
+       
+       <!-- &quot;url&quot;   : &quot;http://mastresolver.stsci.edu:8080/Santa-war/query?name=[INPUT]&amp;resolver=COORDINATES&amp;resolver=NED&amp;resolver=SIMBAD&quot;,}"/>  -->
+       <!-- &quot;url&quot; : &quot;http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=[INPUT]&quot;,}"/> -->
+
+  <add key="Caom.Cone.Votable"      
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.Votable, Mashup&quot;,
+       &quot;url&quot;   : &quot;http://gsssdev.stsci.edu/webservices/vo/ConeSearch.aspx?CAT=CAOM_OBSPOINTING&amp;RA=[RA]&amp;DEC=[DEC]&amp;SR=[RADIUS]&quot;,}"/>
+              
+  <add key="Hla.Cone.Votable"      
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.Votable, Mashup&quot;,
+       &quot;url&quot;   : &quot;http://gsssdev.stsci.edu/webservices/vo/ConeSearch.aspx?CAT=HLA_IMG&amp;RA=[RA]&amp;DEC=[DEC]&amp;SR=[RADIUS]&quot;,}"/>           
+               
+  <add key="Vo.Generic.Table"      
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.Votable, Mashup&quot;,
+               &quot;url&quot;   : &quot;[URL]&quot;,}"/>
+
+  <add key="Vo.Generic.Cone"      
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.Votable, Mashup&quot;,
+               &quot;url&quot;   : &quot;[URL]ra=[RA]&amp;dec=[DEC]&amp;sr=[RADIUS]&amp;verb=[VERB:1]&quot;,}"/>
+
+  <add key="Vo.Inventory.Cone"      
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.Votable, Mashup&quot;,
+               &quot;url&quot;   : &quot;http://irsa.ipac.caltech.edu/cgi-bin/VOInventory/nph-voInventory?action=region&amp;ra=[RA]&amp;dec=[DEC]&amp;radius=[RADIUS]&amp;return=votable&quot;,}"/>
+
+  <add key="Galex.Siap.Votable"      
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.Votable, Mashup&quot;,
+               &quot;url&quot;   : &quot;App_Data/GalexSiapVotable.xml &quot;,}"/>
+
+  <add key="Vo.Galex.Cone"      
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.Votable, Mashup&quot;,
+               &quot;url&quot;   : &quot;http://galex.stsci.edu/gxws/CONE6/ConeSearch.asmx/ConeSearchToVOTable?ra=[RA]&amp;dec=[DEC]&amp;sr=[RADIUS]&amp;verb=[VERBOSITY:1]&quot;,}"/>
+
+  <add key="Vo.Galex.Siap"      
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.Votable, Mashup&quot;,
+               &quot;url&quot;   : &quot;http://galex.stsci.edu/gxws/SIAP6/SIAP.asmx/SIAPToVOTable?pos=[RA],[DEC]&amp;size=[RADIUS]&amp;format=&amp;bandpass=&quot;,}"/>
+             
+  <add key="Vo.Hla.Cone"      
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.Votable, Mashup&quot;,
+               &quot;url&quot;   : &quot;http://gsssdev.stsci.edu/webservices/vo/catalogsearch.aspx?RA=[RA]&amp;DEC=[DEC]&amp;SR=[RADIUS]&amp;cat=[CATALOG:caom]&quot;,}"/>   
+   
+  <add key="Vo.Caom.Tap"      
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.UWS, Mashup&quot;,
+               &quot;url&quot;   : &quot;http://nvodev.stsci.edu/obstap/tapservice.aspx&quot;,
+               &quot;query&quot; : &quot;SELECT=s_ra,s_dec&amp;FROM=obscore&amp;MAXREC=500&amp;REQUEST=doQuery&amp;LANG=PQL&quot;}"/>
+               
+	<add key="Vo.Hesarc.Datascope"      
+	   value="{&quot;$type&quot; : &quot;Mashup.Adaptors.Datascope, Mashup&quot;,
+	           &quot;url&quot;   : &quot;http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev?ra=[RA:187.277916]&amp;dec=[DEC:2.052381]&amp;radius=[RADIUS:0.2]&amp;skipcache=[SKIPCACHE:NO]&quot;,
+	           &quot;run&quot;   : &quot;http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/[JOB]/phase?phase=RUN&quot;,
+	           &quot;poll&quot;  : &quot;http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/[JOB]&quot;,
+	           &quot;polltime&quot; : &quot;5&quot;}"/>
+        
+  <add key="Mast.Caom.Cone"      
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.SqlServer, Mashup&quot;,
+        	   &quot;db&quot;    : &quot;Initial Catalog=CAOM;Data Source=mastsqlb;User ID=webaccess;Password=webaccess;Connection Timeout=90;&quot;,
+               &quot;sql&quot;   : &quot;exec spCAOMConeSearch [RA], [DEC], [RADIUS]&quot;,
+               &quot;direct&quot;: &quot; true &quot;}"/>
+                         
+  <add key="Mast.Galex.Sql"     
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.SqlServer, Mashup&quot;,
+               &quot;db&quot;    : &quot;Initial Catalog=GR6;Data Source=mastsqla;User ID=webaccess;Password=webaccess;Connection Timeout=90;&quot;,
+               &quot;sql&quot;   : &quot;[INPUT:select top 1 * from whatsnew]&quot;}"/>
+               
+  <add key="Mast.Hlsp.Project"     
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.SqlServer, Mashup&quot;,
+               &quot;db&quot;    : &quot;Initial Catalog=mast;Data Source=mastsqla;User ID=webaccess;Password=webaccess;Connection Timeout=90;&quot;,
+               &quot;sql&quot;   : &quot;select * from hlsp_project &quot;,
+               &quot;direct&quot;: &quot; true &quot;}"/>
+               
+  <add key="Mast.Hlsp.Products"     
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.SqlServer, Mashup&quot;,
+               &quot;db&quot;    : &quot;Initial Catalog=mast;Data Source=mastsqla;User ID=webaccess;Password=webaccess;Connection Timeout=90;&quot;,
+               &quot;sql&quot;   : &quot;select * from hlsp_products WHERE hd_id LIKE '%[ID:udf]%' &quot;,
+               &quot;direct&quot;: &quot; true &quot;}"/>
+               
+  <add key="Mast.Galex.Catalog" 
+  	   value="{&quot;$type&quot; : &quot;Mashup.Adaptors.SqlServer, Mashup&quot;,
+               &quot;db&quot;    : &quot;Initial Catalog=GR6;Data Source=mastsqla;User ID=webaccess;Password=webaccess;Connection Timeout=90;&quot;,
+               &quot;sql&quot; 	 : &quot;spGalexViewObjectSearch [RA], [DEC], [RADIUS], [MAXRECORDS:10000], '[CATALOG:ALL]' &quot;,
+               &quot;direct&quot;: &quot; true &quot;}"/>
+
+  <add key="Mast.Galex.Tile"   
+       value="{&quot;$type&quot; : &quot;Mashup.Adaptors.SqlServer, Mashup&quot;,
+               &quot;db&quot;    : &quot;Initial Catalog=GR6;Data Source=mastsqla;User ID=webaccess;Password=webaccess;Connection Timeout=90;&quot;,
+               &quot;sql&quot;   : &quot;spGalexViewTileSearch [RA], [DEC], [RADIUS], '[CATALOG:ALL]', [MAXRECORDS:10000] &quot;,
+               &quot;direct&quot;: &quot; true &quot;}"/>    
+
+</appSettings>

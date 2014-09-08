@@ -1,0 +1,894 @@
+﻿DEBUG 2011-06-14 10:03:15,869   143ms Mashup                 invoke             - [2] Mashup: entry. request:{"params":{"input":"m90"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-14 10:03:15,922   196ms Mashup                 invoke             - [2] Mashup: request.service:Mast.Name.Lookup
+DEBUG 2011-06-14 10:03:15,936   210ms Mashup                 invoke             - [2] Mashup: Calling invokeSync() on Adaptor type:Mashup.Adaptors.HttpProxy
+DEBUG 2011-06-14 10:03:15,937   211ms Mashup                 invokeSync         - [2] Mashup: entry
+DEBUG 2011-06-14 10:03:15,944   218ms Web                    getWebResponse     - [2] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m90
+DEBUG 2011-06-14 10:03:16,140   414ms Mashup                 invokeSync         - [2] Mashup: exit
+DEBUG 2011-06-14 10:03:16,141   415ms Mashup                 invoke             - [2] Mashup: exit
+DEBUG 2011-06-14 10:03:36,054 20328ms Mashup                 invoke             - [2] Mashup: entry. request:{"params":{"ra":"9.0","dec":"-43.0","radius":".01"},"service":"Vo.Hesarc.Datascope","format":"extjs","timeout":"10"}
+DEBUG 2011-06-14 10:03:36,055 20329ms Mashup                 invoke             - [2] Mashup: request.service:Vo.Hesarc.Datascope
+DEBUG 2011-06-14 10:03:36,059 20333ms Mashup                 invoke             - [2] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.Datascope
+DEBUG 2011-06-14 10:03:36,062 20336ms Mashup                 invokeAsync        - [2] Mashup: entry
+DEBUG 2011-06-14 10:03:36,075 20350ms Mashup                 invokeAsync        - [2] Mashup: Reusing Response Object from Cache: {"service" : "Vo.Hesarc.Datascope", "params" : {"ra":"9.0","dec":"-43.0","radius":".01"}}
+DEBUG 2011-06-14 10:03:36,076 20351ms Mashup                 invokeAsync        - [2] Mashup: Creating New Response Object for Cache: {"service" : "Vo.Hesarc.Datascope", "params" : {"ra":"9.0","dec":"-43.0","radius":".01"}}
+DEBUG 2011-06-14 10:03:36,080 20355ms Mashup                 invokeAsync        - [2] Mashup: Starting new Thread: [4]
+DEBUG 2011-06-14 10:03:36,086 20360ms Mashup                 invokeAsync        - [2] Mashup: muResponse.isActive = True
+DEBUG 2011-06-14 10:03:36,087 20361ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev?ra=9.0&dec=-43.0&radius=.01&skipcache=NO
+DEBUG 2011-06-14 10:03:36,088 20362ms Mashup                 invokeAsync        - [2] Mashup: muResponse.wait() start. timeout = 10000
+DEBUG 2011-06-14 10:03:38,520 22794ms Datascope              parseResponse      - [4] Datascope: job = 351 phase = PENDING
+DEBUG 2011-06-14 10:03:38,522 22796ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/351/phase?phase=RUN
+DEBUG 2011-06-14 10:03:41,380 25654ms Datascope              parseResponse      - [4] Datascope: job = 351 phase = COMPLETED
+DEBUG 2011-06-14 10:03:41,381 25655ms Datascope              parseResponse      - [4] Datascope: NumberOfHits: 47
+DEBUG 2011-06-14 10:03:41,383 25657ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/9.0_-43.0_0.01/hits.xml
+DEBUG 2011-06-14 10:03:41,571 25845ms Mashup                 invokeAsync        - [2] Mashup: muResponse.wait() stop.  isActive = False
+DEBUG 2011-06-14 10:03:41,572 25846ms Mashup                 invokeAsync        - [2] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 10:03:41,588 25862ms Mashup                 invokeAsync        - [2] Mashup: exit
+DEBUG 2011-06-14 10:03:41,589 25863ms Mashup                 invoke             - [2] Mashup: exit
+DEBUG 2011-06-14 10:17:26,145   135ms Mashup                 invoke             - [3] Mashup: entry. request:{"params":{"input":"m111"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-14 10:17:26,158   149ms Mashup                 invoke             - [3] Mashup: request.service:Mast.Name.Lookup
+DEBUG 2011-06-14 10:17:26,170   161ms Mashup                 invoke             - [3] Mashup: Calling invokeSync() on Adaptor type:Mashup.Adaptors.HttpProxy
+DEBUG 2011-06-14 10:17:26,172   162ms Mashup                 invokeSync         - [3] Mashup: entry
+DEBUG 2011-06-14 10:17:26,178   168ms Web                    getWebResponse     - [3] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m111
+DEBUG 2011-06-14 10:17:27,138  1129ms Mashup                 invokeSync         - [3] Mashup: exit
+DEBUG 2011-06-14 10:17:27,140  1130ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 10:18:22,035   146ms Mashup                 invoke             - [3] Mashup: entry. request:{"params":{"input":"m111"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-14 10:18:22,051   162ms Mashup                 invoke             - [3] Mashup: request.service:Mast.Name.Lookup
+DEBUG 2011-06-14 10:18:22,065   176ms Mashup                 invoke             - [3] Mashup: Calling invokeSync() on Adaptor type:Mashup.Adaptors.HttpProxy
+DEBUG 2011-06-14 10:18:22,066   177ms Mashup                 invokeSync         - [3] Mashup: entry
+DEBUG 2011-06-14 10:18:22,072   183ms Web                    getWebResponse     - [3] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m111
+DEBUG 2011-06-14 10:18:23,151  1262ms Mashup                 invokeSync         - [3] Mashup: exit
+DEBUG 2011-06-14 10:18:23,152  1263ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 14:19:17,049   130ms Mashup                 invoke             - [3] Mashup: entry. request:{"params":{"input":"m102"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-14 14:19:17,063   144ms Mashup                 invoke             - [3] Mashup: request.service:Mast.Name.Lookup
+DEBUG 2011-06-14 14:19:17,076   157ms Mashup                 invoke             - [3] Mashup: Calling invokeSync() on Adaptor type:Mashup.Adaptors.HttpProxy
+DEBUG 2011-06-14 14:19:17,077   158ms Mashup                 invokeSync         - [3] Mashup: entry
+DEBUG 2011-06-14 14:19:17,084   165ms Web                    getWebResponse     - [3] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m102
+DEBUG 2011-06-14 14:19:17,252   333ms Mashup                 invokeSync         - [3] Mashup: exit
+DEBUG 2011-06-14 14:19:17,254   335ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 14:21:37,391 140472ms Mashup                 invoke             - [4] Mashup: entry. request:{"service":"Mast.Name.Lookup","format":"xml","params":{"input":"m99"},"timeout":10}
+DEBUG 2011-06-14 14:21:37,392 140473ms Mashup                 invoke             - [4] Mashup: request.service:Mast.Name.Lookup
+DEBUG 2011-06-14 14:21:37,393 140474ms Mashup                 invoke             - [4] Mashup: Calling invokeSync() on Adaptor type:Mashup.Adaptors.HttpProxy
+DEBUG 2011-06-14 14:21:37,394 140475ms Mashup                 invokeSync         - [4] Mashup: entry
+DEBUG 2011-06-14 14:21:37,396 140477ms Web                    getWebResponse     - [4] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m99
+DEBUG 2011-06-14 14:21:37,480 140561ms Mashup                 invokeSync         - [4] Mashup: exit
+DEBUG 2011-06-14 14:21:37,481 140562ms Mashup                 invoke             - [4] Mashup: exit
+DEBUG 2011-06-14 14:21:37,572 140653ms Mashup                 invoke             - [3] Mashup: entry. request:{"service":"Vo.Hesarc.Datascope","params":{"ra":184.70668,"dec":14.41651,"radius":0.2,"verb":3,"clearcache":false,"skipcache":"NO"},"timeout":10,"format":"extjs"}
+DEBUG 2011-06-14 14:21:37,574 140655ms Mashup                 invoke             - [3] Mashup: request.service:Vo.Hesarc.Datascope
+DEBUG 2011-06-14 14:21:37,577 140658ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.Datascope
+DEBUG 2011-06-14 14:21:37,580 140661ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 14:21:37,582 140663ms Mashup                 invokeAsync        - [3] Mashup: Reusing Response Object from Cache: {"service" : "Vo.Hesarc.Datascope", "params" : {"ra":"184.70668","dec":"14.41651","radius":"0.2","verb":"3","clearcache":"False","skipcache":"NO"}}
+DEBUG 2011-06-14 14:21:37,583 140664ms Mashup                 invokeAsync        - [3] Mashup: Creating New Response Object for Cache: {"service" : "Vo.Hesarc.Datascope", "params" : {"ra":"184.70668","dec":"14.41651","radius":"0.2","verb":"3","clearcache":"False","skipcache":"NO"}}
+DEBUG 2011-06-14 14:21:37,586 140667ms Mashup                 invokeAsync        - [3] Mashup: Starting new Thread: [5]
+DEBUG 2011-06-14 14:21:37,588 140669ms Mashup                 invokeAsync        - [3] Mashup: muResponse.isActive = True
+DEBUG 2011-06-14 14:21:37,590 140671ms Mashup                 invokeAsync        - [3] Mashup: muResponse.wait() start. timeout = 10000
+DEBUG 2011-06-14 14:21:37,590 140671ms Web                    getWebResponse     - [5] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev?ra=184.70668&dec=14.41651&radius=0.2&skipcache=NO
+DEBUG 2011-06-14 14:21:38,740 141821ms Datascope              parseResponse      - [5] Datascope: job = 368 phase = PENDING
+DEBUG 2011-06-14 14:21:38,741 141822ms Web                    getWebResponse     - [5] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/368/phase?phase=RUN
+DEBUG 2011-06-14 14:21:39,719 142800ms Datascope              parseResponse      - [5] Datascope: job = 368 phase = COMPLETED
+DEBUG 2011-06-14 14:21:39,720 142801ms Datascope              parseResponse      - [5] Datascope: NumberOfHits: 328
+DEBUG 2011-06-14 14:21:39,723 142804ms Web                    getWebResponse     - [5] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/184.70668_14.41651_0.2/hits.xml
+DEBUG 2011-06-14 14:21:40,632 143713ms Mashup                 invokeAsync        - [3] Mashup: muResponse.wait() stop.  isActive = False
+DEBUG 2011-06-14 14:21:40,633 143714ms Mashup                 invokeAsync        - [3] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 14:21:40,697 143778ms Mashup                 invokeAsync        - [3] Mashup: exit
+DEBUG 2011-06-14 14:21:40,699 143780ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 17:31:11,964   152ms Mashup                 invoke             - [2] Mashup: entry. request:{"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-14 17:31:11,982   171ms Mashup                 invoke             - [2] Mashup: request.service:Mast.Name.Lookup
+DEBUG 2011-06-14 17:31:12,006   195ms Mashup                 invoke             - [2] Mashup: Calling invokeSync() on Adaptor type:Mashup.Adaptors.HttpProxy
+DEBUG 2011-06-14 17:31:12,007   196ms Mashup                 invokeSync         - [2] Mashup: entry
+DEBUG 2011-06-14 17:31:12,014   202ms Web                    getWebResponse     - [2] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m99
+DEBUG 2011-06-14 17:31:12,342   530ms Mashup                 invokeSync         - [2] Mashup: exit
+DEBUG 2011-06-14 17:31:12,343   532ms Mashup                 invoke             - [2] Mashup: exit
+DEBUG 2011-06-14 20:11:54,801 9642990ms Mashup                 invoke             - [3] Mashup: entry. request:{"params":{"ra":"9.0","dec":"-43.0","radius":".05"},"service":"Vo.Galex.Cone","format":"extjs","timeout":"10","clearcache":"false"}
+DEBUG 2011-06-14 20:11:54,856 9643044ms Mashup                 invoke             - [3] Mashup: request.service:Vo.Galex.Cone
+DEBUG 2011-06-14 20:11:54,858 9643047ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.Votable
+DEBUG 2011-06-14 20:11:54,895 9643084ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 20:11:54,899 9643088ms Mashup                 invokeAsync        - [3] Mashup: Reusing Response Object from Cache: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 20:11:54,900 9643089ms Mashup                 invokeAsync        - [3] Mashup: Creating New Response Object for Cache: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 20:11:54,922 9643110ms Mashup                 invokeAsync        - [3] Mashup: Starting new Thread: [4]
+DEBUG 2011-06-14 20:11:54,939 9643127ms Mashup                 invokeAsync        - [3] Mashup: muResponse.isActive = True
+DEBUG 2011-06-14 20:11:54,940 9643129ms Mashup                 invokeAsync        - [3] Mashup: muResponse.wait() start. timeout = 10000
+DEBUG 2011-06-14 20:11:54,940 9643129ms Web                    getWebResponse     - [4] [WEB GET] http://galex.stsci.edu/gxws/CONE6/ConeSearch.asmx/ConeSearchToVOTable?ra=9.0&dec=-43.0&sr=.05&verb=1
+DEBUG 2011-06-14 20:11:56,921 9645110ms Mashup                 invokeAsync        - [3] Mashup: muResponse.wait() stop.  isActive = False
+DEBUG 2011-06-14 20:11:56,923 9645111ms Mashup                 invokeAsync        - [3] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 20:11:56,960 9645148ms Mashup                 invokeAsync        - [3] Mashup: exit
+DEBUG 2011-06-14 20:11:56,961 9645150ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 20:18:27,888 10036076ms Mashup                 invoke             - [2] Mashup: entry. request:{"params":{"ra":"9.0","dec":"-43.0","radius":".05"},"service":"Vo.Galex.Cone","format":"extjs","timeout":"10","clearcache":"false"}
+DEBUG 2011-06-14 20:18:27,890 10036078ms Mashup                 invoke             - [2] Mashup: request.service:Vo.Galex.Cone
+DEBUG 2011-06-14 20:18:27,891 10036079ms Mashup                 invoke             - [2] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.Votable
+DEBUG 2011-06-14 20:18:27,892 10036080ms Mashup                 invokeAsync        - [2] Mashup: entry
+DEBUG 2011-06-14 20:18:27,893 10036081ms Mashup                 invokeAsync        - [2] Mashup: Found Mashup Response Object in Cache: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 20:18:27,894 10036082ms Mashup                 invokeAsync        - [2] Mashup: muResponse.isActive = False
+DEBUG 2011-06-14 20:18:27,895 10036083ms Mashup                 invokeAsync        - [2] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 20:18:27,960 10036148ms Mashup                 invokeAsync        - [2] Mashup: exit
+DEBUG 2011-06-14 20:18:27,961 10036150ms Mashup                 invoke             - [2] Mashup: exit
+DEBUG 2011-06-14 20:20:30,478 10158666ms Mashup                 invoke             - [3] Mashup: entry. request:{"params":{"ra":"9.0","dec":"-43.0","radius":".05"},"service":"Vo.Galex.Cone","format":"extjs","timeout":"10","clearcache":"false"}
+DEBUG 2011-06-14 20:20:30,479 10158668ms Mashup                 invoke             - [3] Mashup: request.service:Vo.Galex.Cone
+DEBUG 2011-06-14 20:20:30,480 10158669ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.Votable
+DEBUG 2011-06-14 20:20:30,481 10158670ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 20:20:30,482 10158671ms Mashup                 invokeAsync        - [3] Mashup: Found Mashup Response Object in Cache: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 20:20:30,483 10158672ms Mashup                 invokeAsync        - [3] Mashup: muResponse.isActive = False
+DEBUG 2011-06-14 20:20:30,484 10158673ms Mashup                 invokeAsync        - [3] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 20:20:30,522 10158710ms Mashup                 invokeAsync        - [3] Mashup: exit
+DEBUG 2011-06-14 20:20:30,523 10158712ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 20:21:48,811 10236999ms Mashup                 invoke             - [3] Mashup: entry. request:{"params":{"ra":"9.0","dec":"-43.0","radius":".05"},"service":"Vo.Galex.Cone","format":"extjs","timeout":"10","clearcache":"false"}
+DEBUG 2011-06-14 20:21:48,812 10237000ms Mashup                 invoke             - [3] Mashup: request.service:Vo.Galex.Cone
+DEBUG 2011-06-14 20:21:48,838 10237027ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.Votable
+DEBUG 2011-06-14 20:21:48,840 10237028ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 20:21:48,841 10237029ms Mashup                 invokeAsync        - [3] Mashup: Found Mashup Response Object in Cache: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 20:21:48,842 10237030ms Mashup                 invokeAsync        - [3] Mashup: muResponse.isActive = False
+DEBUG 2011-06-14 20:21:48,843 10237031ms Mashup                 invokeAsync        - [3] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 20:21:48,889 10237078ms Mashup                 invokeAsync        - [3] Mashup: exit
+DEBUG 2011-06-14 20:21:48,960 10237148ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 20:34:14,907 10983096ms Mashup                 invoke             - [3] Mashup: entry. request:{"params":{"ra":"9.0","dec":"-43.0","radius":".05"},"service":"Vo.Galex.Cone","format":"extjs","timeout":"10","clearcache":"false"}
+DEBUG 2011-06-14 20:34:14,925 10983113ms Mashup                 invoke             - [3] Mashup: request.service:Vo.Galex.Cone
+DEBUG 2011-06-14 20:34:14,926 10983114ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.Votable
+DEBUG 2011-06-14 20:34:14,927 10983115ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 20:34:14,931 10983119ms Mashup                 invokeAsync        - [3] Mashup: Reusing Response Object from Cache: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 20:34:14,932 10983120ms Mashup                 invokeAsync        - [3] Mashup: Creating New Response Object for Cache: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 20:34:14,933 10983122ms Mashup                 invokeAsync        - [3] Mashup: Starting new Thread: [5]
+DEBUG 2011-06-14 20:34:14,934 10983123ms Mashup                 invokeAsync        - [3] Mashup: muResponse.isActive = True
+DEBUG 2011-06-14 20:34:14,950 10983139ms Web                    getWebResponse     - [5] [WEB GET] http://galex.stsci.edu/gxws/CONE6/ConeSearch.asmx/ConeSearchToVOTable?ra=9.0&dec=-43.0&sr=.05&verb=1
+DEBUG 2011-06-14 20:34:14,950 10983139ms Mashup                 invokeAsync        - [3] Mashup: muResponse.wait() start. timeout = 10000
+DEBUG 2011-06-14 20:34:15,387 10983576ms Mashup                 invokeAsync        - [3] Mashup: muResponse.wait() stop.  isActive = False
+DEBUG 2011-06-14 20:34:15,388 10983577ms Mashup                 invokeAsync        - [3] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 20:34:15,426 10983615ms Mashup                 invokeAsync        - [3] Mashup: exit
+DEBUG 2011-06-14 20:34:15,428 10983616ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 20:38:59,595 11267783ms Mashup                 invoke             - [3] Mashup: entry. request:{"params":{"ra":"9.0","dec":"-43.0","radius":".05"},"service":"Vo.Galex.Cone","format":"extjs","timeout":"10","clearcache":"false"}
+DEBUG 2011-06-14 20:38:59,611 11267799ms Mashup                 invoke             - [3] Mashup: request.service:Vo.Galex.Cone
+DEBUG 2011-06-14 20:38:59,612 11267801ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.Votable
+DEBUG 2011-06-14 20:38:59,613 11267801ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 20:38:59,614 11267803ms Mashup                 invokeAsync        - [3] Mashup: Found Mashup Response Object in Cache: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 20:38:59,615 11267804ms Mashup                 invokeAsync        - [3] Mashup: muResponse.isActive = False
+DEBUG 2011-06-14 20:38:59,616 11267805ms Mashup                 invokeAsync        - [3] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 20:38:59,677 11267865ms Mashup                 invokeAsync        - [3] Mashup: exit
+DEBUG 2011-06-14 20:38:59,678 11267867ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 20:39:20,099 11288288ms Mashup                 invoke             - [3] Mashup: entry. request:{"params":{"ra":"9.0","dec":"-43.0","radius":".05"},"service":"Vo.Galex.Cone","format":"extjs","timeout":"10","clearcache":"false"}
+DEBUG 2011-06-14 20:39:20,100 11288289ms Mashup                 invoke             - [3] Mashup: request.service:Vo.Galex.Cone
+DEBUG 2011-06-14 20:39:20,102 11288290ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.Votable
+DEBUG 2011-06-14 20:39:20,103 11288291ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 20:39:20,104 11288292ms Mashup                 invokeAsync        - [3] Mashup: Found Mashup Response Object in Cache: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 20:39:20,105 11288293ms Mashup                 invokeAsync        - [3] Mashup: muResponse.isActive = False
+DEBUG 2011-06-14 20:39:20,116 11288304ms Mashup                 invokeAsync        - [3] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 20:39:20,166 11288354ms Mashup                 invokeAsync        - [3] Mashup: exit
+DEBUG 2011-06-14 20:39:20,167 11288356ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 20:41:48,704 11436892ms Mashup                 invoke             - [2] Mashup: entry. request:{"params":{"ra":"9.0","dec":"-43.0","radius":".05"},"service":"Vo.Galex.Cone","format":"extjs","timeout":"10","clearcache":"false"}
+DEBUG 2011-06-14 20:41:48,734 11436923ms Mashup                 invoke             - [2] Mashup: request.service:Vo.Galex.Cone
+DEBUG 2011-06-14 20:41:48,735 11436924ms Mashup                 invoke             - [2] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.Votable
+DEBUG 2011-06-14 20:41:48,736 11436925ms Mashup                 invokeAsync        - [2] Mashup: entry
+DEBUG 2011-06-14 20:41:48,737 11436926ms Mashup                 invokeAsync        - [2] Mashup: Found Mashup Response Object in Cache: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 20:41:48,739 11436927ms Mashup                 invokeAsync        - [2] Mashup: muResponse.isActive = False
+DEBUG 2011-06-14 20:41:48,740 11436928ms Mashup                 invokeAsync        - [2] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 20:41:48,785 11436974ms Mashup                 invokeAsync        - [2] Mashup: exit
+DEBUG 2011-06-14 20:41:48,787 11436975ms Mashup                 invoke             - [2] Mashup: exit
+DEBUG 2011-06-14 20:44:28,523 11596711ms Mashup                 invoke             - [3] Mashup: entry. request:{"params":{"ra":"9.0","dec":"-43.0","radius":".05"},"service":"Vo.Galex.Cone","format":"extjs","timeout":"10","clearcache":"false"}
+DEBUG 2011-06-14 20:44:28,525 11596714ms Mashup                 invoke             - [3] Mashup: request.service:Vo.Galex.Cone
+DEBUG 2011-06-14 20:44:28,527 11596715ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.Votable
+DEBUG 2011-06-14 20:44:28,528 11596717ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 20:44:28,529 11596718ms Mashup                 invokeAsync        - [3] Mashup: Found Mashup Response Object in Cache: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 20:44:28,530 11596719ms Mashup                 invokeAsync        - [3] Mashup: muResponse.isActive = False
+DEBUG 2011-06-14 20:44:28,531 11596720ms Mashup                 invokeAsync        - [3] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 20:44:28,680 11596868ms Mashup                 invokeAsync        - [3] Mashup: exit
+DEBUG 2011-06-14 20:44:28,756 11596944ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 21:05:30,854 12859042ms Mashup                 invoke             - [3] Mashup: entry. request:{"params":{"ra":"9.0","dec":"-43.0","radius":".05"},"service":"Vo.Galex.Cone","format":"extjs","timeout":"10","clearcache":"false"}
+DEBUG 2011-06-14 21:05:31,050 12859238ms Mashup                 invoke             - [3] Mashup: request.service:Vo.Galex.Cone
+DEBUG 2011-06-14 21:05:31,051 12859239ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.Votable
+DEBUG 2011-06-14 21:05:31,052 12859240ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 21:05:31,053 12859242ms Mashup                 invokeAsync        - [3] Mashup: Reusing Response Object from Cache: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 21:05:31,054 12859243ms Mashup                 invokeAsync        - [3] Mashup: Creating New Response Object for Cache: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 21:05:31,055 12859244ms Mashup                 invokeAsync        - [3] Mashup: Starting new Thread: [6]
+DEBUG 2011-06-14 21:05:31,057 12859246ms Mashup                 invokeAsync        - [3] Mashup: muResponse.isActive = True
+DEBUG 2011-06-14 21:05:31,058 12859247ms Mashup                 invokeAsync        - [3] Mashup: muResponse.wait() start. timeout = 10000
+DEBUG 2011-06-14 21:05:31,060 12859248ms Web                    getWebResponse     - [6] [WEB GET] http://galex.stsci.edu/gxws/CONE6/ConeSearch.asmx/ConeSearchToVOTable?ra=9.0&dec=-43.0&sr=.05&verb=1
+DEBUG 2011-06-14 21:05:32,143 12860331ms Mashup                 invokeAsync        - [3] Mashup: muResponse.wait() stop.  isActive = False
+DEBUG 2011-06-14 21:05:32,144 12860332ms Mashup                 invokeAsync        - [3] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 21:05:32,187 12860375ms Mashup                 invokeAsync        - [3] Mashup: exit
+DEBUG 2011-06-14 21:05:32,188 12860376ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 21:05:46,656 12874845ms Mashup                 invoke             - [3] Mashup: entry. request:{"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:05:46,658 12874846ms Mashup                 invoke             - [3] Mashup: request.service:Mast.Hlsp.Project
+DEBUG 2011-06-14 21:05:46,663 12874852ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:05:46,664 12874853ms Mashup                 invokeAsync        - [3] Mashup: entry
+ERROR 2011-06-14 21:05:46,675 12874863ms Mashup                 invoke             - [3] Mashup: Exception caught while invoking Adaptor: Mast.Hlsp.Project
+System.NullReferenceException: Object reference not set to an instance of an object
+  at Mashup.MashupRequest.appendJsonDictionary (System.Text.StringBuilder sb, System.Collections.Generic.Dictionary`2 dict) [0x0000e] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/MashupRequest.cs:149 
+  at Mashup.MashupRequest.get_key () [0x00059] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/MashupRequest.cs:85 
+  at Mashup.Mashup.invokeAsync (IAsyncAdaptor a, Mashup.MashupRequest muRequest) [0x00045] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:124 
+  at Mashup.Mashup.invoke (System.String request) [0x000e0] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:80 
+DEBUG 2011-06-14 21:05:46,679 12874867ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 21:06:13,236 12901424ms Mashup                 invoke             - [2] Mashup: entry. request:{"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:06:13,237 12901425ms Mashup                 invoke             - [2] Mashup: request.service:Mast.Hlsp.Project
+DEBUG 2011-06-14 21:06:13,238 12901426ms Mashup                 invoke             - [2] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:06:13,239 12901427ms Mashup                 invokeAsync        - [2] Mashup: entry
+ERROR 2011-06-14 21:06:13,240 12901428ms Mashup                 invoke             - [2] Mashup: Exception caught while invoking Adaptor: Mast.Hlsp.Project
+System.NullReferenceException: Object reference not set to an instance of an object
+  at Mashup.MashupRequest.appendJsonDictionary (System.Text.StringBuilder sb, System.Collections.Generic.Dictionary`2 dict) [0x0000e] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/MashupRequest.cs:149 
+  at Mashup.MashupRequest.get_key () [0x00059] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/MashupRequest.cs:85 
+  at Mashup.Mashup.invokeAsync (IAsyncAdaptor a, Mashup.MashupRequest muRequest) [0x00045] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:124 
+  at Mashup.Mashup.invoke (System.String request) [0x000e0] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:80 
+DEBUG 2011-06-14 21:06:13,241 12901430ms Mashup                 invoke             - [2] Mashup: exit
+DEBUG 2011-06-14 21:08:38,107 13046296ms Mashup                 invoke             - [3] Mashup: entry. request:{"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:08:43,747 13051936ms Mashup                 invoke             - [3] Mashup: request.service:Mast.Hlsp.Project
+DEBUG 2011-06-14 21:08:56,835 13065023ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:09:05,052 13073241ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 21:12:05,003 13253192ms Mashup                 invokeAsync        - [3] Mashup: Reusing Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {
+DEBUG 2011-06-14 21:12:21,975 13270163ms Mashup                 invokeAsync        - [3] Mashup: Creating New Response Object for Cache: {"service" : "Mast.Hlsp.Project", "params" : {
+DEBUG 2011-06-14 21:13:25,288 13333476ms Mashup                 invokeAsync        - [3] Mashup: Starting new Thread: [7]
+DEBUG 2011-06-14 21:20:36,414 109285ms Mashup                 invoke             - [3] Mashup: entry. request:[{"k":"params","v":[{"k":"input","v":"m99"}]},{"k":"service","v":"Mast.Name.Lookup"},{"k":"clearcache","v":""}]
+DEBUG 2011-06-14 21:22:49,142 10273ms Mashup                 invoke             - [3] Mashup: entry. request:{"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:22:49,183 10313ms Mashup                 invoke             - [3] Mashup: request.service:Mast.Hlsp.Project
+DEBUG 2011-06-14 21:22:49,256 10387ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:22:49,259 10390ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 21:22:49,263 10394ms Mashup                 invokeAsync        - [3] Mashup: Reusing Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:22:49,264 10395ms Mashup                 invokeAsync        - [3] Mashup: Creating New Response Object for Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:22:49,269 10400ms Mashup                 invokeAsync        - [3] Mashup: Starting new Thread: [4]
+DEBUG 2011-06-14 21:22:49,381 10511ms Mashup                 invokeAsync        - [3] Mashup: muResponse.isActive = True
+DEBUG 2011-06-14 21:22:49,383 10513ms Mashup                 invokeAsync        - [3] Mashup: muResponse.wait() start. timeout = 20000
+DEBUG 2011-06-14 21:22:49,984 11115ms Mashup                 invokeAsync        - [3] Mashup: muResponse.wait() stop.  isActive = False
+DEBUG 2011-06-14 21:22:49,985 11116ms Mashup                 invokeAsync        - [3] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 21:22:50,008 11139ms Mashup                 invokeAsync        - [3] Mashup: exit
+DEBUG 2011-06-14 21:22:50,009 11140ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 21:22:59,544 20675ms Mashup                 invoke             - [2] Mashup: entry. request:{"service":"Mast.Hlsp.Products","format":"extjs","params":{"id":"euveatlas"}}
+DEBUG 2011-06-14 21:22:59,545 20676ms Mashup                 invoke             - [2] Mashup: request.service:Mast.Hlsp.Products
+DEBUG 2011-06-14 21:22:59,546 20677ms Mashup                 invoke             - [2] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:22:59,547 20678ms Mashup                 invokeAsync        - [2] Mashup: entry
+DEBUG 2011-06-14 21:22:59,548 20679ms Mashup                 invokeAsync        - [2] Mashup: Reusing Response Object from Cache: {"service" : "Mast.Hlsp.Products", "params" : {"id":"euveatlas"}}
+DEBUG 2011-06-14 21:22:59,549 20680ms Mashup                 invokeAsync        - [2] Mashup: Creating New Response Object for Cache: {"service" : "Mast.Hlsp.Products", "params" : {"id":"euveatlas"}}
+DEBUG 2011-06-14 21:22:59,550 20681ms Mashup                 invokeAsync        - [2] Mashup: Starting new Thread: [5]
+DEBUG 2011-06-14 21:22:59,553 20683ms Mashup                 invokeAsync        - [2] Mashup: muResponse.isActive = True
+DEBUG 2011-06-14 21:22:59,555 20686ms Mashup                 invokeAsync        - [2] Mashup: muResponse.wait() start. timeout = 20000
+DEBUG 2011-06-14 21:22:59,781 20912ms Mashup                 invokeAsync        - [2] Mashup: muResponse.wait() stop.  isActive = False
+DEBUG 2011-06-14 21:22:59,783 20913ms Mashup                 invokeAsync        - [2] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 21:22:59,827 20958ms Mashup                 invokeAsync        - [2] Mashup: exit
+DEBUG 2011-06-14 21:22:59,828 20959ms Mashup                 invoke             - [2] Mashup: exit
+DEBUG 2011-06-14 21:23:06,945 28076ms Mashup                 invoke             - [2] Mashup: entry. request:{"service":"Mast.Hlsp.Products","format":"extjs","params":{"id":"appp"}}
+DEBUG 2011-06-14 21:23:06,947 28078ms Mashup                 invoke             - [2] Mashup: request.service:Mast.Hlsp.Products
+DEBUG 2011-06-14 21:23:06,948 28079ms Mashup                 invoke             - [2] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:23:06,949 28080ms Mashup                 invokeAsync        - [2] Mashup: entry
+DEBUG 2011-06-14 21:23:06,950 28081ms Mashup                 invokeAsync        - [2] Mashup: Reusing Response Object from Cache: {"service" : "Mast.Hlsp.Products", "params" : {"id":"appp"}}
+DEBUG 2011-06-14 21:23:06,951 28082ms Mashup                 invokeAsync        - [2] Mashup: Creating New Response Object for Cache: {"service" : "Mast.Hlsp.Products", "params" : {"id":"appp"}}
+DEBUG 2011-06-14 21:23:06,952 28083ms Mashup                 invokeAsync        - [2] Mashup: Starting new Thread: [6]
+DEBUG 2011-06-14 21:23:06,957 28087ms Mashup                 invokeAsync        - [2] Mashup: muResponse.isActive = True
+DEBUG 2011-06-14 21:23:06,958 28088ms Mashup                 invokeAsync        - [2] Mashup: muResponse.wait() start. timeout = 20000
+DEBUG 2011-06-14 21:23:11,471 32602ms Mashup                 invokeAsync        - [2] Mashup: muResponse.wait() stop.  isActive = False
+DEBUG 2011-06-14 21:23:11,472 32603ms Mashup                 invokeAsync        - [2] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 21:23:12,244 33374ms Mashup                 invokeAsync        - [2] Mashup: exit
+DEBUG 2011-06-14 21:23:12,245 33376ms Mashup                 invoke             - [2] Mashup: exit
+DEBUG 2011-06-14 21:24:21,217 102347ms Mashup                 invoke             - [2] Mashup: entry. request:{"service":"Mast.Hlsp.Products","format":"extjs","params":{"id":"udf_nicmos-treasury"}}
+DEBUG 2011-06-14 21:24:21,228 102358ms Mashup                 invoke             - [2] Mashup: request.service:Mast.Hlsp.Products
+DEBUG 2011-06-14 21:24:21,229 102359ms Mashup                 invoke             - [2] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:24:21,230 102360ms Mashup                 invokeAsync        - [2] Mashup: entry
+DEBUG 2011-06-14 21:24:21,231 102361ms Mashup                 invokeAsync        - [2] Mashup: Reusing Response Object from Cache: {"service" : "Mast.Hlsp.Products", "params" : {"id":"udf_nicmos-treasury"}}
+DEBUG 2011-06-14 21:24:21,232 102362ms Mashup                 invokeAsync        - [2] Mashup: Creating New Response Object for Cache: {"service" : "Mast.Hlsp.Products", "params" : {"id":"udf_nicmos-treasury"}}
+DEBUG 2011-06-14 21:24:21,233 102363ms Mashup                 invokeAsync        - [2] Mashup: Starting new Thread: [7]
+DEBUG 2011-06-14 21:24:21,234 102364ms Mashup                 invokeAsync        - [2] Mashup: muResponse.isActive = True
+DEBUG 2011-06-14 21:24:21,245 102376ms Mashup                 invokeAsync        - [2] Mashup: muResponse.wait() start. timeout = 20000
+DEBUG 2011-06-14 21:24:21,405 102535ms Mashup                 invokeAsync        - [2] Mashup: muResponse.wait() stop.  isActive = False
+DEBUG 2011-06-14 21:24:21,406 102537ms Mashup                 invokeAsync        - [2] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 21:24:21,489 102620ms Mashup                 invokeAsync        - [2] Mashup: exit
+DEBUG 2011-06-14 21:24:21,490 102621ms Mashup                 invoke             - [2] Mashup: exit
+DEBUG 2011-06-14 21:25:10,268 151398ms Mashup                 invoke             - [3] Mashup: entry. request:{"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:25:10,269 151399ms Mashup                 invoke             - [3] Mashup: request.service:Mast.Hlsp.Project
+DEBUG 2011-06-14 21:25:10,270 151401ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:25:10,271 151402ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 21:25:10,272 151403ms Mashup                 invokeAsync        - [3] Mashup: Found Mashup Response Object in Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:25:10,273 151404ms Mashup                 invokeAsync        - [3] Mashup: muResponse.isActive = False
+DEBUG 2011-06-14 21:25:10,274 151405ms Mashup                 invokeAsync        - [3] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 21:25:10,327 151457ms Mashup                 invokeAsync        - [3] Mashup: exit
+DEBUG 2011-06-14 21:25:10,328 151459ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 21:25:46,945 188076ms Mashup                 invoke             - [3] Mashup: entry. request:{"service":"Mast.Hlsp.Products","format":"extjs","params":{"id":"helix"}}
+DEBUG 2011-06-14 21:25:46,947 188077ms Mashup                 invoke             - [3] Mashup: request.service:Mast.Hlsp.Products
+DEBUG 2011-06-14 21:25:46,948 188079ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:25:46,949 188079ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 21:25:46,950 188080ms Mashup                 invokeAsync        - [3] Mashup: Reusing Response Object from Cache: {"service" : "Mast.Hlsp.Products", "params" : {"id":"helix"}}
+DEBUG 2011-06-14 21:25:46,951 188081ms Mashup                 invokeAsync        - [3] Mashup: Creating New Response Object for Cache: {"service" : "Mast.Hlsp.Products", "params" : {"id":"helix"}}
+DEBUG 2011-06-14 21:25:46,952 188082ms Mashup                 invokeAsync        - [3] Mashup: Starting new Thread: [8]
+DEBUG 2011-06-14 21:25:46,953 188083ms Mashup                 invokeAsync        - [3] Mashup: muResponse.isActive = True
+DEBUG 2011-06-14 21:25:46,955 188085ms Mashup                 invokeAsync        - [3] Mashup: muResponse.wait() start. timeout = 20000
+DEBUG 2011-06-14 21:25:47,018 188149ms Mashup                 invokeAsync        - [3] Mashup: muResponse.wait() stop.  isActive = False
+DEBUG 2011-06-14 21:25:47,019 188150ms Mashup                 invokeAsync        - [3] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 21:25:47,024 188155ms Mashup                 invokeAsync        - [3] Mashup: exit
+DEBUG 2011-06-14 21:25:47,026 188156ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 21:25:51,272 192403ms Mashup                 invoke             - [3] Mashup: entry. request:{"service":"Mast.Hlsp.Products","format":"extjs","params":{"id":"appp"}}
+DEBUG 2011-06-14 21:25:51,274 192404ms Mashup                 invoke             - [3] Mashup: request.service:Mast.Hlsp.Products
+DEBUG 2011-06-14 21:25:51,275 192405ms Mashup                 invoke             - [3] Mashup: Calling invokeAsync() on Adaptor type:Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:25:51,275 192406ms Mashup                 invokeAsync        - [3] Mashup: entry
+DEBUG 2011-06-14 21:25:51,276 192407ms Mashup                 invokeAsync        - [3] Mashup: Found Mashup Response Object in Cache: {"service" : "Mast.Hlsp.Products", "params" : {"id":"appp"}}
+DEBUG 2011-06-14 21:25:51,277 192408ms Mashup                 invokeAsync        - [3] Mashup: muResponse.isActive = False
+DEBUG 2011-06-14 21:25:51,278 192409ms Mashup                 invokeAsync        - [3] Mashup: muResponse.write() response...
+DEBUG 2011-06-14 21:25:52,173 193304ms Mashup                 invokeAsync        - [3] Mashup: exit
+DEBUG 2011-06-14 21:25:52,175 193305ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 21:43:15,627   553ms Mashup                 invoke             - [3] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:43:15,664   590ms Mashup                 invoke             - [3] Mashup: Created MashupRequest Object. service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:43:15,706   632ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor. Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:43:15,710   636ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:43:15,715   640ms Mashup                 invokeAsync        - [3] Mashup: CREATING New Response Object: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:43:15,728   653ms Mashup                 invokeAsync        - [3] Mashup: Starting new Thread ID: [5]
+DEBUG 2011-06-14 21:43:15,739   665ms Mashup                 invokeAsync        - [3] Mashup: Response IS ACTIVE...Waiting for msecs:20000
+DEBUG 2011-06-14 21:43:16,326  1252ms Mashup                 invokeAsync        - [3] Mashup: Back from wait. Response IS COMPLETE.
+DEBUG 2011-06-14 21:43:16,329  1255ms Mashup                 invokeAsync        - [3] Mashup: Response writing response data...
+DEBUG 2011-06-14 21:43:16,347  1273ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:43:16,348  1274ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 21:43:17,304  2230ms Mashup                 invoke             - [3] Mashup: request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-14 21:43:17,305  2231ms Mashup                 invoke             - [3] Mashup: Created MashupRequest Object. service: Mast.Name.Lookup
+DEBUG 2011-06-14 21:43:17,308  2234ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor. Type: Mashup.Adaptors.HttpProxy
+DEBUG 2011-06-14 21:43:17,309  2235ms Mashup                 invokeSync         - [3] Mashup: invokeSync() called.
+DEBUG 2011-06-14 21:43:17,314  2240ms Web                    getWebResponse     - [3] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m99
+DEBUG 2011-06-14 21:43:17,525  2451ms Mashup                 invokeSync         - [3] Mashup: invokeSync() complete.
+DEBUG 2011-06-14 21:43:17,526  2452ms Mashup                 invoke             - [3] Mashup: exit
+DEBUG 2011-06-14 21:43:36,761 21687ms Mashup                 invoke             - [2] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:43:36,762 21688ms Mashup                 invoke             - [2] Mashup: Created MashupRequest Object. service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:43:36,764 21690ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor. Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:43:36,765 21691ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:43:36,766 21692ms Mashup                 invokeAsync        - [2] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:43:36,767 21693ms Mashup                 invokeAsync        - [2] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:43:36,768 21694ms Mashup                 invokeAsync        - [2] Mashup: Response writing response data...
+DEBUG 2011-06-14 21:43:36,786 21712ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:43:36,787 21713ms Mashup                 invoke             - [2] Mashup: exit
+DEBUG 2011-06-14 21:49:30,879   173ms Mashup                 invoke             - [2] ========================== invoke ============================
+DEBUG 2011-06-14 21:49:30,891   185ms Mashup                 invoke             - [2] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:49:30,895   189ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:49:30,921   215ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:49:30,923   217ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:49:30,926   220ms Mashup                 invokeAsync        - [2] Mashup: CREATING New Response Object: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:49:30,932   226ms Mashup                 invokeAsync        - [2] Mashup: Starting new Thread ID: [4]
+DEBUG 2011-06-14 21:49:30,942   236ms Mashup                 invokeAsync        - [2] Mashup: Response IS ACTIVE...Waiting for msecs:20000
+DEBUG 2011-06-14 21:49:31,504   798ms Mashup                 invokeAsync        - [2] Mashup: Back from wait. Response IS COMPLETE.
+DEBUG 2011-06-14 21:49:31,506   800ms Mashup                 invokeAsync        - [2] Mashup: Response writing response data...
+DEBUG 2011-06-14 21:49:31,601   895ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:53:58,519   129ms Mashup                 invoke             - [2] ========================== invoke ============================
+DEBUG 2011-06-14 21:53:58,543   153ms Mashup                 invoke             - [2] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:53:58,547   157ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:53:58,566   176ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:53:58,569   179ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:53:58,571   181ms Mashup                 invokeAsync        - [2] Mashup: CREATING New Response Object: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:53:58,578   188ms Mashup                 invokeAsync        - [2] Mashup: Starting new Thread ID: [4]
+DEBUG 2011-06-14 21:53:58,589   199ms Mashup                 invokeAsync        - [2] Mashup: Response IS ACTIVE...Waiting on [4] for msecs:20000
+DEBUG 2011-06-14 21:53:58,997   607ms Mashup                 invokeAsync        - [2] Mashup: Back from wait on [4].  Response IS COMPLETE.
+DEBUG 2011-06-14 21:53:58,998   609ms Mashup                 invokeAsync        - [2] Mashup: Response writing response...
+DEBUG 2011-06-14 21:53:59,020   630ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:54:31,966 33576ms Mashup                 invoke             - [2] ========================== invoke ============================
+DEBUG 2011-06-14 21:54:31,968 33578ms Mashup                 invoke             - [2] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:54:31,969 33579ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:54:31,970 33581ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:54:31,972 33582ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:54:31,974 33584ms Mashup                 invokeAsync        - [2] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:54:31,975 33585ms Mashup                 invokeAsync        - [2] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:54:31,976 33586ms Mashup                 invokeAsync        - [2] Mashup: Response writing response...
+DEBUG 2011-06-14 21:54:31,981 33592ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:55:10,806 72416ms Mashup                 invoke             - [3] ========================== invoke ============================
+DEBUG 2011-06-14 21:55:10,810 72420ms Mashup                 invoke             - [3] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:55:10,811 72421ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:55:10,812 72422ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:55:10,818 72428ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:55:10,819 72429ms Mashup                 invokeAsync        - [3] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:55:10,820 72430ms Mashup                 invokeAsync        - [3] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:55:10,821 72431ms Mashup                 invokeAsync        - [3] Mashup: Response writing response...
+DEBUG 2011-06-14 21:55:10,827 72438ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:55:39,426 101037ms Mashup                 invoke             - [3] ========================== invoke ============================
+DEBUG 2011-06-14 21:55:39,428 101038ms Mashup                 invoke             - [3] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:55:39,439 101049ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:55:39,440 101051ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:55:39,441 101052ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:55:39,443 101053ms Mashup                 invokeAsync        - [3] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:55:39,444 101054ms Mashup                 invokeAsync        - [3] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:55:39,445 101055ms Mashup                 invokeAsync        - [3] Mashup: Response writing response...
+DEBUG 2011-06-14 21:55:39,451 101061ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:55:41,252 102863ms Mashup                 invoke             - [2] ========================== invoke ============================
+DEBUG 2011-06-14 21:55:41,254 102864ms Mashup                 invoke             - [2] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:55:41,299 102910ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:55:41,301 102911ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:55:41,302 102912ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:55:41,303 102913ms Mashup                 invokeAsync        - [2] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:55:41,304 102914ms Mashup                 invokeAsync        - [2] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:55:41,305 102915ms Mashup                 invokeAsync        - [2] Mashup: Response writing response...
+DEBUG 2011-06-14 21:55:41,309 102920ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:55:42,909 104519ms Mashup                 invoke             - [2] ========================== invoke ============================
+DEBUG 2011-06-14 21:55:42,910 104521ms Mashup                 invoke             - [2] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:55:42,912 104522ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:55:42,913 104523ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:55:42,914 104524ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:55:42,915 104525ms Mashup                 invokeAsync        - [2] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:55:42,916 104526ms Mashup                 invokeAsync        - [2] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:55:42,917 104527ms Mashup                 invokeAsync        - [2] Mashup: Response writing response...
+DEBUG 2011-06-14 21:55:42,922 104532ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:55:44,784 106394ms Mashup                 invoke             - [3] ========================== invoke ============================
+DEBUG 2011-06-14 21:55:44,785 106395ms Mashup                 invoke             - [3] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:55:44,786 106396ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:55:44,787 106397ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:55:44,788 106398ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:55:44,789 106400ms Mashup                 invokeAsync        - [3] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:55:44,790 106401ms Mashup                 invokeAsync        - [3] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:55:44,792 106402ms Mashup                 invokeAsync        - [3] Mashup: Response writing response...
+DEBUG 2011-06-14 21:55:44,796 106407ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:55:46,519 108129ms Mashup                 invoke             - [2] ========================== invoke ============================
+DEBUG 2011-06-14 21:55:46,522 108133ms Mashup                 invoke             - [2] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:55:46,524 108134ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:55:46,526 108136ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:55:46,527 108138ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:55:46,529 108139ms Mashup                 invokeAsync        - [2] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:55:46,530 108140ms Mashup                 invokeAsync        - [2] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:55:46,531 108141ms Mashup                 invokeAsync        - [2] Mashup: Response writing response...
+DEBUG 2011-06-14 21:55:46,543 108153ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:55:48,405 110015ms Mashup                 invoke             - [2] ========================== invoke ============================
+DEBUG 2011-06-14 21:55:48,406 110016ms Mashup                 invoke             - [2] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:55:48,407 110017ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:55:48,410 110020ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:55:48,411 110021ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:55:48,412 110022ms Mashup                 invokeAsync        - [2] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:55:48,413 110023ms Mashup                 invokeAsync        - [2] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:55:48,414 110024ms Mashup                 invokeAsync        - [2] Mashup: Response writing response...
+DEBUG 2011-06-14 21:55:48,420 110030ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:55:50,249 111859ms Mashup                 invoke             - [3] ========================== invoke ============================
+DEBUG 2011-06-14 21:55:50,251 111861ms Mashup                 invoke             - [3] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:55:50,252 111862ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:55:50,253 111863ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:55:50,254 111864ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:55:50,255 111865ms Mashup                 invokeAsync        - [3] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:55:50,256 111866ms Mashup                 invokeAsync        - [3] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:55:50,257 111867ms Mashup                 invokeAsync        - [3] Mashup: Response writing response...
+DEBUG 2011-06-14 21:55:50,262 111872ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:55:51,941 113551ms Mashup                 invoke             - [3] ========================== invoke ============================
+DEBUG 2011-06-14 21:55:51,943 113553ms Mashup                 invoke             - [3] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:55:51,944 113554ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:55:51,945 113556ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:55:51,947 113557ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:55:51,950 113560ms Mashup                 invokeAsync        - [3] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:55:51,951 113561ms Mashup                 invokeAsync        - [3] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:55:51,952 113562ms Mashup                 invokeAsync        - [3] Mashup: Response writing response...
+DEBUG 2011-06-14 21:55:51,957 113567ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:55:53,616 115226ms Mashup                 invoke             - [2] ========================== invoke ============================
+DEBUG 2011-06-14 21:55:53,618 115228ms Mashup                 invoke             - [2] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:55:53,619 115229ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:55:53,621 115231ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:55:53,623 115233ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:55:53,624 115234ms Mashup                 invokeAsync        - [2] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:55:53,625 115235ms Mashup                 invokeAsync        - [2] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:55:53,626 115236ms Mashup                 invokeAsync        - [2] Mashup: Response writing response...
+DEBUG 2011-06-14 21:55:53,631 115242ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:55:55,925 117535ms Mashup                 invoke             - [3] ========================== invoke ============================
+DEBUG 2011-06-14 21:55:55,927 117537ms Mashup                 invoke             - [3] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:55:55,928 117539ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:55:55,930 117540ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:55:55,930 117541ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:55:55,931 117542ms Mashup                 invokeAsync        - [3] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:55:55,932 117543ms Mashup                 invokeAsync        - [3] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:55:55,933 117544ms Mashup                 invokeAsync        - [3] Mashup: Response writing response...
+DEBUG 2011-06-14 21:55:55,947 117557ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:57:33,256   153ms Mashup                 invoke             - =========== invoke [3]  ===========
+DEBUG 2011-06-14 21:57:33,289   185ms Mashup                 invoke             - [3] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:57:33,293   189ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:57:33,318   215ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:57:33,321   218ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:57:33,324   221ms Mashup                 invokeAsync        - [3] Mashup: CREATING New Response Object: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:57:33,330   226ms Mashup                 invokeAsync        - [3] Mashup: Starting new Thread ID: [4]
+DEBUG 2011-06-14 21:57:33,401   298ms Mashup                 invokeAsync        - [3] Mashup: Response IS ACTIVE...Waiting on [4] for msecs:20000
+DEBUG 2011-06-14 21:57:33,807   704ms Mashup                 invokeAsync        - [3] Mashup: Back from wait on [4].  Response IS COMPLETE.
+DEBUG 2011-06-14 21:57:33,808   705ms Mashup                 invokeAsync        - [3] Mashup: Response writing response...
+DEBUG 2011-06-14 21:57:33,829   726ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:57:38,497  5394ms Mashup                 invoke             - =========== invoke [3]  ===========
+DEBUG 2011-06-14 21:57:38,504  5401ms Mashup                 invoke             - [3] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:57:38,506  5403ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:57:38,507  5404ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:57:38,508  5405ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:57:38,509  5406ms Mashup                 invokeAsync        - [3] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:57:38,510  5407ms Mashup                 invokeAsync        - [3] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:57:38,512  5408ms Mashup                 invokeAsync        - [3] Mashup: Response writing response...
+DEBUG 2011-06-14 21:57:38,518  5414ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 21:57:40,325  7222ms Mashup                 invoke             - =========== invoke [2]  ===========
+DEBUG 2011-06-14 21:57:40,327  7223ms Mashup                 invoke             - [2] Mashup: request: {"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-14 21:57:40,334  7231ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-14 21:57:40,335  7232ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-14 21:57:40,336  7233ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 21:57:40,337  7234ms Mashup                 invokeAsync        - [2] Mashup: REUSING Response Object from Cache: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-14 21:57:40,338  7235ms Mashup                 invokeAsync        - [2] Mashup: Response IS COMPLETE.
+DEBUG 2011-06-14 21:57:40,339  7236ms Mashup                 invokeAsync        - [2] Mashup: Response writing response...
+DEBUG 2011-06-14 21:57:40,345  7242ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 22:17:53,354   141ms Mashup                 invoke             - =============== invoke [2]  ===============
+DEBUG 2011-06-14 22:17:53,369   156ms Mashup                 invoke             - [2] Mashup: request: {"params":{"ra":"9.0","dec":"-43.0","radius":".05"},"service":"Vo.Galex.Cone","format":"extjs","timeout":"10","clearcache":"false"}
+DEBUG 2011-06-14 22:17:53,371   158ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Vo.Galex.Cone
+DEBUG 2011-06-14 22:17:53,386   173ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.Votable
+DEBUG 2011-06-14 22:17:53,388   175ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 22:17:53,390   177ms Mashup                 invokeAsync        - [2] Mashup: [Creating] New Response Object: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 22:17:53,396   183ms Mashup                 invokeAsync        - [2] Mashup: Starting new Response Thread: [4]
+DEBUG 2011-06-14 22:17:53,399   186ms Mashup                 invokeAsync        - [2] Mashup: Waiting for [10000] secs on Response Thread [4]. is [Active] Status is [EXECUTING]
+DEBUG 2011-06-14 22:17:53,404   191ms Web                    getWebResponse     - [4] [WEB GET] http://galex.stsci.edu/gxws/CONE6/ConeSearch.asmx/ConeSearchToVOTable?ra=9.0&dec=-43.0&sr=.05&verb=1
+DEBUG 2011-06-14 22:17:53,805   592ms Mashup                 invokeAsync        - [2] Mashup: Back from Wait on Response Thread [4]. is [Finished] Status is [COMPLETE]
+DEBUG 2011-06-14 22:17:53,806   593ms Mashup                 invokeAsync        - [2] Mashup: Writing Response...
+DEBUG 2011-06-14 22:17:53,873   660ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 22:21:16,068   186ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-14 22:21:16,082   200ms Mashup                 invoke             - [3] Mashup: request: {"params":{"ra":"9.0","dec":"-43.0","radius":".05"},"service":"Vo.Galex.Cone","format":"extjs","timeout":"10","clearcache":"false"}
+DEBUG 2011-06-14 22:21:16,083   201ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Vo.Galex.Cone
+DEBUG 2011-06-14 22:21:16,103   221ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.Votable
+DEBUG 2011-06-14 22:21:16,106   225ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-14 22:21:16,109   227ms Mashup                 invokeAsync        - [3] Mashup: [Creating] New Response Object: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".05"}}
+DEBUG 2011-06-14 22:21:16,114   233ms Mashup                 invokeAsync        - [3] Mashup: Starting new Response Thread: [4]
+DEBUG 2011-06-14 22:21:16,125   244ms Mashup                 invokeAsync        - [3] Mashup: Waiting for [10] secs on Response Thread [4]. State is [Active] Status is [EXECUTING]
+DEBUG 2011-06-14 22:21:16,126   244ms Web                    getWebResponse     - [4] [WEB GET] http://galex.stsci.edu/gxws/CONE6/ConeSearch.asmx/ConeSearchToVOTable?ra=9.0&dec=-43.0&sr=.05&verb=1
+DEBUG 2011-06-14 22:21:16,631   749ms Mashup                 invokeAsync        - [3] Mashup: Back from Wait on Response Thread [4]. State is [Finished] Status is [COMPLETE]
+DEBUG 2011-06-14 22:21:16,632   750ms Mashup                 invokeAsync        - [3] Mashup: Writing Response...
+DEBUG 2011-06-14 22:21:16,685   803ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-14 23:46:45,219   151ms Mashup                 invoke             - =============== invoke [2]  ===============
+DEBUG 2011-06-14 23:46:45,241   173ms Mashup                 Debug              - [2] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-14 23:46:45,242   174ms Mashup                 invoke             - [2] Mashup: request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+ERROR 2011-06-14 23:46:45,243   175ms Mashup                 invoke             - [2] Mashup: Exception caught while invoking Service Adaptor for request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+System.Exception: This is a Test of Cleanup
+  at Mashup.Mashup.invoke (System.String request) [0x0003d] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:63 
+DEBUG 2011-06-15 00:29:20,535   129ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 00:29:20,564   157ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 00:29:20,565   159ms Mashup                 invoke             - [3] Mashup: request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+ERROR 2011-06-15 00:29:20,566   160ms Mashup                 invoke             - [3] Mashup: Exception caught while invoking Service Adaptor for request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+System.Exception: This is a Test of Cleanup
+  at Mashup.Mashup.invoke (System.String request) [0x0003d] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:63 
+DEBUG 2011-06-15 00:32:52,588   162ms Mashup                 invoke             - =============== invoke [2]  ===============
+DEBUG 2011-06-15 00:32:52,603   177ms Mashup                 Debug              - [2] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 00:32:52,604   178ms Mashup                 invoke             - [2] Mashup: request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+ERROR 2011-06-15 00:32:52,605   179ms Mashup                 invoke             - [2] Mashup: Exception caught while invoking Service Adaptor for request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+System.Exception: This is a Test of Cleanup
+  at Mashup.Mashup.invoke (System.String request) [0x0003d] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:63 
+DEBUG 2011-06-15 00:35:02,158   166ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 00:35:02,175   183ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 00:35:02,176   184ms Mashup                 invoke             - [3] Mashup: request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-15 00:35:02,177   185ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Name.Lookup
+ERROR 2011-06-15 00:35:02,190   198ms Mashup                 invoke             - [3] Mashup: Exception caught while invoking Service Adaptor for request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+System.Exception: This is a Test of Cleanup
+  at Mashup.Mashup.invoke (System.String request) [0x000ae] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:76 
+DEBUG 2011-06-15 00:53:55,355   127ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 00:53:55,369   141ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 00:53:55,370   143ms Mashup                 invoke             - [3] Mashup: request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-15 00:53:55,371   144ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Name.Lookup
+ERROR 2011-06-15 00:53:55,385   157ms Mashup                 invoke             - [3] Mashup: Exception caught while invoking Service Adaptor for request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+System.Exception: This is a Test of Cleanup
+  at Mashup.Mashup.invoke (System.String request) [0x000ae] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:76 
+DEBUG 2011-06-15 00:57:09,926   154ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 00:57:09,942   169ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 00:57:09,943   171ms Mashup                 invoke             - [3] Mashup: request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-15 00:57:09,945   172ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Name.Lookup
+DEBUG 2011-06-15 00:57:09,958   185ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.HttpProxy
+DEBUG 2011-06-15 00:57:09,959   186ms Mashup                 invokeSync         - [3] Mashup: invokeSync() called.
+DEBUG 2011-06-15 00:57:09,972   199ms Web                    getWebResponse     - [3] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m99
+ERROR 2011-06-15 00:57:10,147   374ms Mashup                 invoke             - [3] Mashup: Exception caught while invoking Service Adaptor for request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+System.Exception: This is a Test of Cleanup
+  at Mashup.Mashup.invokeSync (ISyncAdaptor a, Mashup.MashupRequest muRequest) [0x0002b] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:147 
+  at Mashup.Mashup.invoke (System.String request) [0x000de] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:80 
+ERROR 2011-06-15 00:57:10,154   382ms Mashup                 cleanup            - [3] Mashup: Secondary Exception caught while cleaning up after: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+System.Web.HttpException: headers have already been sent
+  at System.Web.HttpResponse.set_StatusCode (Int32 value) [0x00000] in <filename unknown>:0 
+  at Mashup.MashupResponse.write (Mashup.MashupRequest muRequest, System.Web.HttpResponse httpResponse) [0x0007d] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/MashupResponse.cs:216 
+  at Mashup.Mashup.cleanup (System.String msg) [0x0006d] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:134 
+DEBUG 2011-06-15 01:00:46,907   153ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 01:00:46,922   168ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 01:00:46,923   169ms Mashup                 invoke             - [3] Mashup: request: {"params":{"ra":"9.0","dec":"-43.0","radius":".012"},"service":"Vo.Hesarc.Datascope","format":"extjs"}
+DEBUG 2011-06-15 01:00:46,924   170ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Vo.Hesarc.Datascope
+DEBUG 2011-06-15 01:00:46,938   184ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.Datascope
+DEBUG 2011-06-15 01:00:46,940   186ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-15 01:00:46,942   188ms Mashup                 invokeAsync        - [3] Mashup: [Creating] New Response Object: {"service" : "Vo.Hesarc.Datascope", "params" : {"ra":"9.0","dec":"-43.0","radius":".012"}}
+DEBUG 2011-06-15 01:00:46,945   191ms Mashup                 invokeAsync        - [3] Mashup: Starting new Response Thread: [4]
+DEBUG 2011-06-15 01:00:46,960   206ms Mashup                 invokeAsync        - [3] Mashup: Waiting for [20] secs on rd Thread [4]. State is [Active] Status is [EXECUTING]
+DEBUG 2011-06-15 01:00:46,960   206ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev?ra=9.0&dec=-43.0&radius=.012&skipcache=NO
+DEBUG 2011-06-15 01:00:48,466  1713ms Datascope              parseResponse      - [4] Datascope: job = 385 phase = PENDING
+DEBUG 2011-06-15 01:00:48,468  1715ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/385/phase?phase=RUN
+DEBUG 2011-06-15 01:00:56,062  9309ms Datascope              parseResponse      - [4] Datascope: job = 385 phase = COMPLETED
+DEBUG 2011-06-15 01:00:56,064  9310ms Datascope              parseResponse      - [4] Datascope: NumberOfHits: 51
+DEBUG 2011-06-15 01:00:56,066  9312ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/9.0_-43.0_0.012/hits.xml
+DEBUG 2011-06-15 01:00:56,394  9641ms Mashup                 invokeAsync        - [3] Mashup: Back from Wait on rd Thread [4]. State is [Finished] Status is [COMPLETE]
+DEBUG 2011-06-15 01:00:56,395  9642ms Mashup                 invokeAsync        - [3] Mashup: Writing Response...
+DEBUG 2011-06-15 01:00:56,421  9667ms Mashup                 invokeAsync        - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-15 01:01:24,560 37807ms Mashup                 invoke             - =============== invoke [2]  ===============
+DEBUG 2011-06-15 01:01:24,562 37808ms Mashup                 Debug              - [2] [Cache Stats]: Count = 1 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 01:01:24,563 37810ms Mashup                 invoke             - [2] Mashup: request: {"params":{"ra":"9.0","dec":"-43.0","radius":".022"},"service":"Vo.Hesarc.Datascope","format":"extjs"}
+DEBUG 2011-06-15 01:01:24,565 37811ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Vo.Hesarc.Datascope
+DEBUG 2011-06-15 01:01:24,566 37812ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.Datascope
+DEBUG 2011-06-15 01:01:24,567 37813ms Mashup                 invokeAsync        - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-15 01:01:24,568 37814ms Mashup                 invokeAsync        - [2] Mashup: [Creating] New Response Object: {"service" : "Vo.Hesarc.Datascope", "params" : {"ra":"9.0","dec":"-43.0","radius":".022"}}
+DEBUG 2011-06-15 01:01:24,570 37816ms Mashup                 invokeAsync        - [2] Mashup: Starting new Response Thread: [5]
+DEBUG 2011-06-15 01:01:24,591 37837ms Mashup                 invokeAsync        - [2] Mashup: Waiting for [20] secs on rd Thread [5]. State is [Active] Status is [EXECUTING]
+DEBUG 2011-06-15 01:01:24,592 37838ms Web                    getWebResponse     - [5] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev?ra=9.0&dec=-43.0&radius=.022&skipcache=NO
+DEBUG 2011-06-15 01:01:25,241 38487ms Datascope              parseResponse      - [5] Datascope: job = 386 phase = PENDING
+DEBUG 2011-06-15 01:01:25,243 38489ms Web                    getWebResponse     - [5] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/386/phase?phase=RUN
+DEBUG 2011-06-15 01:01:41,205 54452ms Datascope              parseResponse      - [5] Datascope: job = 386 phase = EXECUTING
+DEBUG 2011-06-15 01:01:41,207 54453ms Datascope              invoke             - [5] Datascope: Sleeping for 0 millisecs.
+DEBUG 2011-06-15 01:01:41,208 54455ms Web                    getWebResponse     - [5] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/386
+DEBUG 2011-06-15 01:01:41,565 54812ms Datascope              parseResponse      - [5] Datascope: job = 386 phase = EXECUTING
+DEBUG 2011-06-15 01:13:04,745   142ms Mashup                 invoke             - =============== invoke [2]  ===============
+DEBUG 2011-06-15 01:13:04,760   157ms Mashup                 Debug              - [2] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 01:13:04,761   158ms Mashup                 invoke             - [2] Mashup: request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-15 01:13:04,762   159ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Mast.Name.Lookup
+DEBUG 2011-06-15 01:13:04,775   173ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.HttpProxy
+DEBUG 2011-06-15 01:13:04,777   174ms Mashup                 invokeSyncAdaptor  - [2] Mashup: invokeSync() called.
+DEBUG 2011-06-15 01:13:04,783   180ms Web                    getWebResponse     - [2] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m99
+DEBUG 2011-06-15 01:13:04,918   315ms Mashup                 invokeSyncAdaptor  - [2] Mashup: invokeSync() complete.
+DEBUG 2011-06-15 01:13:24,323 19721ms Mashup                 invoke             - =============== invoke [2]  ===============
+DEBUG 2011-06-15 01:13:24,325 19723ms Mashup                 Debug              - [2] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 01:13:24,326 19724ms Mashup                 invoke             - [2] Mashup: request: {"params":{"ra":"9.0","dec":"-43.0","radius":".023"},"service":"Vo.Hesarc.Datascope","format":"extjs"}
+DEBUG 2011-06-15 01:13:24,327 19725ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Vo.Hesarc.Datascope
+DEBUG 2011-06-15 01:13:24,335 19733ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.Datascope
+DEBUG 2011-06-15 01:13:24,339 19737ms Mashup                 invokeAsyncAdaptor - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-15 01:13:24,341 19738ms Mashup                 invokeAsyncAdaptor - [2] Mashup: [Creating] New Response Object: {"service" : "Vo.Hesarc.Datascope", "params" : {"ra":"9.0","dec":"-43.0","radius":".023"}}
+DEBUG 2011-06-15 01:13:24,345 19742ms Mashup                 invokeAsyncAdaptor - [2] Mashup: Starting new Response Thread: [4]
+DEBUG 2011-06-15 01:13:31,338 26735ms Mashup                 invokeAsyncAdaptor - [2] Mashup: Waiting for [20] secs on rd Thread [4]. State is [Active] Status is [EXECUTING]
+DEBUG 2011-06-15 01:28:59,443   164ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 01:28:59,457   179ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 01:28:59,458   180ms Mashup                 invoke             - [3] Mashup: request: {"params":{"ra":"9.0","dec":"-43.0","radius":".023"},"service":"Vo.Hesarc.Datascope","format":"extjs"}
+DEBUG 2011-06-15 01:28:59,460   181ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Vo.Hesarc.Datascope
+DEBUG 2011-06-15 01:28:59,474   195ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.Datascope
+DEBUG 2011-06-15 01:28:59,475   197ms Mashup                 invokeAsyncAdaptor - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-15 01:28:59,477   198ms Mashup                 invokeAsyncAdaptor - [3] Mashup: [Creating] New Response Object: {"service" : "Vo.Hesarc.Datascope", "params" : {"ra":"9.0","dec":"-43.0","radius":".023"}}
+DEBUG 2011-06-15 01:28:59,488   210ms Mashup                 AsyncAdaptorThread - [3] Mashup: Starting new Response Thread: [4]
+DEBUG 2011-06-15 01:28:59,495   216ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Waiting for [20] secs on rd Thread [4]. State is [Active] Status is [EXECUTING]
+DEBUG 2011-06-15 01:28:59,496   217ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev?ra=9.0&dec=-43.0&radius=.023&skipcache=NO
+DEBUG 2011-06-15 01:29:00,890  1612ms Datascope              parseResponse      - [4] Datascope: job = 387 phase = PENDING
+DEBUG 2011-06-15 01:29:00,892  1613ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/387/phase?phase=RUN
+DEBUG 2011-06-15 01:29:06,924  7646ms Datascope              parseResponse      - [4] Datascope: job = 387 phase = EXECUTING
+DEBUG 2011-06-15 01:29:06,925  7646ms Datascope              invoke             - [4] Datascope: Sleeping for 0 millisecs.
+DEBUG 2011-06-15 01:29:06,927  7648ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/387
+DEBUG 2011-06-15 01:29:07,541  8262ms Datascope              parseResponse      - [4] Datascope: job = 387 phase = EXECUTING
+DEBUG 2011-06-15 01:29:20,105 20826ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Back from Wait on rd Thread [4]. State is [Active] Status is [ERROR]
+DEBUG 2011-06-15 01:29:20,107 20828ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Writing Response...
+ERROR 2011-06-15 01:29:21,436 22158ms Mashup                 cleanup            - [4] Mashup: Secondary Exception caught while cleaning up after: {"params":{"ra":"9.0","dec":"-43.0","radius":".023"},"service":"Vo.Hesarc.Datascope","format":"extjs"}
+System.Threading.ThreadAbortException: Thread was being aborted
+  at (wrapper managed-to-native) System.Threading.Thread:Abort_internal (System.Threading.InternalThread,object)
+  at System.Threading.Thread.Abort () [0x00000] in <filename unknown>:0 
+  at Mashup.Mashup.cleanup (System.String msg) [0x00042] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:124 
+DEBUG 2011-06-15 01:29:21,440 22162ms Mashup                 invokeAsyncAdaptor - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-15 01:30:28,837 89559ms Mashup                 invoke             - =============== invoke [2]  ===============
+DEBUG 2011-06-15 01:30:28,839 89560ms Mashup                 Debug              - [2] [Cache Stats]: Count = 1 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 01:30:28,840 89562ms Mashup                 invoke             - [2] Mashup: request: {"params":{"ra":"9.0","dec":"-43.0","radius":".024"},"service":"Vo.Hesarc.Datascope","format":"extjs"}
+DEBUG 2011-06-15 01:30:28,841 89563ms Mashup                 invoke             - [2] Mashup: Created Mashup Request Object for service: Vo.Hesarc.Datascope
+DEBUG 2011-06-15 01:30:28,843 89564ms Mashup                 invoke             - [2] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.Datascope
+DEBUG 2011-06-15 01:30:28,844 89565ms Mashup                 invokeAsyncAdaptor - [2] Mashup: invokeAsync() called.
+DEBUG 2011-06-15 01:30:28,845 89566ms Mashup                 invokeAsyncAdaptor - [2] Mashup: [Creating] New Response Object: {"service" : "Vo.Hesarc.Datascope", "params" : {"ra":"9.0","dec":"-43.0","radius":".024"}}
+DEBUG 2011-06-15 01:30:28,846 89568ms Mashup                 AsyncAdaptorThread - [2] Mashup: Starting new Response Thread: [5]
+DEBUG 2011-06-15 01:30:28,849 89570ms Mashup                 invokeAsyncAdaptor - [2] Mashup: Waiting for [20] secs on rd Thread [5]. State is [Active] Status is [EXECUTING]
+DEBUG 2011-06-15 01:30:28,850 89571ms Web                    getWebResponse     - [5] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev?ra=9.0&dec=-43.0&radius=.024&skipcache=NO
+DEBUG 2011-06-15 01:30:29,874 90596ms Datascope              parseResponse      - [5] Datascope: job = 388 phase = PENDING
+DEBUG 2011-06-15 01:30:29,877 90598ms Web                    getWebResponse     - [5] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/388/phase?phase=RUN
+DEBUG 2011-06-15 01:30:36,392 97113ms Datascope              parseResponse      - [5] Datascope: job = 388 phase = EXECUTING
+DEBUG 2011-06-15 01:30:36,392 97114ms Datascope              invoke             - [5] Datascope: Sleeping for 0 millisecs.
+DEBUG 2011-06-15 01:30:36,394 97116ms Web                    getWebResponse     - [5] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/388
+DEBUG 2011-06-15 01:30:36,872 97593ms Datascope              parseResponse      - [5] Datascope: job = 388 phase = EXECUTING
+ERROR 2011-06-15 01:30:45,713 106434ms Mashup                 cleanup            - [5] Mashup: Secondary Exception caught while cleaning up after: {"params":{"ra":"9.0","dec":"-43.0","radius":".024"},"service":"Vo.Hesarc.Datascope","format":"extjs"}
+System.Threading.ThreadAbortException: Thread was being aborted
+  at (wrapper managed-to-native) System.Threading.Thread:Abort_internal (System.Threading.InternalThread,object)
+  at System.Threading.Thread.Abort () [0x00000] in <filename unknown>:0 
+  at Mashup.Mashup.cleanup (System.String msg) [0x00042] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:124 
+DEBUG 2011-06-15 01:30:45,716 106437ms Mashup                 invokeAsyncAdaptor - [2] Mashup: Back from Wait on rd Thread [5]. State is [Finished] Status is [ERROR]
+DEBUG 2011-06-15 01:30:45,717 106438ms Mashup                 invokeAsyncAdaptor - [2] Mashup: Writing Response...
+DEBUG 2011-06-15 01:30:45,753 106475ms Mashup                 invokeAsyncAdaptor - [2] Mashup: invokeAsync() complete.
+DEBUG 2011-06-15 01:52:55,052   146ms Mashup                 invoke             - =============== invoke [2]  ===============
+DEBUG 2011-06-15 01:52:55,069   162ms Mashup                 Debug              - [2] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 01:52:55,070   163ms Mashup                 invoke             - [2] Mashup: request: {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-15 10:34:38,616   550ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 10:34:38,704   638ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 10:34:38,705   639ms Mashup                 invoke             - [3] Mashup: request: {"params":{"input":"crap"},"service":"Mast.Name.Lookup"}
+ERROR 2011-06-15 10:34:38,706   640ms Mashup                 invoke             - [3] Mashup: Exception caught while invoking Service Adaptor for request: {"params":{"input":"crap"},"service":"Mast.Name.Lookup"}
+System.Exception: Test Email Exception
+  at Mashup.Mashup.invoke (System.String request) [0x0003d] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:63 
+DEBUG 2011-06-15 10:52:29,801   157ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 10:52:29,817   173ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 10:52:29,818   174ms Mashup                 invoke             - [3] Mashup: request: {"params":{"input":"crap"},"service":"Mast.Name.Lookup"}
+ERROR 2011-06-15 10:52:29,819   175ms Mashup                 invoke             - [3] Mashup: Exception caught while invoking request: {"params":{"input":"crap"},"service":"Mast.Name.Lookup"}
+System.Exception: Test Email Exception
+  at Mashup.Mashup.invoke (System.String request) [0x0003d] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:64 
+DEBUG 2011-06-15 11:01:07,389   128ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 11:01:07,403   142ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 11:01:07,405   144ms Mashup                 invoke             - [3] Mashup: request: {"params":{"input":"{"name":"tony", "occupation":"geek"}"},"service":"Mast.Name.Lookup"}
+ERROR 2011-06-15 11:01:07,407   146ms Mashup                 invoke             - [3] Mashup: Exception caught while invoking request: {"params":{"input":"{"name":"tony", "occupation":"geek"}"},"service":"Mast.Name.Lookup"}
+System.ArgumentNullException: Argument cannot be null.
+Parameter name: dictionary
+  at System.Collections.Generic.Dictionary`2[System.String,System.Object]..ctor (IDictionary`2 dictionary, IEqualityComparer`1 comparer) [0x00000] in <filename unknown>:0 
+  at System.Collections.Generic.Dictionary`2[System.String,System.Object]..ctor (IDictionary`2 dictionary) [0x00000] in <filename unknown>:0 
+  at Mashup.MashupRequest..ctor (System.String request) [0x00000] in <filename unknown>:0 
+  at Mashup.Mashup.invoke (System.String request) [0x0003d] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:67 
+DEBUG 2011-06-15 11:02:36,115 88854ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 11:02:36,117 88856ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 11:02:36,118 88857ms Mashup                 invoke             - [3] Mashup: request: {"name":"tony", "occupation":"geek"}
+DEBUG 2011-06-15 11:02:36,119 88858ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: 
+ERROR 2011-06-15 11:02:36,120 88860ms Mashup                 invoke             - [3] Mashup: Exception caught while invoking request: {"name":"tony", "occupation":"geek"}
+System.Exception: Mashup: 'service' param is missing from request: {"name":"tony", "occupation":"geek"}
+  at Mashup.Mashup.invoke (System.String request) [0x0012b] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:95 
+DEBUG 2011-06-15 11:28:19,786   132ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 11:28:19,801   147ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 11:28:19,803   148ms Mashup                 invoke             - [3] Mashup: request: {"params":{"input":"m101"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-15 11:28:19,804   150ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Name.Lookup
+DEBUG 2011-06-15 11:28:19,817   162ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.HttpProxy
+DEBUG 2011-06-15 11:28:19,818   163ms Mashup                 invokeSyncAdaptor  - [3] Mashup: invokeSync() called.
+DEBUG 2011-06-15 11:28:19,824   169ms Web                    getWebResponse     - [3] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m101
+DEBUG 2011-06-15 11:28:19,937   283ms Mashup                 invokeSyncAdaptor  - [3] Mashup: invokeSync() complete.
+DEBUG 2011-06-15 11:28:28,993  9339ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 11:28:28,994  9340ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 11:28:28,995  9341ms Mashup                 invoke             - [3] Mashup: request: {"params":{"input":"m1"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-15 11:28:28,996  9342ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Name.Lookup
+DEBUG 2011-06-15 11:28:28,997  9343ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.HttpProxy
+DEBUG 2011-06-15 11:28:28,998  9344ms Mashup                 invokeSyncAdaptor  - [3] Mashup: invokeSync() called.
+DEBUG 2011-06-15 11:28:29,000  9346ms Web                    getWebResponse     - [3] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m1
+DEBUG 2011-06-15 11:28:29,034  9379ms Mashup                 invokeSyncAdaptor  - [3] Mashup: invokeSync() complete.
+DEBUG 2011-06-15 11:28:35,783 16129ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 11:28:35,785 16131ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 11:28:35,786 16132ms Mashup                 invoke             - [3] Mashup: request: {"params":{"input":"blah"},"service":"Mast.Name.Lookup"}
+DEBUG 2011-06-15 11:28:35,788 16133ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Name.Lookup
+DEBUG 2011-06-15 11:28:35,789 16135ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.HttpProxy
+DEBUG 2011-06-15 11:28:35,803 16149ms Mashup                 invokeSyncAdaptor  - [3] Mashup: invokeSync() called.
+DEBUG 2011-06-15 11:28:35,805 16151ms Web                    getWebResponse     - [3] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=blah
+DEBUG 2011-06-15 11:28:41,104 21450ms Mashup                 invokeSyncAdaptor  - [3] Mashup: invokeSync() complete.
+DEBUG 2011-06-15 11:29:11,694 52039ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 11:29:11,695 52041ms Mashup                 Debug              - [3] [Cache Stats]: Count = 0 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 11:29:11,696 52042ms Mashup                 invoke             - [3] Mashup: request: {"params":{"ra":"9.0","dec":"-43.0","radius":".02"},"service":"Vo.Galex.Cone","format":"extjs"}
+DEBUG 2011-06-15 11:29:11,697 52043ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Vo.Galex.Cone
+DEBUG 2011-06-15 11:29:11,699 52045ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.Votable
+DEBUG 2011-06-15 11:29:11,701 52047ms Mashup                 invokeAsyncAdaptor - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-15 11:29:11,702 52048ms Mashup                 invokeAsyncAdaptor - [3] Mashup: [Creating] New Response Object: {"service" : "Vo.Galex.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".02"}}
+DEBUG 2011-06-15 11:29:11,707 52053ms Mashup                 AsyncAdaptorThread - [4] Mashup: AsyncAdaptorThread() called.
+DEBUG 2011-06-15 11:29:11,709 52055ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Waiting for [20] secs on rd Thread [4]. State is [Active] Status is [EXECUTING]
+DEBUG 2011-06-15 11:29:11,710 52056ms Web                    getWebResponse     - [4] [WEB GET] http://galex.stsci.edu/gxws/CONE6/ConeSearch.asmx/ConeSearchToVOTable?ra=9.0&dec=-43.0&sr=.02&verb=1
+DEBUG 2011-06-15 11:29:12,335 52681ms Mashup                 AsyncAdaptorThread - [4] Mashup: AsyncAdaptorThread() complete.
+DEBUG 2011-06-15 11:29:12,337 52682ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Back from Wait on rd Thread [4]. State is [Finished] Status is [COMPLETE]
+DEBUG 2011-06-15 11:29:12,338 52683ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Writing Response...
+DEBUG 2011-06-15 11:29:12,359 52705ms Mashup                 invokeAsyncAdaptor - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-15 11:29:50,683 91028ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 11:29:50,684 91030ms Mashup                 Debug              - [3] [Cache Stats]: Count = 1 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 11:29:50,686 91031ms Mashup                 invoke             - [3] Mashup: request: {"params":{"ra":"9.0","dec":"-43.0","radius":".023"},"service":"Vo.Hesarc.Datascope","format":"extjs"}
+DEBUG 2011-06-15 11:29:50,687 91033ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Vo.Hesarc.Datascope
+DEBUG 2011-06-15 11:29:50,695 91040ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.Datascope
+DEBUG 2011-06-15 11:29:50,696 91041ms Mashup                 invokeAsyncAdaptor - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-15 11:29:50,697 91042ms Mashup                 invokeAsyncAdaptor - [3] Mashup: [Creating] New Response Object: {"service" : "Vo.Hesarc.Datascope", "params" : {"ra":"9.0","dec":"-43.0","radius":".023"}}
+DEBUG 2011-06-15 11:29:50,700 91045ms Mashup                 AsyncAdaptorThread - [5] Mashup: AsyncAdaptorThread() called.
+DEBUG 2011-06-15 11:29:50,702 91047ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Waiting for [20] secs on rd Thread [5]. State is [Active] Status is [EXECUTING]
+DEBUG 2011-06-15 11:29:50,703 91049ms Web                    getWebResponse     - [5] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev?ra=9.0&dec=-43.0&radius=.023&skipcache=NO
+DEBUG 2011-06-15 11:29:51,616 91961ms Datascope              parseResponse      - [5] Datascope: job = 395 phase = PENDING
+DEBUG 2011-06-15 11:29:51,618 91964ms Web                    getWebResponse     - [5] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/395/phase?phase=RUN
+DEBUG 2011-06-15 11:29:53,748 94094ms Datascope              parseResponse      - [5] Datascope: job = 395 phase = COMPLETED
+DEBUG 2011-06-15 11:29:53,749 94095ms Datascope              parseResponse      - [5] Datascope: NumberOfHits: 57
+DEBUG 2011-06-15 11:29:53,752 94097ms Web                    getWebResponse     - [5] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/9.0_-43.0_0.023/hits.xml
+DEBUG 2011-06-15 11:29:53,839 94185ms Mashup                 AsyncAdaptorThread - [5] Mashup: AsyncAdaptorThread() complete.
+DEBUG 2011-06-15 11:29:53,841 94186ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Back from Wait on rd Thread [5]. State is [Finished] Status is [COMPLETE]
+DEBUG 2011-06-15 11:29:53,842 94187ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Writing Response...
+DEBUG 2011-06-15 11:29:53,852 94198ms Mashup                 invokeAsyncAdaptor - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-15 11:30:26,388 126733ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 11:30:26,389 126735ms Mashup                 Debug              - [3] [Cache Stats]: Count = 2 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 11:30:26,390 126736ms Mashup                 invoke             - [3] Mashup: request: {"params":{"ra":"9.0","dec":"-43.0","radius":".023"},"service":"Mast.Caom.Cone","format":"extjs"}
+DEBUG 2011-06-15 11:30:26,392 126737ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Caom.Cone
+DEBUG 2011-06-15 11:30:26,408 126754ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-15 11:30:26,409 126755ms Mashup                 invokeAsyncAdaptor - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-15 11:30:26,411 126756ms Mashup                 invokeAsyncAdaptor - [3] Mashup: [Creating] New Response Object: {"service" : "Mast.Caom.Cone", "params" : {"ra":"9.0","dec":"-43.0","radius":".023"}}
+DEBUG 2011-06-15 11:30:26,414 126760ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Waiting for [20] secs on rd Thread [6]. State is [Active] Status is [EXECUTING]
+DEBUG 2011-06-15 11:30:26,415 126761ms Mashup                 AsyncAdaptorThread - [6] Mashup: AsyncAdaptorThread() called.
+DEBUG 2011-06-15 11:30:26,898 127243ms Mashup                 AsyncAdaptorThread - [6] Mashup: AsyncAdaptorThread() complete.
+DEBUG 2011-06-15 11:30:26,900 127245ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Back from Wait on rd Thread [6]. State is [Finished] Status is [COMPLETE]
+DEBUG 2011-06-15 11:30:26,901 127246ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Writing Response...
+DEBUG 2011-06-15 11:30:26,904 127249ms Mashup                 invokeAsyncAdaptor - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-15 11:30:53,026 153372ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 11:30:53,028 153373ms Mashup                 Debug              - [3] [Cache Stats]: Count = 3 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 11:30:53,029 153374ms Mashup                 invoke             - [3] Mashup: request: {"params":{},"service":"Mast.Hlsp.Project","format":"extjs"}
+DEBUG 2011-06-15 11:30:53,030 153375ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Mast.Hlsp.Project
+DEBUG 2011-06-15 11:30:53,051 153397ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.SqlServer
+DEBUG 2011-06-15 11:30:53,052 153398ms Mashup                 invokeAsyncAdaptor - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-15 11:30:53,054 153399ms Mashup                 invokeAsyncAdaptor - [3] Mashup: [Creating] New Response Object: {"service" : "Mast.Hlsp.Project", "params" : {}}
+DEBUG 2011-06-15 11:30:53,056 153401ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Waiting for [20] secs on rd Thread [7]. State is [Active] Status is [EXECUTING]
+DEBUG 2011-06-15 11:30:53,057 153402ms Mashup                 AsyncAdaptorThread - [7] Mashup: AsyncAdaptorThread() called.
+DEBUG 2011-06-15 11:30:53,102 153448ms Mashup                 AsyncAdaptorThread - [7] Mashup: AsyncAdaptorThread() complete.
+DEBUG 2011-06-15 11:30:53,104 153449ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Back from Wait on rd Thread [7]. State is [Finished] Status is [COMPLETE]
+DEBUG 2011-06-15 11:30:53,105 153450ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Writing Response...
+DEBUG 2011-06-15 11:30:53,109 153455ms Mashup                 invokeAsyncAdaptor - [3] Mashup: invokeAsync() complete.
+DEBUG 2011-06-15 11:31:12,707 173052ms Mashup                 invoke             - =============== invoke [3]  ===============
+DEBUG 2011-06-15 11:31:12,709 173054ms Mashup                 Debug              - [3] [Cache Stats]: Count = 4 Bytes Limit = 734003200 % Memory Limit = 97
+DEBUG 2011-06-15 11:31:12,710 173056ms Mashup                 invoke             - [3] Mashup: request: {"params":{"ra":"9.0","dec":"-43.0","radius":".023"},"service":"Caom.Cone.Votable","format":"extjs"}
+DEBUG 2011-06-15 11:31:12,711 173057ms Mashup                 invoke             - [3] Mashup: Created Mashup Request Object for service: Caom.Cone.Votable
+DEBUG 2011-06-15 11:31:12,713 173058ms Mashup                 invoke             - [3] Mashup: Created Service Adaptor of Type: Mashup.Adaptors.Votable
+DEBUG 2011-06-15 11:31:12,714 173059ms Mashup                 invokeAsyncAdaptor - [3] Mashup: invokeAsync() called.
+DEBUG 2011-06-15 11:31:12,715 173060ms Mashup                 invokeAsyncAdaptor - [3] Mashup: [Creating] New Response Object: {"service" : "Caom.Cone.Votable", "params" : {"ra":"9.0","dec":"-43.0","radius":".023"}}
+DEBUG 2011-06-15 11:31:12,718 173063ms Mashup                 AsyncAdaptorThread - [8] Mashup: AsyncAdaptorThread() called.
+DEBUG 2011-06-15 11:31:12,719 173064ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Waiting for [20] secs on rd Thread [8]. State is [Active] Status is [EXECUTING]
+DEBUG 2011-06-15 11:31:12,720 173065ms Web                    getWebResponse     - [8] [WEB GET] http://gsssdev.stsci.edu/webservices/vo/ConeSearch.aspx?CAT=CAOM_OBSPOINTING&RA=9.0&DEC=-43.0&SR=.023
+DEBUG 2011-06-15 11:31:13,358 173703ms Mashup                 AsyncAdaptorThread - [8] Mashup: AsyncAdaptorThread() complete.
+DEBUG 2011-06-15 11:31:13,360 173705ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Back from Wait on rd Thread [8]. State is [Finished] Status is [COMPLETE]
+DEBUG 2011-06-15 11:31:13,361 173707ms Mashup                 invokeAsyncAdaptor - [3] Mashup: Writing Response...
+DEBUG 2011-06-15 11:31:13,374 173720ms Mashup                 invokeAsyncAdaptor - [3] Mashup: invokeAsync() complete.
+INFO  2011-06-15 15:21:15,122   163ms Mashup                 invoke             - [3] *** invoke() *** request: {"params":{"input":"m102"},"service":"Mast.Name.Lookup"}
+INFO  2011-06-15 15:21:15,172   213ms Web                    getWebResponse     - [3] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m102
+INFO  2011-06-15 15:21:15,291   332ms Mashup                 invokeSyncAdaptor  - [3] complete. request = {"params":{"input":"m102"},"service":"Mast.Name.Lookup"}
+INFO  2011-06-15 15:52:17,845   132ms Mashup                 invoke             - ========== invoke [3]  ==========
+INFO  2011-06-15 15:52:17,866   153ms Mashup                 invoke             - request = {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+INFO  2011-06-15 15:52:17,886   173ms Web                    getWebResponse     - [3] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m99
+INFO  2011-06-15 15:52:18,001   288ms Mashup                 invokeSyncAdaptor  - [3] complete. request = {"params":{"input":"m99"},"service":"Mast.Name.Lookup"}
+INFO  2011-06-15 15:53:00,688 42976ms Mashup                 invoke             - ========== invoke [3]  ==========
+INFO  2011-06-15 15:53:00,691 42978ms Mashup                 invoke             - request = {"params":{"ra":"10","dec":"10","radius":".011"},"service":"Vo.Hesarc.Datascope","format":"extjs","timeout":"10"}
+INFO  2011-06-15 15:53:00,706 42993ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev?ra=10&dec=10&radius=.011&skipcache=NO
+INFO  2011-06-15 15:53:02,329 44616ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413/phase?phase=RUN
+INFO  2011-06-15 15:53:10,520 52807ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:53:10,709 52996ms Mashup                 invokeAsyncAdaptor - [3] complete. request = {"params":{"ra":"10","dec":"10","radius":".011"},"service":"Vo.Hesarc.Datascope","format":"extjs","timeout":"10"}, response = rd Thread [4]. State is [Active] Status is [EXECUTING]
+INFO  2011-06-15 15:53:15,536 57823ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:53:21,014 63301ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:53:21,338 63625ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/10.0_10.0_0.011/hits.xml
+INFO  2011-06-15 15:53:26,486 68773ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:53:27,126 69413ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/10.0_10.0_0.011/hits.xml
+INFO  2011-06-15 15:53:32,152 74439ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:53:32,830 75117ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/10.0_10.0_0.011/hits.xml
+INFO  2011-06-15 15:53:37,886 80173ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:53:43,188 85475ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:53:48,765 91052ms Mashup                 invoke             - ========== invoke [3]  ==========
+INFO  2011-06-15 15:53:48,767 91054ms Mashup                 invoke             - request = {"params":{"ra":"10","dec":"10","radius":".011"},"service":"Vo.Hesarc.Datascope","format":"extjs","timeout":"10"}
+INFO  2011-06-15 15:53:49,089 91376ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:53:49,404 91691ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/10.0_10.0_0.011/hits.xml
+INFO  2011-06-15 15:53:54,437 96724ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:53:55,256 97543ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/10.0_10.0_0.011/hits.xml
+INFO  2011-06-15 15:53:58,791 101078ms Mashup                 invokeAsyncAdaptor - [3] complete. request = {"params":{"ra":"10","dec":"10","radius":".011"},"service":"Vo.Hesarc.Datascope","format":"extjs","timeout":"10"}, response = rd Thread [4]. State is [Active] Status is [EXECUTING]
+INFO  2011-06-15 15:54:00,289 102576ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:54:05,893 108180ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:54:06,282 108569ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/10.0_10.0_0.011/hits.xml
+INFO  2011-06-15 15:54:11,314 113601ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:54:16,698 118985ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:54:17,084 119371ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/10.0_10.0_0.011/hits.xml
+INFO  2011-06-15 15:54:22,123 124410ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:54:27,911 130198ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:54:33,350 135637ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:54:39,426 141713ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:54:44,913 147200ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:54:50,305 152592ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:54:55,866 158153ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:55:01,137 163424ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:55:06,717 169004ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:55:12,211 174498ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/413
+INFO  2011-06-15 15:55:12,868 175155ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/10.0_10.0_0.011/hits.xml
+INFO  2011-06-15 16:03:52,338   139ms Mashup                 invoke             - ========== invoke [3]  ==========
+INFO  2011-06-15 16:03:52,360   162ms Mashup                 invoke             - request = {"params":{"input":"m109"},"service":"Mast.Name.Lookup"}
+INFO  2011-06-15 16:03:52,381   183ms Web                    getWebResponse     - [3] [WEB GET] http://galex.stsci.edu/gxws/NameResolver/SantaResolver.asmx/query?name=m109
+ERROR 2011-06-15 16:03:52,509   310ms Mashup                 invoke             - [3] Mashup: Request Exception caught while invoking request: {"params":{"input":"m109"},"service":"Mast.Name.Lookup"}
+System.NotSupportedException: HttpResponseStream is a forward, write-only stream
+  at System.Web.HttpResponseStream.get_Length () [0x00000] in <filename unknown>:0 
+  at Mashup.Mashup.invokeSyncAdaptor (ISyncAdaptor a) [0x00030] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:156 
+  at Mashup.Mashup.invoke (System.String request) [0x000d9] in /Users/rogers/Documents/Mono Develop/VO/Portal/Mashup/Mashup.asmx.cs:82 
+ERROR 2011-06-15 16:03:52,754   556ms Mashup                 cleanup            - [3] Cleanup: SECONDARY Exception caught while cleaning up after request: {"params":{"input":"m109"},"service":"Mast.Name.Lookup"}
+INFO  2011-06-15 16:14:05,814   137ms Mashup                 invoke             - ========== invoke [3]  ==========
+INFO  2011-06-15 16:14:05,835   158ms Mashup                 invoke             - request = {"params":{"ra":"11","dec":"11","radius":".011"},"service":"Vo.Hesarc.Datascope","format":"extjs","timeout":"10"}
+INFO  2011-06-15 16:14:05,863   186ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev?ra=11&dec=11&radius=.011&skipcache=NO
+INFO  2011-06-15 16:14:07,323  1646ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414/phase?phase=RUN
+INFO  2011-06-15 16:14:14,701  9024ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:14:15,864 10187ms Mashup                 invokeAsyncAdaptor - [3] complete. request = {"params":{"ra":"11","dec":"11","radius":".011"},"service":"Vo.Hesarc.Datascope","format":"extjs","timeout":"10"}, response =  Thread [4] [Active] [EXECUTING] data length = [64]
+INFO  2011-06-15 16:14:20,058 14381ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:14:25,640 19963ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:14:26,068 20391ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/11.0_11.0_0.011/hits.xml
+INFO  2011-06-15 16:14:31,190 25513ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:14:32,038 26361ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/11.0_11.0_0.011/hits.xml
+INFO  2011-06-15 16:14:37,074 31397ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:14:37,347 31669ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/11.0_11.0_0.011/hits.xml
+INFO  2011-06-15 16:14:42,388 36711ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:14:43,046 37369ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/11.0_11.0_0.011/hits.xml
+INFO  2011-06-15 16:14:48,096 42419ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:14:53,523 47846ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:14:53,937 48259ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/11.0_11.0_0.011/hits.xml
+INFO  2011-06-15 16:14:58,980 53303ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:15:04,595 58917ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:15:04,891 59214ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/11.0_11.0_0.011/hits.xml
+INFO  2011-06-15 16:15:09,929 64252ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:15:15,424 69747ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:15:19,983 74306ms Mashup                 invoke             - ========== invoke [2]  ==========
+INFO  2011-06-15 16:15:19,985 74308ms Mashup                 invoke             - request = {"params":{"ra":"11","dec":"11","radius":".011"},"service":"Vo.Hesarc.Datascope","format":"extjs","timeout":"10"}
+INFO  2011-06-15 16:15:20,702 75025ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:15:26,356 80679ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:15:26,649 80971ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/11.0_11.0_0.011/hits.xml
+INFO  2011-06-15 16:15:30,001 84324ms Mashup                 invokeAsyncAdaptor - [2] complete. request = {"params":{"ra":"11","dec":"11","radius":".011"},"service":"Vo.Hesarc.Datascope","format":"extjs","timeout":"10"}, response =  Thread [4] [Active] [EXECUTING] data length = [48438]
+INFO  2011-06-15 16:15:31,718 86040ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:15:37,108 91431ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:15:37,437 91760ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/11.0_11.0_0.011/hits.xml
+INFO  2011-06-15 16:15:42,476 96799ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:15:47,799 102122ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:15:53,157 107479ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:15:53,485 107808ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/11.0_11.0_0.011/hits.xml
+INFO  2011-06-15 16:15:58,537 112860ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:16:03,763 118086ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:16:09,192 123514ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:16:14,771 129093ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:16:20,066 134388ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/414
+INFO  2011-06-15 16:16:20,357 134680ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/11.0_11.0_0.011/hits.xml
+INFO  2011-06-15 16:38:22,873   140ms Mashup                 invoke             - ========== invoke [2]  ==========
+INFO  2011-06-15 16:38:22,896   163ms Mashup                 invoke             - request = {"params":{"ra":"12","dec":"12","radius":".12"},"service":"Vo.Hesarc.Datascope","format":"extjs"}
+INFO  2011-06-15 16:38:22,928   194ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev?ra=12&dec=12&radius=.12&skipcache=NO
+INFO  2011-06-15 16:38:23,905  1172ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/415/phase?phase=RUN
+INFO  2011-06-15 16:38:31,287  8554ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/415
+INFO  2011-06-15 16:38:37,014 14281ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/415
+INFO  2011-06-15 16:38:42,641 19908ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/415
+INFO  2011-06-15 16:38:42,939 20205ms Mashup                 invokeAsyncAdaptor - [2] complete. request = {"params":{"ra":"12","dec":"12","radius":".12"},"service":"Vo.Hesarc.Datascope","format":"extjs"}, response = { Thread : [4], active : true status : EXECUTING, length : 64}
+INFO  2011-06-15 16:38:43,111 20377ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/12.0_12.0_0.12/hits.xml
+INFO  2011-06-15 16:38:48,220 25486ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/415
+INFO  2011-06-15 16:38:48,767 26034ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/12.0_12.0_0.12/hits.xml
+INFO  2011-06-15 16:38:53,795 31061ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/cgi-bin/vo/dscope_dev/jobs/415
+INFO  2011-06-15 16:38:54,333 31600ms Web                    getWebResponse     - [4] [WEB GET] http://heasarc.gsfc.nasa.gov/vo/testcache/12.0_12.0_0.12/hits.xml
