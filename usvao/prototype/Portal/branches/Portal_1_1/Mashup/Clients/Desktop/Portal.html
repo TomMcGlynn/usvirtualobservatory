@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>ExtTop - Desktop Sample App</title>
+
+ <!--
+    <link rel="stylesheet" type="text/css" href="../../resources/css/ext-all.css" />
+
+    <script type="text/javascript" src="../../builds/ext-core.js"></script>
+-->
+    <!-- Initialize ExtJS and our local libraries. -->
+    <link rel="stylesheet" type="text/css" href="css/desktop.css" />
+    <script type="text/javascript" src="../Shared/InitializeJavaScript.js"></script>
+
+   <!-- The JavaScript for the Portal app. -->
+    <script type="text/javascript" src="DemoApp.js"></script>
+  <!--  <script type="text/javascript" src="../Portal/Portal.js"></script> -->
+    <script type="text/javascript" src="uxClasses.js"></script>
+    
+ 
+    <script type="text/javascript">
+
+//Ext.Loader.setPath('Ext.ux.desktop', 'js');
+//Ext.Loader.setPath('MyDesktop', 'js');
+      //  Ext.require('Ext.ux.desktop.App');
+        //Ext.require('DemoApp.Portal');
+
+        Ext.Loader.setPath({
+            'Ext.ux.desktop': 'js',
+            MyDesktop: ''
+        });
+        
+        var myDesktopApp;
+        //Ext.onReady(DemoApp.Portal.createAndRun, DemoApp.Portal, {mainDiv: 'demo-div'});
+        Ext.onReady(function () {
+            //myDesktopApp = new Ext.ux.desktop.App();
+            myDesktopApp = new MyDesktop.App();
+        });
+    </script>
+</head>
+
+<body>
+
+    <a href="http://www.sencha.com" target="_blank" alt="Powered by Ext JS"
+       id="poweredby"><div></div></a>
+
+</body>
+</html>

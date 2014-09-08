@@ -1,0 +1,145 @@
+{
+    "Mashup.Url.Download": {
+        "$type": "Mashup.Adaptors.Download, Mashup",
+        "url": "www.google.com",
+        "filename":"google.html",
+        "attachment":"true"
+    },
+    "Mashup.File.Download": {
+        "$type": "Mashup.Adaptors.Download, Mashup",
+        "file": "Empty.txt",
+        "filename":"Empty.txt",
+        "attachment":"true"
+    },
+    "Mashup.Table.Exporter": {
+        "$type": "Mashup.Adaptors.Exporter, Mashup",
+        "clearcache": "true"
+    },
+    "Ads.Author.Votable": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "http://adsabs.harvard.edu/cgi-bin/abs_connect?&defaultset=1&db_key=AST&data_type=VOTABLE&author=[AUTHOR]"
+    },
+    "Ads.Cone.Votable": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "http://heasarc.gsfc.nasa.gov/vo/squery//sq.sh?IVOID=ivo%3A%2F%2Fads.harvard.edu%2Fcone&POSITION=[RA:9.0]+[DEC:-43.0]&RADIUS=[RADIUS:0.25]&units=degree&VERBOSITY=yes"
+    },
+    "Mast.Name.Lookup": {
+        "$type": "Mashup.Adaptors.HttpProxy, Mashup",
+        "url": "http://mastresolver.stsci.edu:8080/Santa-war/query?name=[INPUT]",
+        "encode":"true"
+    },
+    "Mashup.Test.HttpProxy": {
+        "$type": "Mashup.Adaptors.HttpProxy, Mashup",
+        "url": "[URL:https://osiris.ipac.caltech.edu/cgi-bin/VAOLink/nph-VAOlink?action=region&ra=202.48219&dec=47.23151&radius=0.2]"
+    },
+    "Caom.Cone.Votable": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "http://gsssdev.stsci.edu/webservices/vo/CatalogSearch.aspx?CAT=CAOM_OBSPOINTING&RA=[RA]&DEC=[DEC]&SR=[RADIUS]"
+    },
+    "Hla.Cone.Votable": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "http://gsssdev.stsci.edu/webservices/vo/ConeSearch.aspx?CAT=HLA_IMG&RA=[RA]&DEC=[DEC]&SR=[RADIUS]"
+    },
+    "Hla.Hubble.Votable": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "http://hla.stsci.edu/cgi-bin/acsSIAP.cgi?pos=[RA:9.0],[DEC:-43.0]&size=[RADIUS:0.5]&imagetype=best&inst=ACS,ACSGrism,WFC3,WFPC2,NICMOS,NICGRISM,COS,WFPC2-PC,STIS,FOS,GHRS&hrcmatch=0&format=ALL"
+    },
+    "Vo.Generic.Table": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "[URL]"
+    },
+    "Csv.Generic.Table": {
+        "$type": "Mashup.Adaptors.Csv, Mashup",
+        "url": "[URL]"
+    },
+    "Vo.Generic.Cone": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "[URL]RA=[RA]&DEC=[DEC]&SR=[RADIUS]&VERB=[VERB:1]"
+    },
+    "Vo.Generic.Siap": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "[URL]POS=[RA],[DEC]&SIZE=[RADIUS]"
+    },
+    "Vo.Inventory.Cone": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "http://irsa.ipac.caltech.edu/cgi-bin/VOInventory/nph-voInventory?action=region&ra=[RA]&dec=[DEC]&radius=[RADIUS]&return=votable"
+    },
+    "Vo.Inventory2.Cone": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "https://osiris.ipac.caltech.edu/cgi-bin/VAOLink/nph-VAOlink?action=region&ra=[RA]&dec=[DEC]&radius=[RADIUS]"
+    },
+    "Vo.Inventory2.DrillDown": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "https://osiris.ipac.caltech.edu/cgi-bin/VAOLink/nph-VAOlink?action=subset&ra=[RA]&dec=[DEC]&radius=[RADIUS]&id=[ID]"
+    },
+    "Vo.Registry.VOTKeyword": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "http://nvo.stsci.edu/vor10/NVORegInt.asmx/VOTKeyword?keywords=[SEARCHTEXT]&andKeys=true"
+    },
+    "Galex.Siap.Votable": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "App_Data/GalexSiapVotable.xml "
+    },
+    "Vo.Galex.Cone": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "http://galex.stsci.edu/gxws/CONE6/ConeSearch.asmx/ConeSearchToVOTable?ra=[RA]&dec=[DEC]&sr=[RADIUS]&verb=[VERBOSITY:1]"
+    },
+    "Vo.Galex.Siap": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "http://galex.stsci.edu/gxws/SIAP6/SIAP.asmx/SIAPToVOTable?pos=[RA],[DEC]&size=[RADIUS]&format=&bandpass="
+    },
+    "Vo.Hla.Cone": {
+        "$type": "Mashup.Adaptors.Votable, Mashup",
+        "url": "http://gsssdev.stsci.edu/webservices/vo/catalogsearch.aspx?RA=[RA]&DEC=[DEC]&SR=[RADIUS]&cat=[CATALOG:caom]"
+    },
+    "Vo.Hesarc.Datascope.Skyview": {
+        "$type": "Mashup.Adaptors.Datascope, Mashup",
+        "url": "http://skyview.gsfc.nasa.gov/cgi-bin/vo/datascope/jobs?ra=[RA:187.277916]&dec=[DEC:2.052381]&radius=[RADIUS:0.2]&skipcache=[SKIPCACHE:NO]",
+        "run": "http://skyview.gsfc.nasa.gov/cgi-bin/vo/datascope/jobs/[JOB]/phase?phase=RUN",
+        "poll": "http://skyview.gsfc.nasa.gov/cgi-bin/vo/datascope/jobs/[JOB]",
+        "polltime": "5"
+    },
+    "Vo.Hesarc.Datascope": {
+        "$type": "Mashup.Adaptors.Datascope, Mashup",
+        "url": "http://heasarc.gsfc.nasa.gov/cgi-bin/vo/datascope?ra=[RA:187.277916]&dec=[DEC:2.052381]&radius=[RADIUS:0.2]&skipcache=[SKIPCACHE:NO]",
+        "run": "http://heasarc.gsfc.nasa.gov/cgi-bin/vo/datascope/jobs/[JOB]/phase?phase=RUN",
+        "poll": "http://heasarc.gsfc.nasa.gov/cgi-bin/vo/datascope/jobs/[JOB]",
+        "polltime": "5"
+    },
+    "Mast.Caom.Cone": {
+        "$type": "Mashup.Adaptors.SqlServer, Mashup",
+        "db": "Initial Catalog=CAOM;Data Source=mastsqlb;User ID=webaccess;Password=webaccess;Connection Timeout=90;",
+        "sql": "exec spCAOMConeSearch [RA], [DEC], [RADIUS]",
+        "direct": " true "
+    },
+    "Mast.Hlsp.Project": {
+        "$type": "Mashup.Adaptors.SqlServer, Mashup",
+        "db": "Initial Catalog=mast;Data Source=mastsqla;User ID=webaccess;Password=webaccess;Connection Timeout=90;",
+        "sql": "select * from hlsp_project ",
+        "direct": " true "
+    },
+    "Mast.Hlsp.Products": {
+        "$type": "Mashup.Adaptors.SqlServer, Mashup",
+        "db": "Initial Catalog=mast;Data Source=mastsqla;User ID=webaccess;Password=webaccess;Connection Timeout=90;",
+        "sql": "select * from hlsp_products WHERE hd_id LIKE '%[ID:udf]%' ",
+        "direct": " true "
+    },
+    "Mast.Galex.Catalog": {
+        "$type": "Mashup.Adaptors.SqlServer, Mashup",
+        "db": "Initial Catalog=GR6;Data Source=mastsqla;User ID=webaccess;Password=webaccess;Connection Timeout=90;",
+        "sql": "spGalexViewObjectSearch [RA], [DEC], [RADIUS], [MAXRECORDS:10000], '[CATALOG:ALL]' ",
+        "direct": " true "
+    },
+    "Mast.Galex.Tile": {
+        "$type": "Mashup.Adaptors.SqlServer, Mashup",
+        "db": "Initial Catalog=GR6;Data Source=mastsqla;User ID=webaccess;Password=webaccess;Connection Timeout=90;",
+        "sql": "spGalexViewTileSearch [RA], [DEC], [RADIUS], '[CATALOG:ALL]', [MAXRECORDS:10000] ",
+        "direct": " true "
+    },
+    "Mast.Galex.Sdss.Catalog": {
+        "$type": "Mashup.Adaptors.SqlServer, Mashup",
+        "db": "Initial Catalog=GR6;Data Source=mastsqla;User ID=webaccess;Password=webaccess;Connection Timeout=90;",
+        "sql": "spGALEXViewObjectSearchWithSDSS [RA], [DEC], [RADIUS], [MAXRECORDS:10000], '[CATALOG:ALL]', '[MISSION:SDSS]' ",
+        "direct": " true "
+    }
+}

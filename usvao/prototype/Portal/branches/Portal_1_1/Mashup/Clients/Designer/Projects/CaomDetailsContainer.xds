@@ -1,0 +1,139 @@
+{
+    "name": "CaomDetailsContainer.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "../Containers",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "Mvpc"
+    },
+    "xdsVersion": "1.2.2",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen2182",
+            "type": "container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 600,
+                "itemId": "caomDetailsContainer",
+                "width": 450,
+                "layout": "border",
+                "designer|userClassName": "CaomDetailsContainer"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen2428",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "hideMode": null,
+                        "itemId": "summaryPanel",
+                        "autoScroll": true,
+                        "layout": null,
+                        "collapsed": false,
+                        "title": "Summary",
+                        "designer|userClassName": "MyPanel",
+                        "layout|region": "center"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen11113",
+                            "type": "container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 50,
+                                "hideMode": null,
+                                "itemId": "titleContainer",
+                                "margin": "10 0 0 0",
+                                "autoScroll": null,
+                                "layout": "anchor",
+                                "designer|userClassName": "MyContainer2"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen3297",
+                            "type": "container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 260,
+                                "itemId": "imageContainer",
+                                "margin": "10 0 0 0",
+                                "padding": 2,
+                                "width": null,
+                                "maintainFlex": true,
+                                "layout": "anchor",
+                                "designer|userClassName": "MyContainer1"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen11559",
+                            "type": "container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 150,
+                                "hideMode": null,
+                                "itemId": "summaryContainer",
+                                "margin": "10 0 0 0",
+                                "layout": "vbox",
+                                "designer|userClassName": "MyContainer3",
+                                "container|align": "center"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen2544",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 250,
+                        "hideMode": null,
+                        "itemId": "detailsPanel",
+                        "layout": "fit",
+                        "animCollapse": null,
+                        "collapseDirection": null,
+                        "collapsed": true,
+                        "collapsible": true,
+                        "frameHeader": null,
+                        "title": "Expand for Details",
+                        "designer|userClassName": "MyPanel1",
+                        "layout|floatable": false,
+                        "layout|region": "south"
+                    }
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

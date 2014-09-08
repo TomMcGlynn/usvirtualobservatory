@@ -1,0 +1,23 @@
+        /* style rows on mouseover */
+       /* .x-grid-row-over .x-grid-cell-inner {
+            font-weight: bold;
+        }*/
+        
+        /*****************************************/
+        
+        /* Attempt to use the default css instead of the VAO css for invalid fields. */
+        .x-form-invalid-field, textarea.x-form-invalid-field {
+            /*background-color: white;*/
+            background-image: url("data/images/invalid_line.gif");
+            background-position: center bottom;
+            background-repeat: repeat-x;
+            border-color: #CC3300;
+        }
+        
+        /* Undo what the VAO does that causes the line to be wallpapered all over the text field label. */
+        .x-form-invalid, textarea.x-form-invalid {
+            background-color: #D3E4ED;
+            /*background-image: url("images/vao4/grid/invalid_line.gif");*/
+            background-image: none !important;
+            border-color: #030000;
+        }

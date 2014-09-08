@@ -1,0 +1,63 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Portal MAST HLSP</title>
+
+    <!-- Initialize ExtJS and our local libraries. -->
+    <script type="text/javascript" src="../Shared/InitializeJavaScript.js"></script>
+
+    <!-- set the style sheet -->	
+    <link rel="stylesheet" type="text/css" href="../Portal/customStyles.css" />
+	<style type="text/css">
+		p {
+			margin:5px;
+		}
+		.settings {
+			background-image:url(../examples/shared/icons/fam/folder_wrench.png);
+		}
+		.nav {
+			background-image:url(../examples/shared/icons/fam/folder_go.png);
+		}
+		.info {
+			background-image:url(../examples/shared/icons/fam/information.png);
+		}
+		.filtericon {
+			background-image:url(../examples/shared/icons/fam/filter1.png);
+		}
+		
+	</style>
+    <!-- Initialize ExtJS and our local libraries. -->
+	<script type="text/javascript" src="filterrow4.js"></script>
+	<script type="text/javascript" src="hlsp_layout1.js"></script>
+</head>
+<body>
+    <!-- use class="x-hide-display" to prevent a brief flicker of the content -->
+    <div id="west" class="x-hide-display">
+
+        <p>Hi. I'm the west panel.</p>
+		<div id="filter_panel_grid"></div>
+    </div>
+    <div id="center2" class="x-hide-display">
+        <a id="hideit" href="#">Toggle the west region</a>
+        <p>My closable attribute is set to false so you can't close me. The other center panels can be closed.</p>
+        <p>The center panel automatically grows to fit the remaining space in the container that isn't taken up by the border regions.</p>
+        <hr>
+
+        <p>Lorem ip leo.</p>
+       
+    </div>
+    <div id="center1" class="x-hide-display">
+        <p><b>Done reading me? Close me by clicking the X in the top right corner.</b></p>
+        <p>Vestibulum  Donec id augue sed leo aliquam egestas. Quisque in sem. Donec dictum enim in dolor. Praesent non erat. Nulla ultrices vestibulum quam.</p>
+		<div id="grid-example"></div>
+    </div>
+    <div id="props-panel" class="x-hide-display" style="width:200px;height:200px;overflow:hidden;">
+    </div>
+    <div id="south" class="x-hide-display">
+        <p>south - generally for informational stuff, also could be for status bar</p>
+
+    </div>
+</body>
+</html>
