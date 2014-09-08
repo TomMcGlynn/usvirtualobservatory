@@ -1,0 +1,23 @@
+XTENSION= 'BINTABLE'           / Java FITS: Thu Mar 31 12:55:37 EDT 2011        
+BITPIX  =                    8                                                  
+NAXIS   =                    2 / Dimensionality                                 
+NAXIS1  =                    0                                                  
+NAXIS2  =                    0                                                  
+PCOUNT  =                    0                                                  
+GCOUNT  =                    1                                                  
+TFIELDS =                    0                                                  
+VOCLASS = 'Spectrum-1.0'                                                        
+TITLE   = 'Arp 220 SED'                                                         
+AUTHOR  = 'ivo://sao/FLWO'                                                      
+DS_IDENT= 'TBD     '                                                            
+DATE    = '2003-12-31T14:00:02Z'                                                
+VERSION = '1       '                                                            
+INSTRUME= 'BCS     '                                                            
+CRETYPE = 'Archival'                                                            
+SPECBAND= 'TBD     '                                                            
+CR_IDENT= 'TBD     '                                                            
+VOLOGO  = 'http://cfa-www.harvard.edu/nvo/cfalogo.jpg'                          
+DSSOURCE= 'TBD     '                                                            
+COLLECT1= 'G300    '                                                            
+CONTRIB1= 'TBD     '                                                            
+END                                                                             

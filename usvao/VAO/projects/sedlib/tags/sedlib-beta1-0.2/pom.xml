@@ -1,0 +1,155 @@
+<?xml version="1.0"?><project xmlns:pom="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cfa.vao.sed</groupId>
+  <artifactId>sed-lib</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+<!--
+  <scm>
+     <connection>scm:svn:svn+ssh://thomas@localhost/var/svn/repos/sedlib/trunk</connection>
+     <developerConnection>scm:svn+ssh://svn:thomas@localhost/var/svn/repos/sedlib/trunk</developerConnection>
+  </scm>
+-->
+
+  <reporting>
+    <plugins>
+      <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-jxr-plugin</artifactId>
+           <!--version>2.2</version-->
+       </plugin>
+       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <configuration>
+             <debug>true</debug>
+             <linkXref>true</linkXref>
+             <sourceEncoding>ISO-8859-1</sourceEncoding>
+          </configuration>
+       </plugin>
+
+       <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.4</version>
+          <configuration>
+             <formats>
+               <format>html</format>
+               <format>xml</format>
+             </formats>
+             <check>
+                <branchRate>85</branchRate>
+                <lineRate>85</lineRate>
+                <haltOnFailure>false</haltOnFailure>
+                <totalBranchRate>85</totalBranchRate>
+                <totalLineRate>85</totalLineRate>
+                <packageLineRate>85</packageLineRate>
+                <packageBranchRate>85</packageBranchRate>
+                <regexes>
+                  <regex>
+                     <pattern>net.vao.*</pattern>
+                     <lineRate>80</lineRate>
+                  </regex>
+                  <regex>
+                    <pattern>com.example.boringcode.*</pattern>
+                    <branchRate>40</branchRate>
+                    <lineRate>30</lineRate>
+                  </regex>
+                </regexes>
+              </check>
+          </configuration>
+       </plugin>
+       <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>findbugs-maven-plugin</artifactId>
+          <version>2.3</version>
+          <configuration>
+             <threshold>Normal</threshold>
+             <effort>Default</effort>
+          </configuration>
+       </plugin>
+    </plugins>
+  </reporting>
+
+  <build>
+    <plugins>
+<!--      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin> -->
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <overview>/data/vao/staff/olaurino/Projects/maven/sedfake/src/main/java/overview.html</overview>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+
+  </build>
+
+  <repositories>
+
+    <repository>
+      <id>vao-repository</id>
+      <name>VAO Deploy Repository</name>
+      <url>dav://vaotest2.tuc.noao.edu:8080/maven</url>
+    </repository>
+    
+    <repository>
+      <id>ibiblio-repository</id>
+      <name>IBIBLIO Maven Repository</name>
+      <url>http://www.ibiblio.org/maven2</url>
+    </repository>
+
+  </repositories>
+
+  <dependencies>
+ 
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>stil</groupId>
+      <artifactId>stil</artifactId>
+      <version>3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.16</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <id>vao-deploy-repository</id>
+      <!--url>scp://www.usvao.org/var/www/html/maven</url-->
+      <url>dav://vaotest2.tuc.noao.edu:8080/maven</url>
+    </repository>
+  </distributionManagement>
+    <name>VAO SED Library</name>
+</project>
+
