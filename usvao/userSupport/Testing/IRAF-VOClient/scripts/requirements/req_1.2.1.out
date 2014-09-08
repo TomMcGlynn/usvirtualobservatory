@@ -1,0 +1,17 @@
+------------------------------------------------------------------
+Req  1.2.1: Users shall be able to identify a column in a VOTable
+            by the 'id', 'name' or 'ucd' attribute of a <FIELD> or
+            by column number.
+------------------------------------------------------------------
+
+Logical Path:  data$usno-b.xml
+Not Yet Implemented
+
+HTTP URI:  http://iraf.noao.edu/vao//usno-b.xml
+Not Yet Implemented
+
+File URI:  file:///iraf/iraf/vao/vaotest/data//usno-b.xml
+Not Yet Implemented
+
+File URI:  file:///localhost/iraf/iraf/vao/vaotest/data//usno-b.xml
+Not Yet Implemented

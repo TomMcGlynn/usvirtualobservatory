@@ -1,0 +1,45 @@
+# http://iraf.noao.edu/vao/usno-b.xml -> mytest2.fits
+# http://iraf.noao.edu/vao/usno-b.xml
+  65 rows written to table
+  16 columns defined
+ 188 header parameters written to table
+ 215 records allocated for header parameters
+  16 space allocated for column descriptors
+table type:  fits
+# mytest2.fits[1]
+  65 rows written to table
+  16 columns defined
+ 208 header parameters written to table
+ 215 records allocated for header parameters
+  16 space allocated for column descriptors
+table type:  fits
+# file:///iraf/iraf/vao/vaotest/data/usno-b.xml -> mytest2.fits
+# file:///iraf/iraf/vao/vaotest/data/usno-b.xml
+  65 rows written to table
+  16 columns defined
+ 188 header parameters written to table
+ 215 records allocated for header parameters
+  16 space allocated for column descriptors
+table type:  fits
+# mytest2.fits[1]
+  65 rows written to table
+  16 columns defined
+ 208 header parameters written to table
+ 215 records allocated for header parameters
+  16 space allocated for column descriptors
+table type:  fits
+# file://localhost/iraf/iraf/vao/vaotest/data/usno-b.xml -> mytest2.fits
+# file://localhost/iraf/iraf/vao/vaotest/data/usno-b.xml
+  65 rows written to table
+  16 columns defined
+ 188 header parameters written to table
+ 215 records allocated for header parameters
+  16 space allocated for column descriptors
+table type:  fits
+# mytest2.fits[1]
+  65 rows written to table
+  16 columns defined
+ 208 header parameters written to table
+ 215 records allocated for header parameters
+  16 space allocated for column descriptors
+table type:  fits

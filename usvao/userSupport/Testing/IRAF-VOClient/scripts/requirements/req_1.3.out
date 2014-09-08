@@ -1,0 +1,876 @@
+------------------------------------------------------------------
+Req  1.3:  Users shall be able to select a column in a VOTable
+           for use in tasks that expect a list of values.
+------------------------------------------------------------------
+
+Logical Path:  data$usno-b.xml
+
+HTTP URI:  http://iraf.noao.edu/vao//usno-b.xml
+B1               D         %25.16g  mag
+B2               D         %25.16g  mag
+XTENSION t 'BINTABLE'  binary table extension
+BITPIX   i 8  8-bit bytes
+NAXIS    i 2  2-dimensional binary table
+NAXIS1   i 16  width of table in bytes
+NAXIS2   i 65
+PCOUNT   i 0  size of special data area
+GCOUNT   i 1  one data group (required keyword)
+TFIELDS  i 2
+TTYPE1   t 'B1'  label for field   1
+TFORM1   t '1D'  data format of the field: 8-byte DOUBLE
+TUNIT1   t 'mag'  physical unit of field
+TTYPE2   t 'B2'  label for field   2
+TFORM2   t '1D'  data format of the field: 8-byte DOUBLE
+TUNIT2   t 'mag'  physical unit of field
+TDISP1   t 'G25.16'  display format
+TDISP2   t 'G25.16'  display format
+EXTNAME  t 'ext2'  name of this binary table extension
+TID1     t 'id'  ID attribute
+TUCD1    t 'ID_MAIN'  UCD attribute
+TID2     t 'RA'  ID attribute
+TUCD2    t 'POS_EQ_RA_MAIN'  UCD attribute
+TID3     t 'DEC'  ID attribute
+TUCD3    t 'POS_EQ_DEC_MAIN'  UCD attribute
+TID4     t 'sRa'  ID attribute
+TUCD4    t 'ERROR'  UCD attribute
+TID5     t 'sDec'  ID attribute
+TUCD5    t 'ERROR'  UCD attribute
+TID6     t 'sRaEp'  ID attribute
+TUCD6    t 'ERROR'  UCD attribute
+TID7     t 'sDeEp'  ID attribute
+TUCD7    t 'ERROR'  UCD attribute
+TID8     t 'MuRA'  ID attribute
+TUCD8    t 'POS_EQ_PMRA'  UCD attribute
+TID9     t 'MuDEC'  ID attribute
+TUCD9    t 'POS_EQ_PMDEC'  UCD attribute
+TID10    t 'sMuRA'  ID attribute
+TUCD10   t 'ERROR'  UCD attribute
+TID11    t 'sMuDE'  ID attribute
+TUCD11   t 'ERROR'  UCD attribute
+TID12    t 'B1'  ID attribute
+TUCD12   t 'PHOT_MAG'  UCD attribute
+TID13    t 'R1'  ID attribute
+TUCD13   t 'PHOT_MAG'  UCD attribute
+TID14    t 'B2'  ID attribute
+TUCD14   t 'PHOT_MAG'  UCD attribute
+TID15    t 'R2'  ID attribute
+TUCD15   t 'PHOT_MAG'  UCD attribute
+TID16    t 'I2'  ID attribute
+TUCD16   t 'PHOT_MAG'  UCD attribute
+PARNAM1  t 'Field Name'  PARAM name attribute
+PARVAL1  t 'NoName'  PARAM val attribute
+PARID1   t 'ipFIELD'  PARAM id attribute
+PARNAM2  t 'Catalogue ID'  PARAM name attribute
+PARVAL2  t 'USNOB'  PARAM val attribute
+PARID2   t 'ipCAT_ID'  PARAM id attribute
+PARNAM3  t 'Number of Objects In File'  PARAM name attribute
+PARVAL3  t '65'  PARAM val attribute
+PARID3   t 'ipNOBJECTS'  PARAM id attribute
+PARNAM4  t 'Equinox'  PARAM name attribute
+PARVAL4  t '2000.00'  PARAM val attribute
+PARID4   t 'ipEQUINOX'  PARAM id attribute
+PARUNI4  t 'yr'  PARAM unit attribute
+PARNAM5  t 'Epoch'  PARAM name attribute
+PARVAL5  t '2000.00'  PARAM val attribute
+PARID5   t 'ipEPOCH'  PARAM id attribute
+PARUNI5  t 'yr'  PARAM unit attribute
+PARNAM6  t 'Center RA'  PARAM name attribute
+PARVAL6  t '202.000000'  PARAM val attribute
+PARID6   t 'ipRA'  PARAM id attribute
+PARUNI6  t 'deg'  PARAM unit attribute
+PARNAM7  t 'Center DEC'  PARAM name attribute
+PARVAL7  t '47.000000'  PARAM val attribute
+PARID7   t 'ipDEC'  PARAM id attribute
+PARUNI7  t 'deg'  PARAM unit attribute
+PARNAM8  t 'Circle Radius'  PARAM name attribute
+PARVAL8  t '0.050000'  PARAM val attribute
+PARID8   t 'ipRADIUS'  PARAM id attribute
+PARUNI8  t 'deg'  PARAM unit attribute
+PARNAM9  t 'Primary Sort Color'  PARAM name attribute
+PARVAL9  t 'R2'  PARAM val attribute
+PARID9   t 'ipMAGNITUDE'  PARAM id attribute
+PARNAM10 t 'Bright Magnitude Limit'  PARAM name attribute
+PARVAL10 t '0.00'  PARAM val attribute
+PARID10  t 'ipBR_MAG'  PARAM id attribute
+PARUNI10 t 'mag'  PARAM unit attribute
+PARNAM11 t 'Faint Magnitude Limit'  PARAM name attribute
+PARVAL11 t '100.00'  PARAM val attribute
+PARID11  t 'ipFT_MAG'  PARAM id attribute
+PARUNI11 t 'mag'  PARAM unit attribute
+PARNAM12 t 'Color0 minus Color1'  PARAM name attribute
+PARVAL12 t 'B2-R2'  PARAM val attribute
+PARID12  t 'ipCOLOR'  PARAM id attribute
+PARNAM13 t 'Color Limit: Minimum B-R'  PARAM name attribute
+PARVAL13 t '-100.00'  PARAM val attribute
+PARID13  t 'ipBR_MIN'  PARAM id attribute
+PARUNI13 t 'mag'  PARAM unit attribute
+PARNAM14 t 'Color Limit: Maximum B-R'  PARAM name attribute
+PARVAL14 t '100.00'  PARAM val attribute
+PARID14  t 'ipBR_MAX'  PARAM id attribute
+PARUNI14 t 'mag'  PARAM unit attribute
+PARNAM15 t 'Min. Proper Motion'  PARAM name attribute
+PARVAL15 t '0.00'  PARAM val attribute
+PARID15  t 'ipMU_MIN'  PARAM id attribute
+PARUNI15 t 'mas.yr-1'  PARAM unit attribute
+PARNAM16 t 'Max. Proper Motion'  PARAM name attribute
+PARVAL16 t '10000.00'  PARAM val attribute
+PARID16  t 'ipMU_MAX'  PARAM id attribute
+PARUNI16 t 'mas.yr-1'  PARAM unit attribute
+PARNAM17 t 'Min. Position Error'  PARAM name attribute
+PARVAL17 t '0.00'  PARAM val attribute
+PARID17  t 'ipSPOS_MIN'  PARAM id attribute
+PARUNI17 t 'mas'  PARAM unit attribute
+PARNAM18 t 'Max. Position Error'  PARAM name attribute
+PARVAL18 t '10000.00'  PARAM val attribute
+PARID18  t 'ipSPOS_MAX'  PARAM id attribute
+PARUNI18 t 'mas'  PARAM unit attribute
+PARNAM19 t 'Min. Proper Motion Error'  PARAM name attribute
+PARVAL19 t '0.00'  PARAM val attribute
+PARID19  t 'ipSMU_MIN'  PARAM id attribute
+PARUNI19 t 'mas.yr-1'  PARAM unit attribute
+PARNAM20 t 'Max. Proper Motion Error'  PARAM name attribute
+PARVAL20 t '10000.00'  PARAM val attribute
+PARID20  t 'ipSMU_MAX'  PARAM id attribute
+PARUNI20 t 'mas.yr-1'  PARAM unit attribute
+PARNAM21 t 'Maximum Surface Density'  PARAM name attribute
+PARVAL21 t '10000000.00'  PARAM val attribute
+PARID21  t 'ipSD_MAX'  PARAM id attribute
+PARUNI21 t 'deg-2'  PARAM unit attribute
+PARNAM22 t 'Min. Number of Observations'  PARAM name attribute
+PARVAL22 t '0'  PARAM val attribute
+PARID22  t 'ipMIN_PTS'  PARAM id attribute
+PARNAM23 t 'Max. Number of Observations'  PARAM name attribute
+PARVAL23 t '10'  PARAM val attribute
+PARID23  t 'ipMAX_PTS'  PARAM id attribute
+PARNAM24 t 'Min. Star/Galaxy Sep. index'  PARAM name attribute
+PARVAL24 t '0'  PARAM val attribute
+PARID24  t 'ipMIN_SG'  PARAM id attribute
+PARNAM25 t 'Max. Star/Galaxy Sep. index'  PARAM name attribute
+PARVAL25 t '19'  PARAM val attribute
+PARID25  t 'ipMAX_SG'  PARAM id attribute
+PARNAM26 t 'Lower Bit Mask for Flags'  PARAM name attribute
+PARVAL26 t '0'  PARAM val attribute
+PARID26  t 'ipFLGMASK0'  PARAM id attribute
+PARNAM27 t 'Upper Bit Mask for Flags'  PARAM name attribute
+PARVAL27 t '-1'  PARAM val attribute
+PARID27  t 'ipFLGMASK1'  PARAM id attribute
+PARNAM28 t 'Column Selection Bits'  PARAM name attribute
+PARVAL28 t '4271'  PARAM val attribute
+PARID28  t 'ipCOLBITS'  PARAM id attribute
+                 20.78                  21.21
+                 18.06                  17.28
+                 20.84                     0.
+                    0.                  21.02
+                 20.46                     0.
+                 19.53                  18.93
+                 20.42                  20.47
+                    0.                  20.39
+                    0.                  21.61
+                 19.63                  18.64
+                    0.                  21.85
+                    0.                  21.13
+                 20.84                  20.67
+                 20.78                  20.78
+                    0.                  21.61
+                    0.                     0.
+                 20.84                  20.35
+                    0.                  21.81
+                    0.                  21.12
+                 20.84                  20.77
+                 19.34                  18.04
+                 20.84                     0.
+                 20.84                     0.
+                    0.                    21.
+                    0.                  20.98
+                    0.                  21.02
+                    0.                  20.44
+                 20.84                  20.52
+                    0.                  20.82
+                    0.                  21.25
+                    0.                     0.
+                    0.                     0.
+                 20.84                     0.
+                    0.                  21.61
+                    0.                  21.01
+                    0.                  21.08
+                    0.                  21.16
+                    0.                  21.35
+                    0.                   21.2
+                    0.                  21.11
+                    0.                  21.46
+                    0.                  21.06
+                    0.                  21.61
+                    0.                   21.6
+                    0.                  21.56
+                 19.65                  18.73
+                 20.66                  19.98
+                  18.7                  17.73
+                    0.                  21.47
+                    0.                  21.63
+                    0.                  20.79
+                 20.75                  19.86
+                    0.                   21.4
+                 13.77                  13.22
+                    0.                     0.
+                    0.                     0.
+                    0.                     0.
+                    0.                  21.17
+                    0.                  20.93
+                    0.                  20.93
+                    0.                  21.07
+                 20.84                     0.
+                    0.                     0.
+                    0.                   21.6
+                    0.                  21.44
+
+File URI:  file:///iraf/iraf/vao/vaotest/data//usno-b.xml
+B1               D         %25.16g  mag
+B2               D         %25.16g  mag
+XTENSION t 'BINTABLE'  binary table extension
+BITPIX   i 8  8-bit bytes
+NAXIS    i 2  2-dimensional binary table
+NAXIS1   i 16  width of table in bytes
+NAXIS2   i 65
+PCOUNT   i 0  size of special data area
+GCOUNT   i 1  one data group (required keyword)
+TFIELDS  i 2
+TTYPE1   t 'B1'  label for field   1
+TFORM1   t '1D'  data format of the field: 8-byte DOUBLE
+TUNIT1   t 'mag'  physical unit of field
+TTYPE2   t 'B2'  label for field   2
+TFORM2   t '1D'  data format of the field: 8-byte DOUBLE
+TUNIT2   t 'mag'  physical unit of field
+TDISP1   t 'G25.16'  display format
+TDISP2   t 'G25.16'  display format
+EXTNAME  t 'ext2'  name of this binary table extension
+TID1     t 'id'  ID attribute
+TUCD1    t 'ID_MAIN'  UCD attribute
+TID2     t 'RA'  ID attribute
+TUCD2    t 'POS_EQ_RA_MAIN'  UCD attribute
+TID3     t 'DEC'  ID attribute
+TUCD3    t 'POS_EQ_DEC_MAIN'  UCD attribute
+TID4     t 'sRa'  ID attribute
+TUCD4    t 'ERROR'  UCD attribute
+TID5     t 'sDec'  ID attribute
+TUCD5    t 'ERROR'  UCD attribute
+TID6     t 'sRaEp'  ID attribute
+TUCD6    t 'ERROR'  UCD attribute
+TID7     t 'sDeEp'  ID attribute
+TUCD7    t 'ERROR'  UCD attribute
+TID8     t 'MuRA'  ID attribute
+TUCD8    t 'POS_EQ_PMRA'  UCD attribute
+TID9     t 'MuDEC'  ID attribute
+TUCD9    t 'POS_EQ_PMDEC'  UCD attribute
+TID10    t 'sMuRA'  ID attribute
+TUCD10   t 'ERROR'  UCD attribute
+TID11    t 'sMuDE'  ID attribute
+TUCD11   t 'ERROR'  UCD attribute
+TID12    t 'B1'  ID attribute
+TUCD12   t 'PHOT_MAG'  UCD attribute
+TID13    t 'R1'  ID attribute
+TUCD13   t 'PHOT_MAG'  UCD attribute
+TID14    t 'B2'  ID attribute
+TUCD14   t 'PHOT_MAG'  UCD attribute
+TID15    t 'R2'  ID attribute
+TUCD15   t 'PHOT_MAG'  UCD attribute
+TID16    t 'I2'  ID attribute
+TUCD16   t 'PHOT_MAG'  UCD attribute
+PARNAM1  t 'Field Name'  PARAM name attribute
+PARVAL1  t 'NoName'  PARAM val attribute
+PARID1   t 'ipFIELD'  PARAM id attribute
+PARNAM2  t 'Catalogue ID'  PARAM name attribute
+PARVAL2  t 'USNOB'  PARAM val attribute
+PARID2   t 'ipCAT_ID'  PARAM id attribute
+PARNAM3  t 'Number of Objects In File'  PARAM name attribute
+PARVAL3  t '65'  PARAM val attribute
+PARID3   t 'ipNOBJECTS'  PARAM id attribute
+PARNAM4  t 'Equinox'  PARAM name attribute
+PARVAL4  t '2000.00'  PARAM val attribute
+PARID4   t 'ipEQUINOX'  PARAM id attribute
+PARUNI4  t 'yr'  PARAM unit attribute
+PARNAM5  t 'Epoch'  PARAM name attribute
+PARVAL5  t '2000.00'  PARAM val attribute
+PARID5   t 'ipEPOCH'  PARAM id attribute
+PARUNI5  t 'yr'  PARAM unit attribute
+PARNAM6  t 'Center RA'  PARAM name attribute
+PARVAL6  t '202.000000'  PARAM val attribute
+PARID6   t 'ipRA'  PARAM id attribute
+PARUNI6  t 'deg'  PARAM unit attribute
+PARNAM7  t 'Center DEC'  PARAM name attribute
+PARVAL7  t '47.000000'  PARAM val attribute
+PARID7   t 'ipDEC'  PARAM id attribute
+PARUNI7  t 'deg'  PARAM unit attribute
+PARNAM8  t 'Circle Radius'  PARAM name attribute
+PARVAL8  t '0.050000'  PARAM val attribute
+PARID8   t 'ipRADIUS'  PARAM id attribute
+PARUNI8  t 'deg'  PARAM unit attribute
+PARNAM9  t 'Primary Sort Color'  PARAM name attribute
+PARVAL9  t 'R2'  PARAM val attribute
+PARID9   t 'ipMAGNITUDE'  PARAM id attribute
+PARNAM10 t 'Bright Magnitude Limit'  PARAM name attribute
+PARVAL10 t '0.00'  PARAM val attribute
+PARID10  t 'ipBR_MAG'  PARAM id attribute
+PARUNI10 t 'mag'  PARAM unit attribute
+PARNAM11 t 'Faint Magnitude Limit'  PARAM name attribute
+PARVAL11 t '100.00'  PARAM val attribute
+PARID11  t 'ipFT_MAG'  PARAM id attribute
+PARUNI11 t 'mag'  PARAM unit attribute
+PARNAM12 t 'Color0 minus Color1'  PARAM name attribute
+PARVAL12 t 'B2-R2'  PARAM val attribute
+PARID12  t 'ipCOLOR'  PARAM id attribute
+PARNAM13 t 'Color Limit: Minimum B-R'  PARAM name attribute
+PARVAL13 t '-100.00'  PARAM val attribute
+PARID13  t 'ipBR_MIN'  PARAM id attribute
+PARUNI13 t 'mag'  PARAM unit attribute
+PARNAM14 t 'Color Limit: Maximum B-R'  PARAM name attribute
+PARVAL14 t '100.00'  PARAM val attribute
+PARID14  t 'ipBR_MAX'  PARAM id attribute
+PARUNI14 t 'mag'  PARAM unit attribute
+PARNAM15 t 'Min. Proper Motion'  PARAM name attribute
+PARVAL15 t '0.00'  PARAM val attribute
+PARID15  t 'ipMU_MIN'  PARAM id attribute
+PARUNI15 t 'mas.yr-1'  PARAM unit attribute
+PARNAM16 t 'Max. Proper Motion'  PARAM name attribute
+PARVAL16 t '10000.00'  PARAM val attribute
+PARID16  t 'ipMU_MAX'  PARAM id attribute
+PARUNI16 t 'mas.yr-1'  PARAM unit attribute
+PARNAM17 t 'Min. Position Error'  PARAM name attribute
+PARVAL17 t '0.00'  PARAM val attribute
+PARID17  t 'ipSPOS_MIN'  PARAM id attribute
+PARUNI17 t 'mas'  PARAM unit attribute
+PARNAM18 t 'Max. Position Error'  PARAM name attribute
+PARVAL18 t '10000.00'  PARAM val attribute
+PARID18  t 'ipSPOS_MAX'  PARAM id attribute
+PARUNI18 t 'mas'  PARAM unit attribute
+PARNAM19 t 'Min. Proper Motion Error'  PARAM name attribute
+PARVAL19 t '0.00'  PARAM val attribute
+PARID19  t 'ipSMU_MIN'  PARAM id attribute
+PARUNI19 t 'mas.yr-1'  PARAM unit attribute
+PARNAM20 t 'Max. Proper Motion Error'  PARAM name attribute
+PARVAL20 t '10000.00'  PARAM val attribute
+PARID20  t 'ipSMU_MAX'  PARAM id attribute
+PARUNI20 t 'mas.yr-1'  PARAM unit attribute
+PARNAM21 t 'Maximum Surface Density'  PARAM name attribute
+PARVAL21 t '10000000.00'  PARAM val attribute
+PARID21  t 'ipSD_MAX'  PARAM id attribute
+PARUNI21 t 'deg-2'  PARAM unit attribute
+PARNAM22 t 'Min. Number of Observations'  PARAM name attribute
+PARVAL22 t '0'  PARAM val attribute
+PARID22  t 'ipMIN_PTS'  PARAM id attribute
+PARNAM23 t 'Max. Number of Observations'  PARAM name attribute
+PARVAL23 t '10'  PARAM val attribute
+PARID23  t 'ipMAX_PTS'  PARAM id attribute
+PARNAM24 t 'Min. Star/Galaxy Sep. index'  PARAM name attribute
+PARVAL24 t '0'  PARAM val attribute
+PARID24  t 'ipMIN_SG'  PARAM id attribute
+PARNAM25 t 'Max. Star/Galaxy Sep. index'  PARAM name attribute
+PARVAL25 t '19'  PARAM val attribute
+PARID25  t 'ipMAX_SG'  PARAM id attribute
+PARNAM26 t 'Lower Bit Mask for Flags'  PARAM name attribute
+PARVAL26 t '0'  PARAM val attribute
+PARID26  t 'ipFLGMASK0'  PARAM id attribute
+PARNAM27 t 'Upper Bit Mask for Flags'  PARAM name attribute
+PARVAL27 t '-1'  PARAM val attribute
+PARID27  t 'ipFLGMASK1'  PARAM id attribute
+PARNAM28 t 'Column Selection Bits'  PARAM name attribute
+PARVAL28 t '4271'  PARAM val attribute
+PARID28  t 'ipCOLBITS'  PARAM id attribute
+                 20.78                  21.21
+                 18.06                  17.28
+                 20.84                     0.
+                    0.                  21.02
+                 20.46                     0.
+                 19.53                  18.93
+                 20.42                  20.47
+                    0.                  20.39
+                    0.                  21.61
+                 19.63                  18.64
+                    0.                  21.85
+                    0.                  21.13
+                 20.84                  20.67
+                 20.78                  20.78
+                    0.                  21.61
+                    0.                     0.
+                 20.84                  20.35
+                    0.                  21.81
+                    0.                  21.12
+                 20.84                  20.77
+                 19.34                  18.04
+                 20.84                     0.
+                 20.84                     0.
+                    0.                    21.
+                    0.                  20.98
+                    0.                  21.02
+                    0.                  20.44
+                 20.84                  20.52
+                    0.                  20.82
+                    0.                  21.25
+                    0.                     0.
+                    0.                     0.
+                 20.84                     0.
+                    0.                  21.61
+                    0.                  21.01
+                    0.                  21.08
+                    0.                  21.16
+                    0.                  21.35
+                    0.                   21.2
+                    0.                  21.11
+                    0.                  21.46
+                    0.                  21.06
+                    0.                  21.61
+                    0.                   21.6
+                    0.                  21.56
+                 19.65                  18.73
+                 20.66                  19.98
+                  18.7                  17.73
+                    0.                  21.47
+                    0.                  21.63
+                    0.                  20.79
+                 20.75                  19.86
+                    0.                   21.4
+                 13.77                  13.22
+                    0.                     0.
+                    0.                     0.
+                    0.                     0.
+                    0.                  21.17
+                    0.                  20.93
+                    0.                  20.93
+                    0.                  21.07
+                 20.84                     0.
+                    0.                     0.
+                    0.                   21.6
+                    0.                  21.44
+
+File URI:  file:///localhost/iraf/iraf/vao/vaotest/data//usno-b.xml
+B1               D         %25.16g  mag
+B2               D         %25.16g  mag
+XTENSION t 'BINTABLE'  binary table extension
+BITPIX   i 8  8-bit bytes
+NAXIS    i 2  2-dimensional binary table
+NAXIS1   i 16  width of table in bytes
+NAXIS2   i 65
+PCOUNT   i 0  size of special data area
+GCOUNT   i 1  one data group (required keyword)
+TFIELDS  i 2
+TTYPE1   t 'B1'  label for field   1
+TFORM1   t '1D'  data format of the field: 8-byte DOUBLE
+TUNIT1   t 'mag'  physical unit of field
+TTYPE2   t 'B2'  label for field   2
+TFORM2   t '1D'  data format of the field: 8-byte DOUBLE
+TUNIT2   t 'mag'  physical unit of field
+TDISP1   t 'G25.16'  display format
+TDISP2   t 'G25.16'  display format
+EXTNAME  t 'ext2'  name of this binary table extension
+TID1     t 'id'  ID attribute
+TUCD1    t 'ID_MAIN'  UCD attribute
+TID2     t 'RA'  ID attribute
+TUCD2    t 'POS_EQ_RA_MAIN'  UCD attribute
+TID3     t 'DEC'  ID attribute
+TUCD3    t 'POS_EQ_DEC_MAIN'  UCD attribute
+TID4     t 'sRa'  ID attribute
+TUCD4    t 'ERROR'  UCD attribute
+TID5     t 'sDec'  ID attribute
+TUCD5    t 'ERROR'  UCD attribute
+TID6     t 'sRaEp'  ID attribute
+TUCD6    t 'ERROR'  UCD attribute
+TID7     t 'sDeEp'  ID attribute
+TUCD7    t 'ERROR'  UCD attribute
+TID8     t 'MuRA'  ID attribute
+TUCD8    t 'POS_EQ_PMRA'  UCD attribute
+TID9     t 'MuDEC'  ID attribute
+TUCD9    t 'POS_EQ_PMDEC'  UCD attribute
+TID10    t 'sMuRA'  ID attribute
+TUCD10   t 'ERROR'  UCD attribute
+TID11    t 'sMuDE'  ID attribute
+TUCD11   t 'ERROR'  UCD attribute
+TID12    t 'B1'  ID attribute
+TUCD12   t 'PHOT_MAG'  UCD attribute
+TID13    t 'R1'  ID attribute
+TUCD13   t 'PHOT_MAG'  UCD attribute
+TID14    t 'B2'  ID attribute
+TUCD14   t 'PHOT_MAG'  UCD attribute
+TID15    t 'R2'  ID attribute
+TUCD15   t 'PHOT_MAG'  UCD attribute
+TID16    t 'I2'  ID attribute
+TUCD16   t 'PHOT_MAG'  UCD attribute
+PARNAM1  t 'Field Name'  PARAM name attribute
+PARVAL1  t 'NoName'  PARAM val attribute
+PARID1   t 'ipFIELD'  PARAM id attribute
+PARNAM2  t 'Catalogue ID'  PARAM name attribute
+PARVAL2  t 'USNOB'  PARAM val attribute
+PARID2   t 'ipCAT_ID'  PARAM id attribute
+PARNAM3  t 'Number of Objects In File'  PARAM name attribute
+PARVAL3  t '65'  PARAM val attribute
+PARID3   t 'ipNOBJECTS'  PARAM id attribute
+PARNAM4  t 'Equinox'  PARAM name attribute
+PARVAL4  t '2000.00'  PARAM val attribute
+PARID4   t 'ipEQUINOX'  PARAM id attribute
+PARUNI4  t 'yr'  PARAM unit attribute
+PARNAM5  t 'Epoch'  PARAM name attribute
+PARVAL5  t '2000.00'  PARAM val attribute
+PARID5   t 'ipEPOCH'  PARAM id attribute
+PARUNI5  t 'yr'  PARAM unit attribute
+PARNAM6  t 'Center RA'  PARAM name attribute
+PARVAL6  t '202.000000'  PARAM val attribute
+PARID6   t 'ipRA'  PARAM id attribute
+PARUNI6  t 'deg'  PARAM unit attribute
+PARNAM7  t 'Center DEC'  PARAM name attribute
+PARVAL7  t '47.000000'  PARAM val attribute
+PARID7   t 'ipDEC'  PARAM id attribute
+PARUNI7  t 'deg'  PARAM unit attribute
+PARNAM8  t 'Circle Radius'  PARAM name attribute
+PARVAL8  t '0.050000'  PARAM val attribute
+PARID8   t 'ipRADIUS'  PARAM id attribute
+PARUNI8  t 'deg'  PARAM unit attribute
+PARNAM9  t 'Primary Sort Color'  PARAM name attribute
+PARVAL9  t 'R2'  PARAM val attribute
+PARID9   t 'ipMAGNITUDE'  PARAM id attribute
+PARNAM10 t 'Bright Magnitude Limit'  PARAM name attribute
+PARVAL10 t '0.00'  PARAM val attribute
+PARID10  t 'ipBR_MAG'  PARAM id attribute
+PARUNI10 t 'mag'  PARAM unit attribute
+PARNAM11 t 'Faint Magnitude Limit'  PARAM name attribute
+PARVAL11 t '100.00'  PARAM val attribute
+PARID11  t 'ipFT_MAG'  PARAM id attribute
+PARUNI11 t 'mag'  PARAM unit attribute
+PARNAM12 t 'Color0 minus Color1'  PARAM name attribute
+PARVAL12 t 'B2-R2'  PARAM val attribute
+PARID12  t 'ipCOLOR'  PARAM id attribute
+PARNAM13 t 'Color Limit: Minimum B-R'  PARAM name attribute
+PARVAL13 t '-100.00'  PARAM val attribute
+PARID13  t 'ipBR_MIN'  PARAM id attribute
+PARUNI13 t 'mag'  PARAM unit attribute
+PARNAM14 t 'Color Limit: Maximum B-R'  PARAM name attribute
+PARVAL14 t '100.00'  PARAM val attribute
+PARID14  t 'ipBR_MAX'  PARAM id attribute
+PARUNI14 t 'mag'  PARAM unit attribute
+PARNAM15 t 'Min. Proper Motion'  PARAM name attribute
+PARVAL15 t '0.00'  PARAM val attribute
+PARID15  t 'ipMU_MIN'  PARAM id attribute
+PARUNI15 t 'mas.yr-1'  PARAM unit attribute
+PARNAM16 t 'Max. Proper Motion'  PARAM name attribute
+PARVAL16 t '10000.00'  PARAM val attribute
+PARID16  t 'ipMU_MAX'  PARAM id attribute
+PARUNI16 t 'mas.yr-1'  PARAM unit attribute
+PARNAM17 t 'Min. Position Error'  PARAM name attribute
+PARVAL17 t '0.00'  PARAM val attribute
+PARID17  t 'ipSPOS_MIN'  PARAM id attribute
+PARUNI17 t 'mas'  PARAM unit attribute
+PARNAM18 t 'Max. Position Error'  PARAM name attribute
+PARVAL18 t '10000.00'  PARAM val attribute
+PARID18  t 'ipSPOS_MAX'  PARAM id attribute
+PARUNI18 t 'mas'  PARAM unit attribute
+PARNAM19 t 'Min. Proper Motion Error'  PARAM name attribute
+PARVAL19 t '0.00'  PARAM val attribute
+PARID19  t 'ipSMU_MIN'  PARAM id attribute
+PARUNI19 t 'mas.yr-1'  PARAM unit attribute
+PARNAM20 t 'Max. Proper Motion Error'  PARAM name attribute
+PARVAL20 t '10000.00'  PARAM val attribute
+PARID20  t 'ipSMU_MAX'  PARAM id attribute
+PARUNI20 t 'mas.yr-1'  PARAM unit attribute
+PARNAM21 t 'Maximum Surface Density'  PARAM name attribute
+PARVAL21 t '10000000.00'  PARAM val attribute
+PARID21  t 'ipSD_MAX'  PARAM id attribute
+PARUNI21 t 'deg-2'  PARAM unit attribute
+PARNAM22 t 'Min. Number of Observations'  PARAM name attribute
+PARVAL22 t '0'  PARAM val attribute
+PARID22  t 'ipMIN_PTS'  PARAM id attribute
+PARNAM23 t 'Max. Number of Observations'  PARAM name attribute
+PARVAL23 t '10'  PARAM val attribute
+PARID23  t 'ipMAX_PTS'  PARAM id attribute
+PARNAM24 t 'Min. Star/Galaxy Sep. index'  PARAM name attribute
+PARVAL24 t '0'  PARAM val attribute
+PARID24  t 'ipMIN_SG'  PARAM id attribute
+PARNAM25 t 'Max. Star/Galaxy Sep. index'  PARAM name attribute
+PARVAL25 t '19'  PARAM val attribute
+PARID25  t 'ipMAX_SG'  PARAM id attribute
+PARNAM26 t 'Lower Bit Mask for Flags'  PARAM name attribute
+PARVAL26 t '0'  PARAM val attribute
+PARID26  t 'ipFLGMASK0'  PARAM id attribute
+PARNAM27 t 'Upper Bit Mask for Flags'  PARAM name attribute
+PARVAL27 t '-1'  PARAM val attribute
+PARID27  t 'ipFLGMASK1'  PARAM id attribute
+PARNAM28 t 'Column Selection Bits'  PARAM name attribute
+PARVAL28 t '4271'  PARAM val attribute
+PARID28  t 'ipCOLBITS'  PARAM id attribute
+                 20.78                  21.21
+                 18.06                  17.28
+                 20.84                     0.
+                    0.                  21.02
+                 20.46                     0.
+                 19.53                  18.93
+                 20.42                  20.47
+                    0.                  20.39
+                    0.                  21.61
+                 19.63                  18.64
+                    0.                  21.85
+                    0.                  21.13
+                 20.84                  20.67
+                 20.78                  20.78
+                    0.                  21.61
+                    0.                     0.
+                 20.84                  20.35
+                    0.                  21.81
+                    0.                  21.12
+                 20.84                  20.77
+                 19.34                  18.04
+                 20.84                     0.
+                 20.84                     0.
+                    0.                    21.
+                    0.                  20.98
+                    0.                  21.02
+                    0.                  20.44
+                 20.84                  20.52
+                    0.                  20.82
+                    0.                  21.25
+                    0.                     0.
+                    0.                     0.
+                 20.84                     0.
+                    0.                  21.61
+                    0.                  21.01
+                    0.                  21.08
+                    0.                  21.16
+                    0.                  21.35
+                    0.                   21.2
+                    0.                  21.11
+                    0.                  21.46
+                    0.                  21.06
+                    0.                  21.61
+                    0.                   21.6
+                    0.                  21.56
+                 19.65                  18.73
+                 20.66                  19.98
+                  18.7                  17.73
+                    0.                  21.47
+                    0.                  21.63
+                    0.                  20.79
+                 20.75                  19.86
+                    0.                   21.4
+                 13.77                  13.22
+                    0.                     0.
+                    0.                     0.
+                    0.                     0.
+                    0.                  21.17
+                    0.                  20.93
+                    0.                  20.93
+                    0.                  21.07
+                 20.84                     0.
+                    0.                     0.
+                    0.                   21.6
+                    0.                  21.44
+B1               D         %25.16g  mag
+B2               D         %25.16g  mag
+XTENSION t 'BINTABLE'  binary table extension
+BITPIX   i 8  8-bit bytes
+NAXIS    i 2  2-dimensional binary table
+NAXIS1   i 16  width of table in bytes
+NAXIS2   i 65
+PCOUNT   i 0  size of special data area
+GCOUNT   i 1  one data group (required keyword)
+TFIELDS  i 2
+TTYPE1   t 'B1'  label for field   1
+TFORM1   t '1D'  data format of the field: 8-byte DOUBLE
+TUNIT1   t 'mag'  physical unit of field
+TTYPE2   t 'B2'  label for field   2
+TFORM2   t '1D'  data format of the field: 8-byte DOUBLE
+TUNIT2   t 'mag'  physical unit of field
+TDISP1   t 'G25.16'  display format
+TDISP2   t 'G25.16'  display format
+EXTNAME  t 'ext2'  name of this binary table extension
+TID1     t 'id'  ID attribute
+TUCD1    t 'ID_MAIN'  UCD attribute
+TID2     t 'RA'  ID attribute
+TUCD2    t 'POS_EQ_RA_MAIN'  UCD attribute
+TID3     t 'DEC'  ID attribute
+TUCD3    t 'POS_EQ_DEC_MAIN'  UCD attribute
+TID4     t 'sRa'  ID attribute
+TUCD4    t 'ERROR'  UCD attribute
+TID5     t 'sDec'  ID attribute
+TUCD5    t 'ERROR'  UCD attribute
+TID6     t 'sRaEp'  ID attribute
+TUCD6    t 'ERROR'  UCD attribute
+TID7     t 'sDeEp'  ID attribute
+TUCD7    t 'ERROR'  UCD attribute
+TID8     t 'MuRA'  ID attribute
+TUCD8    t 'POS_EQ_PMRA'  UCD attribute
+TID9     t 'MuDEC'  ID attribute
+TUCD9    t 'POS_EQ_PMDEC'  UCD attribute
+TID10    t 'sMuRA'  ID attribute
+TUCD10   t 'ERROR'  UCD attribute
+TID11    t 'sMuDE'  ID attribute
+TUCD11   t 'ERROR'  UCD attribute
+TID12    t 'B1'  ID attribute
+TUCD12   t 'PHOT_MAG'  UCD attribute
+TID13    t 'R1'  ID attribute
+TUCD13   t 'PHOT_MAG'  UCD attribute
+TID14    t 'B2'  ID attribute
+TUCD14   t 'PHOT_MAG'  UCD attribute
+TID15    t 'R2'  ID attribute
+TUCD15   t 'PHOT_MAG'  UCD attribute
+TID16    t 'I2'  ID attribute
+TUCD16   t 'PHOT_MAG'  UCD attribute
+PARNAM1  t 'Field Name'  PARAM name attribute
+PARVAL1  t 'NoName'  PARAM val attribute
+PARID1   t 'ipFIELD'  PARAM id attribute
+PARNAM2  t 'Catalogue ID'  PARAM name attribute
+PARVAL2  t 'USNOB'  PARAM val attribute
+PARID2   t 'ipCAT_ID'  PARAM id attribute
+PARNAM3  t 'Number of Objects In File'  PARAM name attribute
+PARVAL3  t '65'  PARAM val attribute
+PARID3   t 'ipNOBJECTS'  PARAM id attribute
+PARNAM4  t 'Equinox'  PARAM name attribute
+PARVAL4  t '2000.00'  PARAM val attribute
+PARID4   t 'ipEQUINOX'  PARAM id attribute
+PARUNI4  t 'yr'  PARAM unit attribute
+PARNAM5  t 'Epoch'  PARAM name attribute
+PARVAL5  t '2000.00'  PARAM val attribute
+PARID5   t 'ipEPOCH'  PARAM id attribute
+PARUNI5  t 'yr'  PARAM unit attribute
+PARNAM6  t 'Center RA'  PARAM name attribute
+PARVAL6  t '202.000000'  PARAM val attribute
+PARID6   t 'ipRA'  PARAM id attribute
+PARUNI6  t 'deg'  PARAM unit attribute
+PARNAM7  t 'Center DEC'  PARAM name attribute
+PARVAL7  t '47.000000'  PARAM val attribute
+PARID7   t 'ipDEC'  PARAM id attribute
+PARUNI7  t 'deg'  PARAM unit attribute
+PARNAM8  t 'Circle Radius'  PARAM name attribute
+PARVAL8  t '0.050000'  PARAM val attribute
+PARID8   t 'ipRADIUS'  PARAM id attribute
+PARUNI8  t 'deg'  PARAM unit attribute
+PARNAM9  t 'Primary Sort Color'  PARAM name attribute
+PARVAL9  t 'R2'  PARAM val attribute
+PARID9   t 'ipMAGNITUDE'  PARAM id attribute
+PARNAM10 t 'Bright Magnitude Limit'  PARAM name attribute
+PARVAL10 t '0.00'  PARAM val attribute
+PARID10  t 'ipBR_MAG'  PARAM id attribute
+PARUNI10 t 'mag'  PARAM unit attribute
+PARNAM11 t 'Faint Magnitude Limit'  PARAM name attribute
+PARVAL11 t '100.00'  PARAM val attribute
+PARID11  t 'ipFT_MAG'  PARAM id attribute
+PARUNI11 t 'mag'  PARAM unit attribute
+PARNAM12 t 'Color0 minus Color1'  PARAM name attribute
+PARVAL12 t 'B2-R2'  PARAM val attribute
+PARID12  t 'ipCOLOR'  PARAM id attribute
+PARNAM13 t 'Color Limit: Minimum B-R'  PARAM name attribute
+PARVAL13 t '-100.00'  PARAM val attribute
+PARID13  t 'ipBR_MIN'  PARAM id attribute
+PARUNI13 t 'mag'  PARAM unit attribute
+PARNAM14 t 'Color Limit: Maximum B-R'  PARAM name attribute
+PARVAL14 t '100.00'  PARAM val attribute
+PARID14  t 'ipBR_MAX'  PARAM id attribute
+PARUNI14 t 'mag'  PARAM unit attribute
+PARNAM15 t 'Min. Proper Motion'  PARAM name attribute
+PARVAL15 t '0.00'  PARAM val attribute
+PARID15  t 'ipMU_MIN'  PARAM id attribute
+PARUNI15 t 'mas.yr-1'  PARAM unit attribute
+PARNAM16 t 'Max. Proper Motion'  PARAM name attribute
+PARVAL16 t '10000.00'  PARAM val attribute
+PARID16  t 'ipMU_MAX'  PARAM id attribute
+PARUNI16 t 'mas.yr-1'  PARAM unit attribute
+PARNAM17 t 'Min. Position Error'  PARAM name attribute
+PARVAL17 t '0.00'  PARAM val attribute
+PARID17  t 'ipSPOS_MIN'  PARAM id attribute
+PARUNI17 t 'mas'  PARAM unit attribute
+PARNAM18 t 'Max. Position Error'  PARAM name attribute
+PARVAL18 t '10000.00'  PARAM val attribute
+PARID18  t 'ipSPOS_MAX'  PARAM id attribute
+PARUNI18 t 'mas'  PARAM unit attribute
+PARNAM19 t 'Min. Proper Motion Error'  PARAM name attribute
+PARVAL19 t '0.00'  PARAM val attribute
+PARID19  t 'ipSMU_MIN'  PARAM id attribute
+PARUNI19 t 'mas.yr-1'  PARAM unit attribute
+PARNAM20 t 'Max. Proper Motion Error'  PARAM name attribute
+PARVAL20 t '10000.00'  PARAM val attribute
+PARID20  t 'ipSMU_MAX'  PARAM id attribute
+PARUNI20 t 'mas.yr-1'  PARAM unit attribute
+PARNAM21 t 'Maximum Surface Density'  PARAM name attribute
+PARVAL21 t '10000000.00'  PARAM val attribute
+PARID21  t 'ipSD_MAX'  PARAM id attribute
+PARUNI21 t 'deg-2'  PARAM unit attribute
+PARNAM22 t 'Min. Number of Observations'  PARAM name attribute
+PARVAL22 t '0'  PARAM val attribute
+PARID22  t 'ipMIN_PTS'  PARAM id attribute
+PARNAM23 t 'Max. Number of Observations'  PARAM name attribute
+PARVAL23 t '10'  PARAM val attribute
+PARID23  t 'ipMAX_PTS'  PARAM id attribute
+PARNAM24 t 'Min. Star/Galaxy Sep. index'  PARAM name attribute
+PARVAL24 t '0'  PARAM val attribute
+PARID24  t 'ipMIN_SG'  PARAM id attribute
+PARNAM25 t 'Max. Star/Galaxy Sep. index'  PARAM name attribute
+PARVAL25 t '19'  PARAM val attribute
+PARID25  t 'ipMAX_SG'  PARAM id attribute
+PARNAM26 t 'Lower Bit Mask for Flags'  PARAM name attribute
+PARVAL26 t '0'  PARAM val attribute
+PARID26  t 'ipFLGMASK0'  PARAM id attribute
+PARNAM27 t 'Upper Bit Mask for Flags'  PARAM name attribute
+PARVAL27 t '-1'  PARAM val attribute
+PARID27  t 'ipFLGMASK1'  PARAM id attribute
+PARNAM28 t 'Column Selection Bits'  PARAM name attribute
+PARVAL28 t '4271'  PARAM val attribute
+PARID28  t 'ipCOLBITS'  PARAM id attribute
+                 20.78                  21.21
+                 18.06                  17.28
+                 20.84                     0.
+                    0.                  21.02
+                 20.46                     0.
+                 19.53                  18.93
+                 20.42                  20.47
+                    0.                  20.39
+                    0.                  21.61
+                 19.63                  18.64
+                    0.                  21.85
+                    0.                  21.13
+                 20.84                  20.67
+                 20.78                  20.78
+                    0.                  21.61
+                    0.                     0.
+                 20.84                  20.35
+                    0.                  21.81
+                    0.                  21.12
+                 20.84                  20.77
+                 19.34                  18.04
+                 20.84                     0.
+                 20.84                     0.
+                    0.                    21.
+                    0.                  20.98
+                    0.                  21.02
+                    0.                  20.44
+                 20.84                  20.52
+                    0.                  20.82
+                    0.                  21.25
+                    0.                     0.
+                    0.                     0.
+                 20.84                     0.
+                    0.                  21.61
+                    0.                  21.01
+                    0.                  21.08
+                    0.                  21.16
+                    0.                  21.35
+                    0.                   21.2
+                    0.                  21.11
+                    0.                  21.46
+                    0.                  21.06
+                    0.                  21.61
+                    0.                   21.6
+                    0.                  21.56
+                 19.65                  18.73
+                 20.66                  19.98
+                  18.7                  17.73
+                    0.                  21.47
+                    0.                  21.63
+                    0.                  20.79
+                 20.75                  19.86
+                    0.                   21.4
+                 13.77                  13.22
+                    0.                     0.
+                    0.                     0.
+                    0.                     0.
+                    0.                  21.17
+                    0.                  20.93
+                    0.                  20.93
+                    0.                  21.07
+                 20.84                     0.
+                    0.                     0.
+                    0.                   21.6
+                    0.                  21.44

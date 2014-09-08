@@ -1,0 +1,20 @@
+# http://iraf.noao.edu/vao//usno-b.xml  B1
+# nrows            mean        stddev        median           min           max
+   65       6.770615385       9.58356            0.            0.         20.84
+# file:///iraf/iraf/vao/vaotest/data//usno-b.xml  B1
+# nrows            mean        stddev        median           min           max
+   65       6.770615385       9.58356            0.            0.         20.84
+# file://localhost//iraf/iraf/vao/vaotest/data//usno-b.xml  B1
+# nrows            mean        stddev        median           min           max
+   65       6.770615385       9.58356            0.            0.         20.84
+# data$usno-b.xml  I2
+# nrows            mean        stddev        median           min           max
+   65       7.369692308       8.87376            0.            0.         19.12
+# nrows            mean        stddev        median           min           max
+
+# http://iraf.noao.edu/vao//usno-b.xml  B1
+   65       6.770615385       9.58356            0.            0.         20.84
+# file:///iraf/iraf/vao/vaotest/data//usno-b.xml  B1
+   65       6.770615385       9.58356            0.            0.         20.84
+# file://localhost//iraf/iraf/vao/vaotest/data//usno-b.xml  B1
+   65       6.770615385       9.58356            0.            0.         20.84

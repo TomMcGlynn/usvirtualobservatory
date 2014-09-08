@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SED data query output
+
+  Produced by the NASA/IPAC Extragalactic Database/Caltech.
+  Copyright (C) 2011,  California Institute of Technology.
+  U.S. Government support under contract NAS7-03001 is acknowledged.
+-->
+<VOTABLE  xmlns="http://www.ivoa.net/xml/VOTable/v1.2"
+  xmlns:spec="http://www.ivoa.net/xml/Spectrum/Spectrum-1.01.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.2  http://www.ivoa.net/xml/VOTable/VOTable-1.2.xsd
+                                 http://www.ivoa.net/xml/SSA/v0.4 http://www.ivoa.net/xml/SSA/SSA-v0.4.xsd"
+>
+  <DEFINITIONS>
+     <COOSYS ID="J2000" equinox="2000." epoch="2000." system="eq_FK5"/>
+  </DEFINITIONS>
+  <RESOURCE utype="spec:Sed">
+     <DESCRIPTION>Result of NED Data Request of Spectrum datasets for the objects, returned by NED. Date and Time of the Query: Wed Sep 21 07:18:24 2011</DESCRIPTION>
+     <INFO name="QUERY_STATUS" value="OK"/>
+     <PARAM name="Error"><VALUE>Invalid parameter value for REQUEST.</VALUE></PARAM>
+  </RESOURCE>
+</VOTABLE>

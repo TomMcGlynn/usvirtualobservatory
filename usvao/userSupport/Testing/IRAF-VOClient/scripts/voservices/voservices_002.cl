@@ -1,0 +1,7 @@
+vaotest.descr = "VO Directory local/remote"
+print "Test Case 3.3: be able to refer to a VO resource in multiple ways"
+print "3.3.1 IVOA Identifier"
+print "3.3.2 short name value"
+print "3.3.2 anonymous result"
+print "3.3.4 personal alias"
+print "Not Currently Implemented"
