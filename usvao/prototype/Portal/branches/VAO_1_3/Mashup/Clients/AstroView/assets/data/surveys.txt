@@ -1,0 +1,68 @@
+{
+    "surveys" : [
+        {
+            "label": "DSS layers: 4-12",
+            "url": "http://masttest.stsci.edu/surveys/toast/dss2/[LAYER]/[TX]/dss2_[LAYER]_[TX]_[TY].jpg",
+            "layers": "4-12",
+            "visible":"true",
+            "selected":"true",
+            "tooltip":"Digital Sky Survey (stsci) layers: 4-12"
+        },
+        {
+            "label": "GALEX layers: 4-10",
+            "url": "http://masttest.stsci.edu/surveys/toast/galex/[LAYER]/[TX]/galex_[LAYER]_[TX]_[TY].jpg",
+            "layers": "4-10",
+            "visible":"true",
+            "selected":"false",
+            "tooltip":"Galaxy Evolution Explorer (stsci) layers: 4-10"
+        },
+        {
+            "label": "SDSS layers: 4-12",
+            "url": "http://mastproxyvm1.stsci.edu/wwtweb/sdsstoast.aspx?q=[LAYER],[TX],[TY]",
+            "layers": "4-12",
+            "visible":"true",
+            "selected":"false",
+            "tooltip":"Sloan Digital Sky Survey (wwt) layers: 4-12"
+        },
+        {
+            "label": "GALEX-NUV layers: 4-10",
+            "url": "http://mastproxyvm1.stsci.edu/wwtweb/galex4near.aspx?q=[LAYER],[TX],[TY]",
+            "layers": "4-10",
+            "visible":"true",
+            "selected":"false",
+            "tooltip":"Galaxy Evolution Explorer, NUV Only (wwt) layers: 4-10"
+        },
+        {
+            "label": "GALEX-FUV layers: 4-10",
+            "url": "http://mastproxyvm1.stsci.edu/wwtweb/galex4far.aspx?q=[LAYER],[TX],[TY]",
+            "layers": "4-10",
+            "visible":"true",
+            "selected":"false",
+            "tooltip":"Galaxy Evolution Explorer, FUV Only (wwt) layers: 4-10"
+        },  
+        {
+            "label": "DUST (wwt) layers: 4-6",
+            "url": "http://mastproxyvm1.stsci.edu/wwtweb/tiles.aspx?q=[LAYER],[TX],[TY],dust",
+            "layers": "4-6",
+            "visible":"true",
+            "selected":"false",
+            "tooltip":"DUST (wwt) layers: 4-6"
+        },
+        {
+            "label": "HALPHA (wwt) layers: 4-6",
+            "url": "http://mastproxyvm1.stsci.edu/wwtweb/tiles.aspx?q=[LAYER],[TX],[TY],halpha",
+            "layers": "4-6",
+            "visible":"true",
+            "selected":"false",
+            "tooltip":"HALPHA (wwt) layers: 4-6"
+        },
+        {
+            "label": "WMAP (wwt) layer 4",
+            "url": "http://mastproxyvm1.stsci.edu/wwtweb/tiles.aspx?q=[LAYER],[TX],[TY],wmap5yr_ilc_200uK",
+            "layers": "4-4",
+            "visible":"true",
+            "selected":"false",
+            "tooltip":"Wilkinson Microwave Anisotropy Probe (wwt) layer 4"
+        }
+    ]
+}

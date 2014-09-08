@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DE0BE1F1-34F4-4FCC-9546-E73EBD4DC3B1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>VOTTest</RootNamespace>
+    <AssemblyName>VOTTest</AssemblyName>
+    <StartupObject>VOTTest.VOTDataSetTest</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="DebugReceiver.cs" />
+    <Compile Include="VOTDataSetTest.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VOTLib\VOTLib.csproj">
+      <Project>{4E3C1001-3AB5-4659-BDCE-13ED677D79FD}</Project>
+      <Name>VOTLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\simple.xml" />
+    <None Include="Resources\GalexSiapVotable.xml" />
+    <None Include="Resources\CaomConeVotable.xml" />
+    <None Include="Resources\GalexConeVotable.xml" />
+    <None Include="Resources\DataScopeTest.xml" />
+    <None Include="Resources\HEASARCChandra.xml" />
+    <None Include="Resources\2MASS_QL.29.xml" />
+    <None Include="Resources\CADC_CFHT.91.xml" />
+    <None Include="Resources\CADC_HST.90.xml" />
+    <None Include="Resources\ISSA.30.xml" />
+    <None Include="Resources\vizier_cs-7.xml" />
+    <None Include="Resources\HST_STIS_Spectra.9738.xml" />
+    <None Include="Resources\IUE.9748.xml" />
+  </ItemGroup>
+</Project>
