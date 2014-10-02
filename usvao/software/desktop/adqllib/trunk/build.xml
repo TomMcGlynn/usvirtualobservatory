@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<project name="ADQLlib" default="cleanInstall" basedir=".">
+    <property environment="env"/>
+    <property name="s" value="${file.separator}"/>
+    <property name="classes" value="./classes"/>
+    <property name="generated" value="./src/generated"/>
+    <property name="adqlversion" value="1.0"/>
+    <property name="adqllibjar" value="adql.jar"/>
+    <property name="prefix" value="${user.dir}"/>
+    <property name="installdir" value="${prefix}"/>
+    <property name="apachelib" value="${user.dir}${s}lib"/>
+    <property name="lib" value="${installdir}/lib"/>
+    <property name="bin" value="${installdir}/bin"/>
+    <property name="api" value="${installdir}/doc/api" />
+
+    <condition property="os.windows">
+      <and>
+        <os family="windows"/>
+        <os family="dos"/>
+      </and>
+    </condition>
+
+    <target name="init">
+       <mkdir dir="${classes}"/>
+       <mkdir dir="${lib}"/>
+       <mkdir dir="${bin}"/>
+       <mkdir dir="./lib"/>
+       <mkdir dir="./bin"/>
+       <mkdir dir="./doc/api"/>
+       <mkdir dir="${api}"/>
+    </target>
+
+    <target name="props">
+       <echo>Apache library directory: ${apachelib} </echo>
+       <echo>Library directory: ${lib}</echo>
+       <echo>Bin directory: ${bin}</echo>
+    </target>
+
+    <target name="distclean" depends="init">
+       <delete includeEmptyDirs="true">
+          <fileset dir="${classes}" />
+          <fileset dir="./lib" >
+             <filename name="${adqllibjar}" />
+          </fileset>
+          <fileset dir="./doc/api" />
+          <fileset dir="${bin}">
+             <filename name="xalan*" />
+          </fileset>
+          <fileset dir="./bin">
+             <filename name="convertADQL*" />
+          </fileset>
+          <fileset dir="./bin">
+             <filename name="validate*" />
+          </fileset>
+          <fileset dir="./bin" />
+       </delete>
+    </target>
+
+    <target name="clean">
+       <delete includeEmptyDirs="true">
+          <fileset dir="${classes}">
+             <include name="**" />
+             <exclude name="test/**" />
+          </fileset>
+       </delete>
+    </target>
+
+    <target name="cleanInstall" depends="install,clean" />
+
+    <target name="compile" depends="init">
+       <echo>building source</echo>
+       <javac destdir="${classes}" srcdir="src/java" debug="true"
+              includeAntruntime="false">
+          <classpath>
+            <pathelement path="${apachelib}/xalan.jar"/>
+            <pathelement path="${apachelib}/xercesImpl.jar"/>
+            <pathelement location="${classes}" />
+          </classpath>
+       </javac>
+    </target>
+
+    <target name="jarlib" depends="compile">
+       <copy todir="${classes}/net/ivoa/adql/app/conf">
+          <fileset dir="etc/v0.7.4/stylesheets">
+             <filename name="*.xsl"/>
+          </fileset>
+       </copy>
+       <copy todir="${classes}/net/ivoa/adql/app/conf">
+          <fileset dir="etc/v1.0/stylesheets">
+             <filename name="*.xsl"/>
+          </fileset>
+       </copy>
+       <copy file="src/java/net/ivoa/adql/app/conf/ConvertADQL.xml"
+             todir="${classes}/net/ivoa/adql/app/conf" />
+       <jar destfile="${lib}/${adqllibjar}" basedir="${classes}" 
+            excludes="test/*" />
+    </target>
+
+    <target name="apidoc" depends="">
+       <javadoc destdir="doc/api" windowtitle="ADQL Library" 
+                sourcepath="src/java"
+                packagenames="net.*,nvo_coords.*,nvo_regions.*,ncsa.*,test.*" />
+    </target>
+
+    <target name="installScripts" 
+            depends="installScriptsUnix,installScriptsWin" />
+
+    <target name="installScriptsUnix" unless="os.windows">
+       <filter token="ADQL_HOME" value="${installdir}" />
+       <filter token="APACHE_LIB" value="${apachelib}" />
+       <filter token="adql_jar" value="${adqllibjar}" />
+       <copy file="src/scripts/xalan" todir="${bin}" filtering="true"/>
+       <copy file="src/scripts/validate" todir="${bin}" filtering="true"/>
+       <copy file="src/scripts/convertADQL" todir="${bin}" filtering="true"/>
+       <chmod perm="a+rx">
+          <fileset dir="${bin}" includes="validate,xalan,convertADQL"/>
+       </chmod>
+    </target>
+
+    <target name="installScriptsWin" if="os.windows">
+       <filter token="ADQL_HOME" value="${installdir}" />
+       <filter token="APACHE_LIB" value="${apachelib}" />
+       <filter token="adql_jar" value="${adqllibjar}" />
+       <copy file="src/scripts/xalan.cmd" todir="${bin}" filtering="true"/>
+       <copy file="src/scripts/validate.cmd" todir="${bin}" filtering="true"/>
+       <copy file="src/scripts/convertADQL.cmd" todir="${bin}" filtering="true"/>
+    </target>
+
+    <target name="install" depends="jarlib,apidoc,installScripts"/>
+
+</project>

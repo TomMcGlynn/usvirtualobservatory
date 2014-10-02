@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Select xmlns="http://www.ivoa.net/xml/ADQL/v1.0" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <SelectionList>
+    <Item xsi:type="columnReferenceType" Table="t" Name="b"/>
+    <Item xsi:type="columnReferenceType" Table="b" Name="*"/>
+  </SelectionList>
+
+  <From>
+    <Table xsi:type="tableType" Name="Tab" Alias="t" />
+    <Table xsi:type="tableType" Name="Bob" Alias="b" />
+  </From>
+
+  <Where>
+     <Condition xsi:type="comparisonPredType" Comparison="&lt;">
+        <Arg xsi:type="aggregateFunctionType" Name="AVG">
+           <Arg xsi:type="columnReferenceType" Table="b" Name="dd"/>
+        </Arg>
+        <Arg xsi:type="atomType">
+           <Literal xsi:type="realType" Value="4.56"/>
+        </Arg>
+     </Condition>
+  </Where>
+
+  <OrderBy>
+     <Item>
+        <Expression xsi:type="columnReferenceType" Table="b" Name="dd"/>
+     </Item>
+  </OrderBy>
+
+</Select>

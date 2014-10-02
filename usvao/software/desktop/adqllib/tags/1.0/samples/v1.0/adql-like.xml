@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Select xmlns="http://www.ivoa.net/xml/ADQL/v1.0" xmlns:ad="http://www.ivoa.net/xml/ADQL/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SelectionList>
+    <Item xsi:type="ad:allSelectionItemType"/>
+  </SelectionList>
+  <From>
+    <Table Alias="r" Name="resources" xsi:type="ad:tableType"/>
+  </From>
+  <Where>
+    <Condition xsi:type="ad:likePredType">
+      <Arg Name="title" Table="r" xsi:type="ad:columnReferenceType"/>
+      <Pattern xsi:type="ad:atomType">
+        <Literal Value="%quasar%" xsi:type="ad:stringType"/>
+      </Pattern>
+    </Condition>
+  </Where>
+</Select>

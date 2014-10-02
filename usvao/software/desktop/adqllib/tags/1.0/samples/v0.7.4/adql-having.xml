@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Select xmlns="http://www.ivoa.net/xml/ADQL/v0.7.4" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <SelectionList>
+    <Item xsi:type="columnReferenceType" Table="t" Name="b"/>
+    <Item xsi:type="columnReferenceType" Table="b" Name="d"/>
+  </SelectionList>
+
+  <From>
+    <Table xsi:type="tableType" Name="Tab" Alias="t" />
+    <Table xsi:type="tableType" Name="Tab" Alias="b" />
+  </From>
+
+  <GroupBy>
+     <Column Table="t" Name="b"/>
+     <Column Table="b" Name="d"/>
+  </GroupBy>
+
+  <Having>
+     <Condition xsi:type="comparisonPredType" Comparison="&lt;&gt;">
+        <Arg xsi:type="columnReferenceType" Table="t" Name="b"/>
+        <Arg xsi:type="columnReferenceType" Table="d" Name="b"/>
+     </Condition>
+  </Having>
+</Select>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Select xmlns="http://www.ivoa.net/xml/ADQL/v0.7.4" xmlns:ad="http://www.ivoa.net/xml/ADQL/v0.7.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Restrict Top="100"/>
+  <SelectionList>
+    <Item Name="f" Table="a" xsi:type="ad:columnReferenceType"/>
+    <Item Name="g" Table="d" xsi:type="ad:columnReferenceType"/>
+  </SelectionList>
+  <From>
+    <Table Alias="a" Name="Tab" xsi:type="ad:tableType"/>
+    <Table Alias="d" Name="Bob" xsi:type="ad:tableType"/>
+  </From>
+  <Where>
+    <Condition xsi:type="ad:intersectionSearchType">
+      <Condition Comparison="&lt;" xsi:type="ad:comparisonPredType">
+        <Arg Name="d" Table="a" xsi:type="ad:columnReferenceType"/>
+        <Arg Name="e" Table="d" xsi:type="ad:columnReferenceType"/>
+      </Condition>
+      <Condition Comparison="&lt;" xsi:type="ad:comparisonPredType">
+        <Arg Name="f" Table="a" xsi:type="ad:columnReferenceType"/>
+        <Arg Name="f" Table="d" xsi:type="ad:columnReferenceType"/>
+      </Condition>
+    </Condition>
+  </Where>
+  <OrderBy>
+    <Item>
+      <Expression Name="f" Table="a" xsi:type="ad:columnReferenceType"/>
+      <Order Direction="DESC"/>
+    </Item>
+    <Item>
+      <Expression Name="b" Table="d" xsi:type="ad:columnReferenceType"/>
+    </Item>
+  </OrderBy>
+</Select>

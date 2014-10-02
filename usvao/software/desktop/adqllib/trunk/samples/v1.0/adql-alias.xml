@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Select xmlns="http://www.ivoa.net/xml/ADQL/v1.0" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <SelectionList>
+    <Item xsi:type="aliasSelectionItemType" As="aone">
+       <Expression xsi:type="closedExprType">
+          <Arg xsi:type="binaryExprType" Oper="-">
+             <Arg xsi:type="columnReferenceType" Table="a" Name="b"/>
+             <Arg xsi:type="columnReferenceType" Table="c" Name="d"/>
+          </Arg>
+       </Expression>
+    </Item>
+    <Item xsi:type="aliasSelectionItemType" As="atwo">
+       <Expression xsi:type="columnReferenceType" Table="b" Name="e"/>
+    </Item>
+  </SelectionList>
+
+  <From>
+    <Table xsi:type="tableType" Name="Tab" Alias="a" />
+    <Table xsi:type="tableType" Name="Bob" Alias="b" />
+  </From>
+
+  <GroupBy>
+     <Column Table="a" Name="f"/>
+  </GroupBy>
+</Select>

@@ -1,0 +1,1 @@
+SELECT SIN(A.b) AS MM, * FROM Tab a WHERE REGION('Circle J2000 1.2 2.4 0.2') AND (LOG(a.d) < 1.24)

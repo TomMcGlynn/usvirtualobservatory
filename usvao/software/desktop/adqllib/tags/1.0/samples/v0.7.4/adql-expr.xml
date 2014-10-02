@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Select xmlns="http://www.ivoa.net/xml/ADQL/v0.7.4" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <SelectionList>
+    <Item xsi:type="columnReferenceType" Table="a" Name="d"/>
+    <Item xsi:type="columnReferenceType" Table="d" Name="e"/>
+  </SelectionList>
+
+  <From>
+    <Table xsi:type="tableType" Name="Tab" Alias="a" />
+    <Table xsi:type="tableType" Name="Tab" Alias="d" />
+  </From>
+
+  <Where>
+    <Condition xsi:type="intersectionSearchType">
+       <Condition xsi:type="comparisonPredType" Comparison="&lt;">
+          <Arg xsi:type="columnReferenceType" Table="a" Name="d"/>
+          <Arg xsi:type="columnReferenceType" Table="d" Name="e"/>
+       </Condition>
+       <Condition xsi:type="betweenPredType">
+          <Arg xsi:type="columnReferenceType" Table="a" Name="f"/>
+          <Arg xsi:type="columnReferenceType" Table="a" Name="f"/>
+          <Arg xsi:type="columnReferenceType" Table="d" Name="f"/>
+       </Condition>
+    </Condition>
+  </Where>
+
+  <OrderBy>
+     <Item>
+        <Expression xsi:type="columnReferenceType" Table="g" Name="b"/>
+     </Item>
+  </OrderBy>
+
+</Select>

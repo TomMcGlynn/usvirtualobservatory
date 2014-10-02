@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Select xmlns="http://www.ivoa.net/xml/ADQL/v0.7.4" xmlns:ad="http://www.ivoa.net/xml/ADQL/v0.7.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SelectionList>
+    <Item Name="fieldID" Table="g" xsi:type="ad:columnReferenceType"/>
+    <Item As="avg_modelMag_u" xsi:type="ad:aliasSelectionItemType">
+      <Expression Name="AVG" xsi:type="ad:aggregateFunctionType">
+        <Arg Name="modelMag_u" Table="g" xsi:type="ad:columnReferenceType"/>
+      </Expression>
+    </Item>
+    <Item As="avg_modelMag_r" xsi:type="ad:aliasSelectionItemType">
+      <Expression Name="AVG" xsi:type="ad:aggregateFunctionType">
+        <Arg Name="modelMag_r" Table="g" xsi:type="ad:columnReferenceType"/>
+      </Expression>
+    </Item>
+  </SelectionList>
+  <From>
+    <Table Alias="g" Name="Galaxy" xsi:type="ad:tableType"/>
+  </From>
+  <Where>
+    <Condition xsi:type="ad:intersectionSearchType">
+      <Condition xsi:type="ad:intersectionSearchType">
+        <Condition Comparison="=" xsi:type="ad:comparisonPredType">
+          <Arg Name="run" Table="g" xsi:type="ad:columnReferenceType"/>
+          <Arg xsi:type="ad:atomType">
+            <Literal Value="1458" xsi:type="ad:integerType"/>
+          </Arg>
+        </Condition>
+        <Condition Comparison="=" xsi:type="ad:comparisonPredType">
+          <Arg Name="rerun" Table="g" xsi:type="ad:columnReferenceType"/>
+          <Arg xsi:type="ad:atomType">
+            <Literal Value="40" xsi:type="ad:integerType"/>
+          </Arg>
+        </Condition>
+      </Condition>
+      <Condition Comparison="=" xsi:type="ad:comparisonPredType">
+        <Arg Name="camcol" Table="g" xsi:type="ad:columnReferenceType"/>
+        <Arg xsi:type="ad:atomType">
+          <Literal Value="1" xsi:type="ad:integerType"/>
+        </Arg>
+      </Condition>
+    </Condition>
+  </Where>
+  <GroupBy>
+    <Column Name="fieldID" Table="g"/>
+  </GroupBy>
+  <OrderBy>
+    <Item>
+      <Expression Name="fieldID" Table="g" xsi:type="ad:columnReferenceType"/>
+    </Item>
+  </OrderBy>
+</Select>

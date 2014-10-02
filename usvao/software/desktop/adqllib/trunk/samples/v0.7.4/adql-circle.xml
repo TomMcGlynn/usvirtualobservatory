@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Select xmlns="http://www.ivoa.net/xml/ADQL/v0.7.4" 
+        xmlns:reg="urn:nvo-region" 
+        xmlns:coo="urn:nvo-coords" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <SelectionList>
+    <Item xsi:type="columnReferenceType" Table="t" Name="*"/>
+    <Item xsi:type="columnReferenceType" Table="b" Name="*"/>
+  </SelectionList>
+
+  <From>
+    <Table xsi:type="tableType" Name="Tab" Alias="t" />
+    <Table xsi:type="tableType" Name="Bob" Alias="b" />
+  </From>
+
+  <Where>
+    <Condition xsi:type="intersectionSearchType">
+       <Condition xsi:type="comparisonPredType" Comparison="&lt;">
+          <Arg xsi:type="columnReferenceType" Table="a" Name="d"/>
+          <Arg xsi:type="columnReferenceType" Table="d" Name="e"/>
+       </Condition>
+
+       <Condition xsi:type="regionSearchType">
+          <Region xsi:type="reg:circleType">
+             <reg:Center xmlns="urn:nvo-coords">
+                <Pos2Vector>
+                   <Name>RA Dec</Name>
+                   <CoordValue>
+                      <Value>
+                         <double>12.5</double>
+                         <double>23</double>
+                      </Value>
+                   </CoordValue>
+                </Pos2Vector>
+             </reg:Center>
+             <reg:Radius>5</reg:Radius>
+          </Region>
+       </Condition>
+
+    </Condition>
+  </Where>
+
+  <OrderBy>
+     <Item>
+        <Expression xsi:type="binaryExprType" Oper="-">
+           <Arg xsi:type="columnReferenceType" Table="t" Name="g"/>
+           <Arg xsi:type="columnReferenceType" Table="b" Name="g"/>
+        </Expression>
+     </Item>
+     <Item>
+        <Expression xsi:type="columnReferenceType" Table="b" Name="h"/>
+     </Item>
+  </OrderBy>
+
+</Select>
+  

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Select xmlns="http://www.ivoa.net/xml/ADQL/v0.7.4" 
+        xmlns:reg="urn:nvo-region" 
+        xmlns:coo="urn:nvo-coords" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <SelectionList>
+    <Item xsi:type="aliasSelectionItemType" As="MM">
+       <Expression xsi:type="trigonometricFunctionType" Name="SIN">
+          <Arg xsi:type="columnReferenceType" Table="A" Name="b"/>
+       </Expression>
+    </Item>
+    <Item xsi:type="allSelectionItemType"/>
+  </SelectionList>
+
+  <From>
+    <Table xsi:type="tableType" Name="Tab" Alias="a" />
+  </From>
+
+  <Where>
+    <Condition xsi:type="intersectionSearchType">
+       <Condition xsi:type="regionSearchType">
+          <Region xsi:type="reg:circleType">
+             <reg:Center xmlns="urn:nvo-coords">
+                <Pos2Vector>
+                   <Name>RA Dec</Name>
+                   <CoordValue>
+                      <Value>
+                         <double>1.2</double>
+                         <double>2.4</double>
+                      </Value>
+                   </CoordValue>
+                </Pos2Vector>
+             </reg:Center>
+             <reg:Radius>0.2</reg:Radius>
+          </Region>
+       </Condition>
+
+       <Condition xsi:type="closedSearchType">
+          <Condition xsi:type="comparisonPredType" Comparison="&lt;">
+             <Arg xsi:type="mathFunctionType" Name="LOG">
+                <Arg xsi:type="columnReferenceType" Table="a" Name="d"/>
+             </Arg>
+             <Arg xsi:type="atomType">
+                <Literal xsi:type="realType" Value="1.24"/>
+             </Arg>
+          </Condition>
+       </Condition>
+    </Condition>
+  </Where>
+
+</Select>

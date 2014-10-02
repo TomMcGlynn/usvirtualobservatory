@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Select xmlns="http://www.ivoa.net/xml/ADQL/v1.0" 
+        xmlns:reg="http://www.ivoa.net/xml/STC/STCregion/v1.10" 
+        xmlns:coo="http://www.ivoa.net/xml/STC/STCcoords/v1.10" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <SelectionList>
+    <Item xsi:type="aliasSelectionItemType" As="MM">
+       <Expression xsi:type="trigonometricFunctionType" Name="SIN">
+          <Arg xsi:type="columnReferenceType" Table="A" Name="b"/>
+       </Expression>
+    </Item>
+    <Item xsi:type="allSelectionItemType"/>
+  </SelectionList>
+
+  <From>
+    <Table xsi:type="tableType" Name="Tab" Alias="a" />
+  </From>
+
+  <Where>
+    <Condition xsi:type="intersectionSearchType">
+       <Condition xsi:type="regionSearchType">
+          <Region xsi:type="reg:circleType" unit="deg">
+             <reg:Center xmlns="http://www.ivoa.net/xml/STC/STCregion/v1.10">
+                1.2 2.4
+             </reg:Center>
+             <reg:Radius>0.2</reg:Radius>
+          </Region>
+       </Condition>
+
+       <Condition xsi:type="closedSearchType">
+          <Condition xsi:type="comparisonPredType" Comparison="&lt;">
+             <Arg xsi:type="mathFunctionType" Name="LOG">
+                <Arg xsi:type="columnReferenceType" Table="a" Name="d"/>
+             </Arg>
+             <Arg xsi:type="atomType">
+                <Literal xsi:type="realType" Value="1.24"/>
+             </Arg>
+          </Condition>
+       </Condition>
+    </Condition>
+  </Where>
+
+</Select>
