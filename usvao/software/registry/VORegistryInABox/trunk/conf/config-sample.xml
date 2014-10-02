@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<xmlfile xmlns="http://oai.dlib.vt.edu/xmlfile"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://oai.dlib.vt.edu/xmlfile
+                             http://oai.dlib.vt.edu/xmlfile.xsd">
+
+   <!-- 
+     -  a name for the IVOA Registry; this will appear as the value of 
+     -  <repositoryName> in the OAI Identity response envelope
+     -->
+   <repositoryName>NVO Publishing Registry at NCSA</repositoryName>
+
+   <!-- 
+     -  a email for the administrator of the IVOA Registry; this will 
+     -  appear as the value of <repositoryName> in the OAI Identity 
+     -  response envelope
+     -->
+   <adminEmail>rplante@ncsa.uiuc.edu</adminEmail>
+
+   <!-- 
+     -  The IVOA identifier for the registry
+     -->
+   <archiveId>ivo://nvo.ncsa/registry</archiveId>
+
+   <!--
+     -  The maximum number of records to return in one response.  If more 
+     -  records matching the request are available, a resumption token will 
+     -  be sent to the user.
+     -->
+   <recordlimit>100</recordlimit>
+
+   <!--
+     -  The directory where the internally stored records can be found
+     -->
+   <datadir>/data/riabox/data</datadir>
+
+   <!-- 
+     -  The mode used for dealing with deleted records.  Values can be:
+     -   no           deleted records are not kept
+     -   persistent   deleted records will be kept around permanently
+     -   transient    deleted records will be kept around temporarily but 
+     -                  will later disappear.
+     -
+     -  Persistent is consistent with IVOA registry use.  This value appears
+     -  in the OAI Identity response envelope
+     --> 
+   <deletedRecord>persistent</deletedRecord>
+
+   <!--
+     -  the pattern for filenames of records to export.  Files in the data
+     -  area that do not match this pattern will be ignored.  
+     -->
+   <filematch>^\w.+\d+\.[xX][mM][lL]$</filematch>
+
+   <!--
+     -  the directory where stylesheets and configuration files are kept.
+     -  If provided as a relative directory, the OAI script will look for 
+     -  this directory relative to the parent of the directory containting
+     -  the OAI cgi script.
+     -->
+   <confdir>conf</confdir>
+
+   <!--
+     -  A description of a metadat format:   oai_dc
+     -->
+   <metadata>
+      <!-- the name of the metadata Prefix -->
+      <!-- oai_dc must be provided for full OAI compliance -->
+      <prefix>oai_dc</prefix>
+
+      <!-- the namespace of the root element for the XML descriptions 
+           of resources in this format -->
+      <namespace>http://www.openarchives.org/OAI/2.0/oai_dc/</namespace>
+
+      <!-- the location of the schema for the above mentioned namespace -->
+      <schema>http://www.openarchives.org/OAI/2.0/oai_dc.xsd</schema>
+
+      <!-- if provided, the command used for transforming native records 
+           into this format.  It must read from the standard input and
+           write to standard output. -->
+      <transform>bin/xsltproc conf/vor2dc.xsl - |</transform>
+   </metadata>
+
+   <!--
+     -  A description of a metadat format:   oai_dc
+     -->
+   <metadata>
+      <!-- the name of the metadata Prefix -->
+      <!-- ivo_vor must be provided for full IVOA compliance -->
+      <prefix>ivo_vor</prefix>
+
+      <!-- the namespace of the root element for the XML descriptions 
+           of resources in this format -->
+      <namespace>http://www.ivoa.net/xml/RegistryInterface/v1.0</namespace>
+
+      <!-- the location of the schema for the above mentioned namespace -->
+      <schema>http://www.ivoa.net/xml/RegistryInterface/v1.0</schema>
+
+      <!-- no transform item is need if the records are stored natively in 
+           this format.  -->
+   </metadata>
+
+</xmlfile>

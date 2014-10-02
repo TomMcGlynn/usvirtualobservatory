@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+<title>NVO Registration Portal</title>
+<link type="text/css" rel="stylesheet" href="@DOCPATH@/usvo_template.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+
+<body bgcolor="white" >
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top">
+      <table  width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td bgcolor="white" width="2"></td>
+          <td bgcolor="#CFE5FC" valign="middle" align="center" height="32"
+              class="nvoapptitle">
+
+       <!-- Name of Application -->
+       Publishing Registry Portal
+
+          </td>
+          <td bgcolor="white" width="2"></td>
+       </tr>
+       <tr>
+          <td bgcolor="white" width="2"></td>
+          <td height="10" valign="top"
+              background="http://www.us-vo.org/app_templates/stars.jpg" >
+          </td>
+
+          <td bgcolor="white" width="2"></td>
+       </tr>
+       <tr>
+         <td align="center" valign="top" colspan="3">
+         <table cellspacing="2" cellpadding="0" border="0" width="100%"
+                style="margin: 0pt;">
+           <tr>
+             <!-- the local links -->
+             <td class="navlink"><a href="@DOCPATH@/welcome.html">Re-enter Publishing Portal</a></td>
+
+             <td class="navlink"><a href="http://www.ivoa.net/doc/latest/ConeSearch.html">How to Publish</a></td>
+             <td class="navlink"><a href="http://nvo.stsci.edu/voregistry/index.aspx">Search the STScI Registry</a></td>
+             <td class="navlink"><a href="http://nvo.caltech.edu:8080/carnivore">Search the Carnivore Registry</a></td>
+             <td class="navlink"><a href="http://rofr.ivoa.net/">RofR</a></td>
+           </tr>
+
+         </table>
+         </td>
+       </tr>
+    </table>
+    </td>
+   </tr>
+</table>
+
+<!-- ======================================================================
+  -  Page Content
+  -  ====================================================================== -->
+
+<h1>Welcome to the Publishing Registry Portal</h1>
+
+<form method="post" action="@CGIPATH@/Resource_Form.cgi" enctype="application/x-www-form-urlencoded">
+        
+<table border="1" width="100%" cellpadding="4">
+<tr>
+  <td width="50%" valign="top">
+<h3>Is this your first time registering?</h3>
+
+<p>
+If so, the first thing you must do is register your organization, providing 
+us with some general information in our registration form.  You will then be
+prompted to make up a login name and password that will allow you to return
+to this site to register other related resources.  </p>
+
+<p>
+And don't worry about how long the registration form looks like.  You will 
+discover that registering additional resources is easier since you can 
+<em>inherit</em> values from previously registered resources.  </p>
+
+<p>
+<input type=checkbox name="tryout">Click this checkbox to try out the form without publishing the data.
+</p>
+
+<p>
+To get started by registering your organization, click: <br />
+<center>
+<input type=submit name=ftype value="Create new site">
+</center>
+</p>
+    </td>
+    <td valign="top">
+<h3>Do you already have a login?</h3>
+
+<p>
+Please provide username and password to access your registered resources. <p>
+<a href="/loginhelp.html#Username">Username:</a>   
+    <input type=text name=uname size=20>
+</p>
+<p>
+<a href="/loginhelp.html#Password">Password:</a>
+    <input type=password name=password size=20 maxlength=25>
+</p>
+<p>
+<input type=checkbox name="tryout">Click this checkbox to log in to your non-publishing scratch area.</p>
+<center>
+<p>
+<input type=submit name=ftype value="   Login   ">
+<input type=reset value="Reset Form">
+</p>
+</center>
+<p>
+<font color="green"><em>
+If you would like to look at a sample repository, log in as "sample",
+password "sample".
+</em></font>
+</p>
+    </td>
+  </tr>
+</table>
+</form>
+
+<p />
+
+</body>
+</html>

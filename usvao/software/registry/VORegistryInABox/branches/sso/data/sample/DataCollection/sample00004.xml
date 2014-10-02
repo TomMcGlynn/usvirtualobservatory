@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource xmlns=""
+             xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+             xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:type="vs:DataCollection"
+             status="active"
+             updated="2007-04-11T08:52:38"
+             created="2003-07-13T21:48:33">
+   <title>Sample Digital Image Library</title>
+   <shortName>SampleIm</shortName>
+   <identifier>ivo://sample.provider/images</identifier>
+   <curation>
+      <publisher ivo-id="ivo://sample.provider/archive">The Sample Data Archive</publisher>
+      <creator>
+         <name>Dr. Raymond Plante</name>
+      </creator>
+      <contributor>Raymond Plante</contributor>
+      <date>1994-01-01</date>
+      <contact>
+         <name>Sample publisher team</name>
+         <email>sample@sample.edu</email>
+      </contact>
+   </curation>
+   <content>
+      <subject>radio astronomy</subject>
+      <subject>image</subject>
+      <subject>data repositories</subject>
+      <subject>digital libraries</subject>
+      <description>
+The Sample Image Library collects published image data in FITS format from a variety of 
+telescopes and wavebands and makes them available to the astronomical
+community.  Users can search, browse, and download images as well as upload their own published images.
+      </description>
+      <referenceURL>http://sample.edu/archive.html</referenceURL>
+      <type>Archive</type>
+      <contentLevel>University</contentLevel>
+      <contentLevel>Research</contentLevel>
+   </content>
+   <coverage>
+      <stc:STCResourceProfile xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd">
+
+         <stc:AstroCoordSystem xlink:type="simple" xlink:href="ivo://STClib/CoordSys#UTC-ICRS-TOPO"
+                               id="sample.provider_images_UTC-ICRS-TOPO"/>
+
+         <stc:AstroCoordArea coord_system_id="sample.provider_images_UTC-ICRS-TOPO">
+            <stc:AllSky/>
+         </stc:AstroCoordArea>
+      </stc:STCResourceProfile>
+
+      <waveband>Radio</waveband>
+      <waveband>Millimeter</waveband>
+      <waveband>Infrared</waveband>
+      <waveband>Optical</waveband>
+      <waveband>UV</waveband>
+   </coverage>
+</ri:Resource>

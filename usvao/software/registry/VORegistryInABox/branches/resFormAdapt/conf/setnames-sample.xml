@@ -1,0 +1,110 @@
+<?xml version="1.0" standalone="yes" ?>
+<!--
+  -  This file provides metadata needed to support sets and declare them
+  -  via the ListSets operation.  Create a set entry for each set you wish to 
+  -  support.
+  -->
+<setnames>
+   <set>
+      <spec>Organisation</spec>
+      <description>
+         This set returns all resources managed by this registry
+         having a VOResource class of vr:Organisation.
+      </description>
+
+      <!-- 
+        -  If a set name is given as a value to <includedIn>, then all members 
+        -  of this set will automatically be included in that other set.
+        -->
+      <includedIn>ivo_managed</includedIn>
+   </set>
+   <set>
+      <spec>Authority</spec>
+      <description>
+         This set returns all resources managed by this registry
+         having a VOResource class of vg:Authority which represent 
+         an organisation's claim to an authority identifier.
+      </description>
+      <includedIn>ivo_managed</includedIn>
+   </set>
+   <set>
+      <spec>BrowserBasedService</spec>
+      <description>
+         This set returns all resources managed by this registry
+         that describe a Service accessible primarily via a web browser.
+      </description>
+      <includedIn>ivo_managed</includedIn>
+   </set>
+   <set>
+      <spec>CGIService</spec>
+      <description>
+         This set returns all resources managed by this registry
+         that describe a custom Service with a CGI interface
+      </description>
+      <includedIn>ivo_managed</includedIn>
+   </set>
+   <set>
+      <spec>ConeSearch</spec>
+      <description>
+         This set returns all resources managed by this registry
+         that describe a standard Cone Search Service.
+      </description>
+      <includedIn>ivo_managed</includedIn>
+   </set>
+   <set>
+      <spec>DataCollection</spec>
+      <description>
+         This set returns all resources managed by this registry
+         that represent a collection of data.  
+      </description>
+      <includedIn>ivo_managed</includedIn>
+   </set>
+   <set>
+      <spec>Registry</spec>
+      <description>
+         This set returns the resource representing this registry.
+      </description>
+      <includedIn>ivo_managed</includedIn>
+   </set>
+   <set>
+      <spec>Resource</spec>
+      <description>
+         This set returns all generic resources having a VOResource 
+         class of vr:Resource and thus do not fall into any other category.
+      </description>
+      <includedIn>ivo_managed</includedIn>
+   </set>
+   <set>
+      <spec>Service</spec>
+      <description>
+         This set returns all resources managed by this registry
+         representing generic Services.
+      </description>
+      <includedIn>ivo_managed</includedIn>
+   </set>
+   <set>
+      <spec>SIAService</spec>
+      <description>
+         This set returns all resources managed by this registry
+         representing standard Simple Image Access services.
+      </description>
+      <includedIn>ivo_managed</includedIn>
+   </set>
+   <set>
+      <spec>SSAService</spec>
+      <description>
+         This set returns all resources managed by this registry
+         representing standard Simple Spectral Access services.
+      </description>
+      <includedIn>ivo_managed</includedIn>
+   </set>
+   <set>
+      <spec>WebService</spec>
+      <description>
+         This set returns all resources managed by this registry
+         resenting custom Web Services that are described by as WSDL
+         document.  
+      </description>
+      <includedIn>ivo_managed</includedIn>
+   </set>
+</setnames>

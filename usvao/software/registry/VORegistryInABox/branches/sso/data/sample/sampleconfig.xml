@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+  <Username>sample</Username>
+  <Password>sample</Password>
+  <Publisher ivo-id="ivo://sample.provider/archive"
+             src="/home/rplante/wrk/VO/svn/VORegistryInABox-resForm/data/sample/Organisation/simple00001.xml.uc_add">The Sample Data Archive</Publisher>
+</Config>

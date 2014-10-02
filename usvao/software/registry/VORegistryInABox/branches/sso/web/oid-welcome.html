@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+<title>NVO Registration Portal</title>
+<link type="text/css" rel="stylesheet" href="/vopub/usvo_template.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+
+<body bgcolor="white" >
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top">
+      <table  width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td bgcolor="white" width="2"></td>
+          <td bgcolor="#CFE5FC" valign="middle" align="center" height="32"
+              class="nvoapptitle">
+
+       <!-- Name of Application -->
+       Publishing Registry Portal
+
+          </td>
+          <td bgcolor="white" width="2"></td>
+       </tr>
+       <tr>
+          <td bgcolor="white" width="2"></td>
+          <td height="10" valign="top"
+              background="http://www.us-vo.org/app_templates/stars.jpg" >
+          </td>
+
+          <td bgcolor="white" width="2"></td>
+       </tr>
+       <tr>
+         <td align="center" valign="top" colspan="3">
+         <table cellspacing="2" cellpadding="0" border="0" width="100%"
+                style="margin: 0pt;">
+           <tr>
+             <!-- the local links -->
+             <td class="navlink"><a href="/vopub/welcome.html">Re-enter Publishing Portal</a></td>
+
+             <td class="navlink"><a href="http://www.ivoa.net/doc/latest/ConeSearch.html">How to Publish</a></td>
+             <td class="navlink"><a href="http://nvo.stsci.edu/voregistry/index.aspx">Search the STScI Registry</a></td>
+             <td class="navlink"><a href="http://nvo.caltech.edu:8080/carnivore">Search the Carnivore Registry</a></td>
+             <td class="navlink"><a href="http://rofr.ivoa.net/">RofR</a></td>
+           </tr>
+
+         </table>
+         </td>
+       </tr>
+    </table>
+    </td>
+   </tr>
+</table>
+
+<!-- ======================================================================
+  -  Page Content
+  -  ====================================================================== -->
+
+<h1>Welcome, ${REMOTE_USER}, to the Publishing Registry Portal</h1>
+
+<form method="post" action="/cgi-bin/sso/vaologin.cgi/linkaccount.cgi" enctype="application/x-www-form-urlencoded">
+        
+<table border="1" width="100%" cellpadding="4">
+<tr>
+  <td width="50%" valign="top">
+<h3>Is this your first time registering?</h3>
+
+<p>
+If so, you can proceed to to registering your organization, providing 
+us with some general information in our registration form.  Click the button
+below: </p>
+
+<center>
+<input type=submit name=ftype value="Create new site">
+</center>
+</p>
+    </td>
+    <td valign="top">
+<h3>Do you already have an old-style login?</h3>
+
+<p>
+Did you previously register using a non-VAO or other non-OpenID login?
+If so, we need to connect your VAO/OpenID identity to your previous one.
+Enter your old registration username and password below to get access to
+your previously registered resources.
+</p>
+
+${ERROR_MESSAGE}
+
+<p>
+<a href="/loginhelp.html#Username">Username:</a>   
+    <input type=text name=uname size=20 value="${USERNAME}">
+</p>
+<p>
+<a href="/loginhelp.html#Password">Password:</a>
+    <input type=password name=password size=20 maxlength=25>
+</p>
+<center>
+<p>
+<input type=submit name=ftype value="Link to this account">
+<input type=reset value="Reset Form">
+</p>
+</center>
+    </td>
+  </tr>
+</table>
+</form>
+
+<p />
+
+</body>
+</html>

@@ -1,0 +1,313 @@
+IVOA Registry-in-a-Box (RiaBox)
+
+This package provides a simple implementation of a IVOA Publishing
+Registry that is compliant with the harvesting portion IVOA Registry
+Interfaces standard, v1.0
+(http://www.ivoa.net/Documents/latest/RegistryInterfaces, section 3).
+It has been adapted from the "OAI-PMH2 XMLFile data provider" Perl
+library by Hussein Suleman, developed at Virginia Tech
+(www.dlib.vt.edu) and, thus, is fully compliant with the OAI-PMH v2.0
+standard (http://www.openarchive.org/).
+
+This package has two parts to it.  The first is the OAI web service
+used to harvest resource descriptions from the registry.  The second
+is a browser-based publishing interface used to create and edit
+resource descriptions in VOResource format.  
+
+-----------------------------------------------------------------
+Summary of how it works
+-----------------------------------------------------------------
+
+It assumes that the records are stored as flat XML files in a
+directory, organized into sub-directories according to OAI sets.
+These records can be served directly in their native format or
+transformed on the fly into another format using XSLT.  It can be
+configured completely with configuration files.
+
+The typical practice is to store files natively in the VOResource
+metadata v1.0 standard (www.ivoa.net/documents/latest/VOResource),
+though any XML format can be used.  (Note that some users of this
+library have hacked the code to retrieve records directly from a local
+database.)  The Dublin Core format is required by the OAI standard;
+thus, a stylesheet to do the conversion is found in the conf directory. 
+
+In order to create and edit records in this registry using the
+publishing interface, the records must be in VOResource v1.0 format.
+The browser-based publishing service allows a user to create a login
+(with a password) and to create records associated with that login.
+
+This package is typically plugged into an existing web server;
+however, it comes with its own standalone server which is useful for
+testing.  
+
+-----------------------------------------------------------------
+Installation
+-----------------------------------------------------------------
+
+Summary of Installation:
+  1. Unpack the RiaBox distribution.
+  2. Download xsltproc and install the xsltproc tool
+  3. Populate the registry
+  4. Install the document directory into your web server
+  5. Install the cgi-bin directory into your web server
+  6. Configure and Run
+
+Here are the details...
+
+1. Unpack the RiaBox distribution.
+
+The RiaBox directory can be placed anywhere.  Consider this location the
+"installation directory".  
+
+2.  Download xsltproc and install the xsltproc tool
+
+xlstproc is used to transform resource description records into other
+formats, namely OAI-Dublin Core.  
+
+This package contains in the bin directory a precompiled version of
+the xsltproc tool built for a RedHat Linux system, but most likely you
+will have to install a version built for your system.  To check, just
+execute "bin/xsltproc" without arguments; if it spits out a help
+message, you are probably good to go.  
+
+If you need to install your own xsltproc, you may be able to download
+a pre-built version.  xsltproc comes pre-installed on most modern
+Linux distributions (try typing "which xsltproc") or is installable
+via the usual software update mechanisms.  If not, you can download it
+from http://xmlsoft.org/XSLT/xsltproc2.html and follow the instructions
+found there.  
+
+It can be installed anywhere, but if you do not put it in RiaBox's bin
+directory, you will have to update the configuration file
+accordingly (see step .).  
+
+3. Populate the registry
+
+You will need to install a minimal set of resource description records
+into the registry data repositry. The default location for this is in
+the data/repos directory.  
+
+The simplest way to do this using the publishing interface via a web
+browser (described below).  If you have some other means of creating
+records be sure that it includes:
+   o  a record in the Organisation subdirectory describing you and/or 
+      your organization as a publisher.
+   o  one record in the Authority subdirectory for each authority ID
+      used in all the other records
+   o  a record in the Registry subdirectory describing the publishing 
+      registry you are installing.
+
+To use the publishing interface to create these records, access it via
+the built-in web server: 
+
+   1)  Change into the installation directory
+
+   2)  Start the built-in web server by typing, 
+
+          bin/server.py -x 
+
+   3)  Point your web browser to "http://localhost:8080/vopub/welcome.html"
+
+   4)  Click the "Create new site" button under the section titled,
+       "Is this your first time registering?"
+
+   5)  Follow the instructions to register your organization
+       responsible for running this registry.  
+
+       After you have created a username and password, you will be
+       shown a list of three resources (an Organisation, an Authority,
+       and a Registry).  You may create more resources as needed or
+       you can stop here.  
+
+   6)  Stop the server by hitting Ctl-C in shell where you started it.
+
+4. Install the document directory into your web server
+
+If you will be allowing web users to create and edit records, you will
+need install the files in web directory into a directory accessible by
+your web server.  The easiest way to do this is to place a link in
+your server's documents directory that points to RiaBox's web
+directory.  
+
+For example, if you installed RiaBox as /opt/apps/RiaBox and your web
+server is installed in /opt/apps/httpd, then you might type:
+
+   cd /opt/apps/httpd/html
+   ln -s /opt/apps/RiaBox/web vopub
+
+Then the start page of the publishing interface is 
+
+   http://yourserver.org/vopub/welcome.html
+
+5. Install the cgi-bin directory into your web server
+
+The easiest way to do this is to place a link in your server's cgi-bin
+directory that points to RiaBox's cgi-bin directory.  
+
+For example, if you installed RiaBox as /opt/apps/RiaBox and your web
+server is installed in /opt/apps/httpd, then you might type:
+
+   cd /opt/apps/httpd/cgi-bin
+   ln -s /opt/apps/RiaBox/cgi-bin vopub
+
+Then the OAI interface is accessible via something like:
+
+   http://yourserver.org/cgi-bin/vopub/oai.pl
+
+If you do not wish to allow external users to created and edit
+records, remove Resource_Form.cgi from the cgi-bin directory.
+
+6. Configure and Run
+
+If xsltproc is installed in the RiaBox/bin directory and your web
+server has a link to RiaBox/cgi-bin (as described in step 5.), then you
+are ready to run.  Otherwise, you will need to consult the next
+section on configuring the package.  
+
+-----------------------------------------------------------------
+Configuration
+-----------------------------------------------------------------
+
+---++ Installing the CGI-BIN directory
+
+The first thing the OAI script, cgi-bin/oai.pl, does is to change into
+the directory where RiaBox is installed; this allows it to easily find
+all of its various files.  If you do not use the link trick, then you
+may need to edit the oai.pl script.  
+
+In this case, you can update oai.pl:
+
+  o  edit the "chdir" line: remove the "$FindBin::Bin/.." and enter
+     the path to the RiaBox directory into double quotes.
+
+  o  if the conf directory is not found in the directory the script
+     changes into, edit the "my $OAI = ..." line by changing 
+     "conf/config.xml" to the path to the configuration file.  
+
+     If you have to edit this path, then it is likely that you will
+     have to similarly edit the paths found within this file.  
+
+---++ Editing the config.xml file
+
+Tips:
+  o  order of the parameters does not matter (but <metadata>
+     sub-parameters must be kept together).
+
+  o  avoid extraneous spaces inside XML tags.
+
+Here are the meanings of the various parameters:  
+
+  <repositoryName>  The title of the repository, exposed via the OAI
+                    Identify verb.
+
+  <adminEmail>      The administrator's email address; exposed via the OAI
+                    Identify verb.
+
+  <recordLimit>     The maximum number of records that will be
+                    exported in one OAI call; if more are records are
+                    available a resumption token is issued to the
+                    user.  
+
+  <datadir>         the directory containing the VOResource
+                    descriptions to expose.  
+
+  <deletedRecord>   The policy for handling deleted records; in the
+                    IVOA context, this should be kept set to
+                    persistant.  See the OAI standard
+                    (www.openarchives.org) for more details. 
+
+  <filematch>       A perl regular expression that XML files
+                    containing VOResource descriptions must match in
+                    order to be exported.  
+
+  <confdir>         The directory containing the configuration files,
+                    setnames.xml and identity.xml.  
+
+  <metadata>        parameters for supporting different export formats
+
+    <prefix>        the format identifier as accepted by the OAI
+                      metadataPrefix parameter.  
+
+    <namespace>     the XML namespace for the format.
+
+    <schema>        the location of the XML schema for the format.
+                      This is needed by xsltproc.
+
+    <transform>     the command for transforming VOResource records
+                      into other formats.  This command must accept a
+                      VOResource record via standard input and send
+                      the output format to standard output.  
+
+---++ Changing the Identity description
+
+The OAI Identity operation will expose the VOResource record for this
+Registry.  This record is stored as a VOResource XML file called 
+identity.xml in the configuration directory (see <confdir>).  Because
+this description is exported with all the other resource descriptions
+by other OAI operations, this file by default is a link that points to
+the proper record in the data directory (see <datadir>).  To change
+this record just edit the file pointed to by this link.  
+
+You can added addition descriptions in any XML format; just call them
+identity*.xml (e.g. identity2.xml) and place them in the conf
+directory.  
+
+---++ Changing Set Descriptions and Membership
+
+The OAI standard allows records to be organized into "sets" that allow
+harvesters to retrieve only the portion of the records that falls into
+specified set.  RiaBox, for example, supports a special set mandated
+by the IVOA Registry Interfaces standard called ivo_managed (see
+conf/setnames-sample.xml for details).  This package allows you to
+configure the description and membership of sets; this is done via the
+setnames.xml file and/or various _set_ files.  The description is
+subsequently exposed via the OAI ListSets operation.
+
+First note that in order to define a set, there must be a directory in
+the data directory (see <datadir>) whose name matches the set
+identifier (i.e. that a harvester passes to an OAI operation via the
+set parameter).  If the directory doesn't exist, the set will not be
+supported.  That directory, though, can be empty.  Subdirectories
+define sub-sets, too.  If no configuration file describing a set
+exists, the OAI service will provide a trivial description.  When a
+client requests a particular set, the OAI service, by default, will
+return all of the records found in the directory of the same name (and
+those in its subdirectories, recursively).  
+
+A set can be more fully described either with a setnames.xml file in
+the configuration directory (see <confdir>) or with a special file
+called _set_ which resides in the set directory itself.  Both use
+essentially the same XML format for its data.  If both exist, the
+description in the setnames.xml file takes precedence.  
+
+The setnames.xml file contains a root element <setnames> which
+contains inside it a <set> element for each set to be described.  The
+_set_ file contains just a single <set> element.  Here are the
+meanings of the elements it contains (in any order):
+
+<spec>          the identifier for the set (used by harvesters via the 
+                set= parameter).  _set_ files should *not* include
+                this element.
+
+<name>          a longer title for the set indicating the contents
+
+<description>   a longer description of the set and why it might be
+                used.  
+
+<includedIn>    This adds the members of this set to the set named in
+                this element.  
+
+Notes:
+  o  A <set> description in setnames.xml overrides the one found in
+     the set directory's _set_ file.  
+
+  o  Do include a <spec> element in a _set_ file.  If it does include
+     one, it must match the set name for the directory it lives in or
+     it will otherwise be ignored.  
+
+  o  Start a _set_ file with a singe <set> element.  It's actually
+     okay if it starts with a wrapping <setnames> element with a
+     single <set> child element; however, if multiple <set> elements
+     appear, you will probably get unexpected results.  
+
+

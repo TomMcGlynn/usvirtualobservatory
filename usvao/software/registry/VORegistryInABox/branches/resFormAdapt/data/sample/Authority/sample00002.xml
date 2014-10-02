@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource status="active" updated="2008-06-02T16:10:50.38" xmlns=""
+             xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0"
+             created="2008-06-02T16:05:53.75" xsi:type="vg:Authority"
+             xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0">
+  <title>The Sample Data Archive Naming Authority</title>
+  <shortName>sample</shortName>
+  <identifier>ivo://sample.provider</identifier>
+  <curation>
+    <publisher ivo-id="ivo://sample.provider/archive">
+      The Sample Data Archive    </publisher>
+    <creator>
+      <name>Ray Plante</name>
+    </creator>
+    <date>2008-06-02</date>
+    <contact>
+      <name>Sample publisher team</name>
+      <email>sample@sample.edu</email>
+    </contact>
+  </curation>
+  <content>
+    <subject>virtual observatory</subject>
+    <description>A naming authority for identifying resources from the The Sample Data Archive</description>
+    <referenceURL>http://sample.edu/archive.html</referenceURL>
+    <type>Other</type>
+    <contentLevel>General</contentLevel>
+  </content>
+</ri:Resource>

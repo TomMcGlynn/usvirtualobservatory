@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+  <Username>root</Username>
+  <Password>9e38de20b7</Password>
+  <Publisher ivo-id="ivo://sample.vopub/pubreg"
+             src="/home/rplante/wrk/VO/svn/VORegistryInABox-resForm/data/repos/Organisation/root00001.xml.uc_add">The Sample Registry Publisher</Publisher>
+</Config>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource status="active" updated="2008-06-02T16:10:50.36" xmlns=""
+             created="2008-06-02T16:05:53.75" xsi:type="vr:Resource"
+             xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0">
+  <title>The Sample Data Archive</title>
+  <shortName>sample</shortName>
+  <identifier>ivo://sample.provider/archive</identifier>
+  <curation>
+    <publisher>The Sample Data Archive</publisher>
+    <creator>
+      <name>Ray Plante</name>
+    </creator>
+    <date>2008-06-02</date>
+    <contact>
+      <name>Sample publisher team</name>
+      <email>sample@sample.edu</email>
+    </contact>
+  </curation>
+  <content>
+    <subject>data archive</subject>
+    <description>
+      This resource represents a fictional data archive that serves as a
+      publisher of data and services.
+    </description>
+    <referenceURL>http://sample.edu/archive.html</referenceURL>
+    <type>Organisation</type>
+  </content>
+</ri:Resource>

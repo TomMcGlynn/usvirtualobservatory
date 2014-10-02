@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>NVO Repository Resource Entry Form Help</title>
+</head>
+<body bgcolor="#dddddd">
+<pre><center>
+</center></pre>
+<div align="center">
+<p><big><big>Accessing Repository Resources <br>
+</big></big></p>
+<div style="text-align: left;">Once you have entered resources into
+your registry and have published them, you can acess<br>
+them with the Open Archives Initiative compliant Harvesting Interface
+included with this package.&nbsp; It is a Perl script called "oai.pl"
+and can be found in the directory where the CGI<br>
+scripts were installed on your Web server when this package was
+installed, e.g. the voregistry directory off of your Web Server's cgi
+directory.<br>
+<br>
+An OAI-compliant harvesstin interface recognizes 6 verbs for accessing
+various parts of the data.&nbsp; Here is a synopsis of them, as well as
+a sample HTTP address to access them.&nbsp; Here we are using
+"http://mywebserver.org/cgi-bin/voregistry/oai.pl for the pointer to
+the harvesting interface; you would substitute your actual web address
+for you harvesting interface here.<br>
+<br>
+1.<span style="font-weight: bold;"> Identify:</span> Identify the
+Registry - This will list general information about the Registry.<br>
+No other parameters are required besides the verb.<br>
+<br>
+<pre><span style="font-weight: bold;">Example:</span> http://mywebserver.org/cgi-bin/voregistry/oai.pl?<br>		verb=Identify</pre>
+2. <span style="font-weight: bold;">GetRecord: </span>Return a single
+record from the registry that meets the criteria specified.&nbsp; Here,
+in addition to the verb GetRecord, one must also specify a unique
+identifier for the resource as well as the metadataPrefix, which
+describes the format of the output data.&nbsp; The <br>
+current registry knows about two formats: oai_dc which is an OAI Dublin
+Core format, and vor, which is a VOResource format which contains&nbsp;
+more information.<br>
+<pre><span style="font-weight: bold;">Example:</span> http://mywebserver.org/cgi-bin/voregistry/oai.pl?<font
+ face="Courier New, Courier, mono">verb=GetRecord<br>		&amp;identifier=oai:arXiv.org:cs/0112017<br>		&amp;metadataPrefix=oai_dc</font></pre>
+<br>
+3. <span style="font-weight: bold;">ListRecords: </span>This verb is
+used to harvest records from a repository. All records within the
+criteria will be returned. In addition to the verb ListRecords, one
+must also specify a unique
+identifier for the resource as well as the metadataPrefix, which
+describes the format of the output data.&nbsp; The current registry
+knows about two formats: oai_dc which is an OAI Dublin
+Core format, and vor, which is a VOResource format which contains&nbsp;
+more
+information.<br>
+<br>
+<pre><span style="font-weight: bold;">Example:</span> http://mywebserver.org/cgi-bin/voregistry/oai.pl?<font
+ face="Courier New, Courier, mono">verb=ListRecords<br>		&amp;metadataPrefix=oai_dc</font></pre>
+<br>
+4. <span style="font-weight: bold;">ListIdentifiers:</span> This verb
+is an abbreviated form of ListRecords, retrieving only headers&nbsp;
+rather than records. A metadataPrefix describing the the data output
+must be included. Optional arguments permit selective harvesting of
+headers based on set membership and/or datestamp. Current sets for this
+Publishing Registry are BrowserBasedService, DataCollection,
+Organization, Project, Resource, and SIAService.<br>
+<span style="font-weight: bold;"></span><br>
+<pre><span style="font-weight: bold;">Example:</span> http://mywebserver.org/cgi-bin/voregistry/oai.pl?<font
+ face="Courier New, Courier, mono">verb=ListIdentifiers<br>		&amp;metadataPrefix=oai_dc&amp;set=Project<br><small><small> </small></small><br></font></pre>
+5. <span style="font-weight: bold;">ListMetadataFormats:</span> This
+verb is used to retrieve the metadata formats available from a
+repository.&nbsp; An optional argument restricts the request to the
+formats available for a specific item.<br>
+<br>
+<pre><span style="font-weight: bold;">Example:</span> http://mywebserver.org/cgi-bin/voregistry/oai.pl?<font
+ face="Courier New, Courier, mono">verb=ListMetadataFormats<br></font></pre>
+<br>
+6. <span style="font-weight: bold;">ListSets :</span> This verb is
+used to retrieve the set structure of a repository, useful for
+selective harvesting.<br>
+<br>
+<pre><span style="font-weight: bold;">Example:</span> http://mywebserver.org/cgi-bin/voregistry/oai.pl?<font
+ face="Courier New, Courier, mono">verb=ListSets<br><br><br></font></pre>
+For further information about the Open Archives Initiative and the OAI
+Harvesting Protocol, click <a href="http://www.openarchives.org">here</a><br>
+<br>
+<big> </big> </div>
+</div>
+<big> </big>
+<hr width="100%" size="2">
+<address><big> Send comments to: <a href="mailto:ramonw@ncsa.uiuc.edu">
+ramonw@ncsa.uiuc.edu</a> </big></address>
+</body>
+</html>

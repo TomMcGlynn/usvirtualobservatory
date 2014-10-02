@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+                                               
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <title>NVO Registry Resource Descriptions</title>
+</head>
+  <body bgcolor="#dddddd">
+ 
+<pre><center>
+</center></pre>
+ 
+<div align="Left"> 
+<p>To help you choose which resource you want to add to the NVO Registry, here
+are descriptions of the resources recognized by this entry form.
+ </p>
+ </div>
+ 
+<table border="2" cellspacing="16">
+       <tr>
+       <td valign="Top"><a name="Organisation"></a>
+       Organisation
+       </td>
+       <td valign="Top">
+           A named group of one or more persons brought together to pursue 
+           participation in VO applications.  
+       </td>
+     </tr>
+     <tr>
+       <td valign="Top"><a name="DataCollection"></a>
+       Data Collection
+       </td>
+       <td valign="Top">
+           A logical grouping of data which, in general, is composed of one 
+           or more accessible datasets.
+       </td>
+     </tr>
+     <tr>
+       <td valign="Top"><a name="Project"></a>
+       Project
+       </td>
+       <td valign="Top">
+	   An organisation with a focused set of data and services that it 
+	   maintains.  
+       </td>
+     </tr>
+     <tr>
+       <td valign="Top"><a name="Authority"></a>
+       Authority
+       </td>
+       <td>       
+           A naming authority; an assertion of control over a
+           namespace represented by an authority identifier. 
+       </td>
+     </tr>
+     <tr>
+      <td valign="Top"><a name="BrowserBasedService"></a>
+      Browser-Based Service
+      </td>
+      <td valign="Top">
+           A (form-based) interface intended to be accessed interactively 
+           by a user via a web browser.
+      </td>
+    </tr>
+     <tr>
+       <td valign="Top"><a name="CGIGetService"></a>
+       CGI-Get<br/> Service
+       </td>
+       <td valign="Top">
+            This service type is similar to a Cone Search or SIA in that
+             parameters are provided as keyword-value pairs appended to a base
+             URL. <br/><br/>
+            A CGI-Get Service may or may not pertain to the sky; if it does, it
+is known as a Sky Service.  If the output of a Sky Service is tabular in form,
+it is known as a Tabular Sky Service.
+       </td>
+     </tr>
+    <tr>
+      <td valign="Top"><a name="GLUService"></a>
+       GLU Service
+      </td>
+      <td valign="Top">
+            A web-based service that is described in a GLU registry.
+      </td>
+    </tr>
+    <tr>
+      <td valign="Top"><a name="ConeSearch"></a>
+         Conesearch
+      </td>
+      <td valign="Top">
+         A VO standard service intended for searching catalogs by sky position.
+        <br/><br/>
+        The standard interface to access a Conesearch, encoded in the URL,
+contains a right acsension, a declination, and a search radius--all in degrees (J2000).  
+        </td>
+     </tr>
+       <td valign="Top"><a name="SIAService"></a>
+           SIA Service
+       </td>
+      <td valign="Top">
+         A VO standard service intended for search for and retrieve
+images.
+        <br/><br/>
+        SIA uses HTTP GET queries to encode query arguments in the request
+URL. It specifies a number of optional parameters that can control what images are returned, how cut-outs are to be made, and what formats to provide. It also
+allows the data provider to support non-standard arguments. 
+        </td>
+     </tr>
+
+    <tr>
+       <td valign="Top"><a name="WebService"></a>
+       Web Service
+       </td>
+       <td valign="Top">       
+        A SOAP-Based service using HTTP POST that is describable by a WSDL document.
+       </td>
+     </tr>
+     <tr>
+       <td valign="Top"><a name="GenericService"></a>
+           Generic Service
+       </td>
+       <td valign="Top">       
+          A resource that can be invoked by a client to perform some action
+          on its behalf.<br/><br/>
+          This resource type should only be used if none of the other services
+listed apply.  
+       </td>
+     </tr>
+     <tr>
+       <td valign="Top"><a name="GenericResource"></a>
+       Generic Resource</td>
+       <td valign="Top">       
+        Any entity that is describable and identifiable by a IVOA Identifier.
+<br/><br/>
+          This resource type should only be used if none of the other resources
+listed apply.  
+       </td>
+     </tr>
+</table>
+ 
+<p><big><br>
+ </big></p>
+ 
+<hr width="100%" size="2"> 
+<address><big> Send comments to: <a href="mailto:ramonw@ncsa.uiuc.edu"> 
+   ramonw@ncsa.uiuc.edu</a>
+ </big></address>
+ 
+</body>
+</html>

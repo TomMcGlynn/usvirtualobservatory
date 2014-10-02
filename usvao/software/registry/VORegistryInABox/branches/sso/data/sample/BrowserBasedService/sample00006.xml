@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource xmlns=""
+             xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+             xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+             xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:type="vs:DataService"
+             status="active"
+             updated="2007-04-11T08:52:38"
+             created="2003-01-01T00:00:00">
+   <title>Sample Image Library Query Page</title>
+   <shortName>SampleIm</shortName>
+   <identifier>ivo://sample.provider/images/querypage</identifier>
+   <curation>
+      <publisher ivo-id="ivo://sample.provider/archive">The Sample Data Archive</publisher>
+      <creator>
+         <name>Dr. Raymond Plante</name>
+      </creator>
+      <date>1994-01-01</date>
+      <contact>
+         <name>Sample publisher team</name>
+         <email>sample@sample.edu</email>
+      </contact>
+   </curation>
+   <content>
+      <subject/>
+      <description>
+This form provides interactive searching of Sample images by users via a web browser.
+   </description>
+      <referenceURL>http://sample.edu/help/help_newquery.html</referenceURL>
+      <type>Archive</type>
+   </content>
+   <capability>
+     <interface xsi:type="vr:WebBrowser">
+         <accessURL use="full">http://sample.edu/queryPage.html</accessURL>
+     </interface>
+   </capability>
+   <coverage>
+      <stc:STCResourceProfile xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd">
+
+         <stc:AstroCoordSystem xlink:type="simple" xlink:href="ivo://STClib/CoordSys#UTC-ICRS-TOPO"
+                               id="sample.provider_images_querypage_UTC-ICRS-TOPO"/>
+
+         <stc:AstroCoordArea coord_system_id="sample.provider_images_querypage_UTC-ICRS-TOPO">
+            <stc:AllSky/>
+         </stc:AstroCoordArea>
+      </stc:STCResourceProfile>
+
+      <waveband>Radio</waveband>
+      <waveband>Millimeter</waveband>
+      <waveband>Infrared</waveband>
+      <waveband>Optical</waveband>
+      <waveband>UV</waveband>
+   </coverage>
+</ri:Resource>
