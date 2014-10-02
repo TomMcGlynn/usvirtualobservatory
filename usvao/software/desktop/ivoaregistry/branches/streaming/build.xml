@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<project name="IVOARegistry" default="cleanInstall" basedir=".">
+    <property environment="env"/>
+    <property name="axis_home" value="${environ.AXIS_HOME}" />
+    <property name="axis_lib" value="./lib/axis" />
+    <property name="j2ee_lib" value="./lib/j2ee" />
+    <property name="s" value="${file.separator}"/>
+    <property name="classes" value="./classes"/>
+    <property name="prefix" value="${user.dir}"/>
+    <property name="installdir" value="${prefix}"/>
+    <property name="installlib" value="${installdir}${s}lib"/>
+    <property name="ivoaregjar" value="ivoaregistry.jar"/>
+    <property name="adqljar" value="adql-1.0.jar"/>
+    <property name="adqljarpath" value="${user.dir}${s}lib${s}${adqljar}"/>
+    <property name="bin" value="${installdir}/bin"/>
+    <property name="tmp" value="${installdir}/tmp"/>
+    <property name="lib" value="${installdir}/lib"/>
+    <property name="api" value="${installdir}/doc/api" />
+
+    <condition property="os.windows">
+      <and>
+        <os family="windows"/>
+        <os family="dos"/>
+      </and>
+    </condition>
+
+    <target name="props">
+       <echo>Axis home directory: ${axis_home} </echo>
+       <echo>ADQL jar file: ${adqljarpath} </echo>
+       <echo>Library directory: ${lib}</echo>
+       <echo>Bin directory: ${bin}</echo>
+    </target>
+
+    <target name="init">
+       <mkdir dir="${classes}"/>
+       <mkdir dir="${lib}"/>
+       <mkdir dir="${bin}"/>
+       <mkdir dir="./lib"/>
+       <mkdir dir="./bin"/>
+       <mkdir dir="./tmp"/>
+       <mkdir dir="./doc/api"/>
+       <mkdir dir="${api}"/>
+       <mkdir dir="${tmp}"/>
+    </target>
+
+    <target name="distclean" depends="init">
+       <delete includeEmptyDirs="true">
+          <fileset dir="${classes}" />
+          <fileset dir="./lib" >
+             <filename name="${ivoaregjar}" />
+          </fileset>
+          <fileset dir="./doc/api" />
+          <fileset dir="./tmp" />
+          <fileset dir="./bin" />
+       </delete>
+    </target>
+
+    <target name="clean">
+       <delete includeEmptyDirs="true">
+          <fileset dir="${classes}">
+             <include name="**" />
+             <exclude name="test/**" />
+          </fileset>
+       </delete>
+    </target>
+
+    <target name="cleanInstall" depends="install,clean" />
+    
+    <target name="compile" depends="init">
+       <javac destdir="${classes}" srcdir="src/java" debug="true"
+              includeAntruntime="false">
+          <classpath>
+            <pathelement path="${adqljarpath}"/>
+            <pathelement location="${classes}" />
+            <pathelement location="${axis_lib}/saaj.jar" />
+            <pathelement location="${axis_lib}/axis.jar" />
+          </classpath>
+       </javac>
+       <copy todir="${classes}/net/ivoa/registry/search/test">
+          <fileset dir="src/java/net/ivoa/registry/search/test">
+             <filename name="registry.xml"/>
+          </fileset>
+          <fileset dir="src/java/net/ivoa/registry/search/test">
+             <filename name="GetIdentity.txt"/>
+          </fileset>
+       </copy>
+    </target>
+
+    <target name="jarlib" depends="compile">
+       <jar destfile="${lib}/${ivoaregjar}" basedir="${classes}"/>
+    </target>
+
+    <target name="test" depends="jarlib">
+       <java classname="net.ivoa.registry.search.test.TestRegistryClient"
+             fork="yes">
+          <classpath>
+            <pathelement path="${java.class.path}"/>
+            <pathelement location="${lib}/${ivoaregjar}" />
+          </classpath>
+          <sysproperty key="ivoaregistry.tmpdir" value="${tmp}"/>
+       </java>
+    </target>
+
+    <target name="apidoc" depends="">
+       <javadoc destdir="${api}" windowtitle="ADQL Library" 
+                sourcepath="src/java"
+                packagenames="net.*,nvo_coords.*,nvo_regions.*,ncsa.*,test.*" />
+    </target>
+
+    <target name="installScripts" 
+            depends="installScriptsUnix,installScriptsWin" />
+
+    <target name="installScriptsUnix" depends="init" unless="os.windows">
+       <filter token="IVOAREG_HOME" value="${installdir}" />
+       <filter token="AXIS_LIB" value="${installlib}${s}axis" />
+       <filter token="J2EE_LIB" value="${installlib}${s}j2ee" />
+       <filter token="adqljarpath" value="${adqljarpath}" />
+       <copy file="src/scripts/regsearch" todir="${bin}" filtering="true"/>
+       <copy file="src/scripts/devenv.csh" todir="${bin}" filtering="true"/>
+       <copy file="src/scripts/devenv.sh" todir="${bin}" filtering="true"/>
+       <chmod perm="a+rx">
+          <fileset dir="${bin}" includes="regsearch"/>
+       </chmod>
+    </target>
+
+    <target name="installScriptsWin" depends="init" if="os.windows">
+       <filter token="IVOAREG_HOME" value="${installdir}" />
+       <filter token="AXIS_LIB" value="${installlib}${s}axis" />
+       <filter token="J2EE_LIB" value="${installlib}${s}j2ee" />
+       <filter token="adqljarpath" value="${adqljarpath}" />
+       <copy file="src/scripts/regsearch.cmd" todir="${bin}" filtering="true"/>
+    </target>
+
+    <target name="installJars" depends="init">
+       <copy todir="${installlib}/axis">
+         <fileset dir="${axis_lib}" includes="*.jar *license*.txt"/>
+       </copy>
+       <copy todir="${installlib}/j2ee">
+         <fileset dir="./lib/j2ee" includes="*.jar *license*.txt"/>
+       </copy>
+       <copy file="./lib/${adqljar}" tofile="${adqljarpath}"/>
+    </target>
+
+    <target name="install" depends="jarlib,apidoc,installJars,installScripts"/>
+
+</project>
