@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<project name="ivoaharvester build file" default="doall" basedir=".">
+
+    <property name="classes" value="${basedir}/classes"/>    
+    <property name="tclasses" value="${basedir}/tclasses"/>    
+    <property name="dist" value="${basedir}/dist"/>
+    <property name="lib" value="${basedir}/lib"/>
+    <property name="web" value="${basedir}/web"/>
+    <property name="conf" value="${basedir}/conf"/>
+    <property name="data" value="${basedir}/data"/>
+    <property name="doc" value="${basedir}/doc"/>
+    <property name="src" value="${basedir}/src"/>
+    <property name="tmp" value="${basedir}/tmp"/>
+    <property name="jsrc" value="${src}/java"/>
+    <property name="xsrc" value="${src}/xsl"/>
+    <property name="tests" value="${src}/tests"/>
+    <property name="build.sysclasspath" value="last"/>
+    <property environment="env"/>
+    <property name="web_deploy" value="${env.WEB_DEPLOY}"/>
+
+    <!-- 
+      -  Servlet-support:
+      -    It's best to compile this code against the servlet-api.jar
+      -    for the servlet engine you are using.  If the servlet engine 
+      -    is not available, you can obtain the servlet-api.jar file, 
+      -    save it in the lib directory, and replace this property with
+      -    the commented-out version below it.
+      -->
+    <property name="catalina.servletjar" 
+              value="${env.CATALINA_HOME}/common/lib/servlet-api.jar"/>
+
+    <!--
+      -  a locally installed servlet-api.jar file
+    <property name="catalina.servletjar" 
+              value="${lib}/servlet-api.jar">
+      -->
+
+    <!-- 
+      -  File upload support: commons-fileupload
+      -->
+    <property name="fileupload.jar" value="${lib}/commons-fileupload.jar"/>
+
+    <!--
+      -  to optimize, set this to false 
+      -->
+    <property name="doDebug" value="true" />
+
+    <path id="local.jar.path">
+      <fileset dir="${lib}">
+        <include name="*.jar"/>
+      </fileset>
+    </path>
+    <path id="classpath.build">
+      <pathelement location="${classes}" />
+      <path refid="local.jar.path"/>
+      <pathelement location="${catalina.servletjar}" />
+    </path>
+    <path id="classpath.test">
+      <pathelement location="${tclasses}" />
+      <path refid="classpath.build"/>
+    </path>
+
+    <target name="init">
+        <mkdir dir="${classes}"/>
+        <mkdir dir="${tclasses}"/>
+        <mkdir dir="${lib}"/>
+        <mkdir dir="${tmp}"/>
+        <mkdir dir="${dist}"/>
+        <mkdir dir="${doc}/japi"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <echo>building source</echo>
+        <javac destdir="${classes}" debug="${doDebug}" 
+               classpathref="classpath.build"
+               includeAntRuntime="false" srcdir="${jsrc}">
+        </javac>
+        <copy todir="${classes}/net/ivoa/registry/std">
+          <fileset dir="${jsrc}/net/ivoa/registry/std">
+             <filename name="*.properties"/>
+          </fileset>
+        </copy>
+    </target>
+
+    <target name="compileTests" depends="compile">
+        <echo>building tests</echo>
+        <javac destdir="${tclasses}" debug="${doDebug}" 
+               classpathref="classpath.test"
+               includeAntRuntime="true" srcdir="${tests}">
+        </javac>
+        <copy todir="${tclasses}/net/ivoa/registry/harvest">
+          <fileset dir="${tests}/net/ivoa/registry/harvest">
+             <filename name="*.xml"/>
+          </fileset>
+        </copy>
+        <copy todir="${tclasses}/net/ivoa/registry/validate">
+          <fileset dir="${tests}/net/ivoa/registry/validate">
+             <filename name="*.xml"/>
+          </fileset>
+        </copy>
+        <copy todir="${tclasses}/net/ivoa/registry/util">
+          <fileset dir="${tests}/net/ivoa/registry/util">
+             <filename name="*.xml"/>
+          </fileset>
+        </copy>
+        <copy todir="${tclasses}/net/ivoa/registry/vores">
+          <fileset dir="${tests}/net/ivoa/registry/vores">
+             <filename name="*.xml"/>
+          </fileset>
+        </copy>
+    </target>
+
+    <target name="classes" depends="compile">
+        <copy file="${conf}/WebAppValidateHarvest.xml" 
+              tofile="${classes}/net/ivoa/registry/validate/config.xml"/>
+        <copy file="${conf}/WebAppValidateVOResource.xml" 
+              tofile="${classes}/net/ivoa/registry/validate/vorconfig.xml"/>
+        <copy file="${data}/registrySchemaLocation.txt" 
+              tofile="${classes}/net/ivoa/registry/validate/schemaLocation.txt"/>
+        <copy todir="${classes}/net/ivoa/registry/validate/schemas">
+          <fileset dir="${data}/schemas">
+             <filename name="*.xsd"/>
+          </fileset>
+        </copy>
+        <copy todir="${classes}/net/ivoa/registry/validate">
+          <fileset dir="${xsrc}/valtests">
+             <filename name="checkIVOAOAI*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/valtests">
+             <filename name="checkVOResource*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/valtests">
+             <filename name="testsVOResource-*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/valtests">
+             <filename name="validationCommon*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/presentation">
+             <filename name="Results-Harvest-*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/presentation">
+             <filename name="Results-VOResource-*.xsl"/>
+          </fileset>
+        </copy>
+    </target>
+
+    <target name="jar" depends="classes">
+        <jar destfile="${lib}/ivoaharvest.jar" basedir="${classes}" />
+    </target>
+
+    <target name="doc" depends="init">
+        <javadoc packagenames="*" destdir="${doc}/japi" sourcepath="${jsrc}"/>
+    </target>
+
+    <target name="war" depends="">
+        <copy todir="${web}">
+          <fileset dir="${xsrc}/presentation">
+             <filename name="ResultsFrag-Harvest-*.xsl"/>
+          </fileset>
+          <fileset dir="${xsrc}/presentation">
+             <filename name="SummaryFrag-Harvest-*.xsl"/>
+          </fileset>
+        </copy>
+        <war destfile="${dist}/regvalidate.war" webxml="${conf}/web.xml">
+            <fileset dir="${web}"/>
+            <lib dir="${lib}">
+                 <include name="ivoaharvest.jar"/>
+                 <include name="dalvalidate.jar"/>
+                 <include name="junx.jar"/>
+                 <include name="commons-fileupload.jar"/>
+                 <include name="commons-io.jar"/>
+            </lib>
+        </war>
+    </target>
+
+    <target name="test" depends="compileTests">
+      <junit printsummary="yes" includeAntRuntime="true" haltonfailure="yes">
+        <classpath refid="classpath.test" />
+        <formatter type="plain" />
+        <batchtest todir="${tmp}">
+          <fileset dir="${tclasses}">
+            <include name="**/*Test.class" />
+            <exclude name="**/Test*.class" />
+          </fileset>
+        </batchtest>
+        <sysproperty key="test.tmpdir" value="${tmp}"/>
+      </junit>
+
+    </target>
+
+    <target name="doall" depends="jar,doc" />
+
+  <target name="show-test-cp">
+    <echo message="classpath: ${toString:classpath.test}"/>
+  </target>
+  <target name="show-build-cp">
+    <echo message="classpath: ${toString:classpath.build}"/>
+  </target>
+
+  <target name="test-now" depends="compileTests">
+    <echo message="${test.class}"/>
+    <junit printsummary="yes"  includeAntRuntime="true" haltonfailure="yes">
+      <classpath refid="classpath.test" />
+      <formatter type="plain" />
+      <batchtest todir="${tmp}">
+        <fileset dir="${tclasses}">
+          <include name="**/${test.class}.class" />
+        </fileset>
+      </batchtest>
+      <sysproperty key="test.tmpdir" value="${tmp}"/>
+    </junit>
+  </target>
+
+</project>

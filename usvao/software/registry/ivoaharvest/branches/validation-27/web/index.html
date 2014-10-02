@@ -1,0 +1,116 @@
+<html> <head>
+  <title>Registry Harvesting Validater</title>
+  <script type="text/javascript" src="MochiKit.js" ></script>
+  <script type="text/javascript" src="sarissa.js" ></script>
+
+  <style type="text/css">
+<!--
+.tiny {FONT-SIZE: 7pt;}
+-->
+  </style>
+  <link href="ivoa_rofr.css" rel="stylesheet" type="text/css"/>
+  <link href="tp.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload="return makelist()">
+
+<center>
+<table width="100%">
+  <tr>
+    <td>
+      <font class="titleText"><b>I</b>nternational
+      <span style="visibility: hidden">i</span>
+      <b>V</b>irtual 
+      <span style="visibility: hidden">i</span>
+      <b>O</b>bservatory 
+      <span style="visibility: hidden">i</span><b>A</b>lliance</font><br />
+      <font class="titleText" style="font-size: 18pt; font-weight: 600">
+      <a name="rofr" title="IVOA Registry of Registries" 
+         class="titleText">IVOA Registry of Registries</a>
+      </font><br /><br />
+
+      <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+          <!-- the local links -->
+          <td class="rollcall"><a href="http://www.ivoa.net/Documents/latest/RegistryInterface.html">Registry Interfaces Spec.</a></td>
+          <td class="rollcall"><a href="http://www.openarchives.org/OAI/openarchivesprotocol.html">OAI-PMH Spec.</a></td>
+          <td class="rollcall"><a href="http://www.ivoa.net/Documents/latest/VOResource.html">VOResource Spec.</a></td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <a href="/"><img src="IVOA_wb_300.jpg" width="150" 
+         height="85" border="0" alt="ivoa.net" /></a>
+    </td>
+  </tr>
+</table>
+</center>
+
+<h1>Welcome to the Registry of Registries</h1>
+
+<p>
+The Registry of Registries (RofR, pronounced <em>rover</em>) is an
+IVOA publishing registry operated on behalf of the 
+<a href="http://www.ivoa.net/">International Virtual Observatory
+Alliance (IVOA)</a> and overseen by the
+<a href="http://www.ivoa.net/twiki/bin/view/IVOA/IvoaResReg">IVOA
+Registry Working Group</a>.  This registry publishes the existance of
+all publishing registries known to the IVOA.  When a resource metadata
+harvester harvests from these publishing registries, they can discover
+all published VO resources around the world.  The design and recommend
+uses of the RofR is documented in the 
+<a href="http://www.ivoa.net/Documents/latest/RofR.html">IVOA Note,
+The Registry of Registries</a>.  
+</p>
+
+<p>
+If you maintain a publishing registry and you are ready to let it be
+known to the outside world, you can
+<a href="http://rofr.ivoa.net:8080/vovalidation/regvalidate.html">register
+it here.</a>  Before you are allowed to register, you must demonstrate
+that it conforms to the
+<a href="http://www.ivoa.net/Documents/latest/RegistryInterface.html">IVOA 
+Registry Interfaces standard.</a>  Note, that you can use the
+<a href="http://rofr.ivoa.net:8080/vovalidation/regvalidate.html">registry
+validater</a> to check your registry without actually registering it.
+</p>
+
+<h3>Currently Registered Publishing Registries</h3>
+
+<div id="reglist">
+      [<a href="http://rofr.ivoa.net/cgi-bin/rofr/oai.pl?verb=ListRecords&set=ivo_publishers&metadataPrefix=ivo_vor">OAI ListRecords</a>]
+</div>
+
+<script type="text/javascript">
+<!--
+function makelist() {
+    try {
+        var oai = "http://rofr.ivoa.net/cgi-bin/rofr/oai.pl?verb=ListRecords&" +
+            "set=ivo_publishers&metadataPrefix=ivo_vor";
+        var xml = Sarissa.getDomDocument();
+        xml.async = false;
+        xml.load(oai);
+
+        var xsl = Sarissa.getDomDocument();
+        xsl.async = false;
+        xsl.load("rofrlist.xsl");
+
+        xslt = new XSLProcessor();
+        xslt.importStylesheet(xsl);
+        var html = xslt.transformToFragment(xml);
+
+        var list = document.getElementById("reglist");
+        list.innerHTML = Sarissa.serialize(html);
+    }
+    catch (e) {
+        logError("listing: " + e.name + ": " + e.message);
+    }
+   return false;
+}
+
+  -->
+</script>
+
+<hr>
+
+</body>
+</html>

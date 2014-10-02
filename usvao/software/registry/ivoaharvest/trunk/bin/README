@@ -1,0 +1,16 @@
+Note about the "comply" executable and related files:
+
+comply is a program that tests compliance with the OAI-MHP standard.
+The version provided here has been compiled and statically linked for
+Linux; there is no expectation that it will work on any Linux platform
+other than the one it was built on.  The validater application can be
+configured not to use this; in this case, the on-line service version
+will be used (at reduced performance).
+
+The related files in the bin directory are:
+
+   comply
+   enus.lan
+   lynx.pl
+
+
