@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app>
+    <display-name>DALServer Demonstration and Test Servlets</display-name>
+    <description>
+	This package contains various demonstration DALServer Java
+	servlets, used both to demonstrate how to build real IVOA DAL
+	data services, and as reference services for development of
+	client applications.
+    </description>
+
+    <!-- Context initialization parameters.
+	For DALServer, any of these parameters may be specified either
+	globally, as context params, or on a servlet-specific basis,
+	as init params.  -->
+
+    <context-param>
+      <param-name>serviceVersion</param-name>
+      <param-value>1.0</param-value>
+      <description>
+        The service version.
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>baseUrl</param-name>
+        <param-value>http://localhost:8080/ivoa-dal</param-value> 
+        <!-- <param-value>http://webtest.aoc.nrao.edu/ivoa-dal</param-value> -->
+      <description>
+        The base URL for service requests.  This is used for any URLs returned
+	by the service, for example the acref returned by a data query.
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>configDir</param-name>
+      <param-value>/u1/java/config</param-value>
+      <!-- <param-value>/home/oak/u1/java/config</param-value> -->
+      <description>
+        The configuration directory for DALServer services.
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>dataDir</param-name>
+      <param-value>/u1/java/data</param-value>
+      <!-- <param-value>/home/oak/u1/java/data</param-value> -->
+      <description>
+        The data staging directory for DALServer services.
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>contentType</param-name>
+      <param-value>dynamic</param-value>
+      <description>
+        The MIME type of any data files returned by the service from the
+	dataDir.  If the parameter is omitted or "dynamic" is specified,
+	the service will attempt to determine the content type of the file.
+      </description>
+    </context-param>
+
+
+    <!-- Servlet definitions. -->
+
+    <!-- SCS (Simple Cone Search) Echo/Test Servlet -->
+    <servlet>
+      <servlet-name>scs</servlet-name>
+      <description>
+        Provides a generic SCS base class and demonstration service,
+	using a builtin copy of the Messier catalog.
+      </description>
+      <servlet-class>dalserver.ScsServlet</servlet-class>
+      <init-param>
+        <param-name>serviceName</param-name>
+        <param-value>scs</param-value>
+      </init-param>
+      <init-param>
+        <param-name>serviceClass</param-name>
+        <param-value>scs</param-value>
+      </init-param>
+      <init-param>
+        <param-name>jdbcUrl</param-name>
+        <param-value>none</param-value>
+      </init-param>
+      <init-param>
+        <param-name>jdbcDriver</param-name>
+        <param-value>none</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbType</param-name>
+        <param-value>builtin</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbName</param-name>
+        <param-value>dalserver</param-value>
+      </init-param>
+      <init-param>
+        <param-name>tableName</param-name>
+        <param-value>messier</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbUser</param-name>
+        <param-value>none</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbPassword</param-name>
+        <param-value>none</param-value>
+      </init-param>
+      <init-param>
+        <param-name>idColumn</param-name>
+        <param-value>id</param-value>
+      </init-param>
+      <init-param>
+        <param-name>raColumn</param-name>
+        <param-value>ra</param-value>
+      </init-param>
+      <init-param>
+        <param-name>decColumn</param-name>
+        <param-value>dec</param-value>
+      </init-param>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>scs</servlet-name>
+      <url-pattern>/scs</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- SCS (Simple Cone Search) Remote DBMS Demo Servlet -->
+    <servlet>
+      <servlet-name>scsNvoss</servlet-name>
+      <description>
+        This demonstrates how to use the DALServer SCS implementation to
+	access a remote DBMS-hosted catalog via JDBC.  Any catalog in the
+	NVOSS (NVO summer school) database can be accessed, with the default
+	being the Abell catalog.
+      </description>
+      <servlet-class>dalserver.ScsServlet</servlet-class>
+      <init-param>
+        <param-name>serviceName</param-name>
+        <param-value>scsNvoss</param-value>
+      </init-param>
+      <init-param>
+        <param-name>serviceClass</param-name>
+        <param-value>scs</param-value>
+      </init-param>
+      <init-param>
+        <param-name>jdbcUrl</param-name>
+        <param-value>jdbc:mysql://localhost:3306/</param-value>
+      </init-param>
+      <init-param>
+        <param-name>jdbcDriver</param-name>
+        <param-value>com.mysql.jdbc.Driver</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbType</param-name>
+        <param-value>MySQL</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbName</param-name>
+        <param-value>nvoss</param-value>
+      </init-param>
+      <init-param>
+        <param-name>tableName</param-name>
+        <param-value>abell</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbUser</param-name>
+        <param-value>nvoss</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbPassword</param-name>
+        <param-value>nvoss08</param-value>
+      </init-param>
+      <init-param>
+        <param-name>idColumn</param-name>
+        <param-value>id</param-value>
+      </init-param>
+      <init-param>
+        <param-name>raColumn</param-name>
+        <param-value>ra</param-value>
+      </init-param>
+      <init-param>
+        <param-name>decColumn</param-name>
+        <param-value>decl</param-value>
+      </init-param>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>scsNvoss</servlet-name>
+      <url-pattern>/scsNvoss</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- SIAP (Simple Image Access) Test Servlet -->
+    <servlet>
+      <servlet-name>siap</servlet-name>
+      <description>
+        This servlet provides both a null/test SIAP to test and illustrate
+	the SIAP protocol without requiring any data connection, as well as
+	a JDBC-based SIAP which can provide a real SIAP service if it is
+	configured properly and provided with some SIAP metadata and an
+	associated image database.  At runtime in the test Web page, the
+	"Collection" parameter is used to select which option is executed.
+      </description>
+      <servlet-class>dalserver.SiapServlet</servlet-class>
+      <init-param>
+        <param-name>serviceName</param-name>
+        <param-value>siap</param-value>
+      </init-param>
+      <init-param>
+        <param-name>serviceClass</param-name>
+        <param-value>siap</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dataDirURL</param-name>
+	<param-value>file://localhost/u1/java/data/galaxyimages</param-value>
+	<!-- <param-value>http://localhost/data/galaxyimages</param-value> -->
+      </init-param>
+      <init-param>
+        <param-name>jdbcUrl</param-name>
+        <param-value>jdbc:mysql://localhost:3306/</param-value>
+      </init-param>
+      <init-param>
+        <param-name>jdbcDriver</param-name>
+        <param-value>com.mysql.jdbc.Driver</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbType</param-name>
+        <param-value>MySQL</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbName</param-name>
+        <param-value>nvoss</param-value>
+      </init-param>
+      <init-param>
+        <param-name>tableName</param-name>
+        <param-value>galaxysiap</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbUser</param-name>
+        <param-value>nvoss</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbPassword</param-name>
+        <param-value>nvoss08</param-value>
+      </init-param>
+      <init-param>
+        <param-name>raColumn</param-name>
+        <param-value>ra</param-value>
+      </init-param>
+      <init-param>
+        <param-name>decColumn</param-name>
+        <param-value>decl</param-value>
+      </init-param>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>siap</servlet-name>
+      <url-pattern>/siap</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- SSAP Null/Echo Servlet. -->
+    <servlet>
+      <servlet-name>ssap</servlet-name>
+      <description>
+	A generic dataless SSAP service which implements the SSAP
+	interface but does not serve any actual data.  Provides a base
+	class to demonstrate the SSA protocol as well as a base class
+	for constructing actual SSAP data services.
+      </description>
+      <servlet-class>dalserver.SsapServlet</servlet-class>
+      <init-param>
+        <param-name>serviceName</param-name>
+        <param-value>ssap</param-value>
+      </init-param>
+      <init-param>
+        <param-name>serviceClass</param-name>
+        <param-value>ssap</param-value>
+      </init-param>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>ssap</servlet-name>
+      <url-pattern>/ssap</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- SSAP Proxy for JHU/SDSS Spectral Archives. -->
+    <servlet>
+      <servlet-name>JhuSsapServlet</servlet-name>
+      <description>
+	A proxy SSAP service for the JHU spectral services.  Demonstrates
+	the use of subclassing to construct a real SSA service, and provides
+	a reference implementation of SSAP with real (proxy) data.
+      </description>
+      <servlet-class>dataServices.JhuSsapServlet</servlet-class>
+      <init-param>
+        <param-name>serviceName</param-name>
+        <param-value>JhuSsapServlet</param-value>
+      </init-param>
+      <init-param>
+        <param-name>serviceClass</param-name>
+        <param-value>ssap</param-value>
+      </init-param>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>JhuSsapServlet</servlet-name>
+      <url-pattern>/JhuSsapServlet</url-pattern>
+    </servlet-mapping>
+
+</web-app>

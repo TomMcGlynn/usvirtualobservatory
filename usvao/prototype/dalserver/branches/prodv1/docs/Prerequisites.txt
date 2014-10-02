@@ -1,0 +1,136 @@
+Installing Prerequisite Software
+
+The dalserver toolkit requires a few prerequisite software packages
+which are listed in the README file.  This document provides tips for
+installing the most common prerequisite options.  
+
+Contents
+  Automated Installation Using Your OS Software Manager
+    Red Hat-based Linux
+    Debian-based Linux
+    Macs
+  Installing Java SDK from Oracle
+  Installing Ant
+  Installing Tomcat
+  Installing MySQL
+
+Automated Installation Using Your OS Software Manager
+=====================================================
+
+On Macs and on most Linux distributions, the prerequisite software can
+be installed automatically via the system's software manager.  
+
+Red Hat-based Linux (RHEL, Fedora, CentOS, ScientificLinux)
+-----------------------------------------------------------
+
+On Red Hat-based Linux distributions, yum can be used to install the
+prerequisites.  You usually need to be a superuser to install software
+with yum. 
+
+Before installing java, check to see if you already
+have it installed by typing, "javac -version":
+
+  % javac -version
+  javac 1.6.0_24
+
+If instead the response is "javac: Command not found" or if the
+version is not at least 1.6, then you should install the Java JDK:
+
+  sudo yum install java-1.6.0-openjdk-devel
+
+You can ensure the other prerequisites are installed by running:
+
+  sudo yum install ant tomcat6 mysql
+
+To run dalserver services, you will need to start the tomcat and mysql
+servers.  This is done by typing: 
+
+  sudo service mysqld start
+  sudo service tomcat6 start
+
+To make sure these start at boot-time, type:
+
+  sudo chkconfig mysqld on
+  sudo chkconfig tomcat6 on
+
+When you start working with DALServer toolkit to build a serice, you
+will need to set two variables, CATALINA_HOME and CATALINE_BASE.  If
+you use Bash shell in your terminal window, type:
+
+  export CATALINE_HOME=/usr/share/tomcat6
+  export CATALINA_BASE=/var/lib/tomcat6
+
+For tcsh shell users:
+
+  setenv CATALINE_HOME /usr/share/tomcat6
+  setenv CATALINA_BASE /var/lib/tomcat6
+
+Debian-based Linux (Debian, Ubuntu)
+-----------------------------------
+
+On Debian-based Linux distributions, apt-get can be used to install the
+prerequisites.  You usually need to be a superuser to install software
+with apt-get. 
+
+Before installing java, check to see if you already
+have it installed by typing, "javac -version":
+
+  % javac -version
+  javac 1.6.0_24
+
+If instead the response is "javac: Command not found" or if the
+version is not at least 1.6, then you should install the Java JDK:
+
+  sudo apt-get install openjdk-6-jdk
+
+You can ensure the other prerequisites are installed by running:
+
+  sudo apt-get install ant tomcat6 mysql
+
+To run dalserver services, you will need to start the tomcat and mysql
+servers.  This is done by typing: 
+
+  sudo service mysqld start
+  sudo service tomcat6 start
+
+To make sure these start at boot-time, type:
+
+  sudo chkconfig mysqld on
+  sudo chkconfig tomcat6 on
+
+When you start working with DALServer toolkit to build a serice, you
+will need to set two variables, CATALINA_HOME and CATALINE_BASE.  If
+you use Bash shell in your terminal window, type:
+
+  export CATALINE_HOME=/usr/share/tomcat6
+  export CATALINA_BASE=/var/lib/tomcat6
+
+For tcsh shell users:
+
+  setenv CATALINE_HOME /usr/share/tomcat6
+  setenv CATALINA_BASE /var/lib/tomcat6
+
+Macs
+----
+
+[editing in progress]
+
+Installing Java SDK from Oracle
+===============================
+
+[editing in progress]
+
+Installing Ant
+==============
+
+[editing in progress]
+
+Installing Tomcat
+=================
+
+[editing in progress]
+
+Installing MySQL
+================
+
+[editing in progress]

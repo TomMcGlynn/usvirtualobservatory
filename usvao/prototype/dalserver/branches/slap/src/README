@@ -1,0 +1,11 @@
+DALServer Sources
+-------------------
+
+dalserver
+	The DALServer classes.
+
+demo
+	Demo code for the Jhu proxy SSAP service.   This is an actual working
+	service which provides a nontrivial example of how to construct a SSAP
+	data service using DALServer.
+

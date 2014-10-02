@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+    <display-name>DALServer Demonstration and Test Servlets</display-name>
+    <description>
+        This package contains various demonstration DALServer Java
+        servlets, used both to demonstrate how to build real IVOA DAL
+        data services, and as reference services for development of
+        client applications.
+    </description>
+    
+    <!-- Context initialization parameters.
+	For DALServer, any of these parameters may be specified either
+	globally, as context params, or on a servlet-specific basis,
+	as init params.  -->
+
+    <context-param>
+        <param-name>serviceVersion</param-name>
+        <param-value>1.0</param-value>
+        <description>
+            The service version.
+        </description>
+    </context-param>
+    
+    <context-param>
+        <param-name>baseUrl</param-name>
+        <!--param-value>http://localhost:8080/ivoa-dal</param-value-->
+        <param-value>http://archive.eso.org</param-value>
+        <description>
+            The base URL for service requests.  This is used for any URLs returned
+            by the service, for example the acref returned by a data query.
+        </description>
+    </context-param>
+    
+    <context-param>
+        <param-name>configDir</param-name>
+        <param-value>/home/vosw/ssaserver/</param-value>
+        <!--<param-value>/home/msierra/DALSERVER/ssaserver/conf/</param-value>-->
+        <description>
+            The configuration directory, containing the properties and metadata files for the ssaserver
+        </description>
+    </context-param>
+    
+    <context-param>
+        <param-name>dataDir</param-name>
+        <param-value>/home/vosw/ssaserver</param-value>
+        <description>
+            The data staging directory for DALServer services.
+        </description>
+    </context-param>
+    
+    <context-param>
+        <param-name>contentType</param-name>
+        <param-value>dynamic</param-value>
+        <description>
+            The MIME type of any data files returned by the service from the
+            dataDir.  If the parameter is omitted or "dynamic" is specified,
+            the service will attempt to determine the content type of the file.
+        </description>
+    </context-param>
+    
+    <!-- Servlet definitions. -->
+
+    <servlet>
+        <servlet-name>ssap</servlet-name>
+        <description>
+            A generic dataless SSAP service which implements the interface
+            but does not serve any actual data.  Provided for testing purposes.
+        </description>
+        <servlet-class>dalserver.SsapServlet</servlet-class>
+        <init-param>
+            <param-name>serviceName</param-name>
+            <param-value>ssap</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>JhuProxySsap</servlet-name>
+        <description>
+            A proxy SSAP service for the JHU spectral services.  Intended for
+            software development and testing only.
+        </description>
+        <servlet-class>demo.JhuSsapServlet</servlet-class>
+        <init-param>
+            <param-name>serviceName</param-name>
+            <param-value>JhuProxySsap</param-value>
+        </init-param>
+    </servlet>
+    
+    
+    
+    <servlet>
+        <servlet-name>EsoProxySsap</servlet-name>
+        <description>
+            A proxy SSAP service for the ESO spectral services.  
+        </description>
+        
+        <servlet-class>eso.EsoSsapServlet</servlet-class>
+        <init-param>
+            <param-name>serviceName</param-name>
+            <param-value>EsoProxySsap</param-value>
+        </init-param>
+    </servlet>
+    
+    
+    <!-- Define mappings. -->
+
+    <servlet-mapping>
+        <servlet-name>ssap</servlet-name>
+        <url-pattern>/ssap</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>JhuProxySsap</servlet-name>
+        <url-pattern>/JhuProxySsap</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ssap</servlet-name>
+        <url-pattern>/ssap</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>EsoProxySsap</servlet-name>
+        <url-pattern>/EsoProxySsap</url-pattern>
+    </servlet-mapping>
+</web-app>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  -  CONFIGURATION:  To adapt this file to a typical installation, edit the
+  -  values in the section below marked CONFIGURATION.  Atypical installations
+  -  may require additional edits outside of that section.
+  -->
+<web-app>
+    <display-name>SLAP Servlet for Splatalogue</display-name>
+    <description>
+	This servlet provide's Splatalogues implementation of the IVOA
+        SLAP service interface.  
+    </description>
+
+    <!-- Note: as with the generic DALServer, any of these parameters 
+      -  may be specified either globally, as context params, or on a 
+      -  servlet-specific basis, as init params.  
+      -->
+
+    <context-param>
+      <param-name>serviceVersion</param-name>
+      <param-value>1.0</param-value>
+      <description>
+        The service version.
+      </description>
+    </context-param>
+
+    <!-- Note:  this is value is overrided via an init-param below -->
+    <context-param>
+      <param-name>baseUrl</param-name>
+        <param-value>http://localhost:8080/splata-slap</param-value> 
+        <!-- <param-value>http://webtest.aoc.nrao.edu/ivoa-dal</param-value> -->
+      <description>
+        The base URL for service requests.  This is used for any URLs returned
+	by the service, for example the acref returned by a data query.
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>contentType</param-name>
+      <param-value>dynamic</param-value>
+      <description>
+        The MIME type of any data files returned by the service from the
+	dataDir.  If the parameter is omitted or "dynamic" is specified,
+	the service will attempt to determine the content type of the file.
+      </description>
+    </context-param>
+
+
+    <!-- SLAP (Simple Line Access) Servlet -->
+    <servlet>
+      <servlet-name>slap</servlet-name>
+      <servlet-class>net.splatalogue.slap.SlapServlet</servlet-class>
+
+      <!-- 
+        -  CONFIGURATION:  The following parameters are those that
+        -      typically need be to updated for a typical Splatalogue 
+        -      installation.
+        -->
+
+      <!-- 
+        -  baseUrl:  The base URL that users will use to access the
+        -             SLAP web service.  This needs to be edited for 
+        -             your server name and the location that maps to 
+        -             the Tomcat installation of the SLAP service. 
+        -->
+      <init-param>
+        <param-name>baseUrl</param-name>
+        <param-value>http://MYSERVER/ws/splata-slap</param-value> 
+        <description>
+          The base URL for service requests.  This is used for any URLs returned
+          by the service, for example the acref returned by a data query.
+        </description>
+      </init-param>
+
+      <!-- 
+        -  jdbcUrl:  The JDBC URL for the database that contains the 
+        -             splatalogue data.  If this is a MySQL database
+        -             on the same machine as the server where this 
+        -             service will be installed, then the default
+        -             should work fine.
+        -  default:  jdbc:mysql://localhost:3306/
+        -->
+      <init-param>
+        <param-name>jdbcUrl</param-name>
+        <param-value>jdbc:mysql://localhost:3306/</param-value>
+      </init-param>
+
+      <!--
+        -  dbName:  the name of the database that contains the
+        -           splatalogue data.  For a typical MySQL-based 
+        -           installation, the default is correct.
+        -  default: splat
+        -->
+      <init-param>
+        <param-name>dbName</param-name>
+        <param-value>splat</param-value>
+      </init-param>
+
+      <!--
+        -  dbUser:  the name of a database user that has read access
+        -           to the splatalogue data and which should be used
+        -           to query the database.  This usually needs to be 
+        -           updated.  
+        -  default: none
+        -->
+      <init-param>
+        <param-name>dbUser</param-name>
+        <param-value>DBUSER</param-value>
+      </init-param>
+
+      <!--
+        -  dbUser:  the password for the above database user, dbUser.
+        -  default: none
+        -->
+      <init-param>
+        <param-name>dbPassword</param-name>
+        <param-value>DBPASSWORD</param-value>
+      </init-param>
+
+      <!-- 
+        -  End typical CONFIGURATION.  Other options below may 
+        -  need to be edited for non-typical installations.
+        -->
+
+      <init-param>
+        <param-name>dbType</param-name>
+        <param-value>MySQL</param-value>
+      </init-param>
+      <init-param>
+        <param-name>serviceName</param-name>
+        <param-value>slap</param-value>
+      </init-param>
+      <init-param>
+        <param-name>serviceClass</param-name>
+        <param-value>slap</param-value>
+      </init-param>
+      <init-param>
+        <param-name>jdbcDriver</param-name>
+        <param-value>com.mysql.jdbc.Driver</param-value>
+      </init-param>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>slap</servlet-name>
+      <url-pattern>/slap</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>

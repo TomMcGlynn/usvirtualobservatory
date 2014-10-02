@@ -1,0 +1,26 @@
+    private static String toWellFormedText(String text) {
+        boolean hasErrors = false;
+        char[] chars = text.toCharArray();
+
+        //char[] chars = new char[text.length()];
+        //text.getChars(0, 0, chars, 0);
+
+        //StringBuffer buffer = new StringBuffer();
+        for (int j = 0; j < chars.length; j++) {
+            char c = chars[j];
+            if (c == 0x9 || c == 0xA || c == 0xD || c >= 0x20 && c <= 0xD7FF || c >= 0xE000 && c <= 0xFFFD) { //|| c >= 0x10000 && c <= 0x10FFFF
+                // character is OK
+                //buffer.append(c);
+            } else {
+                //error!
+                hasErrors = true;
+                chars[j] = '?';
+                //buffer.append('?');
+                System.out.println("bu!");
+            }
+        }
+        if (hasErrors) {
+            text = new String(chars);
+        }
+        return text;
+    }

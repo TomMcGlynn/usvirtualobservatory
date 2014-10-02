@@ -1,0 +1,57 @@
+<!--
+  -  This describes the non-standard columns to be returned by the 
+  -  Splatalogue slap interface.  Note that the id attribute corresponds to 
+  -  the column name used in the slapview table. 
+  -->
+<keywords>
+<param><summary>
+name:        catalog name
+id:          catname
+ucd:         meta.id;meta.table
+datatype:    char
+arraysize:   *
+description: the name of the line catalog this entry was drawn from
+</summary> </param>
+
+<param><summary>
+name:        molecular formula
+id:          molformula
+ucd:         phys.atmol.element
+datatype:    char
+arraysize:   *
+description: The molecular formula which may include notation of the common quantum state of the transition
+</summary> </param>
+
+<param><summary>
+name:        molecule type
+id:          moltype
+datatype:    int
+description: The type of molecular given as an integer identifier
+</summary> </param>
+
+<param><summary>
+name:        quantum numbers
+id:          QNs
+ucd:         phys.atmol.transition;spect.line
+datatype:    char
+arraysize:   *
+description: The initial and final quantum number states that produces this line
+</summary> </param>
+
+<param><summary>
+name:        frequency
+id:          frequency
+ucd:         em.freq;spect.line
+datatype:    double
+unit:        MHz
+description: The molecular formula which may include notation of the common quantum state of the transition
+</summary> </param>
+
+<param><summary>
+name:        frequency recommended
+id:          recommended
+datatype:    int
+description: an integer flag indicating whether this record provides the recommended frequency for this line.  
+</summary> </param>
+
+</keywords>

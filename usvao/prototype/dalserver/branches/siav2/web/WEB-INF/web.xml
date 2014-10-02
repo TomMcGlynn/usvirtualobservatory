@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app>
+    <display-name>Generic VO Services - DALServer Framework</display-name>
+    <description>
+      This Webapp contains generic VO data services included in the base DALServer Framework.
+    </description>
+
+    <!-- Context Initialization Parameters. -->
+
+    <context-param>
+      <param-name>webAppName</param-name>
+      <param-value>ivoa-dal</param-value>
+    </context-param>
+    <context-param>
+      <param-name>baseUrl</param-name>
+      <param-value>http://localhost:8080/ivoa-dal</param-value>
+    </context-param>
+    <context-param>
+      <param-name>configDir</param-name>
+      <param-value>/opt/services/dalserver</param-value>
+    </context-param>
+    <context-param>
+      <param-name>configFile</param-name>
+      <param-value>server.conf</param-value>
+    </context-param>
+    <context-param>
+      <param-name>webAppConfig</param-name>
+      <param-value>webapps/ivoa-dal/WEB-INF/web.xml</param-value>
+    </context-param>
+    <context-param>
+      <param-name>authorityID</param-name>
+      <param-value>ivo://mysite/vo/</param-value>
+    </context-param>
+    <context-param>
+      <param-name>dataDirURL</param-name>
+      <param-value>/d1/archive</param-value>
+    </context-param>
+    <context-param>
+      <param-name>stagingDir</param-name>
+      <param-value>/d1/archive/vostage</param-value>
+    </context-param>
+    <context-param>
+      <param-name>serviceVersion</param-name>
+      <param-value>1.0</param-value>
+    </context-param>
+    <context-param>
+      <param-name>contentType</param-name>
+      <param-value>dynamic</param-value>
+    </context-param>
+    <context-param>
+      <param-name>maxrec</param-name>
+      <param-value>10000</param-value>
+    </context-param>
+
+    <!-- Servlet Definitions. -->
+
+    <servlet>
+      <servlet-name>reload</servlet-name>
+      <servlet-class>dalserver.Config</servlet-class>
+      <description>Reload the Web-app configuration</description>
+
+      <!-- Servlet Parameters. -->
+
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>reload</servlet-name>
+      <url-pattern>/reload</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+      <servlet-name>scs-messier</servlet-name>
+      <servlet-class>dalserver.scs.ScsServlet</servlet-class>
+      <description>
+        This servlet provides a generic SCS base class and demonstration service, using a builtin copy of the Messier catalog.
+      </description>
+
+      <!-- Servlet Parameters. -->
+
+      <init-param>
+        <param-name>serviceName</param-name>
+        <param-value>scs-messier</param-value>
+      </init-param>
+      <init-param>
+        <param-name>serviceClass</param-name>
+        <param-value>scs</param-value>
+      </init-param>
+      <init-param>
+        <param-name>serviceVersion</param-name>
+        <param-value>1.0</param-value>
+      </init-param>
+      <init-param>
+        <param-name>jdbcUrl</param-name>
+        <param-value>none</param-value>
+      </init-param>
+      <init-param>
+        <param-name>jdbcDriver</param-name>
+        <param-value>none</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbType</param-name>
+        <param-value>builtin</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbName</param-name>
+        <param-value>dalserver</param-value>
+      </init-param>
+      <init-param>
+        <param-name>tableName</param-name>
+        <param-value>messier</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbUser</param-name>
+        <param-value>none</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbPassword</param-name>
+        <param-value>none</param-value>
+      </init-param>
+      <init-param>
+        <param-name>idColumn</param-name>
+        <param-value>ra</param-value>
+      </init-param>
+      <init-param>
+        <param-name>decColumn</param-name>
+        <param-value>dec</param-value>
+      </init-param>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>scs-messier</servlet-name>
+      <url-pattern>/scs-messier</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+      <servlet-name>siap</servlet-name>
+      <servlet-class>dalserver.sia.SiapServlet</servlet-class>
+      <description>
+        A generic dataless SIAP service which implements the SIAP interface but does not serve any actual data.  Provides a base class to demonstrate the SIA protocol as well as a base class for constructing actual SIAP data services.
+      </description>
+
+      <!-- Servlet Parameters. -->
+
+      <init-param>
+        <param-name>serviceName</param-name>
+        <param-value>siap</param-value>
+      </init-param>
+      <init-param>
+        <param-name>serviceClass</param-name>
+        <param-value>siap</param-value>
+      </init-param>
+      <init-param>
+        <param-name>minorVersion</param-name>
+        <param-value>test</param-value>
+      </init-param>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>siap</servlet-name>
+      <url-pattern>/siap</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+      <servlet-name>ssap</servlet-name>
+      <servlet-class>dalserver.ssa.SsapServlet</servlet-class>
+      <description>
+        A generic dataless SSAP service which implements the SSAP interface but does not serve any actual data.  Provides a base class to demonstrate the SSA protocol as well as a base class for constructing actual SSAP data services.
+      </description>
+
+      <!-- Servlet Parameters. -->
+
+      <init-param>
+        <param-name>serviceName</param-name>
+        <param-value>ssap</param-value>
+      </init-param>
+      <init-param>
+        <param-name>serviceClass</param-name>
+        <param-value>ssap</param-value>
+      </init-param>
+      <init-param>
+        <param-name>minorVersion</param-name>
+        <param-value>test</param-value>
+      </init-param>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>ssap</servlet-name>
+      <url-pattern>/ssap</url-pattern>
+    </servlet-mapping>
+
+</web-app>

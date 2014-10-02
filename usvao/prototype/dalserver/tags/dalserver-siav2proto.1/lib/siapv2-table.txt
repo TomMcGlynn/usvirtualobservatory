@@ -1,0 +1,114 @@
+// Query Metadata
+r.addGroup(siap.newGroup("Query"));
+r.addField(siap.newField("Score"));
+r.addParam(siap.newParam("Token", "UNSET"));
+
+// Association Metadata
+r.addGroup(siap.newGroup("Association"));
+r.addParam(siap.newParam("AssocType", "UNSET"));
+r.addField(siap.newField("AssocID"));
+r.addField(siap.newField("AssocKey"));
+
+// Access Metadata
+r.addGroup(siap.newGroup("Access"));
+r.addField(siap.newField("AcRef"));
+r.addField(siap.newField("Format"));
+r.addField(siap.newField("EstSize"));
+
+// General Dataset Metadata
+r.addGroup(siap.newGroup("Dataset"));
+r.addParam(siap.newParam("DataModel", "Image-2.0"));
+r.addParam(siap.newParam("DataModelPrefix", "im"));
+r.addParam(siap.newParam("DatasetType", "Image"));
+r.addField(siap.newField("DatasetSubtype"));
+r.addField(siap.newField("DatasetCalibLevel"));
+r.addField(siap.newField("DataLength"));
+
+// Image-specific Dataset metadata
+r.addGroup(siap.newGroup("Dataset.Image"));
+r.addField(siap.newField("Nsubarrays"));
+r.addField(siap.newField("Naxes"));
+r.addField(siap.newField("Naxis"));
+r.addField(siap.newField("Pixtype"));
+r.addField(siap.newField("WCSAxes"));
+r.addField(siap.newField("DataRef"));
+
+// Dataset Identification Metadata
+r.addGroup(siap.newGroup("DataID"));
+r.addField(siap.newField("Title"));
+r.addField(siap.newField("Creator"));
+r.addField(siap.newField("Collection"));
+r.addField(siap.newField("CreationType"));
+
+// Provenance Metadata
+r.addGroup(siap.newGroup("Provenance"));
+r.addField(siap.newField("Instrument"));
+r.addField(siap.newField("Bandpass"));
+
+// Curation Metadata
+r.addGroup(siap.newGroup("Curation"));
+r.addField(siap.newField("PublisherDID"));
+
+// Target Metadata
+r.addGroup(siap.newGroup("Target"));
+
+// Derived Metadata
+r.addGroup(siap.newGroup("Derived"));
+
+// Coordinate System Metadata
+r.addGroup(siap.newGroup("CoordSys"));
+
+// Spatial frame metadata
+r.addGroup(siap.newGroup("CoordSys.SpaceFrame"));
+
+// Time frame metadata
+r.addGroup(siap.newGroup("CoordSys.TimeFrame"));
+
+// Spectral frame metadata
+r.addGroup(siap.newGroup("CoordSys.SpectralFrame"));
+
+// Redshift frame metadata
+r.addGroup(siap.newGroup("CoordSys.RedshiftFrame"));
+
+// Flux (observable) frame metadata
+r.addGroup(siap.newGroup("CoordSys.FluxFrame"));
+
+// Spatial Axis Characterization
+r.addGroup(siap.newGroup("Char.SpatialAxis"));
+r.addField(siap.newField("SpatialLocation"));
+r.addField(siap.newField("SpatialExtent"));
+r.addField(siap.newField("SpatialLoLimit"));
+r.addField(siap.newField("SpatialHiLimit"));
+r.addField(siap.newField("SpatialFillFactor"));
+r.addField(siap.newField("SpatialCalibration"));
+r.addField(siap.newField("SpatialResolution"));
+
+// Spectral Axis Characterization
+r.addGroup(siap.newGroup("Char.SpectralAxis"));
+r.addField(siap.newField("SpectralAxisUCD"));
+r.addField(siap.newField("SpectralAxisUnit"));
+r.addField(siap.newField("SpectralStart"));
+r.addField(siap.newField("SpectralStop"));
+r.addField(siap.newField("SpectralFillFactor"));
+r.addField(siap.newField("SpectralCalibration"));
+r.addField(siap.newField("SpectralResolution"));
+r.addField(siap.newField("SpectralResPower"));
+
+// Time Axis Characterization
+r.addGroup(siap.newGroup("Char.TimeAxis"));
+r.addField(siap.newField("TimeStart"));
+r.addField(siap.newField("TimeStop"));
+r.addField(siap.newField("TimeFillFactor"));
+r.addField(siap.newField("TimeCalibration"));
+r.addField(siap.newField("TimeResolution"));
+
+// Flux Axis Characterization
+r.addGroup(siap.newGroup("Char.FluxAxis"));
+r.addField(siap.newField("FluxAxisUCD"));
+r.addField(siap.newField("FluxAxisUnit"));
+r.addField(siap.newField("FluxCalibration"));
+
+// Polarization Axis Characterization
+r.addGroup(siap.newGroup("Char.PolAxis"));
+r.addField(siap.newField("PolAxisUCD"));
+r.addField(siap.newField("PolAxisEnum"));

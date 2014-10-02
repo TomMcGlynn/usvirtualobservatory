@@ -1,0 +1,354 @@
+Building a Simple Image Access Service v1
+=========================================
+
+A Simple Image Access (SIA) Service is a way to share an object or
+observation table.  It allows users to search for records with
+positions that fall within a given distance of a search position.
+To share a table as an SIA v1 service, it must include three columns:
+
+   o  a unique identifier for the source or observation (e.g. an
+        object name)
+   o  an ICRS right ascension
+   o  an ICRS declination
+
+This HOWTO document assumes that you already have a table constructed
+in one of the following forms:
+
+   *  stored in a file in a format of comma-seperated values (CSV), or
+   *  loaded into an SQL database.
+
+Software Prerequisites
+----------------------
+
+To use this package, you will need the minimum prerequisites listed in
+the README document.  This tutorial assumes these specific prerequisites:
+
+  1.  Java JDK v1.6 or later
+  2.  Ant (Java build system) v1.8.2 or later
+  3.  Tomcat v5.5 or later
+  4.  MySQL v5.5 or later
+
+Normally, these would need to be installed on a server set up to run a
+web server exposed to the public.  However, for demonstration
+purposes, these packages can be installed on any Mac or Linux system.
+On Macs and on most Linux distributions, these packages can be
+installed automatically via their software package systems.
+
+For more information about installing and configuring these
+prerequisites, see docs/Prerequisites.txt.  
+
+Once the prerequisites are installed, you should set two environment
+variables set, CATALINE_HOME and CATALINA_BASE, which reflect where
+Tomcat was installed.  See docs/Prerequisites.txt for information on
+what these should be set to.
+
+Overview
+--------
+
+In addition to having the prerequisites in place, these instructions
+assume that you have a table ready to share.  If it is currently
+available in a CSV file but not yet loaded in a database, this HOWTO
+will help you get it loaded.  Be sure that the first row of
+the CSV file contains the names of the table columns.
+
+An example source catalog, a list of the Test objects, can be found
+in examples/siapv1, along with other files used to configure a SIA
+service.  These instructions will assume the Test catalog table
+(siapv1-test.csv) is the table we want to share and its directory is where
+we will load it from.  To share your own table, create your own
+directory to hold the table file along with other files we will need
+to configure the service. 
+
+If our table is not yet loaded into the database, the steps we will
+take to setup our SIA service will be as follows:
+
+  1.   Build the base DALServer toolkit
+  2.   Ensure the setup of the database
+  3.   Setup an apps.properties file that will be used to build the service.
+  4.   Describe the columns of the table in a column description file
+  5.   Load the table into the database
+  6.   Build the service application file (the .war file)
+  7.   Deploy service application into the Tomcat server.
+  8.   Test the service
+
+If the table is already loaded in your database, then step 3 will be
+slightly different, and you will skip step 4.  
+
+The Ant build system is used to build your service; be sure that the
+"ant" command is in your command search path.  
+
+1.   Build the base DALServer toolkit
+-------------------------------------
+
+Use ant to build the DALServer toolkit software:
+
+   ant build
+
+2. Ensure the setup of the database
+------------------------------------
+
+Currently, only MySQL can be used as the service database.  Examples
+below will reflect this.
+
+For installation and operation of your service, you will need:
+
+   a.  a named database to hold the table
+   b.  a username (with a password) that has permission to write 
+       to the database (needed if the table is not already in the
+       database). 
+   c.  a user name and password that has at least read permission for
+       the database (used during service operations)
+
+If your table is already in the database then you will already have
+(a), you won't need (b), and you probably have (c).  Note that it's
+okay to use the same user account for (b) and (c); however, it is not
+recommended during operations.  
+
+Before you can create a database, you will need to create the user
+accounts.  To do this, one typically must connect to the database as
+root using the mysql client:
+
+   % mysql -u root -p 
+   Enter password: 
+   mysql> 
+
+Typing following commands at the "mysql>" prompt will create the user
+accounts we need:
+
+   create user 'myname'@'localhost';
+   set password for 'myname'@'localhost' = password('a-password');
+   create user 'service'@'localhost';
+   set password for 'service'@'localhost' = password('b-password');
+
+We'll use the "myname" account to write the table to the database;
+obviously, you can substitute your name here and use a different
+password (than 'a-password').  We'll use the "service" account to
+allow the service to send it queries (you can use a different name
+here as well, if you wish).
+
+Next, we'll create the database that will be used to hold our tables.
+We can call this database anything; in our example, we'll call it "vo"
+Use the CREATE DATABASE command by typeing:
+
+   create database vo;
+
+Next, we'll give the "myname" account permission to write into the
+database, and the service account permission just to read:
+
+   grant all on vo.* to 'myname'@'localhost';
+   grant select on vo.* to 'service'@'localhost';
+
+To exit the mysql shell, type "\q":
+
+   mysql> \q
+   Bye
+
+In step 2, you'll be able to test that your database setup.  
+
+3.  Setup an apps.properties file
+---------------------------------
+
+On way to configure our SIA service, we should set up a directory to
+configure from: create an app directory, and if your table needs to be
+loaded into the database, copy your table file into it.  In this
+tutorial, we'll use the examples/siapv1 directory.  
+
+We'll configure the build using a file called "app.properties".  If
+you are loading your on table, put a copy of
+examples/siapv1/app.properties into your app directory.  If you
+are just running the example, we'll use the copy provided.  
+
+Edit the apps.properties file to configure the build.  Following
+instructions found within, update the properties for your data and
+database.  In particular, set the following variables for the database
+you just set up in step 1.  
+
+  db.name       - the database name (vo)
+  db.build.user - the user with write access (myname)
+  db.build.pass - the password for that user
+  db.run.user   - the user with read-only service access (service)
+  db.run.pass   - the password for the service user
+
+Also set these for managing your catalog table:
+
+  db.table.name - the name to give the table in the database 
+  cat.file      - the name of the CSV table file to load into the database
+  cat.conf      - the name of a table description file we'll use in
+                      step 3.  
+  cat.conf.std  - the name of a table description file defining the standard columns
+                  required by this service we'll use in step 3.  
+
+When you have finished editing this file, you can both test its format
+and test to see if your database is properly set-up by typing the
+command:
+
+  ant -Dapp.home=examples/siapv1 db-check
+
+If both are in good shape, you should see the following output:
+
+  db-check:
+       [echo] Checking for db user, service
+       [echo] Checking for database, vo
+
+  BUILD SUCCESSFUL
+  Total time: 1 second
+
+
+4.  Describe the columns of the table
+-------------------------------------
+
+Your CSV table file should contain the names of each column and for
+each row the values for thoses columns; however, a SIA service
+generally provides much more information than that.  In this step,
+we'll create a column description file for our table.
+For our example in examples/siapv1, this file is called
+siapv1-test-columns.xml.  To create your own, copy and use the file 
+examples/siapv1/column-desc-template.xml into your app directory.  
+
+This file refers to an external file examples/siapv1/std-columns.xml
+which defines the standard columns that are required for the service
+to process queries.
+
+IMPORTANT: All columns you would like exported (i.e., returned) to clients in
+response to user queries MUST be identified with the "hint" character 'x'.
+
+If your table is ALREADY IN THE DATABASE, you can create a column
+description file that's ready to edit by typing 
+
+  ant -Dapp.home=examples/siapv1 create-col-desc
+
+This will only work if the table is in the database with the name
+specified by the db.table.name property in your app.properties file.  
+This will write a file, table-columns.xml file into your app directory.  
+
+In this file, a column is described by data within a section that looks
+like this:
+
+  <param> <summary>
+  name:          RA
+  datatype:      float
+  ucd:           POS_EQ_RA_MAIN
+  utype:         
+  </summary> 
+    <description>
+      The ICRS Right Ascension of the object
+    </description>
+  </param>
+
+This form provides a way to specify metadata about each column.
+Values can either be specified in a name-colon-value format or an
+XML-tagged format (the latter is good when the value spans multiple
+lines).  Note that the order of the column descriptions does *not*
+need to match the order that they appear in the table.  Here's more 
+information about each metadatum: 
+
+name:
+   This is unique name for the column.  It must match the name used in
+   the input catalog table.  
+
+datatype:
+   This specifies the type of data in the column.  Generally there are 
+   only a few types that we will need:
+
+     int     - integer 
+     float   - single-precision floating point data
+     double  - double-precision floating point data
+     bit     - boolean data
+     char    - string character data.  If a value is of a string type,
+                the column description also needs the a parameter
+                called "arraysize" with a value of "*" (see example).
+
+   RA and Dec values should be given a value of "double".
+
+description:
+   The textual explanation of what the column contains.  Place this
+   text between the <description> and </description> tags.  
+
+ucd: 
+   A standard tag (called a Unified Content Descriptor) that
+   identifies semantically what the data represents.  This is very
+   important for SIA catalogs.   
+
+   A SIA table MUST have certain columns with specific UCD values
+   as specified in:
+   http://www.ivoa.net/documents/SIA/20091116/REC-SIA-1.0.html
+
+   It is strongly recommended that all other columns contain values
+   when an appropriate, legal value is available.  A list of legal
+   values (v1.0) and their meanings can be found at 
+   http://cds.u-strasbg.fr/cgi-bin/UCDs (or
+   http://cds.u-strasbg.fr/UCD/old/UCD/js/).  
+
+utype:
+   [Not yet documented.]
+
+When you have finished editing the description file, check the value
+of the "cat.conf" property in the app.properties file; be sure it is
+set to the name of the description file.  
+
+5.  Load the table into the database
+------------------------------------
+
+Your table is now ready to be loaded into the database.  If your table
+is already loaded into the database, you can skip this step.  
+
+To load data from your CSV file, type:
+
+  ant -Dapp.home=examples/siapv1 app-load-table
+
+6.  Build the service application
+---------------------------------
+
+Modify web.xml (examples/siapv1/web.xml) as needed, for example, to
+specify the dataDirURL, baseURL and accessRefTTL.
+
+You can now package your service into what is called a "war" file:
+
+  ant -Dapp.home=examples/siapv1 app-war
+
+This will produce a file in your app directory with a ".war" extension
+(e.g. csc.war).  Note that the name of the war file is controlled by
+the app.name property in the app.properties file.  
+
+7.  Deploy the service application into Tomcat
+----------------------------------------------
+
+Copy the war file into the $CATALINA_BASE/webapps directory for your
+Tomcat server:
+
+  sudo cp examples/siapv1/siapv1.war $CATALINA_BASE/webapps
+
+8.  Test your service
+---------------------
+
+The base URL for Tomcat services depends on how Tomcat is configured.
+We will assume that you can access Tomcat on your local machine via
+the 8080 portal.  In this case, if you visit 
+
+   http://localhost:8080/
+
+you should see a generic page about Tomcat.  Now enter the following 
+URL test query:
+
+   http://localhost:8080/siapv1/siapv1-siapv1?REQUEST=queryData&format=metadata
+
+You should see returned an XML file (i.e. a VOTable file) which
+describes all the columns but contains no data.  To return all of the
+data in the catalog: 
+
+   http://localhost:8080/siapv1/siapv1-siapv1?REQUEST=queryData
+
+To narrow the results based on search criteria:
+
+   http://localhost:8080/siapv1/siapv1-siapv1?REQUEST=queryData&POS=180.567,-30.45&SIZE=0.0125
+
+If your Tomcat server is publicly visible, you can check the service
+for compliance using the SIA Validater at 
+
+   http://nvo.ncsa.uiuc.edu/dalvalidate/csvalidate.html
+
+To use, enter "http://yourhost:8080/mydal/messier-scs?REQUEST=queryData&" 
+(where "yourhost" is your server's hostname) into the input box
+labelled "BASEURL" and click "Validate". 
+
+

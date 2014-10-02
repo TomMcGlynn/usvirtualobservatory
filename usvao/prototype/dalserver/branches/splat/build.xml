@@ -1,0 +1,303 @@
+<!-- Splatalogue SLAP Ant build script.
+  See http://tomcat.apache.org/tomcat-5.0-doc/appdev/build.xml.txt
+  for further information.
+-->
+
+<project name="DALServer" default="compile" basedir=".">
+
+<!-- ===================== Property Definitions =========================== -->
+
+  <property environment="env"/>
+  <property file="lib/build.properties"/>
+  <property file="${user.home}/build.properties"/>
+
+  <property name="app.name"      value="splata-slap"/>
+  <property name="app.path"      value="/${app.name}"/>
+  <property name="app.version"   value="0.1"/>
+  <property name="app.war"       value="${app.name}.war"/>
+  <property name="build.home"    value="${basedir}/build"/>
+  <property name="catalina.home" location="${env.CATALINA_HOME}"/>
+  <property name="dist.home"     value="${basedir}/dist"/>
+  <property name="dist.war"      value="${dist.home}/${app.war}"/>
+  <property name="dist.war.dir"  value="${dist.home}/${app.name}"/>
+  <property name="conf.home"     value="${basedir}/conf"/>
+  <property name="docs.home"     value="${basedir}/docs"/>
+  <property name="manager.url"   value="http://localhost:8080/manager"/>
+  <property name="src.home"      value="${basedir}/src"/>
+  <property name="web.home"      value="${basedir}/web"/>
+
+<!-- ================== Custom Ant Task Definitions ======================= -->
+
+  <taskdef name="deploy"   classname="org.apache.catalina.ant.DeployTask"/>
+  <taskdef name="list"     classname="org.apache.catalina.ant.ListTask"/>
+  <taskdef name="reload"   classname="org.apache.catalina.ant.ReloadTask"/>
+  <taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask"/>
+
+<!--  ==================== Compilation Control Options ==================== -->
+
+  <property name="compile.debug"       value="true"/>
+  <property name="compile.deprecation" value="false"/>
+  <property name="compile.optimize"    value="true"/>
+
+<!-- ================= External Dependencies =========================== -->
+
+  <property name="build.jar.dir" value="${dist.war.dir}/WEB-INF/lib"/>
+
+  <property name="cds-savot.jar" value="cds-savot.jar"/>
+  <property name="kxml2.jar"     value="kxml2-2.3.0.jar"/>
+  <property name="texttable.jar" value="texttable.jar"/>
+  <property name="mysqljdbc.jar" value="mysql-connector-java-3.1.10-bin.jar"/>
+  <property name="ivoa-dal.jar"  value="ivoa-dal.jar"/>
+            
+  <property name="ivoa-dal.war" value="${basedir}/lib/ivoa-dal.war"/>
+  <property name="ivoa-dal.dir" value="${build.home}/ivoa-dal"/>
+  <property name="ivoa-dal.classes" value="${ivoa-dal.dir}/WEB-INF/classes"/>
+
+<!-- ==================== Compilation Classpath =========================== -->
+
+  <path id="compile.classpath">
+
+    <!-- Include all external JAR files here -->
+    <pathelement location="${build.jar.dir}/${ivoa-dal.jar}"/>
+    <pathelement location="${build.jar.dir}/${cds-savot.jar}"/>
+    <pathelement location="${build.jar.dir}/${kxml2.jar}"/>
+    <pathelement location="${build.jar.dir}/${texttable.jar}"/>
+    <pathelement location="${build.jar.dir}/${mysqljdbc.jar}"/>
+
+    <!-- Include all elements that Tomcat exposes to applications -->
+    <pathelement location="${catalina.home}/common/classes"/>
+    <fileset dir="${catalina.home}/common/endorsed">
+      <include name="*.jar"/>
+    </fileset>
+    <fileset dir="${catalina.home}/common/lib">
+      <include name="*.jar"/>
+    </fileset>
+    <pathelement location="${catalina.home}/shared/classes"/>
+    <fileset dir="${catalina.home}/shared/lib">
+      <include name="*.jar"/>
+    </fileset>
+
+  </path>
+
+  <property name="compile.classpath" refid="compile.classpath"/>
+
+<!-- ==================== All Target ====================================== -->
+
+  <target name="all" depends="cleanAll,compile"
+   description="Clean build and dist directories, then compile"/>
+
+
+<!-- ==================== Clean Target ==================================== -->
+
+  <target name="clean" description="Delete build directory">
+    <delete dir="${build.home}"/>
+    <delete file="${dist.home}/dist/${app.name}"/>
+  </target>
+
+
+<!-- ==================== CleanAll Target ================================= -->
+
+  <target name="cleanAll" depends="clean"
+          description="Delete build and dist directories">
+    <delete file="${dist.home}/${app.name}.war"/>
+    <delete dir="${dist.home}/docs"/>
+    <delete dir="${web.home}/README.txt"/>
+  </target>
+
+<!-- ==================== Prepare Target ================================== -->
+
+  <target name="ivoa-dal">
+    <mkdir dir="${ivoa-dal.dir}" />
+    <unjar src="${ivoa-dal.war}" dest="${ivoa-dal.dir}"/>
+
+    <jar destfile="${basedir}/lib/${ivoa-dal.jar}" 
+         basedir="${ivoa-dal.dir}/WEB-INF/classes" />
+
+    <copy todir="${basedir}/lib" file="${ivoa-dal.dir}/WEB-INF/lib/cds-savot.jar"/>
+    <copy todir="${basedir}/lib" file="${ivoa-dal.dir}/WEB-INF/lib/kxml2-2.3.0.jar"/>
+    <copy todir="${basedir}/lib" file="${ivoa-dal.dir}/WEB-INF/lib/texttable.jar"/>
+  </target>
+
+  <target name="prepare" depends="">
+
+    <!-- Create build directories as needed -->
+    <mkdir  dir="${build.home}"/>
+    <mkdir  dir="${build.home}/classes"/>
+    <mkdir  dir="${dist.war.dir}/WEB-INF/lib"/>
+
+    <!-- Copy static content of this web application -->
+    <copy todir="${build.home}">
+      <fileset dir="${web.home}"/>
+    </copy>
+
+    <!--
+    <copy tofile="${web.home}/README.txt" file="README"/>
+      -->
+
+    <!-- Copy static files from external dependencies as needed -->
+    <!-- *** CUSTOMIZE HERE AS REQUIRED BY YOUR APPLICATION *** -->
+
+    <mkdir  dir="${dist.home}"/>
+  </target>
+
+
+<!-- ==================== InstallExt Target =============================== -->
+
+  <target name="installExt" depends="prepare"
+          description="install external jars from lib dir">
+
+    <!-- Copy external dependencies as required -->
+    <copy file="${basedir}/lib/${ivoa-dal.jar}"  todir="${build.jar.dir}"/>
+    <copy file="${basedir}/lib/${cds-savot.jar}" todir="${build.jar.dir}"/>
+    <copy file="${basedir}/lib/${kxml2.jar}"     todir="${build.jar.dir}"/>
+    <copy file="${basedir}/lib/${texttable.jar}" todir="${build.jar.dir}"/>
+    <copy file="${basedir}/lib/${mysqljdbc.jar}" todir="${build.jar.dir}"/>
+
+     
+  </target>
+
+
+<!-- ==================== Compile Target ================================== -->
+
+  <target name="compile" depends="prepare,installExt"
+          description="Compile Java sources">
+
+    <!-- Compile Java classes as necessary -->
+    <mkdir    dir="${build.home}/classes"/>
+    <javac srcdir="${src.home}"
+          destdir="${build.home}/classes"
+            debug="${compile.debug}"
+      deprecation="${compile.deprecation}"
+         optimize="${compile.optimize}">
+        <classpath refid="compile.classpath"/>
+    </javac>
+
+    <!-- Copy application resources -->
+    <copy  todir="${build.home}/classes">
+      <fileset dir="${src.home}" excludes="**/*.java"/>
+    </copy>
+    <copy todir="${build.home}/classes/net/splatalogue/slap"
+          file="${basedir}/lib/splat-keywords.xml"/>
+
+  </target>
+
+
+<!-- ==================== Dist Target ===================================== -->
+
+  <target name="dist" depends="war"
+          description="Create binary distribution">
+
+    <!-- Copy documentation subdirectories
+    <mkdir dir="${web.home}/javadoc"/>
+    <copy todir="${web.home}/javadoc">
+      <fileset dir="${dist.home}/docs"/>
+    </copy> -->
+
+    <!-- Copy additional files to ${dist.home} as necessary -->
+
+  </target>
+
+<!-- ==================== Jar Target ===================================== -->
+
+  <target name="jar" depends="compile"
+          description="Create the Jar file">
+
+    <!-- Create application JAR file  -->
+    <jar jarfile="${basedir}/lib/${app.name}.jar"
+         basedir="${build.home}/classes"/>
+
+  </target>
+
+
+<!-- ==================== War Target ===================================== -->
+
+  <target name="war" depends="jar"
+          description="Update only the War file">
+
+    <copy todir="${dist.war.dir}/WEB-INF/lib"
+          file="${basedir}/lib/${app.name}.jar"/>
+
+    <copy todir="${dist.war.dir}/WEB-INF"
+          file="${conf.home}/web.xml"/>
+
+    <jar jarfile="${dist.home}/${app.name}.war"
+         basedir="${dist.home}/${app.name}"/>
+  </target>
+
+
+<!-- ==================== Install Target ================================== -->
+
+<!-- Tell Tomcat to dynamically install this web application and
+  make it available for execution.  If you have already installed
+  this application, and simply want Tomcat to recognize that you
+  have updated Java classes (or the web.xml file), use the "reload"
+  target instead.  -->
+
+  <target name="install" depends="war"
+   description="Install application to servlet container">
+
+    <deploy url="${manager.url}"
+       username="${manager.username}"
+       password="${manager.password}"
+           path="${app.path}"
+       localWar="file://${dist.home}"/>
+
+  </target>
+
+
+<!-- ==================== Javadoc Target ================================== -->
+
+  <target name="javadoc" depends="compile"
+   description="Create Javadoc API documentation">
+    <!-- Cannot use ant.javadoc here due to a bug which prevents doc-files
+         from being copied when -sourcepath is an absolute path.  -->
+    <mkdir dir="${dist.home}"/>
+    <mkdir dir="${dist.home}/docs"/>
+    <exec executable="javadoc">
+	<arg value="-d"/>
+	<arg value="dist/docs"/>
+	<arg value="-sourcepath"/>
+	<arg value="src"/>
+	<arg value="net"/>
+    </exec>
+  </target>
+
+
+<!-- ====================== List Target =================================== -->
+
+  <target name="list"
+   description="List installed applications on servlet container">
+
+    <list    url="${manager.url}"
+        username="${manager.username}"
+        password="${manager.password}"/>
+
+  </target>
+
+
+<!-- ==================== Reload Target =================================== -->
+
+  <target name="reload"
+   description="Reload application on servlet container">
+
+    <reload url="${manager.url}"
+       username="${manager.username}"
+       password="${manager.password}"
+           path="${app.path}"/>
+
+  </target>
+
+
+<!-- ==================== Remove Target =================================== -->
+
+  <target name="remove"
+   description="Remove application on servlet container">
+
+    <undeploy url="${manager.url}"
+         username="${manager.username}"
+         password="${manager.password}"
+             path="${app.path}"/>
+
+  </target>
+
+</project>

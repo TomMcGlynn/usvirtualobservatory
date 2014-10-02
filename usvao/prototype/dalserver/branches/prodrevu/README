@@ -1,0 +1,153 @@
+DALServer Package (siav2proto)
+D.Tody, M.Cresitello-Dittmar, R.Plante January 2014
+
+
+This package contains code for implementing IVOA Data Access Layer (DAL)
+services.  This version supports SSAP (spectra), SIAP (images), SCS
+(simple cone search), and SLAP (spectral line lists).
+
+This special version is based on the 2013 SIAv2 IVOA prototype,
+adapted for the 2014 DALServer software product review.  
+
+Full Javadoc-format documentation for the DALServer packages is given
+in the "dist/docs" subdirectory.  Additional documentation is given
+in the README files in each major source or runtime directory.
+
+Prerequisites
+=============
+
+To use this package, you will need at a minimum:
+
+  1.  Java JDK v1.6 or later
+  2.  Ant (Java build system) v1.8.2 or later
+  3.  A Servlet container engine (like Tomcat), installed and serving
+       pages to the web
+  4.  A supported database management system (like MySQL)
+
+This toolkit has been developed and tested using Tomcat, so if you do
+not currently use a Servlet container engine, we strongly recommend:
+
+  3.  Tomcat v5.5 or later
+
+This toolkit has been designed to be adaptable to several different
+database systems.  If you are not already running a DBMS and wish to
+avoid programming, we strongly recommend one of the following systems:
+
+  4.  MySQL v5.5 or later
+
+Building the Toolkit
+====================
+
+If you've downloaded this package in source form, you will need to
+build the basic toolkit library (dalserver.jar).  This should be done
+using ant:
+
+  % ant build
+
+This will place the dalserver.jar file into the lib directory.  It
+will also set up a build directory where you will set up your
+services.  
+
+You will be using ant again when assembling your own services.  
+
+Publishing Data with this Toolkit
+=================================
+
+Publishing data to the VO with this toolkit isamatter of deploying one
+or more standard services that make your data searchable and
+retrievable through the web.  Once your services are deployed, you
+should that they operate corectly using a alidater service. Then you
+should register your services to a VO registry so that people can find
+your services.  
+
+Currently, this package supports four types of services:
+
+  Simple Cone Search (SCS):
+     Deploy a service of this type to share an object or observation
+     catalog.  It allows users to search for records with positions
+     that fall within a given distance of a search position.
+
+  Simple Image Access (SSA):
+     Deploy this type of service to share a collection of images.
+     Users will be able to request images based on position of the
+     sky, waveband, format, and other constraints.  A service of this
+     type can also serve as a cutout service which can deliver images
+     of a custom size, extacted from larger images.  
+
+  Simple Spectral Access (SSA):
+     Deploy this type of service to share a collection of spectra.
+     Users will be able to request spectra based on position of the
+     sky, waveband, time, format, and other constraints.  A service of this
+     type can also serve as a cutout service which can deliver spectra
+     extacted from larger datasets (such as image cubes). 
+
+  Simple Line Access (SLAP):
+     This less common type of services provides access to spectral
+     line frequency databases.  That is, it allows users to find
+     spectral line transitions with, say, rest frequencies between a 
+     given range.  
+
+Use of all of these services involve submitting a search query that
+returns a table of results (in VOTable format).   For SIA and SSA
+services, each record represents an available dataset that can be
+downloaded, and one of the columns will contain the URLs for
+downloading them and the rest will contain metadata describing the
+dataset.  For SCS and SLAP serivces, each record in the response
+represents a record from the remote catalog with the columns
+containing metadata describing the source, observation, or spectral
+line.  
+
+With this toolkit, searching is enable by loading the metadata into a
+database.  User queries that come into the service are converted into
+SQL understoond by the database, and the search results are formatted
+into the VOTable format and returned to the user.  
+
+What do you have?
+-----------------
+
+How you use this toolkit depends first on what kind of data you have:
+this determines which of the above types of services you should
+deploy.  It also depends on what form your data currently is in.  Here
+are some examples of the form your data might take starting out:
+
+   o  a catalog in a CSV or VOTable file
+   o  a catalog loaded in one or more databases
+   o  a set of FITS files on disk
+   o  an archive system with an associated database serving 
+       images or spectra 
+
+The form of your data will determine which steps you will need to take
+set up your service.  
+
+For detailed instructions for deploying a service, consult the
+documentation file for the particular type of service you want to
+deploy:  
+
+  docs/SCS-HOWTO      Deploying a cone-search catalog service
+  docs/SIA-HOWTO      Deploying an image service
+  docs/SSA-HOWTO      Deploying a spectrum service
+  docs/SLAP-HOWTO     Deploying a line catalog service
+
+Demonstration/Test Servlets
+===========================
+
+The dalserver package includes base class implementations of all
+provided services.  The base class implementations are functional and
+can be executed without need to change any code.  These can be
+deployed to test the basic interface.  
+
+To build the demo, type:
+
+  ant demo
+
+This will produce an application file, ivoa-dal.war.  To deploy, copy
+this the webapps subdirectory of your Tomcat installation.  To test
+it, visit with your the "/ivoa-dal/" location of Tomcat server; that
+is, if you access the Tomcat server via "http://localhost:8080", go
+to, 
+
+  http://localhost:8080/ivoa-dal/
+
+This will display a summary page with links to web form interfaces to
+the service.  
+

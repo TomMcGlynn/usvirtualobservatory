@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app>
+    <display-name>Messier Object Catalog</display-name>
+    <description>
+	The Messier Catalog of bright, extended objects was compiled
+	by the comet-hunter Charles Messier in the 18th century. It
+	comprised a list of 110 objects which are mostly brighter than
+	10th magnitude and have angular sizes from 1 to 100
+	arcminutes. M 102 is now generally considered to be spurious,
+	and the object so named was actually M 101. Hence this
+	electronic version of the Messier Catalog contains only 109
+	objects. The objects in the Messier Catalog are predominantly
+	star clusters in our Milky Way galaxy, with 29 of them being
+	globular clusters, 27 open clusters; the rest are spiral
+	galaxies (27), elliptical galaxies (11), diffuse and planetary
+	nebulae (10), and miscellaneous objects (5). All of the
+	objects in the Messier Catalog are north of -35 degrees
+	declination.  
+    </description>
+
+    <!-- Context initialization parameters.
+	For DALServer, any of these parameters may be specified either
+	globally, as context params, or on a servlet-specific basis,
+	as init params.  -->
+
+    <context-param>
+      <param-name>serviceVersion</param-name>
+      <param-value>1.0</param-value>
+      <description>
+        The default service version (override for each service if necessary).
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>configDir</param-name>
+      <param-value>/u1/java/config</param-value>
+      <description>
+        The configuration directory for DALServer services.
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>dataDir</param-name>
+      <param-value>/d1/testData</param-value>
+      <description>
+        The default root data staging directory for DALServer services.
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>contentType</param-name>
+      <param-value>dynamic</param-value>
+      <description>
+        The MIME type of any data files returned by the service from the
+	dataDir.  If the parameter is omitted or "dynamic" is specified,
+	the service will attempt to determine the content type of the file.
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>maxrec</param-name>
+      <param-value>10000</param-value>
+      <description>
+        The default maximum number of records to be returned in a query.
+      </description>
+    </context-param>
+
+
+    <!-- Servlet definitions. -->
+
+    <!-- SCS (Simple Cone Search) -->
+    <servlet>
+      <servlet-name>@app.name@-@db.table.name@</servlet-name>
+      <description>
+        Provides an example SCS interface to a catalog
+      </description>
+      <servlet-class>dalserver.ScsServlet</servlet-class>
+      <init-param>
+        <param-name>serviceName</param-name>
+        <param-value>scs</param-value>
+      </init-param>
+      <init-param>
+        <param-name>serviceClass</param-name>
+        <param-value>scs</param-value>
+      </init-param>
+      <init-param>
+        <param-name>jdbcUrl</param-name>
+        <param-value>@db.jdbc.url@</param-value>
+      </init-param>
+      <init-param>
+        <param-name>jdbcDriver</param-name>
+        <param-value>@db.jdbc.driver@</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbType</param-name>
+        <param-value>MySQL</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbName</param-name>
+        <param-value>@db.name@</param-value>
+      </init-param>
+      <init-param>
+        <param-name>tableName</param-name>
+        <param-value>@db.table.name@</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbUser</param-name>
+        <param-value>@db.run.user@</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbPassword</param-name>
+        <param-value>@db.run.pass@</param-value>
+      </init-param>
+      <init-param>
+        <param-name>columnDescFile</param-name>
+        <param-value>@cat.conf@</param-value>
+      </init-param>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>@app.name@-@db.table.name@</servlet-name>
+      <url-pattern>/@app.name@-@db.table.name@</url-pattern>
+    </servlet-mapping>
+
+</web-app>

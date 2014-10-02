@@ -1,0 +1,249 @@
+<!-- DALServer Ant build script.
+  See http://tomcat.apache.org/tomcat-5.0-doc/appdev/build.xml.txt
+  for further information.
+-->
+
+<project name="DALServer" default="compile" basedir=".">
+
+<!-- ===================== Property Definitions =========================== -->
+
+  <property environment="env"/>
+  <property file="lib/build.properties"/>
+  <property file="${user.home}/build.properties"/>
+
+  <property name="app.name"      value="ivoa-dal"/>
+  <property name="app.path"      value="/${app.name}"/>
+  <property name="app.version"   value="0.1-dev"/>
+  <property name="build.home"    value="${basedir}/build"/>
+  <property name="catalina.home" location="${env.CATALINA_HOME}"/>
+  <property name="dist.home"     value="${basedir}/dist"/>
+  <property name="docs.home"     value="${basedir}/docs"/>
+  <property name="manager.url"   value="http://localhost:8080/manager"/>
+  <property name="src.home"      value="${basedir}/src"/>
+  <property name="web.home"      value="${basedir}/web"/>
+
+<!-- ================== Custom Ant Task Definitions ======================= -->
+
+  <taskdef name="deploy"   classname="org.apache.catalina.ant.DeployTask"/>
+  <taskdef name="list"     classname="org.apache.catalina.ant.ListTask"/>
+  <taskdef name="reload"   classname="org.apache.catalina.ant.ReloadTask"/>
+  <taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask"/>
+
+<!--  ==================== Compilation Control Options ==================== -->
+
+  <property name="compile.debug"       value="true"/>
+  <property name="compile.deprecation" value="false"/>
+  <property name="compile.optimize"    value="true"/>
+
+<!-- ================= External Dependencies =========================== -->
+
+  <property name="cds-savot.jar" value="${basedir}/lib/cds-savot.jar"/>
+  <property name="kxml2.jar" value="${basedir}/lib/kxml2-2.3.0.jar"/>
+  <property name="texttable.jar" value="${basedir}/lib/texttable.jar"/>
+
+<!-- ==================== Compilation Classpath =========================== -->
+
+  <path id="compile.classpath">
+
+    <!-- Include all external JAR files here -->
+    <pathelement location="${cds-savot.jar}"/>
+    <pathelement location="${kxml2.jar}"/>
+    <pathelement location="${texttable.jar}"/>
+
+    <!-- Include all elements that Tomcat exposes to applications -->
+    <pathelement location="${catalina.home}/common/classes"/>
+    <fileset dir="${catalina.home}/common/endorsed">
+      <include name="*.jar"/>
+    </fileset>
+    <fileset dir="${catalina.home}/common/lib">
+      <include name="*.jar"/>
+    </fileset>
+    <pathelement location="${catalina.home}/shared/classes"/>
+    <fileset dir="${catalina.home}/shared/lib">
+      <include name="*.jar"/>
+    </fileset>
+
+  </path>
+
+<!-- ==================== All Target ====================================== -->
+
+  <target name="all" depends="cleanAll,compile"
+   description="Clean build and dist directories, then compile"/>
+
+
+<!-- ==================== Clean Target ==================================== -->
+
+  <target name="clean"
+   description="Delete build directory">
+    <delete dir="${build.home}"/>
+  </target>
+
+
+<!-- ==================== CleanAll Target ================================= -->
+
+  <target name="cleanAll"
+   description="Delete build and dist directories">
+    <delete dir="${build.home}"/>
+    <delete dir="${dist.home}"/>
+  </target>
+
+
+<!-- ==================== Compile Target ================================== -->
+
+  <target name="compile" depends="prepare"
+   description="Compile Java sources">
+
+    <!-- Compile Java classes as necessary -->
+    <mkdir    dir="${build.home}/WEB-INF/classes"/>
+    <javac srcdir="${src.home}"
+          destdir="${build.home}/WEB-INF/classes"
+            debug="${compile.debug}"
+      deprecation="${compile.deprecation}"
+         optimize="${compile.optimize}">
+        <classpath refid="compile.classpath"/>
+    </javac>
+
+    <!-- Copy application resources -->
+    <copy  todir="${build.home}/WEB-INF/classes">
+      <fileset dir="${src.home}" excludes="**/*.java"/>
+    </copy>
+
+  </target>
+
+
+<!-- ==================== Dist Target ===================================== -->
+
+  <target name="dist" depends="compile,javadoc"
+   description="Create binary distribution">
+
+    <!-- Copy documentation subdirectories -->
+	<mkdir dir="${web.home}/javadoc"/>
+	<copy todir="${web.home}/javadoc">
+	  <fileset dir="${dist.home}/docs"/>
+	</copy>
+
+    <!-- Create application JAR file
+    <jar jarfile="${dist.home}/${app.name}-${app.version}.war"
+         basedir="${build.home}"/> -->
+
+    <jar jarfile="${dist.home}/${app.name}.war"
+         basedir="${build.home}"/>
+
+    <!-- Copy additional files to ${dist.home} as necessary -->
+
+  </target>
+
+
+<!-- ==================== War Target ===================================== -->
+
+  <target name="war" depends="compile"
+   description="Update only the War file">
+
+    <jar jarfile="${dist.home}/${app.name}.war"
+         basedir="${build.home}"/>
+  </target>
+
+
+<!-- ==================== Install Target ================================== -->
+
+<!-- Tell Tomcat to dynamically install this web application and
+  make it available for execution.  If you have already installed
+  this application, and simply want Tomcat to recognize that you
+  have updated Java classes (or the web.xml file), use the "reload"
+  target instead.  -->
+
+  <target name="install" depends="compile"
+   description="Install application to servlet container">
+
+    <deploy url="${manager.url}"
+       username="${manager.username}"
+       password="${manager.password}"
+           path="${app.path}"
+       localWar="file://${dist.home}"/>
+
+  </target>
+
+
+<!-- ==================== Javadoc Target ================================== -->
+
+  <target name="javadoc" depends="compile"
+   description="Create Javadoc API documentation">
+    <!-- Cannot use ant.javadoc here due to a bug which prevents doc-files
+         from being copied when -sourcepath is an absolute path.  -->
+    <mkdir dir="${dist.home}"/>
+    <mkdir dir="${dist.home}/docs"/>
+    <exec executable="javadoc">
+	<arg value="-d"/>
+	<arg value="dist/docs"/>
+	<arg value="-sourcepath"/>
+	<arg value="src"/>
+	<arg value="dalserver"/>
+	<arg value="dataServices"/>
+    </exec>
+  </target>
+
+
+<!-- ====================== List Target =================================== -->
+
+  <target name="list"
+   description="List installed applications on servlet container">
+
+    <list    url="${manager.url}"
+        username="${manager.username}"
+        password="${manager.password}"/>
+
+  </target>
+
+
+<!-- ==================== Prepare Target ================================== -->
+
+  <target name="prepare">
+
+    <!-- Create build directories as needed -->
+    <mkdir  dir="${build.home}"/>
+    <mkdir  dir="${build.home}/WEB-INF"/>
+    <mkdir  dir="${build.home}/WEB-INF/classes"/>
+
+    <!-- Copy static content of this web application -->
+    <copy todir="${build.home}">
+      <fileset dir="${web.home}"/>
+    </copy>
+
+    <!-- Copy external dependencies as required -->
+    <mkdir  dir="${build.home}/WEB-INF/lib"/>
+    <copy todir="${build.home}/WEB-INF/lib" file="${cds-savot.jar}"/>
+    <copy todir="${build.home}/WEB-INF/lib" file="${kxml2.jar}"/>
+    <copy todir="${build.home}/WEB-INF/lib" file="${texttable.jar}"/>
+
+    <!-- Copy static files from external dependencies as needed -->
+    <!-- *** CUSTOMIZE HERE AS REQUIRED BY YOUR APPLICATION *** -->
+
+  </target>
+
+
+<!-- ==================== Reload Target =================================== -->
+
+  <target name="reload"
+   description="Reload application on servlet container">
+
+    <reload url="${manager.url}"
+       username="${manager.username}"
+       password="${manager.password}"
+           path="${app.path}"/>
+
+  </target>
+
+
+<!-- ==================== Remove Target =================================== -->
+
+  <target name="remove"
+   description="Remove application on servlet container">
+
+    <undeploy url="${manager.url}"
+         username="${manager.username}"
+         password="${manager.password}"
+             path="${app.path}"/>
+
+  </target>
+
+</project>

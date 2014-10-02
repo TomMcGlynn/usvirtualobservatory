@@ -1,0 +1,76 @@
+<!--
+  -  This build script is inteneded to be imported into the master 
+  -  build XML and is used to set JDBC related properties based on the 
+  -  DBMS being used.  It requires the db.ms.type property to be set
+  -  to one of the following names of supported DBMSes:
+  -     mysql
+  -     postgresql
+  -     oracle
+  - 
+  -  db.ms.version should also be set to the version of the DBMS in
+  -  use.  
+  -->
+<project name="DALServer-db-set" default="show-db-setup" basedir=".">
+
+  <target name="show-db-setup" depends="set-props">
+    
+    <echo>java.version:    ${java.version}</echo>
+    <echo>db.ms.type:      ${db.ms.type}</echo>
+    <echo>db.ms.version:   ${db.ms.version}</echo>
+    <echo>db.jdbc.url:     ${db.jdbc.url}</echo>
+    <echo>db.jdbc.driver:  ${db.jdbc.driver}</echo>
+    <echo>db.jdbc.jar:     ${db.jdbc.jar}</echo>
+
+<!--
+    <echo>DBMS statuses:</echo>
+    <echo>mysql:       ${db.ms.type.mysql}</echo>
+    <echo>postgresql:  ${db.ms.type.postgresql}</echo>
+    <echo>oracle:      ${db.ms.type.oracle}</echo>
+  -->
+  </target>
+
+  <target name="set-props" 
+          depends="-db-defaults,-db-mysql,-db-postgresql,-db-oracle">
+    <property name="db.jdbc.url" value="jdbc:${db.ms.type}://localhost:3306/"/>
+  </target>
+
+  <target name="-db-defaults">
+    <property name="db.ms.type" value="mysql"/>
+    <property name="db.ms.version" value="" />
+    <property name="db.ms.type.${db.ms.type}" value="true"/>
+  </target>
+
+  <target name="-db-mysql" if="${db.ms.type.mysql}">
+    <property name="db.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+    <property name="db.jdbc.jar" value="mysql-connector-java-5.1.26-bin.jar" />
+  </target>
+
+  <target name="-db-postgresql" if="${db.ms.type.postgresql}">
+    <!-- Only Postgresql v8.x or later, Java 1.6 or later supported -->
+    <property name="db.jdbc.driver" value="org.postgresql.Driver"/>
+    <property name="db.jdbc.url" value="jdbc:${db.ms.type}://localhost:3306/"/>
+    <property name="db.ms.version" value="8.4"/>
+
+    <fail message="Java 1.6 or later required">
+      <condition>
+        <not>
+          <matches string="${java.version}" pattern="^1.[6789]"/>
+        </not>
+      </condition>
+    </fail>
+
+    <condition property="jdbc.ver" value="jdbc4" else="jdbc41">
+      <matches string="${java.version}" pattern="^1.6"/>
+    </condition>
+    <property name="db.jdbc.jar" value="postgresql-9.3-1101.${jdbc.ver}.jar"/>
+  </target>
+
+  <target name="-db-oracle" if="${db.ms.type.oracle}">
+    <fail unless="db.jdbc.jar">For the oracle DBMS, 
+      db.jdbc.jar must be set in the app.properties file</fail>
+
+    <property name="db.jdbc.driver" value="oracle.jdbc.Driver"/>
+    <property name="db.jdbc.url" value="jdbc:${db.ms.type}:thin://localhost:3306/"/>
+  </target>
+
+</project>

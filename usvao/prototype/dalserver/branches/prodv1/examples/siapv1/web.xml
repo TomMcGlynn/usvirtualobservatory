@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app>
+    <display-name>SIAPv1 Test Object Catalog</display-name>
+    <description>
+	This is a test catalog to demonstrate SIAPv1.
+    </description>
+
+    <!-- Context initialization parameters.
+	For DALServer, any of these parameters may be specified either
+	globally, as context params, or on a servlet-specific basis,
+	as init params.  -->
+
+    <context-param>
+      <param-name>serviceVersion</param-name>
+      <param-value>1.0</param-value>
+      <description>
+        The default service version (override for each service if necessary).
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>configDir</param-name>
+      <param-value>/u1/java/config</param-value>
+      <description>
+        The configuration directory for DALServer services.
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>dataDirURL</param-name>
+      <param-value>/d1/testImages</param-value>
+      <description>
+        The default root data staging directory for DALServer images.
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>baseURL</param-name>
+      <param-value>http://localhost:8080/siapv1/</param-value>
+      <description>
+        The default base URL for DALServer SIAPv1 service.
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>accessRefTTL</param-name>
+      <param-value>3600</param-value>
+      <description>
+        Specifies the minimum time to live in seconds of the access reference.
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>contentType</param-name>
+      <param-value>dynamic</param-value>
+      <description>
+        The MIME type of any data files returned by the service from the
+	dataDir.  If the parameter is omitted or "dynamic" is specified,
+	the service will attempt to determine the content type of the file.
+      </description>
+    </context-param>
+
+    <context-param>
+      <param-name>maxrec</param-name>
+      <param-value>10000</param-value>
+      <description>
+        The default maximum number of records to be returned in a query.
+      </description>
+    </context-param>
+
+
+    <!-- Servlet definitions. -->
+
+    <!-- SIAPv1 (Simple Image Access Protocol Version 1) -->
+    <servlet>
+      <servlet-name>@app.name@-@db.table.name@</servlet-name>
+      <description>
+        Provides an example SIAPv1 interface to a catalog
+      </description>
+      <servlet-class>dalserver.siapv1.SiapServlet</servlet-class>
+      <init-param>
+        <param-name>serviceName</param-name>
+        <param-value>@app.name@-@db.table.name@</param-value>
+      </init-param>
+      <init-param>
+        <param-name>serviceClass</param-name>
+        <param-value>siapv1</param-value>
+      </init-param>
+      <init-param>
+        <param-name>jdbcUrl</param-name>
+        <param-value>@db.jdbc.url@</param-value>
+      </init-param>
+      <init-param>
+        <param-name>jdbcDriver</param-name>
+        <param-value>@db.jdbc.driver@</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbType</param-name>
+        <param-value>MySQL</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbName</param-name>
+        <param-value>@db.name@</param-value>
+      </init-param>
+      <init-param>
+        <param-name>tableName</param-name>
+        <param-value>@db.table.name@</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbUser</param-name>
+        <param-value>@db.run.user@</param-value>
+      </init-param>
+      <init-param>
+        <param-name>dbPassword</param-name>
+        <param-value>@db.run.pass@</param-value>
+      </init-param>
+      <init-param>
+        <param-name>columnDescFile</param-name>
+        <param-value>@cat.conf@</param-value>
+      </init-param>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>@app.name@-@db.table.name@</servlet-name>
+      <url-pattern>/@app.name@-@db.table.name@</url-pattern>
+    </servlet-mapping>
+
+</web-app>

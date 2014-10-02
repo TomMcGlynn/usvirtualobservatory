@@ -1,0 +1,13 @@
+DALServer-based Data Services
+----------------------------------
+
+Currently there is only one such service, the proxy SSAP service for the Jhu
+spectrum services.
+
+To implement your own service, simply add modified versions of the "*Service.java"
+and "*Servlet.java" files, and modify web/WEB-INF/web.xml to add the new service
+plus set any runtime configuration parameters.  Typing "ant" at the root directory
+will recompile the whole package including your new service.  "ant dist" will build
+a distribution in the "dist" subdirectory.  This builds a War file in dist
+containing the servlet, which one can deploy in a Java application server in
+various ways, e.g., by running the manager code in the Tomcat server.

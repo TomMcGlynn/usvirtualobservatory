@@ -1,0 +1,3341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  -  A description of a set of possible keywords that can appear in DAL
+  -  service response.  The keywords are presented in terms of parameters
+  -  and parameter groups.  This file is usually read in by the service
+  -  implementation at load-time to configure the service.
+  -
+  -  This file describes the columns for a SIA (Simple Image Access)
+  -  service response.
+  -
+  -  Syntax:
+  -  A keyword is described via a <param> element and its component data
+  -  are provided as child elements in two possible ways.
+  -
+  -  The first way is via a <summary> element, which optimizes for easy
+  -  authoring by hand.  The contents have a "name: value" format, e.g.:
+
+       name:          title
+       datatype:      char
+       arraysize:     *
+       utype:         Line.title
+       ucd:           em.line
+       description:   small description identifying the line
+
+  -  Each line within the summary tag contains one component of the keyword
+  -  metadata; an end-of-line character indicates the end of the value.  The
+  -  first colon in the line delimits the keyword metadata name from its value.
+  -  Spaces before the datum name, before and after the (first) colon, and
+  -  after the value (including the end-of-line character) are discarded.
+  -
+  -  The second way to specify this metadata is with individual child elements
+  -  named after the metadatum name:
+
+       <name>      title      </name>
+       <datatype>  char       </datatype>
+       <arraysize> *          </arraysize>
+       <utype>     Line.title </utype>
+       <ucd>       em.line    </ucd>
+       <description>
+          an appropriate but brief string that adequately describes
+          the line being presented in the current row to reasonably
+          informed consumer.
+       </description>
+
+  -  Like with the summary format, extra space is thrown away before being
+  -  used.  It is different in that values may contain internal end-of-line
+  -  characters (which are collapsed into a single space when parsed).
+  -
+  -  In either form, a metadatum can only be given once per parameter.  If a
+  -  metadatum is set by both the summary element and its own element, the
+  -  value given by the XML element takes precedence.  Any metadata not set
+  -  will be assumed to be undefined unless a default is specified (as below).
+  -
+  -  The following metadata can be set:
+  -    name           a short name of the keyword; this maps to the VOTABLE
+  -                      PARAM attribute, name.  If not provided, the default
+  -                      will be the value of "id" (if set) or "utype".
+  -    id             a globally unique name for the keyword; maps to the
+  -                      VOTABLE PARAM attribute, id.  If not provided, the
+  -                      default will be the value of "name" (if set) or
+  -                      "utype".
+  -    datatype       the computing data type for values associated with this
+  -                      parameter.  The default will be assumed to be "char".
+  -                      VOTABLE PARAM:  datatype.
+  -    arraysize      when given, indicates the shape of array values
+  -    canonicalunit  the value unit associated with this keyword according to
+  -                      the data model.  Default is the value of "unit"
+  -    unit           the value unit associated with this keyword for the
+  -                      purposes of this service.  Default is the value of
+  -                      "canonicalunit"
+  -    utype          the utype describing this keyword
+  -    ucd            the UCD describing this keyword
+  -    description    a human read-able description of the keyword's meaning
+  -    fits           The FITS keyword to use
+  -    cvs            the CVS keyword to use
+  -    hints          arbitrary processing hints
+  -    default        the default value
+  -
+  -  The metadata must include at a minimum (via explicitly setting it or
+  -  by default) a name.
+  -
+  -  A group is used to indicate that several parameters go together; these
+  -  are represented in a similar way.  The <group> element can contain a
+  -  <summary> child and/or individual metadata elements to set the group
+  -  properties.  It then includes the <param> element for each of the
+  -  parameters included in the group.  The following group metadata are
+  -  supported:
+  -    name           a short name of the group
+  -    id             a globally unique name for the group
+  -    utype          the utype describing this keyword
+  -    ucd            the UCD describing this keyword
+  -    description    a human read-able description of the keyword.
+  -
+  -
+  -->
+<keywords>
+
+<!-- ===================================================================
+  Spectrum Metadata
+  =================================================================== -->
+<param><summary>
+name: Field ID
+id: Field ID
+datatype: DataType
+arraysize: ArraySize
+unit: Unit
+utype: UTYPE
+ucd: UCD
+fits: FITS
+cvs: CSV
+hints: Hint
+default: Default
+</summary>
+  <description>
+    Description
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Query
+ucd: 
+fits: 
+cvs: 
+hints: Q
+default: 
+</summary>
+  <description>
+    Query Metadata
+  </description>
+</param>
+
+<param><summary>
+name: Score
+id: Score
+datatype: float
+arraysize: 
+unit: 
+utype: Query.Score
+ucd: 
+fits: 
+cvs: 
+hints: Q
+default: 
+</summary>
+  <description>
+    Degree of match to query parameters
+  </description>
+</param>
+
+<param><summary>
+name: Token
+id: Token
+datatype: char
+arraysize: *
+unit: 
+utype: Query.Token
+ucd: 
+fits: 
+cvs: 
+hints: Qp
+default: 
+</summary>
+  <description>
+    Continuation token for large queries
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Association
+ucd: 
+fits: 
+cvs: 
+hints: Q
+default: 
+</summary>
+  <description>
+    Association Metadata
+  </description>
+</param>
+
+<param><summary>
+name: AssocType
+id: AssocType
+datatype: char
+arraysize: *
+unit: 
+utype: Association.Type
+ucd: 
+fits: 
+cvs: 
+hints: Qp
+default: 
+</summary>
+  <description>
+    Type of association
+  </description>
+</param>
+
+<param><summary>
+name: AssocID
+id: AssocID
+datatype: char
+arraysize: *
+unit: 
+utype: Association.ID
+ucd: 
+fits: 
+cvs: 
+hints: Q
+default: 
+</summary>
+  <description>
+    Association identifier
+  </description>
+</param>
+
+<param><summary>
+name: AssocKey
+id: AssocKey
+datatype: char
+arraysize: *
+unit: 
+utype: Association.Key
+ucd: 
+fits: 
+cvs: 
+hints: Q
+default: 
+</summary>
+  <description>
+    Key used to distinguish association elements
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Access
+ucd: 
+fits: 
+cvs: 
+hints: Q
+default: 
+</summary>
+  <description>
+    Access Metadata
+  </description>
+</param>
+
+<param><summary>
+name: AcRef
+id: AcRef
+datatype: char
+arraysize: *
+unit: 
+utype: Access.Reference
+ucd: meta.ref.url
+fits: 
+cvs: 
+hints: Q
+default: 
+</summary>
+  <description>
+    URL used to access dataset
+  </description>
+</param>
+
+<param><summary>
+name: Format
+id: Format
+datatype: char
+arraysize: *
+unit: 
+utype: Access.Format
+ucd: 
+fits: 
+cvs: 
+hints: Q
+default: 
+</summary>
+  <description>
+    Content or MIME type of dataset
+  </description>
+</param>
+
+<param><summary>
+name: DatasetSize
+id: DatasetSize
+datatype: long
+arraysize: 
+unit: 
+utype: Access.Size
+ucd: 
+fits: 
+cvs: 
+hints: Q
+default: 
+</summary>
+  <description>
+    Estimated dataset size
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Protocol
+ucd: 
+fits: 
+cvs: 
+hints: h
+default: 
+</summary>
+  <description>
+    Protocol Metadata
+  </description>
+</param>
+
+<param><summary>
+name: XmlnsSsap
+id: XmlnsSsap
+datatype: 
+arraysize: 
+unit: 
+utype: ssa
+ucd: 
+fits: 
+cvs: 
+hints: Qhp
+default: http:www.ivoa.net/xml/DalSsap/v1.0
+</summary>
+  <description>
+    XML name space for SSA protocol
+  </description>
+</param>
+
+<param><summary>
+name: XmlnsSpec
+id: XmlnsSpec
+datatype: 
+arraysize: 
+unit: 
+utype: spec
+ucd: 
+fits: 
+cvs: 
+hints: hp
+default: http:www.ivoa.net/xml/SpectrumModel/v1.0
+</summary>
+  <description>
+    XML name space for Spectrum data model
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Spectrum
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    General Dataset Metadata
+  </description>
+</param>
+
+<param><summary>
+name: DataModel
+id: DataModel
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataModel
+ucd: 
+fits: VOCLASS
+cvs: 
+hints: qp
+default: Spectrum-1.0
+</summary>
+  <description>
+    Datamodel name and version
+  </description>
+</param>
+
+<param><summary>
+name: DatasetType
+id: DatasetType
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Type
+ucd: 
+fits: VOSEGT
+cvs: 
+hints: qp
+default: Spectrum
+</summary>
+  <description>
+    Dataset or segment type
+  </description>
+</param>
+
+<param><summary>
+name: DataLength
+id: DataLength
+datatype: long
+arraysize: 
+unit: 
+utype: Spectrum.Length
+ucd: meta.number
+fits: SIZE
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Number of points
+  </description>
+</param>
+
+<param><summary>
+name: TimeSI
+id: TimeSI
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.TimeSI
+ucd: 
+fits: TIMESDIM
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    SI factor and dimensions
+  </description>
+</param>
+
+<param><summary>
+name: SpectralSI
+id: SpectralSI
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.SpectralSI
+ucd: 
+fits: SPECSDIM
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    SI factor and dimensions
+  </description>
+</param>
+
+<param><summary>
+name: FluxSI
+id: FluxSI
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.FluxSI
+ucd: 
+fits: FLUXSDIM
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    SI factor and dimensions
+  </description>
+</param>
+
+<param><summary>
+name: SpectralAxis
+id: SpectralAxis
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.SpectralAxis
+ucd: 
+fits: 
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Table column containing spectral coord
+  </description>
+</param>
+
+<param><summary>
+name: FluxAxis
+id: FluxAxis
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.FluxAxis
+ucd: 
+fits: 
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Table column containing flux values
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: DataID
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Dataset Identification Metadata
+  </description>
+</param>
+
+<param><summary>
+name: Title
+id: Title
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataID.Title
+ucd: meta.title;meta.dataset
+fits: TITLE
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Dataset Title
+  </description>
+</param>
+
+<param><summary>
+name: Creator
+id: Creator
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataID.Creator
+ucd: 
+fits: AUTHOR
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Dataset creator
+  </description>
+</param>
+
+<param><summary>
+name: Collection
+id: Collection
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataID.Collection
+ucd: 
+fits: COLLECT
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Data collection to which dataset belongs
+  </description>
+</param>
+
+<param><summary>
+name: DatasetID
+id: DatasetID
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataID.DatasetID
+ucd: meta.id;meta.dataset
+fits: DS_IDENT
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    IVOA Dataset ID
+  </description>
+</param>
+
+<param><summary>
+name: CreatorDID
+id: CreatorDID
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataID.CreatorDID
+ucd: meta.id
+fits: CR_IDENT
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Creator's ID for the dataset
+  </description>
+</param>
+
+<param><summary>
+name: CreatorDate
+id: CreatorDate
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataID.Date
+ucd: time;meta.dataset
+fits: DATE
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Data processing/creation date
+  </description>
+</param>
+
+<param><summary>
+name: CreatorVersion
+id: CreatorVersion
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataID.Version
+ucd: meta.version;meta.dataset
+fits: VERSION
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Version of dataset
+  </description>
+</param>
+
+<param><summary>
+name: Instrument
+id: Instrument
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataID.Instrument
+ucd: meta.id;instr
+fits: INSTRUME
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Instrument name
+  </description>
+</param>
+
+<param><summary>
+name: Bandpass
+id: Bandpass
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataID.Bandpass
+ucd: instr.bandpass
+fits: SPECBAND
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Band as in RSM Coverage.Spectral
+  </description>
+</param>
+
+<param><summary>
+name: DataSource
+id: DataSource
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataID.DataSource
+ucd: 
+fits: DSSOURCE
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Original source of the data
+  </description>
+</param>
+
+<param><summary>
+name: CreationType
+id: CreationType
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataID.CreationType
+ucd: 
+fits: CRETYPE
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Dataset creation type
+  </description>
+</param>
+
+<param><summary>
+name: CreatorLogo
+id: CreatorLogo
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataID.Logo
+ucd: meta.ref.url
+fits: VOLOGO
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    URL for creator logo
+  </description>
+</param>
+
+<param><summary>
+name: Contributor
+id: Contributor
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.DataID.Contributor
+ucd: 
+fits: CONTRIB
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Contributor
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Curation
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Curation Metadata
+  </description>
+</param>
+
+<param><summary>
+name: Publisher
+id: Publisher
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Curation.Publisher
+ucd: meta.curation
+fits: VOPUB
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Dataset publisher
+  </description>
+</param>
+
+<param><summary>
+name: PublisherID
+id: PublisherID
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Curation.PublisherID
+ucd: meta.ref.url;meta.curation
+fits: VOPUBID
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    URI for VO Publisher
+  </description>
+</param>
+
+<param><summary>
+name: PublisherDID
+id: PublisherDID
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Curation.PublisherDID
+ucd: meta.ref.url;meta.curation
+fits: DS_IDPUB
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Publisher's ID for the dataset ID
+  </description>
+</param>
+
+<param><summary>
+name: PublisherDate
+id: PublisherDate
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Curation.Date
+ucd: 
+fits: VODATE
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Date curated dataset last modified
+  </description>
+</param>
+
+<param><summary>
+name: PublisherVersion
+id: PublisherVersion
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Curation.Version
+ucd: meta.version;meta.curation
+fits: VOVER
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Publisher's version of the dataset
+  </description>
+</param>
+
+<param><summary>
+name: Rights
+id: Rights
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Curation.Rights
+ucd: 
+fits: VORIGHTS
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Restrictions on data access
+  </description>
+</param>
+
+<param><summary>
+name: Reference
+id: Reference
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Curation.Reference
+ucd: meta.bib.bibcode
+fits: VOREF
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    URL or Bibcode for documentation
+  </description>
+</param>
+
+<param><summary>
+name: ContactName
+id: ContactName
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Curation.Contact.Name
+ucd: meta.bib.author;meta.curation
+fits: CONTACT
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Contact name
+  </description>
+</param>
+
+<param><summary>
+name: ContactEmail
+id: ContactEmail
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Curation.Contact.Email
+ucd: meta.ref.url;meta.email
+fits: EMAIL
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Contact email
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Target
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Target Metadata
+  </description>
+</param>
+
+<param><summary>
+name: TargetName
+id: TargetName
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Target.Name
+ucd: meta.id;src
+fits: OBJECT
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Target name
+  </description>
+</param>
+
+<param><summary>
+name: TargetDescription
+id: TargetDescription
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Target.Description
+ucd: meta.note;src
+fits: OBJDESC
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Target description
+  </description>
+</param>
+
+<param><summary>
+name: TargetClass
+id: TargetClass
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Target.Class
+ucd: src.class
+fits: SRCCLASS
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Object class of observed target
+  </description>
+</param>
+
+<param><summary>
+name: TargetPos
+id: TargetPos
+datatype: double
+arraysize: 2
+unit: deg
+utype: Spectrum.Target.Pos
+ucd: pos.eq;src
+fits: RA_TARG DEC_TARG
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Target RA and Dec
+  </description>
+</param>
+
+<param><summary>
+name: SpectralClass
+id: SpectralClass
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Target.SpectralClass
+ucd: src.spType
+fits: SPECTYPE
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Object spectral class
+  </description>
+</param>
+
+<param><summary>
+name: Redshift
+id: Redshift
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Target.Redshift
+ucd: src.redshift
+fits: REDSHIFT
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Target redshift
+  </description>
+</param>
+
+<param><summary>
+name: VarAmpl
+id: VarAmpl
+datatype: float
+arraysize: 
+unit: 
+utype: Spectrum.Target.VarAmpl
+ucd: src.var.amplitude
+fits: TARGVAR
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Target variability amplitude (typical)
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Derived
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Derived Metadata
+  </description>
+</param>
+
+<param><summary>
+name: DerivedSNR
+id: DerivedSNR
+datatype: float
+arraysize: 
+unit: 
+utype: Spectrum.Derived.SNR
+ucd: stat.snr
+fits: DER_SNR
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Signal-to-noise for spectrum
+  </description>
+</param>
+
+<param><summary>
+name: DerivedRedshift
+id: DerivedRedshift
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Derived.Redshift.Value
+ucd: 
+fits: DER_Z
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Measured redshift for spectrum
+  </description>
+</param>
+
+<param><summary>
+name: RedshiftStatError
+id: RedshiftStatError
+datatype: float
+arraysize: 
+unit: 
+utype: Spectrum.Derived.Redshift.StatError
+ucd: stat.error;src.redshift
+fits: DER_ZERR
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Error on measured redshift
+  </description>
+</param>
+
+<param><summary>
+name: RedshiftConfidence
+id: RedshiftConfidence
+datatype: float
+arraysize: 
+unit: 
+utype: Spectrum.Derived.Redshift.Confidence
+ucd: 
+fits: DER_CONF
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Confidence value on redshift
+  </description>
+</param>
+
+<param><summary>
+name: DerivedVarAmpl
+id: DerivedVarAmpl
+datatype: float
+arraysize: 
+unit: 
+utype: Spectrum.Derived.VarAmpl
+ucd: src.var.amplitude;arith.ratio
+fits: DER_VAR
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Variability amplitude as fraction of mean
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: CoordSys
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Coordinate System Metadata
+  </description>
+</param>
+
+<param><summary>
+name: CoordSysID
+id: CoordSysID
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.CoordSys.ID
+ucd: 
+fits: VOCSID
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    ID string for coordinate system
+  </description>
+</param>
+
+<param><summary>
+name: SpaceFrameName
+id: SpaceFrameName
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.CoordSys.SpaceFrame.Name
+ucd: 
+fits: RADECSYS
+cvs: 
+hints: qp
+default: 
+</summary>
+  <description>
+    Spatial coordinate frame name
+  </description>
+</param>
+
+<param><summary>
+name: SpaceFrameUcd
+id: SpaceFrameUcd
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.CoordSys.SpaceFrame.Ucd
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Space frame UCD
+  </description>
+</param>
+
+<param><summary>
+name: SpaceFrameRefPos
+id: SpaceFrameRefPos
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.CoordSys.SpaceFrame.RefPos
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Origin of SpaceFrame
+  </description>
+</param>
+
+<param><summary>
+name: SpaceFrameEquinox
+id: SpaceFrameEquinox
+datatype: double
+arraysize: 
+unit: y
+utype: Spectrum.CoordSys.SpaceFrame.Equinox
+ucd: time.equinox;pos.frame
+fits: EQUINOX
+cvs: 
+hints: qp
+default: 
+</summary>
+  <description>
+    Equinox
+  </description>
+</param>
+
+<param><summary>
+name: TimeFrameName
+id: TimeFrameName
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.CoordSys.TimeFrame.Name
+ucd: time.scale
+fits: TIMESYS
+cvs: 
+hints: qp
+default: 
+</summary>
+  <description>
+    Timescale
+  </description>
+</param>
+
+<param><summary>
+name: TimeFrameUcd
+id: TimeFrameUcd
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.CoordSys.TimeFrame.Ucd
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Time frame UCD
+  </description>
+</param>
+
+<param><summary>
+name: TimeFrameZero
+id: TimeFrameZero
+datatype: double
+arraysize: 
+unit: d
+utype: Spectrum.CoordSys.TimeFrame.Zero
+ucd: time;arith.zp
+fits: MJDREF
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Zero point of timescale in MJD
+  </description>
+</param>
+
+<param><summary>
+name: TimeFrameRefPos
+id: TimeFrameRefPos
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.CoordSys.TimeFrame.RefPos
+ucd: time.scale
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Location for times of photon arrival
+  </description>
+</param>
+
+<param><summary>
+name: SpectralFrameName
+id: SpectralFrameName
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.CoordSys.SpectralFrame.Name
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral frame name
+  </description>
+</param>
+
+<param><summary>
+name: SpectralFrameUcd
+id: SpectralFrameUcd
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.CoordSys.SpectralFrame.Ucd
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral frame UCD
+  </description>
+</param>
+
+<param><summary>
+name: SpectralFrameRefPos
+id: SpectralFrameRefPos
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.CoordSys.SpectralFrame.RefPos
+ucd: 
+fits: SPECSYS
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral frame origin
+  </description>
+</param>
+
+<param><summary>
+name: SpectralFrameRedshift
+id: SpectralFrameRedshift
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.CoordSys.SpectralFrame.Redshift
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Redshift value used if restframe corrected
+  </description>
+</param>
+
+<param><summary>
+name: RedshiftFrameName
+id: RedshiftFrameName
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.CoordSys.RedshiftFrame.Name
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Redshift frame name
+  </description>
+</param>
+
+<param><summary>
+name: DopplerDefinition
+id: DopplerDefinition
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.CoordSys.RedshiftFrame.DopplerDefinition
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Type of redshift
+  </description>
+</param>
+
+<param><summary>
+name: RedshiftFrameRefPos
+id: RedshiftFrameRefPos
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.CoordSys.RedshiftFrame.RefPos
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Redshift frame origin
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Char.SpatialAxis
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Spatial Axis Characterization
+  </description>
+</param>
+
+<param><summary>
+name: SpatialAxisName
+id: SpatialAxisName
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.SpatialAxis.Name
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Name for spatial axis
+  </description>
+</param>
+
+<param><summary>
+name: SpatialAxisUcd
+id: SpatialAxisUcd
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.SpatialAxis.Ucd
+ucd: 
+fits: SKY_UCD
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    UCD for spatial coord
+  </description>
+</param>
+
+<param><summary>
+name: SpatialAxisUnit
+id: SpatialAxisUnit
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.SpatialAxis.Unit
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Unit for spatial coord
+  </description>
+</param>
+
+<param><summary>
+name: SpatialLocation
+id: SpatialLocation
+datatype: double
+arraysize: 2
+unit: deg
+utype: Spectrum.Char.SpatialAxis.Coverage.Location.Value
+ucd: pos.eq
+fits: RA DEC
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Spatial Position
+  </description>
+</param>
+
+<param><summary>
+name: SpatialExtent
+id: SpatialExtent
+datatype: double
+arraysize: 
+unit: deg
+utype: Spectrum.Char.SpatialAxis.Coverage.Bounds.Extent
+ucd: instr.fov
+fits: APERTURE
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Aperture angular size
+  </description>
+</param>
+
+<param><summary>
+name: SpatialArea
+id: SpatialArea
+datatype: char
+arraysize: *
+unit: deg
+utype: Spectrum.Char.SpatialAxis.Coverage.Support.Area
+ucd: 
+fits: REGION
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Aperture region
+  </description>
+</param>
+
+<param><summary>
+name: SpatialSupportExtent
+id: SpatialSupportExtent
+datatype: double
+arraysize: 
+unit: sqdeg
+utype: Spectrum.Char.SpatialAxis.Coverage.Support.Extent
+ucd: instr.fov
+fits: AREA
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Field of view area
+  </description>
+</param>
+
+<param><summary>
+name: SpatialSampleExtent
+id: SpatialSampleExtent
+datatype: float
+arraysize: 
+unit: 
+utype: Spectrum.Char.SpatialAxis.SamplingPrecision.SampleExtent
+ucd: instr.pixel
+fits: 
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Spatial bin size
+  </description>
+</param>
+
+<param><summary>
+name: SpatialFillFactor
+id: SpatialFillFactor
+datatype: float
+arraysize: 
+unit: deg
+utype: Spectrum.Char.SpatialAxis.SamplingPrecision.SamplingPrecisionRefVal.FillFactor
+ucd: stat.fill;pos.eq
+fits: SKY_FILL
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Spatial sampling filling factor
+  </description>
+</param>
+
+<param><summary>
+name: SpatialStatError
+id: SpatialStatError
+datatype: double
+arraysize: 
+unit: deg
+utype: Spectrum.Char.SpatialAxis.Accuracy.StatError
+ucd: stat.error;pos.eq
+fits: SKY_ERR
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Astrometric statistical error
+  </description>
+</param>
+
+<param><summary>
+name: SpatialSysError
+id: SpatialSysError
+datatype: double
+arraysize: 
+unit: deg
+utype: Spectrum.Char.SpatialAxis.Accuracy.SysError
+ucd: stat.error.sys;pos.eq
+fits: SKY_SYE
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Astrometric systematic error
+  </description>
+</param>
+
+<param><summary>
+name: SpatialCalibration
+id: SpatialCalibration
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.SpatialAxis.Calibration
+ucd: meta.code.qual
+fits: SKY_CAL
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Type of spatial coord calibration
+  </description>
+</param>
+
+<param><summary>
+name: SpatialResolution
+id: SpatialResolution
+datatype: double
+arraysize: 
+unit: deg
+utype: Spectrum.Char.SpatialAxis.Resolution
+ucd: pos.angResolution
+fits: SKY_RES
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Spatial resolution of data
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: 
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Char.SpectralAxis
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral Axis Characterization
+  </description>
+</param>
+
+<param><summary>
+name: SpectralAxisName
+id: SpectralAxisName
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.SpectralAxis.Name
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Name for spectral axis
+  </description>
+</param>
+
+<param><summary>
+name: SpectralAxisUcd
+id: SpectralAxisUcd
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.SpectralAxis.Ucd
+ucd: 
+fits: 
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    UCD for spectral coord
+  </description>
+</param>
+
+<param><summary>
+name: SpectralAxisUnit
+id: SpectralAxisUnit
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.SpectralAxis.Unit
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Unit for spectral coord
+  </description>
+</param>
+
+<param><summary>
+name: SpectralLocation
+id: SpectralLocation
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.SpectralAxis.Coverage.Location.Value
+ucd: instr.bandpass
+fits: SPEC_VAL
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Spectral coord value
+  </description>
+</param>
+
+<param><summary>
+name: SpectralExtent
+id: SpectralExtent
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.SpectralAxis.Coverage.Bounds.Extent
+ucd: instr.bandwidth
+fits: SPEC_BW
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Width of spectrum
+  </description>
+</param>
+
+<param><summary>
+name: SpectralStart
+id: SpectralStart
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.SpectralAxis.Coverage.Bounds.Start
+ucd: em;stat.min
+fits: TDMIN
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Start in spectral coordinate
+  </description>
+</param>
+
+<param><summary>
+name: SpectralStop
+id: SpectralStop
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.SpectralAxis.Coverage.Bounds.Stop
+ucd: em;stat.max
+fits: TDMAX
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Stop in spectral coordinate
+  </description>
+</param>
+
+<param><summary>
+name: SpectralSupportExtent
+id: SpectralSupportExtent
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.SpectralAxis.Coverage.Support.Extent
+ucd: instr.bandwidth
+fits: 
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Effective width of spectrum
+  </description>
+</param>
+
+<param><summary>
+name: SpectralSampleExtent
+id: SpectralSampleExtent
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.SpectralAxis.SamplingPrecision.SampleExtent
+ucd: em;spect.binSize
+fits: 
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Wavelength bin size
+  </description>
+</param>
+
+<param><summary>
+name: SpectralFillFactor
+id: SpectralFillFactor
+datatype: float
+arraysize: 
+unit: 
+utype: Spectrum.Char.SpectralAxis.SamplingPrecision.SamplingPrecisionRefVal.FillFactor
+ucd: stat.fill;em
+fits: SPEC_FIL
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Spectral sampling filling factor
+  </description>
+</param>
+
+<param><summary>
+name: SpectralBinSize
+id: SpectralBinSize
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.SpectralAxis.Accuracy.BinSize
+ucd: em;spec.binSize
+fits: SPEC_BIN
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Spectral coord bin size
+  </description>
+</param>
+
+<param><summary>
+name: SpectralStatError
+id: SpectralStatError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.SpectralAxis.Accuracy.StatError
+ucd: stat.error;em
+fits: SPEC_ERR
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Spectral coord statistical error
+  </description>
+</param>
+
+<param><summary>
+name: SpectralSysError
+id: SpectralSysError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.SpectralAxis.Accuracy.SysError
+ucd: stat.error.sys;em
+fits: SPEC_SYE
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Spectral coord systematic error
+  </description>
+</param>
+
+<param><summary>
+name: SpectralCalibration
+id: SpectralCalibration
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.SpectralAxis.Calibration
+ucd: meta.code.qual
+fits: SPEC_CAL
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Type of spectral coord calibration
+  </description>
+</param>
+
+<param><summary>
+name: SpectralResolution
+id: SpectralResolution
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.SpectralAxis.Resolution
+ucd: spect.resolution;em
+fits: SPEC_RES
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Spectral resolution FWHM
+  </description>
+</param>
+
+<param><summary>
+name: SpectralResPower
+id: SpectralResPower
+datatype: float
+arraysize: 
+unit: 
+utype: Spectrum.Char.SpectralAxis.ResPower
+ucd: spect.resolution
+fits: SPEC_RP
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Spectral resolving power
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: 
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Char.TimeAxis
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Time Axis Characterization
+  </description>
+</param>
+
+<param><summary>
+name: TimeAxisName
+id: TimeAxisName
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.TimeAxis.Name
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Name for time axis
+  </description>
+</param>
+
+<param><summary>
+name: TimeAxisUcd
+id: TimeAxisUcd
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.TimeAxis.Ucd
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    UCD for time
+  </description>
+</param>
+
+<param><summary>
+name: TimeAxisUnit
+id: TimeAxisUnit
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.TimeAxis.Unit
+ucd: 
+fits: TIMEUNIT
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Unit for time
+  </description>
+</param>
+
+<param><summary>
+name: TimeLocation
+id: TimeLocation
+datatype: double
+arraysize: 
+unit: d
+utype: Spectrum.Char.TimeAxis.Coverage.Location.Value
+ucd: time.epoch
+fits: DATE-OBS
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Midpoint of exposure on MJD scale
+  </description>
+</param>
+
+<param><summary>
+name: TimeExtent
+id: TimeExtent
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.TimeAxis.Coverage.Bounds.Extent
+ucd: time.duration
+fits: TELAPSE
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Total exposure time
+  </description>
+</param>
+
+<param><summary>
+name: TimeStart
+id: TimeStart
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.TimeAxis.Coverage.Bounds.Start
+ucd: time.start;obs.exposure
+fits: TSTART
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Start time
+  </description>
+</param>
+
+<param><summary>
+name: TimeStop
+id: TimeStop
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.TimeAxis.Coverage.Bounds.Stop
+ucd: time.stop;obs.exposure
+fits: TSTOP
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Stop time
+  </description>
+</param>
+
+<param><summary>
+name: TimeSupportExtent
+id: TimeSupportExtent
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.TimeAxis.Coverage.Support.Extent
+ucd: time.duration;obs.exposure
+fits: EXPOSURE
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Effective exposure time
+  </description>
+</param>
+
+<param><summary>
+name: TimeSampleExtent
+id: TimeSampleExtent
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.TimeAxis.SamplingPrecision.SampleExtent
+ucd: time.interval
+fits: 
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Time bin size
+  </description>
+</param>
+
+<param><summary>
+name: TimeFillFactor
+id: TimeFillFactor
+datatype: float
+arraysize: 
+unit: 
+utype: Spectrum.Char.TimeAxis.SamplingPrecision.SamplingPrecisionRefVal.FillFactor
+ucd: time;stat.fill;time
+fits: DTCOR
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Time sampling filling factor
+  </description>
+</param>
+
+<param><summary>
+name: TimeBinSize
+id: TimeBinSize
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.TimeAxis.Accuracy.BinSize
+ucd: time.interval
+fits: TIMEDEL
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Time bin size
+  </description>
+</param>
+
+<param><summary>
+name: TimeStatError
+id: TimeStatError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.TimeAxis.Accuracy.StatError
+ucd: stat.error;time
+fits: TIME_ERR
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Time coord statistical error
+  </description>
+</param>
+
+<param><summary>
+name: TimeSysError
+id: TimeSysError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.TimeAxis.Accuracy.SysError
+ucd: stat.error.sys;time
+fits: TME_SYE
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Time coord systematic error
+  </description>
+</param>
+
+<param><summary>
+name: TimeCalibration
+id: TimeCalibration
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.TimeAxis.Calibration
+ucd: meta.code.qual
+fits: TIME_CAL
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Type of coord calibration
+  </description>
+</param>
+
+<param><summary>
+name: TimeResolution
+id: TimeResolution
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.TimeAxis.Resolution
+ucd: time.resolution
+fits: TIME_RES
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: 
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Char.FluxAxis
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Flux Axis Characterization
+  </description>
+</param>
+
+<param><summary>
+name: FluxAxisName
+id: FluxAxisName
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.FluxAxis.Name
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Name for flux
+  </description>
+</param>
+
+<param><summary>
+name: FluxAxisUcd
+id: FluxAxisUcd
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.FluxAxis.Ucd
+ucd: 
+fits: 
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    UCD for flux
+  </description>
+</param>
+
+<param><summary>
+name: FluxAxisUnit
+id: FluxAxisUnit
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.FluxAxis.Unit
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Unit for flux
+  </description>
+</param>
+
+<param><summary>
+name: FluxStatError
+id: FluxStatError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.FluxAxis.Accuracy.StatError
+ucd: stat.error;phot.flux.density;em
+fits: STAT_ERR
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Flux statistical error
+  </description>
+</param>
+
+<param><summary>
+name: FluxSysError
+id: FluxSysError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Char.FluxAxis.Accuracy.SysError
+ucd: stat.error.sys;phot.flux.density;em
+fits: SYS_ERR
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Flux systematic error
+  </description>
+</param>
+
+<param><summary>
+name: FluxCalibration
+id: FluxCalibration
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Char.FluxAxis.Calibration
+ucd: 
+fits: FLUX_CAL
+cvs: 
+hints: q
+default: 
+</summary>
+  <description>
+    Type of flux calibration
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: 
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Data.SpectralAxis
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral Axis Data
+  </description>
+</param>
+
+<param><summary>
+name: DataSpectralValue
+id: DataSpectralValue
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.SpectralAxis.Value
+ucd: 
+fits: WAVE ENER FREQ
+cvs: 1;@ID
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral coordinates for points
+  </description>
+</param>
+
+<param><summary>
+name: DataSpectralUcd
+id: DataSpectralUcd
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Data.SpectralAxis.Ucd
+ucd: 
+fits: 
+cvs: 
+hints: p
+default: 
+</summary>
+  <description>
+    UCD for spectral coord
+  </description>
+</param>
+
+<param><summary>
+name: DataSpectralUnit
+id: DataSpectralUnit
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Data.SpectralAxis.Unit
+ucd: 
+fits: 
+cvs: 
+hints: p
+default: 
+</summary>
+  <description>
+    Unit for spectral coord
+  </description>
+</param>
+
+<param><summary>
+name: DataSpectralBinSize
+id: DataSpectralBinSize
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.SpectralAxis.Accuracy.BinSize
+ucd: em;spect.binSize
+fits: WAVE_BIN ENER_BIN FREQ_BIN
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral coord bin size
+  </description>
+</param>
+
+<param><summary>
+name: DataSpectralBinLow
+id: DataSpectralBinLow
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.SpectralAxis.Accuracy.BinLow
+ucd: em;stat.min
+fits: WAVE_LO ENER_LO FREQ_LO
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral coord bin lower end
+  </description>
+</param>
+
+<param><summary>
+name: DataSpectralBinHigh
+id: DataSpectralBinHigh
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.SpectralAxis.Accuracy.BinHigh
+ucd: em;stat.max
+fits: WAVE_HI ENER_HI FREQ_HI
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral coord bin upper end
+  </description>
+</param>
+
+<param><summary>
+name: DataSpectralStatError
+id: DataSpectralStatError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.SpectralAxis.Accuracy.StatError
+ucd: em;stat.error
+fits: WAVE_ERR ENER_ERR FREQ_ERR
+cvs: 3;@ID
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral coord measurement error
+  </description>
+</param>
+
+<param><summary>
+name: DataSpectralStatErrLow
+id: DataSpectralStatErrLow
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.SpectralAxis.Accuracy.StatErrLow
+ucd: em;stat.error;stat.min
+fits: WAVE_ELO ENER_ELO FREQ_ELO
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral coord measurement lower error
+  </description>
+</param>
+
+<param><summary>
+name: DataSpectralStatErrHigh
+id: DataSpectralStatErrHigh
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.SpectralAxis.Accuracy.StatErrHigh
+ucd: em;stat.error;stat.max
+fits: WAVE_EHI ENER_EHI FREQ_EHI
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral coord measurement upper error
+  </description>
+</param>
+
+<param><summary>
+name: DataSpectralSysError
+id: DataSpectralSysError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.SpectralAxis.Accuracy.SysError
+ucd: em;stat.error
+fits: WAVE_SYE ENER_SYE FREQ_SYE
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral coord systematic error
+  </description>
+</param>
+
+<param><summary>
+name: DataSpectralResolution
+id: DataSpectralResolution
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.SpectralAxis.Resolution
+ucd: spect.resolution
+fits: WAVE_RES ENER_RES FREQ_RES
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Spectral resolution FWHM
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Data.FluxAxis
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Flux Axis Data
+  </description>
+</param>
+
+<param><summary>
+name: DataFluxValue
+id: DataFluxValue
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.FluxAxis.Value
+ucd: 
+fits: FLUX
+cvs: 2;@ID
+hints: 
+default: 
+</summary>
+  <description>
+    Flux values for points
+  </description>
+</param>
+
+<param><summary>
+name: DataFluxUcd
+id: DataFluxUcd
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Data.FluxAxis.Ucd
+ucd: 
+fits: 
+cvs: 
+hints: p
+default: 
+</summary>
+  <description>
+    UCD for flux
+  </description>
+</param>
+
+<param><summary>
+name: DataFluxUnit
+id: DataFluxUnit
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Data.FluxAxis.Unit
+ucd: 
+fits: 
+cvs: 
+hints: p
+default: 
+</summary>
+  <description>
+    Unit for flux
+  </description>
+</param>
+
+<param><summary>
+name: DataFluxStatError
+id: DataFluxStatError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.FluxAxis.Accuracy.StatError
+ucd: phot.flux.density;em;stat.error
+fits: ERR
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Flux symmetric statistical error
+  </description>
+</param>
+
+<param><summary>
+name: DataFluxStatErrLow
+id: DataFluxStatErrLow
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.FluxAxis.Accuracy.StatErrLow
+ucd: phot.flux.density;em;stat.error;stat.min
+fits: ERR_LO
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Flux lower error
+  </description>
+</param>
+
+<param><summary>
+name: DataFluxStatErrHigh
+id: DataFluxStatErrHigh
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.FluxAxis.Accuracy.StatErrHigh
+ucd: phot.flux.density;em;stat.error;stat.max
+fits: ERR_HI
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Flux upper error
+  </description>
+</param>
+
+<param><summary>
+name: DataFluxSysError
+id: DataFluxSysError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.FluxAxis.Accuracy.SysError
+ucd: phot.flux.density;em;stat.error.sys
+fits: SYS_ERR
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Flux systematic error
+  </description>
+</param>
+
+<param><summary>
+name: DataFluxQuality
+id: DataFluxQuality
+datatype: long
+arraysize: 
+unit: 
+utype: Spectrum.Data.FluxAxis.Quality
+ucd: meta.code.qual;phot.flux.density;em
+fits: QUALITY
+cvs: 4;@ID
+hints: 
+default: 
+</summary>
+  <description>
+    Flux measurement quality mask
+  </description>
+</param>
+
+<param><summary>
+name: DataFluxQualityDesc
+id: DataFluxQualityDesc
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Data.FluxAxis.Quality.n
+ucd: 
+fits: 
+cvs: 
+hints: p
+default: 
+</summary>
+  <description>
+    Meaning of quality value
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Data.TimeAxis
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Time Axis Data
+  </description>
+</param>
+
+<param><summary>
+name: DataTimeValue
+id: DataTimeValue
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.TimeAxis.Value
+ucd: 
+fits: TIME
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Time coordinates for points
+  </description>
+</param>
+
+<param><summary>
+name: DataTimeUcd
+id: DataTimeUcd
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Data.TimeAxis.Ucd
+ucd: 
+fits: 
+cvs: 
+hints: p
+default: 
+</summary>
+  <description>
+    UCD for time
+  </description>
+</param>
+
+<param><summary>
+name: DataTimeUnit
+id: DataTimeUnit
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Data.TimeAxis.Unit
+ucd: 
+fits: 
+cvs: 
+hints: p
+default: 
+</summary>
+  <description>
+    Unit for time
+  </description>
+</param>
+
+<param><summary>
+name: DataTimeBinSize
+id: DataTimeBinSize
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.TimeAxis.Accuracy.BinSize
+ucd: time.interval
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Time bin size
+  </description>
+</param>
+
+<param><summary>
+name: DataTimeBinLow
+id: DataTimeBinLow
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.TimeAxis.Accuracy.BinLow
+ucd: time;stat.min
+fits: TIME_LO
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Time bin start
+  </description>
+</param>
+
+<param><summary>
+name: DataTimeBinHigh
+id: DataTimeBinHigh
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.TimeAxis.Accuracy.BinHigh
+ucd: time;stat.max
+fits: TIME_HI
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Time bin stop
+  </description>
+</param>
+
+<param><summary>
+name: DataTimeStatError
+id: DataTimeStatError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.TimeAxis.Accuracy.StatError
+ucd: time;stat.error
+fits: TIME_ERR
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Time coord measurement statistical error
+  </description>
+</param>
+
+<param><summary>
+name: DataTimeStatErrLow
+id: DataTimeStatErrLow
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.TimeAxis.Accuracy.StatErrLow
+ucd: time;stat.error;stat.min
+fits: TIME_ELO
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Time coord measurement lower error
+  </description>
+</param>
+
+<param><summary>
+name: DataTimeStatErrHigh
+id: DataTimeStatErrHigh
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.TimeAxis.Accuracy.StatErrHigh
+ucd: time;stat.error;stat.max
+fits: TIME_EHI
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Time coord measurement upper error
+  </description>
+</param>
+
+<param><summary>
+name: DataTimeSysError
+id: DataTimeSysError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.TimeAxis.Accuracy.SysError
+ucd: time;stat.error.sys
+fits: TIME_SYE
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Time coord measurement systematic error
+  </description>
+</param>
+
+<param><summary>
+name: DataTimeResolution
+id: DataTimeResolution
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.TimeAxis.Resolution
+ucd: time.resolution
+fits: TIME_RES
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Temporal resolution FWHM
+  </description>
+</param>
+
+<param><summary>
+name: 
+id: 
+datatype: 
+arraysize: 
+unit: 
+utype: Data.BackgroundModel
+ucd: 
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Background Model Data
+  </description>
+</param>
+
+<param><summary>
+name: DataBkgModelValue
+id: DataBkgModelValue
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.BackgroundModel.Value
+ucd: 
+fits: BGFLUX
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Flux values for points
+  </description>
+</param>
+
+<param><summary>
+name: DataBkgModelUcd
+id: DataBkgModelUcd
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Data.BackgroundModel.Ucd
+ucd: 
+fits: 
+cvs: 
+hints: p
+default: 
+</summary>
+  <description>
+    UCD for background flux
+  </description>
+</param>
+
+<param><summary>
+name: DataBkgModelUnit
+id: DataBkgModelUnit
+datatype: char
+arraysize: *
+unit: 
+utype: Spectrum.Data.BackgroundModel.Unit
+ucd: 
+fits: 
+cvs: 
+hints: p
+default: 
+</summary>
+  <description>
+    Unit for background flux
+  </description>
+</param>
+
+<param><summary>
+name: DataBkgModelStatError
+id: DataBkgModelStatError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.BackgroundModel.Accuracy.StatError
+ucd: phot.flux.density;em;stat.error
+fits: 
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Background model symmetric error
+  </description>
+</param>
+
+<param><summary>
+name: DataBkgModelStatErrLow
+id: DataBkgModelStatErrLow
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.BackgroundModel.Accuracy.StatErrLow
+ucd: phot.flux.density;em;stat.error;stat.min
+fits: BG_ELO
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Background model lower error
+  </description>
+</param>
+
+<param><summary>
+name: DataBkgModelStatErrHigh
+id: DataBkgModelStatErrHigh
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.BackgroundModel.Accuracy.StatErrHigh
+ucd: phot.flux.density;em;stat.error;stat.max
+fits: BG_EHI
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Background model upper error
+  </description>
+</param>
+
+<param><summary>
+name: DataBkgModelSysError
+id: DataBkgModelSysError
+datatype: double
+arraysize: 
+unit: 
+utype: Spectrum.Data.BackgroundModel.Accuracy.SysError
+ucd: phot.flux.density;em;stat.error.sys
+fits: BG_SYE
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Background model systematic error
+  </description>
+</param>
+
+<param><summary>
+name: DataBkgModelQuality
+id: DataBkgModelQuality
+datatype: long
+arraysize: 
+unit: 
+utype: Spectrum.Data.BackgroundModel.Quality
+ucd: meta.code.qual;phot.flux.density;em
+fits: BGQUAL
+cvs: 
+hints: 
+default: 
+</summary>
+  <description>
+    Background model quality mask
+  </description>
+</param>
+
+</keywords>

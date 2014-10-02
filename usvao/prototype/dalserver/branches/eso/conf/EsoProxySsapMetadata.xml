@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE xmlns="http://www.ivoa.net/xml/VOTable/v1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.1 http://www.ivoa.net/xml/VOTable/v1.1" version="1.1">
+	
+<RESOURCE type="results">
+<DESCRIPTION>
+          
+	 This document describes the Simple Spectrum Access (SSA) interface to 
+	  a collection of ESO spectra.
+	  
+          This service was implemented at ESO using the DALServer package 
+          developed at NROA by D. Tody.
+</DESCRIPTION>
+
+<INFO name="QUERY_STATUS" value="OK">Successful metadata query</INFO>
+<INFO name="SERVICE_PROTOCOL" value="1.00">SSAP</INFO>
+
+
+<!-- mandatory input parameters -->
+
+<PARAM name="INPUT:POS" value="" datatype="char" arraysize="*">
+    <DESCRIPTION>
+	The center of the region of interest.
+	The coordinate values are specified in list format (comma separated) in
+	decimal degrees in the ICRS coordinate system.
+    </DESCRIPTION>
+</PARAM>
+
+<PARAM name="INPUT:SIZE" value="0.1" datatype="double" unit="deg">
+    <DESCRIPTION>
+	The radius of the circular region of interest in decimal degrees.
+    	If size is omitted it will cause a search in the service defined by a
+	default sized region of 0.1 degrees resulting in a patch of 0.01*pi sq.deg.
+    </DESCRIPTION>  
+</PARAM>
+
+<PARAM name="INPUT:BAND" value="ALL" datatype="char" arraysize="*">
+    <DESCRIPTION>
+    	    Spectral coverage: Wavenlength values should be given in meters, as a 
+    	    single value or range. If a single numerical value is specified it
+    	    matches any spectrum for which the spectral coverage includes the specified 
+    	    value. If two values are given, a spectrum matches if any portion of it overlaps 
+    	    the given spectral region. All spectra returned by this service belong mainly to 
+    	    the optical reaching to the infrared regime (6000 to 10000 A). Therefore, values 
+    	    out of this range won't yield any matching records in the query response.		    
+    </DESCRIPTION>
+</PARAM>
+
+<PARAM name="INPUT:TIME" value="" datatype="char" arraysize="*">
+    <DESCRIPTION>
+	If a single value is specified it matches any spectrum for which the time coverage
+	includes the specified value.  If a range is specified it matches any spectrum
+	which contains any data in the specified range.
+	Dates are expected in ISO 8601 UTC format.
+	E.g. 1998-05-21/1999-01-01 will search for all spectra taken in the given time period,
+	that is starting 21st May, 1998 to Jan 1st, 1999 inclusive.
+    </DESCRIPTION>
+</PARAM>
+
+<PARAM name="INPUT:FORMAT" value="ALL" datatype="char" arraysize="*">
+    <DESCRIPTION>
+    	    Desired format of retrieved data. The format for all the spectra returned by this 
+    	    service is native fits. Only "all" or "native" will cause a search in the service.
+	Note: The exact description of the output format
+	      (binary table or 1d image, definition of axes)
+	      is outside the scope of the access protocol.
+	      Below format values are treated case insensitive.
+      </DESCRIPTION>
+    <VALUES>
+	<OPTION>ALL</OPTION>	    <!-- search any format -->
+	<OPTION>NATIVE</OPTION>
+    	<OPTION>METADATA</OPTION>
+    </VALUES>
+</PARAM>
+
+<PARAM name="INPUT:REQUEST" datatype="char" arraysize="*">
+    <DESCRIPTION>
+	SSA protocol versions supported by this service.
+	Reserved words for future extensions are:
+	getData, stageData, get Capabilities, getAvailability
+	Values are treated case-insensitive.
+    </DESCRIPTION>
+    <VALUES>
+	<OPTION value="queryData" />
+    </VALUES>
+</PARAM>
+
+<!-- optional/recommended parameters and service defined input parameters -->
+
+<PARAM name="INPUT:VERSION" value="1.00" datatype="double">
+    <DESCRIPTION>SSA protocol versions supported by this service.</DESCRIPTION>
+    <VALUES>
+	<OPTION value="1.0" />
+	<!--OPTION value="1.01" /-->  <!-- future extensions -->
+    </VALUES>
+</PARAM>
+
+
+<!-- query response parameters (name="OUTPUT:param-name") -->
+<PARAM name="OUTPUT:Score" datatype="float" utype="ssa:Query.Score">
+	<DESCRIPTION>Degree of match to query parameters</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:Ra" datatype="float" ucd="pos.eq.ra" utype="saf:Char.SpatialAxis.Coverage.Ra" unit="deg" value="" >
+	<DESCRIPTION>Right Ascension</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:Dec" datatype="float" ucd="pos.eq.dec" utype="saf:Char.SpatialAxis.Coverage.Dec" unit="deg" value="" >
+	<DESCRIPTION>Declination</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:AccessRef" datatype="char" ucd="meta.accessref.url" utype="saf:AccessReference" arraysize="*" value="" >
+	<DESCRIPTION>URL used to access dataset</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:DisplayRef" datatype="char" ucd="meta.display.url" utype="saf:DisplayReference" arraysize="*" value="" >
+	<DESCRIPTION>URL used to display dataset</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:NGAS_Id" datatype="char" ucd="meta.id;meta.dataset" utype="saf:Curation.NgasID" arraysize="*" value="" >
+	<DESCRIPTION>NGAS Identification</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:ProgramID" datatype="char" ucd="meta.code;obs.proposal" utype="saf:Curation.ProgramID" arraysize="*" value="" >
+	<DESCRIPTION>ESO Program Identification</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:PIName" datatype="char" ucd="meta.id.PI" utype="saf:Curation.Observer" arraysize="*" value="" >
+	<DESCRIPTION>Principal Investigator</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:ProposalTitle" datatype="char" ucd="meta.curation;obs.proposal" utype="saf:Curation.ProposalTitle" arraysize="*" value="" >
+	<DESCRIPTION>Proposal Title</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:TelescopeName" datatype="char" ucd="meta.id;instr.tel" utype="saf:Curation.Telescope" arraysize="*" value=""  >
+	<DESCRIPTION>Telescope Name</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:Grism" datatype="char" ucd="instr.setup" utype="saf:Instrument.DispersiveElement" arraysize="*" value="" >
+<DESCRIPTION>Dispersive Element</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:Category" datatype="char" ucd="meta.code.class;obs" utype="saf:Observation.Category" arraysize="*" value="" >
+	<DESCRIPTION>Observation Category</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:Mode" datatype="char" ucd="meta.code.class;instr.setup" utype="saf:Observation.Technique" arraysize="*" value="" >
+	<DESCRIPTION>Observation Technique</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:Type" datatype="char" ucd="meta.code.class" utype="saf:Observation.Type" arraysize="*" value="" >
+	<DESCRIPTION>Observation/Exposure Type</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:OB_Name" datatype="char" ucd="meta.id.obs" utype="saf:Observation.OB.Name" arraysize="*" value="" >
+	<DESCRIPTION>Observation Block Name</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:OB_Id" datatype="char" ucd="meta.id" utype="saf:Observation.OB.ID" arraysize="*" value="" >
+	<DESCRIPTION>Observation Block Identification</DESCRIPTION>
+</PARAM>
+
+<!-- service metadata -->
+<!-- service metadata: Access.* -->
+    
+<PARAM name="OUTPUT:Format" datatype="char" utype="ssa:Access.Format" arraysize="*">
+    <DESCRIPTION>Content or MIME type of dataset</DESCRIPTION>
+</PARAM>
+
+<!-- data model metadata -->
+<!-- data model metadata: Dataset.* -->
+<PARAM name="OUTPUT:DataModel" datatype="char" utype="ssa:Dataset.DataModel" arraysize="*" value="" >
+    <DESCRIPTION>Datamodel name and version</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:DataLength" datatype="long" utype="ssa:Dataset.Length" value="" >
+    <DESCRIPTION>Number of points</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:DatasetType" datatype="char" utype="ssa:Dataset.Type" value="Spectrum" arraysize="*" >
+    <DESCRIPTION>Dataset or segment type</DESCRIPTION>
+</PARAM>
+
+<!-- data model metadata: DataID.* -->
+<PARAM name="OUTPUT:Title" datatype="char" ucd="meta.title;meta.dataset" utype="ssa:DataID.Title" arraysize="*" value="" >
+    <DESCRIPTION>Dataset Title</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:Creator" datatype="char" utype="ssa:DataID.Creator" arraysize="*" value="" >
+    <DESCRIPTION>Dataset creator</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:Collection" datatype="char" utype="ssa:DataID.Collection" arraysize="*">
+    <DESCRIPTION>Data collection to which dataset belongs</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:CreatorDate" datatype="char"  ucd="time;meta.dataset" utype="ssa:DataID.Date" arraysize="*" value="" >
+    <DESCRIPTION>Data processing/creation date</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:CreatorVersion" datatype="char" ucd="meta.version;meta.dataset" utype="ssa:DataID.Version" arraysize="*" value="" >
+    <DESCRIPTION>Version of dataset</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:Instrument" datatype="char" ucd="meta.id;instr" utype="ssa:DataID.Instrument" arraysize="*">
+	<DESCRIPTION>Instrument name</DESCRIPTION>
+    </PARAM>
+<PARAM name="OUTPUT:DataSource" datatype="char" utype="ssa:DataID.DataSource" arraysize="*" value="" >
+    <DESCRIPTION>Original source of the data</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:CreationType" datatype="char"  utype="ssa:DataID.CreationType" arraysize="*" value="" >
+    <DESCRIPTION>Dataset creation type</DESCRIPTION>
+</PARAM>
+
+<!-- data model metadata: Curation.* -->
+<PARAM name="OUTPUT:Publisher" datatype="char"  ucd="meta.curation" utype="ssa:Curation.Publisher" arraysize="*" value="" >
+	<DESCRIPTION>Dataset publisher</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:Reference" datatype="char" ucd="meta.bib.bibcode" utype="ssa:Curation.Reference" arraysize="*" value="" >
+    <DESCRIPTION>URL or Bibcode for documentation</DESCRIPTION>
+</PARAM>
+
+<!-- data model metadata: Target.* -->
+<PARAM name="OUTPUT:TargetName" datatype="char" ucd="meta.id;src" utype="ssa:Target.Name" arraysize="*" value="" >
+    <DESCRIPTION>Target name</DESCRIPTION>
+</PARAM>
+
+<!-- data model metadata: CoordSys.* -->
+<PARAM name="OUTPUT:SpaceFrameName" datatype="char" utype="ssa:CoordSys.SpaceFrame.Name" arraysize="*" value="" >
+    <DESCRIPTION>Spatial coordinate frame name</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:SpaceFrameEquinox" datatype="double" ucd="time.equinox;pos.frame" utype="ssa:CoordSys.SpaceFrame.Equinox" unit="y" value="" >
+    <DESCRIPTION>Equinox</DESCRIPTION>
+</PARAM>
+
+<!-- characterization metadata -->
+<!-- characterization metadata: Char.FluxAxis -->
+    
+<PARAM name="OUTPUT:FluxAxisUcd" datatype="char" utype="ssa:Char.FluxAxis.Ucd" arraysize="*" value="" >
+    <DESCRIPTION>UCD for flux</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:FluxAxisUnit" datatype="char" utype="ssa:Char.FluxAxis.Unit" arraysize="*">
+    	<DESCRIPTION>Unit for flux</DESCRIPTION>
+</PARAM>
+    <!-- characterization metadata: SpectralAxis -->
+<PARAM name="OUTPUT:SpectralAxisUcd" datatype="char" utype="ssa:Char.SpectralAxis.Ucd" arraysize="*" value="" >
+    <DESCRIPTION>UCD for spectral coord</DESCRIPTION>
+</PARAM>
+<PARAM name="OTPUT:SpectralAxisUnit" datatype="char" utype="ssa:Char.SpectralAxis.Unit" arraysize="*" unit="m" value="" >
+<DESCRIPTION>Unit for spectral coord</DESCRIPTION>
+</PARAM>
+    
+<!-- characterization metadata: Char.*.Coverage -->
+
+<PARAM name="OUTPUT:SpatialLocation" datatype="double" ucd="pos.eq" utype="ssa:Char.SpatialAxis.Coverage.Location.Value" arraysize="2" unit="deg" value="" >
+    <DESCRIPTION>Spatial Position</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:SpatialExtent" datatype="double" ucd="instr.fov" utype="ssa:Char.SpatialAxis.Coverage.Bounds.Extent" unit="deg">
+    	<DESCRIPTION>Aperture angular size</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:SpectralLocation" datatype="double" ucd="time.epoch" utype="ssa:Char.SpectralAxis.Coverage.Location.Value" unit="d" value="" >
+    	<DESCRIPTION>Midpoint of spectral coordinate range</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:SpectralExtent" datatype="double" ucd="spectral.expo" utype="ssa:Char.SpectralAxis.Coverage.Bounds.Extent" unit="s" value="" >
+    	<DESCRIPTION>Width of spectral coordinate in meters</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:SpectralStart" datatype="double" ucd="spectral.expo.start" utype="ssa:Char.SpectralAxis.Coverage.Bounds.Start" unit="d" value="" >
+    	<DESCRIPTION>Start in spectral coordinate</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:SpectralStop" datatype="double" ucd="spectral.expo.end" utype="ssa:Char.SpectralAxis.Coverage.Bounds.Stop" unit="d" value="" >
+    	<DESCRIPTION>Stop in spectral coordinate</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:TimeLocation" datatype="double" ucd="time.epoch" utype="ssa:Char.TimeAxis.Coverage.Location.Value" unit="d" value="" >
+	<DESCRIPTION>Midpoint of exposure on MJD scale</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:TimeExtent" datatype="double" ucd="time.expo" utype="ssa:Char.TimeAxis.Coverage.Bounds.Extent" unit="s" value="" >
+	<DESCRIPTION>Total exposure time</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:TimeStart" datatype="double" ucd="time.expo.start" utype="ssa:Char.TimeAxis.Coverage.Bounds.Start" unit="d" value="" >
+	<DESCRIPTION>Start time</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:TimeStop" datatype="double" ucd="time.expo.end" utype="ssa:Char.TimeAxis.Coverage.Bounds.Stop" unit="d" value="" >
+	<DESCRIPTION>Stop time</DESCRIPTION>
+</PARAM>
+
+<!-- characterization metadata: Char.*.Accuracy -->
+<PARAM name="OUTPUT:FluxCalibration" datatype="char" utype="ssa:Char.FluxAxis.Accuracy.Calibration" arraysize="*" value="" >
+    <DESCRIPTION>Type of flux calibration</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:TimeCalibration" datatype="char" ucd="meta.code.qual" utype="ssa:Char.TimeAxis.Accuracy.Calibration" arraysize="*" value="" >
+    <DESCRIPTION>Type of coord calibration</DESCRIPTION>
+</PARAM>
+<PARAM name="OUTPUT:SpatialCalibration" datatype="char" ucd="meta.code.qual" utype="ssa:Char.SpatialAxis.Accuracy.Calibration" arraysize="*" value="" >
+    <DESCRIPTION>Type of spatial coord calibration</DESCRIPTION>
+</PARAM>
+
+</RESOURCE>
+</VOTABLE>

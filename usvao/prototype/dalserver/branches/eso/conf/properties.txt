@@ -1,0 +1,9 @@
+serviceName = EsoSsap
+configDir = /home/DALSERVER/ssaserver/conf
+dataUrlLink = http://vops1.hq.eso.org:8080/ngamsauthproxy/get/${NGAS_Id}
+dataUrl = http://vops1.hq.eso.org:8080/ngamsauthproxy/get/
+displayUrlLink = http://arcdev/archive/rh/specview/displaySpectrum?target=${NGAS_Id}
+displayUrl = http://arcdev/archive/rh/specview/displaySpectrum?target=
+dbUrl = jdbc:sybase:Tds:safdb.hq.eso.org:6000/adp
+userName = adpuser
+password = ngc$1232

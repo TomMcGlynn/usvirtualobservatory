@@ -1,0 +1,9 @@
+Vendor (third party) software which is used by DALServer.
+--------------------------------------------------------
+
+cds-savot
+	SAVOT VOTable library from CDS.
+
+texttable
+	A simple text table formatter.
+

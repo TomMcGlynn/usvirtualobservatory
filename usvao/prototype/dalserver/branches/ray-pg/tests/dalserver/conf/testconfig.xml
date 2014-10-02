@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<keywords>
+  <!-- ===================================================================
+    comment 
+    =================================================================== -->
+  <param>
+    <name>      Name    </name>
+    <datatype>  char    </datatype>  <!-- use for string values -->
+    <arraysize> *       </arraysize>  <!-- use for string values -->
+    <ucd>       ID_MAIN </ucd>
+    <utype>     </utype>
+    <description>
+     The unique name of the object.  This is the name
+     given by the survey.
+    </description>
+    <fitskey> OBJECTID </fitskey>
+
+    <!-- arbitrary field -->
+    <goober> gurn </goober>
+  </param>
+
+  <!-- these example appears in the in-line documentation -->
+  <param>
+       <name>      title      </name>
+       <datatype>  char       </datatype>
+       <arraysize> *          </arraysize>
+       <utype>     Line.title </utype>
+       <ucd>       em.line    </ucd>
+       <description> 
+          an appropriate but brief string that adequately describes
+          the line being presented in the current row to reasonably 
+          informed consumer.
+       </description>
+  </param>
+
+  <param> <summary>
+       name:          shorttitle
+       datatype:      char
+       arraysize:     *
+       utype:         Line.title
+       ucd:           em.line
+       description:   small description identifying the line
+  </summary></param>
+
+  <!-- this appears in the conesearch example -->
+<param> <summary>
+name:          RA
+datatype:      double
+utype:         
+ucd:           POS_EQ_RA_MAIN
+</summary> 
+  <description>
+    The ICRS Right Ascension of the object
+  </description>
+</param>
+  
+</keywords>
