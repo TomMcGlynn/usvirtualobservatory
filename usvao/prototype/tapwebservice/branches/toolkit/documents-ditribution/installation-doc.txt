@@ -1,0 +1,142 @@
+******************************************************************************************************************
+ * TAP service toolkit
+ * Copyright (c) 2011, Johns Hopkins University
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the Johns Hopkins University nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL Johns Hopkins University BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+********************************************************************************************************************
+
+TAP Web service , Installation details
+
+Depending upon the operating system you are using choose correct versions of the softwares below.
+
+1. JAVA
+ 
+Make sure to use Java 1.6+ version for the given operating system and install it to the correct location on the server. More information is available on the link below
+
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+
+Once the installation is done make sure to create the environment variable (JAVA_HOME) for java which can be used globally on the system. (For linux Add system path JAVA_HOME for the java home directory)
+Test the successful java installation and configuration by typing following command
+on new terminal/command promt.
+
+
+> java -version
+
+
+
+2.RabbitMQ
+
+RabbitMQ is a robust messaging system used for communication between various software applications. It is scalable and works on all the major operating systems. In tapservice it plays a very important role for serving asynchronous jobs without loosing any input data.
+
+http://www.rabbitmq.com/download.html
+
+From  the link above find the proper version suitable for your opertating system and follow the instructions for installations given on the site.
+Test starting rabbitmq server using the commands listed in the user manual of rabbittq. 
+** Rabbittmq need not be installed on the same server where your tapservice will be hosted from. It can be any other machine which can communicate with your web server or it can be more than one instances of rabbittmq on different machines.
+Please check scalability and parallelization option of it in the Installation documents for rabbitmq.
+
+
+3. Webserver/Application server
+
+Server hosting tapservice needs to be on the network and should have some webserver to host the application (tap webservice in this case). There are various options to choose from but Apache is one of the preferred choice as it is helpful for logging as well.
+
+http://httpd.apache.org/
+http://tomcat.apache.org/
+
+From the given link find the appropriate version of apache server and follow the instructions for installations.
+
+*** Please note that if you are familiar with webservers and want to use servers of your own choice, it is fine. Just make sure it can host java web services.
+
+
+4. Database Server settings:
+
+Once you have decided type of server and ready with its installation follow the given steps. 
+In the "sql-distribution" there are SQL scripts for the various database types , choose the one you want. 
+
+4.1  Create TAP_SCHEMA and tables
+
+Once you are ready with your choice of database server and the database, create tap schema and related tables using script in the db folder.  
+<dbtype>_createTAP_schemaAndTables.sql will create schema "TAP_SCHEMA" and then tables below.
+
+tap_schema.schemas : It holds the schemas which will be supported by given tap service.
+tap_schema.tables : holds tables supported by the given service
+tap_schema.keys : holds primary keys
+tap_schema.columns: holds details of columns of tables served by tapservice.
+tap_schema.tapjobstable: holds all the async job related info. (used for IVOA UWS specification requirements)
+
+optional (To make service accessible to authenticated users only)
+tap_schema.usersdata : this table holds all the required authentication details.
+
+* use this (userdata)table if you are implementing upload table option. By default it uses application user so no need to do authentication. But if you want to give only limited access to upload feature, implement authentication first. More details in Developer's corner.
+
+
+4.2 Insert Info scripts:
+ In the "sql-distribution" under dbtype there is <dbtype>_insertTAP_SchemaAndTables.sql. This will insert , TAP_schema 
+ and  tables related basic information in the tables. 
+
+4.3  loading metadata in tapschema tables:
+
+Once you run above script you will notice what kind of data TAP_Schema tables hold. The data which you want to support by this tap service needs to represented in these tables on similar basis. All the tables in TAP_SCHEMA holds metadata in the format recognizable by TAP. This is useful for the end user or application which will use your service to get information about the data which you are supporting by the service.
+
+Simple thing which you can do is to use information_schema for your database and select required fields to insert in tap_schema.tables
+
+E.g. 
+select table_schema , table_name from information_Schema.tables 
+insert schema related information in TAP_SCHEMA.schemas and table related information into TAP_SCHEMA.tables.
+similary get the column information 
+select * from information_schema.columns where table_name=<my table>
+and insert into TAP_SCHEMA.columns 
+and so on.
+
+Remember insert information about the tables only which you want to support by this tap service. 
+
+*** Many database servers are case sensitive, keep the syntax checked. The give sql scripts are made taking the syntax into consideration.
+ 
+4.4 creating users for database:
+
+This is one of the important part and make sure you read and create user with certain permissions carefully.
+In the "sql-distribution" folder under each <dbtype> a script ".sql" is given with sample users and permissions.
+open that file and edit according to your username and password preferences.
+
+There are three types of users you need to create. 
+
+user1: Its a general user for all the databases which you want to serve through this tap service. This user should have only read permissions.
+
+user2: This user is a special user of the database where we are keeping user uploaded data files. This user can have write permissions only for this database.
+
+user3: Its a user for TAP_schema database which contains all the tap_shcema tables and also asynchronous job related tables.
+
+ ** More about user permissions is given in the "sql-distribution" in each dbtype directories.
+
+5. properties file:
+
+This is the important file for application set up. All the values in this file should be set properly to make application work successfully.
+
+properties file is under folder "source-ditribution" in "source" folder.  
+It has all the values set up as an example , there are some useful comments in it to make changes according to your requirement. Edit the file accoring to the syntax given in the file and according to your requirement.
+
+
+
+
+
+

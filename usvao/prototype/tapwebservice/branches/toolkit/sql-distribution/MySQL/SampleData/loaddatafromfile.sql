@@ -1,0 +1,1 @@
+LOAD DATA  LOCAL INFILE 'H:\\AllTAP\\Tap-Toolkit-all\\final-Dec-2012\\tapservice-toolkit\\sql-distribution\\MySQL\\DataSample.txt' INTO TABLE data_schema.frame

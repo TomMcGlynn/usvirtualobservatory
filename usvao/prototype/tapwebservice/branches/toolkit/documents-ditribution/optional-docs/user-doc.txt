@@ -1,0 +1,96 @@
+******************************************************************************************************************
+ * TAP service toolkit
+ * Copyright (c) 2011, Johns Hopkins University
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the Johns Hopkins University nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL Johns Hopkins University BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+********************************************************************************************************************
+
+TAP Web Service Usage:
+
+This document shows various usage options for tap service. There are some GUI based applications available for the test (e.g. TOPCAT,SELESTE ) to use tap service from. In this particular document some other options are included to quickly test the service.
+
+Service supports all the following queries given with some examples , There is simple UI developed in jsp, which can be accessible from index page of the service.
+
+Sample queries:
+1. Simple Query :: Select p.objid, p.ra, p.dec, p.u, p.g, p.r, p.i, p.z From PhotoObj as p Where p.u Between 0 And 19.6
+2. Spatial query :: SELECT o.ra, o.dec FROM photoobjAll o  WHERE CONTAINS( POINT('J2000', o.ra, o.dec), CIRCLE('J2000', 180, 0, 0.3)) = 1
+* These queries are just examples and will be different for your database.
+
+Sample Commands:
+
+All the TAP commands or queries return results in the standard form specified in TAP V1.0 , IVOA recommendations.
+
+
+Using web interface
+	Once service deployed use following link in browser
+	http://<webserver>/<webservice context >/
+    It will take to the index page of service where all the information to run the service    
+
+
+Using command line program to access the tap service
+
+1. To list job details
+	curl http:// <webserver>/<webservice context>/ tap/async/<jobid>
+2. To change the phase of the query
+        curl -d PHASE=ABORTED http://<webservice context>/tapwebservice/tap/async/<jobid>/phase
+3. To get the destruction time of job.
+        http:// <webserver>/<webservice context>/tap/async/<jobid>/destruction
+4. To change the destruction of the job  
+	curl -d DESTRUCTION="2011-07-06 16:19:19.283" http://<webserver>/<webservice context>/tap/async/<jobid>/destruction
+5. To terminate the query
+	curl -d TERMINATION=2000  http:// <webserver>/<webservice context>/tap/async/<jobid>/executionDuration
+6. To get the query execution time
+	curl   http:// <webserver>/<webservice context>/tap/async/<jobid>/executionDuration
+7. To submit async query, it returns jobid created with link to job details.
+        curl -d REQUEST=doQuery -d LANG=ADQL -d QUERY="SELECT TOP 1000 p.objid,p.ra,p.dec,p.u,p.g,p.r,p.i,p.z FROM PhotoObj 			as p WHERE  p.u BETWEEN 0 AND 19.6"   http:// <webserver>/<webservice context>/tap/async
+8. To get the results of async job								         
+       curl   http:// <webserver>/<webservice context>/tap/async/<jobid>/results/result
+9. To Submit sync query
+	curl -d REQUEST=doQuery -d LANG=ADQL -d QUERY="SELECT TOP 10 p.objid,p.ra,p.dec,p.u,p.g,p.r,p.i,p.z FROM PhotoObj 				as p WHERE  p.u BETWEEN 0 AND 19.6"   http:// <webserver>/<webservice context>/tap/sync
+
+
+Using web service client java object: 
+
+Here is an example using java-ws client.
+public void testSync() {
+WebResource webResource = com.sun.jersey.api.client.Client.create().resource("http://localhost:8080/tapwebservice/tap/sync");
+MultivaluedMap formData = new MultivaluedMapImpl();
+formData.add("REQUEST", "doQuery");
+formData.add("LANG", "ADQL");
+formData.add("QUERY", "SELECT TOP 10 ra FROM PhotoObjAll");
+ClientResponse response = webResource.type("application/x-www-form-urlencoded").post(ClientResponse.class, formData);
+//use response according to requirement
+}
+
+public void testAsync() {     
+ WebResource webResource = com.sun.jersey.api.client.Client.create().resource("http://localhost:8080/tapwebservice/tap/async");
+MultivaluedMap formData = new MultivaluedMapImpl();
+formData.add("REQUEST", "doQuery");
+formData.add("LANG", "ADQL");
+formData.add("QUERY", "SELECT TOP 10 ra FROM PhotoObjAll");
+ClientResponse response = webResource.type("application/x-www-form-urlencoded").post(ClientResponse.class, formData);        
+ } 
+
+
+
+

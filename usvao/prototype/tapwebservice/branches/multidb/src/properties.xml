@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!--
+    Document   : properties.xml
+    Created on : February 24, 2011, 5:48 PM
+    Author     : deoyani nandrekar-heinis
+    Description: It saves the name of application properties file
+-->
+
+<!-- The main configuration file for the application. You can overlay the default application parameters by system environmental parameters.-->
+<configuration>
+  <system/>
+  <properties fileName="tapwebservice.properties"/>
+</configuration>
+

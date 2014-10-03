@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+   	<display-name>TAP Web Service</display-name>
+   
+   <servlet>
+        <servlet-name>ServletAdaptor</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        
+            <init-param>
+	        <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
+	        <param-value>edu.jhu.pha.servlets.AuthenticationFilter</param-value>
+	    </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAdaptor</servlet-name>
+        <url-pattern>/tap/*</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+        
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    
+    <servlet>
+        <servlet-name>LoadProperties</servlet-name>
+        <servlet-class>edu.jhu.pha.servlets.LoadProperties</servlet-class>
+        <init-param>
+            <param-name>settingsFileName</param-name>
+            <param-value>properties.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>DatabaseConnectionPool</servlet-name>
+        <servlet-class>edu.jhu.pha.servlets.DatabasePool</servlet-class>
+        <init-param>
+            <param-name>defaultMaxActive</param-name>
+            <param-value>10</param-value>
+        </init-param>
+        <load-on-startup>3</load-on-startup>
+    </servlet>
+    <servlet>
+	<servlet-name>JobWorker</servlet-name>
+	<servlet-class>edu.jhu.pha.servlets.JobWorker</servlet-class>
+	<load-on-startup>4</load-on-startup>
+    </servlet>
+    
+    <servlet>
+	<servlet-name>CheckJobs</servlet-name>
+	<servlet-class>edu.jhu.pha.servlets.CheckJobs</servlet-class>
+	<load-on-startup>5</load-on-startup>
+    </servlet>
+    
+    <servlet>
+	<servlet-name>MetadataDictionary</servlet-name>
+	<servlet-class>edu.jhu.pha.servlets.MetadataDictionary</servlet-class>
+	<load-on-startup>6</load-on-startup>
+    </servlet>
+    
+    <servlet>
+	<servlet-name>UploadWorker</servlet-name>
+	<servlet-class>edu.jhu.pha.servlets.UploadWorker</servlet-class>
+	<load-on-startup>7</load-on-startup>
+    </servlet>
+     <!-- OAuth -->
+<!--    <servlet>                                                                                                                                                                           
+        <servlet-name>RequestTokenServlet</servlet-name>                                                                                                                                
+        <servlet-class>edu.jhu.pha.servlets.oauth.RequestTokenServlet</servlet-class>                                                                                          
+    </servlet>                                                                                                                                                                          
+    <servlet>                                                                                                                                                                           
+        <servlet-name>AuthorizationServlet</servlet-name>                                                                                                                               
+        <servlet-class>edu.jhu.pha.servlets.oauth.AuthorizationServlet</servlet-class>                                                                                         
+    </servlet>                                                                                                                                                                          
+    <servlet>                                                                                                                                                                           
+        <servlet-name>AccessTokenServlet</servlet-name>                                                                                                                                 
+        <servlet-class>edu.jhu.pha.servlets.oauth.AccessTokenServlet</servlet-class>                                                                                           
+    </servlet>                                                                                                                                                                          
+    <servlet>                                                                                                                                                                           
+        <servlet-name>EchoServlet</servlet-name>                                                                                                                                        
+        <servlet-class>edu.jhu.pha.servlets.oauth.EchoServlet</servlet-class>                                                                                                  
+    </servlet>                                                                                                                                                                          
+    <servlet-mapping>                                                                                                                                                                   
+        <servlet-name>RequestTokenServlet</servlet-name>                                                                                                                                
+        <url-pattern>/request_token</url-pattern>                                                                                                                                       
+    </servlet-mapping>                                                                                                                                                                  
+    <servlet-mapping>                                                                                                                                                                   
+        <servlet-name>AuthorizationServlet</servlet-name>                                                                                                                               
+        <url-pattern>/authorize</url-pattern>                                                                                                                                           
+    </servlet-mapping>                                                                                                                                                                  
+    <servlet-mapping>                                                                                                                                                                   
+        <servlet-name>AccessTokenServlet</servlet-name>                                                                                                                                 
+        <url-pattern>/access_token</url-pattern>                                                                                                                                        
+    </servlet-mapping>                                                                                                                                                                  
+    <servlet-mapping>                                                                                                                                                                   
+        <servlet-name>EchoServlet</servlet-name>                                                                                                                                        
+        <url-pattern>/echo</url-pattern>                                                                                                                                                
+    </servlet-mapping>-->
+    
+<!--    <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>
+        edu.jhu.pha.filters.AuthFilter
+    </filter-class>
+    <init-param>
+        <param-name>test-param</param-name>
+        <param-value>This parameter is for testing.</param-value>
+    </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/tap/async/upload</url-pattern>
+    </filter-mapping>-->
+</web-app>

@@ -1,0 +1,113 @@
+******************************************************************************************************************
+ * TAP service toolkit
+ * Copyright (c) 2011, Johns Hopkins University
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the Johns Hopkins University nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL Johns Hopkins University BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+********************************************************************************************************************
+VOSpace communication:
+
+This Document summarises the use of this tapservice with VOSpace. To make this service work with given VOSpace you have to first go through the setting for it. Make sure all the properties are properly set in aplication ".properties" file. Since VOSpace works with user authentication, make sure it is ready and working. Either use the authentication package available with this service or make your own.
+
+
+VOSpace Integration and usage:
+There are two types of communication between VOSpace from TAP .
+1. Pull Data From VOSpace into TAP
+2. Pull Data into VOSpace from TAP
+
+Here are details for usage of these functionalities
+VOSpace authentication:
+VAO vospace works with Single Sign On authentication.  To use tap ‘UPLOAD’ or ‘STORERESULT’  parameters, service checks this authentication by checking the certificate file obtained by user while doing VAO SSO sign on.(for more details go to:  ) Following are sample commands for  these functionalities in TAP.
+
+1.Pull Data From VOSpace into TAP:
+
+According to TAP Specifications , VOSpace data can be uploaded in TAP . Following is the specification for the sample given below
+It tells tap to upload the data from given VOSpace endpoint. Tap service resolves the “vos:” pattern for given vospace URL.  eg:  vos://edu.jhu!vospace
+
+Sample command to upload data to TAP service on some pending job :
+
+If you have not uploaded data while creating the job and if job is still in the pending phase UPLOAD parameter can be specified.
+
+curl -d UPLOAD=table1,http://localhost:8080/WebSource/Sample1.xml; table2,vos://edu.jhu!vospace/data1/datanode1; https://localhost:8443/tapwebservice/tap/async/22e31a57-5edc-48b2-b586-4c49e09bfebd 
+
+Sample command to upload data while creating job:
+curl  
+-d REQUEST=doQuery 
+-d LANG=ADQL 
+-d QUERY="SELECT TOP 10 p.objid,p.ra,p.dec,p.u,p.g,p.r,p.i,p.z FROM PhotoObj as p WHERE  p.u  BETWEEN 0 AND 19.6" 
+-d UPLOAD= table1,http://localhost:8080/WebSource/Sample1.xml; table2,vos://edu.jhu!vospace/data1/datanode1 
+
+https://localhost:8443/sdss/tap/async 								            
+-E C:\geteec:deotappassphrase -k
+
+
+2.Pull Data into VOSpace from TAP:
+
+Sample command to store TAP Query results in user’s vospace:
+curl 
+-d RESULTSTORE=VOSPACE 
+https://localhost:8443/sdss/tap/async/a057587f-92a6-4e94-82a2-72b91f88b150  
+-E C:\geteec:deotappassphrase -k
+
+Here by default results are stored in the ‘tapresults’ directory in the user’s VOSpace. Otherwise there are other options which could be given along with the RESULTSTORE parameter in above example.
+Parameters explanation in the above command: 
+
+RESULTSTORE=VOSPACE :  to store results in vospace
+https://localhost:8443/sdss/tap/async/a057587f-92a6-4e94-82a2-72b91f88b150 : this is job end point 
+-E C:\geteec:deotappassphrase    : specify certificate file name and passphrase
+-k : curl specific command for key
+
+More about vospace authentication and authorization:
+
+There are two ways to use signle sign on 
+1. Using OpenId
+2. Using OAuth library
+
+Currently TAP works with VAO SSO using certification option. This certificate , user has to provide once and then it will be used by service. TAP uses Single Sign On certificates generated by the NVO SSO portal, where is user can register once and get the certificates. These certificates are associated with the passphrase given by user. TAP service currently uses OAuth library.
+
+First time user:
+1. Register on vao portal site. https://sso.us-vo.org/
+2. Download certificate
+3. Remember pass key associated with certificate
+
+First time accessing secured TAP resources:
+To upload the data in TAP and to store the TAP results in VOSpace, it goes through authentication. If one of these resources accessed by user for the first time, user will be asked to do following steps.
+
+1. Get request token by providing certificate and passphrase to TAPservice
+Curl https://<tapservice>/authentication -E <cetificatefile>:<passkey>
+2. Get request token authorized from the service
+Curl https://<vospace>/authorize_token <cetificatefile>:<passkey> with token parameter
+3. Once token is authorized send the request (upload or storeresult) to tap async job
+Curl –d upload:tablename,tableurl https://<tapservice>/tap/async/<jobid> -E <cetificatefile>:<passkey>
+4. For the first time Tap service will use authorized token to get a access token and store it in database.
+5. For any further secure request to access VOSpace through TAP the access token stored in database is used.
+6. For all the secure requests , certificate and passkey are mandatory.
+
+
+Get request token
+   curl https://<server>:8443/tapservice/tap/authentication/gettoken  -E <certificate>:<pass phrase> -k
+Get token authorized from VOSpace.
+    curl  https://tempsdss.pha.jhu.edu:8443/vospace-2.0/authorize 
+    ?oauth_token=3aa399d541cadc9cbf7dce461a2ceac0 –E <certificate>:<pass phrase> -k
+
+
+
