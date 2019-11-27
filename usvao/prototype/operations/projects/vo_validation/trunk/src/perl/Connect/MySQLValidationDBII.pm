@@ -17,7 +17,7 @@ sub vodb_connect
 {    
    
     my $dbh;
-    $dbh =  DBI->connect("DBI:mysql:host=asddb.gsfc.nasa.gov:database=validation_test:user=webuser:password=MpVAO\!\@\#Temp")
+    $dbh =  DBI->connect("DBI:mysql:host=asddb.gsfc.nasa.gov:database=validation_test:user=:password=")
 	or die "$DBI->errstr\n";
     return $dbh;
 }
